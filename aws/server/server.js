@@ -60,10 +60,26 @@ if (USE_HTTPS && process.env.NODE_ENV === 'production') {
   });
 }
 
+// ルートエンドポイント
+app.get('/', (req, res) => {
+  res.json({
+    name: 'Sukima Learning API',
+    version: '1.0.0',
+    status: 'running',
+    endpoints: {
+      health: '/health',
+      auth: '/api/auth',
+      membership: '/api/membership',
+      contact: '/api/contact',
+      stripe: '/api/stripe'
+    }
+  });
+});
+
 // ヘルスチェック
 app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'OK', 
+  res.json({
+    status: 'OK',
     timestamp: new Date().toISOString(),
     protocol: req.protocol,
     secure: req.secure
