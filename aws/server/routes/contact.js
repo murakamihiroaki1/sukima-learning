@@ -22,6 +22,7 @@ router.post('/send', async (req, res) => {
 
         // カテゴリーの日本語変換
         const categoryMap = {
+            'content_error': '問題・回答・解説の誤り',
             'login': 'ログイン関連',
             'bug': '不具合の報告',
             'feature': '機能の要望',
