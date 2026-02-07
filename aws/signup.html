@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規登録 - AWS 認定試験 対策</title>
+    <link rel="stylesheet" href="nav-styles.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+        }
+
+        /* ナビゲーションヘッダー */
+        .nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 1000;
+            padding: 15px 30px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333333;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 10px;
+        }
+
+        .nav-link:hover {
+            color: #FF9900;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dropdown-toggle::after {
+            content: "▼";
+            font-size: 0.7em;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            min-width: 250px;
+            padding: 10px 0;
+            display: none;
+            margin-top: 5px;
+        }
+
+        .dropdown:hover .dropdown-menu,
+        .dropdown-menu:hover {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background: #f5f5f5;
+            color: #FF9900;
+        }
+
+        .dropdown-item-title {
+            font-weight: bold;
+            font-size: 1.05em;
+        }
+
+        .dropdown-item-subtitle {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 3px;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .auth-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .auth-btn.login {
+            background: white;
+            color: #333333;
+            border: 1px solid #e0e0e0;
+        }
+
+        .auth-btn.login:hover {
+            background: #f5f5f5;
+            border-color: #333333;
+        }
+
+        .auth-btn.signup {
+            background: #FF9900;
+            color: white;
+            border: 1px solid #FF9900;
+        }
+
+        .auth-btn.signup:hover {
+            background: #e68a00;
+            border-color: #e68a00;
+        }
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 20px 40px;
+        }
+
+
+        .container {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            max-width: 500px;
+            width: 100%;
+            padding: 40px;
+            margin-top: 100px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .aws-logo {
+            color: #FF9900;
+            font-weight: bold;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+        }
+
+        .form-group label .required {
+            color: #f44336;
+            margin-left: 3px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #FF9900;
+            box-shadow: 0 0 0 3px rgba(255, 153, 0, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        .form-group input.error {
+            border-color: #f44336;
+        }
+
+        .password-toggle {
+            position: relative;
+        }
+
+        .password-toggle-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 0.9em;
+            padding: 5px;
+        }
+
+        .password-toggle-btn:hover {
+            color: #FF9900;
+        }
+
+        .password-strength {
+            margin-top: 8px;
+            font-size: 0.85em;
+        }
+
+        .strength-bar {
+            height: 4px;
+            background: #e0e0e0;
+            border-radius: 2px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .strength-fill {
+            height: 100%;
+            width: 0%;
+            transition: all 0.3s ease;
+        }
+
+        .strength-fill.weak {
+            width: 33%;
+            background: #f44336;
+        }
+
+        .strength-fill.medium {
+            width: 66%;
+            background: #ff9800;
+        }
+
+        .strength-fill.strong {
+            width: 100%;
+            background: #4caf50;
+        }
+
+        .error-text {
+            color: #f44336;
+            font-size: 0.85em;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .error-text.show {
+            display: block;
+        }
+
+        .terms-group {
+            margin: 25px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .terms-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .terms-checkbox input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .terms-checkbox label {
+            color: #555;
+            font-size: 0.9em;
+            line-height: 1.6;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .terms-checkbox label a {
+            color: #FF9900;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .terms-checkbox label a:hover {
+            text-decoration: underline;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: #FF9900;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: #e68a00;
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            position: relative;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+            background: #e0e0e0;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 15px;
+            color: #999;
+            font-size: 0.9em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-link {
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .login-link a {
+            color: #FF9900;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .success-message {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+        .main-content {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 20px 40px;
+        }
+
+            .container {
+                padding: 30px 20px;
+                margin-top: 80px;
+            }
+
+            .header h1 {
+                font-size: 1.6em;
+            }
+        }
+
+        /* フッター */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 20px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            background: #667eea;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .footer-link:hover {
+            background: #5568d3;
+        }
+
+        .footer-copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9em;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- ナビゲーションヘッダー -->
+    <nav class="nav-header">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">AWS認定試験対策</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+<div class="nav-menu" id="navMenu">
+                <div class="nav-item dropdown">
+                    <div class="nav-link dropdown-toggle">認定資格</div>
+                    <div class="dropdown-menu">
+                        <a href="clf.html" class="dropdown-item">
+                            <div class="dropdown-item-title">CLF - Cloud Practitioner</div>
+                            <div class="dropdown-item-subtitle">AWS Certified Cloud Practitioner</div>
+                        </a>
+                        <a href="saa.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SAA - Solutions Architect Associate</div>
+                            <div class="dropdown-item-subtitle">AWS Certified Solutions Architect - Associate</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="pricing.html" class="nav-link">料金</a>
+                </div>
+                <div class="nav-item">
+                    <a href="faq.html" class="nav-link">FAQ</a>
+                </div>
+                <div class="nav-item">
+                    <a href="contact.html" class="nav-link">お問い合わせ</a>
+                </div>
+                <div class="nav-item auth-buttons">
+                    <a href="login.html" class="auth-btn login">ログイン</a>
+                    <a href="signup.html" class="auth-btn signup">新規登録</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content"><div class="container">
+        
+        <div class="header">
+            <h1><span class="aws-logo">AWS</span> 認定試験 対策</h1>
+            <p>新規登録</p>
+        </div>
+
+        <div class="success-message" id="success-message">
+            登録が完了しました！ログインページに移動します...
+        </div>
+
+        <form id="signup-form" onsubmit="handleSignup(event)">
+            <div class="form-group">
+                <label for="username">
+                    ユーザー名<span class="required">*</span>
+                </label>
+                <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    placeholder="ユーザー名を入力（3文字以上）"
+                    required
+                    minlength="3"
+                >
+                <div class="error-text" id="username-error">
+                    ユーザー名は3文字以上で入力してください
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">
+                    メールアドレス<span class="required">*</span>
+                </label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="example@email.com"
+                    required
+                >
+                <div class="error-text" id="email-error">
+                    有効なメールアドレスを入力してください
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">
+                    パスワード<span class="required">*</span>
+                </label>
+                <div class="password-toggle">
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        placeholder="パスワードを入力（8文字以上）"
+                        required
+                        minlength="8"
+                        oninput="checkPasswordStrength()"
+                    >
+                    <button 
+                        type="button" 
+                        class="password-toggle-btn" 
+                        onclick="togglePassword('password')"
+                    >
+                        👁️
+                    </button>
+                </div>
+                <div class="password-strength">
+                    <div class="strength-bar">
+                        <div class="strength-fill" id="strength-fill"></div>
+                    </div>
+                    <span id="strength-text" style="color: #999; font-size: 0.85em;"></span>
+                </div>
+                <div class="error-text" id="password-error">
+                    パスワードは8文字以上で入力してください
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password-confirm">
+                    パスワード（再入力）<span class="required">*</span>
+                </label>
+                <div class="password-toggle">
+                    <input 
+                        type="password" 
+                        id="password-confirm" 
+                        name="password-confirm" 
+                        placeholder="パスワードを再入力"
+                        required
+                        oninput="checkPasswordMatch()"
+                    >
+                    <button 
+                        type="button" 
+                        class="password-toggle-btn" 
+                        onclick="togglePassword('password-confirm')"
+                    >
+                        👁️
+                    </button>
+                </div>
+                <div class="error-text" id="password-confirm-error">
+                    パスワードが一致しません
+                </div>
+            </div>
+
+            <div class="terms-group">
+                <div class="terms-checkbox">
+                    <input 
+                        type="checkbox" 
+                        id="terms" 
+                        name="terms" 
+                        required
+                    >
+                    <label for="terms">
+                        <a href="terms.html" target="_blank">利用規約</a>に同意します<span class="required">*</span>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submit-btn">
+                新規登録
+            </button>
+        </form>
+
+        <div class="divider">
+            <span>または</span>
+        </div>
+
+        <div class="login-link">
+            すでにアカウントをお持ちの方は <a href="login.html">ログイン</a>
+        </div>
+    </div></div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-container">
+            <a href="../index.html" class="footer-link">🏠 スキマ・ラーニング トップページ</a>
+            <div class="footer-copyright">
+                &copy; 2026 スキマ・ラーニング. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // パスワード表示/非表示の切り替え
+        function togglePassword(fieldId) {
+            const passwordInput = document.getElementById(fieldId);
+            const toggleBtn = passwordInput.nextElementSibling;
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.textContent = '👁️';
+            }
+        }
+
+        // パスワード強度チェック
+        function checkPasswordStrength() {
+            const password = document.getElementById('password').value;
+            const strengthFill = document.getElementById('strength-fill');
+            const strengthText = document.getElementById('strength-text');
+            
+            let strength = 0;
+            
+            if (password.length >= 8) strength++;
+            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^a-zA-Z0-9]/)) strength++;
+            
+            strengthFill.className = 'strength-fill';
+            
+            if (strength <= 1) {
+                strengthFill.classList.add('weak');
+                strengthText.textContent = '弱い';
+                strengthText.style.color = '#f44336';
+            } else if (strength <= 2) {
+                strengthFill.classList.add('medium');
+                strengthText.textContent = '普通';
+                strengthText.style.color = '#ff9800';
+            } else {
+                strengthFill.classList.add('strong');
+                strengthText.textContent = '強い';
+                strengthText.style.color = '#4caf50';
+            }
+        }
+
+        // パスワード一致チェック
+        function checkPasswordMatch() {
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('password-confirm').value;
+            const errorText = document.getElementById('password-confirm-error');
+            const confirmInput = document.getElementById('password-confirm');
+            
+            if (passwordConfirm && password !== passwordConfirm) {
+                confirmInput.classList.add('error');
+                errorText.classList.add('show');
+            } else {
+                confirmInput.classList.remove('error');
+                errorText.classList.remove('show');
+            }
+        }
+
+        const API_URL = 'http://localhost:3000/api/auth';
+
+        // 新規登録処理
+        async function handleSignup(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('password-confirm').value;
+            const termsAccepted = document.getElementById('terms').checked;
+            const submitBtn = document.getElementById('submit-btn');
+            const successMessage = document.getElementById('success-message');
+            
+            // バリデーション
+            let isValid = true;
+            
+            // ユーザー名チェック
+            if (username.length < 3) {
+                document.getElementById('username').classList.add('error');
+                document.getElementById('username-error').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('username').classList.remove('error');
+                document.getElementById('username-error').classList.remove('show');
+            }
+            
+            // メールアドレスチェック
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('email').classList.add('error');
+                document.getElementById('email-error').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('email').classList.remove('error');
+                document.getElementById('email-error').classList.remove('show');
+            }
+            
+            // パスワードチェック
+            if (password.length < 8) {
+                document.getElementById('password').classList.add('error');
+                document.getElementById('password-error').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('password').classList.remove('error');
+                document.getElementById('password-error').classList.remove('show');
+            }
+            
+            // パスワード一致チェック
+            if (password !== passwordConfirm) {
+                document.getElementById('password-confirm').classList.add('error');
+                document.getElementById('password-confirm-error').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('password-confirm').classList.remove('error');
+                document.getElementById('password-confirm-error').classList.remove('show');
+            }
+            
+            // 利用規約チェック
+            if (!termsAccepted) {
+                alert('利用規約に同意してください');
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                return;
+            }
+
+            // ボタンを無効化
+            submitBtn.disabled = true;
+            submitBtn.textContent = '登録中...';
+
+            try {
+                const response = await fetch(`${API_URL}/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, email, password })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // 登録成功
+                    successMessage.textContent = '登録が完了しました！ログインページに移動します...';
+                    successMessage.classList.add('show');
+                    
+                    // トークンを保存
+                    localStorage.setItem('accessToken', data.token);
+                    
+                    // 2秒後にログインページへ
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                } else {
+                    // 登録失敗
+                    alert(data.error || '登録に失敗しました');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '新規登録';
+                }
+            } catch (error) {
+                console.error('Registration error:', error);
+                alert('サーバーとの通信に失敗しました。サーバーが起動しているか確認してください。');
+                submitBtn.disabled = false;
+                submitBtn.textContent = '新規登録';
+            }
+        }
+
+        // リアルタイムバリデーション
+        document.getElementById('username').addEventListener('blur', function() {
+            if (this.value.length > 0 && this.value.length < 3) {
+                this.classList.add('error');
+                document.getElementById('username-error').classList.add('show');
+            }
+        });
+
+        document.getElementById('email').addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (this.value && !emailRegex.test(this.value)) {
+                this.classList.add('error');
+                document.getElementById('email-error').classList.add('show');
+            }
+        });
+    </script>
+    <script src="nav-component.js"></script>
+
+</body>
+</html>

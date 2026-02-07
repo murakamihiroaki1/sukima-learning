@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>料金プラン - AWS 認定試験 対策</title>
+    <link rel="stylesheet" href="nav-styles.css">
+
+    <style>
+        html {
+            height: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ナビゲーションヘッダー */
+        .nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 1000;
+            padding: 15px 30px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333333;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 10px;
+        }
+
+        .nav-link:hover {
+            color: #667eea;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dropdown-toggle::after {
+            content: "▼";
+            font-size: 0.7em;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            min-width: 250px;
+            padding: 10px 0;
+            display: none;
+            margin-top: 5px;
+        }
+
+        .dropdown:hover .dropdown-menu,
+        .dropdown-menu:hover {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background: #f0f4ff;
+            color: #667eea;
+        }
+
+        .dropdown-item-title {
+            font-weight: bold;
+            font-size: 1.05em;
+        }
+
+        .dropdown-item-subtitle {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 3px;
+        }
+        .page-content {
+            flex: 1;
+            padding: 100px 20px 40px;
+        }
+
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 認証ボタン */
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .auth-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .auth-btn.login {
+            background: white;
+            color: #333333;
+            border: 1px solid #e0e0e0;
+        }
+
+        .auth-btn.login:hover {
+            background: #f5f5f5;
+            border-color: #333333;
+        }
+
+        .auth-btn.signup {
+            background: #FF9900;
+            color: white;
+            border: 1px solid #FF9900;
+        }
+
+        .auth-btn.signup:hover {
+            background: #e68a00;
+            border-color: #e68a00;
+        }
+
+        .auth-btn.logout {
+            background: #dc3545;
+            color: white;
+        }
+
+        .auth-btn.logout:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .user-icon {
+            font-size: 1.2em;
+        }
+
+        .username {
+            color: #333333;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .logged-out {
+            display: flex;
+            gap: 10px;
+        }
+
+        .logged-in {
+            display: none;
+            gap: 10px;
+        }
+
+        header {
+            background: white;
+            border-radius: 15px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .pricing-card.disabled {
+            opacity: 0.6;
+            pointer-events: none;
+            position: relative;
+        }
+
+        .pricing-card.disabled::after {
+            content: "近日公開";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.5em;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        .pricing-card.disabled:hover {
+            transform: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #667eea;
+        }
+
+        .pricing-card.featured::before {
+            content: "おすすめ";
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 40px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .plan-name {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .plan-price {
+            font-size: 3em;
+            font-weight: bold;
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .plan-price span {
+            font-size: 0.4em;
+            color: #666;
+        }
+
+        .plan-description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .features-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            color: #4caf50;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .features-list li.unavailable {
+            color: #ccc;
+        }
+
+        .features-list li.unavailable::before {
+            content: "✗";
+            color: #ccc;
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .cta-button.secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .cta-button.secondary:hover {
+            background: #f0f4ff;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .pricing-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* フッター */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 20px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            background: #667eea;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .footer-link:hover {
+            background: #5568d3;
+        }
+
+        .footer-copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9em;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- ナビゲーションヘッダー -->
+    <nav class="nav-header">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">AWS認定試験対策</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+<div class="nav-menu" id="navMenu">
+                <div class="nav-item dropdown">
+                    <div class="nav-link dropdown-toggle">認定資格</div>
+                    <div class="dropdown-menu">
+                        <a href="clf.html" class="dropdown-item">
+                            <div class="dropdown-item-title">CLF - Cloud Practitioner</div>
+                        </a>
+                        <a href="aif.html" class="dropdown-item">
+                            <div class="dropdown-item-title">AIF - AI Practitioner</div>
+                        </a>
+                        <a href="saa.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SAA - Solutions Architect Associate</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="pricing.html" class="nav-link">料金</a>
+                </div>
+                <div class="nav-item">
+                    <a href="faq.html" class="nav-link">FAQ</a>
+                </div>
+                <div class="nav-item">
+                    <a href="contact.html" class="nav-link">お問い合わせ</a>
+                </div>
+                <div class="nav-item auth-buttons">
+                    <div class="logged-out">
+                        <a href="login.html" class="auth-btn login">ログイン</a>
+                        <a href="signup.html" class="auth-btn signup">新規登録</a>
+                    </div>
+                    <div class="logged-in">
+                        <div class="user-info">
+                            <span class="user-icon">👤</span>
+                            <span class="username" id="username"></span>
+                            <span class="user-plan" id="userPlan" style="margin-left: 10px; padding: 3px 8px; background: #FF9900; color: white; border-radius: 10px; font-size: 0.75em; font-weight: bold;"></span>
+                            <span class="user-expiry" id="userExpiry" style="margin-left: 10px; padding: 3px 8px; background: #f0f0f0; color: #666; border-radius: 10px; font-size: 0.75em;"></span>
+                        </div>
+                        <button class="auth-btn logout" onclick="handleLogout()">ログアウト</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="page-content">
+    <div class="container">
+        <header>
+            <h1>料金プラン</h1>
+            <p class="subtitle">あなたに最適なプランをお選びください</p>
+        </header>
+
+        <div class="pricing-container">
+            <!-- Free Plan -->
+            <div class="pricing-card">
+                <div class="plan-name">Free</div>
+                <div class="plan-price">¥0<span>/月</span></div>
+                <div class="plan-description">まずは無料で試してみる</div>
+                <ul class="features-list">
+                    <li>サンプル問題20問のみ</li>
+                    <li>解説の閲覧</li>
+                    <li>AWS公式ドキュメントリンク</li>
+                    <li class="unavailable">カテゴリ別学習</li>
+                    <li class="unavailable">模擬試験モード</li>
+                    <li class="unavailable">ランダム出題</li>
+                    <li class="unavailable">Foundational 認定</li>
+                    <li class="unavailable">Associate 認定</li>
+                    <li class="unavailable">Professional 認定</li>
+                </ul>
+                <a href="signup.html" class="cta-button secondary">無料で始める</a>
+            </div>
+
+            <!-- Standard Plan -->
+            <div class="pricing-card featured" id="standardPlan">
+                <div class="plan-name">Standard</div>
+                <div class="plan-price">¥1,980<span>/3ヶ月</span></div>
+                <div class="plan-description">本格的な試験対策に</div>
+                <ul class="features-list">
+                    <li>全問題へのアクセス</li>
+                    <li>無制限の問題演習</li>
+                    <li>詳細な解説の閲覧</li>
+                    <li>AWS公式ドキュメントリンク</li>
+                    <li>カテゴリ別学習</li>
+                    <li>模擬試験モード</li>
+                    <li>Foundational 認定</li>
+                    <li>Associate 認定</li>
+                    <li class="unavailable">Professional 認定</li>
+                </ul>
+                <button class="cta-button" id="standardButton" onclick="handleStripePayment(event, 'standard')">今すぐ申し込む</button>
+            </div>
+
+            <!-- Advanced Plan -->
+            <div class="pricing-card disabled">
+                <div class="plan-name">Advanced</div>
+                <div class="plan-price">¥2,980<span>/3ヶ月</span></div>
+                <div class="plan-description">プロフェッショナル向け（近日公開）</div>
+                <ul class="features-list">
+                    <li>全問題へのアクセス</li>
+                    <li>無制限の問題演習</li>
+                    <li>詳細な解説の閲覧</li>
+                    <li>AWS公式ドキュメントリンク</li>
+                    <li>カテゴリ別学習</li>
+                    <li>模擬試験モード</li>
+                    <li>Foundational 認定</li>
+                    <li>Associate 認定</li>
+                    <li>Professional 認定</li>
+                </ul>
+                <a href="signup.html" class="cta-button">今すぐ始める</a>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-link">← トップページに戻る</a>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api/auth';
+
+        // Stripe決済処理
+        async function handleStripePayment(event, plan) {
+            event.preventDefault();
+            
+            // ログイン確認
+            const accessToken = localStorage.getItem('accessToken');
+            if (!accessToken) {
+                alert('ログインが必要です');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            try {
+                // ローディング表示
+                event.target.disabled = true;
+                event.target.textContent = '処理中...';
+                
+                // プラン情報を保存（決済完了後に使用）
+                sessionStorage.setItem('selectedPlan', plan);
+                
+                // チェックアウトセッションを作成
+                const response = await fetch('http://localhost:3000/api/membership/create-checkout-session', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${accessToken}`
+                    },
+                    body: JSON.stringify({ plan })
+                });
+
+                const data = await response.json();
+                
+                if (response.ok && data.url) {
+                    // Stripeのチェックアウトページに遷移
+                    window.location.href = data.url;
+                } else {
+                    throw new Error(data.error || '決済ページの作成に失敗しました');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert(error.message || '決済ページの作成に失敗しました');
+                event.target.disabled = false;
+                event.target.textContent = '今すぐ申し込む';
+                sessionStorage.removeItem('selectedPlan');
+            }
+        }
+
+        async function checkLoginStatus() {
+            const accessToken = localStorage.getItem('accessToken');
+            
+            if (!accessToken) {
+                showLoggedOut();
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/me`, {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    showLoggedIn(data.user.username, data.user.membership_level, data.user.membership_expiry);
+                    updatePricingButtons(data.user.membership_level);
+                } else {
+                    const refreshed = await tryRefreshToken();
+                    if (!refreshed) {
+                        showLoggedOut();
+                        clearAuthData();
+                    }
+                }
+            } catch (error) {
+                console.error('Error checking login status:', error);
+                showLoggedOut();
+            }
+        }
+
+        async function tryRefreshToken() {
+            const refreshToken = localStorage.getItem('refreshToken');
+            
+            if (!refreshToken) {
+                return false;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/refresh`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ refreshToken })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    localStorage.setItem('accessToken', data.accessToken);
+                    
+                    const userResponse = await fetch(`${API_URL}/me`, {
+                        headers: {
+                            'Authorization': `Bearer ${data.accessToken}`
+                        }
+                    });
+                    
+                    if (userResponse.ok) {
+                        const userData = await userResponse.json();
+                        showLoggedIn(userData.user.username, userData.user.membership_level);
+                        updatePricingButtons(userData.user.membership_level);
+                        return true;
+                    }
+                }
+                
+                return false;
+            } catch (error) {
+                console.error('Error refreshing token:', error);
+                return false;
+            }
+        }
+
+        function showLoggedIn(username, membershipLevel = 'Free', membershipExpiry = null) {
+            document.querySelector('.logged-out').style.display = 'none';
+            document.querySelector('.logged-in').style.display = 'flex';
+            document.getElementById('username').textContent = username;
+            
+            // プラン情報を表示
+            const userPlanElement = document.getElementById('userPlan');
+            if (userPlanElement) {
+                const displayLevel = membershipLevel.charAt(0).toUpperCase() + membershipLevel.slice(1).toLowerCase();
+                userPlanElement.textContent = displayLevel;
+                
+                const lowerLevel = membershipLevel.toLowerCase();
+                if (lowerLevel === 'free') {
+                    userPlanElement.style.background = '#9e9e9e';
+                } else if (lowerLevel === 'standard') {
+                    userPlanElement.style.background = '#FF9900';
+                } else if (lowerLevel === 'advanced') {
+                    userPlanElement.style.background = '#667eea';
+                }
+            }
+            
+            // 有効期限を表示
+            const userExpiryElement = document.getElementById('userExpiry');
+            if (userExpiryElement && membershipExpiry && membershipLevel.toLowerCase() !== 'free') {
+                const expiryDate = new Date(membershipExpiry);
+                const formattedDate = `${expiryDate.getFullYear()}/${String(expiryDate.getMonth() + 1).padStart(2, '0')}/${String(expiryDate.getDate()).padStart(2, '0')}`;
+                userExpiryElement.textContent = `有効期限: ${formattedDate}`;
+                userExpiryElement.style.display = 'inline-block';
+            } else if (userExpiryElement) {
+                userExpiryElement.style.display = 'none';
+            }
+        }
+        
+        function updatePricingButtons(membershipLevel) {
+            const lowerLevel = membershipLevel.toLowerCase();
+            const standardButton = document.getElementById('standardButton');
+            const standardPlan = document.getElementById('standardPlan');
+            
+            if (lowerLevel === 'standard' || lowerLevel === 'advanced') {
+                // Standard以上の会員の場合、ボタンを無効化
+                if (standardButton) {
+                    standardButton.textContent = '✓ 支払い済み';
+                    standardButton.disabled = true;
+                    standardButton.style.background = '#9e9e9e';
+                    standardButton.style.cursor = 'not-allowed';
+                    standardButton.onclick = null;
+                }
+            }
+        }
+
+        function showLoggedOut() {
+            document.querySelector('.logged-out').style.display = 'flex';
+            document.querySelector('.logged-in').style.display = 'none';
+        }
+
+        function clearAuthData() {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+        }
+
+        async function handleLogout() {
+            const accessToken = localStorage.getItem('accessToken');
+            const refreshToken = localStorage.getItem('refreshToken');
+
+            if (accessToken && refreshToken) {
+                try {
+                    await fetch(`${API_URL}/logout`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${accessToken}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ refreshToken })
+                    });
+                } catch (error) {
+                    console.error('Error during logout:', error);
+                }
+            }
+
+            clearAuthData();
+            showLoggedOut();
+        }
+
+        let inactivityTimer;
+        const INACTIVITY_TIMEOUT = 30 * 60 * 1000;
+
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            
+            const accessToken = localStorage.getItem('accessToken');
+            if (accessToken) {
+                inactivityTimer = setTimeout(() => {
+                    console.log('30分間操作がなかったため自動ログアウトします');
+                    handleLogout();
+                }, INACTIVITY_TIMEOUT);
+            }
+        }
+
+        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'].forEach(event => {
+            document.addEventListener(event, resetInactivityTimer, true);
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            checkLoginStatus();
+            resetInactivityTimer();
+        });
+    </script>
+    <script src="nav-component.js"></script>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-container">
+            <a href="../index.html" class="footer-link">🏠 スキマ・ラーニング トップページ</a>
+            <div class="footer-copyright">
+                &copy; 2026 スキマ・ラーニング. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    
+
+</body>
+</html>

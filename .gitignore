@@ -1,0 +1,56 @@
+# 環境変数ファイル（機密情報を含む）
+.env
+aws/server/.env
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# バックアップファイル
+*.backup
+*.bak
+*~
+
+# ログファイル
+logs/
+*.log
+
+# OS生成ファイル
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# エディタ設定
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# テスト・開発用ファイル
+test_*.json
+test_*.md
+*.test.js
+
+# 証明書ファイル（もしあれば）
+*.pem
+*.key
+*.crt
+*.cert
+
+# データベースファイル
+*.sqlite
+*.sqlite3
+*.db
+
+# 一時ファイル
+tmp/
+temp/
+*.tmp
+
+# ビルド成果物
+dist/
+build/

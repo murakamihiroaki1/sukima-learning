@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>よくある質問 - AWS 認定試験 対策</title>
+    <link rel="stylesheet" href="nav-styles.css">
+
+    <style>
+        html {
+            height: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ナビゲーションヘッダー */
+        .nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 1000;
+            padding: 15px 30px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333333;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 10px;
+        }
+
+        .nav-link:hover {
+            color: #667eea;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dropdown-toggle::after {
+            content: "▼";
+            font-size: 0.7em;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            min-width: 250px;
+            padding: 10px 0;
+            display: none;
+            margin-top: 5px;
+        }
+
+        .dropdown:hover .dropdown-menu,
+        .dropdown-menu:hover {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background: #f0f4ff;
+            color: #667eea;
+        }
+
+        .dropdown-item-title {
+            font-weight: bold;
+            font-size: 1.05em;
+        }
+
+        .dropdown-item-subtitle {
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 3px;
+        }
+        .page-content {
+            flex: 1;
+            padding: 100px 20px 40px;
+        }
+
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* 認証ボタン */
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .auth-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .auth-btn.login {
+            background: white;
+            color: #333333;
+            border: 1px solid #e0e0e0;
+        }
+
+        .auth-btn.login:hover {
+            background: #f5f5f5;
+            border-color: #333333;
+        }
+
+        .auth-btn.signup {
+            background: #FF9900;
+            color: white;
+            border: 1px solid #FF9900;
+        }
+
+        .auth-btn.signup:hover {
+            background: #e68a00;
+            border-color: #e68a00;
+        }
+
+        .auth-btn.logout {
+            background: #dc3545;
+            color: white;
+        }
+
+        .auth-btn.logout:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .user-icon {
+            font-size: 1.2em;
+        }
+
+        .username {
+            color: #333333;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .logged-out {
+            display: flex;
+            gap: 10px;
+        }
+
+        .logged-in {
+            display: none;
+            gap: 10px;
+        }
+
+        header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .faq-container {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .faq-category {
+            margin-bottom: 40px;
+        }
+
+        .faq-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-title {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+            border-left: 3px solid #667eea;
+            padding-left: 20px;
+        }
+
+        .faq-question {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #667eea;
+        }
+
+        .faq-question::before {
+            content: "Q.";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .faq-answer {
+            color: #555;
+            line-height: 1.8;
+            padding-left: 35px;
+        }
+
+        .faq-answer::before {
+            content: "A.";
+            color: #764ba2;
+            font-weight: bold;
+            margin-right: 10px;
+            display: inline-block;
+            margin-left: -35px;
+        }
+
+        .coming-soon {
+            background: #f0f4ff;
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            color: #667eea;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .faq-container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .category-title {
+                font-size: 1.3em;
+            }
+
+            .faq-question {
+                font-size: 1.1em;
+            }
+        }
+
+        /* フッター */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 20px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-link {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            background: #667eea;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .footer-link:hover {
+            background: #5568d3;
+        }
+
+        .footer-copyright {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9em;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- ナビゲーションヘッダー -->
+    <nav class="nav-header">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">AWS認定試験対策</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+<div class="nav-menu" id="navMenu">
+                <div class="nav-item dropdown">
+                    <div class="nav-link dropdown-toggle">認定資格</div>
+                    <div class="dropdown-menu">
+                        <a href="clf.html" class="dropdown-item">
+                            <div class="dropdown-item-title">CLF - Cloud Practitioner</div>
+                        </a>
+                        <a href="aif.html" class="dropdown-item">
+                            <div class="dropdown-item-title">AIF - AI Practitioner</div>
+                        </a>
+                        <a href="saa.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SAA - Solutions Architect Associate</div>
+                        </a>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="pricing.html" class="nav-link">料金</a>
+                </div>
+                <div class="nav-item">
+                    <a href="faq.html" class="nav-link">FAQ</a>
+                </div>
+                <div class="nav-item">
+                    <a href="contact.html" class="nav-link">お問い合わせ</a>
+                </div>
+                <div class="nav-item auth-buttons">
+                    <div class="logged-out">
+                        <a href="login.html" class="auth-btn login">ログイン</a>
+                        <a href="signup.html" class="auth-btn signup">新規登録</a>
+                    </div>
+                    <div class="logged-in">
+                        <div class="user-info">
+                            <span class="user-icon">👤</span>
+                            <span class="username" id="username"></span>
+                            <span class="user-plan" id="userPlan" style="margin-left: 10px; padding: 3px 8px; background: #FF9900; color: white; border-radius: 10px; font-size: 0.75em; font-weight: bold;"></span>
+                            <span class="user-expiry" id="userExpiry" style="margin-left: 10px; padding: 3px 8px; background: #f0f0f0; color: #666; border-radius: 10px; font-size: 0.75em;"></span>
+                        </div>
+                        <button class="auth-btn logout" onclick="handleLogout()">ログアウト</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div class="page-content">
+    <div class="container">
+        <header>
+            <h1>よくある質問</h1>
+            <p class="subtitle">FAQ - Frequently Asked Questions</p>
+        </header>
+
+        <div class="faq-container">
+            <div class="faq-category">
+                <h2 class="category-title">サービスについて</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">このサービスは何ですか？</div>
+                    <div class="faq-answer">AWS認定試験の合格を目指す方のための学習支援サービスです。実践的な問題演習と詳細な解説で、効率的な試験対策をサポートします。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">どの認定試験に対応していますか？</div>
+                    <div class="faq-answer">現在、以下の認定試験に対応しています：
+                        <ul style="margin-top: 10px; padding-left: 20px;">
+                            <li><strong>Foundational 認定</strong></li>
+                            <ul style="padding-left: 20px; margin-top: 5px;">
+                                <li><strong>CLF</strong> - AWS Certified Cloud Practitioner (CLF-C02)</li>
+                                <li><strong>AIF</strong> - AWS Certified AI Practitioner (AIF-C01)</li>
+                            </ul>
+                            <li style="margin-top: 10px;"><strong>Associate 認定</strong></li>
+                            <ul style="padding-left: 20px; margin-top: 5px;">
+                                <li><strong>SAA</strong> - AWS Certified Solutions Architect - Associate (SAA-C03)</li>
+                                <li><strong>MLA</strong> - AWS Certified Machine Learning Engineer - Associate (MLA-C01) <span style="color: #ff9800; font-weight: bold;">※近日公開</span></li>
+                                <li><strong>SOA</strong> - AWS Certified SysOps Administrator - Associate (SOA-C02) <span style="color: #ff9800; font-weight: bold;">※近日公開</span></li>
+                                <li><strong>DEA</strong> - AWS Certified Data Engineer - Associate (DEA-C01) <span style="color: #ff9800; font-weight: bold;">※近日公開</span></li>
+                                <li><strong>DVA</strong> - AWS Certified Developer - Associate (DVA-C02) <span style="color: #ff9800; font-weight: bold;">※近日公開</span></li>
+                            </ul>
+                            <li style="margin-top: 10px;"><strong>Professional 認定</strong></li>
+                            <ul style="padding-left: 20px; margin-top: 5px;">
+                                <li><span style="color: #999;">今後対応予定</span></li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h2 class="category-title">料金・プランについて</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">無料プランでどこまで利用できますか？</div>
+                    <div class="faq-answer">無料プランでは、サンプル問題（20問）にアクセスできます。本格的な学習には有料プランをおすすめします。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">支払い方法は何がありますか？</div>
+                    <div class="faq-answer">クレジットカード（Visa、Mastercard、JCB、American Express）に対応予定です。</div>
+                </div>
+
+            </div>
+
+            <div class="faq-category">
+                <h2 class="category-title">学習機能について</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">カテゴリ別学習とは何ですか？</div>
+                    <div class="faq-answer">コンピューティング、ストレージ、データベースなど、AWSサービスのカテゴリごとに問題を絞り込んで学習できる機能です（Standardプラン以上）。</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">模擬試験モードとは何ですか？</div>
+                    <div class="faq-answer">実際の試験と同じ形式・時間制限で問題に取り組める機能です。本番前の実力確認に最適です（Standardプラン以上）。</div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <h2 class="category-title">技術的な質問</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">スマートフォンでも利用できますか？</div>
+                    <div class="faq-answer">はい、スマートフォン、タブレット、PCなど、あらゆるデバイスでご利用いただけます。レスポンシブデザインで最適な表示を提供します。</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-link">← トップページに戻る</a>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/api/auth';
+
+        async function checkLoginStatus() {
+            const accessToken = localStorage.getItem('accessToken');
+            
+            if (!accessToken) {
+                showLoggedOut();
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/me`, {
+                    headers: {
+                        'Authorization': `Bearer ${accessToken}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    showLoggedIn(data.user.username, data.user.membership_level, data.user.membership_expiry);
+                } else {
+                    const refreshed = await tryRefreshToken();
+                    if (!refreshed) {
+                        showLoggedOut();
+                        clearAuthData();
+                    }
+                }
+            } catch (error) {
+                console.error('Error checking login status:', error);
+                showLoggedOut();
+            }
+        }
+
+        async function tryRefreshToken() {
+            const refreshToken = localStorage.getItem('refreshToken');
+            
+            if (!refreshToken) {
+                return false;
+            }
+
+            try {
+                const response = await fetch(`${API_URL}/refresh`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ refreshToken })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    localStorage.setItem('accessToken', data.accessToken);
+                    
+                    const userResponse = await fetch(`${API_URL}/me`, {
+                        headers: {
+                            'Authorization': `Bearer ${data.accessToken}`
+                        }
+                    });
+                    
+                    if (userResponse.ok) {
+                        const userData = await userResponse.json();
+                        showLoggedIn(userData.user.username, userData.user.membership_level, userData.user.membership_expiry);
+                        return true;
+                    }
+                }
+                
+                return false;
+            } catch (error) {
+                console.error('Error refreshing token:', error);
+                return false;
+            }
+        }
+
+        function showLoggedIn(username, membershipLevel = 'Free', membershipExpiry = null) {
+            document.querySelector('.logged-out').style.display = 'none';
+            document.querySelector('.logged-in').style.display = 'flex';
+            document.getElementById('username').textContent = username;
+            
+            // プラン情報を表示
+            const userPlanElement = document.getElementById('userPlan');
+            if (userPlanElement) {
+                const displayLevel = membershipLevel.charAt(0).toUpperCase() + membershipLevel.slice(1).toLowerCase();
+                userPlanElement.textContent = displayLevel;
+                
+                const lowerLevel = membershipLevel.toLowerCase();
+                if (lowerLevel === 'free') {
+                    userPlanElement.style.background = '#9e9e9e';
+                } else if (lowerLevel === 'standard') {
+                    userPlanElement.style.background = '#FF9900';
+                } else if (lowerLevel === 'advanced') {
+                    userPlanElement.style.background = '#667eea';
+                }
+            }
+            
+            // 有効期限を表示
+            const userExpiryElement = document.getElementById('userExpiry');
+            if (userExpiryElement && membershipExpiry && membershipLevel.toLowerCase() !== 'free') {
+                const expiryDate = new Date(membershipExpiry);
+                const formattedDate = `${expiryDate.getFullYear()}/${String(expiryDate.getMonth() + 1).padStart(2, '0')}/${String(expiryDate.getDate()).padStart(2, '0')}`;
+                userExpiryElement.textContent = `有効期限: ${formattedDate}`;
+                userExpiryElement.style.display = 'inline-block';
+            } else if (userExpiryElement) {
+                userExpiryElement.style.display = 'none';
+            }
+        }
+
+        function showLoggedOut() {
+            document.querySelector('.logged-out').style.display = 'flex';
+            document.querySelector('.logged-in').style.display = 'none';
+        }
+
+        function clearAuthData() {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+        }
+
+        async function handleLogout() {
+            const accessToken = localStorage.getItem('accessToken');
+            const refreshToken = localStorage.getItem('refreshToken');
+
+            if (accessToken && refreshToken) {
+                try {
+                    await fetch(`${API_URL}/logout`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${accessToken}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ refreshToken })
+                    });
+                } catch (error) {
+                    console.error('Error during logout:', error);
+                }
+            }
+
+            clearAuthData();
+            showLoggedOut();
+        }
+
+        let inactivityTimer;
+        const INACTIVITY_TIMEOUT = 30 * 60 * 1000;
+
+        function resetInactivityTimer() {
+            clearTimeout(inactivityTimer);
+            
+            const accessToken = localStorage.getItem('accessToken');
+            if (accessToken) {
+                inactivityTimer = setTimeout(() => {
+                    console.log('30分間操作がなかったため自動ログアウトします');
+                    handleLogout();
+                }, INACTIVITY_TIMEOUT);
+            }
+        }
+
+        ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'].forEach(event => {
+            document.addEventListener(event, resetInactivityTimer, true);
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            checkLoginStatus();
+            resetInactivityTimer();
+        });
+    </script>
+    <script src="nav-component.js"></script>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-container">
+            <a href="../index.html" class="footer-link">🏠 スキマ・ラーニング トップページ</a>
+            <div class="footer-copyright">
+                &copy; 2026 スキマ・ラーニング. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    
+
+</body>
+</html>
