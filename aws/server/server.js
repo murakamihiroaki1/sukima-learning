@@ -27,41 +27,16 @@ if (process.env.NODE_ENV === 'production') {
 // セキュリティミドルウェア
 app.use(helmet());
 
-// CORS設定
-const allowedOrigins = [
-  'http://localhost:8000',
-  'http://localhost:5500',
-  'http://127.0.0.1:8000',
-  'http://127.0.0.1:5500',
-  'https://sukima-learning.onrender.com',
-  'https://sukima-learning.pages.dev',
-  'https://www.sukima-learning.com',
-  'https://sukima-learning.com'
-];
-
-// 環境変数からの追加オリジン
-if (process.env.CORS_ORIGIN) {
-  const envOrigins = process.env.CORS_ORIGIN.split(',').map(o => o.trim());
-  allowedOrigins.push(...envOrigins);
-}
-
+// CORS設定（一時的にすべてのオリジンを許可してデバッグ）
 app.use(cors({
-  origin: function (origin, callback) {
-    // オリジンがない場合（モバイルアプリやPostmanなど）を許可
-    if (!origin) return callback(null, true);
-    
-    // 許可リストにあるか、ワイルドカードの場合
-    if (allowedOrigins.includes('*') || allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      console.log('CORS blocked origin:', origin);
-      callback(new Error('CORS policy: Origin not allowed'));
-    }
-  },
-  credentials: true,
+  origin: '*',
+  credentials: false,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// プリフライトリクエストの処理
+app.options('*', cors());
 
 // Stripe Webhook（express.json()の前に配置 - rawBodyが必要）
 app.use('/api/stripe', stripeWebhookRoutes);
