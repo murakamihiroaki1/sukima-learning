@@ -7,8 +7,8 @@ import os
 import re
 
 # 置換対象のパターンと新しいURL
-OLD_URL = 'http://localhost:3000'
-NEW_URL = 'https://sukima-learning-api.onrender.com'
+OLD_URL = 'https://sukima-learning-api.onrender.com'
+NEW_URL = 'https://sukima-learning.onrender.com'
 
 # 対象ファイルのリスト
 files_to_update = [

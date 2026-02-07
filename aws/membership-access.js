@@ -24,7 +24,7 @@ async function getMembershipInfo() {
     }
 
     try {
-        const response = await fetch('https://sukima-learning-api.onrender.com/api/membership/info', {
+        const response = await fetch('https://sukima-learning.onrender.com/api/membership/info', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
