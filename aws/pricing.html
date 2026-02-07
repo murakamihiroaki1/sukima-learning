@@ -586,7 +586,7 @@
     </div>
 
     <script>
-        const API_URL = 'http://localhost:3000/api/auth';
+        const API_URL = 'https://sukima-learning-api.onrender.com/api/auth';
 
         // Stripe決済処理
         async function handleStripePayment(event, plan) {
@@ -609,7 +609,7 @@
                 sessionStorage.setItem('selectedPlan', plan);
                 
                 // チェックアウトセッションを作成
-                const response = await fetch('http://localhost:3000/api/membership/create-checkout-session', {
+                const response = await fetch('https://sukima-learning-api.onrender.com/api/membership/create-checkout-session', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
