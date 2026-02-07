@@ -19,6 +19,11 @@ const PORT = process.env.PORT || 3000;
 const HTTPS_PORT = process.env.HTTPS_PORT || 3443;
 const USE_HTTPS = process.env.USE_HTTPS === 'true';
 
+// プロキシ信頼設定（Render、Heroku、Vercelなどのプロキシ環境で必要）
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1);
+}
+
 // セキュリティミドルウェア
 app.use(helmet());
 
