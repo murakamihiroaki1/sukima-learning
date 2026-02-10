@@ -1273,6 +1273,7 @@
             if (currentQuestionIndex < questions.length - 1) {
                 currentQuestionIndex++;
                 displayQuestion();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
@@ -1281,6 +1282,7 @@
             if (currentQuestionIndex > 0) {
                 currentQuestionIndex--;
                 displayQuestion();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
