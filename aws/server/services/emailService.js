@@ -1,8 +1,5 @@
 const nodemailer = require('nodemailer');
-const sgMail = require('@sendgrid/mail');
-
-// SendGridが設定されているか確認
-const useSendGrid = () => !!process.env.SENDGRID_API_KEY;
+const { Resend } = require('resend');
 
 // nodemailer用トランスポーター（パスワードリセット等で使用）
 const createTransporter = () => {
@@ -134,10 +131,11 @@ AWS Quiz Appのパスワードが正常に変更されました。
 };
 
 // お問い合わせフォームのメールを送信（管理者宛 + 送信者への自動返信）
-// SendGrid HTTP API を使用（RenderはSMTPポートをブロックするため）
+// Resend HTTP API を使用（RenderはSMTPポートをブロックするため）
 const sendContactFormEmail = async ({ name, email, category, category_ja, subject, message }) => {
-  const fromEmail = process.env.EMAIL_FROM || process.env.EMAIL_USER;
   const adminEmail = process.env.CONTACT_ADMIN_EMAIL || process.env.EMAIL_USER;
+  // Resendはカスタムドメイン未設定の場合 onboarding@resend.dev を使用
+  const fromEmail = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
 
   const adminHtml = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -178,13 +176,12 @@ const sendContactFormEmail = async ({ name, email, category, category_ja, subjec
     return true;
   }
 
-  // SendGrid HTTP API で送信
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
-    await sgMail.send({
-      from: { name: 'スキマ・ラーニング', email: fromEmail },
-      replyTo: email,
+    await resend.emails.send({
+      from: `スキマ・ラーニング <${fromEmail}>`,
+      reply_to: email,
       to: adminEmail,
       subject: `【お問い合わせ】${subject}`,
       html: adminHtml,
@@ -192,8 +189,8 @@ const sendContactFormEmail = async ({ name, email, category, category_ja, subjec
     });
     console.log('✅ Contact admin email sent to:', adminEmail);
 
-    await sgMail.send({
-      from: { name: 'スキマ・ラーニング', email: fromEmail },
+    await resend.emails.send({
+      from: `スキマ・ラーニング <${fromEmail}>`,
       to: email,
       subject: `【自動返信】お問い合わせを受け付けました - スキマ・ラーニング`,
       html: autoReplyHtml,
@@ -204,8 +201,7 @@ const sendContactFormEmail = async ({ name, email, category, category_ja, subjec
     return true;
   } catch (error) {
     console.error('❌ Error sending contact email:', error);
-    const detail = error.response ? JSON.stringify(error.response.body) : error.message;
-    throw new Error('メール送信に失敗しました: ' + detail);
+    throw new Error('メール送信に失敗しました: ' + error.message);
   }
 };
 
