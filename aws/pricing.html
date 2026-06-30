@@ -806,9 +806,38 @@
             document.addEventListener(event, resetInactivityTimer, true);
         });
 
+        // 支払い完了後のリトライ付きプラン更新
+        async function checkPaymentSuccess() {
+            const params = new URLSearchParams(window.location.search);
+            if (!params.has('payment') && !params.has('session_id')) return;
+
+            // 最大5回、3秒間隔でリトライ（Webhookの反映待ち）
+            const accessToken = localStorage.getItem('accessToken');
+            if (!accessToken) return;
+
+            for (let i = 0; i < 5; i++) {
+                await new Promise(r => setTimeout(r, 3000));
+                try {
+                    const res = await fetch(`${API_URL}/me`, {
+                        headers: { 'Authorization': `Bearer ${accessToken}` }
+                    });
+                    if (res.ok) {
+                        const data = await res.json();
+                        const level = data.user.membership_level.toLowerCase();
+                        if (level !== 'free') {
+                            showLoggedIn(data.user.username, data.user.membership_level, data.user.membership_expiry);
+                            updatePricingButtons(data.user.membership_level);
+                            break;
+                        }
+                    }
+                } catch (e) { /* 続行 */ }
+            }
+        }
+
         window.addEventListener('DOMContentLoaded', () => {
             checkLoginStatus();
             resetInactivityTimer();
+            checkPaymentSuccess();
         });
     </script>
     <script src="nav-component.js"></script>
