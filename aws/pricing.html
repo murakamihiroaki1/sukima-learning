@@ -650,6 +650,7 @@
                     const data = await response.json();
                     showLoggedIn(data.user.username, data.user.membership_level, data.user.membership_expiry);
                     updatePricingButtons(data.user.membership_level);
+                    setStripeEmail(data.user.email);
                 } else {
                     const refreshed = await tryRefreshToken();
                     if (!refreshed) {
@@ -693,6 +694,7 @@
                         const userData = await userResponse.json();
                         showLoggedIn(userData.user.username, userData.user.membership_level);
                         updatePricingButtons(userData.user.membership_level);
+                        setStripeEmail(userData.user.email);
                         return true;
                     }
                 }
@@ -701,6 +703,16 @@
             } catch (error) {
                 console.error('Error refreshing token:', error);
                 return false;
+            }
+        }
+
+        // StripeボタンのURLにログイン中のメールを自動付与
+        function setStripeEmail(email) {
+            if (!email) return;
+            const btn = document.getElementById('standardButton');
+            if (btn) {
+                const base = btn.href.split('?')[0];
+                btn.href = `${base}?prefilled_email=${encodeURIComponent(email)}`;
             }
         }
 
