@@ -176,6 +176,7 @@ const sendContactFormEmail = async ({ name, email, category, category_ja, subjec
     return true;
   }
 
+  console.log('📧 Using Resend API key:', process.env.RESEND_API_KEY ? process.env.RESEND_API_KEY.substring(0, 8) + '...' : 'NOT SET');
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
