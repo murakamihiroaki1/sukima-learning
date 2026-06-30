@@ -51,11 +51,17 @@ function checkAuthStatus() {
             return response.json();
         })
         .then(data => {
+            // プランバッジの色
+            const level = (data.user.membership_level || 'free').toLowerCase();
+            const badgeColor = level === 'advanced' ? '#667eea' : level === 'standard' ? '#FF9900' : '#9e9e9e';
+            const displayLevel = level.charAt(0).toUpperCase() + level.slice(1);
+
             // ユーザー情報を表示
             authButtons.innerHTML = `
                 <div class="user-info">
                     <span class="user-icon">👤</span>
                     <span class="username">${data.user.username}</span>
+                    <span style="margin-left:8px;padding:2px 8px;background:${badgeColor};color:#fff;border-radius:10px;font-size:0.75em;font-weight:bold;">${displayLevel}</span>
                 </div>
                 <button onclick="logout()" class="auth-btn logout">ログアウト</button>
             `;
