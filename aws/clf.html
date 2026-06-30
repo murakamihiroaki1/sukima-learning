@@ -747,7 +747,6 @@
                 <div style="margin-bottom: 30px;">
                     <div class="set-buttons">
                         <button class="set-btn" onclick="selectMode('sequential')">番号順</button>
-                        <button class="set-btn" id="review-mode-btn">⭐ 見直し問題のみ (<span id="review-count">0</span>問)</button>
                         <button class="set-btn" id="random-mode-btn">ランダム (10問) 🔒</button>
                         <button class="set-btn" id="mock-exam-mode-btn">模擬試験 (65問) 🔒</button>
                     </div>
@@ -794,18 +793,11 @@
                 <button class="btn btn-primary" id="back-to-select-btn" onclick="backToSelection()" style="display: none;">選択画面に戻る</button>
             </div>
             
-            <div class="buttons" style="margin-top: 10px;">
-                <div id="review-mark-container"></div>
-                <button class="btn btn-secondary" onclick="showReviewList()" style="background: #FFC107; color: #333;">
-                    📋 見直しリスト (<span id="review-list-count">0</span>問)
-                </button>
-            </div>
         </div>
     </div>
 
     <script src="questions-clf.js"></script>
     <script src="membership-access.js"></script>
-    <script src="review-marks.js"></script>
     <script>
         let currentQuestionIndex = 0;
         let userAnswers = [];
@@ -818,19 +810,6 @@
         let remainingTime = 0; // 残り時間（秒）
         const EXAM_TIME_LIMIT = 90 * 60; // CLF/AIF: 90分 = 5400秒
         
-        // 見直しマーク管理
-        const reviewManager = new ReviewMarkManager('clf');
-        
-        // 見直しカウントを更新
-        function updateReviewCount() {
-            const count = reviewManager.getCount();
-            document.getElementById('review-count').textContent = count;
-            document.getElementById('review-list-count').textContent = count;
-        }
-        
-        // ページ読み込み時に見直しカウントを更新
-        updateReviewCount();
-
         // タイマー関数
         function startExamTimer() {
             console.log('[startExamTimer] Called - isMockExam:', isMockExam);
@@ -962,26 +941,6 @@
                 document.getElementById('set-info').style.display = 'block';
                 document.getElementById('set-info').textContent = '模擬試験モード: ランダムに65問出題します';
                 document.getElementById('start-quiz-btn').disabled = false;
-            } else if (mode === 'review') {
-                // 見直しモード - プレミアム機能のアクセスチェック
-                const membership = await getMembershipInfo();
-                const lowerLevel = membership.level.toLowerCase();
-                const isPremium = (lowerLevel === 'standard' || lowerLevel === 'advanced');
-                
-                if (!isPremium) {
-                    alert('見直し機能はStandard/Advancedプラン限定です。\n\nアップグレードして全機能をご利用ください。');
-                    window.location.href = 'pricing.html';
-                    return;
-                }
-                
-                const reviewCount = reviewManager.getCount();
-                if (reviewCount === 0) {
-                    alert('見直しマークがついている問題がありません。\n問題を解いて、見直したい問題にマークを付けてください。');
-                    return;
-                }
-                document.getElementById('set-info').style.display = 'block';
-                document.getElementById('set-info').textContent = `見直しマークがついている問題を出題します（${reviewCount}問）`;
-                document.getElementById('start-quiz-btn').disabled = false;
             }
         }
 
@@ -1018,13 +977,6 @@
                 isMockExam = true;
                 const shuffled = [...awsCLFQuestions].sort(() => Math.random() - 0.5);
                 questions = shuffled.slice(0, Math.min(65, awsCLFQuestions.length));
-            } else if (selectedMode === 'review') {
-                // 見直しモード
-                questions = reviewManager.getMarkedQuestions(awsCLFQuestions);
-                if (questions.length === 0) {
-                    alert('見直しマークがついている問題がありません。');
-                    return;
-                }
             }
             
             currentQuestionIndex = 0;
@@ -1176,12 +1128,6 @@
                 document.getElementById('back-to-select-btn').style.display = 'none';
             }
             
-            // 見直しマークボタンを追加
-            const reviewMarkContainer = document.getElementById('review-mark-container');
-            reviewMarkContainer.innerHTML = '';
-            const questionOriginalIndex = question.originalIndex !== undefined ? question.originalIndex : awsCLFQuestions.indexOf(question);
-            const reviewButton = createReviewMarkButton(reviewManager, questionOriginalIndex);
-            reviewMarkContainer.appendChild(reviewButton);
         }
 
         // 選択肢を選択
@@ -1444,20 +1390,6 @@
             document.body.appendChild(modal);
         }
 
-        // 見直しリストを表示
-        function showReviewList() {
-            showReviewListModal(reviewManager, awsCLFQuestions, function(index) {
-                // 見直しリストから問題を選択した場合
-                const questionIndex = questions.findIndex(q =>
-                    (q.originalIndex !== undefined ? q.originalIndex : awsCLFQuestions.indexOf(q)) === index
-                );
-                if (questionIndex !== -1) {
-                    currentQuestionIndex = questionIndex;
-                    displayQuestion();
-                }
-            });
-        }
-
         // ログイン状態チェック機能
         const API_URL = 'https://sukima-learning.onrender.com/api/auth';
 
@@ -1589,12 +1521,10 @@
             const isPremium = (lowerLevel === 'standard' || lowerLevel === 'advanced');
             console.log('[updatePremiumFeatureAccess] isPremium:', isPremium);
             
-            const reviewBtn = document.getElementById('review-mode-btn');
             const categoryBtn = document.getElementById('category-mode-btn');
             const randomBtn = document.getElementById('random-mode-btn');
             const mockExamBtn = document.getElementById('mock-exam-mode-btn');
             console.log('[updatePremiumFeatureAccess] Buttons found:', {
-                review: !!reviewBtn,
                 category: !!categoryBtn,
                 random: !!randomBtn,
                 mockExam: !!mockExamBtn
@@ -1602,13 +1532,6 @@
             
             if (isPremium) {
                 // Standard/Advanced会員: ボタンを有効化
-                if (reviewBtn) {
-                    reviewBtn.style.opacity = '1';
-                    reviewBtn.style.cursor = 'pointer';
-                    reviewBtn.onclick = function() { selectMode('review'); };
-                    const reviewCount = document.getElementById('review-count').textContent;
-                    reviewBtn.innerHTML = `⭐ 見直し問題のみ (<span id="review-count">${reviewCount}</span>問)`;
-                }
                 if (categoryBtn) {
                     categoryBtn.style.opacity = '1';
                     categoryBtn.style.cursor = 'pointer';
@@ -1629,13 +1552,6 @@
                 }
             } else {
                 // Free会員: ボタンを無効化
-                if (reviewBtn) {
-                    reviewBtn.style.opacity = '0.4';
-                    reviewBtn.style.cursor = 'not-allowed';
-                    reviewBtn.onclick = function(event) { event.preventDefault(); window.location.href='pricing.html'; };
-                    const reviewCount = document.getElementById('review-count').textContent;
-                    reviewBtn.innerHTML = `⭐ 見直し問題のみ (<span id="review-count">${reviewCount}</span>問) 🔒`;
-                }
                 if (categoryBtn) {
                     categoryBtn.style.opacity = '0.4';
                     categoryBtn.style.cursor = 'not-allowed';
@@ -1748,17 +1664,12 @@
                 // 模擬試験モード: ランダムに65問
                 const shuffled = [...awsCLFQuestions].sort(() => Math.random() - 0.5);
                 baseQuestions = shuffled.slice(0, 65);
-            } else if (selectedMode === 'review') {
-                // 見直しモード: 見直しマークがついた問題のみ
-                const reviewIndices = reviewManager.getMarkedIndices();
-                baseQuestions = reviewIndices.map(index => awsCLFQuestions[index]).filter(q => q);
             }
             
             console.log('startQuiz - baseQuestions count:', baseQuestions.length);
             
             // Standard/Advancedプランの場合、CLF試験は全問アクセス可能なのでフィルタリングをスキップ
-            // 見直しモードと模擬試験モードもアクセス制限をスキップ
-            if (isPremium || selectedMode === 'review' || selectedMode === 'mock-exam') {
+            if (isPremium || selectedMode === 'mock-exam') {
                 questions = baseQuestions;
                 console.log('startQuiz - Premium user, skipping filter');
             } else {
