@@ -128,9 +128,75 @@ AWS Quiz Appのパスワードが正常に変更されました。
   }
 };
 
+// お問い合わせフォームのメールを送信（管理者宛 + 送信者への自動返信）
+const sendContactFormEmail = async ({ name, email, category, category_ja, subject, message }) => {
+  const transporter = createTransporter();
+
+  const adminEmail = process.env.CONTACT_ADMIN_EMAIL || process.env.EMAIL_USER;
+
+  // 管理者宛メール
+  const adminMailOptions = {
+    from: `"スキマ・ラーニング" <${process.env.EMAIL_FROM || process.env.EMAIL_USER}>`,
+    replyTo: email,
+    to: adminEmail,
+    subject: `【お問い合わせ】${subject}`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #667eea;">新しいお問い合わせが届きました</h2>
+        <table style="width:100%; border-collapse: collapse; margin-top: 20px;">
+          <tr style="background:#f7f8fa;"><td style="padding:10px; border:1px solid #e5e7eb; font-weight:bold; width:30%;">お名前</td><td style="padding:10px; border:1px solid #e5e7eb;">${name}</td></tr>
+          <tr><td style="padding:10px; border:1px solid #e5e7eb; font-weight:bold;">メールアドレス</td><td style="padding:10px; border:1px solid #e5e7eb;">${email}</td></tr>
+          <tr style="background:#f7f8fa;"><td style="padding:10px; border:1px solid #e5e7eb; font-weight:bold;">お問い合わせ種別</td><td style="padding:10px; border:1px solid #e5e7eb;">${category_ja || category}</td></tr>
+          <tr><td style="padding:10px; border:1px solid #e5e7eb; font-weight:bold;">件名</td><td style="padding:10px; border:1px solid #e5e7eb;">${subject}</td></tr>
+          <tr style="background:#f7f8fa;"><td style="padding:10px; border:1px solid #e5e7eb; font-weight:bold; vertical-align:top;">お問い合わせ内容</td><td style="padding:10px; border:1px solid #e5e7eb; white-space:pre-wrap;">${message}</td></tr>
+        </table>
+        <p style="margin-top:20px; color:#57606a; font-size:13px;">このメールに返信すると ${email} に送信されます。</p>
+      </div>
+    `,
+    text: `新しいお問い合わせ\n\nお名前: ${name}\nメール: ${email}\n種別: ${category_ja || category}\n件名: ${subject}\n\n内容:\n${message}`
+  };
+
+  // 送信者への自動返信メール
+  const autoReplyOptions = {
+    from: `"スキマ・ラーニング" <${process.env.EMAIL_FROM || process.env.EMAIL_USER}>`,
+    to: email,
+    subject: `【自動返信】お問い合わせを受け付けました - スキマ・ラーニング`,
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #667eea;">お問い合わせを受け付けました</h2>
+        <p>${name} 様</p>
+        <p>この度はお問い合わせいただきありがとうございます。<br>以下の内容で受け付けました。通常2〜3営業日以内にご返信いたします。</p>
+        <table style="width:100%; border-collapse: collapse; margin: 20px 0;">
+          <tr style="background:#f7f8fa;"><td style="padding:10px; border:1px solid #e5e7eb; font-weight:bold; width:30%;">件名</td><td style="padding:10px; border:1px solid #e5e7eb;">${subject}</td></tr>
+          <tr><td style="padding:10px; border:1px solid #e5e7eb; font-weight:bold;">お問い合わせ種別</td><td style="padding:10px; border:1px solid #e5e7eb;">${category_ja || category}</td></tr>
+          <tr style="background:#f7f8fa;"><td style="padding:10px; border:1px solid #e5e7eb; font-weight:bold; vertical-align:top;">内容</td><td style="padding:10px; border:1px solid #e5e7eb; white-space:pre-wrap;">${message}</td></tr>
+        </table>
+        <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;">
+        <p style="color: #57606a; font-size: 13px;">
+          ※このメールは自動送信です。このメールへの返信は受け付けておりません。<br>
+          ※土日祝日は対応できない場合がございます。
+        </p>
+      </div>
+    `,
+    text: `${name} 様\n\nお問い合わせありがとうございます。以下の内容で受け付けました。\n\n件名: ${subject}\n種別: ${category_ja || category}\n内容:\n${message}\n\n通常2〜3営業日以内にご返信いたします。`
+  };
+
+  try {
+    await transporter.sendMail(adminMailOptions);
+    console.log('✅ Contact admin email sent to:', adminEmail);
+    await transporter.sendMail(autoReplyOptions);
+    console.log('✅ Contact auto-reply sent to:', email);
+    return true;
+  } catch (error) {
+    console.error('❌ Error sending contact email:', error);
+    throw new Error('メール送信に失敗しました: ' + error.message);
+  }
+};
+
 module.exports = {
   sendPasswordResetEmail,
-  sendPasswordChangedEmail
+  sendPasswordChangedEmail,
+  sendContactFormEmail
 };
 
 // Made with Bob

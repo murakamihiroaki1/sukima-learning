@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const supabase = require('../database/supabase');
+const { sendContactFormEmail } = require('../services/emailService');
 
 // お問い合わせ送信エンドポイント（Supabaseに保存）
 router.post('/send', async (req, res) => {
@@ -53,6 +54,21 @@ router.post('/send', async (req, res) => {
         }
 
         console.log('✅ Saved to Supabase successfully:', data);
+
+        // メール送信（失敗してもレスポンスは成功を返す）
+        try {
+            await sendContactFormEmail({
+                name,
+                email,
+                category,
+                category_ja: categoryMap[category] || category,
+                subject,
+                message
+            });
+            console.log('✅ Contact emails sent');
+        } catch (emailError) {
+            console.error('⚠️ Email sending failed (data saved to Supabase):', emailError.message);
+        }
 
         res.json({
             success: true,
