@@ -762,21 +762,7 @@
                 <!-- カテゴリ別選択 (初期非表示) -->
                 <div id="category-selection" style="display: none; margin-bottom: 30px;">
                     <h4 style="color: #667eea; margin-bottom: 15px;">カテゴリを選択</h4>
-                    <div class="set-buttons">
-                        <button class="set-btn" onclick="selectCategory('コンピューティング')">コンピューティング</button>
-                        <button class="set-btn" onclick="selectCategory('ストレージ')">ストレージ</button>
-                        <button class="set-btn" onclick="selectCategory('データベース')">データベース</button>
-                        <button class="set-btn" onclick="selectCategory('ネットワーキング')">ネットワーキング</button>
-                        <button class="set-btn" onclick="selectCategory('セキュリティ')">セキュリティ</button>
-                        <button class="set-btn" onclick="selectCategory('監視・管理')">監視・管理</button>
-                        <button class="set-btn" onclick="selectCategory('管理・デプロイ')">管理・デプロイ</button>
-                        <button class="set-btn" onclick="selectCategory('アプリケーション統合')">アプリケーション統合</button>
-                        <button class="set-btn" onclick="selectCategory('分析')">分析</button>
-                    </div>
-                    <div id="category-range-selection" style="display: none; margin-top: 20px;">
-                        <h4 style="color: #667eea; margin-bottom: 15px;">問題範囲を選択 (10問単位)</h4>
-                        <div class="set-buttons" id="category-range-buttons"></div>
-                    </div>
+                    <div class="set-buttons" id="category-buttons"></div>
                 </div>
 
                 <div class="set-info" id="set-info" style="display: none;"></div>
@@ -875,7 +861,23 @@
                 document.getElementById('set-info').style.display = 'block';
                 document.getElementById('set-info').textContent = '問題範囲を選択してください';
             } else if (mode === 'category') {
-                // カテゴリ別
+                // カテゴリ別 - プレミアム機能のアクセスチェック
+                if (!isPremium) {
+                    alert('この機能はStandard/Advancedプラン限定です。\nプランをアップグレードしてください。');
+                    window.location.href = 'pricing.html';
+                    return;
+                }
+                const categories = [...new Set(questionsData.map(q => q.category).filter(Boolean))].sort();
+                const catButtons = document.getElementById('category-buttons');
+                catButtons.innerHTML = '';
+                categories.forEach(cat => {
+                    const count = questionsData.filter(q => q.category === cat).length;
+                    const btn = document.createElement('button');
+                    btn.className = 'set-btn';
+                    btn.textContent = `${cat} (${count}問)`;
+                    btn.onclick = () => selectCategory(cat, btn);
+                    catButtons.appendChild(btn);
+                });
                 document.getElementById('category-selection').style.display = 'block';
                 document.getElementById('set-info').style.display = 'block';
                 document.getElementById('set-info').textContent = 'カテゴリを選択してください';
@@ -919,58 +921,13 @@
         }
 
         // カテゴリを選択
-        function selectCategory(category) {
+        function selectCategory(category, btnEl) {
             selectedCategory = category;
             selectedRange = null;
-            
-            // カテゴリボタンのアクティブ状態を更新
-            document.querySelectorAll('#category-selection > .set-buttons .set-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // 選択されたカテゴリの問題を取得
-            const filteredQuestions = questionsData.filter(q => q.category === category);
-            
-            if (filteredQuestions.length <= 10) {
-                // 10問以下の場合は範囲選択不要
-                document.getElementById('category-range-selection').style.display = 'none';
-                document.getElementById('set-info').textContent =
-                    `「${category}」を選択しました（全${filteredQuestions.length}問）`;
-                document.getElementById('start-quiz-btn').disabled = false;
-            } else {
-                // 10問以上の場合は範囲選択を表示
-                const rangeButtons = document.getElementById('category-range-buttons');
-                rangeButtons.innerHTML = '';
-                
-                for (let i = 0; i < filteredQuestions.length; i += 10) {
-                    const end = Math.min(i + 10, filteredQuestions.length);
-                    const btn = document.createElement('button');
-                    btn.className = 'set-btn';
-                    btn.textContent = `問題 ${i + 1}-${end}`;
-                    btn.onclick = () => selectCategoryRange(i, end);
-                    rangeButtons.appendChild(btn);
-                }
-                
-                document.getElementById('category-range-selection').style.display = 'block';
-                document.getElementById('set-info').textContent =
-                    `「${category}」を選択しました（全${filteredQuestions.length}問）- 問題範囲を選択してください`;
-                document.getElementById('start-quiz-btn').disabled = true;
-            }
-        }
-
-        // カテゴリ別の範囲を選択
-        function selectCategoryRange(start, end) {
-            selectedRange = { start, end };
-            
-            // ボタンのアクティブ状態を更新
-            document.querySelectorAll('#category-range-buttons .set-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            document.getElementById('set-info').textContent =
-                `「${selectedCategory}」の問題 ${start + 1}-${end} を選択しました（${end - start}問）`;
+            document.querySelectorAll('#category-buttons .set-btn').forEach(b => b.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+            const count = questionsData.filter(q => q.category === category).length;
+            document.getElementById('set-info').textContent = `「${category}」を選択しました（${count}問）`;
             document.getElementById('start-quiz-btn').disabled = false;
         }
 

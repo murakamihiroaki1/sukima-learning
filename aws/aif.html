@@ -748,6 +748,7 @@
                 <div style="margin-bottom: 30px;">
                     <div class="set-buttons">
                         <button class="set-btn" onclick="selectMode('sequential')">番号順</button>
+                        <button class="set-btn" id="category-mode-btn" onclick="selectMode('category')">カテゴリ別</button>
                         <button class="set-btn" id="random-mode-btn" onclick="selectMode('random')">ランダム (10問)</button>
                         <button class="set-btn" id="mock-exam-mode-btn" onclick="selectMode('mock-exam')">模擬試験 (65問)</button>
                     </div>
@@ -759,6 +760,11 @@
                     <div class="set-buttons" id="sequential-buttons"></div>
                 </div>
 
+                <!-- カテゴリ別選択 (初期非表示) -->
+                <div id="category-selection" style="display: none; margin-bottom: 30px;">
+                    <h4 style="color: #667eea; margin-bottom: 15px;">カテゴリを選択</h4>
+                    <div class="set-buttons" id="category-buttons"></div>
+                </div>
 
                 <div class="set-info" id="set-info" style="display: none;"></div>
                 <button class="start-quiz-btn" id="start-quiz-btn" onclick="startQuiz()" disabled>クイズを開始</button>
@@ -868,6 +874,7 @@
             
             // すべての選択セクションを非表示
             document.getElementById('sequential-selection').style.display = 'none';
+            document.getElementById('category-selection').style.display = 'none';
             document.getElementById('start-quiz-btn').disabled = true;
             
             // 会員情報を取得（大文字小文字を正規化）
@@ -910,6 +917,27 @@
                 document.getElementById('sequential-selection').style.display = 'block';
                 document.getElementById('set-info').style.display = 'block';
                 document.getElementById('set-info').textContent = '問題範囲を選択してください';
+            } else if (mode === 'category') {
+                // カテゴリ別 - プレミアム機能のアクセスチェック
+                if (!isPremium) {
+                    alert('この機能はStandard/Advancedプラン限定です。\nプランをアップグレードしてください。');
+                    window.location.href = 'pricing.html';
+                    return;
+                }
+                const categories = [...new Set(awsAIFQuestions.map(q => q.category).filter(Boolean))].sort();
+                const catButtons = document.getElementById('category-buttons');
+                catButtons.innerHTML = '';
+                categories.forEach(cat => {
+                    const count = awsAIFQuestions.filter(q => q.category === cat).length;
+                    const btn = document.createElement('button');
+                    btn.className = 'set-btn';
+                    btn.textContent = `${cat} (${count}問)`;
+                    btn.onclick = () => selectCategory(cat, btn);
+                    catButtons.appendChild(btn);
+                });
+                document.getElementById('category-selection').style.display = 'block';
+                document.getElementById('set-info').style.display = 'block';
+                document.getElementById('set-info').textContent = 'カテゴリを選択してください';
             } else if (mode === 'random') {
                 // ランダム10問 - プレミアム機能のアクセスチェック
                 if (!isPremium) {
@@ -949,6 +977,16 @@
             document.getElementById('start-quiz-btn').disabled = false;
         }
 
+        // カテゴリを選択
+        function selectCategory(category, btnEl) {
+            selectedCategory = category;
+            selectedRange = null;
+            document.querySelectorAll('#category-buttons .set-btn').forEach(b => b.classList.remove('active'));
+            if (btnEl) btnEl.classList.add('active');
+            const count = awsAIFQuestions.filter(q => q.category === category).length;
+            document.getElementById('set-info').textContent = `「${category}」を選択しました（${count}問）`;
+            document.getElementById('start-quiz-btn').disabled = false;
+        }
 
         // クイズを開始
         function startQuiz() {
@@ -1233,15 +1271,18 @@
             
             // 選択状態をリセット
             selectedMode = null;
+            selectedCategory = null;
             selectedRange = null;
             isMockExam = false;
             document.querySelectorAll('.set-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             document.getElementById('sequential-selection').style.display = 'none';
+            document.getElementById('category-selection').style.display = 'none';
             document.getElementById('set-info').style.display = 'none';
             document.getElementById('set-info').textContent = '';
             document.getElementById('start-quiz-btn').disabled = true;
+        }
 
         // 模擬試験の結果を表示
         function showMockExamResults() {
