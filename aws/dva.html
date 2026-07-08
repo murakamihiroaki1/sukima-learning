@@ -747,9 +747,9 @@
                 <div style="margin-bottom: 30px;">
                     <div class="set-buttons">
                         <button class="set-btn" onclick="selectMode('sequential')">番号順</button>
-                        <button class="set-btn" id="category-mode-btn" style="opacity: 0.4; cursor: not-allowed;">カテゴリ別 🔒</button>
-                        <button class="set-btn" id="random-mode-btn" style="opacity: 0.4; cursor: not-allowed;">ランダム (10問) 🔒</button>
-                        <button class="set-btn" id="mock-exam-mode-btn" style="opacity: 0.4; cursor: not-allowed;">模擬試験 (65問) 🔒</button>
+                        <button class="set-btn" id="category-mode-btn" onclick="selectMode('category')">カテゴリ別</button>
+                        <button class="set-btn" id="random-mode-btn" onclick="selectMode('random')">ランダム (10問)</button>
+                        <button class="set-btn" id="mock-exam-mode-btn" onclick="selectMode('mock-exam')">模擬試験 (65問)</button>
                     </div>
                 </div>
 
@@ -847,10 +847,11 @@
             document.getElementById('category-selection').style.display = 'none';
             document.getElementById('start-quiz-btn').disabled = true;
             
-            // 会員情報を取得してボタンの状態を再設定
+            // 会員情報を取得（大文字小文字を正規化）
             const membership = await getMembershipInfo();
-            const membershipLevel = membership ? membership.level : 'Free';
-            updatePremiumFeatureAccess(membershipLevel);
+            const lowerLevel = (membership ? membership.level : 'free').toLowerCase();
+            const isPremium = (lowerLevel === 'standard' || lowerLevel === 'advanced');
+            const isAdvancedUser = (lowerLevel === 'advanced');
             
             if (mode === 'sequential') {
                 // 番号順: 10問単位のボタンを生成
@@ -880,8 +881,7 @@
                 document.getElementById('set-info').textContent = 'カテゴリを選択してください';
             } else if (mode === 'random') {
                 // ランダム10問 - プレミアム機能のアクセスチェック
-                const membership = await getMembershipInfo();
-                if (!membership || membership.level === 'Free') {
+                if (!isPremium) {
                     alert('この機能はStandard/Advancedプラン限定です。\nプランをアップグレードしてください。');
                     window.location.href = 'pricing.html';
                     return;
@@ -891,8 +891,7 @@
                 document.getElementById('start-quiz-btn').disabled = false;
             } else if (mode === 'mock-exam') {
                 // 模擬試験モード - プレミアム機能のアクセスチェック
-                const membership = await getMembershipInfo();
-                if (!membership || membership.level === 'Free') {
+                if (!isPremium) {
                     alert('この機能はStandard/Advancedプラン限定です。\nプランをアップグレードしてください。');
                     window.location.href = 'pricing.html';
                     return;
