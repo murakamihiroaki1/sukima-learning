@@ -772,7 +772,7 @@
             <div class="question-info">
                 <span id="question-number">問題 1 / 20</span>
                 <span id="timer-display" style="display: none; color: #FF9900; font-weight: bold;">⏱️ 残り時間: 130:00</span>
-                <span id="score-display">正解数: 0</span>
+                <span id="score-display" style="display: none;">正解数: 0</span>
             </div>
 
             <div class="question-card">
@@ -1100,9 +1100,8 @@
             
             if (currentQuestionIndex === questions.length - 1) {
                 document.getElementById('next-btn').style.display = 'none';
-                if (isMockExam && userAnswers[currentQuestionIndex] !== null) {
-                    // 模擬試験モードで最後の問題に回答済みの場合、結果表示ボタンを表示
-                    document.getElementById('back-to-select-btn').textContent = '結果を見る';
+                if (isMockExam) {
+                    document.getElementById('back-to-select-btn').textContent = '試験を終了する';
                     document.getElementById('back-to-select-btn').onclick = showMockExamResults;
                 } else {
                     document.getElementById('back-to-select-btn').textContent = '選択画面に戻る';
