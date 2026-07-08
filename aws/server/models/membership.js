@@ -90,7 +90,7 @@ function getDaysUntilExpiry(membershipExpiry) {
  * 会員情報を整形して返す
  */
 function formatMembershipInfo(user) {
-    const level = user.membership_level || MEMBERSHIP_LEVELS.FREE;
+    const level = (user.membership_level || MEMBERSHIP_LEVELS.FREE).toLowerCase();
     const expiry = user.membership_expiry;
     const isValid = isMembershipValid(expiry);
     const daysRemaining = getDaysUntilExpiry(expiry);

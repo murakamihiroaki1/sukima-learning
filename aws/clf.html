@@ -1629,14 +1629,6 @@
         window.onload = async function() {
             await checkLoginStatus();
             resetInactivityTimer();
-            
-            // 見直しモードボタンのアクセス制御を適用
-            const membership = await getMembershipInfo();
-            if (membership) {
-                updatePremiumFeatureAccess(membership.level);
-            } else {
-                updatePremiumFeatureAccess('Free');
-            }
         };
         
         // ===== アクセス制御: 未ログイン・Free会員は1-20問のみ =====
