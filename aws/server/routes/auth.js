@@ -178,7 +178,7 @@ router.post('/login', loginValidation, async (req, res, next) => {
       }
     }
 
-    // JWT アクセストークンを生成（短い有効期限）
+    // JWT アクセストークンを生成
     const accessToken = jwt.sign(
       {
         id: user.id,
@@ -186,7 +186,7 @@ router.post('/login', loginValidation, async (req, res, next) => {
         email: user.email
       },
       process.env.JWT_SECRET,
-      { expiresIn: '15m' } // 15分
+      { expiresIn: '24h' } // 24時間
     );
 
     // リフレッシュトークンを生成
@@ -356,7 +356,7 @@ router.post('/refresh', async (req, res, next) => {
         email: tokenData.email
       },
       process.env.JWT_SECRET,
-      { expiresIn: '15m' }
+      { expiresIn: '24h' }
     );
 
     res.json({ accessToken });
