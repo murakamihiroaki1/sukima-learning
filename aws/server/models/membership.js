@@ -8,7 +8,7 @@ const MEMBERSHIP_LEVELS = {
     ADVANCED: 'advanced'
 };
 
-const MEMBERSHIP_DURATION_DAYS = 90; // 3ヶ月 = 90日
+const MEMBERSHIP_DURATION_DAYS = 30; // 1ヶ月 = 30日
 
 /**
  * 会員レベルの表示名を取得
@@ -28,8 +28,8 @@ function getMembershipDisplayName(level) {
 function getMembershipDescription(level) {
     const descriptions = {
         [MEMBERSHIP_LEVELS.FREE]: '基本機能のみ利用可能',
-        [MEMBERSHIP_LEVELS.STANDARD]: '標準機能が利用可能（3ヶ月プラン）',
-        [MEMBERSHIP_LEVELS.ADVANCED]: 'すべての機能が利用可能（3ヶ月プラン）'
+        [MEMBERSHIP_LEVELS.STANDARD]: '標準機能が利用可能（1ヶ月プラン）',
+        [MEMBERSHIP_LEVELS.ADVANCED]: 'すべての機能が利用可能（1ヶ月プラン）'
     };
     return descriptions[level] || '';
 }
