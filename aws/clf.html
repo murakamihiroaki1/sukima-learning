@@ -1665,19 +1665,15 @@
                 baseQuestions = shuffled.slice(0, 65);
             }
             
-            console.log('startQuiz - baseQuestions count:', baseQuestions.length);
             
             // Standard/Advancedプランの場合、CLF試験は全問アクセス可能なのでフィルタリングをスキップ
             if (isPremium || selectedMode === 'mock-exam') {
                 questions = baseQuestions;
-                console.log('startQuiz - Premium user, skipping filter');
             } else {
                 // Free会員のみアクセス可能な問題にフィルタリング
                 questions = filterQuestionsByAccess(baseQuestions, membership, 'clf');
-                console.log('startQuiz - Free user, filtered');
             }
             
-            console.log('startQuiz - final questions count:', questions.length);
             
             // フィルタリング後に問題がない場合
             if (questions.length === 0) {
