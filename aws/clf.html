@@ -820,13 +820,10 @@
         
         // タイマー関数
         function startExamTimer() {
-            console.log('[startExamTimer] Called - isMockExam:', isMockExam);
             remainingTime = EXAM_TIME_LIMIT;
             const timerElement = document.getElementById('timer-display');
-            console.log('[startExamTimer] Timer element found:', !!timerElement);
             if (timerElement) {
                 timerElement.style.display = 'inline-block';
-                console.log('[startExamTimer] Timer display set to inline-block');
             }
             updateTimerDisplay();
             
@@ -1028,12 +1025,8 @@
             document.getElementById('quiz-section').style.display = 'block';
             
             // 模擬試験モードの場合、タイマーを開始
-            console.log('[startQuiz] isMockExam:', isMockExam, 'selectedMode:', selectedMode);
             if (isMockExam) {
-                console.log('[startQuiz] Starting exam timer...');
                 startExamTimer();
-            } else {
-                console.log('[startQuiz] Not starting timer - not mock exam mode');
             }
             
             displayQuestion();
@@ -1538,19 +1531,12 @@
         }
         
         function updatePremiumFeatureAccess(membershipLevel) {
-            console.log('[updatePremiumFeatureAccess] Called with level:', membershipLevel);
             const lowerLevel = membershipLevel.toLowerCase();
             const isPremium = (lowerLevel === 'standard' || lowerLevel === 'advanced');
-            console.log('[updatePremiumFeatureAccess] isPremium:', isPremium);
             
             const categoryBtn = document.getElementById('category-mode-btn');
             const randomBtn = document.getElementById('random-mode-btn');
             const mockExamBtn = document.getElementById('mock-exam-mode-btn');
-            console.log('[updatePremiumFeatureAccess] Buttons found:', {
-                category: !!categoryBtn,
-                random: !!randomBtn,
-                mockExam: !!mockExamBtn
-            });
             
             if (isPremium) {
                 // Standard/Advanced会員: ボタンを有効化
@@ -1581,20 +1567,16 @@
                     categoryBtn.innerHTML = 'カテゴリ別 🔒';
                 }
                 if (randomBtn) {
-                    console.log('[updatePremiumFeatureAccess] Disabling random button');
                     randomBtn.style.setProperty('opacity', '0.4', 'important');
                     randomBtn.style.setProperty('cursor', 'not-allowed', 'important');
                     randomBtn.onclick = function(event) { event.preventDefault(); window.location.href='pricing.html'; };
                     randomBtn.innerHTML = 'ランダム (10問) 🔒';
-                    console.log('[updatePremiumFeatureAccess] Random button after update - opacity:', randomBtn.style.opacity, 'innerHTML:', randomBtn.innerHTML);
                 }
                 if (mockExamBtn) {
-                    console.log('[updatePremiumFeatureAccess] Disabling mock exam button');
                     mockExamBtn.style.setProperty('opacity', '0.4', 'important');
                     mockExamBtn.style.setProperty('cursor', 'not-allowed', 'important');
                     mockExamBtn.onclick = function(event) { event.preventDefault(); window.location.href='pricing.html'; };
                     mockExamBtn.innerHTML = '模擬試験 (65問) 🔒';
-                    console.log('[updatePremiumFeatureAccess] Mock exam button after update - opacity:', mockExamBtn.style.opacity, 'innerHTML:', mockExamBtn.innerHTML);
                 }
             }
         }

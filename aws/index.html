@@ -1000,21 +1000,17 @@
 
         // ログイン状態を表示
         function showLoggedIn(username, membershipLevel = 'Free', membershipExpiry = null) {
-            console.log('🔍 showLoggedIn called with:', { username, membershipLevel, membershipExpiry });
-            
             const _lo1 = document.querySelector('.logged-out'); if (_lo1) _lo1.style.display = 'none';
             const _li1 = document.querySelector('.logged-in'); if (_li1) _li1.style.display = 'flex';
             document.getElementById('username').textContent = username;
             
             // プラン情報を表示
             const userPlanElement = document.getElementById('userPlan');
-            console.log('🔍 userPlanElement:', userPlanElement);
             
             if (userPlanElement) {
                 // 小文字を大文字に変換（standard → Standard）
                 const displayLevel = membershipLevel.charAt(0).toUpperCase() + membershipLevel.slice(1).toLowerCase();
                 userPlanElement.textContent = displayLevel;
-                console.log('🔍 Setting plan text to:', displayLevel);
                 
                 // プランに応じて色を変更
                 const lowerLevel = membershipLevel.toLowerCase();
@@ -1025,9 +1021,6 @@
                 } else if (lowerLevel === 'advanced') {
                     userPlanElement.style.background = '#667eea';
                 }
-                console.log('🔍 Plan badge updated');
-            } else {
-                console.error('❌ userPlanElement not found!');
             }
             
             // 有効期限を表示
@@ -1129,22 +1122,14 @@
 
         // 決済完了後の処理
         async function handlePaymentSuccess() {
-            console.log('🔍 handlePaymentSuccess called');
-            console.log('🔍 Current URL:', window.location.href);
-            
             const urlParams = new URLSearchParams(window.location.search);
             const paymentStatus = urlParams.get('payment');
             const sessionId = urlParams.get('session_id');
             
-            console.log('🔍 Payment status check:', { paymentStatus, sessionId });
-            
             if (paymentStatus === 'success') {
-                console.log('✅ Payment success detected!');
                 const accessToken = localStorage.getItem('accessToken');
-                console.log('🔍 Access token:', accessToken ? 'Found' : 'Not found');
                 
                 if (!accessToken) {
-                    console.warn('⚠️ No access token, skipping membership update');
                     // URLパラメータをクリア
                     window.history.replaceState({}, document.title, window.location.pathname);
                     return;
@@ -1153,7 +1138,6 @@
                 try {
                     // 会員レベルを更新
                     const plan = sessionStorage.getItem('selectedPlan') || 'standard';
-                    console.log('🔍 Selected plan:', plan);
                     
                     const response = await fetch('https://sukima-learning.onrender.com/api/membership/update-after-payment', {
                         method: 'POST',
@@ -1164,12 +1148,8 @@
                         body: JSON.stringify({ plan, session_id: sessionId || 'test' })
                     });
                     
-                    console.log('🔍 API response status:', response.status);
-                    
                     if (response.ok) {
                         const data = await response.json();
-                        console.log('✅ Membership updated:', data);
-                        console.log('🔍 Membership data:', JSON.stringify(data.membership, null, 2));
                         
                         // URLパラメータをクリア
                         window.history.replaceState({}, document.title, window.location.pathname);
@@ -1179,19 +1159,11 @@
                         
                         // 会員情報を即座に更新（リロードせずに）
                         if (data.membership) {
-                            console.log('🔍 Calling showLoggedIn with:', {
-                                username: data.membership.username,
-                                level: data.membership.membership_level,
-                                expiry: data.membership.membership_expiry
-                            });
-                            
                             showLoggedIn(
                                 data.membership.username,
                                 data.membership.membership_level,
                                 data.membership.membership_expiry
                             );
-                            
-                            console.log('✅ showLoggedIn called successfully');
                         } else {
                             console.error('❌ No membership data in response');
                         }
