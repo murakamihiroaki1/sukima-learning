@@ -56,7 +56,7 @@ const awsSAAQuestions = [
       "Amazon Aurora Serverlessに移行する。"
     ],
     correctAnswer: 2,
-    category: "高可用性とディザスタリカバリ",
+    category: "高可用性とスケーラビリティ",
     explanation: "RDSのマルチAZ配置を有効にすることで、プライマリデータベースインスタンスの同期レプリカが別のアベイラビリティーゾーンに自動的に作成されます。障害発生時やメンテナンス時には、自動的にスタンバイインスタンスにフェイルオーバーされ、ダウンタイムを最小限に抑えることができます。",
     optionExplanations: [
       "リードレプリカは読み取りスケーラビリティを向上させますが、自動フェイルオーバー機能はありません。プライマリインスタンスに障害が発生した場合、手動でリードレプリカを昇格させる必要があります。",
@@ -78,7 +78,7 @@ const awsSAAQuestions = [
       "S3 Standardストレージクラスを使用し、ライフサイクルポリシーを設定しない。"
     ],
     correctAnswer: 1,
-    category: "コスト最適化",
+    category: "モニタリングとコスト最適化",
     explanation: "ログファイルは月に1回しかアクセスされないため、S3 Standardで保存し、30日後にS3 Glacier Deep Archiveに移行するライフサイクルポリシーを設定することで、ストレージコストを大幅に削減できます。Glacier Deep Archiveは最も低コストのストレージクラスで、長期保存に最適です。",
     optionExplanations: [
       "S3 Intelligent-Tieringは、アクセスパターンが不明または変動する場合に適していますが、明確に月1回のアクセスパターンがある場合は、ライフサイクルポリシーを使用した方がコスト効率が良くなります。",
@@ -101,7 +101,7 @@ const awsSAAQuestions = [
       "VMware Cloud on AWS"
     ],
     correctAnswer: 3,
-    category: "移行とハイブリッドアーキテクチャ",
+    category: "アプリケーション統合",
     explanation: "VMware Cloud on AWSは、VMware vSphereベースの環境をAWSクラウドで実行できるサービスです。既存のVMware管理ツール（vCenter、vSphere、NSXなど）を継続して使用でき、オンプレミスのVMware環境からシームレスに移行できます。",
     optionExplanations: [
       "AWS Application Migration Serviceは、アプリケーションをAWSに移行するためのサービスですが、VMware管理ツールの継続使用はサポートしていません。",
@@ -123,7 +123,7 @@ const awsSAAQuestions = [
       "プロビジョニングされたキャパシティモードで、5,000 RCUを設定し、DynamoDB Accelerator (DAX)を使用する。"
     ],
     correctAnswer: 1,
-    category: "パフォーマンス最適化",
+    category: "コンピューティング",
     explanation: "プロビジョニングされたキャパシティモードでAuto Scalingを有効にすることで、トラフィックの変動に応じて自動的にキャパシティを調整できます。これにより、ピーク時のパフォーマンスを確保しながら、低トラフィック時のコストを削減できます。",
     optionExplanations: [
       "10,000 RCUを常時プロビジョニングすると、ピーク時以外の時間帯に不必要なコストが発生します。トラフィックが変動する場合、固定キャパシティは非効率的です。",
@@ -236,7 +236,7 @@ const awsSAAQuestions = [
       "地理的近接性ルーティングポリシーとヘルスチェック"
     ],
     correctAnswer: 3,
-    category: "高可用性とディザスタリカバリ",
+    category: "高可用性とスケーラビリティ",
     explanation: "地理的近接性ルーティングポリシーを使用することで、ユーザーの地理的位置に基づいて最も近いリージョンにトラフィックをルーティングできます。ヘルスチェックと組み合わせることで、リージョンに障害が発生した場合に自動的に正常なリージョンにフェイルオーバーできます。",
     optionExplanations: [
       "シンプルルーティングポリシーは、単一のリソースまたは複数のリソースにランダムにトラフィックをルーティングしますが、地理的近接性やヘルスチェックベースのフェイルオーバーはサポートしていません。",
@@ -258,7 +258,7 @@ const awsSAAQuestions = [
       "Redshiftクラスターの一時停止と再開のスケジュールを設定する。"
     ],
     correctAnswer: 3,
-    category: "コスト最適化",
+    category: "モニタリングとコスト最適化",
     explanation: "Redshiftクラスターの一時停止と再開機能を使用することで、使用していない時間帯のコンピューティングコストを削減できます。クラスターを一時停止すると、コンピューティングノードの料金は発生せず、ストレージの料金のみが課金されます。",
     optionExplanations: [
       "クラスターを削除すると、すべてのデータが失われます。スナップショットを作成しない限り、データを復元できません。",
@@ -280,7 +280,7 @@ const awsSAAQuestions = [
       "Amazon Inspector"
     ],
     correctAnswer: 1,
-    category: "モニタリングとロギング",
+    category: "モニタリングとコスト最適化",
     explanation: "AWS X-Rayは、分散アプリケーションのトレースと分析を行うサービスです。アプリケーションの各コンポーネントのレスポンスタイム、エラー、スロットリングを可視化し、パフォーマンスのボトルネックを特定できます。",
     optionExplanations: [
       "CloudWatch Logsはログデータの収集と分析に適していますが、分散トレーシングやエンドツーエンドのリクエストフローの可視化には特化していません。",
@@ -302,7 +302,7 @@ const awsSAAQuestions = [
       "Amazon S3"
     ],
     correctAnswer: 1,
-    category: "ストレージとデータ管理",
+    category: "ストレージ",
     explanation: "AWS Storage Gateway - File Gatewayは、オンプレミスのアプリケーションがSMBまたはNFSプロトコルを使用してS3にアクセスできるようにします。頻繁にアクセスされるデータはローカルにキャッシュされ、すべてのデータはS3に保存されます。S3のライフサイクルポリシーを使用して、アクセス頻度の低いデータを自動的に低コストのストレージクラスに移行できます。",
     optionExplanations: [
       "Amazon EFSはNFSプロトコルをサポートしますが、SMBプロトコルはサポートしていません。また、ライフサイクル管理は限定的です。",
@@ -434,7 +434,7 @@ const awsSAAQuestions = [
       "AWS Lambda関数を使用して、データを各コンシューマーに転送する。"
     ],
     correctAnswer: 1,
-    category: "データストリーミング",
+    category: "データベース",
     explanation: "Kinesis Client Library (KCL)を使用することで、各コンシューマーアプリケーションが独立してデータを処理し、処理の進行状況（チェックポイント）を自動的に追跡できます。KCLは、シャードの負荷分散、フェイルオーバー、チェックポイント管理を自動的に処理します。",
     optionExplanations: [
       "各コンシューマーに対して個別のストリームを作成すると、データの重複とコストが増加します。単一のストリームを複数のコンシューマーで共有する方が効率的です。",
@@ -456,7 +456,7 @@ const awsSAAQuestions = [
       "Memcachedを使用し、Auto Discoveryを有効にする。"
     ],
     correctAnswer: 1,
-    category: "キャッシングとパフォーマンス",
+    category: "データベース",
     explanation: "Redisのレプリケーショングループ（クラスターモード無効）を使用することで、プライマリノードとリードレプリカを持つ構成を作成できます。プライマリノードに障害が発生した場合、自動的にリードレプリカがプライマリに昇格し、データの損失を最小限に抑えることができます。",
     optionExplanations: [
       "Memcachedは、データの永続性やレプリケーションをサポートしていません。ノードに障害が発生すると、そのノードのデータは失われます。",
@@ -478,7 +478,7 @@ const awsSAAQuestions = [
       "AWS Lambdaを使用して、新しいアカウントが作成されたときにサービスを有効にする。"
     ],
     correctAnswer: 0,
-    category: "ガバナンスとコンプライアンス",
+    category: "セキュリティとコンプライアンス",
     explanation: "AWS Control Towerは、マルチアカウント環境のセットアップと管理を自動化するサービスです。ガードレールを使用して、すべてのアカウントで一貫したセキュリティとコンプライアンスのポリシーを適用できます。GuardDutyやConfigなどのサービスを自動的に有効にすることができます。",
     optionExplanations: [
       "✓ 正解: AWS Control Towerは、マルチアカウント環境のベストプラクティスに基づいたランディングゾーンを自動的にセットアップします。ガードレール（予防的および検出的）を使用して、すべてのアカウントで一貫したポリシーを適用できます。GuardDuty、Config、CloudTrailなどのサービスを自動的に有効にし、一元的に管理できます。新しいアカウントが作成されると、自動的にガードレールが適用されます。",
@@ -500,7 +500,7 @@ const awsSAAQuestions = [
       "Amazon Redshift Spectrumを使用する。"
     ],
     correctAnswer: 1,
-    category: "データ分析",
+    category: "アプリケーション統合",
     explanation: "Athenaテーブルにパーティションを作成することで、クエリが必要なデータのみをスキャンするようになり、パフォーマンスが向上し、コストが削減されます。日付ごとにパーティションを作成することで、特定の日付のデータのみをクエリできます。",
     optionExplanations: [
       "S3 Selectは、S3オブジェクトから特定のデータを取得する機能ですが、Athenaのパーティショニングの方が、大規模なデータセットのクエリパフォーマンスとコスト削減に効果的です。",
@@ -544,7 +544,7 @@ const awsSAAQuestions = [
       "CloudWatch Logs Insightsを使用して、定期的にログをクエリし、エラーパターンを検出する。"
     ],
     correctAnswer: 0,
-    category: "モニタリングとロギング",
+    category: "モニタリングとコスト最適化",
     explanation: "CloudWatch Logsのメトリクスフィルターを使用して、特定のログパターンをメトリクスに変換し、CloudWatchアラームを設定することで、エラーパターンが検出されたときに自動的にSNSトピックに通知を送信できます。",
     optionExplanations: [
       "✓ 正解: CloudWatch Logsのメトリクスフィルターを使用して、特定のログパターン（例：「ERROR」や「Exception」）をメトリクスに変換できます。メトリクスフィルターは、ログストリームをスキャンし、パターンに一致するログエントリをカウントします。次に、CloudWatchアラームを設定して、メトリクスが特定のしきい値を超えた場合（例：5分間に10回以上のエラー）に、SNSトピックに通知を送信できます。この方法は、シンプルで、追加のコードが不要です。",
@@ -632,7 +632,7 @@ const awsSAAQuestions = [
       "Amazon API Gatewayを使用して、サービス間の通信を管理する。"
     ],
     correctAnswer: 0,
-    category: "マイクロサービスとコンテナ",
+    category: "コンピューティング",
     explanation: "AWS App Meshは、マイクロサービス間の通信を管理するサービスメッシュです。サービス間の通信を暗号化し、相互TLS認証を実装できます。また、トラフィックのルーティング、可視性、セキュリティを一元的に管理できます。",
     optionExplanations: [
       "✓ 正解: AWS App Meshは、マイクロサービス間の通信を管理するサービスメッシュです。Envoyプロキシを各サービスのサイドカーとしてデプロイし、サービス間の通信を暗号化（TLS）し、相互TLS認証を実装できます。App Meshは、トラフィックのルーティング、リトライ、タイムアウト、サーキットブレーカーなどの機能も提供し、マイクロサービスの可観測性とセキュリティを向上させます。ECS、EKS、EC2で実行されているサービスをサポートします。",
@@ -654,7 +654,7 @@ const awsSAAQuestions = [
       "AWS Elastic Beanstalkを使用して、画像処理アプリケーションをデプロイする。"
     ],
     correctAnswer: 0,
-    category: "コンテンツ配信",
+    category: "ネットワーキング",
     explanation: "Amazon CloudFrontとLambda@Edgeを使用することで、エッジロケーションで画像をリサイズし、最適化できます。ユーザーに最も近いエッジロケーションで画像を処理することで、レイテンシを最小限に抑え、ページの読み込み時間を短縮できます。",
     optionExplanations: [
       "✓ 正解: Amazon CloudFrontとLambda@Edgeを使用することで、エッジロケーションで画像をオンデマンドでリサイズし、最適化できます。ユーザーがリクエストした画像サイズ（例：クエリパラメータで指定）に基づいて、Lambda@Edge関数が画像をリサイズし、CloudFrontがキャッシュします。これにより、ユーザーに最も近いエッジロケーションから最適化された画像が配信され、レイテンシが最小限に抑えられ、ページの読み込み時間が短縮されます。また、オリジナルの画像のみをS3に保存すればよいため、ストレージコストも削減できます。",
@@ -698,7 +698,7 @@ const awsSAAQuestions = [
       "AWS Backupを使用して、RDSデータベースのバックアップを別のリージョンにコピーする。"
     ],
     correctAnswer: 3,
-    category: "災害復旧",
+    category: "高可用性とスケーラビリティ",
     explanation: "AWS Backupを使用することで、RDSデータベースのバックアップを自動的に作成し、別のリージョンにコピーできます。バックアップスケジュールを設定することで、RPO要件を満たすことができます。",
     optionExplanations: [
       "RDSの自動バックアップは、同じリージョン内にのみ保存されます。別のリージョンにバックアップを保存するには、追加の手順が必要です。",
@@ -720,7 +720,7 @@ const awsSAAQuestions = [
       "Kubernetes Secretsを使用して、AWS認証情報を保存する。"
     ],
     correctAnswer: 2,
-    category: "マイクロサービスとコンテナ",
+    category: "コンピューティング",
     explanation: "IAM Roles for Service Accounts (IRSA)を使用することで、各Kubernetes Podにきめ細かなIAMロールを割り当てることができます。これにより、最小権限の原則に基づいたアクセス制御を実現できます。",
     optionExplanations: [
       "AWSアクセスキーとシークレットキーを環境変数として渡すことは、セキュリティリスクがあります。認証情報が漏洩する可能性があり、ローテーションが困難です。",
@@ -742,7 +742,7 @@ const awsSAAQuestions = [
       "すべてのログファイルをS3 One Zone-IAに保存する。"
     ],
     correctAnswer: 1,
-    category: "ストレージとデータ管理",
+    category: "ストレージ",
     explanation: "S3ライフサイクルポリシーを使用して、ログファイルを段階的に移行することで、ストレージコストを最適化できます。最初の30日間はS3 Standardで保存し、その後S3 Standard-IAに移行し、さらに長期保存のためにS3 Glacier Deep Archiveに移行します。",
     optionExplanations: [
       "S3 Intelligent-Tieringは、アクセスパターンに基づいて自動的にストレージクラスを移行しますが、アーカイブ層への移行には追加の設定が必要です。ライフサイクルポリシーの方が、明確な移行スケジュールを設定でき、コスト予測が容易です。",
@@ -786,7 +786,7 @@ const awsSAAQuestions = [
       "Amazon S3 Transfer Accelerationを使用して、データを転送する。"
     ],
     correctAnswer: 2,
-    category: "移行とデータ転送",
+    category: "アプリケーション統合",
     explanation: "AWS Snowballは、大量のデータを物理的に転送するためのデバイスです。数百TBのデータを転送する場合、Snowballを使用することで、インターネット経由よりも高速かつコスト効率的にデータを転送できます。",
     optionExplanations: [
       "Direct Connectは、オンプレミスとAWS間の専用ネットワーク接続を提供しますが、セットアップに時間がかかり、数百TBのデータを一度に転送する場合、Snowballの方がコスト効率的です。",
@@ -918,7 +918,7 @@ const awsSAAQuestions = [
       "複数のリージョンにS3バケットを作成し、クロスリージョンレプリケーションを設定する。"
     ],
     correctAnswer: 2,
-    category: "コンテンツ配信",
+    category: "ネットワーキング",
     explanation: "Amazon CloudFrontディストリビューションを作成し、S3バケットをオリジンとして設定することで、グローバルなエッジロケーションからコンテンツを配信し、低レイテンシを実現できます。また、CloudFrontは、AWS Certificate Manager (ACM)と統合されており、HTTPS通信を簡単に有効にできます。",
     optionExplanations: [
       "S3 Transfer Accelerationは、S3へのアップロードを高速化するサービスですが、ダウンロード（コンテンツ配信）には、CloudFrontの方が適しています。",
@@ -940,7 +940,7 @@ const awsSAAQuestions = [
       "Amazon EFSを使用して、データを一時的に保存する。"
     ],
     correctAnswer: 1,
-    category: "ストレージとデータ管理",
+    category: "ストレージ",
     explanation: "S3のマルチパートアップロードを使用することで、大きなファイルを複数の部分に分割してアップロードできます。ネットワークエラーが発生した場合、失敗した部分のみを再アップロードすればよいため、信頼性が向上します。",
     optionExplanations: [
       "DataSyncは、オンプレミスとAWS間のデータ転送を自動化するサービスですが、EC2からS3へのアップロードには、マルチパートアップロードの方が適しています。",
@@ -1094,7 +1094,7 @@ const awsSAAQuestions = [
       "S3のリクエストレート制限を増やす。"
     ],
     correctAnswer: 2,
-    category: "キャッシングとパフォーマンス",
+    category: "データベース",
     explanation: "Amazon ElastiCache for Redisを使用して、S3のデータをキャッシュすることで、S3へのリクエスト数を減らし、コストを削減できます。また、キャッシュからデータを読み取ることで、レイテンシが削減され、パフォーマンスが向上します。",
     optionExplanations: [
       "CloudFrontは、静的コンテンツのキャッシングに適していますが、アプリケーションが動的にS3からデータを読み取る場合、ElastiCacheの方が、より柔軟にキャッシュを管理できます。",
@@ -1138,7 +1138,7 @@ const awsSAAQuestions = [
       "XML"
     ],
     correctAnswer: 1,
-    category: "データ分析",
+    category: "アプリケーション統合",
     explanation: "Apache Parquetは、列指向のデータ形式で、Athenaでのクエリパフォーマンスを大幅に向上させ、スキャンするデータ量を削減することでコストを削減できます。圧縮効率も高く、ストレージコストも削減できます。",
     optionExplanations: [
       "CSVは、シンプルで読みやすい形式ですが、列指向ではないため、Athenaでのクエリパフォーマンスが低く、スキャンするデータ量が多くなります。",
@@ -1270,7 +1270,7 @@ const awsSAAQuestions = [
       "Redshift COPYコマンドを手動で実行する。"
     ],
     correctAnswer: 0,
-    category: "データ分析",
+    category: "アプリケーション統合",
     explanation: "AWS Glue ETLジョブを使用することで、S3からRedshiftへのデータロードを自動化し、効率的に実行できます。Glueは、データの変換、クレンジング、エンリッチメントも実行でき、スケジュールに基づいて自動的にジョブを実行できます。",
     optionExplanations: [
       "✓ 正解: AWS Glue ETLジョブを使用することで、S3からRedshiftへのデータロードを自動化し、効率的に実行できます。Glueは、サーバーレスのETL（Extract, Transform, Load）サービスで、データの抽出、変換、ロードを自動化します。データカタログを使用してデータのスキーマを自動的に検出し、ETLジョブを簡単に作成できます。スケジュールに基づいて自動的にジョブを実行でき、増分データのロードもサポートしています。また、データの変換、クレンジング、エンリッチメントも実行でき、Redshiftへのロードを最適化できます。",
@@ -1336,7 +1336,7 @@ const awsSAAQuestions = [
       "AWS Systems Manager Parameter Storeを使用して、環境変数を保存し、ECSタスク定義から参照する。"
     ],
     correctAnswer: 3,
-    category: "コンテナ",
+    category: "コンピューティング",
     explanation: "AWS Systems Manager Parameter Storeを使用することで、環境変数を安全に保存し、ECSタスク定義から参照できます。Parameter Storeは、暗号化をサポートし、IAMポリシーでアクセスを制御できます。",
     optionExplanations: [
       "環境変数をタスク定義に直接記述することは、セキュリティリスクが高く、機密情報が露出する可能性があります。",
@@ -1446,7 +1446,7 @@ const awsSAAQuestions = [
       "S3バケットのレプリケーションを有効にする。"
     ],
     correctAnswer: 0,
-    category: "データ分析",
+    category: "アプリケーション統合",
     explanation: "S3バケット内のデータをパーティション化することで、Athenaがスキャンするデータ量を削減し、クエリのパフォーマンスを向上させ、コストを削減できます。",
     optionExplanations: [
       "✓ 正解: S3バケット内のデータをパーティション化することで、Athenaがスキャンするデータ量を削減し、クエリのパフォーマンスを向上させ、コストを削減できます。パーティションは、データを論理的なセグメントに分割する方法で、通常、日付（年、月、日）や地域などの列に基づいて作成されます。例えば、ログファイルを`s3://bucket/logs/year=2023/month=01/day=15/`のようなディレクトリ構造で保存します。クエリでWHERE句を使用してパーティションを指定すると（例：WHERE year='2023' AND month='01'）、Athenaは該当するパーティションのみをスキャンし、クエリ時間とコストが大幅に削減されます。",
@@ -1534,7 +1534,7 @@ const awsSAAQuestions = [
       "ブルー/グリーンデプロイメントを使用して、新しい環境を作成し、トラフィックを切り替える。"
     ],
     correctAnswer: 3,
-    category: "デプロイメントと管理",
+    category: "コンピューティング",
     explanation: "ブルー/グリーンデプロイメントを使用することで、新しい環境（グリーン）を作成し、テストした後、ALBのターゲットグループを切り替えてトラフィックを新しい環境にルーティングします。問題が発生した場合、すぐに元の環境（ブルー）に戻すことができ、ダウンタイムを最小限に抑えることができます。",
     optionExplanations: [
       "All-at-onceデプロイメントは、すべてのインスタンスを同時に更新するため、ダウンタイムが発生し、問題が発生した場合のロールバックが困難です。",
@@ -1776,7 +1776,7 @@ const awsSAAQuestions = [
       "AWS DataSyncを使用して、インターネット経由でデータを転送する。"
     ],
     correctAnswer: 0,
-    category: "移行とデータ転送",
+    category: "アプリケーション統合",
     explanation: "AWS Snowballは、数十TBから数百TBのデータを物理的に転送するための最も費用対効果の高いソリューションです。インターネット帯域幅が限られている場合に特に有効です。",
     optionExplanations: [
       "✓ 正解: AWS Snowballは、大量のデータを物理的に転送するための専用デバイスです。80TBまたは50TBのストレージ容量を持ち、データを暗号化して安全に転送できます。インターネット帯域幅が限られている場合や、数十TBから数百TBのデータを転送する場合に最も費用対効果が高いソリューションです。デバイスをオンプレミスに配送し、データをコピーした後、AWSに返送します。AWSがデバイスを受け取ると、データがS3バケットにインポートされます。",
@@ -1843,7 +1843,7 @@ const awsSAAQuestions = [
       "Amazon Athenaを使用して、S3バケット内のログファイルを直接クエリする。"
     ],
     correctAnswer: 3,
-    category: "分析",
+    category: "アプリケーション統合",
     explanation: "Amazon Athenaは、S3バケット内のデータを直接SQLクエリできるサーバーレスサービスで、インフラストラクチャの管理が不要で、クエリ実行時のみ課金されるため、最も費用対効果が高いソリューションです。",
     optionExplanations: [
       "EMRは、大規模なデータ処理に適していますが、クラスターの管理が必要で、SQLクエリよりも複雑です。ログファイルの分析には、Athenaの方が適しています。",
@@ -1910,7 +1910,7 @@ const awsSAAQuestions = [
       "EC2インスタンスにログを保存し、手動で分析する。"
     ],
     correctAnswer: 0,
-    category: "モニタリングとロギング",
+    category: "モニタリングとコスト最適化",
     explanation: "Amazon CloudWatch Logsは、ECSコンテナログを自動的に収集し、CloudWatch Logs Insightsを使用してSQLライクなクエリで分析できます。ログの長期保存も設定でき、最も統合されたソリューションです。",
     optionExplanations: [
       "✓ 正解: Amazon CloudWatch Logsは、ECSコンテナログを自動的に収集するための最も統合されたソリューションです。ECSタスク定義でログドライバーとしてawslogsを指定するだけで、コンテナの標準出力と標準エラー出力がCloudWatch Logsに送信されます。CloudWatch Logs Insightsを使用して、SQLライクなクエリでログを分析でき、リアルタイムでログを検索できます。ログの保持期間を設定して長期保存でき、S3にエクスポートしてさらに長期保存することもできます。CloudWatchアラームと統合して、特定のログパターンに基づいてアラートを設定できます。",
@@ -2089,7 +2089,7 @@ const awsSAAQuestions = [
       "AWS Batchを使用して、画像処理ジョブを実行する。"
     ],
     correctAnswer: 0,
-    category: "サーバーレス",
+    category: "コンピューティング",
     explanation: "AWS Lambda関数とS3イベント通知を使用することで、画像がアップロードされたときに自動的にサムネイルを生成できます。サーバーレスで、実行時間に応じて課金されるため、最も費用対効果が高いソリューションです。",
     optionExplanations: [
       "✓ 正解: AWS Lambda関数とS3イベント通知を使用することで、画像がアップロードされたときに自動的にサムネイルを生成できます。S3バケットにオブジェクトが作成されると、S3イベント通知がLambda関数をトリガーし、Lambda関数が画像を処理してサムネイルを生成します。サーバーレスで、インフラストラクチャの管理が不要で、実行時間に応じて課金されるため、最も費用対効果が高いソリューションです。Lambda関数は、自動的にスケールし、同時に複数の画像を処理できます。画像処理ライブラリ(Pillow、ImageMagickなど)をLambdaレイヤーとして追加できます。",
@@ -2177,7 +2177,7 @@ const awsSAAQuestions = [
       "RDS Performance Insightsを有効にする。"
     ],
     correctAnswer: 3,
-    category: "モニタリングとロギング",
+    category: "モニタリングとコスト最適化",
     explanation: "RDS Performance Insightsは、データベースのパフォーマンスを監視し、スロークエリを特定するための専用ツールです。視覚的なダッシュボードで、データベースの負荷とクエリのパフォーマンスを簡単に分析できます。",
     optionExplanations: [
       "CloudWatch Logsを使用してデータベースログを収集することは可能ですが、Performance Insightsの方がデータベースパフォーマンスの監視に特化しており、視覚的なダッシュボードを提供します。",
@@ -2265,7 +2265,7 @@ const awsSAAQuestions = [
       "AWS Database Migration Service (DMS)を使用して、データをロードする。"
     ],
     correctAnswer: 2,
-    category: "データ分析",
+    category: "アプリケーション統合",
     explanation: "データを圧縮してS3にアップロードし、Redshift COPYコマンドを使用してロードすることで、データ転送時間とロード時間を大幅に削減できます。",
     optionExplanations: [
       "CSV形式でロードすることは可能ですが、圧縮する方が、データ転送時間とロード時間を大幅に削減できます。",
@@ -2507,7 +2507,7 @@ const awsSAAQuestions = [
       "Amazon SQSキューを使用する。"
     ],
     correctAnswer: 2,
-    category: "データ分析",
+    category: "アプリケーション統合",
     explanation: "Kinesisデータストリームのシャード数を増やすことで、スループットを向上させることができます。各シャードは、1MB/秒の書き込みと2MB/秒の読み取りをサポートします。",
     optionExplanations: [
       "Kinesis Data Firehoseは、データをS3、Redshift、Elasticsearchなどに配信するサービスで、リアルタイムのストリーミング処理には、Kinesis Data Streamsの方が適しています。",
