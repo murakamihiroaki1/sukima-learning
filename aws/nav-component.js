@@ -11,8 +11,12 @@ function toggleMenu() {
 
 // ページ読み込み時の初期化
 document.addEventListener('DOMContentLoaded', function() {
-    // 認証状態の確認
-    checkAuthStatus();
+    // 認証状態の確認（各ページ固有の checkLoginStatus があれば任せ、なければ簡易表示）
+    if (typeof checkLoginStatus === 'function') {
+        checkLoginStatus();
+    } else {
+        checkAuthStatus();
+    }
     
     // メニュー外クリックで閉じる
     document.addEventListener('click', function(event) {
@@ -21,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
         const navHeader = document.querySelector('.nav-header');
         
         if (navMenu && hamburger && navHeader) {
-            // クリックがナビゲーション外の場合、メニューを閉じる
             if (!navHeader.contains(event.target)) {
                 navMenu.classList.remove('active');
                 hamburger.classList.remove('active');
@@ -30,67 +33,76 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// 認証状態の確認
+// 認証状態の確認（checkLoginStatus を持たないページ用）
 function checkAuthStatus() {
     const token = localStorage.getItem('accessToken');
-    const authButtons = document.querySelector('.auth-buttons');
-    
-    if (!authButtons) return;
-    
+
     if (token) {
-        // ログイン済み - ユーザー情報を表示
         fetch('https://sukima-learning.onrender.com/api/auth/me', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
+            headers: { 'Authorization': `Bearer ${token}` }
         })
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Unauthorized');
-            }
+            if (!response.ok) throw new Error('Unauthorized');
             return response.json();
         })
         .then(data => {
-            // プランバッジの色
-            const level = (data.user.membership_level || 'free').toLowerCase();
-            const badgeColor = level === 'advanced' ? '#667eea' : level === 'standard' ? '#FF9900' : '#9e9e9e';
-            const displayLevel = level.charAt(0).toUpperCase() + level.slice(1);
-
-            // ユーザー情報を表示
-            authButtons.innerHTML = `
-                <div class="user-info">
-                    <span class="user-icon">👤</span>
-                    <span class="username">${data.user.username}</span>
-                    <span style="margin-left:8px;padding:2px 8px;background:${badgeColor};color:#fff;border-radius:10px;font-size:0.75em;font-weight:bold;">${displayLevel}</span>
-                </div>
-                <button onclick="logout()" class="auth-btn logout">ログアウト</button>
-            `;
+            _showNavLoggedIn(data.user.username, data.user.membership_level, data.user.membership_expiry);
         })
-        .catch(error => {
-            // トークンが無効な場合は削除
+        .catch(() => {
             localStorage.removeItem('accessToken');
-            showLoginButtons();
+            _showNavLoggedOut();
         });
     } else {
-        // 未ログイン - ログイン/新規登録ボタンを表示
-        showLoginButtons();
+        _showNavLoggedOut();
     }
 }
 
-// ログイン/新規登録ボタンを表示
-function showLoginButtons() {
-    const authButtons = document.querySelector('.auth-buttons');
-    if (authButtons) {
-        authButtons.innerHTML = `
-            <a href="login.html" class="auth-btn login">ログイン</a>
-            <a href="signup.html" class="auth-btn signup">新規登録</a>
-        `;
+// ナビゲーションのログイン表示（.logged-out / .logged-in を操作）
+function _showNavLoggedIn(username, membershipLevel, membershipExpiry) {
+    const loggedOut = document.querySelector('.logged-out');
+    const loggedIn  = document.querySelector('.logged-in');
+    if (loggedOut) loggedOut.style.display = 'none';
+    if (loggedIn)  loggedIn.style.display  = 'flex';
+
+    const usernameEl = document.getElementById('username');
+    if (usernameEl) usernameEl.textContent = username;
+
+    const userPlanEl = document.getElementById('userPlan');
+    if (userPlanEl) {
+        const level = (membershipLevel || 'free').toLowerCase();
+        userPlanEl.textContent = level.charAt(0).toUpperCase() + level.slice(1);
+        userPlanEl.style.background =
+            level === 'advanced' ? '#667eea' :
+            level === 'standard' ? '#FF9900' : '#9e9e9e';
+    }
+
+    const userExpiryEl = document.getElementById('userExpiry');
+    if (userExpiryEl) {
+        const level = (membershipLevel || 'free').toLowerCase();
+        if (membershipExpiry && level !== 'free') {
+            const expiryDate = new Date(membershipExpiry);
+            const daysLeft = Math.ceil((expiryDate - new Date()) / (1000 * 60 * 60 * 24));
+            const fmt = expiryDate.toLocaleDateString('ja-JP');
+            userExpiryEl.textContent = daysLeft > 0 ? `有効期限: ${fmt}` : '期限切れ';
+            userExpiryEl.style.display = 'inline-block';
+        } else {
+            userExpiryEl.style.display = 'none';
+        }
     }
 }
 
-// ログアウト処理
+// ナビゲーションのログアウト表示
+function _showNavLoggedOut() {
+    const loggedOut = document.querySelector('.logged-out');
+    const loggedIn  = document.querySelector('.logged-in');
+    if (loggedOut) loggedOut.style.display = 'flex';
+    if (loggedIn)  loggedIn.style.display  = 'none';
+}
+
+// ログアウト処理（ナビ内ボタン用）
 function logout() {
     localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
     window.location.href = 'index.html';
 }
 
