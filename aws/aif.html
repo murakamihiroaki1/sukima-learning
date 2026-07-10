@@ -747,10 +747,10 @@
                 <!-- 出題方法選択 -->
                 <div style="margin-bottom: 30px;">
                     <div class="set-buttons">
-                        <button class="set-btn" onclick="selectMode('sequential')">番号順</button>
-                        <button class="set-btn" id="category-mode-btn" onclick="selectMode('category')">カテゴリ別</button>
-                        <button class="set-btn" id="random-mode-btn" onclick="selectMode('random')">ランダム (10問)</button>
-                        <button class="set-btn" id="mock-exam-mode-btn" onclick="selectMode('mock-exam')">模擬試験 (65問)</button>
+                        <button class="set-btn" onclick="selectMode('sequential', this)">番号順</button>
+                        <button class="set-btn" id="category-mode-btn" onclick="selectMode('category', this)">カテゴリ別</button>
+                        <button class="set-btn" id="random-mode-btn" onclick="selectMode('random', this)">ランダム (10問)</button>
+                        <button class="set-btn" id="mock-exam-mode-btn" onclick="selectMode('mock-exam', this)">模擬試験 (65問)</button>
                     </div>
                 </div>
 
@@ -859,7 +859,7 @@
         }
 
         // 出題方法を選択
-        async function selectMode(mode) {
+        async function selectMode(mode, clickedBtn) {
             selectedMode = mode;
             selectedCategory = null;
             selectedRange = null;
@@ -870,7 +870,7 @@
             });
             
             // 選択されたボタンにactiveクラスを追加
-            event.target.classList.add('active');
+            if (clickedBtn) clickedBtn.classList.add('active');
             
             // すべての選択セクションを非表示
             document.getElementById('sequential-selection').style.display = 'none';
@@ -893,7 +893,7 @@
                     const btn = document.createElement('button');
                     btn.className = 'set-btn';
                     btn.textContent = `問題 ${i + 1}-${end}`;
-                    btn.onclick = () => selectRange(i, end);
+                    btn.onclick = () => selectRange(i, end, btn);
                     sequentialButtons.appendChild(btn);
                 }
                 
@@ -963,14 +963,14 @@
         }
 
         // 番号順の範囲を選択
-        function selectRange(start, end) {
+        function selectRange(start, end, clickedBtn) {
             selectedRange = { start, end };
             
             // ボタンのアクティブ状態を更新
             document.querySelectorAll('#sequential-buttons .set-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            event.target.classList.add('active');
+            if (clickedBtn) clickedBtn.classList.add('active');
             
             document.getElementById('set-info').textContent =
                 `問題 ${start + 1}-${end} を選択しました（${end - start}問）`;
