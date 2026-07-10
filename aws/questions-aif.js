@@ -76,7 +76,7 @@ const awsAIFQuestions = [
       "推論速度を向上させる"
     ],
     correctAnswer: 1,
-    category: "生成AI",
+    category: "責任あるAI",
     explanation: "生成AIの責任ある使用において、コンテンツフィルタリングとガードレールの実装は不可欠です。Amazon Bedrockなどのサービスでは、有害なコンテンツの検出とブロック機能が提供されており、安全なAIアプリケーションの構築を支援します。",
     optionExplanations: [
       "パラメータ数の増加は性能向上には寄与しますが、有害コンテンツの生成リスクを直接軽減するものではありません。",

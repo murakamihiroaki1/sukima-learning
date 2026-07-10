@@ -10,7 +10,7 @@ const awsCLFQuestions = [
       "スケールによるコスト削減"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "クラウドの概念",
     explanation: "AWSクラウドの6つの利点は、①固定費を変動費に、②スケールによるコスト削減、③キャパシティ予測が不要、④速度と俊敏性の向上、⑤データセンターの運用と保守への投資が不要、⑥数分で世界中にデプロイ、です。データセンターの運用と保守は不要になることが利点です。",
     optionExplanations: [
       "俊敏性の向上: AWSクラウドの利点の1つです。新しいリソースを数分で利用でき、実験やイノベーションが容易になります。",
@@ -32,7 +32,7 @@ const awsCLFQuestions = [
       "パフォーマンス効率"
     ],
     correctAnswer: 0,
-    category: "セキュリティ",
+    category: "クラウドの概念",
     explanation: "AWS Well-Architected Frameworkの5つの柱は、①運用上の優秀性、②セキュリティ、③信頼性、④パフォーマンス効率、⑤コスト最適化です。「コスト削減」ではなく「コスト最適化」が正しい表現です。",
     optionExplanations: [
       "コスト削減: ✓ 正解。正しくは「コスト最適化」です。単なるコスト削減ではなく、ビジネス価値を最大化しながら最小のコストでシステムを実行することを目指します。",
@@ -54,7 +54,7 @@ const awsCLFQuestions = [
       "アプリケーションのセキュリティパッチ"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドの概念",
     explanation: "責任共有モデルでは、AWSは「クラウドのセキュリティ」（物理インフラ、ハードウェア、ネットワーク）に責任を持ち、顧客は「クラウド内のセキュリティ」（データ、アプリケーション、IAM）に責任を持ちます。",
     optionExplanations: [
       "物理的なデータセンターのセキュリティ: ✓ 正解。AWSの責任です。データセンターの物理的なセキュリティ、ハードウェア、ネットワークインフラなど「クラウドのセキュリティ」はAWSが管理します。",
@@ -76,7 +76,7 @@ const awsCLFQuestions = [
       "Amazon EC2 (t2.micro 750時間/月)"
     ],
     correctAnswer: 1,
-    category: "データベース",
+    category: "請求・料金・サポート",
     explanation: "AWS無料利用枠には、12ヶ月間無料のサービス（EC2 t2.micro、RDS、S3など）、常に無料のサービス（Lambda、DynamoDB）、短期間の無料トライアルがあります。",
     references: [
       { url: "https://aws.amazon.com/jp/free/", title: "AWS 無料利用枠" }
@@ -92,7 +92,7 @@ const awsCLFQuestions = [
       "Enterprise"
     ],
     correctAnswer: 0,
-    category: "セキュリティ",
+    category: "請求・料金・サポート",
     explanation: "Businessサポートプランから、24時間365日の電話、チャット、メールサポートが利用できます。Basicは無料ですがサポートが限定的、Developerは営業時間内のみです。",
     optionExplanations: [
       "Business: ✓ 正解。24時間365日の電話、チャット、メールサポートが利用でき、本番環境のワークロードに適しています。最も安価な24/7サポートプランです。",
@@ -114,7 +114,7 @@ const awsCLFQuestions = [
       "ネットワークトラフィックの監視"
     ],
     correctAnswer: 0,
-    category: "セキュリティ",
+    category: "セキュリティとコンプライアンス",
     explanation: "AWS Organizationsは、複数のAWSアカウントを一元的に管理し、請求の統合、ポリシーベースの管理、アカウント作成の自動化などを提供します。",
     optionExplanations: [
       "複数のAWSアカウントを一元管理: ✓ 正解。AWS Organizationsの主な機能です。複数アカウントの階層的な管理、一括請求、Service Control Policies（SCP）によるガバナンスを提供します。",
@@ -136,7 +136,7 @@ const awsCLFQuestions = [
       "リソースの監視とログ管理"
     ],
     correctAnswer: 3,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "CloudWatchは、AWSリソースとアプリケーションの監視サービスで、メトリクスの収集、ログの管理、アラームの設定などができます。",
     optionExplanations: [
       "コスト管理: これはAWS Cost ExplorerやBudgetsの機能です。CloudWatchは監視サービスです。",
@@ -158,7 +158,7 @@ const awsCLFQuestions = [
       "データ移行"
     ],
     correctAnswer: 3,
-    category: "セキュリティ",
+    category: "セキュリティとコンプライアンス",
     explanation: "Trusted Advisorは、①コスト最適化、②パフォーマンス、③セキュリティ、④耐障害性、⑤サービス制限の5つのカテゴリで推奨事項を提供します。",
     optionExplanations: [
       "コスト最適化: Trusted Advisorの5つのカテゴリの1つです。未使用のリソースや最適化の機会を特定します。",
@@ -180,7 +180,7 @@ const awsCLFQuestions = [
       "S3 Glacier Deep Archive"
     ],
     correctAnswer: 3,
-    category: "セキュリティ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "S3 Glacier Deep Archiveは、長期アーカイブ用の最も低コストなストレージクラスです。データの取り出しには12時間以上かかる場合があります。",
     references: [
       { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/storage-class-intro.html", title: "Amazon S3 ストレージクラス" }
@@ -196,7 +196,7 @@ const awsCLFQuestions = [
       "データベースのパフォーマンス最適化"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "請求・料金・サポート",
     explanation: "AWS Cost Explorerは、AWSの支出とコストを可視化し、分析するためのツールです。過去のコストを確認し、将来のコストを予測できます。",
     references: [
       { url: "https://docs.aws.amazon.com/ja_jp/cost-management/latest/userguide/ce-what-is.html", title: "AWS Cost Explorer とは" }
@@ -212,7 +212,7 @@ const awsCLFQuestions = [
       "P4 (アクセラレーテッドコンピューティング)"
     ],
     correctAnswer: 2,
-    category: "セキュリティ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "T3/T4gインスタンスは、バースト可能なパフォーマンスを提供し、Webサーバー、開発環境、小規模データベースなど、汎用的なワークロードに適しています。",
     optionExplanations: [
       "R6i (メモリ最適化): 大量のメモリが必要なワークロード（インメモリデータベース、ビッグデータ処理など）に最適化されています。",
@@ -234,7 +234,7 @@ const awsCLFQuestions = [
       "アプリケーションコードのデバッグ"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon RDSは、ソフトウェアパッチの適用、バックアップ、障害検出、リカバリなどの管理タスクを自動化します。",
     optionExplanations: [
       "ソフトウェアパッチの適用: ✓ 正解。RDSはデータベースエンジンのパッチを自動的に適用します。メンテナンスウィンドウで実行されます。",
@@ -256,7 +256,7 @@ const awsCLFQuestions = [
       "リクエスト数と実行時間"
     ],
     correctAnswer: 3,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "AWS Lambdaは、リクエスト数と実行時間（GB-秒）に基づいて課金されます。コードが実行されていない時間は課金されません。",
     optionExplanations: [
       "インスタンスの実行時間: EC2の課金モデルです。Lambdaはサーバーレスで、インスタンスの概念がありません。",
@@ -278,7 +278,7 @@ const awsCLFQuestions = [
       "Bastion Host"
     ],
     correctAnswer: 3,
-    category: "セキュリティ",
+    category: "セキュリティとコンプライアンス",
     explanation: "Bastion Host（踏み台サーバー）は、パブリックサブネットに配置され、プライベートサブネット内のインスタンスへの安全なアクセスを提供します。",
     optionExplanations: [
       "Internet Gateway: VPCとインターネット間の通信を可能にしますが、プライベートサブネットへの直接アクセスは提供しません。",
@@ -300,7 +300,7 @@ const awsCLFQuestions = [
       "IAMロールの使用"
     ],
     correctAnswer: 0,
-    category: "セキュリティ",
+    category: "セキュリティとコンプライアンス",
     explanation: "ルートユーザーは最も強力な権限を持つため、日常的な使用は避け、初期設定やアカウント管理のみに使用すべきです。",
     optionExplanations: [
       "ルートユーザーの日常的な使用: ✓ 正解。これはベストプラクティスに「反します」。ルートユーザーは初期設定時のみ使用し、日常業務にはIAMユーザーを使用すべきです。",
@@ -322,7 +322,7 @@ const awsCLFQuestions = [
       "オブジェクトロック"
     ],
     correctAnswer: 1,
-    category: "セキュリティ",
+    category: "セキュリティとコンプライアンス",
     explanation: "S3は、バージョニング、レプリケーション、オブジェクトロックなどのデータ保護機能を提供しますが、自動的なデータ圧縮機能はありません。",
     optionExplanations: [
       "バージョニング: S3のデータ保護機能です。オブジェクトの複数バージョンを保持し、誤削除や上書きから保護します。",
@@ -344,7 +344,7 @@ const awsCLFQuestions = [
       "インフラストラクチャのコード化"
     ],
     correctAnswer: 3,
-    category: "セキュリティ",
+    category: "クラウドの概念",
     explanation: "CloudFormationは、Infrastructure as Code (IaC)を実現し、AWSリソースをテンプレートで定義・管理できます。",
     optionExplanations: [
       "コスト削減の自動化: Cost ExplorerやBudgetsの機能です。CloudFormationはコスト管理ツールではありません（ただし、効率的なリソース管理でコスト削減に貢献できます）。",
@@ -366,7 +366,7 @@ const awsCLFQuestions = [
       "ユーザー認証"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "CloudFrontは、グローバルなエッジロケーションを使用してコンテンツを配信するCDN（Content Delivery Network）サービスです。",
     optionExplanations: [
       "データベースのレプリケーション: RDSやDynamoDB Global Tablesの機能です。CloudFrontはCDNサービスです。",
@@ -388,7 +388,7 @@ const awsCLFQuestions = [
       "アプリケーションのデプロイと管理の簡素化"
     ],
     correctAnswer: 3,
-    category: "セキュリティ",
+    category: "クラウドの概念",
     explanation: "Elastic Beanstalkは、アプリケーションのデプロイ、スケーリング、監視を自動化し、インフラ管理の複雑さを軽減します。",
     optionExplanations: [
       "コストの自動削減: Cost ExplorerやSavings Plansの機能です。Elastic Beanstalkは運用の簡素化を提供します（結果的にコスト削減に貢献できます）。",
@@ -410,7 +410,7 @@ const awsCLFQuestions = [
       "インメモリキャッシュ"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "DynamoDBは、フルマネージドなNoSQLデータベースサービスで、高速で予測可能なパフォーマンスとシームレスなスケーラビリティを提供します。",
     optionExplanations: [
       "NoSQLデータベース: ✓ 正解。DynamoDBは、キー・バリュー型とドキュメント型のデータモデルをサポートするNoSQLデータベースで、ミリ秒単位のレイテンシーを実現します。",
@@ -432,7 +432,7 @@ const awsCLFQuestions = [
       "データバックアップ"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "セキュリティとコンプライアンス",
     explanation: "AWS Shieldは、DDoS（分散型サービス拒否）攻撃からAWSで実行されるアプリケーションを保護するマネージドサービスです。",
     optionExplanations: [
       "データベースの暗号化: RDSやDynamoDBの暗号化機能です。Shieldはネットワーク層の保護サービスです。",
@@ -454,7 +454,7 @@ const awsCLFQuestions = [
       "データベース管理"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Route 53は、可用性と拡張性に優れたDNS（Domain Name System）Webサービスで、ドメイン名をIPアドレスに変換します。",
     optionExplanations: [
       "コンテンツ配信: CloudFrontの機能です。Route 53はDNSサービスです。",
@@ -476,7 +476,7 @@ const awsCLFQuestions = [
       "ネットワーク設計"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Systems Managerは、AWSリソースの可視化と制御を提供し、パッチ適用、設定管理、自動化などの運用タスクを簡素化します。",
     optionExplanations: [
       "データベースのバックアップ: RDSやAWS Backupの機能です。Systems Managerは運用管理ツールです。",
@@ -498,7 +498,7 @@ const awsCLFQuestions = [
       "Amazon EFS"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "EBSスナップショットは、自動的にAmazon S3に保存され、高い耐久性とリージョン内での冗長性が確保されます。",
     optionExplanations: [
       "EC2インスタンスのローカルストレージ: インスタンスストアは一時的なストレージです。スナップショットは永続的なS3に保存されます。",
@@ -520,7 +520,7 @@ const awsCLFQuestions = [
       "コスト最適化"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "セキュリティとコンプライアンス",
     explanation: "AWS KMSは、暗号化キーの作成と管理を簡素化し、AWSサービスやアプリケーションでのデータ暗号化を制御します。",
     optionExplanations: [
       "ユーザー認証: IAMやCognitoの機能です。KMSは暗号化キー管理サービスです。",
@@ -542,7 +542,7 @@ const awsCLFQuestions = [
       "メッセージの配信"
     ],
     correctAnswer: 3,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon SNSは、pub/sub（パブリッシュ/サブスクライブ）メッセージングサービスで、アプリケーション間やアプリケーションとユーザー間の通信を可能にします。",
     optionExplanations: [
       "データベースのレプリケーション: RDSやDynamoDB Global Tablesの機能です。SNSはメッセージングサービスです。",
@@ -564,7 +564,7 @@ const awsCLFQuestions = [
       "コンテンツ配信"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon SQSは、フルマネージドなメッセージキューイングサービスで、分散システムのコンポーネント間でメッセージを送受信できます。",
     optionExplanations: [
       "メッセージキューイング: ✓ 正解。SQSは、メッセージを一時的に保存し、非同期処理を可能にします。StandardキューとFIFOキューの2種類があります。",
@@ -586,7 +586,7 @@ const awsCLFQuestions = [
       "自動スケーリング"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "クラウドの概念",
     explanation: "AWS Direct Connectは、オンプレミス環境とAWS間に専用のネットワーク接続を確立し、より一貫したネットワークパフォーマンスを提供します。",
     optionExplanations: [
       "インターネット経由の暗号化通信: VPNの特徴です。Direct Connectは専用線接続を提供します。",
@@ -608,7 +608,7 @@ const awsCLFQuestions = [
       "OracleとSQL Server"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon ElastiCacheは、RedisとMemcachedの2つのオープンソースインメモリキャッシュエンジンをサポートしています。",
     optionExplanations: [
       "RedisとMemcached: ✓ 正解。ElastiCacheは、RedisとMemcachedをフルマネージドサービスとして提供し、データベースやアプリケーションのパフォーマンスを向上させます。",
@@ -630,7 +630,7 @@ const awsCLFQuestions = [
       "ネットワークトラフィックの監視"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "AWS Configは、AWSリソースの設定を継続的に記録し、コンプライアンスルールに対して評価するサービスです。",
     optionExplanations: [
       "コスト管理: Cost ExplorerやBudgetsの機能です。Configは設定管理サービスです。",
@@ -652,7 +652,7 @@ const awsCLFQuestions = [
       "オブジェクトストレージ"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon Redshiftは、ペタバイト規模のデータウェアハウスサービスで、大規模なデータ分析に最適化されています。",
     optionExplanations: [
       "データウェアハウス: ✓ 正解。Redshiftは、列指向ストレージと並列処理を使用して、大規模なデータセットに対する複雑なクエリを高速に実行します。",
@@ -674,7 +674,7 @@ const awsCLFQuestions = [
       "コンプライアンスレポートへのアクセス"
     ],
     correctAnswer: 3,
-    category: "セキュリティ",
+    category: "セキュリティとコンプライアンス",
     explanation: "AWS Artifactは、AWSのセキュリティおよびコンプライアンスレポート、および特定のオンライン契約へのオンデマンドアクセスを提供します。",
     optionExplanations: [
       "ネットワークの監視: CloudWatchやVPC Flow Logsの機能です。Artifactはコンプライアンス文書サービスです。",
@@ -696,7 +696,7 @@ const awsCLFQuestions = [
       "S3データに対するサーバーレスクエリサービス"
     ],
     correctAnswer: 3,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon Athenaは、標準SQLを使用してAmazon S3内のデータを直接分析できるサーバーレスのインタラクティブクエリサービスです。",
     optionExplanations: [
       "NoSQLデータベース: DynamoDBの特徴です。AthenaはS3データに対するSQLクエリサービスです。",
@@ -718,7 +718,7 @@ const awsCLFQuestions = [
       "コスト予算の設定とアラート"
     ],
     correctAnswer: 3,
-    category: "管理・デプロイ",
+    category: "請求・料金・サポート",
     explanation: "AWS Budgetsは、カスタムコスト予算と使用量予算を設定し、予算を超えた場合にアラートを受け取ることができます。",
     optionExplanations: [
       "リソースの監視: CloudWatchの機能です。Budgetsはコスト管理に特化しています。",
@@ -740,7 +740,7 @@ const awsCLFQuestions = [
       "ネットワーク監視"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon Cognitoは、Webおよびモバイルアプリケーションにユーザーサインアップ、サインイン、アクセス制御機能を追加できるサービスです。",
     optionExplanations: [
       "データベース管理: RDSやDynamoDBの機能です。Cognitoは認証サービスです。",
@@ -762,7 +762,7 @@ const awsCLFQuestions = [
       "データのアーカイブ"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "AWS Global Acceleratorは、AWSのグローバルネットワークを使用して、アプリケーションの可用性とパフォーマンスを向上させます。",
     optionExplanations: [
       "グローバルネットワークを使用したアプリケーションの可用性とパフォーマンス向上: ✓ 正解。Global Acceleratorは、静的なIPアドレスを提供し、AWSのグローバルネットワークを経由してトラフィックをルーティングし、レイテンシーを削減します。",
@@ -784,7 +784,7 @@ const awsCLFQuestions = [
       "リアルタイムデータストリーミング"
     ],
     correctAnswer: 3,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon Kinesis Data Streamsは、リアルタイムでストリーミングデータを収集、処理、分析するためのサービスです。",
     optionExplanations: [
       "バッチデータ処理: EMRやGlueの機能です。Kinesisはリアルタイムストリーミングに特化しています。",
@@ -806,7 +806,7 @@ const awsCLFQuestions = [
       "ネットワークトラフィックの分析"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "AWS Personal Health Dashboardは、AWSサービスのイベントや計画的なメンテナンスについて、パーソナライズされた情報とアラートを提供します。",
     optionExplanations: [
       "AWSサービスの健全性とイベントの通知: ✓ 正解。Personal Health Dashboardは、使用しているAWSリソースに影響を与える可能性のあるイベント（障害、メンテナンスなど）について、プロアクティブな通知を提供します。",
@@ -828,7 +828,7 @@ const awsCLFQuestions = [
       "データウェアハウス"
     ],
     correctAnswer: 1,
-    category: "セキュリティ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon EFS（Elastic File System）は、複数のEC2インスタンスから同時にアクセスできる、フルマネージドなファイルストレージサービスです。",
     optionExplanations: [
       "ブロックストレージ: EBSの特徴です。EFSはファイルシステムを提供します。",
@@ -850,7 +850,7 @@ const awsCLFQuestions = [
       "承認されたITサービスのカタログ管理"
     ],
     correctAnswer: 3,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "AWS Service Catalogは、組織が承認したITサービスのカタログを作成および管理し、ガバナンスとコンプライアンスを維持しながらセルフサービスを実現します。",
     optionExplanations: [
       "コスト管理: Cost ExplorerやBudgetsの機能です。Service Catalogはサービスカタログ管理ツールです。",
@@ -872,7 +872,7 @@ const awsCLFQuestions = [
       "ブロックストレージ"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon CloudFrontは、AWSのグローバルなエッジロケーションネットワークを使用して、低レイテンシーでコンテンツを配信するCDNサービスです。",
     optionExplanations: [
       "データベースのレプリケーション: RDSやDynamoDB Global Tablesの機能です。CloudFrontはコンテンツ配信サービスです。",
@@ -894,7 +894,7 @@ const awsCLFQuestions = [
       "ネットワークトラフィックの監視"
     ],
     correctAnswer: 1,
-    category: "セキュリティ",
+    category: "セキュリティとコンプライアンス",
     explanation: "AWS Organizationsは、複数のAWSアカウントを組織単位で一元管理し、請求の統合、ポリシーの適用、リソースの共有を可能にします。",
     optionExplanations: [
       "データベースのバックアップ自動化: AWS BackupやRDSの機能です。Organizationsはアカウント管理ツールです。",
@@ -916,7 +916,7 @@ const awsCLFQuestions = [
       "ファイルストレージ"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon Route 53は、可用性と拡張性に優れたDNSウェブサービスで、ドメイン名をIPアドレスに変換し、トラフィックルーティングを管理します。",
     optionExplanations: [
       "コンテンツ配信: CloudFrontの機能です。Route 53はDNSサービスですが、CloudFrontと連携できます。",
@@ -938,7 +938,7 @@ const awsCLFQuestions = [
       "パフォーマンス"
     ],
     correctAnswer: 2,
-    category: "セキュリティ",
+    category: "セキュリティとコンプライアンス",
     explanation: "AWS Trusted Advisorは、コスト最適化、セキュリティ、耐障害性、パフォーマンス、サービス制限の5つのカテゴリで推奨事項を提供します。",
     optionExplanations: [
       "コスト最適化: Trusted Advisorの主要カテゴリの1つです。未使用リソースや最適化の機会を特定します。",
@@ -960,7 +960,7 @@ const awsCLFQuestions = [
       "長期アーカイブストレージ"
     ],
     correctAnswer: 3,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon Glacier(現在はS3 Glacier)は、低コストで長期的なデータアーカイブとバックアップに最適化されたストレージサービスです。",
     optionExplanations: [
       "リアルタイムデータ処理: KinesisやLambdaの用途です。Glacierは低頻度アクセスのアーカイブ向けです。",
@@ -982,7 +982,7 @@ const awsCLFQuestions = [
       "負荷分散"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "AWS CloudTrailは、AWSアカウント内のすべてのAPI呼び出しを記録し、ガバナンス、コンプライアンス、運用監査、リスク監査を支援します。",
     optionExplanations: [
       "APIコールの記録と監査: ✓ 正解。CloudTrailは、誰が、いつ、どのAWSリソースに対して何を行ったかを記録し、セキュリティ分析やトラブルシューティングに使用できます。",
@@ -1004,7 +1004,7 @@ const awsCLFQuestions = [
       "管理サブネット"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "クラウドの概念",
     explanation: "パブリックサブネットは、インターネットゲートウェイへのルートを持ち、インターネットから直接アクセス可能なリソース(Webサーバーなど)を配置します。",
     optionExplanations: [
       "プライベートサブネット: インターネットゲートウェイへの直接ルートがなく、NATゲートウェイ経由でのみ外部通信が可能です。データベースやアプリケーションサーバーに適しています。",
@@ -1026,7 +1026,7 @@ const awsCLFQuestions = [
       "ネットワークの負荷分散"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "AWS Configは、AWSリソースの設定を継続的に記録・評価し、コンプライアンス監査、セキュリティ分析、変更管理を支援します。",
     optionExplanations: [
       "アプリケーションのデプロイ: CodeDeployやElastic Beanstalkの機能です。Configは設定管理ツールです。",
@@ -1048,7 +1048,7 @@ const awsCLFQuestions = [
       "コンテンツ配信"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon SNSは、アプリケーション間(A2A)およびアプリケーションとユーザー間(A2P)の通信のための、フルマネージド型のPub/Subメッセージングサービスです。",
     optionExplanations: [
       "データベースのレプリケーション: RDSやDynamoDBの機能です。SNSはメッセージング配信サービスです。",
@@ -1070,7 +1070,7 @@ const awsCLFQuestions = [
       "Run Command"
     ],
     correctAnswer: 2,
-    category: "セキュリティ",
+    category: "セキュリティとコンプライアンス",
     explanation: "AWS Systems Managerは、AWSリソースの運用管理を自動化するサービスで、パッチ管理、設定管理、コマンド実行などの機能を提供します。",
     optionExplanations: [
       "パッチ管理: Systems Managerの主要機能の1つです。Patch Managerを使用して、EC2インスタンスやオンプレミスサーバーのパッチ適用を自動化できます。",
@@ -1092,7 +1092,7 @@ const awsCLFQuestions = [
       "専用ネットワーク接続による安定した帯域幅"
     ],
     correctAnswer: 3,
-    category: "管理・デプロイ",
+    category: "クラウドの概念",
     explanation: "AWS Direct Connectは、オンプレミス環境とAWSを専用ネットワーク接続で結び、インターネットを経由せずに安定した帯域幅と低レイテンシーを実現します。",
     optionExplanations: [
       "インターネット経由の暗号化通信: VPNの特徴です。Direct Connectは専用線接続を提供します。",
@@ -1114,7 +1114,7 @@ const awsCLFQuestions = [
       "DNSルーティング"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon Kinesis Data Streamsは、リアルタイムでストリーミングデータを収集・処理するためのフルマネージドサービスです。",
     optionExplanations: [
       "静的ウェブサイトのホスティング: S3やAmplifyの機能です。Kinesisはストリーミングデータ処理に特化しています。",
@@ -1136,7 +1136,7 @@ const awsCLFQuestions = [
       "ファイルの圧縮"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "セキュリティとコンプライアンス",
     explanation: "AWS Certificate Managerは、SSL/TLS証明書のプロビジョニング、管理、デプロイを簡素化するマネージドサービスです。",
     optionExplanations: [
       "データベースの暗号化: RDSやKMSの機能です。ACMは証明書管理に特化しています。",
@@ -1158,7 +1158,7 @@ const awsCLFQuestions = [
       "14日間"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon SQSのメッセージ保持期間のデフォルトは4日間で、最小1分から最大14日間まで設定可能です。",
     optionExplanations: [
       "4日間: ✓ 正解。SQSのメッセージ保持期間のデフォルトは4日間(96時間)で、必要に応じて1分から14日間の範囲で調整できます。",
@@ -1180,7 +1180,7 @@ const awsCLFQuestions = [
       "DDoS攻撃"
     ],
     correctAnswer: 3,
-    category: "管理・デプロイ",
+    category: "セキュリティとコンプライアンス",
     explanation: "AWS Shieldは、DDoS(分散型サービス拒否)攻撃からAWSリソースを保護するマネージドサービスです。StandardとAdvancedの2つのティアがあります。",
     optionExplanations: [
       "SQLインジェクション: AWS WAFで保護できる攻撃です。Shieldは主にDDoS攻撃に対応します。",
@@ -1202,7 +1202,7 @@ const awsCLFQuestions = [
       "メッセージキューサービス"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon Athenaは、標準SQLを使用してS3内のデータを直接分析できるサーバーレスのインタラクティブクエリサービスです。",
     optionExplanations: [
       "S3データに対するサーバーレスクエリサービス: ✓ 正解。Athenaは、インフラストラクチャの管理不要で、S3に保存されたデータに対してSQLクエリを実行できます。使用したクエリ分のみ課金されます。",
@@ -1224,7 +1224,7 @@ const awsCLFQuestions = [
       "DNSルーティング"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "AWS Batchは、数十万のバッチコンピューティングジョブを効率的に実行できるフルマネージドサービスです。",
     optionExplanations: [
       "リアルタイムストリーミング: Kinesisの用途です。Batchはバッチ処理に特化しています。",
@@ -1246,7 +1246,7 @@ const awsCLFQuestions = [
       "ユーザー認証とアクセス制御"
     ],
     correctAnswer: 3,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon Cognitoは、ウェブおよびモバイルアプリケーションにユーザー認証、承認、ユーザー管理機能を提供するサービスです。",
     optionExplanations: [
       "データベース管理: RDSやDynamoDBの機能です。Cognitoは認証サービスです。",
@@ -1268,7 +1268,7 @@ const awsCLFQuestions = [
       "コンテンツ配信"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "セキュリティとコンプライアンス",
     explanation: "AWS Secrets Managerは、データベース認証情報、APIキー、その他の機密情報を安全に保管し、自動的にローテーションできるサービスです。",
     optionExplanations: [
       "機密情報の安全な保管とローテーション: ✓ 正解。Secrets Managerは、パスワード、APIキー、トークンなどを暗号化して保存し、自動ローテーション機能でセキュリティを強化します。",
@@ -1290,7 +1290,7 @@ const awsCLFQuestions = [
       "負荷分散"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon EventBridgeは、AWSサービス、SaaSアプリケーション、カスタムアプリケーション間でイベントを簡単に接続できるサーバーレスイベントバスサービスです。",
     optionExplanations: [
       "データベースのレプリケーション: RDSやDynamoDBの機能です。EventBridgeはイベントルーティングサービスです。",
@@ -1312,7 +1312,7 @@ const awsCLFQuestions = [
       "10.0.0.1"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "EC2インスタンスメタデータサービスには、特別なリンクローカルアドレス169.254.169.254を使用してアクセスします。",
     optionExplanations: [
       "169.254.169.254: ✓ 正解。このリンクローカルアドレスを使用して、インスタンス内からメタデータ(インスタンスID、AMI ID、IAMロールなど)にアクセスできます。",
@@ -1334,7 +1334,7 @@ const awsCLFQuestions = [
       "プライベート(所有者のみアクセス可能)"
     ],
     correctAnswer: 3,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "S3バケットは作成時にデフォルトでプライベートに設定され、バケット所有者のみがアクセスできます。明示的に権限を付与しない限り、他のユーザーはアクセスできません。",
     optionExplanations: [
       "パブリック読み取り可能: デフォルトではありません。パブリックアクセスを許可するには、明示的な設定が必要です。",
@@ -1356,7 +1356,7 @@ const awsCLFQuestions = [
       "30分以上"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "RDS Multi-AZのフェイルオーバーは通常1〜2分以内に自動的に完了し、手動介入は不要です。",
     optionExplanations: [
       "数秒: 理想的ですが、DNS伝播とデータベース接続の再確立に時間がかかるため、通常は1〜2分かかります。",
@@ -1378,7 +1378,7 @@ const awsCLFQuestions = [
       "Block"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "セキュリティとコンプライアンス",
     explanation: "IAMポリシーでは、'Deny'ステートメントを使用してアクションを明示的に拒否します。Denyは常にAllowより優先されます。",
     optionExplanations: [
       "Allow: アクションを許可するために使用されます。Denyとは逆の効果を持ちます。",
@@ -1400,7 +1400,7 @@ const awsCLFQuestions = [
       "455日間"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "CloudWatchは、1分間隔のデータポイントを15日間保持します。より長期間のデータが必要な場合は、S3にエクスポートできます。",
     optionExplanations: [
       "3日間: 1分間隔のデータの保持期間より短いです。これは高頻度データの初期保持期間です。",
@@ -1422,7 +1422,7 @@ const awsCLFQuestions = [
       "10個"
     ],
     correctAnswer: 2,
-    category: "セキュリティ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "AWSは各サブネットで5個のIPアドレスを予約します:ネットワークアドレス、VPCルーター、DNS、将来の使用、ブロードキャストアドレスです。",
     optionExplanations: [
       "2個: 予約されるIPアドレスの数より少ないです。ネットワークアドレスとブロードキャストアドレスだけではありません。",
@@ -1444,7 +1444,7 @@ const awsCLFQuestions = [
       "30秒"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "AWS Lambdaのデフォルトタイムアウトは3秒で、最大15分まで設定可能です。",
     optionExplanations: [
       "1秒: デフォルトより短い時間です。最小タイムアウトは1秒ですが、デフォルトではありません。",
@@ -1466,7 +1466,7 @@ const awsCLFQuestions = [
       "EC2インスタンスのローカルストレージ"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "EBSスナップショットは自動的にAmazon S3に保存され、リージョン内で冗長化されます。ユーザーがS3バケットを管理する必要はありません。",
     optionExplanations: [
       "Amazon S3: ✓ 正解。EBSスナップショットはS3に保存され、リージョン内で自動的に複製されます。これにより高い耐久性が確保されます。",
@@ -1488,7 +1488,7 @@ const awsCLFQuestions = [
       "クールダウンは適用されない"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Auto Scalingグループのデフォルトクールダウン期間は300秒(5分)です。この期間中、追加のスケーリングアクティビティは一時停止されます。",
     optionExplanations: [
       "60秒: デフォルトより短い期間です。クールダウン期間は調整可能ですが、デフォルトは300秒です。",
@@ -1510,7 +1510,7 @@ const awsCLFQuestions = [
       "16KB"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "1つのRCUは、強力な整合性のある読み込みで最大4KBのアイテムを1秒あたり1回読み取ることができます。結果整合性のある読み込みでは2回読み取れます。",
     optionExplanations: [
       "4KB: ✓ 正解。1 RCUは、強力な整合性のある読み込みで最大4KBのアイテムを1秒あたり1回、または結果整合性のある読み込みで2回読み取れます。",
@@ -1532,7 +1532,7 @@ const awsCLFQuestions = [
       "Amazon RDS"
     ],
     correctAnswer: 2,
-    category: "セキュリティ",
+    category: "クラウドの概念",
     explanation: "IAMはグローバルサービスで、リージョンを選択する必要がありません。ユーザー、グループ、ロール、ポリシーはすべてのリージョンで利用できます。",
     optionExplanations: [
       "Amazon EC2: リージョナルサービスです。特定のリージョンとアベイラビリティーゾーンでインスタンスを起動します。",
@@ -1554,7 +1554,7 @@ const awsCLFQuestions = [
       "プライベートIPアドレス"
     ],
     correctAnswer: 1,
-    category: "データベース",
+    category: "クラウドテクノロジーとサービス",
     explanation: "インスタンスIDとプライベートIPアドレスは停止・起動後も変わりません。パブリックIPアドレスは変わり、インスタンスストアのデータは失われます。",
     optionExplanations: [
       "パブリックIPアドレス: 停止・起動すると変わります。固定IPが必要な場合はElastic IPを使用します。",
@@ -1576,7 +1576,7 @@ const awsCLFQuestions = [
       "S3 One Zone-IA"
     ],
     correctAnswer: 2,
-    category: "セキュリティ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "S3 Glacier Deep Archiveは、年に1〜2回程度しかアクセスしないデータ向けの最も低コストなストレージクラスです。",
     optionExplanations: [
       "S3 Standard: 頻繁にアクセスするデータ向けで、最も高コストなストレージクラスです。",
@@ -1598,7 +1598,7 @@ const awsCLFQuestions = [
       "リアルタイムのリソース使用状況"
     ],
     correctAnswer: 3,
-    category: "データベース",
+    category: "請求・料金・サポート",
     explanation: "Cost Explorerは過去と予測のコストデータを提供しますが、リアルタイムのリソース使用状況はCloudWatchで確認します。",
     optionExplanations: [
       "過去のコスト傾向: Cost Explorerで確認できます。最大12ヶ月の履歴データを分析できます。",
@@ -1620,7 +1620,7 @@ const awsCLFQuestions = [
       "バックアップを無効にしてからアップグレードする"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "メジャーバージョンアップグレード前には、必ずスナップショットを取得してバックアップを確保することが推奨されます。",
     optionExplanations: [
       "スナップショットを取得してからアップグレードする: ✓ 正解。問題が発生した場合にロールバックできるよう、アップグレード前に必ずスナップショットを取得します。",
@@ -1642,7 +1642,7 @@ const awsCLFQuestions = [
       "推移的なルーティングがサポートされる"
     ],
     correctAnswer: 0,
-    category: "データベース",
+    category: "クラウドテクノロジーとサービス",
     explanation: "VPCピアリングは1対1の接続で、推移的なルーティングはサポートされません。A-B、B-C間にピアリングがあっても、A-C間の通信には別途ピアリングが必要です。",
     optionExplanations: [
       "1対1の接続で、推移的なルーティングはサポートされない: ✓ 正解。各VPCペア間に個別のピアリング接続が必要で、推移的なルーティングは機能しません。",
@@ -1664,7 +1664,7 @@ const awsCLFQuestions = [
       "実際のコストが予算を超えた場合"
     ],
     correctAnswer: 0,
-    category: "データベース",
+    category: "請求・料金・サポート",
     explanation: "AWS Budgetsはコストと使用量の監視に特化しており、IAMユーザーのログインイベントは監視しません。それはCloudTrailとEventBridgeの役割です。",
     optionExplanations: [
       "特定のIAMユーザーがログインした場合: ✓ 正解。これはBudgetsの機能ではありません。IAMイベントの監視にはCloudTrailとEventBridgeを使用します。",
@@ -1686,7 +1686,7 @@ const awsCLFQuestions = [
       "1分"
     ],
     correctAnswer: 0,
-    category: "セキュリティ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "CloudWatchのカスタムメトリクスは、高解像度メトリクスとして1秒間隔でデータを送信できます。",
     optionExplanations: [
       "1秒: ✓ 正解。高解像度カスタムメトリクスは1秒間隔でデータポイントを送信でき、リアルタイムに近い監視が可能です。",
@@ -1708,7 +1708,7 @@ const awsCLFQuestions = [
       "アプリケーションのデプロイ"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "AWS Snowballは、ペタバイト規模の大量データをAWSに物理的に転送するためのデバイスで、ネットワーク転送が非効率な場合に使用します。",
     optionExplanations: [
       "大量データの物理的な転送: ✓ 正解。Snowballは、ネットワーク帯域幅が限られている場合や、大量データ(TB〜PB規模)を効率的にAWSに移行するために使用します。",
@@ -1730,7 +1730,7 @@ const awsCLFQuestions = [
       "EFSはオブジェクトストレージ、EBSはブロックストレージ"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "EFSは複数のEC2インスタンスから同時にマウントできるファイルストレージで、EBSは基本的に単一のEC2インスタンスにアタッチされるブロックストレージです。",
     optionExplanations: [
       "EFSはブロックストレージ、EBSはファイルストレージ: 逆です。EFSがファイルストレージ、EBSがブロックストレージです。",
@@ -1752,7 +1752,7 @@ const awsCLFQuestions = [
       "自動スケーリング"
     ],
     correctAnswer: 1,
-    category: "セキュリティ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Elastic Beanstalkはインフラストラクチャの管理を自動化しますが、アプリケーションコードの開発は開発者の責任です。",
     optionExplanations: [
       "キャパシティのプロビジョニング: Elastic Beanstalkが自動的に管理します。必要なEC2インスタンスを自動的にプロビジョニングします。",
@@ -1774,7 +1774,7 @@ const awsCLFQuestions = [
       "オブジェクトストレージ"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon Redshiftは、ペタバイト規模のデータウェアハウスサービスで、大規模なデータ分析に最適化されています。",
     optionExplanations: [
       "NoSQLデータベース: DynamoDBの用途です。RedshiftはSQLベースのデータウェアハウスです。",
@@ -1796,7 +1796,7 @@ const awsCLFQuestions = [
       "ネットワークセキュリティ"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "AWS X-Rayは、分散アプリケーションのリクエストをトレースし、パフォーマンスのボトルネックやエラーを特定するためのサービスです。",
     optionExplanations: [
       "コスト最適化: Cost ExplorerやTrusted Advisorの目的です。X-Rayはアプリケーション分析ツールです。",
@@ -1818,7 +1818,7 @@ const awsCLFQuestions = [
       "自分のAWSリソースに影響を与えるイベントの通知"
     ],
     correctAnswer: 3,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Personal Health Dashboardは、自分のAWSアカウントのリソースに影響を与える可能性のあるイベントについて、パーソナライズされた通知を提供します。",
     optionExplanations: [
       "AWSサービスの一般的な稼働状況のみ: これはService Health Dashboardの機能です。Personal Health Dashboardはよりパーソナライズされた情報を提供します。",
@@ -1840,7 +1840,7 @@ const awsCLFQuestions = [
       "オンプレミスでの実行"
     ],
     correctAnswer: 1,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Aurora Serverlessは、データベースの容量を自動的にスケールアップ・ダウンし、実際に使用した分だけ課金されるサーバーレスデータベースです。",
     optionExplanations: [
       "固定容量で予測可能なコスト: 通常のプロビジョニングされたAuroraの特徴です。Serverlessは変動する容量と従量課金が特徴です。",
@@ -1862,7 +1862,7 @@ const awsCLFQuestions = [
       "IAMユーザーの不正ログイン"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "セキュリティとコンプライアンス",
     explanation: "AWS WAFは、SQLインジェクション、クロスサイトスクリプティング(XSS)などの一般的なWebアプリケーション攻撃から保護します。",
     optionExplanations: [
       "DDoS攻撃のみ: DDoS攻撃の保護はAWS Shieldの主な機能です。WAFはアプリケーション層の攻撃に焦点を当てています。",
@@ -1884,7 +1884,7 @@ const awsCLFQuestions = [
       "すべてのバージョンが削除される"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "S3バージョニングが有効な場合、オブジェクトを削除すると削除マーカーが追加されますが、以前のバージョンはすべて保持されます。",
     optionExplanations: [
       "オブジェクトは完全に削除される: バージョニングが無効の場合の動作です。バージョニング有効時は削除マーカーが追加されます。",
@@ -1906,7 +1906,7 @@ const awsCLFQuestions = [
       "自動的にロールバックするため"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "変更セットを使用すると、スタックに加えられる変更を実際に適用する前にプレビューでき、意図しない変更を防ぐことができます。",
     optionExplanations: [
       "更新を高速化するため: 変更セットは速度向上のためではなく、安全性向上のための機能です。",
@@ -1928,7 +1928,7 @@ const awsCLFQuestions = [
       "GSIはクエリのみ、LSIはスキャンのみ"
     ],
     correctAnswer: 1,
-    category: "セキュリティ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "GSIはテーブル作成後でも追加・削除できますが、LSIはテーブル作成時にのみ定義でき、後から変更できません。",
     optionExplanations: [
       "LSIは作成後に追加可能、GSIはテーブル作成時のみ: 逆です。GSIが柔軟で、LSIが制限されています。",
@@ -1950,7 +1950,7 @@ const awsCLFQuestions = [
       "アプリケーションをデプロイできる"
     ],
     correctAnswer: 2,
-    category: "セキュリティ",
+    category: "セキュリティとコンプライアンス",
     explanation: "Session Managerを使用すると、SSHポート(22)やRDPポート(3389)を開かずに、ブラウザベースまたはCLIでEC2インスタンスに安全にアクセスできます。",
     optionExplanations: [
       "コストを削減できる: Session Manager自体は追加コストなしで使用できますが、主な目的はコスト削減ではなくセキュリティ向上です。",
@@ -1972,7 +1972,7 @@ const awsCLFQuestions = [
       "コンテンツ配信の高速化"
     ],
     correctAnswer: 1,
-    category: "セキュリティ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Transit Gatewayは、複数のVPC、VPN接続、Direct Connect接続を単一のゲートウェイで接続できるネットワークハブです。",
     optionExplanations: [
       "インターネットゲートウェイの代替: 誤りです。Transit Gatewayはプライベートネットワーク接続用で、インターネットゲートウェイとは異なる目的です。",
@@ -1994,7 +1994,7 @@ const awsCLFQuestions = [
       "RedisとMemcachedのみ"
     ],
     correctAnswer: 3,
-    category: "セキュリティ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon ElastiCacheは、RedisとMemcachedの2つのオープンソースインメモリキャッシュエンジンをサポートしています。",
     optionExplanations: [
       "OracleとSQL Server: これらはRDSでサポートされる商用データベースエンジンです。",
@@ -2016,7 +2016,7 @@ const awsCLFQuestions = [
       "コンプライアンスレポートとセキュリティドキュメント"
     ],
     correctAnswer: 3,
-    category: "セキュリティ",
+    category: "セキュリティとコンプライアンス",
     explanation: "AWS Artifactは、AWSのコンプライアンスレポート、セキュリティドキュメント、契約書にオンデマンドでアクセスできるサービスです。",
     optionExplanations: [
       "データベースのバックアップ: AWS BackupやRDSで管理します。Artifactはドキュメント提供サービスです。",
@@ -2038,7 +2038,7 @@ const awsCLFQuestions = [
       "制限なし"
     ],
     correctAnswer: 2,
-    category: "セキュリティ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "API Gatewayのデフォルトのスロットリング制限は、1秒あたり10,000リクエスト、バーストで5,000リクエストです。",
     optionExplanations: [
       "1秒あたり1,000リクエスト: デフォルト制限より低いです。必要に応じて制限を引き下げることは可能です。",
@@ -2060,7 +2060,7 @@ const awsCLFQuestions = [
       "サーバーレスETL(抽出、変換、ロード)サービス"
     ],
     correctAnswer: 3,
-    category: "セキュリティ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "AWS Glueは、データの検出、準備、統合を簡素化するサーバーレスデータ統合サービスで、ETL処理に最適化されています。",
     optionExplanations: [
       "量子コンピューティング: Amazon Braketの領域です。GlueはETLとデータカタログサービスです。",
@@ -2082,7 +2082,7 @@ const awsCLFQuestions = [
       "CloudFrontのエッジロケーション"
     ],
     correctAnswer: 3,
-    category: "セキュリティ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "S3 Transfer Accelerationは、CloudFrontのグローバルエッジロケーションネットワークを活用して、長距離のファイル転送を高速化します。",
     optionExplanations: [
       "インターネット: 通常のS3転送で使用されます。Transfer Accelerationはより最適化されたネットワークを使用します。",
@@ -2104,7 +2104,7 @@ const awsCLFQuestions = [
       "IAMユーザー"
     ],
     correctAnswer: 3,
-    category: "セキュリティ",
+    category: "セキュリティとコンプライアンス",
     explanation: "AWS RAMは、VPCサブネット、Transit Gateway、Route 53リソースなどを共有できますが、IAMユーザーやロールは共有できません。",
     optionExplanations: [
       "Transit Gateway: RAMで共有できます。複数のアカウント間でTransit Gatewayを共有し、ネットワーク接続を簡素化できます。",
@@ -2126,7 +2126,7 @@ const awsCLFQuestions = [
       "ブロックストレージ"
     ],
     correctAnswer: 0,
-    category: "管理・デプロイ",
+    category: "クラウドテクノロジーとサービス",
     explanation: "Amazon FSx for Windows File Serverは、Windows Server上に構築されたフルマネージドファイルストレージで、SMBプロトコルをサポートします。",
     optionExplanations: [
       "Windows Server上に構築されたフルマネージドファイルストレージ: ✓ 正解。FSx for Windowsは、Active Directory統合、SMBプロトコル、Windows NTFSファイルシステムをサポートします。",
@@ -2148,7 +2148,7 @@ const awsCLFQuestions = [
       "機械学習モデルのトレーニング"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "セキュリティとコンプライアンス",
     explanation: "AWS Control Towerは、ベストプラクティスに基づいた安全なマルチアカウントAWS環境を自動的にセットアップし、管理するサービスです。",
     optionExplanations: [
       "コスト管理: Cost ExplorerやBudgetsの目的です。Control Towerはガバナンスとコンプライアンスに焦点を当てています。",
@@ -2170,7 +2170,7 @@ const awsCLFQuestions = [
       "データベースのバックアップ"
     ],
     correctAnswer: 2,
-    category: "管理・デプロイ",
+    category: "セキュリティとコンプライアンス",
     explanation: "Amazon Macieは、機械学習を使用してS3内の機密データ(個人情報、クレジットカード番号など)を自動的に検出し、保護するセキュリティサービスです。",
     optionExplanations: [
       "ネットワークトラフィックの監視: VPC Flow LogsやCloudWatchの機能です。Macieはデータセキュリティに特化しています。",
