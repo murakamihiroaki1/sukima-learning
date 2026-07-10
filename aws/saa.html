@@ -1473,8 +1473,8 @@
         }
 
         function showLoggedIn(username, membershipLevel = 'Free', membershipExpiry = null) {
-            document.querySelector('.logged-out').style.display = 'none';
-            document.querySelector('.logged-in').style.display = 'flex';
+            const _lo1 = document.querySelector('.logged-out'); if (_lo1) _lo1.style.display = 'none';
+            const _li1 = document.querySelector('.logged-in'); if (_li1) _li1.style.display = 'flex';
             document.getElementById('username').textContent = username;
             
             // プラン情報を表示
@@ -1506,8 +1506,8 @@
         }
 
         function showLoggedOut() {
-            document.querySelector('.logged-out').style.display = 'flex';
-            document.querySelector('.logged-in').style.display = 'none';
+            const _lo2 = document.querySelector('.logged-out'); if (_lo2) _lo2.style.display = 'flex';
+            const _li2 = document.querySelector('.logged-in'); if (_li2) _li2.style.display = 'none';
             updatePremiumFeatureAccess('free');
         }
         
