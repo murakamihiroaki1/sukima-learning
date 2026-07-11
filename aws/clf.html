@@ -1226,6 +1226,13 @@
             }
             document.getElementById('explanation').classList.add('show');
             
+            // スマホ閲覧時: 解説までスクロール
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    document.getElementById('explanation').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 150);
+            }
+            
             // 参考リンクを表示
             const referenceLinksContainer = document.getElementById('reference-links');
             referenceLinksContainer.innerHTML = '';
