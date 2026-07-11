@@ -8,7 +8,7 @@ const MEMBERSHIP_LEVELS = {
     ADVANCED: 'advanced'
 };
 
-const MEMBERSHIP_DURATION_DAYS = 30; // 1ヶ月 = 30日
+const MEMBERSHIP_DURATION_MONTHS = 1; // 1ヶ月
 
 /**
  * 会員レベルの表示名を取得
@@ -47,12 +47,12 @@ function getMembershipPrice(level) {
 }
 
 /**
- * 有効期限を計算（現在日時 + 90日）
+ * 有効期限を計算（現在日時 + 1ヶ月）
  */
 function calculateExpiryDate() {
     const now = new Date();
     const expiry = new Date(now);
-    expiry.setDate(expiry.getDate() + MEMBERSHIP_DURATION_DAYS);
+    expiry.setMonth(expiry.getMonth() + MEMBERSHIP_DURATION_MONTHS);
     return expiry;
 }
 
@@ -110,7 +110,7 @@ function formatMembershipInfo(user) {
 
 module.exports = {
     MEMBERSHIP_LEVELS,
-    MEMBERSHIP_DURATION_DAYS,
+    MEMBERSHIP_DURATION_MONTHS,
     getMembershipDisplayName,
     getMembershipDescription,
     getMembershipPrice,

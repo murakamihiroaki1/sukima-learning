@@ -242,17 +242,17 @@ router.post('/renew', authenticateToken, async (req, res, next) => {
         }
 
         // 新しい有効期限を計算
-        // 現在の有効期限が未来の場合はそこから30日、過去の場合は今から30日
+        // 現在の有効期限が未来の場合はそこから1ヶ月、過去の場合は今から1ヶ月
         let newExpiry;
         const now = new Date();
         const currentExpiry = user.membership_expiry ? new Date(user.membership_expiry) : now;
 
         if (currentExpiry > now) {
-            // 有効期限が残っている場合は、その日付から30日延長
+            // 有効期限が残っている場合は、その日付から1ヶ月延長
             newExpiry = new Date(currentExpiry);
-            newExpiry.setDate(newExpiry.getDate() + 30);
+            newExpiry.setMonth(newExpiry.getMonth() + 1);
         } else {
-            // 有効期限が切れている場合は、今日から30日
+            // 有効期限が切れている場合は、今日から1ヶ月
             newExpiry = calculateExpiryDate();
         }
 
