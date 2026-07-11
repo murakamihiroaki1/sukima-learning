@@ -146,6 +146,23 @@ router.get('/info', authenticateToken, async (req, res, next) => {
             return res.status(404).json({ error: 'ユーザーが見つかりません' });
         }
 
+        // 有効期限切れかつまだFreeでない場合はDBをFreeに降格
+        const isPaid = user.membership_level !== MEMBERSHIP_LEVELS.FREE;
+        const isExpired = user.membership_expiry && new Date(user.membership_expiry) <= new Date();
+        if (isPaid && isExpired) {
+            console.log(`⏰ Membership expired for user ${user.username}. Downgrading to free.`);
+            await supabase
+                .from('users')
+                .update({
+                    membership_level: MEMBERSHIP_LEVELS.FREE,
+                    membership_expiry: null,
+                    updated_at: new Date().toISOString()
+                })
+                .eq('id', userId);
+            user.membership_level = MEMBERSHIP_LEVELS.FREE;
+            user.membership_expiry = null;
+        }
+
         const membershipInfo = formatMembershipInfo(user);
 
         res.json({
