@@ -431,11 +431,8 @@ router.post('/forgot-password', [
 
   } catch (error) {
     console.error('Password reset request error:', error);
-    // デバッグ用: エラー詳細を返す（確認後に元に戻す）
     res.status(500).json({
-      error: 'パスワードリセットリクエストの処理中にエラーが発生しました',
-      debug_message: error.message,
-      debug_stack: error.stack
+      error: 'パスワードリセットリクエストの処理中にエラーが発生しました'
     });
   }
 });
