@@ -1004,6 +1004,9 @@
             document.getElementById('set-info').textContent =
                 `問題 ${start + 1}-${end} を選択しました（${end - start}問）`;
             document.getElementById('start-quiz-btn').disabled = false;
+            if (window.innerWidth <= 768) {
+                setTimeout(() => { scrollToEl(document.getElementById('set-info')); }, 150);
+            }
         }
 
         // カテゴリを選択
