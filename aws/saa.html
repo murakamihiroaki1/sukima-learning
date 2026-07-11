@@ -929,6 +929,9 @@
                 document.getElementById('sequential-selection').style.display = 'block';
                 document.getElementById('set-info').style.display = 'block';
                 document.getElementById('set-info').textContent = '問題範囲を選択してください';
+                if (window.innerWidth <= 768) {
+                    setTimeout(() => { document.getElementById('sequential-selection').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
+                }
             } else if (mode === 'category') {
                 if (!isPremium) {
                     alert('この機能はStandard/Advancedプラン限定です。\nプランをアップグレードしてください。');
@@ -949,6 +952,9 @@
                 document.getElementById('category-selection').style.display = 'block';
                 document.getElementById('set-info').style.display = 'block';
                 document.getElementById('set-info').textContent = 'カテゴリを選択してください';
+                if (window.innerWidth <= 768) {
+                    setTimeout(() => { document.getElementById('category-selection').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
+                }
             } else if (mode === 'random') {
                 // ランダム10問 - プレミアム機能のアクセスチェック
                 if (!isPremium) {
@@ -959,6 +965,9 @@
                 document.getElementById('set-info').style.display = 'block';
                 document.getElementById('set-info').textContent = 'ランダムに10問出題します';
                 document.getElementById('start-quiz-btn').disabled = false;
+                if (window.innerWidth <= 768) {
+                    setTimeout(() => { document.getElementById('start-quiz-btn').scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150);
+                }
             } else if (mode === 'mock-exam') {
                 // 模擬試験モード - プレミアム機能のアクセスチェック
                 if (!isPremium) {
@@ -970,6 +979,9 @@
                 document.getElementById('set-info').style.display = 'block';
                 document.getElementById('set-info').textContent = '模擬試験モード: ランダムに65問出題します';
                 document.getElementById('start-quiz-btn').disabled = false;
+                if (window.innerWidth <= 768) {
+                    setTimeout(() => { document.getElementById('start-quiz-btn').scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150);
+                }
             }
         }
 
