@@ -992,6 +992,7 @@
             // セクションを切り替え
             document.getElementById('set-selection-section').style.display = 'none';
             document.getElementById('quiz-section').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             
             displayQuestion();
         }
