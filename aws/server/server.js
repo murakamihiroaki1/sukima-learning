@@ -24,8 +24,10 @@ if (process.env.NODE_ENV === 'production') {
   app.set('trust proxy', 1);
 }
 
-// セキュリティミドルウェア
-app.use(helmet());
+// セキュリティミドルウェア（APIサーバーなのでCSPは不要 - フロントエンドのHTMLページに影響するため無効化）
+app.use(helmet({
+  contentSecurityPolicy: false
+}));
 
 // CORS設定（一時的にすべてのオリジンを許可してデバッグ）
 app.use(cors({
