@@ -819,6 +819,7 @@
     <script src="questions-saa.js"></script>
     <script src="membership-access.js"></script>
     <script>
+        function scrollToEl(el) { const top = el.getBoundingClientRect().top + window.scrollY - 68; window.scrollTo({ top, behavior: 'smooth' }); }
         let currentQuestionIndex = 0;
         let userAnswers = [];
         let score = 0;
@@ -930,7 +931,7 @@
                 document.getElementById('set-info').style.display = 'block';
                 document.getElementById('set-info').textContent = '問題範囲を選択してください';
                 if (window.innerWidth <= 768) {
-                    setTimeout(() => { document.getElementById('sequential-selection').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
+                    setTimeout(() => { scrollToEl(document.getElementById('sequential-selection')); }, 150);
                 }
             } else if (mode === 'category') {
                 if (!isPremium) {
@@ -953,7 +954,7 @@
                 document.getElementById('set-info').style.display = 'block';
                 document.getElementById('set-info').textContent = 'カテゴリを選択してください';
                 if (window.innerWidth <= 768) {
-                    setTimeout(() => { document.getElementById('category-selection').scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
+                    setTimeout(() => { scrollToEl(document.getElementById('category-selection')); }, 150);
                 }
             } else if (mode === 'random') {
                 // ランダム10問 - プレミアム機能のアクセスチェック
@@ -966,7 +967,7 @@
                 document.getElementById('set-info').textContent = 'ランダムに10問出題します';
                 document.getElementById('start-quiz-btn').disabled = false;
                 if (window.innerWidth <= 768) {
-                    setTimeout(() => { document.getElementById('start-quiz-btn').scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150);
+                    setTimeout(() => { scrollToEl(document.getElementById('start-quiz-btn')); }, 150);
                 }
             } else if (mode === 'mock-exam') {
                 // 模擬試験モード - プレミアム機能のアクセスチェック
@@ -980,7 +981,7 @@
                 document.getElementById('set-info').textContent = '模擬試験モード: ランダムに65問出題します';
                 document.getElementById('start-quiz-btn').disabled = false;
                 if (window.innerWidth <= 768) {
-                    setTimeout(() => { document.getElementById('start-quiz-btn').scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 150);
+                    setTimeout(() => { scrollToEl(document.getElementById('start-quiz-btn')); }, 150);
                 }
             }
         }
@@ -1232,7 +1233,7 @@
             // スマホ閲覧時: 解説までスクロール
             if (window.innerWidth <= 768) {
                 setTimeout(() => {
-                    document.getElementById('explanation').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    scrollToEl(document.getElementById('explanation'));
                 }, 150);
             }
             
