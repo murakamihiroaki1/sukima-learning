@@ -354,90 +354,6 @@
             background: #5568d3;
         }
 
-        /* 更新履歴セクション */
-        .changelog-section {
-            background: #ffffff;
-            padding: 60px 0;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .changelog-list {
-            max-width: 680px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .changelog-entry {
-            display: grid;
-            grid-template-columns: 90px 1fr;
-            gap: 0 16px;
-            padding: 14px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .changelog-entry:last-child {
-            border-bottom: none;
-        }
-
-        .changelog-date {
-            font-size: 0.80em;
-            color: #57606a;
-            padding-top: 3px;
-            white-space: nowrap;
-        }
-
-        .changelog-body {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-
-        .changelog-title {
-            font-weight: 600;
-            color: #1f2328;
-            font-size: 0.93em;
-        }
-
-        .changelog-detail {
-            font-size: 0.86em;
-            color: #57606a;
-        }
-
-        .changelog-badge {
-            display: inline-block;
-            font-size: 0.70em;
-            font-weight: 700;
-            padding: 2px 7px;
-            border-radius: 4px;
-            margin-right: 5px;
-            vertical-align: middle;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-
-        .badge-new      { background: #dbeafe; color: #1d4ed8; }
-        .badge-improve  { background: #dcfce7; color: #15803d; }
-        .badge-fix      { background: #fef9c3; color: #854d0e; }
-        .badge-notice   { background: #f3e8ff; color: #6b21a8; }
-
-        .changelog-more {
-            text-align: center;
-            margin-top: 24px;
-        }
-
-        .changelog-more a {
-            color: #667eea;
-            text-decoration: none;
-            font-size: 0.9em;
-            font-weight: 500;
-        }
-
-        .changelog-more a:hover {
-            text-decoration: underline;
-        }
-
         /* フッター */
         footer {
             background: #2c3e50;
@@ -634,46 +550,8 @@
         <a href="contact.html" class="cta-button">お問い合わせフォーム</a>
     </section>
 
-    <!-- 更新履歴（直近3件） -->
-    <section class="changelog-section">
-        <div class="container">
-            <h2 class="section-title">更新履歴</h2>
-            <div class="changelog-list">
-                <div class="changelog-entry">
-                    <span class="changelog-date">2025-06-10</span>
-                    <div class="changelog-body">
-                        <span class="changelog-title"><span class="changelog-badge badge-new">New</span>SAA 問題集を公開</span>
-                        <span class="changelog-detail">AWS Solutions Architect Associate の問題集（120問）を追加しました。</span>
-                    </div>
-                </div>
-                <div class="changelog-entry">
-                    <span class="changelog-date">2025-06-03</span>
-                    <div class="changelog-body">
-                        <span class="changelog-title"><span class="changelog-badge badge-fix">Fix</span>模擬試験モードのタイマー不具合を修正</span>
-                        <span class="changelog-detail">一部環境でカウントダウンが正しく動作しない問題を修正しました。</span>
-                    </div>
-                </div>
-                <div class="changelog-entry">
-                    <span class="changelog-date">2025-05-20</span>
-                    <div class="changelog-body">
-                        <span class="changelog-title"><span class="changelog-badge badge-new">New</span>AIF 問題集を公開</span>
-                        <span class="changelog-detail">AWS AI Practitioner の問題集（80問）を追加しました。</span>
-                    </div>
-                </div>
-            </div>
-            <div class="changelog-more">
-                <a href="changelog.html">すべての更新履歴を見る →</a>
-            </div>
-        </div>
-    </section>
-
     <!-- フッター -->
     <footer>
-        <div class="footer-links">
-            <a href="changelog.html">更新履歴</a>
-            <a href="aws/terms.html">利用規約</a>
-            <a href="contact.html">お問い合わせ</a>
-        </div>
         <p>&copy; 2026 スキマ・ラーニング. All rights reserved.</p>
     </footer>
 
