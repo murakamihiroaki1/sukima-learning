@@ -12,6 +12,7 @@ const authRoutes = require('./routes/auth');
 const membershipRoutes = require('./routes/membership');
 const stripeWebhookRoutes = require('./routes/stripe-webhook');
 const contactRoutes = require('./routes/contact');
+const studyHistoryRoutes = require('./routes/study-history');
 const { errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
@@ -78,7 +79,8 @@ app.get('/', (req, res) => {
       auth: '/api/auth',
       membership: '/api/membership',
       contact: '/api/contact',
-      stripe: '/api/stripe'
+      stripe: '/api/stripe',
+      history: '/api/history'
     }
   });
 });
@@ -97,6 +99,7 @@ app.get('/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/membership', membershipRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/history', studyHistoryRoutes);
 
 // エラーハンドラー
 app.use(errorHandler);

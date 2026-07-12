@@ -118,11 +118,67 @@ CREATE POLICY "Service role has full access to payment_history" ON payment_histo
     FOR ALL 
     USING (auth.role() = 'service_role');
 
+-- ============================================================
+-- 学習履歴テーブル
+-- ============================================================
+
+-- 学習セッション（クイズ1回分の記録）
+CREATE TABLE IF NOT EXISTS study_sessions (
+    id           UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id      UUID REFERENCES users(id) ON DELETE CASCADE,
+    exam_type    VARCHAR(20) NOT NULL,   -- 'clf' | 'aif' | 'saa' | 'dva'
+    mode         VARCHAR(20) NOT NULL,   -- 'sequential' | 'random' | 'category' | 'mock-exam'
+    category     VARCHAR(100),           -- カテゴリ別モード時のカテゴリ名
+    total_q      INTEGER NOT NULL,       -- 出題数
+    correct_q    INTEGER NOT NULL,       -- 正解数
+    elapsed_sec  INTEGER,                -- 所要秒数（模擬試験用）
+    created_at   TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 問題単位の回答記録（Standard/Advanced会員向け詳細記録）
+CREATE TABLE IF NOT EXISTS study_answers (
+    id           UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    session_id   UUID REFERENCES study_sessions(id) ON DELETE CASCADE,
+    user_id      UUID REFERENCES users(id) ON DELETE CASCADE,
+    exam_type    VARCHAR(20) NOT NULL,
+    question_id  INTEGER NOT NULL,       -- questions-xxx.js の id フィールド
+    selected     SMALLINT NOT NULL,      -- ユーザーが選択した選択肢インデックス (0-3)
+    correct      SMALLINT NOT NULL,      -- 正解インデックス
+    is_correct   BOOLEAN NOT NULL,
+    created_at   TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- インデックス
+CREATE INDEX IF NOT EXISTS idx_study_sessions_user_id    ON study_sessions(user_id);
+CREATE INDEX IF NOT EXISTS idx_study_sessions_exam_type  ON study_sessions(exam_type);
+CREATE INDEX IF NOT EXISTS idx_study_sessions_created_at ON study_sessions(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_study_answers_session_id  ON study_answers(session_id);
+CREATE INDEX IF NOT EXISTS idx_study_answers_user_id     ON study_answers(user_id);
+CREATE INDEX IF NOT EXISTS idx_study_answers_exam_type   ON study_answers(exam_type);
+CREATE INDEX IF NOT EXISTS idx_study_answers_question_id ON study_answers(question_id);
+
+-- RLS有効化
+ALTER TABLE study_sessions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE study_answers   ENABLE ROW LEVEL SECURITY;
+
+-- RLSポリシー: 自分のデータのみ参照可
+CREATE POLICY "Users can view own study_sessions" ON study_sessions
+    FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "Service role full access to study_sessions" ON study_sessions
+    FOR ALL USING (auth.role() = 'service_role');
+
+CREATE POLICY "Users can view own study_answers" ON study_answers
+    FOR SELECT USING (auth.uid() = user_id);
+
+CREATE POLICY "Service role full access to study_answers" ON study_answers
+    FOR ALL USING (auth.role() = 'service_role');
+
 -- 完了メッセージ
 DO $$
 BEGIN
     RAISE NOTICE 'Database schema created successfully!';
-    RAISE NOTICE 'Tables: users, refresh_tokens, password_reset_tokens, payment_history';
+    RAISE NOTICE 'Tables: users, refresh_tokens, password_reset_tokens, payment_history, study_sessions, study_answers';
     RAISE NOTICE 'RLS policies enabled for all tables';
 END $$;
 

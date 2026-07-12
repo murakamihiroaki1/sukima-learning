@@ -736,6 +736,9 @@
                     <a href="pricing.html" class="nav-link">料金</a>
                 </div>
                 <div class="nav-item">
+                    <a href="history.html" class="nav-link">学習履歴</a>
+                </div>
+                <div class="nav-item">
                     <a href="faq.html" class="nav-link">FAQ</a>
                 </div>                <div class="nav-item auth-buttons">
                     <div class="logged-out">
@@ -830,6 +833,7 @@
 
     <script src="questions-dva.js"></script>
     <script src="membership-access.js"></script>
+    <script src="study-history.js"></script>
     <script>
         function scrollToEl(el) { const top = el.getBoundingClientRect().top + window.scrollY - 68; window.scrollTo({ top, behavior: 'smooth' }); }
         let currentQuestionIndex = 0;
@@ -1273,6 +1277,8 @@
 
         // 選択画面に戻る
         function backToSelection() {
+            // 模擬試験以外で回答があれば履歴保存
+            if (!isMockExam) { _saveSessionOnBack(); }
             document.getElementById('quiz-section').style.display = 'none';
             document.getElementById('set-selection-section').style.display = 'block';
             
@@ -1402,7 +1408,31 @@
             `;
 
             document.body.appendChild(modal);
+
+            // 学習履歴を保存
+            const _membership = await getMembershipInfo();
+            await saveStudyHistory({
+                examType: 'dva', mode: selectedMode,
+                category: selectedCategory, totalQ: questions.length, correctQ: score,
+                elapsedSec: null,
+                questions, userAnswers,
+                membershipLevel: _membership ? _membership.level : 'free'
+            });
         }
+        }
+
+        // 学習履歴を保存（番号順・ランダム・カテゴリ終了時）
+        async function _saveSessionOnBack() {
+            if (!questions || questions.length === 0) return;
+            if (!userAnswers.some(a => a !== null)) return;
+            const _membership = await getMembershipInfo();
+            await saveStudyHistory({
+                examType: 'dva', mode: selectedMode,
+                category: selectedCategory, totalQ: questions.length, correctQ: score,
+                elapsedSec: null,
+                questions, userAnswers,
+                membershipLevel: _membership ? _membership.level : 'free'
+            });
         }
 
         // ログイン状態チェック機能
