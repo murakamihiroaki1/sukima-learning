@@ -396,6 +396,19 @@
         }
 
     </style>
+    <!-- ========================================================
+         Google Analytics 4
+         TODO: 下記の G-XXXXXXXXXX を実際の測定IDに置き換えてください
+         取得方法: https://analytics.google.com/ → 管理 → データストリーム → 測定ID
+    ========================================================= -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
 </head>
 <body>
     <!-- ナビゲーションヘッダー -->

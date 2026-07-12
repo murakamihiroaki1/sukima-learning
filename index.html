@@ -17,6 +17,20 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="スキマラーニング - スキマ時間でIT資格対策 | AWS・ITパスポート・基本情報">
     <meta name="twitter:description" content="スキマ時間で効率的にIT資格を取得。AWS認定（CLF・AIF・SAA・DVA）、ITパスポート、基本情報技術者試験など。無料問題集から模擬試験まで対応。">
+    <!-- ========================================================
+         Google Analytics 4
+         TODO: 下記の G-XXXXXXXXXX を実際の測定IDに置き換えてください
+         取得方法: https://analytics.google.com/ → 管理 → データストリーム → 測定ID
+    ========================================================= -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&display=swap" rel="stylesheet">
@@ -151,6 +165,52 @@
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(102,126,234,0.3);
+        }
+
+        /* 「無料で始める」メインCTAボタン */
+        .cta-button-primary {
+            display: inline-block;
+            background: #ff6b35;
+            color: white;
+            padding: 18px 50px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s 0.4s both;
+        }
+
+        .cta-button-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,107,53,0.4);
+        }
+
+        .cta-sub-text {
+            display: block;
+            margin-top: 12px;
+            font-size: 0.85em;
+            color: #888;
+            animation: fadeInUp 1s 0.6s both;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+            animation: fadeInUp 1s 0.4s both;
+        }
+
+        .hero-secondary-link {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.95em;
+            border-bottom: 1px solid #667eea;
+        }
+
+        .hero-secondary-link:hover {
+            opacity: 0.7;
         }
 
         /* コンテナ */
@@ -469,7 +529,11 @@
     <section class="hero">
         <h1>スキマ時間で、確実に合格へ</h1>
         <p>IT資格試験対策をオンラインで。いつでも、どこでも、効率的に学習。</p>
-        <a href="#certifications" class="cta-button">学習を始める</a>
+        <div class="hero-cta-group">
+            <a href="aws/index.html" class="cta-button-primary">無料で始める</a>
+            <span class="cta-sub-text">登録不要・今すぐ問題を解く</span>
+            <a href="#certifications" class="hero-secondary-link">対応資格を見る</a>
+        </div>
     </section>
 
     <!-- 資格一覧セクション -->
