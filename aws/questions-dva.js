@@ -1532,5 +1532,195 @@ const questionsData = [
       "誤り：メッセージ保持期間はキューにメッセージを保持する最大時間であり、同時処理の防止には関係しません。",
       "誤り：ロングポーリングはメッセージ受信の効率化のための機能であり、同時処理の防止には関係しません。"
     ]
+  },
+  {
+    id: dva-081,
+    question: "デベロッパーは、AWS Lambda関数をAmazon VPC内に配置しています。Lambda関数からインターネット上の外部APIを呼び出す必要がありますが、接続できない状態です。\n\nこの問題を解決するために、デベロッパーはどのように設定すべきですか。",
+    options: [
+      "Lambda関数のタイムアウト値を増やす。",
+      "Lambda関数にElastic IPアドレスを割り当てる。",
+      "VPCにNATゲートウェイを作成し、Lambda関数をプライベートサブネットに配置する。",
+      "Lambda関数のメモリサイズを増やす。"
+    ],
+    correctAnswer: 2,
+    category: "トラブルシューティング",
+    explanation: "VPC内に配置されたLambda関数がインターネットにアクセスするには、NATゲートウェイ（またはNATインスタンス）が必要です。Lambda関数をプライベートサブネットに配置し、そのサブネットのルートテーブルでインターネット向けトラフィックをNATゲートウェイに向けます。NATゲートウェイはパブリックサブネットに配置します。Lambda関数にElastic IPを直接割り当てることはできません。",
+    optionExplanations: [
+      "誤り：タイムアウト値の変更はネットワーク接続の問題を解決しません。",
+      "誤り：Lambda関数にElastic IPを直接割り当てることはできません。",
+      "正解：VPC内のLambdaがインターネットにアクセスするには、NATゲートウェイ経由のルーティングが必要です。",
+      "誤り：メモリサイズの変更はネットワーク接続の問題を解決しません。"
+    ]
+  },
+  {
+    id: dva-082,
+    question: "デベロッパーは、Amazon DynamoDBテーブルへの書き込み操作を実装しています。複数の属性を持つ項目を書き込む際に、指定した条件が満たされる場合のみ書き込みを成功させたいと考えています（例：同じパーティションキーの項目が存在しない場合のみ新規作成）。\n\nこの要件を満たすために使用するDynamoDBの機能はどれですか。",
+    options: [
+      "TransactWriteItemsを使用して、トランザクション内で書き込む。",
+      "PutItem APIにConditionExpressionを指定して、条件付き書き込みを行う。",
+      "BatchWriteItemを使用して、複数の項目を一括書き込みする。",
+      "UpdateItemを使用して、既存項目のみを更新する。"
+    ],
+    correctAnswer: 1,
+    category: "データベース",
+    explanation: "DynamoDBのConditionExpressionは、PutItem・UpdateItem・DeleteItem操作に条件を付加する機能です。`attribute_not_exists(pk)` のような条件を指定することで、対象のパーティションキーを持つ項目が存在しない場合のみ書き込みを実行できます。条件が満たされない場合はConditionalCheckFailedExceptionが発生します。これにより、競合状態を防ぐ楽観的ロックパターンも実装できます。",
+    optionExplanations: [
+      "誤り：TransactWriteItemsは複数テーブルにまたがるACIDトランザクションに使用しますが、単純な条件付き書き込みにはConditionExpressionが適切です。",
+      "正解：ConditionExpressionを使用することで、指定条件を満たす場合のみ書き込みを実行できます。",
+      "誤り：BatchWriteItemは複数項目の一括書き込みに使用しますが、条件付き書き込みはサポートしていません。",
+      "誤り：UpdateItemは既存項目の更新に使用しますが、新規作成時の重複チェックにはPutItemのConditionExpressionが適切です。"
+    ]
+  },
+  {
+    id: dva-083,
+    question: "デベロッパーは、Amazon API Gatewayを使用してAPIを公開しています。APIの特定のエンドポイントへのリクエストレートを制限して、バックエンドへの過負荷を防ぎたいと考えています。\n\nAPI Gatewayでリクエストレートを制限するために使用する機能はどれですか。",
+    options: [
+      "API Gatewayのリソースポリシーでレート制限を設定する。",
+      "API Gatewayのステージでデフォルトのスロットリングとバーストリミットを設定し、必要に応じてメソッドレベルでオーバーライドする。",
+      "Lambda オーソライザーでリクエスト頻度を検証する。",
+      "Amazon CloudFrontのキャッシュ設定でリクエスト数を削減する。"
+    ],
+    correctAnswer: 1,
+    category: "開発",
+    explanation: "Amazon API Gatewayのスロットリング設定を使用することで、APIへのリクエストレートを制限できます。ステージレベルでデフォルトのレート制限（1秒あたりのリクエスト数）とバーストリミット（同時リクエストの最大数）を設定し、さらにメソッドレベルで個別にオーバーライドすることも可能です。制限を超えたリクエストには429 Too Many Requestsが返されます。使用量プランとAPIキーを組み合わせると、クライアントごとの制限も設定できます。",
+    optionExplanations: [
+      "誤り：リソースポリシーはIPアドレスやVPCからのアクセス制御に使用するものであり、レート制限には使用しません。",
+      "正解：API Gatewayのスロットリング設定でステージ・メソッドレベルのレート制限を設定できます。",
+      "誤り：Lambdaオーソライザーは認証・認可に使用するものであり、レート制限には適していません。",
+      "誤り：CloudFrontのキャッシュはリクエスト数削減に貢献しますが、API Gatewayレベルのスロットリングではありません。"
+    ]
+  },
+  {
+    id: dva-084,
+    question: "デベロッパーは、AWS CodeBuildを使用してアプリケーションをビルドしています。ビルド中にユニットテストを実行し、テスト結果レポートをAWS CodeBuildに表示させたいと考えています。\n\nこの要件を満たすために、デベロッパーはどのように設定すべきですか。",
+    options: [
+      "テスト結果をAmazon S3バケットにアップロードし、マネジメントコンソールから確認する。",
+      "buildspec.ymlのreportsセクションにテストレポートの出力先とファイル形式を指定する。",
+      "CloudWatch Logsにテスト結果をログ出力し、Logs Insightsで集計する。",
+      "テスト結果をSNSトピックに送信して通知する。"
+    ],
+    correctAnswer: 1,
+    category: "デプロイメント",
+    explanation: "AWS CodeBuildのテストレポート機能を使用するには、buildspec.ymlの `reports` セクションでレポートグループ名、テスト結果ファイルのパス、ファイル形式（JUnit XML、Cucumber JSON等）を指定します。ビルド実行後、CodeBuildコンソールのテストレポートタブで合否件数・実行時間・失敗したテストケースの詳細を確認できます。CIパイプラインのテスト可視化に活用できます。",
+    optionExplanations: [
+      "誤り：S3へのアップロードも可能ですが、CodeBuildのテストレポート機能を使う方がコンソール上で直接確認できて便利です。",
+      "正解：buildspec.ymlのreportsセクションを設定することで、CodeBuildコンソール上でテスト結果を確認できます。",
+      "誤り：CloudWatch Logsでのログ出力はデバッグには有効ですが、テストレポートの可視化には適していません。",
+      "誤り：SNS通知はビルド完了の通知に使用しますが、テスト結果の詳細レポートには対応していません。"
+    ]
+  },
+  {
+    id: dva-085,
+    question: "デベロッパーは、Amazon S3にオブジェクトがアップロードされたことをトリガーにAWS Lambda関数を実行するアーキテクチャを構築しています。S3バケットとLambda関数は同じAWSアカウントにあります。\n\nS3からLambdaを呼び出すために必要な設定はどれですか。",
+    options: [
+      "LambdaのIAM実行ロールにS3からの呼び出しを許可するポリシーを追加する。",
+      "S3バケットポリシーでLambda関数の実行を許可する。",
+      "Lambda関数のリソースベースポリシーでS3バケットからの呼び出しを許可し、S3バケットのイベント通知でLambdaを指定する。",
+      "EventBridgeルールを作成してS3イベントをLambdaに転送する設定のみ行う。"
+    ],
+    correctAnswer: 2,
+    category: "開発",
+    explanation: "S3のイベント通知からLambdaを直接呼び出すには2つの設定が必要です。①Lambda関数のリソースベースポリシー（アクセス許可）でS3サービスプリンシパル（s3.amazonaws.com）からの呼び出しを許可します。②S3バケットのイベント通知設定で、対象イベント（例：s3:ObjectCreated:*）とトリガー先のLambda関数を指定します。コンソールでS3トリガーを追加すると、リソースベースポリシーは自動的に設定されます。",
+    optionExplanations: [
+      "誤り：Lambda実行ロールはLambdaが他のAWSサービスを呼び出す権限であり、S3がLambdaを呼び出す権限とは別です。",
+      "誤り：S3バケットポリシーはS3オブジェクトへのアクセス制御に使用するものであり、Lambdaの呼び出し許可はLambdaのリソースベースポリシーで設定します。",
+      "正解：Lambda関数のリソースベースポリシーでS3からの呼び出しを許可し、S3側でイベント通知を設定する必要があります。",
+      "誤り：EventBridge経由での連携も可能ですが、S3のネイティブイベント通知機能でLambdaを直接呼び出す方がシンプルです。"
+    ]
+  },
+  {
+    id: dva-086,
+    question: "デベロッパーは、AWS Systems Manager Parameter StoreとAWS Secrets Managerのどちらを使用するか検討しています。データベースのパスワードを保存し、90日ごとに自動ローテーションする必要があります。\n\nこの要件に最も適したサービスはどれですか。",
+    options: [
+      "AWS Systems Manager Parameter Store（標準パラメータ）を使用する。",
+      "AWS Systems Manager Parameter Store（SecureString）を使用し、Lambda関数でローテーションを実装する。",
+      "AWS Secrets Managerを使用して、自動ローテーションを設定する。",
+      "Amazon S3に暗号化して保存し、定期的にLambda関数で更新する。"
+    ],
+    correctAnswer: 2,
+    category: "セキュリティ",
+    explanation: "AWS Secrets Managerは、シークレットの保存・取得・自動ローテーションを統合的に提供するサービスです。RDS・Redshift・DocumentDBのパスワードについては組み込みのローテーション機能があり、Lambda関数を自動作成して設定した間隔（例：90日）で自動ローテーションを実行します。Parameter StoreにはネイティブのSecureString自動ローテーション機能がないため、自動ローテーションが要件の場合はSecrets Managerが最適です。",
+    optionExplanations: [
+      "誤り：標準パラメータは暗号化されないため、パスワードの保存には適していません。",
+      "誤り：Parameter StoreのSecureStringは暗号化されますが、自動ローテーション機能はネイティブに備わっていません。",
+      "正解：Secrets Managerは自動ローテーション機能を組み込みで提供しており、この要件に最適です。",
+      "誤り：S3への保存はセキュリティ管理が複雑になり、Secrets Managerと比較してベストプラクティスに反します。"
+    ]
+  },
+  {
+    id: dva-087,
+    question: "デベロッパーは、Amazon SQS FIFOキューを使用してメッセージを処理するアプリケーションを開発しています。同じグループのメッセージは順序通りに処理され、重複して処理されないようにしたいと考えています。\n\nFIFOキューでメッセージの重複排除を実現するために必要な設定はどれですか。",
+    options: [
+      "キューのVisibility Timeoutを長く設定する。",
+      "メッセージ送信時にMessageGroupIdとMessageDeduplicationId（またはコンテンツベースの重複排除を有効化）を指定する。",
+      "デッドレターキューを設定して重複メッセージを除外する。",
+      "SQSのロングポーリングを有効化する。"
+    ],
+    correctAnswer: 1,
+    category: "アプリケーション統合",
+    explanation: "SQS FIFOキューで重複排除を実現するには、①`MessageGroupId`（同一グループ内での順序保証）と②`MessageDeduplicationId`（重複排除ID）を指定します。同じMessageDeduplicationIdを持つメッセージは5分間の重複排除インターバル内に再送信されても1回のみ配信されます。代替として、キューの「コンテンツベースの重複排除」を有効化するとメッセージ本文のSHA-256ハッシュが自動的にDeduplicationIdとして使用されます。",
+    optionExplanations: [
+      "誤り：Visibility Timeoutは処理中メッセージの隠蔽に使用するものであり、重複排除とは関係ありません。",
+      "正解：MessageGroupIdとMessageDeduplicationIdの指定（またはコンテンツベース重複排除の有効化）でFIFOキューの重複排除が実現できます。",
+      "誤り：デッドレターキューは処理失敗メッセージの管理に使用するものであり、重複排除には使用しません。",
+      "誤り：ロングポーリングはメッセージ受信の効率化のための機能であり、重複排除とは関係ありません。"
+    ]
+  },
+  {
+    id: dva-088,
+    question: "デベロッパーは、AWS CloudFormationテンプレートで同じリソース設定を複数のリージョンにデプロイしたいと考えています。リージョンごとに異なるAMI IDを使用する必要があります。テンプレートをリージョンごとに修正せずに対応したいと考えています。\n\nこの要件を満たすために、デベロッパーはどの機能を使用すべきですか。",
+    options: [
+      "テンプレートのParametersセクションでAMI IDを入力パラメータとして定義し、デプロイ時に指定する。",
+      "テンプレートのMappingsセクションにリージョンとAMI IDのマッピングテーブルを定義し、Fn::FindInMap関数で参照する。",
+      "各リージョン用に個別のテンプレートファイルを作成してAMI IDをハードコーディングする。",
+      "Lambda-backed Custom Resourceを使用してデプロイ時にAMI IDを動的に取得する。"
+    ],
+    correctAnswer: 1,
+    category: "デプロイメント",
+    explanation: "CloudFormationのMappingsセクションは、キーと値のマッピングテーブルを定義する機能です。リージョン名をキーとしてAMI IDをマッピングしておき、`Fn::FindInMap` 関数と `AWS::Region` 擬似パラメータを組み合わせることで、デプロイ先リージョンに応じた適切なAMI IDを自動的に参照できます。テンプレートを修正せずに複数リージョンへのデプロイに対応できます。",
+    optionExplanations: [
+      "誤り：Parametersでの定義も可能ですが、デプロイのたびに正しいAMI IDを入力する必要があり、ミスが発生しやすくなります。",
+      "正解：MappingsセクションとFn::FindInMapを使用することで、リージョンごとのAMI IDを自動的に参照できます。",
+      "誤り：リージョンごとに別テンプレートを作成すると管理が複雑になり、変更時の修正箇所が増えます。",
+      "誤り：Custom Resourceは可能ですが、Mappingsを使う方がシンプルで確実です。"
+    ]
+  },
+  {
+    id: "dva-089",
+    question: "デベロッパーは、AWS Lambda関数のエラーをモニタリングしています。Lambda関数が特定のエラーレートを超えた場合に、開発チームにメール通知を送りたいと考えています。\n\nこの要件を満たすための最も適切な設定はどれですか。",
+    options: [
+      "Lambda関数のコード内でエラーをキャッチしてAmazon SESで直接メールを送信する。",
+      "Amazon CloudWatch MetricsのLambda Errorsメトリクスに対してアラームを作成し、アラーム状態でAmazon SNSトピック経由でメール通知する。",
+      "AWS CloudTrailでLambdaの実行ログを監視してエラーを検出する。",
+      "Amazon EventBridgeルールでLambdaの失敗イベントを検知してSNS通知する。"
+    ],
+    correctAnswer: 1,
+    category: "モニタリング",
+    explanation: "Amazon CloudWatchはLambda関数の実行メトリクス（Errors、Invocations、Duration、Throttlesなど）を自動的に収集します。CloudWatch Alarmを作成してErrorsメトリクスのしきい値を設定し、アラーム状態になった際のアクションとしてAmazon SNSトピックへの通知を設定できます。SNSトピックにメールアドレスをサブスクライブすることで、エラーレート超過時の自動メール通知が実現できます。",
+    optionExplanations: [
+      "誤り：コード内でのSES直接送信も可能ですが、CloudWatchアラームを使う方がコードを変更せずに監視できます。",
+      "正解：CloudWatch MetricsのErrorsアラーム + SNSメール通知が、Lambda関数のエラー監視の標準的なパターンです。",
+      "誤り：CloudTrailはAPI呼び出しの記録に使用するものであり、Lambda関数のエラーレート監視には適していません。",
+      "誤り：EventBridgeでもLambdaの失敗検知は可能ですが、メトリクスベースのエラーレート監視にはCloudWatchアラームが適切です。"
+    ]
+  },
+  {
+    id: "dva-090",
+    question: "デベロッパーは、マイクロサービスアーキテクチャを構築しており、複数のサービス間でのリクエストトレースを実装したいと考えています。あるサービスから別のサービスを呼び出す際に、トレースコンテキストを引き継いで分散トレースを実現したいと考えています。\n\nAWS X-Rayで分散トレースを実現するために必要な設定はどれですか。",
+    options: [
+      "各サービスのCloudWatch LogsにトレースIDを手動でログ出力し、Logs Insightsで紐付ける。",
+      "各サービスにX-Ray SDKを組み込み、アウトバウンドリクエストにX-Rayトレースヘッダー（X-Amzn-Trace-Id）を自動的に付与・伝播させる。",
+      "AWS CloudTrailを有効化して、全サービスのAPI呼び出しを自動的にトレースする。",
+      "Amazon CloudWatch Synthetics を使用して各サービスのエンドポイントを監視する。"
+    ],
+    correctAnswer: 1,
+    category: "トラブルシューティング",
+    explanation: "AWS X-Rayの分散トレースは、X-Ray SDKが自動的に管理するトレースヘッダー（X-Amzn-Trace-Id）によって実現されます。X-Ray SDKを各サービスに組み込むと、インバウンドリクエストからトレースIDを取得し、アウトバウンドリクエスト（HTTP/HTTPS、AWS SDK呼び出しなど）に自動的に同じトレースIDを付与して伝播させます。これにより、複数のサービスにまたがるリクエストの流れをサービスマップとして可視化できます。",
+    optionExplanations: [
+      "誤り：手動でのログ出力は管理が複雑でエラーが発生しやすく、X-Ray SDKの自動伝播に比べて不完全です。",
+      "正解：X-Ray SDKを各サービスに組み込むことで、トレースヘッダーの自動付与・伝播による分散トレースが実現できます。",
+      "誤り：CloudTrailはAWS APIコールの監査ログであり、アプリケーション内の分散トレースには使用しません。",
+      "誤り：CloudWatch Syntheticsはエンドポイントの死活監視に使用するものであり、分散トレースとは異なります。"
+    ]
   }
 ];
