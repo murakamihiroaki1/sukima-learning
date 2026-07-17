@@ -907,13 +907,8 @@
             document.getElementById('category-selection').style.display = 'none';
             document.getElementById('start-quiz-btn').disabled = true;
             
-            // 会員情報を取得（大文字小文字を正規化）
-            const membership = await getMembershipInfo();
-            const lowerLevel = (membership ? membership.level : 'free').toLowerCase();
-            const isPremium = (lowerLevel === 'standard' || lowerLevel === 'advanced');
-            
             if (mode === 'sequential') {
-                // 番号順: 10問単位のボタンを生成
+                // 番号順: 先にUIを表示してからアクセス制御を適用
                 const totalQuestions = awsSAAQuestions.length;
                 const sequentialButtons = document.getElementById('sequential-buttons');
                 sequentialButtons.innerHTML = '';
@@ -927,7 +922,17 @@
                     sequentialButtons.appendChild(btn);
                 }
                 
-                // Free会員の場合、問題21以降のボタンを無効化
+                document.getElementById('sequential-selection').style.display = 'block';
+                document.getElementById('set-info').style.display = 'block';
+                document.getElementById('set-info').textContent = '問題範囲を選択してください';
+                if (window.innerWidth <= 768) {
+                    setTimeout(() => { scrollToEl(document.getElementById('sequential-selection')); }, 150);
+                }
+                
+                // 会員情報を取得してアクセス制御を適用（表示後に非同期で）
+                const membership = await getMembershipInfo();
+                const lowerLevel = (membership ? membership.level : 'free').toLowerCase();
+                const isPremium = (lowerLevel === 'standard' || lowerLevel === 'advanced');
                 if (!isPremium) {
                     const buttons = document.querySelectorAll('#sequential-buttons .set-btn');
                     buttons.forEach((btn, index) => {
@@ -943,62 +948,60 @@
                         }
                     });
                 }
+            } else {
+                // category / random / mock-exam: 会員情報を先に取得
+                const membership = await getMembershipInfo();
+                const lowerLevel = (membership ? membership.level : 'free').toLowerCase();
+                const isPremium = (lowerLevel === 'standard' || lowerLevel === 'advanced');
                 
-                document.getElementById('sequential-selection').style.display = 'block';
-                document.getElementById('set-info').style.display = 'block';
-                document.getElementById('set-info').textContent = '問題範囲を選択してください';
-                if (window.innerWidth <= 768) {
-                    setTimeout(() => { scrollToEl(document.getElementById('sequential-selection')); }, 150);
-                }
-            } else if (mode === 'category') {
-                if (!isPremium) {
-                    alert('この機能はStandard/Advancedプラン限定です。\nプランをアップグレードしてください。');
-                    window.location.href = 'pricing.html';
-                    return;
-                }
-                const categories = [...new Set(awsSAAQuestions.map(q => q.category).filter(Boolean))].sort();
-                const catButtons = document.getElementById('category-buttons');
-                catButtons.innerHTML = '';
-                categories.forEach(cat => {
-                    const count = awsSAAQuestions.filter(q => q.category === cat).length;
-                    const btn = document.createElement('button');
-                    btn.className = 'set-btn';
-                    btn.textContent = `${cat} (${count}問)`;
-                    btn.onclick = () => selectCategory(cat, btn);
-                    catButtons.appendChild(btn);
-                });
-                document.getElementById('category-selection').style.display = 'block';
-                document.getElementById('set-info').style.display = 'block';
-                document.getElementById('set-info').textContent = 'カテゴリを選択してください';
-                if (window.innerWidth <= 768) {
-                    setTimeout(() => { scrollToEl(document.getElementById('category-selection')); }, 150);
-                }
-            } else if (mode === 'random') {
-                // ランダム10問 - プレミアム機能のアクセスチェック
-                if (!isPremium) {
-                    alert('この機能はStandard/Advancedプラン限定です。\nプランをアップグレードしてください。');
-                    window.location.href = 'pricing.html';
-                    return;
-                }
-                document.getElementById('set-info').style.display = 'block';
-                document.getElementById('set-info').textContent = 'ランダムに10問出題します';
-                document.getElementById('start-quiz-btn').disabled = false;
-                if (window.innerWidth <= 768) {
-                    setTimeout(() => { scrollToEl(document.getElementById('start-quiz-btn')); }, 150);
-                }
-            } else if (mode === 'mock-exam') {
-                // 模擬試験モード - プレミアム機能のアクセスチェック
-                if (!isPremium) {
-                    alert('この機能はStandard/Advancedプラン限定です。\nプランをアップグレードしてください。');
-                    window.location.href = 'pricing.html';
-                    return;
-                }
-                isMockExam = true;
-                document.getElementById('set-info').style.display = 'block';
-                document.getElementById('set-info').textContent = '模擬試験モード: ランダムに65問出題します';
-                document.getElementById('start-quiz-btn').disabled = false;
-                if (window.innerWidth <= 768) {
-                    setTimeout(() => { scrollToEl(document.getElementById('start-quiz-btn')); }, 150);
+                if (mode === 'category') {
+                    if (!isPremium) {
+                        alert('この機能はStandard/Advancedプラン限定です。\nプランをアップグレードしてください。');
+                        window.location.href = 'pricing.html';
+                        return;
+                    }
+                    const categories = [...new Set(awsSAAQuestions.map(q => q.category).filter(Boolean))].sort();
+                    const catButtons = document.getElementById('category-buttons');
+                    catButtons.innerHTML = '';
+                    categories.forEach(cat => {
+                        const count = awsSAAQuestions.filter(q => q.category === cat).length;
+                        const btn = document.createElement('button');
+                        btn.className = 'set-btn';
+                        btn.textContent = `${cat} (${count}問)`;
+                        btn.onclick = () => selectCategory(cat, btn);
+                        catButtons.appendChild(btn);
+                    });
+                    document.getElementById('category-selection').style.display = 'block';
+                    document.getElementById('set-info').style.display = 'block';
+                    document.getElementById('set-info').textContent = 'カテゴリを選択してください';
+                    if (window.innerWidth <= 768) {
+                        setTimeout(() => { scrollToEl(document.getElementById('category-selection')); }, 150);
+                    }
+                } else if (mode === 'random') {
+                    if (!isPremium) {
+                        alert('この機能はStandard/Advancedプラン限定です。\nプランをアップグレードしてください。');
+                        window.location.href = 'pricing.html';
+                        return;
+                    }
+                    document.getElementById('set-info').style.display = 'block';
+                    document.getElementById('set-info').textContent = 'ランダムに10問出題します';
+                    document.getElementById('start-quiz-btn').disabled = false;
+                    if (window.innerWidth <= 768) {
+                        setTimeout(() => { scrollToEl(document.getElementById('start-quiz-btn')); }, 150);
+                    }
+                } else if (mode === 'mock-exam') {
+                    if (!isPremium) {
+                        alert('この機能はStandard/Advancedプラン限定です。\nプランをアップグレードしてください。');
+                        window.location.href = 'pricing.html';
+                        return;
+                    }
+                    isMockExam = true;
+                    document.getElementById('set-info').style.display = 'block';
+                    document.getElementById('set-info').textContent = '模擬試験モード: ランダムに65問出題します';
+                    document.getElementById('start-quiz-btn').disabled = false;
+                    if (window.innerWidth <= 768) {
+                        setTimeout(() => { scrollToEl(document.getElementById('start-quiz-btn')); }, 150);
+                    }
                 }
             }
         }
