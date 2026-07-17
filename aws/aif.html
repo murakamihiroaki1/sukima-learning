@@ -1043,6 +1043,10 @@
                 // 番号順
                 if (!selectedRange) return;
                 questions = awsAIFQuestions.slice(selectedRange.start, selectedRange.end);
+            } else if (selectedMode === 'category') {
+                // カテゴリ別
+                if (!selectedCategory) return;
+                questions = awsAIFQuestions.filter(q => q.category === selectedCategory);
             } else if (selectedMode === 'random') {
                 // ランダム10問
                 const shuffled = [...awsAIFQuestions].sort(() => Math.random() - 0.5);
@@ -1602,16 +1606,22 @@
             
             if (isPremium) {
                 // Standard/Advanced会員: ボタンを有効化
+                if (categoryBtn) {
+                    categoryBtn.style.opacity = '1';
+                    categoryBtn.style.cursor = 'pointer';
+                    categoryBtn.onclick = function() { selectMode('category', this); };
+                    categoryBtn.innerHTML = 'カテゴリ別';
+                }
                 if (randomBtn) {
                     randomBtn.style.setProperty('opacity', '1', 'important');
                     randomBtn.style.setProperty('cursor', 'pointer', 'important');
-                    randomBtn.onclick = function() { selectMode('random'); };
+                    randomBtn.onclick = function() { selectMode('random', this); };
                     randomBtn.innerHTML = 'ランダム (10問)';
                 }
                 if (mockExamBtn) {
                     mockExamBtn.style.setProperty('opacity', '1', 'important');
                     mockExamBtn.style.setProperty('cursor', 'pointer', 'important');
-                    mockExamBtn.onclick = function() { selectMode('mock-exam'); };
+                    mockExamBtn.onclick = function() { selectMode('mock-exam', this); };
                     mockExamBtn.innerHTML = '模擬試験 (65問)';
                 }
             } else {
