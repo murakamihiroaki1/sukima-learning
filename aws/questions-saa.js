@@ -1,99 +1,99 @@
-// AWS Solutions Architect Associate 予想問題データ
+// AWS Solutions Architect Associate Practice Questions
 const awsSAAQuestions = [
   {
     id: 1,
-    question: "ある企業は、複数のアベイラビリティーゾーンにまたがるVPC内で、ウェブアプリケーションを実行しています。アプリケーションは、Application Load Balancer (ALB)の背後にある複数のAmazon EC2インスタンスで実行されています。同社は、アプリケーションへのトラフィックが急増した場合に自動的にスケールアウトし、トラフィックが減少した場合にスケールインするソリューションを実装したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company runs a web application in a VPC that spans multiple Availability Zones. The application runs on multiple Amazon EC2 instances behind an Application Load Balancer (ALB). The company wants to implement a solution that automatically scales out when traffic to the application increases and scales in when traffic decreases.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS Lambda関数を作成し、CloudWatch Eventsを使用して定期的にEC2インスタンスを起動および終了する。",
-      "Amazon EC2 Auto Scalingグループを作成し、ターゲット追跡スケーリングポリシーを設定する。",
-      "Amazon CloudWatchアラームを作成し、手動でEC2インスタンスを追加または削除する。",
-      "AWS Elastic Beanstalkを使用してアプリケーションをデプロイし、手動スケーリングを設定する。"
+      "Create an AWS Lambda function and use CloudWatch Events to periodically start and terminate EC2 instances.",
+      "Create an Amazon EC2 Auto Scaling group and configure a target tracking scaling policy.",
+      "Create Amazon CloudWatch alarms and manually add or remove EC2 instances.",
+      "Use AWS Elastic Beanstalk to deploy the application and configure manual scaling."
     ],
     correctAnswer: 1,
-    category: "高可用性とスケーラビリティ",
-    explanation: "Amazon EC2 Auto Scalingグループとターゲット追跡スケーリングポリシーを使用することで、CPU使用率やリクエスト数などのメトリクスに基づいて自動的にインスタンス数を調整できます。これにより、トラフィックの変動に応じて自動的にスケールアウト/スケールインが行われ、コスト効率と可用性の両方を実現できます。",
+    category: "High Availability and Scalability",
+    explanation: "Using an Amazon EC2 Auto Scaling group with a target tracking scaling policy allows the instance count to be automatically adjusted based on metrics such as CPU utilization or request count. This enables automatic scale-out and scale-in in response to traffic fluctuations, achieving both cost efficiency and high availability.",
     optionExplanations: [
-      "Lambda関数とCloudWatch Eventsを使用した定期的な起動/終了は、予測可能なスケジュールベースのスケーリングには適していますが、トラフィックの急激な変動に対応する動的なスケーリングには適していません。",
-      "✓ 正解: Auto Scalingグループとターゲット追跡スケーリングポリシーを使用することで、指定したメトリクス（CPU使用率、ALBリクエスト数など）に基づいて自動的にインスタンス数を調整できます。トラフィックの増減に応じて自動的にスケールし、運用の手間を削減しながらコスト効率を最適化できます。",
-      "CloudWatchアラームを使用した手動スケーリングは、運用負荷が高く、トラフィックの急増に迅速に対応できません。自動化されたソリューションが必要です。",
-      "Elastic Beanstalkは便利なデプロイメントサービスですが、手動スケーリングでは自動的なスケールアウト/スケールインの要件を満たせません。"
+      "Periodically starting and terminating instances with a Lambda function and CloudWatch Events is suitable for predictable, schedule-based scaling, but is not appropriate for dynamic scaling in response to sudden traffic spikes.",
+      "✓ Correct: Using an Auto Scaling group with a target tracking scaling policy automatically adjusts instance count based on the specified metric (e.g., CPU utilization, ALB request count). It scales automatically with traffic changes, reducing operational overhead while optimizing cost efficiency.",
+      "Manual scaling using CloudWatch alarms places a high operational burden and cannot respond quickly to sudden traffic spikes. An automated solution is required.",
+      "Elastic Beanstalk is a convenient deployment service, but manual scaling cannot satisfy the requirement for automatic scale-out and scale-in."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html", title: "Amazon EC2 Auto Scaling とは" },
-      { url: "https://docs.aws.amazon.com/ja_jp/autoscaling/ec2/userguide/as-scaling-target-tracking.html", title: "ターゲット追跡スケーリングポリシー" }
+      { url: "https://docs.aws.amazon.com/autoscaling/ec2/userguide/what-is-amazon-ec2-auto-scaling.html", title: "What is Amazon EC2 Auto Scaling" },
+      { url: "https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-scaling-target-tracking.html", title: "Target tracking scaling policies" }
     ]
   },
   {
     id: 2,
-    question: "ある企業は、Amazon S3バケットに保存されている機密データを保護する必要があります。データは、保管時および転送時の両方で暗号化する必要があります。また、同社は暗号化キーを完全に管理し、キーのローテーションを自動化したいと考えています。\n\nこれらの要件を満たすソリューションはどれですか。",
+    question: "A company needs to protect sensitive data stored in an Amazon S3 bucket. The data must be encrypted both at rest and in transit. The company also wants full control over encryption keys and the ability to automate key rotation.\n\nWhich solution meets these requirements?",
     options: [
-      "Amazon S3のデフォルト暗号化（SSE-S3）を使用し、HTTPSを使用してデータを転送する。",
-      "クライアント側の暗号化を使用し、暗号化されたデータをHTTPで転送する。",
-      "顧客提供の暗号化キー（SSE-C）を使用し、HTTPを使用してデータを転送する。",
-      "AWS KMS（SSE-KMS）でカスタマーマネージドキーを使用し、HTTPSを使用してデータを転送する。"
+      "Use Amazon S3 default encryption (SSE-S3) and transfer data over HTTPS.",
+      "Use client-side encryption and transfer the encrypted data over HTTP.",
+      "Use customer-provided encryption keys (SSE-C) and transfer data over HTTP.",
+      "Use AWS KMS (SSE-KMS) with a customer managed key and transfer data over HTTPS."
     ],
     correctAnswer: 3,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS KMS（SSE-KMS）でカスタマーマネージドキーを使用することで、暗号化キーを完全に管理でき、自動的なキーローテーションも設定できます。HTTPSを使用することで転送時の暗号化も実現できます。KMSは、キーの使用状況の監査ログも提供します。",
+    category: "Security and Compliance",
+    explanation: "Using AWS KMS (SSE-KMS) with a customer managed key provides full control over encryption keys and the ability to configure automatic key rotation. Using HTTPS ensures encryption in transit. KMS also provides audit logs of key usage.",
     optionExplanations: [
-      "SSE-S3はAWSが暗号化キーを管理するため、「キーを完全に管理」という要件を満たしません。キーのローテーションもAWSが自動的に行いますが、顧客による制御はできません。",
-      "クライアント側の暗号化は保管時の暗号化を実現できますが、HTTPでは転送時の暗号化が不十分です。また、キー管理の自動化が複雑になります。",
-      "SSE-Cは顧客が暗号化キーを提供しますが、キーの自動ローテーション機能はありません。また、HTTPでは転送時の暗号化が不十分です。",
-      "✓ 正解: AWS KMSのカスタマーマネージドキーを使用することで、暗号化キーの完全な管理が可能になります。自動キーローテーションの有効化、キーポリシーの設定、キー使用の監査ログの取得ができます。HTTPSにより転送時の暗号化も実現します。"
+      "SSE-S3 has AWS manage the encryption keys, so it does not satisfy the requirement of 'full control over keys.' Key rotation is handled automatically by AWS but cannot be controlled by the customer.",
+      "Client-side encryption can achieve encryption at rest, but HTTP is insufficient for encryption in transit. Key management automation also becomes more complex.",
+      "SSE-C allows the customer to provide the encryption key, but there is no automatic key rotation feature. HTTP is also insufficient for encryption in transit.",
+      "✓ Correct: Using a customer managed key in AWS KMS enables full control over encryption keys. You can enable automatic key rotation, configure key policies, and obtain audit logs of key usage. HTTPS ensures encryption in transit."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/UsingKMSEncryption.html", title: "AWS KMS によるサーバー側の暗号化 (SSE-KMS)" },
-      { url: "https://docs.aws.amazon.com/ja_jp/kms/latest/developerguide/rotate-keys.html", title: "キーのローテーション" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html", title: "Server-Side Encryption with AWS KMS (SSE-KMS)" },
+      { url: "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html", title: "Rotating AWS KMS keys" }
     ]
   },
   {
     id: 3,
-    question: "ある企業は、Amazon RDS for MySQLデータベースを使用しています。データベースは現在、単一のアベイラビリティーゾーンで実行されています。同社は、データベースの可用性を向上させ、計画的なメンテナンス中のダウンタイムを最小限に抑えたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses an Amazon RDS for MySQL database. The database currently runs in a single Availability Zone. The company wants to improve database availability and minimize downtime during planned maintenance windows.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "RDSデータベースのリードレプリカを別のアベイラビリティーゾーンに作成する。",
-      "RDSデータベースの自動バックアップを有効にし、バックアップ保持期間を7日間に設定する。",
-      "RDSデータベースのマルチAZ配置を有効にする。",
-      "Amazon Aurora Serverlessに移行する。"
+      "Create a read replica of the RDS database in a different Availability Zone.",
+      "Enable automated backups on the RDS database and set the backup retention period to 7 days.",
+      "Enable Multi-AZ deployment for the RDS database.",
+      "Migrate to Amazon Aurora Serverless."
     ],
     correctAnswer: 2,
-    category: "高可用性とスケーラビリティ",
-    explanation: "RDSのマルチAZ配置を有効にすることで、プライマリデータベースインスタンスの同期レプリカが別のアベイラビリティーゾーンに自動的に作成されます。障害発生時やメンテナンス時には、自動的にスタンバイインスタンスにフェイルオーバーされ、ダウンタイムを最小限に抑えることができます。",
+    category: "High Availability and Scalability",
+    explanation: "Enabling Multi-AZ deployment for RDS automatically creates a synchronous replica of the primary database instance in a different Availability Zone. In the event of a failure or during maintenance, the system automatically fails over to the standby instance, minimizing downtime.",
     optionExplanations: [
-      "リードレプリカは読み取りスケーラビリティを向上させますが、自動フェイルオーバー機能はありません。プライマリインスタンスに障害が発生した場合、手動でリードレプリカを昇格させる必要があります。",
-      "自動バックアップはデータ保護には重要ですが、計画的なメンテナンス中のダウンタイムを削減する直接的な解決策ではありません。",
-      "✓ 正解: マルチAZ配置は、高可用性とデータ耐久性を提供します。プライマリインスタンスに障害が発生した場合やメンテナンス時に、自動的にスタンバイインスタンスにフェイルオーバーされます。通常、フェイルオーバーは1〜2分で完了し、ダウンタイムを最小限に抑えることができます。",
-      "Aurora Serverlessは自動スケーリング機能を提供しますが、移行には時間とコストがかかります。既存のRDSインスタンスでマルチAZを有効にする方が、より迅速で簡単な解決策です。"
+      "A read replica improves read scalability but does not provide automatic failover. If the primary instance fails, the read replica must be manually promoted.",
+      "Automated backups are important for data protection but are not a direct solution for reducing downtime during planned maintenance windows.",
+      "✓ Correct: Multi-AZ deployment provides high availability and data durability. When the primary instance fails or undergoes maintenance, it automatically fails over to the standby instance. Failover typically completes within 1–2 minutes, minimizing downtime.",
+      "Aurora Serverless provides automatic scaling capabilities, but migration takes time and cost. Enabling Multi-AZ on the existing RDS instance is a faster and simpler solution."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html", title: "マルチ AZ 配置" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html", title: "Multi-AZ deployments for high availability" }
     ]
   },
   {
     id: 4,
-    question: "ある企業は、Amazon S3に保存されている大量のログファイルを分析する必要があります。ログファイルは毎日生成され、分析は月に1回実行されます。同社は、ストレージコストを最小限に抑えながら、必要なときにログファイルにアクセスできるソリューションを実装したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company needs to analyze large volumes of log files stored in Amazon S3. The log files are generated daily, and analysis is run once a month. The company wants to implement a solution that minimizes storage costs while still allowing access to the log files when needed.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3 Intelligent-Tieringストレージクラスを使用する。",
-      "S3 Standardストレージクラスを使用し、30日後にS3 Glacier Deep Archiveに移行するライフサイクルポリシーを設定する。",
-      "S3 One Zone-Infrequent Accessストレージクラスを使用する。",
-      "S3 Standardストレージクラスを使用し、ライフサイクルポリシーを設定しない。"
+      "Use the S3 Intelligent-Tiering storage class.",
+      "Use the S3 Standard storage class and configure a lifecycle policy to transition objects to S3 Glacier Deep Archive after 30 days.",
+      "Use the S3 One Zone-Infrequent Access storage class.",
+      "Use the S3 Standard storage class with no lifecycle policy."
     ],
     correctAnswer: 1,
-    category: "モニタリングとコスト最適化",
-    explanation: "ログファイルは月に1回しかアクセスされないため、S3 Standardで保存し、30日後にS3 Glacier Deep Archiveに移行するライフサイクルポリシーを設定することで、ストレージコストを大幅に削減できます。Glacier Deep Archiveは最も低コストのストレージクラスで、長期保存に最適です。",
+    category: "Monitoring and Cost Optimization",
+    explanation: "Because log files are accessed only once a month, storing them in S3 Standard and configuring a lifecycle policy to transition them to S3 Glacier Deep Archive after 30 days significantly reduces storage costs. Glacier Deep Archive is the lowest-cost storage class and is ideal for long-term retention.",
     optionExplanations: [
-      "S3 Intelligent-Tieringは、アクセスパターンが不明または変動する場合に適していますが、明確に月1回のアクセスパターンがある場合は、ライフサイクルポリシーを使用した方がコスト効率が良くなります。",
-      "✓ 正解: S3 Standardで新しいログファイルを保存し、30日後にGlacier Deep Archiveに自動移行することで、最初の30日間は迅速なアクセスが可能で、その後は最も低コストのストレージに移行できます。月次分析時には、必要なファイルを取り出すことができます（取り出しには12時間程度かかる場合があります）。",
-      "S3 One Zone-IAは、アクセス頻度の低いデータに適していますが、単一のアベイラビリティーゾーンにのみ保存されるため、耐久性が低くなります。また、Glacier Deep Archiveほどコストが低くありません。",
-      "S3 Standardのみを使用すると、アクセス頻度の低いデータに対して不必要に高いストレージコストが発生します。"
+      "S3 Intelligent-Tiering is suitable when access patterns are unknown or variable. When the access pattern is clearly once a month, a lifecycle policy is more cost-efficient.",
+      "✓ Correct: Storing new log files in S3 Standard and automatically transitioning them to Glacier Deep Archive after 30 days allows rapid access during the first 30 days, then moves files to the lowest-cost storage tier. During monthly analysis, files can be retrieved as needed (retrieval may take approximately 12 hours).",
+      "S3 One Zone-IA is suitable for infrequently accessed data, but it stores data in only a single Availability Zone, reducing durability. It is also not as cost-effective as Glacier Deep Archive.",
+      "Using S3 Standard alone incurs unnecessarily high storage costs for infrequently accessed data."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html", title: "Amazon S3 ドキュメント" },
-      { url: "https://aws.amazon.com/jp/s3/storage-classes/", title: "Storage Classes" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html", title: "Transitioning objects using Amazon S3 Lifecycle" },
+      { url: "https://aws.amazon.com/s3/storage-classes/", title: "Amazon S3 Storage Classes" }
     ]
   },
   {
     id: 5,
-    question: "ある企業は、オンプレミスのデータセンターからAWSへの移行を計画しています。同社は、既存のVMware環境をAWSに移行し、既存の管理ツールとプロセスを継続して使用したいと考えています。また、移行後もVMware vSphereを使用してワークロードを管理したいと考えています。\n\nこれらの要件を満たすAWSサービスはどれですか。",
+    question: "A company is planning to migrate from an on-premises data center to AWS. The company wants to migrate its existing VMware environment to AWS and continue using its existing management tools and processes. It also wants to continue managing workloads with VMware vSphere after the migration.\n\nWhich AWS service meets these requirements?",
     options: [
       "AWS Application Migration Service",
       "AWS Server Migration Service",
@@ -101,178 +101,178 @@ const awsSAAQuestions = [
       "VMware Cloud on AWS"
     ],
     correctAnswer: 3,
-    category: "アプリケーション統合",
-    explanation: "VMware Cloud on AWSは、VMware vSphereベースの環境をAWSクラウドで実行できるサービスです。既存のVMware管理ツール（vCenter、vSphere、NSXなど）を継続して使用でき、オンプレミスのVMware環境からシームレスに移行できます。",
+    category: "Application Integration",
+    explanation: "VMware Cloud on AWS is a service that allows VMware vSphere-based environments to run on the AWS Cloud. You can continue using existing VMware management tools (vCenter, vSphere, NSX, etc.) and migrate seamlessly from on-premises VMware environments.",
     optionExplanations: [
-      "AWS Application Migration Serviceは、アプリケーションをAWSに移行するためのサービスですが、VMware管理ツールの継続使用はサポートしていません。",
-      "AWS Server Migration Serviceは、オンプレミスのワークロードをAWSに移行するためのサービスですが、移行後はEC2インスタンスとして実行され、VMware vSphereでの管理はできません。",
-      "Amazon EC2は仮想サーバーを提供しますが、VMware vSphereでの管理はサポートしていません。EC2インスタンスはAWSの管理ツールで管理する必要があります。",
-      "✓ 正解: VMware Cloud on AWSは、VMware vSphereベースの環境をAWSで実行できる統合サービスです。既存のVMware管理ツール（vCenter、vSphere、NSX、vSANなど）を継続して使用でき、オンプレミスのVMware環境との間でワークロードを移動できます。VMwareのスキルとツールを活用しながら、AWSのスケーラビリティと柔軟性を利用できます。"
+      "AWS Application Migration Service is designed to migrate applications to AWS, but it does not support continued use of VMware management tools.",
+      "AWS Server Migration Service migrates on-premises workloads to AWS, but after migration the workloads run as EC2 instances and cannot be managed with VMware vSphere.",
+      "Amazon EC2 provides virtual servers but does not support management with VMware vSphere. EC2 instances must be managed using AWS management tools.",
+      "✓ Correct: VMware Cloud on AWS is an integrated service that runs VMware vSphere-based environments on AWS. You can continue using existing VMware management tools (vCenter, vSphere, NSX, vSAN, etc.) and move workloads between the on-premises VMware environment and AWS. You can leverage VMware skills and tools while taking advantage of AWS scalability and flexibility."
     ],
     references: [
-      { url: "https://aws.amazon.com/jp/vmware/", title: "Vmware" }
+      { url: "https://aws.amazon.com/vmware/", title: "VMware Cloud on AWS" }
     ]
   },
   {
     id: 6,
-    question: "ある企業は、Amazon DynamoDBテーブルを使用してユーザーセッションデータを保存しています。アプリケーションは、ピーク時に1秒あたり10,000回の読み取りリクエストを処理する必要があります。各項目のサイズは4 KBです。同社は、コスト効率の高いソリューションを実装したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきDynamoDBの設定はどれですか。",
+    question: "A company uses an Amazon DynamoDB table to store user session data. The application must handle 10,000 read requests per second at peak. Each item is 4 KB in size. The company wants to implement a cost-efficient solution.\n\nWhich DynamoDB configuration should a solutions architect recommend to meet these requirements?",
     options: [
-      "プロビジョニングされたキャパシティモードで、10,000読み取りキャパシティユニット（RCU）を設定する。",
-      "プロビジョニングされたキャパシティモードで、Auto Scalingを有効にする。",
-      "オンデマンドキャパシティモードを使用する。",
-      "プロビジョニングされたキャパシティモードで、5,000 RCUを設定し、DynamoDB Accelerator (DAX)を使用する。"
+      "Use provisioned capacity mode and set 10,000 read capacity units (RCUs).",
+      "Use provisioned capacity mode and enable Auto Scaling.",
+      "Use on-demand capacity mode.",
+      "Use provisioned capacity mode, set 5,000 RCUs, and use DynamoDB Accelerator (DAX)."
     ],
     correctAnswer: 1,
-    category: "コンピューティング",
-    explanation: "プロビジョニングされたキャパシティモードでAuto Scalingを有効にすることで、トラフィックの変動に応じて自動的にキャパシティを調整できます。これにより、ピーク時のパフォーマンスを確保しながら、低トラフィック時のコストを削減できます。",
+    category: "Compute",
+    explanation: "Enabling Auto Scaling in provisioned capacity mode automatically adjusts capacity in response to traffic fluctuations. This ensures performance at peak load while reducing costs during low-traffic periods.",
     optionExplanations: [
-      "10,000 RCUを常時プロビジョニングすると、ピーク時以外の時間帯に不必要なコストが発生します。トラフィックが変動する場合、固定キャパシティは非効率的です。",
-      "✓ 正解: プロビジョニングされたキャパシティモードでAuto Scalingを有効にすることで、トラフィックの増減に応じて自動的にRCUを調整できます。ピーク時には必要なキャパシティを確保し、低トラフィック時にはキャパシティを削減してコストを最適化できます。これは、予測可能なトラフィックパターンがある場合に最もコスト効率の高いソリューションです。",
-      "オンデマンドモードは、予測不可能なワークロードに適していますが、一貫して高いトラフィックがある場合、プロビジョニングされたキャパシティモードよりもコストが高くなる可能性があります。",
-      "DAXはキャッシュレイヤーを提供し、読み取りパフォーマンスを向上させますが、追加のコストが発生します。まずAuto Scalingを試してから、必要に応じてDAXを検討するべきです。"
+      "Permanently provisioning 10,000 RCUs incurs unnecessary costs during off-peak hours. Fixed capacity is inefficient when traffic varies.",
+      "✓ Correct: Enabling Auto Scaling in provisioned capacity mode automatically adjusts RCUs as traffic increases or decreases. It ensures the necessary capacity at peak while scaling down to minimize costs at low traffic. This is the most cost-efficient solution when traffic patterns are predictable.",
+      "On-demand mode is suitable for unpredictable workloads, but may be more expensive than provisioned capacity mode when traffic is consistently high.",
+      "DAX provides a caching layer and improves read performance, but adds additional cost. Auto Scaling should be evaluated first, with DAX considered only if further optimization is needed."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html", title: "Amazon DynamoDB ドキュメント" },
-      { url: "https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/AutoScaling.html", title: "Amazon DynamoDB ドキュメント" }
+      { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadWriteCapacityMode.html", title: "Read/write capacity mode" },
+      { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/AutoScaling.html", title: "Managing throughput capacity with DynamoDB Auto Scaling" }
     ]
   },
   {
     id: 7,
-    question: "ある企業は、AWS Lambda関数を使用してデータ処理を行っています。Lambda関数は、Amazon S3バケットに新しいファイルがアップロードされたときにトリガーされます。処理には通常5分かかりますが、Lambda関数のタイムアウトは15分に設定されています。同社は、処理が失敗した場合に自動的に再試行し、失敗したジョブを追跡できるソリューションを実装したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses an AWS Lambda function to process data. The Lambda function is triggered when a new file is uploaded to an Amazon S3 bucket. Processing typically takes 5 minutes, and the Lambda function timeout is set to 15 minutes. The company wants a solution that automatically retries when processing fails and allows failed jobs to be tracked.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3イベント通知を直接Lambda関数に送信し、Lambda関数内でエラーハンドリングを実装する。",
-      "AWS Step Functionsを使用してLambda関数を呼び出し、エラーハンドリングと再試行ロジックを実装する。",
-      "S3イベント通知をAmazon SNSトピックに送信し、Lambda関数をSNSトピックからトリガーする。",
-      "S3イベント通知をAmazon SQSキューに送信し、Lambda関数をSQSキューからトリガーする。"
+      "Send S3 event notifications directly to the Lambda function and implement error handling within the function.",
+      "Use AWS Step Functions to invoke the Lambda function and implement error handling and retry logic.",
+      "Send S3 event notifications to an Amazon SNS topic and trigger the Lambda function from the SNS topic.",
+      "Send S3 event notifications to an Amazon SQS queue and trigger the Lambda function from the SQS queue."
     ],
     correctAnswer: 3,
-    category: "アプリケーション統合",
-    explanation: "S3イベント通知をSQSキューに送信し、Lambda関数をSQSキューからトリガーすることで、自動的な再試行メカニズムとデッドレターキューを利用できます。処理が失敗した場合、メッセージは自動的に再試行され、最終的に失敗した場合はデッドレターキューに送信されて追跡できます。",
+    category: "Application Integration",
+    explanation: "Sending S3 event notifications to an SQS queue and triggering the Lambda function from the queue enables automatic retry mechanisms and a dead-letter queue. When processing fails, the message is automatically retried; if it ultimately fails, it is sent to the dead-letter queue for tracking.",
     optionExplanations: [
-      "S3イベント通知を直接Lambda関数に送信する場合、失敗時の自動再試行は限定的です（最大2回の再試行）。また、失敗したジョブの追跡が困難です。",
-      "Step Functionsは複雑なワークフローの調整に適していますが、この単純なユースケースには過剰です。SQSの方がシンプルでコスト効率が高いソリューションです。",
-      "SNSトピックを使用する場合、メッセージの再試行メカニズムが限定的で、失敗したメッセージの追跡が困難です。SNSは主に通知の配信に適しています。",
-      "✓ 正解: SQSキューを使用することで、メッセージの自動再試行、可視性タイムアウトの設定、デッドレターキューによる失敗メッセージの追跡が可能になります。Lambda関数が失敗した場合、メッセージは自動的にキューに戻され、再処理されます。最大受信回数を超えた場合、メッセージはデッドレターキューに移動され、失敗したジョブを分析できます。"
+      "When S3 event notifications are sent directly to a Lambda function, automatic retries on failure are limited (maximum 2 retries). Tracking failed jobs is also difficult.",
+      "Step Functions is well-suited for orchestrating complex workflows, but it is overkill for this straightforward use case. SQS provides a simpler and more cost-efficient solution.",
+      "Using an SNS topic offers limited retry mechanisms and makes it difficult to track failed messages. SNS is primarily suited for notification delivery.",
+      "✓ Correct: Using an SQS queue enables automatic message retries, configurable visibility timeouts, and a dead-letter queue (DLQ) to track failed messages. When a Lambda function fails, the message is automatically returned to the queue and reprocessed. Once the maximum receive count is exceeded, the message is moved to the DLQ where failed jobs can be analyzed."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-sqs.html", title: "AWS Lambda ドキュメント" },
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html", title: "Sqs Dead Letter Queues" }
+      { url: "https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html", title: "Using Lambda with Amazon SQS" },
+      { url: "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html", title: "Amazon SQS dead-letter queues" }
     ]
   },
   {
     id: 8,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、機密性の高い顧客データを処理します。同社は、EC2インスタンスへのSSHアクセスを制限し、すべてのアクセスをログに記録したいと考えています。また、EC2インスタンスにSSHキーを配布したくありません。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances that processes sensitive customer data. The company wants to restrict SSH access to the EC2 instances, log all access, and avoid distributing SSH keys to EC2 instances.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "踏み台ホスト（Bastion Host）を設定し、そこからEC2インスタンスにSSHアクセスする。",
-      "EC2 Instance Connectを使用してEC2インスタンスにアクセスする。",
-      "AWS Systems Manager Session Managerを使用してEC2インスタンスにアクセスする。",
-      "AWS IAMユーザーごとにSSHキーペアを作成し、EC2インスタンスに配布する。"
+      "Set up a bastion host and use it to SSH into EC2 instances.",
+      "Use EC2 Instance Connect to access EC2 instances.",
+      "Use AWS Systems Manager Session Manager to access EC2 instances.",
+      "Create an SSH key pair for each IAM user and distribute them to EC2 instances."
     ],
     correctAnswer: 2,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Systems Manager Session Managerを使用することで、SSHキーを管理することなく、EC2インスタンスへの安全なアクセスが可能になります。すべてのセッションはCloudTrailとCloudWatch Logsに記録され、IAMポリシーを使用してアクセスを制御できます。",
+    category: "Security and Compliance",
+    explanation: "AWS Systems Manager Session Manager provides secure access to EC2 instances without managing SSH keys. All sessions are logged to CloudTrail and CloudWatch Logs, and access is controlled using IAM policies.",
     optionExplanations: [
-      "踏み台ホストは追加のインフラストラクチャを必要とし、管理とセキュリティの複雑さが増します。また、SSHキーの管理が依然として必要です。",
-      "EC2 Instance Connectは便利ですが、一時的なSSHキーを使用するため、完全にSSHキーを排除するわけではありません。また、Session Managerほど包括的なログ記録機能はありません。",
-      "✓ 正解: Session Managerは、SSHキーやバスティオンホストを必要とせずに、EC2インスタンスへの安全なアクセスを提供します。すべてのセッションアクティビティはCloudTrailに記録され、セッションログはS3バケットまたはCloudWatch Logsに保存できます。IAMポリシーを使用して、誰がどのインスタンスにアクセスできるかを細かく制御できます。",
-      "IAMユーザーごとにSSHキーを作成して配布することは、キー管理の複雑さを増し、セキュリティリスクを高めます。キーのローテーションや失効管理も困難です。"
+      "A bastion host requires additional infrastructure and increases management and security complexity. SSH key management is still required.",
+      "EC2 Instance Connect is convenient but uses temporary SSH keys, so SSH keys are not fully eliminated. It also offers less comprehensive logging than Session Manager.",
+      "✓ Correct: Session Manager provides secure access to EC2 instances without requiring SSH keys or a bastion host. All session activity is logged to CloudTrail, and session logs can be stored in an S3 bucket or CloudWatch Logs. IAM policies provide fine-grained control over who can access which instances.",
+      "Creating and distributing SSH key pairs per IAM user increases key management complexity and security risk. Key rotation and revocation management are also difficult."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/systems-manager/latest/userguide/session-manager.html", title: "Session Manager" }
+      { url: "https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html", title: "AWS Systems Manager Session Manager" }
     ]
   },
   {
     id: 9,
-    question: "ある企業は、Amazon CloudFrontを使用して静的ウェブサイトを配信しています。ウェブサイトのコンテンツはAmazon S3バケットに保存されています。同社は、特定の地理的地域からのアクセスを制限したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses Amazon CloudFront to serve a static website. The website content is stored in an Amazon S3 bucket. The company wants to restrict access from specific geographic regions.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3バケットポリシーを使用して、特定のIPアドレス範囲からのアクセスを拒否する。",
-      "AWS WAFを使用して、特定の国からのリクエストをブロックする。",
-      "CloudFrontの地理的制限（Geo Restriction）機能を使用する。",
-      "Network ACLを使用して、特定のIPアドレス範囲からのトラフィックをブロックする。"
+      "Use an S3 bucket policy to deny access from specific IP address ranges.",
+      "Use AWS WAF to block requests from specific countries.",
+      "Use the CloudFront geographic restriction (Geo Restriction) feature.",
+      "Use a Network ACL to block traffic from specific IP address ranges."
     ],
     correctAnswer: 2,
-    category: "セキュリティとコンプライアンス",
-    explanation: "CloudFrontの地理的制限機能を使用することで、特定の国や地域からのアクセスを簡単に制限できます。この機能は、ユーザーのIPアドレスに基づいて地理的位置を判断し、許可リストまたは拒否リストに基づいてアクセスを制御します。",
+    category: "Security and Compliance",
+    explanation: "The CloudFront geographic restriction feature allows you to easily restrict access from specific countries or regions. It determines the geographic location of users based on their IP addresses and controls access using an allowlist or blocklist.",
     optionExplanations: [
-      "S3バケットポリシーでIPアドレス範囲を制限することは可能ですが、地理的地域ごとのIPアドレス範囲を維持することは複雑で、IPアドレスは変動するため効果的ではありません。",
-      "AWS WAFを使用して地理的制限を実装することも可能ですが、CloudFrontの組み込み地理的制限機能の方がシンプルで、この要件には十分です。WAFは、より複雑なルールが必要な場合に適しています。",
-      "✓ 正解: CloudFrontの地理的制限機能は、特定の国や地域からのアクセスを制限する最も簡単で効果的な方法です。許可リスト（ホワイトリスト）または拒否リスト（ブラックリスト）を使用して、特定の国からのアクセスを制御できます。この機能は追加コストなしで利用でき、設定も簡単です。",
-      "Network ACLはVPCレベルのセキュリティ制御であり、CloudFrontディストリビューションには適用できません。また、地理的位置に基づく制限には適していません。"
+      "Restricting IP address ranges in an S3 bucket policy is possible, but maintaining IP ranges per geographic region is complex and ineffective because IP addresses change frequently.",
+      "Implementing geographic restrictions with AWS WAF is also possible, but the built-in CloudFront Geo Restriction feature is simpler and sufficient for this requirement. WAF is more appropriate when complex rules are needed.",
+      "✓ Correct: The CloudFront Geo Restriction feature is the simplest and most effective way to restrict access from specific countries or regions. You can control access using an allowlist (whitelist) or blocklist (blacklist). This feature is available at no additional cost and is easy to configure.",
+      "Network ACLs are VPC-level security controls and cannot be applied to a CloudFront distribution. They are also not suitable for geographic-based restrictions."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html", title: "Amazon CloudFront ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html", title: "Restricting the geographic distribution of your content" }
     ]
   },
   {
     id: 10,
-    question: "ある企業は、Amazon ECSを使用してコンテナ化されたアプリケーションを実行しています。アプリケーションは、機密性の高いデータベース認証情報を使用してAmazon RDSデータベースに接続する必要があります。同社は、認証情報をコンテナイメージにハードコーディングせず、安全に管理したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company runs a containerized application on Amazon ECS. The application needs to connect to an Amazon RDS database using sensitive database credentials. The company wants to manage the credentials securely without hardcoding them into the container image.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "環境変数を使用してECSタスク定義に認証情報を保存する。",
-      "AWS Systems Manager Parameter Storeに平文で認証情報を保存し、ECSタスク定義で参照する。",
-      "S3バケットに認証情報を保存し、ECSタスクの起動時にダウンロードする。",
-      "AWS Secrets Managerに認証情報を保存し、ECSタスク定義で参照する。"
+      "Store the credentials as environment variables in the ECS task definition.",
+      "Store the credentials in plaintext in AWS Systems Manager Parameter Store and reference them in the ECS task definition.",
+      "Store the credentials in an S3 bucket and download them when the ECS task starts.",
+      "Store the credentials in AWS Secrets Manager and reference them in the ECS task definition."
     ],
     correctAnswer: 3,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Secrets Managerを使用することで、データベース認証情報を安全に保存し、自動的にローテーションできます。ECSタスク定義でSecrets Managerのシークレットを参照することで、コンテナは実行時に認証情報を取得でき、認証情報をコードやイメージにハードコーディングする必要がありません。",
+    category: "Security and Compliance",
+    explanation: "Using AWS Secrets Manager allows database credentials to be stored securely and rotated automatically. By referencing Secrets Manager secrets in the ECS task definition, containers can retrieve credentials at runtime without hardcoding them in the code or image.",
     optionExplanations: [
-      "環境変数をECSタスク定義に直接保存すると、認証情報が平文で保存され、セキュリティリスクが高まります。また、認証情報のローテーションが困難です。",
-      "Systems Manager Parameter Storeは認証情報の保存に使用できますが、平文で保存することはセキュリティリスクです。SecureString型を使用すべきですが、Secrets Managerの方がデータベース認証情報の管理に特化しており、自動ローテーション機能も提供します。",
-      "S3バケットに認証情報を保存することは可能ですが、Secrets Managerほど安全ではなく、自動ローテーション機能もありません。また、追加のコードが必要になります。",
-      "✓ 正解: AWS Secrets Managerは、データベース認証情報、APIキー、その他の機密情報を安全に保存、管理、取得するためのサービスです。認証情報の自動ローテーション、きめ細かなアクセス制御、監査ログを提供します。ECSタスク定義でSecrets Managerのシークレットを参照することで、コンテナは実行時に安全に認証情報を取得できます。"
+      "Storing credentials directly as environment variables in the ECS task definition saves them in plaintext, increasing security risk. Rotating credentials is also difficult.",
+      "Systems Manager Parameter Store can store credentials, but storing them in plaintext is a security risk. While the SecureString type should be used, Secrets Manager is more specialized for managing database credentials and provides automatic rotation.",
+      "Storing credentials in an S3 bucket is possible but is less secure than Secrets Manager, offers no automatic rotation, and requires additional code.",
+      "✓ Correct: AWS Secrets Manager is a service for securely storing, managing, and retrieving database credentials, API keys, and other sensitive information. It provides automatic credential rotation, fine-grained access control, and audit logs. By referencing Secrets Manager secrets in the ECS task definition, containers can securely retrieve credentials at runtime."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/specifying-sensitive-data-secrets.html", title: "Specifying Sensitive Data Secrets" },
-      { url: "https://docs.aws.amazon.com/ja_jp/secretsmanager/latest/userguide/intro.html", title: "Intro" }
+      { url: "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data-secrets.html", title: "Specifying sensitive data using Secrets Manager" },
+      { url: "https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html", title: "What is AWS Secrets Manager?" }
     ]
   },
   {
     id: 11,
-    question: "ある企業は、Amazon Route 53を使用してDNSを管理しています。同社は、ウェブアプリケーションのトラフィックを複数のAWSリージョンに分散させ、ユーザーに最も近いリージョンにルーティングしたいと考えています。また、リージョンに障害が発生した場合は、自動的に別のリージョンにフェイルオーバーする必要があります。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきRoute 53のルーティングポリシーはどれですか。",
+    question: "A company manages DNS using Amazon Route 53. The company wants to distribute web application traffic across multiple AWS Regions, routing each user to the nearest Region. It also needs automatic failover to another Region if a Region becomes unavailable.\n\nWhich Route 53 routing policy should a solutions architect recommend to meet these requirements?",
     options: [
-      "シンプルルーティングポリシー",
-      "加重ルーティングポリシー",
-      "フェイルオーバールーティングポリシー",
-      "地理的近接性ルーティングポリシーとヘルスチェック"
+      "Simple routing policy",
+      "Weighted routing policy",
+      "Failover routing policy",
+      "Geoproximity routing policy with health checks"
     ],
     correctAnswer: 3,
-    category: "高可用性とスケーラビリティ",
-    explanation: "地理的近接性ルーティングポリシーを使用することで、ユーザーの地理的位置に基づいて最も近いリージョンにトラフィックをルーティングできます。ヘルスチェックと組み合わせることで、リージョンに障害が発生した場合に自動的に正常なリージョンにフェイルオーバーできます。",
+    category: "High Availability and Scalability",
+    explanation: "The geoproximity routing policy routes traffic to the nearest Region based on the geographic location of the user. Combined with health checks, it automatically fails over to a healthy Region when a Region becomes unavailable.",
     optionExplanations: [
-      "シンプルルーティングポリシーは、単一のリソースまたは複数のリソースにランダムにトラフィックをルーティングしますが、地理的近接性やヘルスチェックベースのフェイルオーバーはサポートしていません。",
-      "加重ルーティングポリシーは、指定した比率でトラフィックを分散しますが、ユーザーの地理的位置に基づくルーティングはサポートしていません。",
-      "フェイルオーバールーティングポリシーは、プライマリとセカンダリのリソース間でのフェイルオーバーには適していますが、複数のリージョン間での地理的近接性ベースのルーティングには適していません。",
-      "✓ 正解: 地理的近接性ルーティングポリシーは、ユーザーとリソースの地理的位置に基づいてトラフィックをルーティングします。ヘルスチェックを設定することで、リージョンの健全性を監視し、障害が発生した場合は自動的に正常なリージョンにトラフィックをルーティングできます。バイアス値を調整することで、特定のリージョンへのトラフィック量を微調整することも可能です。"
+      "The simple routing policy routes traffic to a single resource or randomly to multiple resources. It does not support geoproximity-based routing or health check-based failover.",
+      "The weighted routing policy distributes traffic according to specified ratios but does not support routing based on the user's geographic location.",
+      "The failover routing policy is suitable for failover between primary and secondary resources, but is not designed for geoproximity-based routing across multiple Regions.",
+      "✓ Correct: The geoproximity routing policy routes traffic based on the geographic location of users and resources. Configuring health checks enables monitoring of each Region's health, and traffic is automatically rerouted to a healthy Region when a failure is detected. Bias values can also be adjusted to fine-tune the volume of traffic directed to specific Regions."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/Route53/latest/DeveloperGuide/routing-policy.html", title: "Routing Policy" }
+      { url: "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html", title: "Choosing a routing policy" }
     ]
   },
   {
     id: 12,
-    question: "ある企業は、Amazon Redshiftデータウェアハウスを使用して大規模なデータ分析を行っています。分析クエリは通常、夜間バッチ処理中に実行され、日中はほとんど使用されません。同社は、使用していない時間帯のコストを削減したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses an Amazon Redshift data warehouse to perform large-scale data analytics. Analytical queries typically run during nightly batch processing and the cluster is rarely used during the day. The company wants to reduce costs during idle hours.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Redshiftクラスターを削除し、必要なときに再作成する。",
-      "Redshiftクラスターのスナップショットを作成し、クラスターを削除して、必要なときにスナップショットから復元する。",
-      "Redshiftクラスターをリザーブドインスタンスに変更する。",
-      "Redshiftクラスターの一時停止と再開のスケジュールを設定する。"
+      "Delete the Redshift cluster and recreate it when needed.",
+      "Create a snapshot of the Redshift cluster, delete the cluster, and restore from the snapshot when needed.",
+      "Convert the Redshift cluster to Reserved Instances.",
+      "Schedule pause and resume for the Redshift cluster."
     ],
     correctAnswer: 3,
-    category: "モニタリングとコスト最適化",
-    explanation: "Redshiftクラスターの一時停止と再開機能を使用することで、使用していない時間帯のコンピューティングコストを削減できます。クラスターを一時停止すると、コンピューティングノードの料金は発生せず、ストレージの料金のみが課金されます。",
+    category: "Monitoring and Cost Optimization",
+    explanation: "Using the Redshift cluster pause and resume feature reduces compute costs during idle hours. While the cluster is paused, compute node charges stop and only storage charges are incurred.",
     optionExplanations: [
-      "クラスターを削除すると、すべてのデータが失われます。スナップショットを作成しない限り、データを復元できません。",
-      "スナップショットからの復元は可能ですが、クラスターの再作成には時間がかかり、運用が複雑になります。一時停止/再開の方が迅速で簡単です。",
-      "リザーブドインスタンスは長期的なコスト削減には有効ですが、使用していない時間帯のコストを削減することはできません。1年または3年の契約期間中、継続的に料金が発生します。",
-      "✓ 正解: Redshiftクラスターの一時停止機能を使用することで、使用していない時間帯のコンピューティングコストを削減できます。一時停止中はコンピューティングノードの料金は発生せず、ストレージの料金のみが課金されます。AWS CLIやAWS Lambda、EventBridgeを使用して、一時停止と再開を自動化できます。再開は数分で完了し、データはそのまま保持されます。"
+      "Deleting the cluster causes all data to be lost unless a snapshot is first created.",
+      "Restoring from a snapshot is possible, but recreating the cluster takes time and increases operational complexity. Pause/resume is faster and simpler.",
+      "Reserved Instances are effective for long-term cost reduction but cannot eliminate costs during idle periods. Charges continue throughout the 1- or 3-year commitment.",
+      "✓ Correct: The Redshift cluster pause feature eliminates compute node charges during idle hours; only storage charges continue while the cluster is paused. Pause and resume can be automated using the AWS CLI, AWS Lambda, or EventBridge. Resume completes in a few minutes and all data is retained."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/redshift/latest/mgmt/managing-cluster-operations.html#rs-mgmt-pause-resume-cluster", title: "Managing Cluster Operations#Rs Mgmt Pause Resume Cluster" }
+      { url: "https://docs.aws.amazon.com/redshift/latest/mgmt/managing-cluster-operations.html#rs-mgmt-pause-resume-cluster", title: "Pausing and resuming a cluster" }
     ]
   },
   {
     id: 13,
-    question: "ある企業は、AWS上で実行されているウェブアプリケーションのパフォーマンスを監視したいと考えています。同社は、アプリケーションの各コンポーネント（ALB、EC2、RDS、Lambda）のレスポンスタイムとエラー率を追跡し、問題が発生した場合に迅速に特定したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきAWSサービスはどれですか。",
+    question: "A company wants to monitor the performance of a web application running on AWS. The company needs to track response times and error rates for each application component (ALB, EC2, RDS, Lambda) and quickly identify the source of issues when they occur.\n\nWhich AWS service should a solutions architect recommend to meet these requirements?",
     options: [
       "Amazon CloudWatch Logs",
       "AWS X-Ray",
@@ -280,21 +280,21 @@ const awsSAAQuestions = [
       "Amazon Inspector"
     ],
     correctAnswer: 1,
-    category: "モニタリングとコスト最適化",
-    explanation: "AWS X-Rayは、分散アプリケーションのトレースと分析を行うサービスです。アプリケーションの各コンポーネントのレスポンスタイム、エラー、スロットリングを可視化し、パフォーマンスのボトルネックを特定できます。",
+    category: "Monitoring and Cost Optimization",
+    explanation: "AWS X-Ray is a service for tracing and analyzing distributed applications. It visualizes response times, errors, and throttling for each application component and identifies performance bottlenecks.",
     optionExplanations: [
-      "CloudWatch Logsはログデータの収集と分析に適していますが、分散トレーシングやエンドツーエンドのリクエストフローの可視化には特化していません。",
-      "✓ 正解: AWS X-Rayは、分散アプリケーションのエンドツーエンドのトレースを提供します。リクエストがALB、EC2、RDS、Lambdaなどの各コンポーネントを通過する際のレスポンスタイム、エラー、スロットリングを可視化できます。サービスマップを使用して、アプリケーションのアーキテクチャとコンポーネント間の依存関係を視覚的に理解でき、パフォーマンスのボトルネックを迅速に特定できます。",
-      "CloudTrailはAWS APIコールの監査ログを記録するサービスで、セキュリティとコンプライアンスの監査に使用されます。アプリケーションのパフォーマンス監視には適していません。",
-      "Amazon Inspectorは、EC2インスタンスとコンテナイメージの脆弱性スキャンを行うセキュリティサービスです。アプリケーションのパフォーマンス監視には使用されません。"
+      "CloudWatch Logs is well-suited for collecting and analyzing log data, but it is not specialized for distributed tracing or end-to-end request flow visualization.",
+      "✓ Correct: AWS X-Ray provides end-to-end tracing for distributed applications. It visualizes response times, errors, and throttling as requests pass through components such as ALB, EC2, RDS, and Lambda. Service maps help you visually understand the application architecture and dependencies between components, enabling rapid identification of performance bottlenecks.",
+      "CloudTrail records audit logs of AWS API calls and is used for security and compliance auditing. It is not suitable for monitoring application performance.",
+      "Amazon Inspector is a security service that performs vulnerability scanning on EC2 instances and container images. It is not used for monitoring application performance."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/xray/latest/devguide/aws-xray.html", title: "Aws Xray" }
+      { url: "https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html", title: "What is AWS X-Ray?" }
     ]
   },
   {
     id: 14,
-    question: "ある企業は、オンプレミスのファイルサーバーからAWSへの移行を計画しています。同社は、既存のSMBプロトコルを使用してファイルにアクセスし続けたいと考えています。また、頻繁にアクセスされるファイルは低レイテンシでアクセスでき、アクセス頻度の低いファイルは自動的に低コストのストレージに移行されるソリューションを実装したいと考えています。\n\nこれらの要件を満たすAWSサービスはどれですか。",
+    question: "A company is planning to migrate from an on-premises file server to AWS. The company wants to continue accessing files using the existing SMB protocol. It also wants a solution where frequently accessed files are available with low latency and infrequently accessed files are automatically tiered to lower-cost storage.\n\nWhich AWS service meets these requirements?",
     options: [
       "Amazon EFS",
       "AWS Storage Gateway - File Gateway",
@@ -302,307 +302,307 @@ const awsSAAQuestions = [
       "Amazon S3"
     ],
     correctAnswer: 1,
-    category: "ストレージ",
-    explanation: "AWS Storage Gateway - File Gatewayは、オンプレミスのアプリケーションがSMBまたはNFSプロトコルを使用してS3にアクセスできるようにします。頻繁にアクセスされるデータはローカルにキャッシュされ、すべてのデータはS3に保存されます。S3のライフサイクルポリシーを使用して、アクセス頻度の低いデータを自動的に低コストのストレージクラスに移行できます。",
+    category: "Storage",
+    explanation: "AWS Storage Gateway - File Gateway allows on-premises applications to access S3 using the SMB or NFS protocol. Frequently accessed data is cached locally, and all data is stored in S3. S3 lifecycle policies can automatically transition infrequently accessed data to lower-cost storage classes.",
     optionExplanations: [
-      "Amazon EFSはNFSプロトコルをサポートしますが、SMBプロトコルはサポートしていません。また、ライフサイクル管理は限定的です。",
-      "✓ 正解: AWS Storage Gateway - File Gatewayは、SMBまたはNFSプロトコルを使用してS3にアクセスできるハイブリッドストレージソリューションです。頻繁にアクセスされるファイルはローカルキャッシュに保存され、低レイテンシでアクセスできます。すべてのファイルはS3に保存され、S3のライフサイクルポリシーを使用して、アクセス頻度の低いファイルを自動的にS3 Glacier Deep Archiveなどの低コストのストレージクラスに移行できます。",
-      "FSx for Windows File ServerはSMBプロトコルをサポートし、Windowsファイルサーバーの機能を提供しますが、S3のような低コストのストレージクラスへの自動移行機能はありません。",
-      "Amazon S3は直接SMBプロトコルをサポートしていません。S3にアクセスするには、AWS CLIやSDKを使用するか、Storage Gatewayなどのゲートウェイサービスが必要です。"
+      "Amazon EFS supports the NFS protocol but does not support SMB. Its lifecycle management capabilities are also limited.",
+      "✓ Correct: AWS Storage Gateway - File Gateway is a hybrid storage solution that provides access to S3 via the SMB or NFS protocol. Frequently accessed files are stored in a local cache for low-latency access. All files are backed by S3, and S3 lifecycle policies can automatically transition infrequently accessed files to lower-cost storage classes such as S3 Glacier Deep Archive.",
+      "FSx for Windows File Server supports the SMB protocol and provides Windows file server functionality, but it does not offer automatic tiering to low-cost storage classes like S3.",
+      "Amazon S3 does not natively support the SMB protocol. Accessing S3 requires the AWS CLI, an SDK, or a gateway service such as Storage Gateway."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/storagegateway/latest/userguide/WhatIsStorageGateway.html", title: "Whatisstoragegateway" }
+      { url: "https://docs.aws.amazon.com/storagegateway/latest/userguide/WhatIsStorageGateway.html", title: "What is AWS Storage Gateway?" }
     ]
   },
   {
     id: 15,
-    question: "ある企業は、Amazon API Gatewayを使用してRESTful APIを公開しています。APIは、バックエンドのAWS Lambda関数を呼び出します。同社は、APIへのリクエスト数が急増した場合にLambda関数が過負荷にならないように、リクエストレートを制限したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company exposes a RESTful API using Amazon API Gateway. The API invokes a backend AWS Lambda function. The company wants to throttle the request rate to prevent the Lambda function from being overwhelmed when the number of API requests spikes.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Lambda関数の同時実行数の制限を設定する。",
-      "API Gatewayの使用量プランとAPIキーを設定する。",
-      "AWS WAFを使用してレート制限ルールを設定する。",
-      "Application Load Balancerを使用してトラフィックを制御する。"
+      "Configure a reserved concurrency limit on the Lambda function.",
+      "Configure API Gateway usage plans and API keys.",
+      "Use AWS WAF to configure rate-limiting rules.",
+      "Use an Application Load Balancer to control traffic."
     ],
     correctAnswer: 1,
-    category: "アプリケーション統合",
-    explanation: "API Gatewayの使用量プランを使用することで、APIへのリクエストレートとクォータを制限できます。APIキーと組み合わせることで、クライアントごとに異なる制限を設定できます。",
+    category: "Application Integration",
+    explanation: "Using API Gateway usage plans allows you to throttle the request rate and quota for an API. Combined with API keys, different limits can be configured for each client.",
     optionExplanations: [
-      "Lambda関数の同時実行数の制限は、Lambda関数レベルでの制御ですが、API Gatewayレベルでのリクエストレート制限の方が、APIの保護により適しています。",
-      "✓ 正解: API Gatewayの使用量プランを使用することで、APIへのリクエストレート（1秒あたりのリクエスト数）とバーストレート、およびクォータ（特定期間内の総リクエスト数）を制限できます。APIキーと組み合わせることで、異なるクライアントやティアに対して異なる制限を設定できます。制限を超えたリクエストは、429 Too Many Requestsエラーを返します。",
-      "AWS WAFはWebアプリケーションファイアウォールで、SQLインジェクションやXSSなどの攻撃から保護しますが、API Gatewayの使用量プランの方がAPIのレート制限に特化しています。",
-      "Application Load BalancerはHTTP/HTTPSトラフィックの負荷分散に使用されますが、API Gatewayの代替としては適していません。API Gatewayは、APIの管理、認証、レート制限などの機能を提供します。"
+      "Configuring a reserved concurrency limit on a Lambda function provides control at the Lambda level, but throttling at the API Gateway level is more appropriate for protecting the API.",
+      "✓ Correct: API Gateway usage plans allow you to set the request rate (requests per second), burst rate, and quota (total requests within a specified period) for an API. Combined with API keys, different limits can be assigned to different clients or tiers. Requests that exceed the limit receive a 429 Too Many Requests error.",
+      "AWS WAF is a web application firewall that protects against attacks such as SQL injection and XSS. API Gateway usage plans are more specialized for API-level rate limiting.",
+      "An Application Load Balancer is used for load balancing HTTP/HTTPS traffic and is not a suitable replacement for API Gateway. API Gateway provides API management, authentication, rate limiting, and other capabilities."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/api-gateway-request-throttling.html", title: "Api Gateway Request Throttling" }
+      { url: "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html", title: "Throttle API requests for better throughput" }
     ]
   },
   {
     id: 16,
-    question: "ある企業は、Amazon Auroraデータベースを使用しています。同社は、本番環境のデータベースに影響を与えることなく、開発チームが最新のデータを使用してテストできる環境を提供したいと考えています。また、テスト環境のコストを最小限に抑えたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses an Amazon Aurora database. The company wants to provide a testing environment where the development team can use the latest data without impacting the production database. The company also wants to minimize the cost of the test environment.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Auroraデータベースのスナップショットを作成し、新しいクラスターを作成する。",
-      "Auroraデータベースのリードレプリカを作成し、開発チームに提供する。",
-      "AWS Database Migration Serviceを使用して、データを新しいAuroraクラスターにコピーする。",
-      "Auroraクローン機能を使用して、データベースのクローンを作成する。"
+      "Create a snapshot of the Aurora database and restore it to a new cluster.",
+      "Create a read replica of the Aurora database and provide it to the development team.",
+      "Use AWS Database Migration Service to copy data to a new Aurora cluster.",
+      "Use the Aurora Clone feature to create a database clone."
     ],
     correctAnswer: 3,
-    category: "データベース",
-    explanation: "Auroraクローン機能を使用することで、本番データベースのコピーを迅速かつコスト効率的に作成できます。クローンは、コピーオンライト技術を使用するため、初期状態ではストレージコストがほとんど発生せず、変更されたデータのみが追加のストレージを消費します。",
+    category: "Database",
+    explanation: "Using the Aurora Clone feature allows a fast, cost-efficient copy of the production database to be created. Because cloning uses a copy-on-write technique, there is almost no additional storage cost in the initial state; only changed data consumes additional storage.",
     optionExplanations: [
-      "スナップショットから新しいクラスターを作成することは可能ですが、完全なデータのコピーが作成されるため、ストレージコストが高くなります。また、復元には時間がかかります。",
-      "リードレプリカは読み取り専用で、本番データベースと同期されます。開発チームがデータを変更する必要がある場合には適していません。",
-      "AWS DMSは、データベース間のデータ移行に使用されますが、Auroraクローンの方が迅速で、コスト効率が高く、この要件に適しています。",
-      "✓ 正解: Auroraクローン機能は、コピーオンライト技術を使用して、本番データベースの高速で低コストなコピーを作成します。クローンは数分で作成でき、初期状態では元のデータベースとストレージを共有するため、追加のストレージコストはほとんど発生しません。クローンでデータが変更された場合のみ、変更されたデータブロックが新しいストレージに書き込まれます。開発チームは、本番環境に影響を与えることなく、最新のデータを使用してテストできます。"
+      "Creating a new cluster from a snapshot is possible, but a full copy of the data is created, resulting in higher storage costs. Restoration also takes time.",
+      "A read replica is read-only and stays in sync with the production database. It is not suitable when the development team needs to modify data.",
+      "AWS DMS is used for migrating data between databases, but Aurora Clone is faster, more cost-efficient, and better suited for this requirement.",
+      "✓ Correct: The Aurora Clone feature uses copy-on-write technology to create a fast, low-cost copy of the production database. Clones can be created in minutes. In the initial state they share storage with the source database, so almost no additional storage cost is incurred. Only data blocks changed in the clone are written to new storage. The development team can test with the latest data without affecting the production environment."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Clone.html", title: "Amazon RDS ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Clone.html", title: "Cloning a volume for an Amazon Aurora DB cluster" }
     ]
   },
   {
     id: 17,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているレガシーアプリケーションを持っています。アプリケーションは、固定のプライベートIPアドレスを使用して他のシステムと通信します。同社は、インスタンスに障害が発生した場合に、新しいインスタンスに同じIPアドレスを迅速に割り当てたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a legacy application running on Amazon EC2 instances. The application communicates with other systems using a fixed private IP address. The company wants to quickly reassign the same IP address to a new instance if the current instance fails.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Elastic IP アドレスを使用する。",
-      "セカンダリプライベートIPアドレスを持つElastic Network Interface (ENI)を使用する。",
-      "Route 53のプライベートホストゾーンを使用する。",
-      "Network Load Balancerを使用する。"
+      "Use an Elastic IP address.",
+      "Use an Elastic Network Interface (ENI) with a secondary private IP address.",
+      "Use a Route 53 private hosted zone.",
+      "Use a Network Load Balancer."
     ],
     correctAnswer: 1,
-    category: "ネットワーキング",
-    explanation: "Elastic Network Interface (ENI)にセカンダリプライベートIPアドレスを設定し、ENIを新しいインスタンスに移動することで、固定のプライベートIPアドレスを維持できます。ENIは、インスタンス間で移動可能で、IPアドレス、セキュリティグループ、MACアドレスなどの属性を保持します。",
+    category: "Networking",
+    explanation: "By assigning a secondary private IP address to an Elastic Network Interface (ENI) and moving the ENI to a new instance, the fixed private IP address can be preserved. ENIs can be moved between instances and retain attributes such as IP addresses, security groups, and MAC addresses.",
     optionExplanations: [
-      "Elastic IPアドレスはパブリックIPアドレスであり、プライベートIPアドレスの要件を満たしません。",
-      "✓ 正解: Elastic Network Interface (ENI)を使用することで、固定のプライベートIPアドレスを維持できます。ENIにセカンダリプライベートIPアドレスを設定し、プライマリインスタンスに接続します。インスタンスに障害が発生した場合、ENIを新しいインスタンスに移動することで、同じプライベートIPアドレスを維持できます。ENIは、IPアドレス、セキュリティグループ、MACアドレスなどの属性を保持するため、ネットワーク設定を変更する必要がありません。",
-      "Route 53のプライベートホストゾーンは、VPC内のDNS名前解決に使用されますが、固定のプライベートIPアドレスを維持する直接的な解決策ではありません。",
-      "Network Load Balancerは、トラフィックの負荷分散に使用されますが、単一のインスタンスに固定のプライベートIPアドレスを割り当てる要件には適していません。"
+      "Elastic IP addresses are public IP addresses and do not satisfy the requirement for a private IP address.",
+      "✓ Correct: Using an Elastic Network Interface (ENI) allows a fixed private IP address to be maintained. Assign a secondary private IP address to the ENI and attach it to the primary instance. If the instance fails, move the ENI to a new instance to preserve the same private IP address. Because the ENI retains attributes such as IP addresses, security groups, and MAC addresses, no network reconfiguration is required.",
+      "A Route 53 private hosted zone is used for DNS name resolution within a VPC and is not a direct solution for preserving a fixed private IP address.",
+      "A Network Load Balancer is used for load balancing traffic and is not suitable for the requirement of assigning a fixed private IP address to a single instance."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/using-eni.html", title: "Using Eni" }
+      { url: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html", title: "Elastic network interfaces" }
     ]
   },
   {
     id: 18,
-    question: "ある企業は、Amazon S3バケットに保存されている大量の画像ファイルを処理する必要があります。画像は、アップロード後にサムネイルを生成し、メタデータを抽出する必要があります。処理は非同期で行われ、処理時間は画像のサイズによって異なります（1秒から5分）。同社は、コスト効率が高く、スケーラブルなソリューションを実装したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company needs to process a large number of image files stored in an Amazon S3 bucket. After upload, each image must have a thumbnail generated and metadata extracted. Processing is asynchronous and the time varies by image size (from 1 second to 5 minutes). The company wants to implement a cost-efficient and scalable solution.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3イベント通知をAmazon SQSキューに送信し、AWS Lambda関数をSQSキューからトリガーする。",
-      "S3イベント通知をAmazon SQSキューに送信し、EC2インスタンスでポーリングして処理する。",
-      "S3イベント通知を使用してAWS Lambda関数を直接トリガーする。",
-      "Amazon EventBridgeを使用してS3イベントをキャプチャし、AWS Batchジョブを起動する。"
+      "Send S3 event notifications to an Amazon SQS queue and trigger an AWS Lambda function from the SQS queue.",
+      "Send S3 event notifications to an Amazon SQS queue and poll the queue from EC2 instances for processing.",
+      "Use S3 event notifications to trigger an AWS Lambda function directly.",
+      "Use Amazon EventBridge to capture S3 events and launch AWS Batch jobs."
     ],
     correctAnswer: 0,
-    category: "アプリケーション統合",
-    explanation: "S3イベント通知をSQSキューに送信し、Lambda関数をSQSキューからトリガーすることで、処理の信頼性とスケーラビリティを向上させることができます。SQSキューは、処理の失敗時の再試行とデッドレターキューを提供し、Lambda関数は自動的にスケールします。",
+    category: "Application Integration",
+    explanation: "Sending S3 event notifications to an SQS queue and triggering a Lambda function from the queue improves processing reliability and scalability. The SQS queue provides automatic retries on failure and a dead-letter queue, while Lambda scales automatically.",
     optionExplanations: [
-      "✓ 正解: S3イベント通知をSQSキューに送信し、Lambda関数をSQSキューからトリガーすることで、処理の信頼性とスケーラビリティを向上させることができます。SQSキューは、メッセージのバッファリング、処理の失敗時の自動再試行、デッドレターキューによる失敗メッセージの追跡を提供します。Lambda関数は、SQSキューからメッセージをバッチで取得し、並列処理することで、大量の画像を効率的に処理できます。処理時間が長い場合でも、Lambda関数のタイムアウトを適切に設定することで対応できます。",
-      "EC2インスタンスを使用することは可能ですが、Lambda関数の方がコスト効率が高く、自動的にスケールします。EC2インスタンスは、継続的に実行されるため、アイドル時間のコストが発生します。",
-      "S3イベント通知を直接Lambda関数にトリガーすることは可能ですが、処理時間が長い場合（最大5分）、Lambda関数のタイムアウト制限（最大15分）に近づく可能性があります。また、大量の同時リクエストが発生した場合、Lambda関数のスロットリングが発生する可能性があります。",
-      "AWS Batchは、大規模なバッチ処理ジョブに適していますが、この要件には過剰です。Lambda関数とSQSキューの組み合わせの方が、シンプルでコスト効率が高いソリューションです。"
+      "✓ Correct: Sending S3 event notifications to an SQS queue and triggering a Lambda function from the queue improves reliability and scalability. The SQS queue provides message buffering, automatic retries on processing failure, and dead-letter queue tracking of failed messages. Lambda functions retrieve messages from the SQS queue in batches and process them in parallel, enabling efficient handling of large volumes of images. Even when processing time is long, setting the Lambda timeout appropriately ensures all images are processed.",
+      "Using EC2 instances is possible, but Lambda is more cost-efficient and scales automatically. EC2 instances run continuously, incurring costs during idle periods.",
+      "Triggering a Lambda function directly from S3 event notifications is possible, but when processing can take up to 5 minutes, the Lambda timeout limit (maximum 15 minutes) may be approached. Lambda throttling may also occur when a large number of concurrent requests arrive.",
+      "AWS Batch is suited for large-scale batch processing jobs but is overkill for this use case. The combination of Lambda and SQS is a simpler and more cost-efficient solution."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-sqs.html", title: "AWS Lambda ドキュメント" }
+      { url: "https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html", title: "Using Lambda with Amazon SQS" }
     ]
   },
   {
     id: 19,
-    question: "ある企業は、Amazon EKS（Elastic Kubernetes Service）を使用してコンテナ化されたアプリケーションを実行しています。同社は、Kubernetesポッドに対して、AWS IAMロールを使用してAWSサービス（S3、DynamoDBなど）へのアクセスを制御したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company runs a containerized application on Amazon EKS (Elastic Kubernetes Service). The company wants to control access to AWS services (such as S3 and DynamoDB) for Kubernetes pods using AWS IAM roles.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "EC2インスタンスプロファイルを使用して、ワーカーノードにIAMロールを割り当てる。",
-      "Kubernetes Secretsを使用して、AWS認証情報を保存する。",
-      "AWS Secrets Managerを使用して、AWS認証情報を保存し、ポッドから取得する。",
-      "IAM Roles for Service Accounts (IRSA)を使用する。"
+      "Use EC2 instance profiles to assign an IAM role to worker nodes.",
+      "Use Kubernetes Secrets to store AWS credentials.",
+      "Use AWS Secrets Manager to store AWS credentials and retrieve them from pods.",
+      "Use IAM Roles for Service Accounts (IRSA)."
     ],
     correctAnswer: 3,
-    category: "セキュリティとコンプライアンス",
-    explanation: "IAM Roles for Service Accounts (IRSA)を使用することで、Kubernetesサービスアカウントに対してIAMロールを割り当てることができます。これにより、ポッドレベルできめ細かなアクセス制御が可能になり、最小権限の原則に従うことができます。",
+    category: "Security and Compliance",
+    explanation: "Using IAM Roles for Service Accounts (IRSA) allows IAM roles to be assigned to Kubernetes service accounts. This enables fine-grained access control at the pod level and allows the principle of least privilege to be followed.",
     optionExplanations: [
-      "EC2インスタンスプロファイルを使用すると、ワーカーノード上のすべてのポッドが同じIAMロールを共有することになり、最小権限の原則に反します。ポッドごとに異なるアクセス権限を設定できません。",
-      "Kubernetes Secretsに認証情報を保存することは可能ですが、認証情報の管理とローテーションが複雑になります。また、IAMロールを使用する方が、AWSのベストプラクティスに沿っています。",
-      "AWS Secrets Managerを使用して認証情報を保存することは可能ですが、IAMロールを使用する方が、認証情報の管理が不要で、よりセキュアです。",
-      "✓ 正解: IAM Roles for Service Accounts (IRSA)は、KubernetesサービスアカウントとIAMロールを関連付ける機能です。各ポッドは、関連付けられたサービスアカウントを使用して、特定のIAMロールの権限を取得できます。これにより、ポッドレベルできめ細かなアクセス制御が可能になり、最小権限の原則に従うことができます。認証情報の管理も不要で、IAMロールの権限は自動的にポッドに適用されます。"
+      "Using EC2 instance profiles causes all pods on a worker node to share the same IAM role, which violates the principle of least privilege. Different access permissions cannot be set per pod.",
+      "Storing credentials in Kubernetes Secrets is possible, but credential management and rotation become complex. Using IAM roles also aligns with AWS best practices.",
+      "Storing credentials in AWS Secrets Manager is possible, but using IAM roles eliminates the need to manage credentials at all and is more secure.",
+      "✓ Correct: IAM Roles for Service Accounts (IRSA) is a feature that associates Kubernetes service accounts with IAM roles. Each pod can obtain the permissions of a specific IAM role through its associated service account. This enables fine-grained access control at the pod level and allows the principle of least privilege to be followed. No credential management is required, and IAM role permissions are automatically applied to pods."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/iam-roles-for-service-accounts.html", title: "AWS Identity and Access Management (IAM) とは" }
+      { url: "https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html", title: "IAM roles for service accounts" }
     ]
   },
   {
     id: 20,
-    question: "ある企業は、Amazon Kinesis Data Streamsを使用してリアルタイムのストリーミングデータを処理しています。データは、複数のソースから送信され、複数のコンシューマーアプリケーションによって処理されます。同社は、各コンシューマーが独立してデータを処理し、処理の進行状況を追跡できるソリューションを実装したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company processes real-time streaming data using Amazon Kinesis Data Streams. Data is sent from multiple sources and processed by multiple consumer applications. The company wants a solution where each consumer processes data independently and can track its processing progress.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "各コンシューマーに対して個別のKinesis Data Streamを作成する。",
-      "Kinesis Client Library (KCL)を使用して、各コンシューマーアプリケーションを実装する。",
-      "Amazon SQSキューを使用して、データをコンシューマーに配信する。",
-      "AWS Lambda関数を使用して、データを各コンシューマーに転送する。"
+      "Create a separate Kinesis Data Stream for each consumer.",
+      "Use the Kinesis Client Library (KCL) to implement each consumer application.",
+      "Use an Amazon SQS queue to deliver data to consumers.",
+      "Use AWS Lambda functions to forward data to each consumer."
     ],
     correctAnswer: 1,
-    category: "データベース",
-    explanation: "Kinesis Client Library (KCL)を使用することで、各コンシューマーアプリケーションが独立してデータを処理し、処理の進行状況（チェックポイント）を自動的に追跡できます。KCLは、シャードの負荷分散、フェイルオーバー、チェックポイント管理を自動的に処理します。",
+    category: "Database",
+    explanation: "Using the Kinesis Client Library (KCL) allows each consumer application to process data independently and automatically track processing progress (checkpoints). KCL handles shard load balancing, failover, and checkpoint management automatically.",
     optionExplanations: [
-      "各コンシューマーに対して個別のストリームを作成すると、データの重複とコストが増加します。単一のストリームを複数のコンシューマーで共有する方が効率的です。",
-      "✓ 正解: Kinesis Client Library (KCL)は、Kinesis Data Streamsからデータを読み取るアプリケーションの開発を簡素化するライブラリです。KCLは、各コンシューマーアプリケーションに対して独立したチェックポイントを管理し、処理の進行状況を追跡します。複数のコンシューマーが同じストリームからデータを読み取ることができ、各コンシューマーは独立して処理を進めることができます。KCLは、シャードの負荷分散、フェイルオーバー、チェックポイント管理を自動的に処理します。",
-      "Amazon SQSは、メッセージキューイングサービスですが、Kinesis Data Streamsのようなストリーミングデータの順序保証や複数のコンシューマーによる独立した処理には適していません。",
-      "Lambda関数を使用してデータを転送することは可能ですが、KCLを使用する方が、チェックポイント管理やフェイルオーバーなどの機能が組み込まれており、より効率的です。"
+      "Creating a separate stream for each consumer increases data duplication and cost. Sharing a single stream across multiple consumers is more efficient.",
+      "✓ Correct: The Kinesis Client Library (KCL) is a library that simplifies developing applications that read from Kinesis Data Streams. KCL manages independent checkpoints for each consumer application and tracks processing progress. Multiple consumers can read from the same stream, and each consumer can proceed independently. KCL automatically handles shard load balancing, failover, and checkpoint management.",
+      "Amazon SQS is a message queuing service, but it is not suited for the ordering guarantees of streaming data or independent processing by multiple consumers as provided by Kinesis Data Streams.",
+      "Using Lambda functions to forward data is possible, but using KCL is more efficient because checkpoint management and failover are built in."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/streams/latest/dev/shared-throughput-kcl-consumers.html", title: "Shared Throughput Kcl Consumers" }
+      { url: "https://docs.aws.amazon.com/streams/latest/dev/shared-throughput-kcl-consumers.html", title: "Developing consumers using the Kinesis Client Library" }
     ]
   },
   {
     id: 21,
-    question: "ある企業は、Amazon ElastiCacheを使用してアプリケーションのパフォーマンスを向上させたいと考えています。アプリケーションは、頻繁に読み取られるが、あまり変更されないデータをキャッシュする必要があります。同社は、キャッシュノードに障害が発生した場合でも、データの損失を最小限に抑えたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきElastiCacheエンジンと設定はどれですか。",
+    question: "A company wants to improve application performance using Amazon ElastiCache. The application needs to cache data that is read frequently but rarely modified. The company wants to minimize data loss if a cache node fails.\n\nWhich ElastiCache engine and configuration should a solutions architect recommend to meet these requirements?",
     options: [
-      "Memcachedを使用し、複数のノードを持つクラスターを作成する。",
-      "Redisを使用し、クラスターモードが無効なレプリケーショングループを作成する。",
-      "Redisを使用し、クラスターモードが有効なレプリケーショングループを作成する。",
-      "Memcachedを使用し、Auto Discoveryを有効にする。"
+      "Use Memcached and create a cluster with multiple nodes.",
+      "Use Redis and create a replication group with cluster mode disabled.",
+      "Use Redis and create a replication group with cluster mode enabled.",
+      "Use Memcached and enable Auto Discovery."
     ],
     correctAnswer: 1,
-    category: "データベース",
-    explanation: "Redisのレプリケーショングループ（クラスターモード無効）を使用することで、プライマリノードとリードレプリカを持つ構成を作成できます。プライマリノードに障害が発生した場合、自動的にリードレプリカがプライマリに昇格し、データの損失を最小限に抑えることができます。",
+    category: "Database",
+    explanation: "Using a Redis replication group with cluster mode disabled creates a configuration with a primary node and read replicas. If the primary node fails, a read replica is automatically promoted to primary, minimizing data loss.",
     optionExplanations: [
-      "Memcachedは、データの永続性やレプリケーションをサポートしていません。ノードに障害が発生すると、そのノードのデータは失われます。",
-      "✓ 正解: Redisのレプリケーショングループ（クラスターモード無効）は、プライマリノードと最大5つのリードレプリカを持つ構成を提供します。プライマリノードに障害が発生した場合、自動フェイルオーバーによりリードレプリカがプライマリに昇格し、データの損失を最小限に抑えることができます。また、Redisはデータの永続性をサポートしており、スナップショットやAOF（Append Only File）を使用してデータをバックアップできます。",
-      "Redisクラスターモード有効は、データをシャード間で分散し、より高いスケーラビリティを提供しますが、この要件には過剰です。クラスターモード無効の方がシンプルで、管理が容易です。",
-      "MemcachedのAuto Discoveryは、クライアントがクラスター内のノードを自動的に検出する機能ですが、データの永続性やレプリケーションは提供しません。"
+      "Memcached does not support data persistence or replication. If a node fails, all data on that node is lost.",
+      "✓ Correct: A Redis replication group with cluster mode disabled provides a configuration with a primary node and up to five read replicas. If the primary node fails, automatic failover promotes a read replica to primary, minimizing data loss. Redis also supports data persistence; snapshots and AOF (Append Only File) can be used to back up data.",
+      "Redis cluster mode enabled distributes data across shards and provides higher scalability, but it is overkill for this requirement. Cluster mode disabled is simpler and easier to manage.",
+      "Memcached Auto Discovery is a feature that allows clients to automatically discover nodes in a cluster, but it does not provide data persistence or replication."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonElastiCache/latest/red-ug/Replication.html", title: "Amazon ElastiCache ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Replication.html", title: "Replication: Redis (Cluster Mode Disabled) vs. Redis (Cluster Mode Enabled)" }
     ]
   },
   {
     id: 22,
-    question: "ある企業は、AWS Organizations を使用して複数のAWSアカウントを管理しています。同社は、すべてのアカウントで特定のAWSサービス（例：Amazon GuardDuty、AWS Config）を自動的に有効にし、一元的に管理したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses AWS Organizations to manage multiple AWS accounts. The company wants to automatically enable specific AWS services (such as Amazon GuardDuty and AWS Config) across all accounts and manage them centrally.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS Control Towerを使用して、ガードレールを設定する。",
-      "AWS CloudFormation StackSetsを使用して、各アカウントにリソースをデプロイする。",
-      "AWS Systems Manager Automation を使用して、各アカウントでサービスを有効にする。",
-      "AWS Lambdaを使用して、新しいアカウントが作成されたときにサービスを有効にする。"
+      "Use AWS Control Tower to configure guardrails.",
+      "Use AWS CloudFormation StackSets to deploy resources to each account.",
+      "Use AWS Systems Manager Automation to enable services in each account.",
+      "Use AWS Lambda to enable services when new accounts are created."
     ],
     correctAnswer: 0,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Control Towerは、マルチアカウント環境のセットアップと管理を自動化するサービスです。ガードレールを使用して、すべてのアカウントで一貫したセキュリティとコンプライアンスのポリシーを適用できます。GuardDutyやConfigなどのサービスを自動的に有効にすることができます。",
+    category: "Security and Compliance",
+    explanation: "AWS Control Tower is a service that automates the setup and management of multi-account environments. Guardrails can be used to enforce consistent security and compliance policies across all accounts. Services such as GuardDuty and Config can be automatically enabled.",
     optionExplanations: [
-      "✓ 正解: AWS Control Towerは、マルチアカウント環境のベストプラクティスに基づいたランディングゾーンを自動的にセットアップします。ガードレール（予防的および検出的）を使用して、すべてのアカウントで一貫したポリシーを適用できます。GuardDuty、Config、CloudTrailなどのサービスを自動的に有効にし、一元的に管理できます。新しいアカウントが作成されると、自動的にガードレールが適用されます。",
-      "CloudFormation StackSetsは、複数のアカウントにリソースをデプロイできますが、Control Towerの方が、マルチアカウント環境の管理に特化しており、より包括的な機能を提供します。",
-      "Systems Manager Automationは、運用タスクの自動化に使用できますが、Control Towerの方が、マルチアカウント環境の管理に特化しており、より適しています。",
-      "Lambda関数を使用してカスタムソリューションを構築することは可能ですが、Control Towerの方が、既製の機能を提供し、管理が容易です。"
+      "✓ Correct: AWS Control Tower automatically sets up a landing zone based on multi-account best practices. Guardrails (preventive and detective) enforce consistent policies across all accounts. Services such as GuardDuty, Config, and CloudTrail can be automatically enabled and centrally managed. When a new account is created, guardrails are automatically applied.",
+      "CloudFormation StackSets can deploy resources to multiple accounts, but Control Tower is more specialized for multi-account environment management and provides more comprehensive capabilities.",
+      "Systems Manager Automation can automate operational tasks, but Control Tower is more specialized for multi-account management and is better suited for this use case.",
+      "Building a custom solution with Lambda functions is possible, but Control Tower provides ready-made capabilities and is easier to manage."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/controltower/latest/userguide/what-is-control-tower.html", title: "What Is Control Tower" }
+      { url: "https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html", title: "What is AWS Control Tower?" }
     ]
   },
   {
     id: 23,
-    question: "ある企業は、Amazon S3に保存されている大量のログファイルを分析するために、Amazon Athenaを使用しています。クエリのパフォーマンスを向上させ、コストを削減したいと考えています。ログファイルは、日付ごとにフォルダに整理されています（例：s3://bucket/logs/2024/01/15/）。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses Amazon Athena to analyze large volumes of log files stored in Amazon S3. The company wants to improve query performance and reduce costs. The log files are organized into folders by date (for example, s3://bucket/logs/2024/01/15/).\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3バケットでS3 Select を使用する。",
-      "Athenaテーブルにパーティションを作成し、クエリでパーティションプルーニングを使用する。",
-      "ログファイルをParquet形式に変換する。",
-      "Amazon Redshift Spectrumを使用する。"
+      "Use S3 Select on the S3 bucket.",
+      "Create partitions on the Athena table and use partition pruning in queries.",
+      "Convert the log files to Parquet format.",
+      "Use Amazon Redshift Spectrum."
     ],
     correctAnswer: 1,
-    category: "アプリケーション統合",
-    explanation: "Athenaテーブルにパーティションを作成することで、クエリが必要なデータのみをスキャンするようになり、パフォーマンスが向上し、コストが削減されます。日付ごとにパーティションを作成することで、特定の日付のデータのみをクエリできます。",
+    category: "Application Integration",
+    explanation: "Creating partitions on an Athena table ensures that queries scan only the required data, improving performance and reducing costs. Creating partitions by date allows queries to target only the data for a specific date.",
     optionExplanations: [
-      "S3 Selectは、S3オブジェクトから特定のデータを取得する機能ですが、Athenaのパーティショニングの方が、大規模なデータセットのクエリパフォーマンスとコスト削減に効果的です。",
-      "✓ 正解: Athenaテーブルにパーティションを作成することで、クエリが必要なパーティション（フォルダ）のみをスキャンするようになります。例えば、年、月、日でパーティションを作成すると、特定の日付のデータのみをクエリでき、スキャンするデータ量が大幅に削減されます。これにより、クエリのパフォーマンスが向上し、Athenaの料金（スキャンしたデータ量に基づく）が削減されます。パーティションプルーニングを使用することで、WHERE句でパーティションキーを指定し、不要なパーティションをスキップできます。",
-      "Parquet形式への変換は、クエリパフォーマンスとコスト削減に効果的ですが、パーティショニングと組み合わせることで、さらに効果が高まります。パーティショニングが最初のステップとして推奨されます。",
-      "Redshift Spectrumは、S3のデータをクエリできますが、Athenaの方がサーバーレスで、セットアップが簡単です。この要件にはAthenaで十分です。"
+      "S3 Select retrieves specific data from S3 objects, but Athena partitioning is more effective for improving query performance and reducing costs on large datasets.",
+      "✓ Correct: Creating partitions on an Athena table ensures queries scan only the required partitions (folders). For example, creating partitions by year, month, and day lets you query only the data for a specific date, dramatically reducing the amount of data scanned. This improves query performance and lowers Athena costs (which are based on the amount of data scanned). Using partition pruning, you can specify partition keys in the WHERE clause to skip unnecessary partitions.",
+      "Converting to Parquet format is effective for improving query performance and reducing costs, but combining it with partitioning yields even greater benefits. Partitioning is recommended as the first step.",
+      "Redshift Spectrum can query data in S3, but Athena is serverless and simpler to set up. Athena is sufficient for this requirement."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/athena/latest/ug/partitions.html", title: "Partitions" }
+      { url: "https://docs.aws.amazon.com/athena/latest/ug/partitions.html", title: "Partitioning data in Athena" }
     ]
   },
   {
     id: 24,
-    question: "ある企業は、AWS上で実行されているウェブアプリケーションに対して、DDoS攻撃から保護したいと考えています。アプリケーションは、Application Load Balancer (ALB)の背後にあるEC2インスタンスで実行されています。同社は、包括的なDDoS保護と、攻撃時の24時間365日のサポートを受けたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company wants to protect a web application running on AWS against DDoS attacks. The application runs on EC2 instances behind an Application Load Balancer (ALB). The company wants comprehensive DDoS protection and 24/7 support during attacks.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS WAFを使用して、レート制限ルールを設定する。",
-      "AWS Shield Advancedを使用する。",
-      "AWS Shield Standardを使用する。",
-      "Amazon CloudFrontとAWS WAFを使用する。"
+      "Use AWS WAF to configure rate-limiting rules.",
+      "Use AWS Shield Advanced.",
+      "Use AWS Shield Standard.",
+      "Use Amazon CloudFront with AWS WAF."
     ],
     correctAnswer: 1,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Shield Advancedは、より高度なDDoS保護を提供し、ALB、CloudFront、Route 53などのリソースを保護します。また、DDoS Response Team (DRT)による24時間365日のサポート、コスト保護、リアルタイムの攻撃通知を提供します。",
+    category: "Security and Compliance",
+    explanation: "AWS Shield Advanced provides enhanced DDoS protection and protects resources such as ALB, CloudFront, and Route 53. It also provides 24/7 support from the DDoS Response Team (DRT), cost protection, and real-time attack notifications.",
     optionExplanations: [
-      "AWS WAFは、Webアプリケーションファイアウォールで、SQLインジェクションやXSSなどの攻撃から保護しますが、DDoS攻撃に対する包括的な保護と24時間365日のサポートは提供しません。",
-      "✓ 正解: AWS Shield Advancedは、より高度なDDoS保護を提供します。ALB、CloudFront、Route 53、Elastic IPなどのリソースを保護し、レイヤー3、4、7の攻撃から防御します。DDoS Response Team (DRT)による24時間365日のサポート、攻撃時のコスト保護（DDoS攻撃によるスケーリングコストの払い戻し）、リアルタイムの攻撃通知と詳細な攻撃診断を提供します。また、AWS WAFと統合して、より高度な保護ルールを適用できます。",
-      "AWS Shield Standardは、すべてのAWSユーザーに無料で提供される基本的なDDoS保護ですが、高度な保護機能や24時間365日のサポートは含まれていません。",
-      "CloudFrontとWAFの組み合わせは、DDoS保護を強化できますが、Shield Advancedの方が、包括的な保護と24時間365日のサポートを提供します。"
+      "AWS WAF is a web application firewall that protects against attacks such as SQL injection and XSS, but it does not provide comprehensive DDoS protection or 24/7 support during attacks.",
+      "✓ Correct: AWS Shield Advanced provides enhanced DDoS protection. It protects resources including ALB, CloudFront, Route 53, and Elastic IPs, and defends against Layer 3, 4, and 7 attacks. It provides 24/7 support from the DDoS Response Team (DRT), cost protection during attacks (reimbursement for scaling costs caused by DDoS attacks), real-time attack notifications, and detailed attack diagnostics. It also integrates with AWS WAF to apply advanced protection rules.",
+      "AWS Shield Standard is basic DDoS protection provided free to all AWS users, but it does not include advanced protection features or 24/7 support.",
+      "The combination of CloudFront and WAF can enhance DDoS protection, but Shield Advanced provides more comprehensive protection and 24/7 support."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/waf/latest/developerguide/shield-chapter.html", title: "AWS Shield とは" }
+      { url: "https://docs.aws.amazon.com/waf/latest/developerguide/shield-chapter.html", title: "AWS Shield Advanced" }
     ]
   },
   {
     id: 25,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションのログを、Amazon CloudWatch Logsに送信しています。同社は、特定のエラーパターンがログに出現した場合に、自動的にAmazon SNSトピックに通知を送信したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company sends application logs from Amazon EC2 instances to Amazon CloudWatch Logs. The company wants to automatically send a notification to an Amazon SNS topic whenever a specific error pattern appears in the logs.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "CloudWatch Logsのメトリクスフィルターを作成し、CloudWatchアラームを設定してSNSに通知を送信する。",
-      "CloudWatch Logsのサブスクリプションフィルターを使用して、Lambda関数をトリガーし、SNSに通知を送信する。",
-      "AWS EventBridgeルールを作成し、CloudWatch LogsイベントをキャプチャしてSNSに通知を送信する。",
-      "CloudWatch Logs Insightsを使用して、定期的にログをクエリし、エラーパターンを検出する。"
+      "Create a CloudWatch Logs metric filter and configure a CloudWatch alarm to send a notification to SNS.",
+      "Use a CloudWatch Logs subscription filter to trigger a Lambda function that sends a notification to SNS.",
+      "Create an AWS EventBridge rule to capture CloudWatch Logs events and send a notification to SNS.",
+      "Use CloudWatch Logs Insights to periodically query logs and detect error patterns."
     ],
     correctAnswer: 0,
-    category: "モニタリングとコスト最適化",
-    explanation: "CloudWatch Logsのメトリクスフィルターを使用して、特定のログパターンをメトリクスに変換し、CloudWatchアラームを設定することで、エラーパターンが検出されたときに自動的にSNSトピックに通知を送信できます。",
+    category: "Monitoring and Cost Optimization",
+    explanation: "Using a CloudWatch Logs metric filter to convert specific log patterns into a metric and configuring a CloudWatch alarm allows an SNS topic notification to be sent automatically when an error pattern is detected.",
     optionExplanations: [
-      "✓ 正解: CloudWatch Logsのメトリクスフィルターを使用して、特定のログパターン（例：「ERROR」や「Exception」）をメトリクスに変換できます。メトリクスフィルターは、ログストリームをスキャンし、パターンに一致するログエントリをカウントします。次に、CloudWatchアラームを設定して、メトリクスが特定のしきい値を超えた場合（例：5分間に10回以上のエラー）に、SNSトピックに通知を送信できます。この方法は、シンプルで、追加のコードが不要です。",
-      "サブスクリプションフィルターとLambda関数を使用することは可能ですが、メトリクスフィルターとCloudWatchアラームを使用する方が、シンプルで、追加のコードが不要です。",
-      "EventBridgeは、CloudWatch Logsイベントを直接キャプチャすることはできません。サブスクリプションフィルターを使用する必要があります。",
-      "CloudWatch Logs Insightsは、ログのクエリと分析に使用されますが、リアルタイムのアラートには適していません。メトリクスフィルターとアラームの方が、自動通知に適しています。"
+      "✓ Correct: A CloudWatch Logs metric filter converts specific log patterns (for example, 'ERROR' or 'Exception') into a metric. The filter scans the log stream and counts log entries matching the pattern. A CloudWatch alarm can then be configured so that when the metric exceeds a specified threshold (for example, more than 10 errors in 5 minutes), a notification is sent to the SNS topic. This approach is simple and requires no additional code.",
+      "Using a subscription filter with a Lambda function is possible, but using a metric filter and CloudWatch alarm is simpler and requires no additional code.",
+      "EventBridge cannot directly capture CloudWatch Logs events; a subscription filter must be used.",
+      "CloudWatch Logs Insights is used for querying and analyzing logs, but it is not suitable for real-time alerting. A metric filter and alarm are better suited for automatic notifications."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/logs/MonitoringLogData.html", title: "Amazon CloudWatch ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/MonitoringLogData.html", title: "Creating metrics from log events using filters" }
     ]
   },
   {
     id: 26,
-    question: "ある企業は、Amazon S3バケットに保存されている機密データへのアクセスを監査したいと考えています。同社は、誰がいつどのオブジェクトにアクセスしたかを記録し、不正なアクセスを検出したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company wants to audit access to sensitive data stored in an Amazon S3 bucket. The company wants to record who accessed which objects and when, and detect unauthorized access.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3バケットのサーバーアクセスログを有効にする。",
-      "Amazon Macieを使用する。",
-      "AWS CloudTrailのデータイベントログを有効にする。",
-      "S3バケットポリシーを使用して、アクセスを制限する。"
+      "Enable S3 server access logging on the bucket.",
+      "Use Amazon Macie.",
+      "Enable AWS CloudTrail data event logging.",
+      "Use an S3 bucket policy to restrict access."
     ],
     correctAnswer: 2,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS CloudTrailのデータイベントログを有効にすることで、S3オブジェクトレベルのAPI操作（GetObject、PutObject、DeleteObjectなど）を記録できます。これにより、誰がいつどのオブジェクトにアクセスしたかを詳細に追跡できます。",
+    category: "Security and Compliance",
+    explanation: "Enabling AWS CloudTrail data event logging records S3 object-level API operations (GetObject, PutObject, DeleteObject, etc.), allowing detailed tracking of who accessed which objects and when.",
     optionExplanations: [
-      "S3サーバーアクセスログは、バケットへのリクエストを記録しますが、CloudTrailのデータイベントログの方が、より詳細な情報（IAMユーザー、ロール、アクセス時刻など）を提供し、監査に適しています。",
-      "Amazon Macieは、S3バケット内の機密データ（個人情報、クレジットカード番号など）を自動的に検出し、分類するサービスです。アクセス監査には、CloudTrailの方が適しています。",
-      "✓ 正解: AWS CloudTrailのデータイベントログを有効にすることで、S3オブジェクトレベルのAPI操作を記録できます。各操作について、誰が（IAMユーザーまたはロール）、いつ（タイムスタンプ）、どのオブジェクトに（バケット名とオブジェクトキー）、どのような操作を（GetObject、PutObject、DeleteObjectなど）行ったかが記録されます。CloudTrail Insightsを使用して、異常なアクセスパターンを自動的に検出することもできます。ログはS3バケットに保存され、Amazon Athenaを使用してクエリできます。",
-      "S3バケットポリシーは、アクセス制御に使用されますが、アクセスの監査ログは提供しません。CloudTrailと組み合わせて使用する必要があります。"
+      "S3 server access logs record requests to the bucket, but CloudTrail data event logs provide more detailed information (IAM user, role, access time, etc.) and are better suited for auditing.",
+      "Amazon Macie automatically detects and classifies sensitive data (PII, credit card numbers, etc.) in S3 buckets. CloudTrail is more appropriate for access auditing.",
+      "✓ Correct: Enabling AWS CloudTrail data event logging records S3 object-level API operations. For each operation, it captures who (IAM user or role), when (timestamp), which object (bucket name and key), and what action (GetObject, PutObject, DeleteObject, etc.) was performed. CloudTrail Insights can automatically detect anomalous access patterns. Logs are stored in S3 and can be queried with Amazon Athena.",
+      "S3 bucket policies are used for access control but do not provide audit logs of access. They must be used in conjunction with CloudTrail."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/cloudtrail-logging.html", title: "AWS CloudTrail とは" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/cloudtrail-logging.html", title: "Logging Amazon S3 API calls using AWS CloudTrail" }
     ]
   },
   {
     id: 27,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションが、定期的に大量のデータをAmazon S3にアップロードしています。データ転送中に、インターネット経由のトラフィックコストが高くなっています。同社は、データ転送コストを削減し、セキュリティを向上させたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances that regularly uploads large amounts of data to Amazon S3. The data transfer costs via the internet are high. The company wants to reduce data transfer costs and improve security.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "VPCエンドポイント（Gateway型）をS3用に作成する。",
-      "AWS Direct Connectを使用する。",
-      "VPCエンドポイント（Interface型）をS3用に作成する。",
-      "AWS PrivateLinkを使用する。"
+      "Create a VPC Gateway Endpoint for S3.",
+      "Use AWS Direct Connect.",
+      "Create a VPC Interface Endpoint for S3.",
+      "Use AWS PrivateLink."
     ],
     correctAnswer: 0,
-    category: "ネットワーキング",
-    explanation: "VPCエンドポイント（Gateway型）をS3用に作成することで、EC2インスタンスからS3へのトラフィックがAWSネットワーク内を経由するようになり、インターネットゲートウェイやNATゲートウェイを経由する必要がなくなります。これにより、データ転送コストが削減され、セキュリティが向上します。",
+    category: "Networking",
+    explanation: "Creating a VPC Gateway Endpoint for S3 routes traffic from EC2 instances to S3 through the AWS network, eliminating the need for an internet gateway or NAT gateway. This reduces data transfer costs and improves security.",
     optionExplanations: [
-      "✓ 正解: VPCエンドポイント（Gateway型）をS3用に作成することで、EC2インスタンスからS3へのトラフィックがAWSのプライベートネットワーク内を経由するようになります。インターネットゲートウェイ、NATデバイス、VPN接続、AWS Direct Connect接続を必要とせず、S3にアクセスできます。これにより、NATゲートウェイのデータ処理料金が不要になり、コストが削減されます。また、トラフィックがインターネットを経由しないため、セキュリティが向上します。Gateway型エンドポイントは無料で使用できます。",
-      "AWS Direct Connectは、オンプレミスとAWS間の専用ネットワーク接続を提供しますが、VPC内のEC2からS3へのトラフィックには不要です。VPCエンドポイントの方が適しています。",
-      "S3はGateway型エンドポイントをサポートしており、Interface型エンドポイントよりもコスト効率が高いです。Interface型エンドポイントは、時間単位の料金とデータ処理料金が発生します。",
-      "AWS PrivateLinkは、VPCエンドポイント（Interface型）を使用してAWSサービスにアクセスする技術ですが、S3にはGateway型エンドポイントの方が適しています。"
+      "✓ Correct: Creating a VPC Gateway Endpoint for S3 routes EC2-to-S3 traffic through the AWS private network without requiring an internet gateway, NAT device, VPN connection, or Direct Connect. This eliminates NAT gateway data processing fees and reduces costs. Traffic never traverses the internet, improving security. Gateway Endpoints for S3 are available at no charge.",
+      "AWS Direct Connect provides a dedicated network connection between on-premises and AWS, but it is not necessary for EC2-to-S3 traffic within a VPC. A VPC Endpoint is more appropriate.",
+      "S3 supports Gateway Endpoints, which are more cost-efficient than Interface Endpoints. Interface Endpoints incur hourly charges and data processing fees.",
+      "AWS PrivateLink uses Interface VPC Endpoints to access AWS services, but for S3, a Gateway Endpoint is the recommended and more cost-effective option."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/vpc/latest/privatelink/vpc-endpoints-s3.html", title: "Amazon S3 とは" }
+      { url: "https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html", title: "Access Amazon S3 using an interface VPC endpoint" }
     ]
   },
   {
     id: 28,
-    question: "ある企業は、Amazon RDS for PostgreSQLデータベースを使用しています。同社は、データベースのパフォーマンスを監視し、遅いクエリを特定して最適化したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきAWSサービスはどれですか。",
+    question: "A company uses an Amazon RDS for PostgreSQL database. The company wants to monitor database performance, identify slow queries, and optimize them.\n\nWhich AWS service should a solutions architect recommend to meet these requirements?",
     options: [
       "Amazon CloudWatch Logs",
       "Amazon RDS Performance Insights",
@@ -610,527 +610,527 @@ const awsSAAQuestions = [
       "AWS X-Ray"
     ],
     correctAnswer: 1,
-    category: "データベース",
-    explanation: "Amazon RDS Performance Insightsは、データベースのパフォーマンスを監視し、遅いクエリやリソースのボトルネックを特定するためのツールです。データベースの負荷を可視化し、どのクエリが最も多くのリソースを消費しているかを簡単に確認できます。",
+    category: "Database",
+    explanation: "Amazon RDS Performance Insights is a tool for monitoring database performance and identifying slow queries and resource bottlenecks. It visualizes database load and makes it easy to see which queries consume the most resources.",
     optionExplanations: [
-      "CloudWatch Logsは、ログデータの収集と分析に使用されますが、Performance Insightsの方が、データベースのパフォーマンス監視に特化しており、より詳細な情報を提供します。",
-      "✓ 正解: Amazon RDS Performance Insightsは、データベースのパフォーマンスを監視し、最適化するためのツールです。データベースの負荷を時系列で可視化し、どのクエリが最も多くのCPU、I/O、メモリを消費しているかを特定できます。遅いクエリのSQL文、実行時間、待機イベントを詳細に分析でき、パフォーマンスのボトルネックを迅速に特定できます。ダッシュボードは直感的で、最大7日間（無料）または最大2年間（有料）のパフォーマンスデータを保持できます。",
-      "CloudTrailは、AWS APIコールの監査ログを記録するサービスで、データベースのパフォーマンス監視には使用されません。",
-      "AWS X-Rayは、分散アプリケーションのトレースに使用されますが、データベースのパフォーマンス監視には、Performance Insightsの方が適しています。"
+      "CloudWatch Logs is used for collecting and analyzing log data, but Performance Insights is specialized for database performance monitoring and provides more detailed information.",
+      "✓ Correct: Amazon RDS Performance Insights monitors and optimizes database performance. It visualizes database load over time and identifies which queries consume the most CPU, I/O, and memory. You can analyze slow query SQL statements, execution times, and wait events in detail to quickly pinpoint performance bottlenecks. The dashboard is intuitive and retains performance data for up to 7 days (free) or up to 2 years (paid).",
+      "CloudTrail records audit logs of AWS API calls and is not used for database performance monitoring.",
+      "AWS X-Ray is used for tracing distributed applications, but Performance Insights is more appropriate for database performance monitoring."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/USER_PerfInsights.html", title: "Amazon RDS ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html", title: "Monitoring DB load with Performance Insights on Amazon RDS" }
     ]
   },
   {
     id: 29,
-    question: "ある企業は、AWS上で実行されているマイクロサービスアーキテクチャのアプリケーションを持っています。各マイクロサービスは、Amazon ECSで実行されており、サービス間の通信にはHTTP/HTTPSを使用しています。同社は、サービス間の通信を暗号化し、相互認証を実装したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a microservices architecture application running on AWS. Each microservice runs on Amazon ECS and communicates with other services over HTTP/HTTPS. The company wants to encrypt inter-service communication and implement mutual authentication.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS App Meshを使用して、サービスメッシュを実装する。",
-      "Application Load Balancerを使用して、HTTPS通信を有効にする。",
-      "AWS Certificate Managerを使用して、各サービスにTLS証明書を発行する。",
-      "Amazon API Gatewayを使用して、サービス間の通信を管理する。"
+      "Use AWS App Mesh to implement a service mesh.",
+      "Use an Application Load Balancer to enable HTTPS communication.",
+      "Use AWS Certificate Manager to issue TLS certificates to each service.",
+      "Use Amazon API Gateway to manage inter-service communication."
     ],
     correctAnswer: 0,
-    category: "コンピューティング",
-    explanation: "AWS App Meshは、マイクロサービス間の通信を管理するサービスメッシュです。サービス間の通信を暗号化し、相互TLS認証を実装できます。また、トラフィックのルーティング、可視性、セキュリティを一元的に管理できます。",
+    category: "Compute",
+    explanation: "AWS App Mesh is a service mesh that manages communication between microservices. It encrypts service-to-service communication and implements mutual TLS authentication. It also centralizes traffic routing, observability, and security management.",
     optionExplanations: [
-      "✓ 正解: AWS App Meshは、マイクロサービス間の通信を管理するサービスメッシュです。Envoyプロキシを各サービスのサイドカーとしてデプロイし、サービス間の通信を暗号化（TLS）し、相互TLS認証を実装できます。App Meshは、トラフィックのルーティング、リトライ、タイムアウト、サーキットブレーカーなどの機能も提供し、マイクロサービスの可観測性とセキュリティを向上させます。ECS、EKS、EC2で実行されているサービスをサポートします。",
-      "ALBは、クライアントとサービス間のHTTPS通信を有効にできますが、サービス間の相互TLS認証を実装するには、App Meshの方が適しています。",
-      "ACMを使用してTLS証明書を発行することは可能ですが、App Meshの方が、サービスメッシュの包括的な機能（相互TLS認証、トラフィック管理、可観測性）を提供します。",
-      "API Gatewayは、外部クライアントとサービス間の通信を管理するのに適していますが、サービス間の内部通信には、App Meshの方が適しています。"
+      "✓ Correct: AWS App Mesh is a service mesh that manages communication between microservices. It deploys an Envoy proxy as a sidecar for each service, enabling TLS encryption and mutual TLS authentication between services. App Mesh also provides traffic routing, retry, timeout, and circuit breaker features, improving the observability and security of microservices. It supports services running on ECS, EKS, and EC2.",
+      "An ALB can enable HTTPS communication between clients and services, but App Mesh is more suitable for implementing mutual TLS authentication between services.",
+      "Issuing TLS certificates with ACM is possible, but App Mesh provides a comprehensive set of service mesh features (mutual TLS authentication, traffic management, observability).",
+      "API Gateway is well-suited for managing communication between external clients and services, but App Mesh is more appropriate for internal service-to-service communication."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/app-mesh/latest/userguide/what-is-app-mesh.html", title: "What Is App Mesh" }
+      { url: "https://docs.aws.amazon.com/app-mesh/latest/userguide/what-is-app-mesh.html", title: "What is AWS App Mesh?" }
     ]
   },
   {
     id: 30,
-    question: "ある企業は、Amazon S3バケットに保存されている大量の画像ファイルを、ウェブサイトで表示しています。画像は頻繁にアクセスされますが、オリジナルのサイズが大きいため、ページの読み込み時間が長くなっています。同社は、画像を自動的にリサイズし、最適化して、ページの読み込み時間を短縮したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company displays a large number of image files stored in an Amazon S3 bucket on its website. The images are frequently accessed, but their large original size is causing slow page load times. The company wants to automatically resize and optimize images to reduce page load times.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon CloudFrontとLambda@Edgeを使用して、画像をリサイズする。",
-      "AWS Lambda関数を使用して、画像をリサイズし、別のS3バケットに保存する。",
-      "Amazon EC2インスタンスで画像処理サーバーを実行する。",
-      "AWS Elastic Beanstalkを使用して、画像処理アプリケーションをデプロイする。"
+      "Use Amazon CloudFront with Lambda@Edge to resize images.",
+      "Use an AWS Lambda function to resize images and store them in a separate S3 bucket.",
+      "Run an image processing server on Amazon EC2 instances.",
+      "Deploy an image processing application using AWS Elastic Beanstalk."
     ],
     correctAnswer: 0,
-    category: "ネットワーキング",
-    explanation: "Amazon CloudFrontとLambda@Edgeを使用することで、エッジロケーションで画像をリサイズし、最適化できます。ユーザーに最も近いエッジロケーションで画像を処理することで、レイテンシを最小限に抑え、ページの読み込み時間を短縮できます。",
+    category: "Networking",
+    explanation: "Using Amazon CloudFront with Lambda@Edge allows images to be resized and optimized at edge locations. Processing images at the edge location closest to the user minimizes latency and reduces page load times.",
     optionExplanations: [
-      "✓ 正解: Amazon CloudFrontとLambda@Edgeを使用することで、エッジロケーションで画像をオンデマンドでリサイズし、最適化できます。ユーザーがリクエストした画像サイズ（例：クエリパラメータで指定）に基づいて、Lambda@Edge関数が画像をリサイズし、CloudFrontがキャッシュします。これにより、ユーザーに最も近いエッジロケーションから最適化された画像が配信され、レイテンシが最小限に抑えられ、ページの読み込み時間が短縮されます。また、オリジナルの画像のみをS3に保存すればよいため、ストレージコストも削減できます。",
-      "Lambda関数を使用して画像をリサイズすることは可能ですが、すべての画像を事前にリサイズする必要があり、ストレージコストが増加します。Lambda@Edgeの方が、オンデマンドでリサイズでき、効率的です。",
-      "EC2インスタンスで画像処理サーバーを実行することは可能ですが、Lambda@Edgeの方が、サーバーレスで、自動的にスケールし、コスト効率が高いです。",
-      "Elastic Beanstalkを使用することは可能ですが、Lambda@Edgeの方が、エッジロケーションでの処理により、レイテンシが低く、グローバルなユーザーに対してより効率的です。"
+      "✓ Correct: Using Amazon CloudFront with Lambda@Edge allows images to be resized on demand at edge locations. Based on the requested image size (specified via query parameters), the Lambda@Edge function resizes the image, which CloudFront then caches. This delivers optimized images from the edge location closest to the user, minimizing latency and reducing page load times. Only the original image needs to be stored in S3, reducing storage costs.",
+      "Using a Lambda function to resize images is possible, but all sizes must be pre-generated, increasing storage costs. Lambda@Edge is more efficient because it resizes images on demand.",
+      "Running an image processing server on EC2 is possible, but Lambda@Edge is serverless, scales automatically, and is more cost-efficient.",
+      "Using Elastic Beanstalk is possible, but Lambda@Edge processes at edge locations, providing lower latency and better efficiency for global users."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/lambda-at-the-edge.html", title: "AWS Lambda とは" }
+      { url: "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-at-the-edge.html", title: "Customizing at the edge with Lambda@Edge" }
     ]
   },
   {
     id: 31,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、機密情報を含む設定ファイルを使用しており、この情報を安全に管理したいと考えています。設定ファイルは、アプリケーションの起動時に読み込まれ、定期的に更新される必要があります。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances. The application uses configuration files containing sensitive information, and the company wants to manage this information securely. The configuration files are loaded at application startup and need to be updated periodically.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS Secrets Managerを使用して、機密情報を保存する。",
-      "AWS Systems Manager Parameter Storeを使用して、設定情報を保存する。",
-      "設定ファイルをEC2インスタンスのユーザーデータに含める。",
-      "設定ファイルをAmazon S3バケットに保存し、バケットポリシーでアクセスを制限する。"
+      "Use AWS Secrets Manager to store the sensitive information.",
+      "Use AWS Systems Manager Parameter Store to store the configuration.",
+      "Include the configuration files in the EC2 instance user data.",
+      "Store configuration files in an Amazon S3 bucket and restrict access with a bucket policy."
     ],
     correctAnswer: 0,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Secrets Managerは、データベース認証情報、APIキー、その他の機密情報を安全に保存、管理、取得するためのサービスです。自動的にシークレットをローテーションでき、きめ細かなアクセス制御を提供します。",
+    category: "Security and Compliance",
+    explanation: "AWS Secrets Manager is a service for securely storing, managing, and retrieving database credentials, API keys, and other sensitive information. It supports automatic secret rotation and provides fine-grained access control.",
     optionExplanations: [
-      "✓ 正解: AWS Secrets Managerは、データベース認証情報、APIキー、その他の機密情報を安全に保存、管理、取得するためのサービスです。機密情報を暗号化して保存し、IAMポリシーを使用してきめ細かなアクセス制御を提供します。自動的にシークレットをローテーションする機能があり、データベース認証情報などを定期的に更新できます。また、CloudTrailと統合されており、シークレットへのアクセスを監査できます。アプリケーションは、AWS SDKを使用してSecrets Managerからシークレットを取得できます。",
-      "Parameter Storeは、設定データの保存に適していますが、Secrets Managerの方が、機密情報の管理に特化しており、自動ローテーション機能を提供します。",
-      "ユーザーデータに機密情報を含めることは、セキュリティリスクがあります。ユーザーデータは、EC2コンソールやAPIから閲覧可能であり、機密情報の保存には適していません。",
-      "S3バケットに設定ファイルを保存することは可能ですが、Secrets Managerの方が、機密情報の管理に特化しており、自動ローテーション、監査ログ、きめ細かなアクセス制御を提供します。"
+      "✓ Correct: AWS Secrets Manager securely stores, manages, and retrieves database credentials, API keys, and other sensitive information. It stores secrets encrypted using IAM policies for fine-grained access control. It supports automatic secret rotation, enabling periodic updates of database credentials. It also integrates with CloudTrail for auditing access to secrets. Applications can retrieve secrets from Secrets Manager using the AWS SDK.",
+      "Parameter Store is suitable for storing configuration data, but Secrets Manager is more specialized for managing sensitive information and provides automatic rotation.",
+      "Including sensitive information in user data is a security risk. User data is viewable from the EC2 console and API, and is not appropriate for storing sensitive information.",
+      "Storing configuration files in an S3 bucket is possible, but Secrets Manager is more specialized for sensitive information management and provides automatic rotation, audit logs, and fine-grained access control."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/secretsmanager/latest/userguide/intro.html", title: "Intro" }
+      { url: "https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html", title: "What is AWS Secrets Manager?" }
     ]
   },
   {
     id: 32,
-    question: "ある企業は、Amazon RDS for MySQLデータベースを使用しています。同社は、データベースのバックアップ戦略を改善し、災害復旧の目標復旧時点(RPO)を1時間以内にしたいと考えています。また、別のAWSリージョンにバックアップを保存したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses an Amazon RDS for MySQL database. The company wants to improve its backup strategy and achieve a disaster recovery recovery point objective (RPO) of within one hour. The company also wants to store backups in a different AWS Region.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "RDSの自動バックアップを有効にし、バックアップ保持期間を35日に設定する。",
-      "RDSのスナップショットを手動で作成し、別のリージョンにコピーする。",
-      "RDSのリードレプリカを別のリージョンに作成する。",
-      "AWS Backupを使用して、RDSデータベースのバックアップを別のリージョンにコピーする。"
+      "Enable RDS automated backups and set the backup retention period to 35 days.",
+      "Manually create RDS snapshots and copy them to another Region.",
+      "Create an RDS read replica in another Region.",
+      "Use AWS Backup to copy RDS database backups to another Region."
     ],
     correctAnswer: 3,
-    category: "高可用性とスケーラビリティ",
-    explanation: "AWS Backupを使用することで、RDSデータベースのバックアップを自動的に作成し、別のリージョンにコピーできます。バックアップスケジュールを設定することで、RPO要件を満たすことができます。",
+    category: "High Availability and Scalability",
+    explanation: "Using AWS Backup, you can automatically create RDS database backups and copy them to another Region. Setting a backup schedule allows you to meet RPO requirements.",
     optionExplanations: [
-      "RDSの自動バックアップは、同じリージョン内にのみ保存されます。別のリージョンにバックアップを保存するには、追加の手順が必要です。",
-      "手動スナップショットを作成し、別のリージョンにコピーすることは可能ですが、AWS Backupの方が、自動化されており、管理が容易です。",
-      "リードレプリカは、読み取りスケーリングと災害復旧に使用できますが、バックアップの代わりにはなりません。リードレプリカは、プライマリデータベースの変更をほぼリアルタイムで反映しますが、誤った削除や破損からは保護されません。",
-      "✓ 正解: AWS Backupは、AWSサービス全体でバックアップを一元的に管理するサービスです。RDSデータベースのバックアップを自動的に作成し、バックアップポリシーに基づいて別のリージョンにコピーできます。バックアップスケジュールを設定することで（例：1時間ごと）、RPO要件を満たすことができます。また、バックアップの保持期間、ライフサイクル管理、暗号化を一元的に管理できます。AWS Backupは、RDS、EBS、EFS、DynamoDB、Storage Gatewayなど、複数のAWSサービスをサポートしています。"
+      "RDS automated backups are stored only within the same Region. Additional steps are required to store backups in a different Region.",
+      "Creating manual snapshots and copying them to another Region is possible, but AWS Backup is automated and easier to manage.",
+      "Read replicas can be used for read scaling and disaster recovery, but they are not a substitute for backups. Read replicas reflect primary database changes in near real time but do not protect against accidental deletion or corruption.",
+      "✓ Correct: AWS Backup is a centralized backup management service across AWS services. It can automatically create RDS database backups and copy them to another Region based on a backup policy. Setting a backup schedule (e.g., hourly) allows the RPO requirement to be met. It also centrally manages backup retention, lifecycle management, and encryption. AWS Backup supports multiple AWS services including RDS, EBS, EFS, DynamoDB, and Storage Gateway."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/aws-backup/latest/devguide/whatisbackup.html", title: "Whatisbackup" }
+      { url: "https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html", title: "What is AWS Backup?" }
     ]
   },
   {
     id: 33,
-    question: "ある企業は、Amazon EKS（Elastic Kubernetes Service）クラスターで実行されているマイクロサービスアプリケーションを持っています。各マイクロサービスは、異なるAWSリソース（S3、DynamoDB、SQSなど）にアクセスする必要があります。同社は、各マイクロサービスに最小権限の原則に基づいたアクセス権限を付与したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a microservices application running on an Amazon EKS (Elastic Kubernetes Service) cluster. Each microservice needs to access different AWS resources (S3, DynamoDB, SQS, etc.). The company wants to grant each microservice access permissions based on the principle of least privilege.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "各マイクロサービスにAWSアクセスキーとシークレットキーを環境変数として渡す。",
-      "EKSノードにIAMロールをアタッチし、すべてのPodがそのロールを使用する。",
-      "IAM Roles for Service Accounts (IRSA)を使用して、各Podに個別のIAMロールを割り当てる。",
-      "Kubernetes Secretsを使用して、AWS認証情報を保存する。"
+      "Pass AWS access keys and secret keys to each microservice as environment variables.",
+      "Attach an IAM role to EKS nodes so all Pods use the same role.",
+      "Use IAM Roles for Service Accounts (IRSA) to assign individual IAM roles to each Pod.",
+      "Use Kubernetes Secrets to store AWS credentials."
     ],
     correctAnswer: 2,
-    category: "コンピューティング",
-    explanation: "IAM Roles for Service Accounts (IRSA)を使用することで、各Kubernetes Podにきめ細かなIAMロールを割り当てることができます。これにより、最小権限の原則に基づいたアクセス制御を実現できます。",
+    category: "Compute",
+    explanation: "Using IAM Roles for Service Accounts (IRSA) allows fine-grained IAM roles to be assigned to each Kubernetes Pod. This enables access control based on the principle of least privilege.",
     optionExplanations: [
-      "AWSアクセスキーとシークレットキーを環境変数として渡すことは、セキュリティリスクがあります。認証情報が漏洩する可能性があり、ローテーションが困難です。",
-      "EKSノードにIAMロールをアタッチすると、そのノード上のすべてのPodが同じ権限を持つことになり、最小権限の原則に反します。",
-      "✓ 正解: IAM Roles for Service Accounts (IRSA)は、Kubernetes Service AccountとIAMロールを関連付ける機能です。各PodにService Accountを割り当て、そのService Accountに特定のIAMロールを関連付けることで、Podごとにきめ細かなアクセス制御を実現できます。Podは、AWS SDKを使用してAWSリソースにアクセスする際、自動的に関連付けられたIAMロールの一時的な認証情報を取得します。これにより、最小権限の原則に基づいたアクセス制御が可能になり、セキュリティが向上します。また、認証情報をコードや環境変数に埋め込む必要がなくなります。",
-      "Kubernetes Secretsに認証情報を保存することは可能ですが、IRSAの方が、より安全で、管理が容易です。IRSAは、一時的な認証情報を自動的に取得し、ローテーションします。"
+      "Passing AWS access keys and secret keys as environment variables is a security risk. Credentials may be exposed and are difficult to rotate.",
+      "Attaching an IAM role to EKS nodes means all Pods on that node share the same permissions, which violates the principle of least privilege.",
+      "✓ Correct: IAM Roles for Service Accounts (IRSA) associates Kubernetes Service Accounts with IAM roles. By assigning a Service Account to each Pod and associating that Service Account with a specific IAM role, fine-grained access control is achieved per Pod. When Pods access AWS resources via the AWS SDK, they automatically obtain temporary credentials for the associated IAM role. This enables least-privilege access control and improves security, eliminating the need to embed credentials in code or environment variables.",
+      "Storing credentials in Kubernetes Secrets is possible, but IRSA is more secure and easier to manage. IRSA automatically obtains and rotates temporary credentials."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/eks/latest/userguide/iam-roles-for-service-accounts.html", title: "AWS Identity and Access Management (IAM) とは" }
+      { url: "https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html", title: "IAM roles for service accounts" }
     ]
   },
   {
     id: 34,
-    question: "ある企業は、Amazon S3バケットに保存されている大量のログファイルを、長期保存のためにアーカイブしたいと考えています。ログファイルは、最初の30日間は頻繁にアクセスされますが、その後はほとんどアクセスされません。同社は、ストレージコストを最小限に抑えたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company wants to archive a large number of log files stored in an Amazon S3 bucket for long-term retention. The log files are frequently accessed for the first 30 days and rarely accessed after that. The company wants to minimize storage costs.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3 Intelligent-Tieringストレージクラスを使用する。",
-      "S3ライフサイクルポリシーを使用して、30日後にS3 Standard-IAに移行し、90日後にS3 Glacier Deep Archiveに移行する。",
-      "S3ライフサイクルポリシーを使用して、30日後にS3 Glacier Flexible Retrievalに移行する。",
-      "すべてのログファイルをS3 One Zone-IAに保存する。"
+      "Use the S3 Intelligent-Tiering storage class.",
+      "Use an S3 lifecycle policy to transition to S3 Standard-IA after 30 days and to S3 Glacier Deep Archive after 90 days.",
+      "Use an S3 lifecycle policy to transition to S3 Glacier Flexible Retrieval after 30 days.",
+      "Store all log files in S3 One Zone-IA."
     ],
     correctAnswer: 1,
-    category: "ストレージ",
-    explanation: "S3ライフサイクルポリシーを使用して、ログファイルを段階的に移行することで、ストレージコストを最適化できます。最初の30日間はS3 Standardで保存し、その後S3 Standard-IAに移行し、さらに長期保存のためにS3 Glacier Deep Archiveに移行します。",
+    category: "Storage",
+    explanation: "Using an S3 lifecycle policy to transition log files in stages optimizes storage costs. Files are stored in S3 Standard for the first 30 days, then transitioned to S3 Standard-IA, and finally to S3 Glacier Deep Archive for long-term retention.",
     optionExplanations: [
-      "S3 Intelligent-Tieringは、アクセスパターンに基づいて自動的にストレージクラスを移行しますが、アーカイブ層への移行には追加の設定が必要です。ライフサイクルポリシーの方が、明確な移行スケジュールを設定でき、コスト予測が容易です。",
-      "✓ 正解: S3ライフサイクルポリシーを使用して、ログファイルを段階的に移行することで、ストレージコストを最適化できます。最初の30日間は、S3 Standard（頻繁なアクセス用）で保存します。30日後、S3 Standard-IA（低頻度アクセス用）に移行し、ストレージコストを削減します。90日後、S3 Glacier Deep Archive（長期アーカイブ用）に移行し、最も低いストレージコストを実現します。この段階的な移行により、アクセスパターンに応じた最適なストレージクラスを使用でき、コストを最小限に抑えることができます。",
-      "S3 Glacier Flexible Retrievalは、アーカイブストレージとして適していますが、S3 Standard-IAを経由することで、段階的なコスト削減が可能です。また、90日後にGlacier Deep Archiveに移行することで、さらにコストを削減できます。",
-      "S3 One Zone-IAは、低頻度アクセス用のストレージクラスですが、単一のアベイラビリティーゾーンにのみデータを保存するため、耐久性が低くなります。長期保存には、Glacier Deep Archiveの方が適しています。"
+      "S3 Intelligent-Tiering automatically transitions between storage classes based on access patterns, but moving to archive tiers requires additional configuration. A lifecycle policy provides a clearer transition schedule and makes cost forecasting easier.",
+      "✓ Correct: Using an S3 lifecycle policy to transition log files in stages optimizes storage costs. For the first 30 days, files are stored in S3 Standard (for frequent access). After 30 days, they transition to S3 Standard-IA (for infrequent access), reducing storage costs. After 90 days, they transition to S3 Glacier Deep Archive (for long-term archiving), achieving the lowest storage cost. This staged transition uses the optimal storage class based on the access pattern, minimizing overall costs.",
+      "S3 Glacier Flexible Retrieval is suitable as archive storage, but transitioning through S3 Standard-IA first enables staged cost reduction. Transitioning to Glacier Deep Archive after 90 days reduces costs further.",
+      "S3 One Zone-IA stores data in only a single Availability Zone, resulting in lower durability. For long-term retention, Glacier Deep Archive is more appropriate."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html", title: "Amazon S3 ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html", title: "Transitioning objects using Amazon S3 Lifecycle" }
     ]
   },
   {
     id: 35,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、ユーザーのセッション情報をローカルに保存していますが、Auto Scalingグループを使用してスケールアウトすると、セッション情報が失われる問題が発生しています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances. The application stores user session information locally, but when it scales out using an Auto Scaling group, session information is lost.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon EFSを使用して、セッション情報を共有ファイルシステムに保存する。",
-      "Elastic Load Balancerのスティッキーセッションを有効にする。",
-      "Amazon RDSを使用して、セッション情報をデータベースに保存する。",
-      "Amazon ElastiCache for Redisを使用して、セッション情報を保存する。"
+      "Use Amazon EFS to store session information in a shared file system.",
+      "Enable sticky sessions on the Elastic Load Balancer.",
+      "Use Amazon RDS to store session information in a database.",
+      "Use Amazon ElastiCache for Redis to store session information."
     ],
     correctAnswer: 3,
-    category: "アプリケーション統合",
-    explanation: "Amazon ElastiCache for Redisを使用することで、セッション情報を高速に保存・取得でき、複数のEC2インスタンス間でセッション情報を共有できます。Redisは、インメモリデータストアであり、低レイテンシでセッション管理に最適です。",
+    category: "Application Integration",
+    explanation: "Using Amazon ElastiCache for Redis allows session information to be stored and retrieved quickly, and session data can be shared across multiple EC2 instances. Redis is an in-memory data store ideal for low-latency session management.",
     optionExplanations: [
-      "EFSを使用してセッション情報を保存することは可能ですが、ElastiCacheの方が、低レイテンシで、セッション管理に最適化されています。",
-      "スティッキーセッションは、ユーザーを特定のインスタンスに固定しますが、そのインスタンスが終了すると、セッション情報が失われます。ElastiCacheを使用する方が、より堅牢なソリューションです。",
-      "RDSを使用してセッション情報を保存することは可能ですが、ElastiCacheの方が、低レイテンシで、セッション管理に適しています。データベースは、永続的なデータの保存に適していますが、セッション情報のような一時的なデータには、インメモリストアの方が効率的です。",
-      "✓ 正解: Amazon ElastiCache for Redisは、インメモリデータストアであり、セッション情報の保存に最適です。低レイテンシで高速にセッション情報を保存・取得でき、複数のEC2インスタンス間でセッション情報を共有できます。Auto Scalingグループがスケールアウトしても、すべてのインスタンスが同じElastiCacheクラスターにアクセスするため、セッション情報が失われることはありません。また、Redisは、データの永続性とレプリケーションをサポートしており、高可用性を実現できます。"
+      "Using EFS to store session information is possible, but ElastiCache provides lower latency and is optimized for session management.",
+      "Sticky sessions pin users to a specific instance, but if that instance is terminated, session information is lost. Using ElastiCache provides a more robust solution.",
+      "Using RDS to store session information is possible, but ElastiCache provides lower latency and is better suited for session management. Databases are appropriate for persistent data, but in-memory stores are more efficient for temporary data such as session information.",
+      "✓ Correct: Amazon ElastiCache for Redis is an in-memory data store ideal for storing session information. It stores and retrieves session data quickly with low latency and allows session information to be shared across multiple EC2 instances. When the Auto Scaling group scales out, all instances access the same ElastiCache cluster, so session information is never lost. Redis also supports data persistence and replication, enabling high availability."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonElastiCache/latest/red-ug/elasticache-use-cases.html", title: "Amazon ElastiCache とは" }
+      { url: "https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/elasticache-use-cases.html", title: "Common ElastiCache use cases and how ElastiCache can help" }
     ]
   },
   {
     id: 36,
-    question: "ある企業は、オンプレミスのデータセンターからAWSへの移行を計画しています。同社は、大量のデータ（数百TB）をAmazon S3に転送する必要があります。インターネット経由でのデータ転送には時間がかかりすぎるため、より高速な方法を探しています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company is planning a migration from its on-premises data center to AWS. The company needs to transfer a large amount of data (hundreds of TB) to Amazon S3. Transferring the data over the internet would take too long, so the company is looking for a faster method.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS Direct Connectを使用して、専用ネットワーク接続を確立する。",
-      "AWS DataSyncを使用して、データを転送する。",
-      "AWS Snowballデバイスを使用して、データを物理的に転送する。",
-      "Amazon S3 Transfer Accelerationを使用して、データを転送する。"
+      "Use AWS Direct Connect to establish a dedicated network connection.",
+      "Use AWS DataSync to transfer the data.",
+      "Use AWS Snowball devices to physically transfer the data.",
+      "Use Amazon S3 Transfer Acceleration to transfer the data."
     ],
     correctAnswer: 2,
-    category: "アプリケーション統合",
-    explanation: "AWS Snowballは、大量のデータを物理的に転送するためのデバイスです。数百TBのデータを転送する場合、Snowballを使用することで、インターネット経由よりも高速かつコスト効率的にデータを転送できます。",
+    category: "Application Integration",
+    explanation: "AWS Snowball is a device for physically transferring large amounts of data. When transferring hundreds of TB, Snowball is faster and more cost-effective than transferring over the internet.",
     optionExplanations: [
-      "Direct Connectは、オンプレミスとAWS間の専用ネットワーク接続を提供しますが、セットアップに時間がかかり、数百TBのデータを一度に転送する場合、Snowballの方がコスト効率的です。",
-      "DataSyncは、オンプレミスとAWS間のデータ転送を自動化するサービスですが、ネットワーク経由でデータを転送するため、数百TBのデータを転送する場合、Snowballの方が高速です。",
-      "✓ 正解: AWS Snowballは、大量のデータを物理的に転送するためのペタバイト規模のデータ転送デバイスです。Snowballデバイスをオンプレミスのデータセンターに配送し、データをデバイスにコピーした後、AWSに返送します。AWSは、デバイスからS3バケットにデータをインポートします。数百TBのデータを転送する場合、インターネット経由よりも高速で、コスト効率的です。また、データは転送中に暗号化され、セキュリティが確保されます。Snowball Edgeは、コンピューティング機能も提供し、エッジでのデータ処理が可能です。",
-      "S3 Transfer Accelerationは、CloudFrontのエッジロケーションを使用してS3へのアップロードを高速化しますが、数百TBのデータを転送する場合、Snowballの方がコスト効率的です。"
+      "Direct Connect provides a dedicated network connection between on-premises and AWS, but setup takes time and Snowball is more cost-effective for a one-time transfer of hundreds of TB.",
+      "DataSync automates data transfer between on-premises and AWS, but it transfers data over the network. For hundreds of TB, Snowball is faster.",
+      "✓ Correct: AWS Snowball is a petabyte-scale data transfer device for physically moving large amounts of data. A Snowball device is shipped to the on-premises data center, data is copied to the device, and the device is shipped back to AWS. AWS then imports the data from the device into an S3 bucket. For hundreds of TB, this is faster and more cost-effective than internet transfer. Data is encrypted in transit for security. Snowball Edge also provides compute capabilities for edge data processing.",
+      "S3 Transfer Acceleration speeds up uploads to S3 using CloudFront edge locations, but for hundreds of TB, Snowball is more cost-effective."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/snowball/latest/ug/whatissnowball.html", title: "Whatissnowball" }
+      { url: "https://docs.aws.amazon.com/snowball/latest/ug/whatissnowball.html", title: "What is AWS Snowball?" }
     ]
   },
   {
     id: 37,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションが、定期的にAmazon DynamoDBテーブルから大量のデータを読み取っています。読み取り操作が頻繁に行われるため、DynamoDBのコストが高くなっています。同社は、コストを削減しつつ、パフォーマンスを維持したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances that regularly reads large amounts of data from an Amazon DynamoDB table. The frequent read operations are driving up DynamoDB costs. The company wants to reduce costs while maintaining performance.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "DynamoDBのプロビジョニングされたキャパシティモードからオンデマンドモードに変更する。",
-      "DynamoDBのグローバルセカンダリインデックス(GSI)を作成する。",
-      "DynamoDB Accelerator (DAX)を使用して、読み取り操作をキャッシュする。",
-      "Amazon ElastiCache for Redisを使用して、DynamoDBのデータをキャッシュする。"
+      "Switch DynamoDB from provisioned capacity mode to on-demand mode.",
+      "Create a DynamoDB Global Secondary Index (GSI).",
+      "Use DynamoDB Accelerator (DAX) to cache read operations.",
+      "Use Amazon ElastiCache for Redis to cache DynamoDB data."
     ],
     correctAnswer: 2,
-    category: "データベース",
-    explanation: "DynamoDB Accelerator (DAX)は、DynamoDB専用のインメモリキャッシュです。頻繁に読み取られるデータをキャッシュすることで、読み取りレイテンシを大幅に削減し、DynamoDBへの読み取りリクエスト数を減らすことができます。",
+    category: "Database",
+    explanation: "DynamoDB Accelerator (DAX) is an in-memory cache purpose-built for DynamoDB. Caching frequently read data dramatically reduces read latency and decreases the number of read requests to DynamoDB.",
     optionExplanations: [
-      "オンデマンドモードは、予測不可能なワークロードに適していますが、頻繁な読み取り操作がある場合、プロビジョニングされたキャパシティモードの方がコスト効率的です。DAXを使用する方が、コスト削減とパフォーマンス向上の両方を実現できます。",
-      "GSIは、異なるキーでクエリを実行するために使用されますが、読み取りコストの削減には直接的には貢献しません。DAXの方が、読み取りパフォーマンスとコスト削減に効果的です。",
-      "✓ 正解: DynamoDB Accelerator (DAX)は、DynamoDB専用のフルマネージド型インメモリキャッシュです。頻繁に読み取られるデータをキャッシュすることで、読み取りレイテンシをマイクロ秒単位に削減し、DynamoDBへの読み取りリクエスト数を大幅に減らすことができます。これにより、DynamoDBのプロビジョニングされた読み取りキャパシティユニット(RCU)の消費が減少し、コストが削減されます。DAXは、DynamoDBと完全に互換性があり、アプリケーションコードの変更は最小限で済みます。",
-      "ElastiCache for Redisを使用してDynamoDBのデータをキャッシュすることは可能ですが、DAXの方が、DynamoDBに特化しており、統合が容易で、管理が簡単です。"
+      "On-demand mode is suitable for unpredictable workloads, but for frequent reads, provisioned capacity mode is more cost-effective. Using DAX achieves both cost reduction and performance improvement.",
+      "A GSI is used to query with different keys but does not directly reduce read costs. DAX is more effective for improving read performance and reducing costs.",
+      "✓ Correct: DynamoDB Accelerator (DAX) is a fully managed, in-memory cache purpose-built for DynamoDB. Caching frequently read data reduces read latency to microseconds and dramatically decreases the number of read requests to DynamoDB. This reduces consumption of provisioned read capacity units (RCUs) and lowers costs. DAX is fully compatible with DynamoDB and requires minimal application code changes.",
+      "Using ElastiCache for Redis to cache DynamoDB data is possible, but DAX is purpose-built for DynamoDB, easier to integrate, and simpler to manage."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/DAX.html", title: "Amazon DynamoDB ドキュメント" }
+      { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.html", title: "In-memory acceleration with DynamoDB Accelerator (DAX)" }
     ]
   },
   {
     id: 38,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、ユーザーがアップロードした画像を処理し、Amazon S3に保存します。画像処理には時間がかかるため、ユーザーは処理が完了するまで待つ必要があります。同社は、ユーザーエクスペリエンスを向上させるために、画像処理を非同期で行いたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances. The application processes images uploaded by users and stores them in Amazon S3. Image processing takes a long time, requiring users to wait until processing is complete. The company wants to perform image processing asynchronously to improve user experience.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon SQSキューを使用して、画像処理タスクをキューに追加し、別のEC2インスタンスで処理する。",
-      "AWS Step Functionsを使用して、画像処理ワークフローを管理する。",
-      "Amazon Kinesisを使用して、画像処理タスクをストリーミングする。",
-      "AWS Batchを使用して、画像処理ジョブを実行する。"
+      "Use an Amazon SQS queue to enqueue image processing tasks and process them on separate EC2 instances.",
+      "Use AWS Step Functions to manage the image processing workflow.",
+      "Use Amazon Kinesis to stream image processing tasks.",
+      "Use AWS Batch to run image processing jobs."
     ],
     correctAnswer: 0,
-    category: "アプリケーション統合",
-    explanation: "Amazon SQSキューを使用することで、画像処理タスクを非同期で処理できます。ウェブアプリケーションは、画像処理タスクをSQSキューに追加し、すぐにユーザーに応答を返します。別のEC2インスタンス（ワーカー）がキューからタスクを取得し、画像を処理します。",
+    category: "Application Integration",
+    explanation: "Using an Amazon SQS queue allows image processing tasks to be handled asynchronously. The web application enqueues processing tasks and immediately returns a response to the user. Separate EC2 worker instances pick up tasks from the queue and process the images.",
     optionExplanations: [
-      "✓ 正解: Amazon SQSは、フルマネージド型のメッセージキューサービスです。ウェブアプリケーションは、ユーザーが画像をアップロードしたときに、画像処理タスクをSQSキューに追加し、すぐにユーザーに応答を返します。別のEC2インスタンス（ワーカー）がキューからタスクを取得し、画像を処理してS3に保存します。これにより、画像処理が非同期で行われ、ユーザーは処理が完了するまで待つ必要がなくなります。SQSは、メッセージの配信を保証し、スケーラブルで、コスト効率的です。Auto Scalingを使用して、キューの長さに基づいてワーカーインスタンスの数を自動的に調整できます。",
-      "Step Functionsは、複雑なワークフローの管理に適していますが、シンプルな非同期処理には、SQSの方が適しています。",
-      "Kinesisは、リアルタイムのストリーミングデータの処理に使用されますが、画像処理のような非同期タスクには、SQSの方が適しています。",
-      "AWS Batchは、大規模なバッチ処理ジョブの実行に適していますが、シンプルな非同期処理には、SQSの方が適しています。"
+      "✓ Correct: Amazon SQS is a fully managed message queuing service. When a user uploads an image, the web application adds the processing task to an SQS queue and immediately returns a response. Separate EC2 worker instances retrieve tasks from the queue, process the images, and save them to S3. This makes image processing asynchronous so users no longer need to wait. SQS guarantees message delivery, is scalable, and is cost-efficient. Auto Scaling can automatically adjust the number of worker instances based on queue length.",
+      "Step Functions is well-suited for managing complex workflows, but SQS is more appropriate for simple asynchronous processing.",
+      "Kinesis is used for real-time streaming data processing, but SQS is more appropriate for asynchronous tasks such as image processing.",
+      "AWS Batch is suited for large-scale batch processing jobs, but SQS is more appropriate for simple asynchronous processing."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html", title: "Welcome" }
+      { url: "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html", title: "What is Amazon Simple Queue Service?" }
     ]
   },
   {
     id: 39,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的に外部APIを呼び出してデータを取得しますが、APIのレート制限により、リクエストが失敗することがあります。同社は、リクエストの失敗を減らし、アプリケーションの信頼性を向上させたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically calls an external API to retrieve data, but requests sometimes fail due to API rate limiting. The company wants to reduce request failures and improve application reliability.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS Lambda関数を使用して、APIを呼び出す。",
-      "Amazon API Gatewayを使用して、APIリクエストをプロキシする。",
-      "指数バックオフとジッターを実装して、リトライロジックを改善する。",
-      "Amazon SQSキューを使用して、APIリクエストをバッファリングする。"
+      "Use an AWS Lambda function to call the API.",
+      "Use Amazon API Gateway to proxy API requests.",
+      "Implement exponential backoff with jitter to improve the retry logic.",
+      "Use an Amazon SQS queue to buffer API requests."
     ],
     correctAnswer: 2,
-    category: "アプリケーション統合",
-    explanation: "指数バックオフとジッターを実装することで、リトライ間隔を徐々に増やし、ランダムな遅延を追加することで、リクエストの衝突を減らし、APIのレート制限に対処できます。",
+    category: "Application Integration",
+    explanation: "Implementing exponential backoff with jitter gradually increases retry intervals and adds random delays to reduce request collisions, addressing API rate limiting.",
     optionExplanations: [
-      "Lambda関数を使用することは可能ですが、指数バックオフとジッターを実装する方が、既存のアプリケーションに適用しやすく、効果的です。",
-      "API Gatewayは、APIリクエストの管理に使用できますが、外部APIのレート制限に対処するには、指数バックオフとジッターの方が適しています。",
-      "✓ 正解: 指数バックオフとジッターは、リトライロジックを改善するためのベストプラクティスです。指数バックオフは、リトライ間隔を徐々に増やすことで（例：1秒、2秒、4秒、8秒）、APIへの負荷を減らします。ジッターは、リトライ間隔にランダムな遅延を追加することで、複数のクライアントが同時にリトライすることによる衝突を減らします。これにより、APIのレート制限に対処し、リクエストの成功率を向上させることができます。AWS SDKは、デフォルトで指数バックオフとジッターを実装しています。",
-      "SQSキューを使用してAPIリクエストをバッファリングすることは可能ですが、指数バックオフとジッターの方が、シンプルで、既存のアプリケーションに適用しやすいです。"
+      "Using a Lambda function is possible, but implementing exponential backoff with jitter is easier to apply to an existing application and is more effective.",
+      "API Gateway can be used to manage API requests, but exponential backoff with jitter is more appropriate for dealing with external API rate limiting.",
+      "✓ Correct: Exponential backoff with jitter is a best practice for improving retry logic. Exponential backoff gradually increases retry intervals (e.g., 1s, 2s, 4s, 8s) to reduce load on the API. Jitter adds random delays to retry intervals to reduce collisions when multiple clients retry simultaneously. This handles API rate limiting and improves request success rates. The AWS SDK implements exponential backoff and jitter by default.",
+      "Using an SQS queue to buffer API requests is possible, but exponential backoff with jitter is simpler and easier to apply to an existing application."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/general/latest/gr/api-retries.html", title: "Api Retries" }
+      { url: "https://docs.aws.amazon.com/general/latest/gr/api-retries.html", title: "Error retries and exponential backoff in AWS" }
     ]
   },
   {
     id: 40,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、Application Load Balancer (ALB)の背後にあり、複数のアベイラビリティーゾーンにデプロイされています。同社は、アプリケーションのセキュリティを向上させるために、特定の国からのトラフィックをブロックしたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances behind an Application Load Balancer (ALB), deployed across multiple Availability Zones. The company wants to improve security by blocking traffic from specific countries.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS WAFを使用して、地理的制限ルールを設定する。",
-      "ALBのセキュリティグループを使用して、特定のIPアドレス範囲をブロックする。",
-      "Amazon CloudFrontを使用して、地理的制限を設定する。",
-      "Network ACLを使用して、特定のIPアドレス範囲をブロックする。"
+      "Use AWS WAF to configure geographic restriction rules.",
+      "Use the ALB security group to block specific IP address ranges.",
+      "Use Amazon CloudFront to configure geographic restrictions.",
+      "Use Network ACLs to block specific IP address ranges."
     ],
     correctAnswer: 0,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS WAFを使用して、地理的制限ルールを設定することで、特定の国からのトラフィックをブロックできます。WAFは、ALBと統合され、リクエストの送信元の国に基づいてトラフィックをフィルタリングできます。",
+    category: "Security and Compliance",
+    explanation: "Using AWS WAF to configure geographic restriction rules allows traffic from specific countries to be blocked. WAF integrates with the ALB and can filter traffic based on the country of origin of the request.",
     optionExplanations: [
-      "✓ 正解: AWS WAFは、Webアプリケーションファイアウォールで、ALB、CloudFront、API Gatewayと統合できます。地理的制限ルール（Geo Match Rule）を使用して、特定の国からのトラフィックをブロックまたは許可できます。WAFは、リクエストの送信元IPアドレスに基づいて国を判定し、ルールに従ってトラフィックをフィルタリングします。地理的制限ルールは、簡単に設定でき、複数の国を指定できます。また、WAFは、SQLインジェクション、XSS、レート制限などの他のセキュリティルールも提供します。",
-      "セキュリティグループは、IPアドレスベースのアクセス制御を提供しますが、国ごとのIPアドレス範囲を手動で管理するのは困難です。WAFの方が、地理的制限に適しています。",
-      "CloudFrontは、地理的制限を設定できますが、ALBの前にCloudFrontを配置する必要があります。既存のALBベースのアーキテクチャでは、WAFを使用する方が簡単です。",
-      "Network ACLは、サブネットレベルのアクセス制御を提供しますが、国ごとのIPアドレス範囲を手動で管理するのは困難です。WAFの方が、地理的制限に適しています。"
+      "✓ Correct: AWS WAF is a web application firewall that can be integrated with ALB, CloudFront, and API Gateway. Geographic match rules (Geo Match) can block or allow traffic from specific countries. WAF determines the country from the request's source IP address and filters traffic according to the rules. Geographic rules are easy to configure and can specify multiple countries. WAF also provides other security rules such as SQL injection protection, XSS protection, and rate limiting.",
+      "Security groups provide IP address-based access control, but manually managing IP address ranges for each country is difficult. WAF is more appropriate for geographic restrictions.",
+      "CloudFront can configure geographic restrictions, but it must be placed in front of the ALB. For an existing ALB-based architecture, using WAF directly is simpler.",
+      "Network ACLs provide subnet-level access control, but manually managing country IP ranges is difficult. WAF is more appropriate for geographic restrictions."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/waf/latest/developerguide/waf-rule-statement-type-geo-match.html", title: "AWS WAF とは" }
+      { url: "https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-geo-match.html", title: "Geographic match rule statement" }
     ]
   },
   {
     id: 41,
-    question: "ある企業は、Amazon Aurora MySQLデータベースを使用しています。同社は、データベースのパフォーマンスを向上させるために、読み取り専用のクエリを分散したいと考えています。また、プライマリインスタンスに障害が発生した場合の高可用性も確保したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses an Amazon Aurora MySQL database. The company wants to distribute read-only queries to improve database performance. It also wants to ensure high availability in case the primary instance fails.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Aurora Replicaを作成し、読み取り専用のクエリをReplicaにルーティングする。",
-      "Amazon RDS Read Replicaを作成する。",
-      "Amazon ElastiCache for Redisを使用して、クエリ結果をキャッシュする。",
-      "データベースのインスタンスタイプを大きくする。"
+      "Create Aurora Replicas and route read-only queries to the replicas.",
+      "Create an Amazon RDS Read Replica.",
+      "Use Amazon ElastiCache for Redis to cache query results.",
+      "Increase the database instance type."
     ],
     correctAnswer: 0,
-    category: "データベース",
-    explanation: "Aurora Replicaを作成することで、読み取り専用のクエリを分散し、プライマリインスタンスの負荷を軽減できます。また、プライマリインスタンスに障害が発生した場合、Aurora Replicaが自動的にプライマリに昇格し、高可用性を確保できます。",
+    category: "Database",
+    explanation: "Creating Aurora Replicas distributes read-only queries and reduces the load on the primary instance. If the primary instance fails, an Aurora Replica automatically promotes to primary, ensuring high availability.",
     optionExplanations: [
-      "✓ 正解: Aurora Replicaは、Auroraクラスター内の読み取り専用のインスタンスです。読み取り専用のクエリをReplicaにルーティングすることで、プライマリインスタンスの負荷を軽減し、パフォーマンスを向上させることができます。Auroraは、最大15個のReplicaをサポートし、自動的に読み取りトラフィックを分散します。また、プライマリインスタンスに障害が発生した場合、Aurora Replicaが自動的にプライマリに昇格し（通常30秒以内）、高可用性を確保できます。Aurora Replicaは、プライマリインスタンスと同じストレージボリュームを共有するため、レプリケーションのレイテンシが非常に低いです。",
-      "RDS Read Replicaは、標準のRDSで使用されますが、Auroraの場合は、Aurora Replicaの方が、より高速で、自動フェイルオーバーをサポートしています。",
-      "ElastiCacheを使用してクエリ結果をキャッシュすることは可能ですが、Aurora Replicaの方が、データベースレベルでの読み取りスケーリングと高可用性を提供します。",
-      "インスタンスタイプを大きくすることは、垂直スケーリングですが、Aurora Replicaを使用する方が、水平スケーリングにより、より効率的にパフォーマンスを向上させることができます。"
+      "✓ Correct: Aurora Replicas are read-only instances within an Aurora cluster. Routing read-only queries to replicas reduces the load on the primary instance and improves performance. Aurora supports up to 15 replicas and automatically distributes read traffic. If the primary instance fails, an Aurora Replica automatically promotes to primary (typically within 30 seconds), ensuring high availability. Aurora Replicas share the same storage volume as the primary instance, resulting in very low replication latency.",
+      "RDS Read Replicas are used with standard RDS, but for Aurora, Aurora Replicas are faster and support automatic failover.",
+      "Caching query results with ElastiCache is possible, but Aurora Replicas provide read scaling and high availability at the database level.",
+      "Increasing the instance type is vertical scaling, but using Aurora Replicas achieves performance improvement more efficiently through horizontal scaling."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/AuroraUserGuide/Aurora.Replication.html", title: "Amazon RDS ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Replication.html", title: "Replication with Amazon Aurora" }
     ]
   },
   {
     id: 42,
-    question: "ある企業は、Amazon S3バケットに保存されている静的ウェブサイトを持っています。同社は、ウェブサイトのパフォーマンスを向上させ、グローバルなユーザーに低レイテンシでコンテンツを配信したいと考えています。また、HTTPS通信を有効にしたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a static website stored in an Amazon S3 bucket. The company wants to improve website performance, deliver content to global users with low latency, and enable HTTPS.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3 Transfer Accelerationを有効にする。",
-      "Amazon Route 53のレイテンシベースルーティングを使用する。",
-      "Amazon CloudFrontディストリビューションを作成し、S3バケットをオリジンとして設定する。",
-      "複数のリージョンにS3バケットを作成し、クロスリージョンレプリケーションを設定する。"
+      "Enable S3 Transfer Acceleration.",
+      "Use Amazon Route 53 latency-based routing.",
+      "Create an Amazon CloudFront distribution with the S3 bucket as the origin.",
+      "Create S3 buckets in multiple Regions and configure cross-region replication."
     ],
     correctAnswer: 2,
-    category: "ネットワーキング",
-    explanation: "Amazon CloudFrontディストリビューションを作成し、S3バケットをオリジンとして設定することで、グローバルなエッジロケーションからコンテンツを配信し、低レイテンシを実現できます。また、CloudFrontは、AWS Certificate Manager (ACM)と統合されており、HTTPS通信を簡単に有効にできます。",
+    category: "Networking",
+    explanation: "Creating an Amazon CloudFront distribution with the S3 bucket as the origin delivers content from global edge locations, achieving low latency. CloudFront also integrates with AWS Certificate Manager (ACM), making it easy to enable HTTPS.",
     optionExplanations: [
-      "S3 Transfer Accelerationは、S3へのアップロードを高速化するサービスですが、ダウンロード（コンテンツ配信）には、CloudFrontの方が適しています。",
-      "Route 53のレイテンシベースルーティングは、DNSレベルでのルーティングに使用されますが、CloudFrontの方が、エッジロケーションでのコンテンツキャッシングにより、より効果的にパフォーマンスを向上させることができます。",
-      "✓ 正解: Amazon CloudFrontは、グローバルなコンテンツ配信ネットワーク(CDN)サービスです。CloudFrontディストリビューションを作成し、S3バケットをオリジンとして設定することで、世界中のエッジロケーションからコンテンツを配信できます。ユーザーに最も近いエッジロケーションからコンテンツが配信されるため、レイテンシが大幅に削減されます。また、CloudFrontは、AWS Certificate Manager (ACM)と統合されており、無料のSSL/TLS証明書を使用してHTTPS通信を簡単に有効にできます。CloudFrontは、コンテンツをキャッシュし、S3への直接アクセスを減らすことで、コストも削減できます。",
-      "クロスリージョンレプリケーションは、複数のリージョンにデータをコピーできますが、CloudFrontの方が、グローバルなエッジロケーションからのコンテンツ配信により、より効率的です。"
+      "S3 Transfer Acceleration speeds up uploads to S3 but CloudFront is more appropriate for downloads (content delivery).",
+      "Route 53 latency-based routing is used for DNS-level routing, but CloudFront achieves better performance through content caching at edge locations.",
+      "✓ Correct: Amazon CloudFront is a global content delivery network (CDN) service. Creating a CloudFront distribution with the S3 bucket as the origin delivers content from edge locations around the world. Content is served from the edge location closest to the user, significantly reducing latency. CloudFront integrates with AWS Certificate Manager (ACM) to easily enable HTTPS with free SSL/TLS certificates. CloudFront caches content and reduces direct access to S3, also lowering costs.",
+      "Cross-region replication copies data to multiple Regions, but CloudFront is more efficient through content delivery from global edge locations."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/Introduction.html", title: "Amazon CloudFront ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html", title: "What is Amazon CloudFront?" }
     ]
   },
   {
     id: 43,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的に大量のデータをAmazon S3にアップロードしますが、アップロード中にネットワークエラーが発生することがあります。同社は、アップロードの信頼性を向上させたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances that regularly uploads large amounts of data to Amazon S3. Network errors sometimes occur during uploads. The company wants to improve upload reliability.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS DataSyncを使用する。",
-      "S3のマルチパートアップロードを使用する。",
-      "AWS Storage Gatewayを使用する。",
-      "Amazon EFSを使用して、データを一時的に保存する。"
+      "Use AWS DataSync.",
+      "Use S3 multipart upload.",
+      "Use AWS Storage Gateway.",
+      "Use Amazon EFS to temporarily store data."
     ],
     correctAnswer: 1,
-    category: "ストレージ",
-    explanation: "S3のマルチパートアップロードを使用することで、大きなファイルを複数の部分に分割してアップロードできます。ネットワークエラーが発生した場合、失敗した部分のみを再アップロードすればよいため、信頼性が向上します。",
+    category: "Storage",
+    explanation: "Using S3 multipart upload allows large files to be split into multiple parts and uploaded individually. If a network error occurs, only the failed parts need to be re-uploaded, improving reliability.",
     optionExplanations: [
-      "DataSyncは、オンプレミスとAWS間のデータ転送を自動化するサービスですが、EC2からS3へのアップロードには、マルチパートアップロードの方が適しています。",
-      "✓ 正解: S3のマルチパートアップロードは、大きなファイル（100MB以上推奨）を複数の部分に分割してアップロードする機能です。各部分は独立してアップロードされ、並列アップロードによりパフォーマンスが向上します。ネットワークエラーが発生した場合、失敗した部分のみを再アップロードすればよいため、信頼性が大幅に向上します。また、アップロード中にネットワークが切断されても、既にアップロードされた部分は保持され、後で再開できます。AWS SDKは、マルチパートアップロードを自動的に処理します。",
-      "Storage Gatewayは、オンプレミスとAWS間のハイブリッドストレージソリューションですが、EC2からS3へのアップロードには不要です。",
-      "EFSを使用してデータを一時的に保存することは可能ですが、マルチパートアップロードの方が、直接S3にアップロードでき、シンプルで効率的です。"
+      "DataSync automates data transfer between on-premises and AWS, but S3 multipart upload is more appropriate for EC2-to-S3 uploads.",
+      "✓ Correct: S3 multipart upload splits large files (100 MB or more recommended) into multiple parts for independent upload. Each part is uploaded independently, and parallel uploads improve performance. If a network error occurs, only the failed parts need to be re-uploaded, dramatically improving reliability. If the network is disconnected during upload, already-uploaded parts are retained and the upload can be resumed later. The AWS SDK handles multipart uploads automatically.",
+      "Storage Gateway is a hybrid storage solution between on-premises and AWS and is not needed for EC2-to-S3 uploads.",
+      "Temporarily storing data in EFS is possible, but multipart upload is simpler and more efficient because it uploads directly to S3."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/mpuoverview.html", title: "Amazon S3 ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/mpuoverview.html", title: "Uploading and copying objects using multipart upload" }
     ]
   },
   {
     id: 44,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、機密データを処理し、コンプライアンス要件により、すべてのネットワークトラフィックを暗号化する必要があります。同社は、VPC内のEC2インスタンス間の通信も暗号化したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances that processes sensitive data. Compliance requirements mandate that all network traffic must be encrypted. The company wants to encrypt communication between EC2 instances within the VPC.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "アプリケーションレベルでTLS/SSL暗号化を実装する。",
-      "AWS PrivateLinkを使用する。",
-      "VPCエンドポイントを使用する。",
-      "VPN接続を使用する。"
+      "Implement TLS/SSL encryption at the application level.",
+      "Use AWS PrivateLink.",
+      "Use VPC Endpoints.",
+      "Use a VPN connection."
     ],
     correctAnswer: 0,
-    category: "セキュリティとコンプライアンス",
-    explanation: "アプリケーションレベルでTLS/SSL暗号化を実装することで、VPC内のEC2インスタンス間の通信を暗号化できます。これにより、エンドツーエンドの暗号化が実現され、コンプライアンス要件を満たすことができます。",
+    category: "Security and Compliance",
+    explanation: "Implementing TLS/SSL encryption at the application level encrypts communication between EC2 instances within the VPC, providing end-to-end encryption and satisfying compliance requirements.",
     optionExplanations: [
-      "✓ 正解: アプリケーションレベルでTLS/SSL暗号化を実装することで、VPC内のEC2インスタンス間の通信を暗号化できます。アプリケーションは、HTTPS、TLS、またはSSLを使用して通信し、エンドツーエンドの暗号化を実現します。これにより、ネットワークレベルでデータが傍受されても、暗号化されているため、機密データが保護されます。また、コンプライアンス要件を満たすことができます。AWS Certificate Manager (ACM)を使用して、TLS/SSL証明書を管理できます。",
-      "AWS PrivateLinkは、VPCとAWSサービスまたは他のVPC間のプライベート接続を提供しますが、同じVPC内のEC2インスタンス間の通信の暗号化には使用されません。",
-      "VPCエンドポイントは、VPCとAWSサービス間のプライベート接続を提供しますが、EC2インスタンス間の通信の暗号化には使用されません。",
-      "VPN接続は、オンプレミスとVPC間の暗号化された接続を提供しますが、VPC内のEC2インスタンス間の通信には使用されません。"
+      "✓ Correct: Implementing TLS/SSL encryption at the application level encrypts communication between EC2 instances within the VPC. Applications communicate using HTTPS, TLS, or SSL to achieve end-to-end encryption. This protects sensitive data even if it is intercepted at the network level, and satisfies compliance requirements. AWS Certificate Manager (ACM) can be used to manage TLS/SSL certificates.",
+      "AWS PrivateLink provides private connectivity between a VPC and AWS services or other VPCs, but is not used to encrypt communication between EC2 instances within the same VPC.",
+      "VPC Endpoints provide private connectivity between a VPC and AWS services, but are not used to encrypt communication between EC2 instances.",
+      "VPN connections provide encrypted connectivity between on-premises and a VPC, but are not used for communication between EC2 instances within the VPC."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/whitepapers/latest/logical-separation/encrypting-data-at-rest-and-in-transit.html", title: "Encrypting Data At Rest And In Transit" }
+      { url: "https://docs.aws.amazon.com/whitepapers/latest/logical-separation/encrypting-data-at-rest-and-in-transit.html", title: "Encrypting data at rest and in transit" }
     ]
   },
   {
     id: 45,
-    question: "ある企業は、Amazon RDS for PostgreSQLデータベースを使用しています。同社は、データベースのメンテナンスウィンドウ中のダウンタイムを最小限に抑えたいと考えています。また、データベースのパフォーマンスを向上させたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses an Amazon RDS for PostgreSQL database. The company wants to minimize downtime during maintenance windows and improve database performance.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "RDSのマルチAZ配置を有効にする。",
-      "RDSのリードレプリカを作成する。",
-      "Amazon Auroraに移行する。",
-      "RDSのインスタンスタイプを大きくする。"
+      "Enable RDS Multi-AZ deployment.",
+      "Create an RDS read replica.",
+      "Migrate to Amazon Aurora.",
+      "Increase the RDS instance type."
     ],
     correctAnswer: 2,
-    category: "データベース",
-    explanation: "Amazon Auroraに移行することで、メンテナンスウィンドウ中のダウンタイムを最小限に抑え、パフォーマンスを向上させることができます。Auroraは、高可用性とパフォーマンスに最適化されたデータベースエンジンです。",
+    category: "Database",
+    explanation: "Migrating to Amazon Aurora minimizes downtime during maintenance windows and improves performance. Aurora is a database engine optimized for high availability and performance.",
     optionExplanations: [
-      "マルチAZ配置は、高可用性を提供しますが、メンテナンスウィンドウ中は、プライマリインスタンスがスタンバイに切り替わるため、短時間のダウンタイムが発生します。Auroraの方が、ダウンタイムを最小限に抑えることができます。",
-      "リードレプリカは、読み取りスケーリングを提供しますが、メンテナンスウィンドウ中のダウンタイムを削減する効果は限定的です。",
-      "✓ 正解: Amazon Auroraは、MySQLおよびPostgreSQLと互換性のある、クラウドネイティブなリレーショナルデータベースエンジンです。Auroraは、標準のRDSよりも最大5倍（MySQL）または3倍（PostgreSQL）高速で、高可用性とパフォーマンスに最適化されています。メンテナンスウィンドウ中、Auroraは、ローリングアップデートを使用して、Aurora Replicaを順次更新するため、ダウンタイムを最小限に抑えることができます（通常数秒）。また、Auroraは、自動バックアップ、ポイントインタイムリカバリ、自動フェイルオーバーをサポートしています。",
-      "インスタンスタイプを大きくすることは、パフォーマンスを向上させることができますが、メンテナンスウィンドウ中のダウンタイムを削減する効果はありません。"
+      "Multi-AZ deployment provides high availability, but during maintenance windows the primary instance fails over to the standby, causing brief downtime. Aurora minimizes this downtime.",
+      "Read replicas provide read scaling, but have limited effect on reducing downtime during maintenance windows.",
+      "✓ Correct: Amazon Aurora is a cloud-native relational database engine compatible with MySQL and PostgreSQL. Aurora is up to 5x faster (MySQL) or 3x faster (PostgreSQL) than standard RDS and is optimized for high availability and performance. During maintenance windows, Aurora uses rolling updates to sequentially update Aurora Replicas, minimizing downtime (typically seconds). Aurora also supports automated backups, point-in-time recovery, and automatic failover.",
+      "Increasing the instance type can improve performance but has no effect on reducing downtime during maintenance windows."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html", title: "Amazon RDS ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html", title: "What is Amazon Aurora?" }
     ]
   },
   {
     id: 46,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、ユーザーがアップロードしたファイルをAmazon S3に保存します。同社は、ファイルのアップロード後、自動的にウイルススキャンを実行したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances. The application stores files uploaded by users in Amazon S3. The company wants to automatically run a virus scan after files are uploaded.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon SQSキューを使用して、ウイルススキャンタスクをキューに追加する。",
-      "Amazon EventBridgeを使用して、S3イベントをキャプチャし、Lambda関数をトリガーする。",
-      "AWS Step Functionsを使用して、ウイルススキャンワークフローを管理する。",
-      "S3イベント通知を使用して、Lambda関数をトリガーし、ウイルススキャンを実行する。"
+      "Use an Amazon SQS queue to enqueue virus scan tasks.",
+      "Use Amazon EventBridge to capture S3 events and trigger a Lambda function.",
+      "Use AWS Step Functions to manage the virus scanning workflow.",
+      "Use S3 event notifications to trigger a Lambda function to run the virus scan."
     ],
     correctAnswer: 3,
-    category: "セキュリティとコンプライアンス",
-    explanation: "S3イベント通知を使用して、ファイルがアップロードされたときにLambda関数を自動的にトリガーし、ウイルススキャンを実行できます。これにより、リアルタイムでファイルをスキャンし、セキュリティを確保できます。",
+    category: "Security and Compliance",
+    explanation: "Using S3 event notifications to automatically trigger a Lambda function when a file is uploaded allows virus scans to run in real time, ensuring security.",
     optionExplanations: [
-      "SQSキューを使用することも可能ですが、S3イベント通知とLambdaの方が、リアルタイムで自動的にスキャンを実行でき、シンプルです。",
-      "EventBridgeを使用してS3イベントをキャプチャすることも可能ですが、S3イベント通知の方が、S3と直接統合されており、シンプルです。",
-      "Step Functionsは、複雑なワークフローの管理に適していますが、シンプルなウイルススキャンには、S3イベント通知とLambdaの方が適しています。",
-      "✓ 正解: S3イベント通知は、S3バケット内でオブジェクトが作成、削除、または変更されたときに、自動的に通知を送信する機能です。ファイルがアップロードされたとき（s3:ObjectCreated:*イベント）に、Lambda関数をトリガーするように設定できます。Lambda関数は、ウイルススキャンソフトウェア（例：ClamAV）を使用してファイルをスキャンし、感染が検出された場合は、ファイルを削除または隔離できます。この方法は、リアルタイムで自動的にウイルススキャンを実行でき、シンプルで効率的です。"
+      "Using an SQS queue is possible, but S3 event notifications with Lambda are simpler and can run scans automatically in real time.",
+      "Using EventBridge to capture S3 events is possible, but S3 event notifications are directly integrated with S3 and are simpler.",
+      "Step Functions is well-suited for complex workflow management, but S3 event notifications with Lambda are more appropriate for simple virus scanning.",
+      "✓ Correct: S3 event notifications automatically send notifications when objects are created, deleted, or modified in an S3 bucket. You can configure them to trigger a Lambda function when a file is uploaded (s3:ObjectCreated:* event). The Lambda function can scan the file using virus scanning software (e.g., ClamAV) and delete or quarantine the file if an infection is detected. This approach runs virus scans automatically in real time and is simple and efficient."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/NotificationHowTo.html", title: "Amazon S3 ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/NotificationHowTo.html", title: "Amazon S3 Event Notifications" }
     ]
   },
   {
     id: 47,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAmazon DynamoDBテーブルにデータを書き込みますが、書き込みスループットが不足することがあります。同社は、コストを最小限に抑えつつ、書き込みスループットを向上させたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances that periodically writes data to an Amazon DynamoDB table, but write throughput is sometimes insufficient. The company wants to improve write throughput while minimizing costs.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "DynamoDBのプロビジョニングされたキャパシティモードで、書き込みキャパシティユニット(WCU)を増やす。",
-      "DynamoDBのAuto Scalingを有効にする。",
-      "DynamoDBのオンデマンドモードに変更する。",
-      "DynamoDBのグローバルテーブルを作成する。"
+      "Increase the write capacity units (WCU) in DynamoDB provisioned capacity mode.",
+      "Enable DynamoDB Auto Scaling.",
+      "Switch to DynamoDB on-demand mode.",
+      "Create a DynamoDB Global Table."
     ],
     correctAnswer: 1,
-    category: "データベース",
-    explanation: "DynamoDBのAuto Scalingを有効にすることで、トラフィックの変動に応じて自動的にキャパシティを調整できます。これにより、書き込みスループットを向上させつつ、コストを最小限に抑えることができます。",
+    category: "Database",
+    explanation: "Enabling DynamoDB Auto Scaling automatically adjusts capacity in response to traffic fluctuations, improving write throughput while minimizing costs.",
     optionExplanations: [
-      "WCUを手動で増やすことは可能ですが、Auto Scalingの方が、トラフィックの変動に応じて自動的にキャパシティを調整でき、コスト効率的です。",
-      "✓ 正解: DynamoDBのAuto Scalingは、トラフィックの変動に応じて自動的に読み取りキャパシティユニット(RCU)と書き込みキャパシティユニット(WCU)を調整する機能です。ターゲット使用率（例：70%）を設定すると、Auto Scalingは、実際の使用率がターゲットに近づくようにキャパシティを自動的に増減します。書き込みスループットが不足する場合、Auto Scalingは自動的にWCUを増やし、トラフィックが減少すると、WCUを減らしてコストを削減します。これにより、パフォーマンスを維持しつつ、コストを最小限に抑えることができます。",
-      "オンデマンドモードは、予測不可能なワークロードに適していますが、定期的な書き込みがある場合、プロビジョニングされたキャパシティモードとAuto Scalingの方がコスト効率的です。",
-      "グローバルテーブルは、複数のリージョンにデータをレプリケートする機能ですが、書き込みスループットの向上には直接的には貢献しません。"
+      "Manually increasing WCU is possible, but Auto Scaling automatically adjusts capacity based on traffic variations and is more cost-efficient.",
+      "✓ Correct: DynamoDB Auto Scaling automatically adjusts read capacity units (RCU) and write capacity units (WCU) in response to traffic fluctuations. Setting a target utilization (e.g., 70%) causes Auto Scaling to automatically increase or decrease capacity to keep actual utilization near the target. When write throughput is insufficient, Auto Scaling automatically increases WCU; when traffic decreases, it reduces WCU to lower costs. This maintains performance while minimizing costs.",
+      "On-demand mode is suitable for unpredictable workloads, but for regular writes, provisioned capacity mode with Auto Scaling is more cost-efficient.",
+      "Global Tables replicate data across multiple Regions but do not directly contribute to improving write throughput."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/AutoScaling.html", title: "Amazon DynamoDB ドキュメント" }
+      { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/AutoScaling.html", title: "Managing throughput capacity automatically with DynamoDB auto scaling" }
     ]
   },
   {
     id: 48,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にバッチ処理ジョブを実行しますが、ジョブの実行時間が長く、コストが高くなっています。同社は、コストを削減しつつ、ジョブを効率的に実行したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances that periodically runs batch processing jobs. The jobs take a long time and costs are high. The company wants to reduce costs while running jobs efficiently.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "EC2スポットインスタンスを使用する。",
-      "EC2リザーブドインスタンスを使用する。",
-      "AWS Lambda関数を使用して、ジョブを実行する。",
-      "AWS Batchを使用して、スポットインスタンスでジョブを実行する。"
+      "Use EC2 Spot Instances.",
+      "Use EC2 Reserved Instances.",
+      "Use an AWS Lambda function to run the jobs.",
+      "Use AWS Batch to run jobs on Spot Instances."
     ],
     correctAnswer: 3,
-    category: "コンピューティング",
-    explanation: "AWS Batchを使用して、スポットインスタンスでジョブを実行することで、コストを大幅に削減できます。AWS Batchは、バッチ処理ジョブの実行を自動化し、スポットインスタンスを効率的に管理します。",
+    category: "Compute",
+    explanation: "Using AWS Batch to run jobs on Spot Instances can significantly reduce costs. AWS Batch automates batch job execution and efficiently manages Spot Instances.",
     optionExplanations: [
-      "スポットインスタンスを直接使用することは可能ですが、AWS Batchの方が、ジョブの管理とスポットインスタンスの効率的な利用を自動化できます。",
-      "リザーブドインスタンスは、長期的な使用に対してコスト削減を提供しますが、バッチ処理ジョブのような断続的なワークロードには、スポットインスタンスの方が適しています。",
-      "Lambda関数は、短時間の処理に適していますが、長時間のバッチ処理ジョブには、AWS Batchの方が適しています（Lambdaの最大実行時間は15分）。",
-      "✓ 正解: AWS Batchは、バッチ処理ジョブの実行を自動化するフルマネージド型サービスです。AWS Batchは、ジョブのスケジューリング、リソースのプロビジョニング、ジョブの実行を自動的に管理します。スポットインスタンスを使用するように設定することで、オンデマンドインスタンスと比較して最大90%のコスト削減が可能です。AWS Batchは、スポットインスタンスが中断された場合、自動的にジョブを再試行し、信頼性を確保します。また、ジョブの優先順位、依存関係、リトライロジックを設定できます。"
+      "Using Spot Instances directly is possible, but AWS Batch automates job management and efficient use of Spot Instances.",
+      "Reserved Instances provide cost savings for long-term use, but Spot Instances are more appropriate for intermittent workloads such as batch processing jobs.",
+      "Lambda functions are suitable for short-duration processing, but AWS Batch is more appropriate for long-running batch jobs (Lambda has a maximum execution time of 15 minutes).",
+      "✓ Correct: AWS Batch is a fully managed service that automates batch job execution. It automatically manages job scheduling, resource provisioning, and job execution. Configuring it to use Spot Instances can reduce costs by up to 90% compared to On-Demand Instances. AWS Batch automatically retries jobs if Spot Instances are interrupted, ensuring reliability. Job priorities, dependencies, and retry logic can also be configured."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/batch/latest/userguide/what-is-batch.html", title: "What Is Batch" }
+      { url: "https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html", title: "What is AWS Batch?" }
     ]
   },
   {
     id: 49,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、ユーザーの個人情報を処理し、GDPRなどのコンプライアンス要件を満たす必要があります。同社は、ユーザーの個人情報を暗号化して保存したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances. The application processes users' personal information and must comply with regulations such as GDPR. The company wants to store users' personal information encrypted.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon S3のサーバー側暗号化(SSE-S3)を使用する。",
-      "アプリケーションレベルで暗号化を実装する。",
-      "AWS Key Management Service (KMS)を使用して、カスタマーマネージドキーで暗号化する。",
-      "Amazon EBSの暗号化を有効にする。"
+      "Use Amazon S3 server-side encryption (SSE-S3).",
+      "Implement encryption at the application level.",
+      "Use AWS Key Management Service (KMS) with a customer managed key for encryption.",
+      "Enable Amazon EBS encryption."
     ],
     correctAnswer: 2,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS KMSを使用して、カスタマーマネージドキーで暗号化することで、暗号化キーの管理を完全に制御でき、コンプライアンス要件を満たすことができます。KMSは、キーのローテーション、アクセス制御、監査ログを提供します。",
+    category: "Security and Compliance",
+    explanation: "Using AWS KMS with a customer managed key provides full control over encryption key management and satisfies compliance requirements. KMS provides key rotation, access control, and audit logging.",
     optionExplanations: [
-      "SSE-S3は、S3が管理するキーで暗号化を提供しますが、カスタマーマネージドキーの方が、キーの管理を完全に制御でき、コンプライアンス要件を満たしやすいです。",
-      "アプリケーションレベルで暗号化を実装することは可能ですが、KMSの方が、キーの管理を自動化し、AWSサービスと統合されており、管理が容易です。",
-      "✓ 正解: AWS Key Management Service (KMS)は、暗号化キーの作成と管理を行うフルマネージド型サービスです。カスタマーマネージドキー(CMK)を使用することで、暗号化キーの管理を完全に制御できます。KMSは、キーのローテーション、きめ細かなアクセス制御（IAMポリシーとキーポリシー）、監査ログ（CloudTrail）を提供します。S3、EBS、RDS、DynamoDBなど、多くのAWSサービスがKMSと統合されており、データを暗号化できます。GDPRなどのコンプライアンス要件を満たすために、キーの管理と監査が重要です。",
-      "EBSの暗号化は、ディスクレベルでの暗号化を提供しますが、S3やRDSなど、他のストレージサービスのデータも暗号化する必要がある場合、KMSの方が、一元的にキーを管理できます。"
+      "SSE-S3 provides encryption with AWS-managed keys, but customer managed keys provide full control over key management and are easier to meet compliance requirements.",
+      "Implementing encryption at the application level is possible, but KMS automates key management, is integrated with AWS services, and is easier to manage.",
+      "✓ Correct: AWS Key Management Service (KMS) is a fully managed service for creating and managing encryption keys. Using a customer managed key (CMK) provides full control over encryption key management. KMS provides key rotation, fine-grained access control (IAM policies and key policies), and audit logging (CloudTrail). Many AWS services including S3, EBS, RDS, and DynamoDB integrate with KMS for data encryption. Key management and auditing are critical for meeting compliance requirements such as GDPR.",
+      "EBS encryption provides disk-level encryption, but if data in other storage services such as S3 and RDS also needs to be encrypted, KMS allows centralized key management."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/kms/latest/developerguide/overview.html", title: "AWS Key Management Service ドキュメント" }
+      { url: "https://docs.aws.amazon.com/kms/latest/developerguide/overview.html", title: "What is AWS Key Management Service?" }
     ]
   },
   {
     id: 50,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAmazon S3からデータを読み取りますが、S3へのリクエスト数が多く、コストが高くなっています。同社は、コストを削減しつつ、パフォーマンスを維持したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances that periodically reads data from Amazon S3. The high number of S3 requests is driving up costs. The company wants to reduce costs while maintaining performance.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon CloudFrontを使用して、S3のコンテンツをキャッシュする。",
-      "S3 Intelligent-Tieringストレージクラスを使用する。",
-      "Amazon ElastiCache for Redisを使用して、S3のデータをキャッシュする。",
-      "S3のリクエストレート制限を増やす。"
+      "Use Amazon CloudFront to cache S3 content.",
+      "Use the S3 Intelligent-Tiering storage class.",
+      "Use Amazon ElastiCache for Redis to cache S3 data.",
+      "Increase the S3 request rate limit."
     ],
     correctAnswer: 2,
-    category: "データベース",
-    explanation: "Amazon ElastiCache for Redisを使用して、S3のデータをキャッシュすることで、S3へのリクエスト数を減らし、コストを削減できます。また、キャッシュからデータを読み取ることで、レイテンシが削減され、パフォーマンスが向上します。",
+    category: "Database",
+    explanation: "Using Amazon ElastiCache for Redis to cache S3 data reduces the number of requests to S3 and lowers costs. Reading data from the cache also reduces latency and improves performance.",
     optionExplanations: [
-      "CloudFrontは、静的コンテンツのキャッシングに適していますが、アプリケーションが動的にS3からデータを読み取る場合、ElastiCacheの方が、より柔軟にキャッシュを管理できます。",
-      "S3 Intelligent-Tieringは、アクセスパターンに基づいてストレージクラスを自動的に移行する機能ですが、リクエスト数の削減には直接的には貢献しません。",
-      "✓ 正解: Amazon ElastiCache for Redisは、インメモリデータストアで、頻繁にアクセスされるデータをキャッシュするのに最適です。アプリケーションは、まずElastiCacheからデータを読み取ろうとし、キャッシュにデータがない場合のみS3から読み取ります。これにより、S3へのリクエスト数が大幅に減少し、S3のリクエスト料金が削減されます。また、ElastiCacheからデータを読み取ることで、レイテンシが大幅に削減され（ミリ秒からマイクロ秒へ）、パフォーマンスが向上します。キャッシュのTTL（Time To Live）を設定することで、データの鮮度を管理できます。",
-      "S3のリクエストレート制限を増やすことは、スループットを向上させることができますが、コストの削減には貢献しません。ElastiCacheを使用する方が、コスト削減とパフォーマンス向上の両方を実現できます。"
+      "CloudFront is suitable for caching static content, but if the application reads data dynamically from S3, ElastiCache provides more flexible cache management.",
+      "S3 Intelligent-Tiering automatically transitions storage classes based on access patterns but does not directly contribute to reducing the number of requests.",
+      "✓ Correct: Amazon ElastiCache for Redis is an in-memory data store ideal for caching frequently accessed data. The application first attempts to read data from ElastiCache, and only reads from S3 if the data is not in the cache. This significantly reduces the number of S3 requests and lowers S3 request fees. Reading from ElastiCache also dramatically reduces latency (from milliseconds to microseconds), improving performance. Setting a TTL (Time To Live) on the cache manages data freshness.",
+      "Increasing the S3 request rate limit can improve throughput but does not reduce costs. Using ElastiCache achieves both cost reduction and performance improvement."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonElastiCache/latest/red-ug/elasticache-use-cases.html", title: "Amazon ElastiCache とは" }
+      { url: "https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/elasticache-use-cases.html", title: "Common ElastiCache use cases and how ElastiCache can help" }
     ]
   },
   {
     id: 51,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているレガシーアプリケーションを持っています。アプリケーションは、ライセンスの制約により、特定の物理サーバー上で実行する必要があります。同社は、AWSでこのアプリケーションを実行したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきEC2インスタンスのテナンシーオプションはどれですか。",
+    question: "A company has a legacy application running on Amazon EC2 instances. Due to licensing constraints, the application must run on a specific physical server. The company wants to run this application on AWS.\n\nWhich EC2 instance tenancy option should a solutions architect recommend to meet these requirements?",
     options: [
-      "デフォルトテナンシー",
-      "専有ホスト（Dedicated Host）",
-      "専有テナンシー（Dedicated Tenancy）",
-      "スポットインスタンス"
+      "Default tenancy",
+      "Dedicated Host",
+      "Dedicated Tenancy",
+      "Spot Instance"
     ],
     correctAnswer: 1,
-    category: "コンピューティング",
-    explanation: "専有ホスト（Dedicated Host）を使用することで、特定の物理サーバー上でインスタンスを実行でき、ライセンスの制約を満たすことができます。専有ホストは、ソケット、コア、ホストIDの可視性を提供し、既存のサーバーバウンドソフトウェアライセンスを使用できます。",
+    category: "Compute",
+    explanation: "Using a Dedicated Host allows instances to run on a specific physical server, satisfying licensing constraints. Dedicated Hosts provide visibility into sockets, cores, and host IDs, and allow existing server-bound software licenses to be used.",
     optionExplanations: [
-      "デフォルトテナンシーは、他の顧客と物理ハードウェアを共有するため、ライセンスの制約を満たすことができません。",
-      "✓ 正解: 専有ホスト（Dedicated Host）は、お客様専用の物理サーバーで、EC2インスタンスの容量を完全に制御できます。ソケット、コア、ホストIDの可視性があり、既存のサーバーバウンドソフトウェアライセンス（Windows Server、SQL Server、SUSEなど）を使用できます。特定の物理サーバー上でインスタンスを実行する必要があるライセンス要件を満たすことができます。また、コンプライアンス要件や規制要件を満たすためにも使用できます。",
-      "専有テナンシーは、専用の物理サーバー上でインスタンスを実行しますが、特定のサーバーを指定することはできません。ライセンス管理には専有ホストの方が適しています。",
-      "スポットインスタンスは、コスト削減に適していますが、ライセンスの制約や特定の物理サーバーでの実行要件を満たすことはできません。"
+      "Default tenancy shares physical hardware with other customers, so it cannot satisfy licensing constraints.",
+      "✓ Correct: A Dedicated Host is a physical server dedicated to a customer, with full control over EC2 instance placement. It provides visibility into sockets, cores, and host IDs, allowing existing server-bound software licenses (Windows Server, SQL Server, SUSE, etc.) to be used. It satisfies license requirements that mandate running instances on a specific physical server, and can also be used to meet compliance and regulatory requirements.",
+      "Dedicated Tenancy runs instances on a dedicated physical server, but a specific server cannot be designated. Dedicated Hosts are more appropriate for license management.",
+      "Spot Instances are suitable for cost reduction, but cannot satisfy licensing constraints or the requirement to run on a specific physical server."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html", title: "Dedicated Hosts Overview" }
+      { url: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html", title: "Dedicated Hosts" }
     ]
   },
   {
     id: 52,
-    question: "ある企業は、Amazon S3バケットに保存されている大量のログデータを分析するために、Amazon Athenaを使用しています。クエリのパフォーマンスを向上させ、コストを削減するために、データを最適な形式に変換したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきデータ形式はどれですか。",
+    question: "A company uses Amazon Athena to analyze large amounts of log data stored in an Amazon S3 bucket. The company wants to convert data to an optimal format to improve query performance and reduce costs.\n\nWhich data format should a solutions architect recommend to meet these requirements?",
     options: [
       "CSV",
       "Apache Parquet",
@@ -1138,65 +1138,65 @@ const awsSAAQuestions = [
       "XML"
     ],
     correctAnswer: 1,
-    category: "アプリケーション統合",
-    explanation: "Apache Parquetは、列指向のデータ形式で、Athenaでのクエリパフォーマンスを大幅に向上させ、スキャンするデータ量を削減することでコストを削減できます。圧縮効率も高く、ストレージコストも削減できます。",
+    category: "Application Integration",
+    explanation: "Apache Parquet is a columnar data format that dramatically improves Athena query performance and reduces costs by minimizing the amount of data scanned. It also has high compression efficiency, reducing storage costs.",
     optionExplanations: [
-      "CSVは、シンプルで読みやすい形式ですが、列指向ではないため、Athenaでのクエリパフォーマンスが低く、スキャンするデータ量が多くなります。",
-      "✓ 正解: Apache Parquetは、列指向のデータ形式で、Athenaでのクエリパフォーマンスを大幅に向上させます。列指向形式では、クエリで必要な列のみをスキャンするため、スキャンするデータ量が大幅に削減され、クエリ時間とコストが削減されます。また、Parquetは高い圧縮効率を持ち、ストレージコストも削減できます。Athenaは、Parquet形式のデータに対して最適化されており、CSVやJSONと比較して最大10倍高速にクエリを実行できます。",
-      "JSONは、柔軟な形式ですが、列指向ではないため、Athenaでのクエリパフォーマンスが低く、圧縮効率も低いです。",
-      "XMLは、冗長な形式で、Athenaでのクエリパフォーマンスが低く、ストレージコストも高くなります。"
+      "CSV is a simple, readable format, but it is not columnar, resulting in lower Athena query performance and more data scanned.",
+      "✓ Correct: Apache Parquet is a columnar data format that dramatically improves Athena query performance. The columnar format means only the columns needed by a query are scanned, significantly reducing the amount of data scanned and lowering query time and costs. Parquet also has high compression efficiency, reducing storage costs. Athena is optimized for Parquet format data and can execute queries up to 10x faster than with CSV or JSON.",
+      "JSON is a flexible format, but it is not columnar, resulting in lower Athena query performance and lower compression efficiency.",
+      "XML is a verbose format that results in lower Athena query performance and higher storage costs."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/athena/latest/ug/columnar-storage.html", title: "Columnar Storage" }
+      { url: "https://docs.aws.amazon.com/athena/latest/ug/columnar-storage.html", title: "Columnar storage formats" }
     ]
   },
   {
     id: 53,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、定期的にAmazon DynamoDBテーブルにデータを書き込みますが、書き込みスループットが不足することがあります。同社は、DynamoDBのキャパシティを自動的に調整したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきDynamoDBの機能はどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances. The application periodically writes data to an Amazon DynamoDB table, but write throughput is sometimes insufficient. The company wants to automatically adjust DynamoDB capacity.\n\nWhich DynamoDB feature should a solutions architect recommend to meet these requirements?",
     options: [
       "DynamoDB Auto Scaling",
-      "オンデマンドキャパシティモード",
-      "プロビジョニングされたキャパシティモード",
+      "On-demand capacity mode",
+      "Provisioned capacity mode",
       "DynamoDB Accelerator (DAX)"
     ],
     correctAnswer: 0,
-    category: "データベース",
-    explanation: "DynamoDB Auto Scalingを使用することで、トラフィックの変動に応じて自動的に読み取りキャパシティユニット（RCU）と書き込みキャパシティユニット（WCU）を調整できます。これにより、パフォーマンスを維持しつつ、コストを最適化できます。",
+    category: "Database",
+    explanation: "Using DynamoDB Auto Scaling automatically adjusts read capacity units (RCU) and write capacity units (WCU) in response to traffic fluctuations, maintaining performance while optimizing costs.",
     optionExplanations: [
-      "✓ 正解: DynamoDB Auto Scalingは、トラフィックの変動に応じて自動的にRCUとWCUを調整する機能です。ターゲット使用率（例：70%）を設定すると、Auto Scalingは実際の使用率がターゲットに近づくようにキャパシティを自動的に増減します。書き込みスループットが不足する場合、Auto Scalingは自動的にWCUを増やし、トラフィックが減少すると、WCUを減らしてコストを削減します。これにより、パフォーマンスを維持しつつ、コストを最適化できます。",
-      "オンデマンドキャパシティモードは、自動的にスケールしますが、予測可能なワークロードの場合、Auto Scalingを使用したプロビジョニングされたキャパシティモードの方がコスト効率的です。",
-      "プロビジョニングされたキャパシティモードは、手動でキャパシティを設定する必要があり、自動調整はできません。",
-      "DAXは、DynamoDB専用のインメモリキャッシュで、読み取りパフォーマンスを向上させますが、書き込みスループットの自動調整には使用されません。"
+      "✓ Correct: DynamoDB Auto Scaling automatically adjusts RCU and WCU in response to traffic fluctuations. Setting a target utilization (e.g., 70%) causes Auto Scaling to automatically increase or decrease capacity to keep actual utilization near the target. When write throughput is insufficient, Auto Scaling automatically increases WCU; when traffic decreases, it reduces WCU to lower costs. This maintains performance while optimizing costs.",
+      "On-demand capacity mode scales automatically, but for predictable workloads, provisioned capacity mode with Auto Scaling is more cost-efficient.",
+      "Provisioned capacity mode requires manually setting capacity and does not support automatic adjustment.",
+      "DAX is an in-memory cache purpose-built for DynamoDB that improves read performance, but is not used for automatic adjustment of write throughput."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/AutoScaling.html", title: "Amazon DynamoDB ドキュメント" }
+      { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/AutoScaling.html", title: "Managing throughput capacity automatically with DynamoDB auto scaling" }
     ]
   },
   {
     id: 54,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、Amazon S3バケットに保存されている機密ファイルにアクセスする必要があります。同社は、IAMロールを使用してアクセスを管理したいと考えていますが、特定のS3バケットのみにアクセスを制限したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application needs to access sensitive files stored in an Amazon S3 bucket. The company wants to manage access using an IAM role, but restrict access to only a specific S3 bucket.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "EC2インスタンスにIAMロールをアタッチし、S3へのフルアクセス権限を付与する。",
-      "AWSアクセスキーとシークレットキーをEC2インスタンスに保存する。",
-      "S3バケットポリシーを使用して、すべてのEC2インスタンスからのアクセスを許可する。",
-      "EC2インスタンスにIAMロールをアタッチし、特定のS3バケットへのアクセスのみを許可するポリシーを設定する。"
+      "Attach an IAM role to the EC2 instances and grant full access to S3.",
+      "Store AWS access keys and secret keys on the EC2 instances.",
+      "Use an S3 bucket policy to allow access from all EC2 instances.",
+      "Attach an IAM role to the EC2 instances and configure a policy that allows access only to the specific S3 bucket."
     ],
     correctAnswer: 3,
-    category: "セキュリティとコンプライアンス",
-    explanation: "EC2インスタンスにIAMロールをアタッチし、特定のS3バケットへのアクセスのみを許可するポリシーを設定することで、最小権限の原則に基づいたセキュアなアクセス制御を実現できます。",
+    category: "Security and Compliance",
+    explanation: "Attaching an IAM role to EC2 instances and configuring a policy that allows access only to a specific S3 bucket implements secure access control based on the principle of least privilege.",
     optionExplanations: [
-      "S3へのフルアクセス権限を付与することは、最小権限の原則に反し、セキュリティリスクが高まります。特定のバケットのみへのアクセスに制限すべきです。",
-      "AWSアクセスキーとシークレットキーをEC2インスタンスに保存することは、セキュリティリスクが高く、IAMロールを使用する方が安全です。",
-      "S3バケットポリシーですべてのEC2インスタンスからのアクセスを許可することは、セキュリティリスクが高く、特定のインスタンスのみにアクセスを制限すべきです。",
-      "✓ 正解: EC2インスタンスにIAMロールをアタッチし、特定のS3バケットへのアクセスのみを許可するポリシーを設定することで、最小権限の原則に基づいたセキュアなアクセス制御を実現できます。IAMポリシーで、Resource要素を使用して特定のバケット（例：arn:aws:s3:::my-bucket/*）を指定し、Action要素で必要な操作（例：s3:GetObject、s3:PutObject）のみを許可します。IAMロールを使用することで、アクセスキーを管理する必要がなく、セキュリティが向上します。"
+      "Granting full access to S3 violates the principle of least privilege and increases security risk. Access should be restricted to only the specific bucket.",
+      "Storing AWS access keys and secret keys on EC2 instances is a high security risk. Using an IAM role is more secure.",
+      "Using an S3 bucket policy to allow access from all EC2 instances is a high security risk. Access should be restricted to specific instances only.",
+      "✓ Correct: Attaching an IAM role to EC2 instances and configuring a policy that allows access only to a specific S3 bucket implements secure access control based on the principle of least privilege. Use the Resource element in the IAM policy to specify the specific bucket (e.g., arn:aws:s3:::my-bucket/*) and the Action element to allow only necessary operations (e.g., s3:GetObject, s3:PutObject). Using an IAM role eliminates the need to manage access keys, improving security."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html", title: "Amazon EC2 とは" }
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html", title: "Using an IAM role to grant permissions to applications running on Amazon EC2 instances" }
     ]
   },
   {
     id: 55,
-    question: "ある企業は、Amazon RDS for PostgreSQLデータベースを使用しています。同社は、データベースのパフォーマンスを監視し、遅いクエリを特定して最適化したいと考えています。また、データベースの負荷を可視化したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきAWSサービスはどれですか。",
+    question: "A company uses an Amazon RDS for PostgreSQL database. The company wants to monitor database performance, identify slow queries, and optimize them. The company also wants to visualize database load.\n\nWhich AWS service should a solutions architect recommend to meet these requirements?",
     options: [
       "Amazon RDS Performance Insights",
       "AWS CloudTrail",
@@ -1204,527 +1204,527 @@ const awsSAAQuestions = [
       "Amazon QuickSight"
     ],
     correctAnswer: 0,
-    category: "データベース",
-    explanation: "Amazon RDS Performance Insightsは、データベースのパフォーマンスを監視し、遅いクエリやリソースのボトルネックを特定するためのツールです。データベースの負荷を可視化し、どのクエリが最も多くのリソースを消費しているかを簡単に確認できます。",
+    category: "Database",
+    explanation: "Amazon RDS Performance Insights is a tool for monitoring database performance and identifying slow queries and resource bottlenecks. It visualizes database load and makes it easy to see which queries consume the most resources.",
     optionExplanations: [
-      "✓ 正解: Amazon RDS Performance Insightsは、データベースのパフォーマンスを監視し、最適化するためのツールです。データベースの負荷を時系列で可視化し、どのクエリが最も多くのCPU、I/O、メモリを消費しているかを特定できます。遅いクエリのSQL文、実行時間、待機イベントを詳細に分析でき、パフォーマンスのボトルネックを迅速に特定できます。ダッシュボードは直感的で、最大7日間（無料）または最大2年間（有料）のパフォーマンスデータを保持できます。",
-      "CloudTrailは、AWS APIコールの監査ログを記録するサービスで、データベースのパフォーマンス監視には使用されません。",
-      "CloudWatch Logsは、ログデータの収集と分析に使用されますが、Performance Insightsの方が、データベースのパフォーマンス監視に特化しており、より詳細な情報を提供します。",
-      "QuickSightは、ビジネスインテリジェンスとデータ可視化のサービスですが、データベースのパフォーマンス監視には、Performance Insightsの方が適しています。"
+      "✓ Correct: Amazon RDS Performance Insights monitors and optimizes database performance. It visualizes database load over time and identifies which queries consume the most CPU, I/O, and memory. Slow query SQL statements, execution times, and wait events can be analyzed in detail to quickly pinpoint performance bottlenecks. The intuitive dashboard retains performance data for up to 7 days (free) or up to 2 years (paid).",
+      "CloudTrail records audit logs of AWS API calls and is not used for database performance monitoring.",
+      "CloudWatch Logs is used for collecting and analyzing log data, but Performance Insights is specialized for database performance monitoring and provides more detailed information.",
+      "QuickSight is a business intelligence and data visualization service, but Performance Insights is more appropriate for database performance monitoring."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/USER_PerfInsights.html", title: "Amazon RDS ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html", title: "Monitoring DB load with Performance Insights on Amazon RDS" }
     ]
   },
   {
     id: 56,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、ユーザーがアップロードした画像を処理し、Amazon S3に保存します。画像処理には時間がかかるため、ユーザーは処理が完了するまで待つ必要があります。同社は、ユーザーエクスペリエンスを向上させるために、画像処理を非同期で行いたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances. The application processes images uploaded by users and stores them in Amazon S3. Image processing takes a long time, requiring users to wait until processing is complete. The company wants to perform image processing asynchronously to improve user experience.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS Step Functionsを使用して、画像処理ワークフローを管理する。",
-      "Amazon SQSキューを使用して、画像処理タスクをキューに追加し、別のEC2インスタンスで処理する。",
-      "Amazon Kinesisを使用して、画像処理タスクをストリーミングする。",
-      "AWS Batchを使用して、画像処理ジョブを実行する。"
+      "Use AWS Step Functions to manage the image processing workflow.",
+      "Use an Amazon SQS queue to enqueue image processing tasks and process them on separate EC2 instances.",
+      "Use Amazon Kinesis to stream image processing tasks.",
+      "Use AWS Batch to run image processing jobs."
     ],
     correctAnswer: 1,
-    category: "アプリケーション統合",
-    explanation: "Amazon SQSキューを使用することで、画像処理タスクを非同期で処理できます。ウェブアプリケーションは、画像処理タスクをSQSキューに追加し、すぐにユーザーに応答を返します。別のEC2インスタンス（ワーカー）がキューからタスクを取得し、画像を処理します。",
+    category: "Application Integration",
+    explanation: "Using an Amazon SQS queue allows image processing tasks to be handled asynchronously. The web application enqueues tasks and immediately returns a response to the user. Separate EC2 worker instances pick up tasks from the queue and process the images.",
     optionExplanations: [
-      "Step Functionsは、複雑なワークフローの管理に適していますが、シンプルな非同期処理には、SQSの方が適しています。",
-      "✓ 正解: Amazon SQSは、フルマネージド型のメッセージキューサービスです。ウェブアプリケーションは、ユーザーが画像をアップロードしたときに、画像処理タスクをSQSキューに追加し、すぐにユーザーに応答を返します。別のEC2インスタンス（ワーカー）がキューからタスクを取得し、画像を処理してS3に保存します。これにより、画像処理が非同期で行われ、ユーザーは処理が完了するまで待つ必要がなくなります。SQSは、メッセージの配信を保証し、スケーラブルで、コスト効率的です。Auto Scalingを使用して、キューの長さに基づいてワーカーインスタンスの数を自動的に調整できます。",
-      "Kinesisは、リアルタイムのストリーミングデータの処理に使用されますが、画像処理のような非同期タスクには、SQSの方が適しています。",
-      "AWS Batchは、大規模なバッチ処理ジョブの実行に適していますが、シンプルな非同期処理には、SQSの方が適しています。"
+      "Step Functions is well-suited for managing complex workflows, but SQS is more appropriate for simple asynchronous processing.",
+      "✓ Correct: Amazon SQS is a fully managed message queuing service. When a user uploads an image, the web application adds the processing task to an SQS queue and immediately returns a response. Separate EC2 worker instances retrieve tasks from the queue, process the images, and save them to S3. This makes image processing asynchronous so users no longer need to wait. SQS guarantees message delivery, is scalable, and is cost-efficient. Auto Scaling can automatically adjust the number of worker instances based on queue length.",
+      "Kinesis is used for real-time streaming data processing, but SQS is more appropriate for asynchronous tasks such as image processing.",
+      "AWS Batch is suited for large-scale batch processing jobs, but SQS is more appropriate for simple asynchronous processing."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html", title: "Welcome" }
+      { url: "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html", title: "What is Amazon Simple Queue Service?" }
     ]
   },
   {
     id: 57,
-    question: "ある企業は、Amazon VPC内で実行されているアプリケーションを持っています。アプリケーションは、インターネットからのトラフィックを受信する必要がありますが、アプリケーションサーバーはプライベートサブネット内に配置されています。同社は、アプリケーションサーバーをインターネットに直接公開せずに、インターネットからのトラフィックを受信したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running in an Amazon VPC. The application needs to receive traffic from the internet, but the application servers are in private subnets. The company wants to receive internet traffic without directly exposing the application servers to the internet.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "アプリケーションサーバーをパブリックサブネットに移動する。",
-      "NATゲートウェイを使用して、インターネットからのトラフィックをアプリケーションサーバーにルーティングする。",
-      "Application Load Balancer (ALB)をパブリックサブネットに配置し、アプリケーションサーバーをターゲットとして登録する。",
-      "インターネットゲートウェイをプライベートサブネットにアタッチする。"
+      "Move the application servers to a public subnet.",
+      "Use a NAT gateway to route internet traffic to the application servers.",
+      "Place an Application Load Balancer (ALB) in a public subnet and register the application servers as targets.",
+      "Attach an internet gateway to the private subnet."
     ],
     correctAnswer: 2,
-    category: "ネットワーキング",
-    explanation: "Application Load Balancer (ALB)をパブリックサブネットに配置し、プライベートサブネット内のアプリケーションサーバーをターゲットとして登録することで、アプリケーションサーバーをインターネットに直接公開せずに、インターネットからのトラフィックを受信できます。",
+    category: "Networking",
+    explanation: "Placing an Application Load Balancer (ALB) in a public subnet and registering the private subnet application servers as targets allows internet traffic to be received without directly exposing the application servers to the internet.",
     optionExplanations: [
-      "アプリケーションサーバーをパブリックサブネットに移動することは、セキュリティリスクが高まります。プライベートサブネットに配置し、ALBを使用する方が安全です。",
-      "NATゲートウェイは、プライベートサブネット内のインスタンスからインターネットへのアウトバウンドトラフィックを許可するために使用されますが、インターネットからのインバウンドトラフィックには使用されません。",
-      "✓ 正解: Application Load Balancer (ALB)をパブリックサブネットに配置し、プライベートサブネット内のアプリケーションサーバーをターゲットとして登録することで、アプリケーションサーバーをインターネットに直接公開せずに、インターネットからのトラフィックを受信できます。ALBは、インターネットからのトラフィックを受信し、プライベートサブネット内のアプリケーションサーバーに転送します。これにより、アプリケーションサーバーのセキュリティが向上し、DDoS攻撃などの脅威から保護されます。また、ALBは、SSL/TLS終端、パスベースルーティング、ヘルスチェックなどの高度な機能を提供します。",
-      "インターネットゲートウェイは、VPCレベルでアタッチされ、特定のサブネットにアタッチすることはできません。また、プライベートサブネットにインターネットゲートウェイをアタッチすることは、セキュリティのベストプラクティスに反します。"
+      "Moving the application servers to a public subnet increases security risk. Keeping them in a private subnet and using an ALB is more secure.",
+      "A NAT gateway allows outbound internet traffic from instances in private subnets, but is not used for inbound traffic from the internet.",
+      "✓ Correct: Placing an ALB in a public subnet and registering the private subnet application servers as targets allows internet traffic to be received without directly exposing the application servers. The ALB receives traffic from the internet and forwards it to the application servers in the private subnet. This improves application server security and protects against threats such as DDoS attacks. The ALB also provides advanced features such as SSL/TLS termination, path-based routing, and health checks.",
+      "An internet gateway is attached at the VPC level and cannot be attached to a specific subnet. Attaching an internet gateway to a private subnet also violates security best practices."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/elasticloadbalancing/latest/application/application-load-balancers.html", title: "Application Load Balancer" }
+      { url: "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html", title: "What is an Application Load Balancer?" }
     ]
   },
   {
     id: 58,
-    question: "ある企業は、Amazon S3バケットに保存されている大量のデータを、Amazon Redshiftデータウェアハウスにロードしたいと考えています。データは、毎日増分的に追加されます。同社は、データのロードを自動化し、効率的に実行したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company wants to load large amounts of data stored in an Amazon S3 bucket into an Amazon Redshift data warehouse. Data is added incrementally every day. The company wants to automate and run data loading efficiently.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS Glue ETLジョブを使用して、S3からRedshiftにデータをロードする。",
-      "Amazon Kinesis Data Firehoseを使用して、S3からRedshiftにデータをストリーミングする。",
-      "AWS Lambda関数を使用して、S3からRedshiftにデータをロードする。",
-      "Redshift COPYコマンドを手動で実行する。"
+      "Use AWS Glue ETL jobs to load data from S3 to Redshift.",
+      "Use Amazon Kinesis Data Firehose to stream data from S3 to Redshift.",
+      "Use an AWS Lambda function to load data from S3 to Redshift.",
+      "Run Redshift COPY commands manually."
     ],
     correctAnswer: 0,
-    category: "アプリケーション統合",
-    explanation: "AWS Glue ETLジョブを使用することで、S3からRedshiftへのデータロードを自動化し、効率的に実行できます。Glueは、データの変換、クレンジング、エンリッチメントも実行でき、スケジュールに基づいて自動的にジョブを実行できます。",
+    category: "Application Integration",
+    explanation: "Using AWS Glue ETL jobs automates and efficiently executes data loading from S3 to Redshift. Glue can also perform data transformation, cleansing, and enrichment, and can automatically run jobs on a schedule.",
     optionExplanations: [
-      "✓ 正解: AWS Glue ETLジョブを使用することで、S3からRedshiftへのデータロードを自動化し、効率的に実行できます。Glueは、サーバーレスのETL（Extract, Transform, Load）サービスで、データの抽出、変換、ロードを自動化します。データカタログを使用してデータのスキーマを自動的に検出し、ETLジョブを簡単に作成できます。スケジュールに基づいて自動的にジョブを実行でき、増分データのロードもサポートしています。また、データの変換、クレンジング、エンリッチメントも実行でき、Redshiftへのロードを最適化できます。",
-      "Kinesis Data Firehoseは、リアルタイムのストリーミングデータをRedshiftにロードするのに適していますが、S3に既に保存されているバッチデータのロードには、Glueの方が適しています。",
-      "Lambda関数を使用してデータをロードすることは可能ですが、Glueの方が、ETL処理に特化しており、スケーラビリティと管理が容易です。",
-      "Redshift COPYコマンドを手動で実行することは可能ですが、自動化されておらず、運用負荷が高くなります。Glueを使用する方が、自動化と効率化が実現できます。"
+      "✓ Correct: AWS Glue ETL jobs automate and efficiently execute data loading from S3 to Redshift. Glue is a serverless ETL (Extract, Transform, Load) service that automates data extraction, transformation, and loading. It uses the Data Catalog to automatically discover data schemas and makes it easy to create ETL jobs. Jobs can run automatically on a schedule, and incremental data loading is supported. It also performs data transformation, cleansing, and enrichment, optimizing loading into Redshift.",
+      "Kinesis Data Firehose is well-suited for loading real-time streaming data into Redshift, but Glue is more appropriate for loading batch data already stored in S3.",
+      "Using a Lambda function to load data is possible, but Glue is more specialized for ETL processing and easier to scale and manage.",
+      "Running Redshift COPY commands manually is possible, but it is not automated and increases operational burden. Using Glue achieves automation and efficiency."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/glue/latest/dg/what-is-glue.html", title: "What Is Glue" }
+      { url: "https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html", title: "What is AWS Glue?" }
     ]
   },
   {
     id: 59,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的に外部APIを呼び出してデータを取得しますが、APIのレート制限により、リクエストが失敗することがあります。同社は、リクエストの失敗を減らし、アプリケーションの信頼性を向上させたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically calls an external API to retrieve data, but requests sometimes fail due to API rate limiting. The company wants to reduce request failures and improve application reliability.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS Lambda関数を使用して、APIを呼び出す。",
-      "指数バックオフとジッターを実装して、リトライロジックを改善する。",
-      "Amazon API Gatewayを使用して、APIリクエストをプロキシする。",
-      "Amazon SQSキューを使用して、APIリクエストをバッファリングする。"
+      "Use an AWS Lambda function to call the API.",
+      "Implement exponential backoff with jitter to improve the retry logic.",
+      "Use Amazon API Gateway to proxy API requests.",
+      "Use an Amazon SQS queue to buffer API requests."
     ],
     correctAnswer: 1,
-    category: "アプリケーション統合",
-    explanation: "指数バックオフとジッターを実装することで、リトライ間隔を徐々に増やし、ランダムな遅延を追加することで、リクエストの衝突を減らし、APIのレート制限に対処できます。",
+    category: "Application Integration",
+    explanation: "Implementing exponential backoff with jitter gradually increases retry intervals and adds random delays to reduce request collisions, addressing API rate limiting.",
     optionExplanations: [
-      "Lambda関数を使用することは可能ですが、指数バックオフとジッターを実装する方が、既存のアプリケーションに適用しやすく、効果的です。",
-      "✓ 正解: 指数バックオフとジッターは、リトライロジックを改善するためのベストプラクティスです。指数バックオフは、リトライ間隔を徐々に増やすことで（例：1秒、2秒、4秒、8秒）、APIへの負荷を減らします。ジッターは、リトライ間隔にランダムな遅延を追加することで、複数のクライアントが同時にリトライすることによる衝突を減らします。これにより、APIのレート制限に対処し、リクエストの成功率を向上させることができます。AWS SDKは、デフォルトで指数バックオフとジッターを実装しています。",
-      "API Gatewayは、APIリクエストの管理に使用できますが、外部APIのレート制限に対処するには、指数バックオフとジッターの方が適しています。",
-      "SQSキューを使用してAPIリクエストをバッファリングすることは可能ですが、指数バックオフとジッターの方が、シンプルで、既存のアプリケーションに適用しやすいです。"
+      "Using a Lambda function is possible, but implementing exponential backoff with jitter is easier to apply to an existing application and is more effective.",
+      "✓ Correct: Exponential backoff with jitter is a best practice for improving retry logic. Exponential backoff gradually increases retry intervals (e.g., 1s, 2s, 4s, 8s) to reduce load on the API. Jitter adds random delays to retry intervals to reduce collisions when multiple clients retry simultaneously. This handles API rate limiting and improves request success rates. The AWS SDK implements exponential backoff and jitter by default.",
+      "API Gateway can be used to manage API requests, but exponential backoff with jitter is more appropriate for dealing with external API rate limiting.",
+      "Using an SQS queue to buffer API requests is possible, but exponential backoff with jitter is simpler and easier to apply to an existing application."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/general/latest/gr/api-retries.html", title: "Api Retries" }
+      { url: "https://docs.aws.amazon.com/general/latest/gr/api-retries.html", title: "Error retries and exponential backoff in AWS" }
     ]
   },
   {
     id: 60,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、Application Load Balancer (ALB)の背後にあり、複数のアベイラビリティーゾーンにデプロイされています。同社は、アプリケーションのセキュリティを向上させるために、特定の国からのトラフィックをブロックしたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances behind an Application Load Balancer (ALB), deployed across multiple Availability Zones. The company wants to improve security by blocking traffic from specific countries.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "ALBのセキュリティグループを使用して、特定のIPアドレス範囲をブロックする。",
-      "AWS WAFを使用して、地理的制限ルールを設定する。",
-      "Amazon CloudFrontを使用して、地理的制限を設定する。",
-      "Network ACLを使用して、特定のIPアドレス範囲をブロックする。"
+      "Use the ALB security group to block specific IP address ranges.",
+      "Use AWS WAF to configure geographic restriction rules.",
+      "Use Amazon CloudFront to configure geographic restrictions.",
+      "Use Network ACLs to block specific IP address ranges."
     ],
     correctAnswer: 1,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS WAFを使用して、地理的制限ルールを設定することで、特定の国からのトラフィックをブロックできます。WAFは、ALBと統合され、リクエストの送信元の国に基づいてトラフィックをフィルタリングできます。",
+    category: "Security and Compliance",
+    explanation: "Using AWS WAF to configure geographic restriction rules allows traffic from specific countries to be blocked. WAF integrates with the ALB and can filter traffic based on the country of origin of the request.",
     optionExplanations: [
-      "セキュリティグループは、IPアドレスベースのアクセス制御を提供しますが、国ごとのIPアドレス範囲を手動で管理するのは困難です。WAFの方が、地理的制限に適しています。",
-      "✓ 正解: AWS WAFは、Webアプリケーションファイアウォールで、ALB、CloudFront、API Gatewayと統合できます。地理的制限ルール（Geo Match Rule）を使用して、特定の国からのトラフィックをブロックまたは許可できます。WAFは、リクエストの送信元IPアドレスに基づいて国を判定し、ルールに従ってトラフィックをフィルタリングします。地理的制限ルールは、簡単に設定でき、複数の国を指定できます。また、WAFは、SQLインジェクション、XSS、レート制限などの他のセキュリティルールも提供します。",
-      "CloudFrontは、地理的制限を設定できますが、ALBの前にCloudFrontを配置する必要があります。既存のALBベースのアーキテクチャでは、WAFを使用する方が簡単です。",
-      "Network ACLは、サブネットレベルのアクセス制御を提供しますが、国ごとのIPアドレス範囲を手動で管理するのは困難です。WAFの方が、地理的制限に適しています。"
+      "Security groups provide IP address-based access control, but manually managing IP address ranges for each country is difficult. WAF is more appropriate for geographic restrictions.",
+      "✓ Correct: AWS WAF is a web application firewall that can be integrated with ALB, CloudFront, and API Gateway. Geographic match rules (Geo Match) can block or allow traffic from specific countries. WAF determines the country from the request's source IP address and filters traffic according to the rules. Geographic rules are easy to configure and can specify multiple countries. WAF also provides other security rules such as SQL injection protection, XSS protection, and rate limiting.",
+      "CloudFront can configure geographic restrictions, but it must be placed in front of the ALB. For an existing ALB-based architecture, using WAF directly is simpler.",
+      "Network ACLs provide subnet-level access control, but manually managing country IP ranges is difficult. WAF is more appropriate for geographic restrictions."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/waf/latest/developerguide/waf-rule-statement-type-geo-match.html", title: "AWS WAF とは" }
+      { url: "https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-geo-match.html", title: "Geographic match rule statement" }
     ]
   },
   {
     id: 61,
-    question: "ある企業は、Amazon ECS on Fargateを使用してコンテナ化されたアプリケーションを実行しています。アプリケーションは、機密情報を含む環境変数を使用します。同社は、環境変数を安全に管理し、コンテナ定義に直接記述しないようにしたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company runs a containerized application on Amazon ECS on Fargate. The application uses environment variables that contain sensitive information. The company wants to manage environment variables securely and avoid embedding them directly in container definitions.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "環境変数をECSタスク定義に直接記述する。",
-      "環境変数をDockerイメージに埋め込む。",
-      "環境変数をS3バケットに保存し、コンテナ起動時に取得する。",
-      "AWS Systems Manager Parameter Storeを使用して、環境変数を保存し、ECSタスク定義から参照する。"
+      "Write environment variables directly in the ECS task definition.",
+      "Embed environment variables in the Docker image.",
+      "Store environment variables in an S3 bucket and retrieve them at container startup.",
+      "Use AWS Systems Manager Parameter Store to store environment variables and reference them from the ECS task definition."
     ],
     correctAnswer: 3,
-    category: "コンピューティング",
-    explanation: "AWS Systems Manager Parameter Storeを使用することで、環境変数を安全に保存し、ECSタスク定義から参照できます。Parameter Storeは、暗号化をサポートし、IAMポリシーでアクセスを制御できます。",
+    category: "Compute",
+    explanation: "Using AWS Systems Manager Parameter Store allows environment variables to be stored securely and referenced from ECS task definitions. Parameter Store supports encryption and access control via IAM policies.",
     optionExplanations: [
-      "環境変数をタスク定義に直接記述することは、セキュリティリスクが高く、機密情報が露出する可能性があります。",
-      "環境変数をDockerイメージに埋め込むことは、セキュリティリスクが非常に高く、イメージが漏洩した場合、機密情報も露出します。",
-      "S3バケットに環境変数を保存することは可能ですが、Parameter Storeの方が、機密情報の管理に特化しており、ECSとの統合も容易です。",
-      "✓ 正解: AWS Systems Manager Parameter Storeは、設定データと機密情報を安全に保存するためのサービスです。環境変数をParameter Storeに保存し、ECSタスク定義で`valueFrom`フィールドを使用してParameter Storeのパラメータを参照できます。Parameter Storeは、AWS KMSを使用した暗号化をサポートし、IAMポリシーでアクセスを制御できます。また、パラメータのバージョン管理と変更履歴も提供します。ECSは、タスク起動時に自動的にParameter Storeからパラメータを取得し、環境変数として設定します。AWS Secrets Managerも同様の機能を提供しますが、Parameter Storeは無料枠があり、コスト効率的です。"
+      "Writing environment variables directly in the task definition is a security risk and can expose sensitive information.",
+      "Embedding environment variables in a Docker image is a very high security risk — if the image is leaked, sensitive information is also exposed.",
+      "Storing environment variables in an S3 bucket is possible, but Parameter Store is more specialized for managing sensitive information and easier to integrate with ECS.",
+      "✓ Correct: AWS Systems Manager Parameter Store is a service for securely storing configuration data and sensitive information. Environment variables can be stored in Parameter Store and referenced from ECS task definitions using the valueFrom field. Parameter Store supports encryption using AWS KMS and access control via IAM policies. It also provides parameter versioning and change history. ECS automatically retrieves parameters from Parameter Store at task startup and sets them as environment variables. AWS Secrets Manager provides similar functionality, but Parameter Store has a free tier and is more cost-efficient."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/specifying-sensitive-data-parameters.html", title: "Specifying Sensitive Data Parameters" }
+      { url: "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data-parameters.html", title: "Specifying sensitive data using Systems Manager Parameter Store" }
     ]
   },
   {
     id: 62,
-    question: "ある企業は、Amazon RDS for MySQLデータベースを使用しています。同社は、データベースの可用性を向上させるために、マルチAZ配置を有効にしています。データベースのメンテナンスウィンドウ中に、プライマリインスタンスがスタンバイインスタンスにフェイルオーバーされます。\n\nフェイルオーバー中に、アプリケーションはどのように動作しますか。",
+    question: "A company uses an Amazon RDS for MySQL database. The company has enabled Multi-AZ deployment to improve database availability. During a database maintenance window, the primary instance fails over to the standby instance.\n\nHow does the application behave during the failover?",
     options: [
-      "アプリケーションは、手動でスタンバイインスタンスのエンドポイントに接続を変更する必要がある。",
-      "アプリケーションは、読み取り専用モードで動作し、書き込み操作は失敗する。",
-      "アプリケーションは、フェイルオーバーが完了するまで、すべてのデータベース操作が失敗する。",
-      "アプリケーションは、自動的にスタンバイインスタンスに再接続され、ダウンタイムは最小限に抑えられる。"
+      "The application must manually change its connection to the standby instance endpoint.",
+      "The application operates in read-only mode and write operations fail.",
+      "All database operations fail until the failover is complete.",
+      "The application automatically reconnects to the standby instance with minimal downtime."
     ],
     correctAnswer: 3,
-    category: "データベース",
-    explanation: "RDSマルチAZ配置では、フェイルオーバー時にDNSレコードが自動的に更新され、アプリケーションは同じエンドポイントを使用してスタンバイインスタンスに再接続できます。ダウンタイムは通常1〜2分程度です。",
+    category: "Database",
+    explanation: "In RDS Multi-AZ deployment, the DNS record is automatically updated during failover so the application can reconnect to the standby instance using the same endpoint. Downtime is typically 1-2 minutes.",
     optionExplanations: [
-      "マルチAZ配置では、DNSレコードが自動的に更新されるため、アプリケーションは手動でエンドポイントを変更する必要はありません。",
-      "フェイルオーバー後、スタンバイインスタンスがプライマリになり、読み取りと書き込みの両方の操作が可能です。",
-      "フェイルオーバー中は一時的に接続が切断されますが、適切なリトライロジックを実装することで、すべての操作が失敗するわけではありません。",
-      "✓ 正解: RDSマルチAZ配置では、フェイルオーバー時にDNSレコードが自動的に更新され、アプリケーションは同じエンドポイント（例：mydb.abc123.us-east-1.rds.amazonaws.com）を使用してスタンバイインスタンスに再接続できます。フェイルオーバーは自動的に実行され、通常1〜2分程度で完了します。アプリケーションは、接続が切断されたことを検出し、再接続を試みる必要がありますが、エンドポイントは変更されません。適切なリトライロジックを実装することで、ダウンタイムを最小限に抑えることができます。"
+      "In Multi-AZ deployment, the DNS record is automatically updated so the application does not need to manually change the endpoint.",
+      "After failover, the standby instance becomes primary and both read and write operations are available.",
+      "The connection is temporarily interrupted during failover, but with proper retry logic implemented, not all operations will fail.",
+      "✓ Correct: In RDS Multi-AZ deployment, the DNS record is automatically updated during failover so the application can reconnect to the standby instance using the same endpoint (e.g., mydb.abc123.us-east-1.rds.amazonaws.com). Failover is automatic and typically completes in 1-2 minutes. The application needs to detect the disconnection and attempt to reconnect, but the endpoint does not change. Implementing proper retry logic minimizes downtime."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html", title: "マルチ AZ 配置" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html", title: "Multi-AZ DB instance deployments" }
     ]
   },
   {
     id: 63,
-    question: "ある企業は、Amazon S3バケットに保存されている大量の画像ファイルを持っています。画像は、ウェブサイトで表示されますが、オリジナルサイズのままでは読み込みが遅くなります。同社は、画像を自動的にリサイズし、異なるデバイスに最適化したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a large number of image files stored in an Amazon S3 bucket. The images are displayed on a website, but loading them at their original size is slow. The company wants to automatically resize images and optimize them for different devices.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS Lambda関数をS3イベント通知でトリガーし、画像をリサイズする。",
-      "Amazon EC2インスタンスで画像処理サーバーを実行する。",
-      "Amazon CloudFrontとLambda@Edgeを使用して、リクエスト時に画像をリサイズする。",
-      "AWS Batchを使用して、画像をバッチ処理する。"
+      "Trigger an AWS Lambda function with S3 event notifications to resize images.",
+      "Run an image processing server on Amazon EC2 instances.",
+      "Use Amazon CloudFront with Lambda@Edge to resize images at request time.",
+      "Use AWS Batch to process images in batches."
     ],
     correctAnswer: 2,
-    category: "コンピューティング",
-    explanation: "Amazon CloudFrontとLambda@Edgeを使用することで、リクエスト時に画像を動的にリサイズし、異なるデバイスに最適化できます。リサイズされた画像はCloudFrontにキャッシュされ、パフォーマンスが向上します。",
+    category: "Compute",
+    explanation: "Using Amazon CloudFront with Lambda@Edge allows images to be dynamically resized at request time and optimized for different devices. Resized images are cached in CloudFront, improving performance.",
     optionExplanations: [
-      "Lambda関数をS3イベント通知でトリガーすることは可能ですが、すべてのサイズの画像を事前に生成する必要があり、ストレージコストが増加します。Lambda@Edgeの方が、オンデマンドでリサイズでき、効率的です。",
-      "EC2インスタンスで画像処理サーバーを実行することは可能ですが、運用負荷が高く、スケーラビリティが低いです。Lambda@Edgeの方が、サーバーレスで、自動的にスケールします。",
-      "✓ 正解: Amazon CloudFrontとLambda@Edgeを使用することで、リクエスト時に画像を動的にリサイズし、異なるデバイスに最適化できます。Lambda@Edgeは、CloudFrontのエッジロケーションで実行されるLambda関数で、ビューワーリクエストやオリジンレスポンスをインターセプトして処理できます。リクエストのUser-Agentヘッダーやクエリパラメータに基づいて、適切なサイズの画像を生成し、CloudFrontにキャッシュできます。これにより、オリジナル画像のみをS3に保存すればよく、ストレージコストが削減されます。また、エッジロケーションでリサイズされるため、レイテンシが低く、パフォーマンスが向上します。",
-      "AWS Batchは、大規模なバッチ処理に適していますが、リアルタイムの画像リサイズには、Lambda@Edgeの方が適しています。"
+      "Triggering a Lambda function with S3 event notifications is possible, but all sizes must be pre-generated, increasing storage costs. Lambda@Edge is more efficient because it resizes images on demand.",
+      "Running an image processing server on EC2 is possible, but it has high operational burden and low scalability. Lambda@Edge is serverless and scales automatically.",
+      "✓ Correct: Using Amazon CloudFront with Lambda@Edge allows images to be dynamically resized at request time and optimized for different devices. Lambda@Edge functions run at CloudFront edge locations and can intercept and process viewer requests and origin responses. Based on the request's User-Agent header or query parameters, appropriately sized images can be generated and cached in CloudFront. This means only the original image needs to be stored in S3, reducing storage costs. Processing at edge locations also lowers latency and improves performance.",
+      "AWS Batch is suited for large-scale batch processing, but Lambda@Edge is more appropriate for real-time image resizing."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/lambda-at-the-edge.html", title: "AWS Lambda とは" }
+      { url: "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-at-the-edge.html", title: "Customizing at the edge with Lambda@Edge" }
     ]
   },
   {
     id: 64,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAmazon DynamoDBテーブルからデータを読み取りますが、読み取りスループットが不足することがあります。同社は、読み取りパフォーマンスを向上させ、DynamoDBへの負荷を軽減したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances that periodically reads data from an Amazon DynamoDB table, but read throughput is sometimes insufficient. The company wants to improve read performance and reduce the load on DynamoDB.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "DynamoDBのプロビジョニングされた読み取りキャパシティユニット（RCU）を増やす。",
-      "Amazon ElastiCache for Redisを使用する。",
-      "Amazon DynamoDB Accelerator (DAX)を使用する。",
-      "DynamoDBグローバルセカンダリインデックス（GSI）を作成する。"
+      "Increase the provisioned read capacity units (RCU) for DynamoDB.",
+      "Use Amazon ElastiCache for Redis.",
+      "Use Amazon DynamoDB Accelerator (DAX).",
+      "Create a DynamoDB Global Secondary Index (GSI)."
     ],
     correctAnswer: 2,
-    category: "データベース",
-    explanation: "Amazon DynamoDB Accelerator (DAX)は、DynamoDB専用のインメモリキャッシュで、読み取りパフォーマンスを大幅に向上させ、DynamoDBへの負荷を軽減できます。",
+    category: "Database",
+    explanation: "Amazon DynamoDB Accelerator (DAX) is an in-memory cache purpose-built for DynamoDB that dramatically improves read performance and reduces the load on DynamoDB.",
     optionExplanations: [
-      "RCUを増やすことで読み取りスループットを向上させることができますが、コストが増加します。DAXを使用する方が、パフォーマンスとコストの両方を最適化できます。",
-      "ElastiCache for Redisも有効なキャッシュソリューションですが、DynamoDB専用に最適化されたDAXの方が、統合が容易で、DynamoDB APIとの互換性が高いです。",
-      "✓ 正解: Amazon DynamoDB Accelerator (DAX)は、DynamoDB専用のフルマネージド型インメモリキャッシュです。DAXは、DynamoDBテーブルの前に配置され、頻繁にアクセスされるデータをキャッシュします。キャッシュヒット時、応答時間はマイクロ秒単位に短縮され、読み取りパフォーマンスが最大10倍向上します。また、DynamoDBへの読み取りリクエストが削減されるため、RCUの消費が減り、コストが削減されます。DAXは、DynamoDB APIと互換性があり、アプリケーションコードの変更は最小限で済みます。クラスターは自動的にスケールし、高可用性を提供します。",
-      "GSIは、異なるクエリパターンをサポートするために使用されますが、読み取りパフォーマンスの向上には、DAXの方が効果的です。"
+      "Increasing RCU can improve read throughput, but costs increase. Using DAX optimizes both performance and cost.",
+      "ElastiCache for Redis is also an effective caching solution, but DAX is purpose-built for DynamoDB, easier to integrate, and has higher compatibility with the DynamoDB API.",
+      "✓ Correct: Amazon DynamoDB Accelerator (DAX) is a fully managed, in-memory cache purpose-built for DynamoDB. DAX sits in front of DynamoDB tables and caches frequently accessed data. On a cache hit, response times are reduced to microseconds, improving read performance by up to 10x. Read requests to DynamoDB are also reduced, decreasing RCU consumption and lowering costs. DAX is compatible with the DynamoDB API and requires minimal application code changes. The cluster automatically scales and provides high availability.",
+      "A GSI is used to support different query patterns, but DAX is more effective for improving read performance."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/DAX.html", title: "Amazon DynamoDB ドキュメント" }
+      { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.html", title: "In-memory acceleration with DynamoDB Accelerator (DAX)" }
     ]
   },
   {
     id: 65,
-    question: "ある企業は、Amazon VPC内で実行されているアプリケーションを持っています。アプリケーションは、オンプレミスのデータセンターにあるデータベースにアクセスする必要があります。同社は、インターネットを経由せずに、安全で低レイテンシの接続を確立したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running in an Amazon VPC. The application needs to access a database in an on-premises data center. The company wants to establish a secure, low-latency connection without traversing the internet.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "VPNゲートウェイを使用して、VPCとオンプレミスデータセンターを接続する。",
-      "VPCピアリングを使用して、VPCとオンプレミスデータセンターを接続する。",
-      "インターネットゲートウェイを使用して、パブリックインターネット経由で接続する。",
-      "AWS Direct Connectを使用して、専用ネットワーク接続を確立する。"
+      "Use a VPN gateway to connect the VPC and the on-premises data center.",
+      "Use VPC peering to connect the VPC and the on-premises data center.",
+      "Use an internet gateway to connect over the public internet.",
+      "Use AWS Direct Connect to establish a dedicated network connection."
     ],
     correctAnswer: 3,
-    category: "ネットワーキング",
-    explanation: "AWS Direct Connectは、オンプレミスデータセンターとAWSの間に専用ネットワーク接続を確立し、インターネットを経由せずに、安全で低レイテンシの接続を提供します。",
+    category: "Networking",
+    explanation: "AWS Direct Connect establishes a dedicated network connection between an on-premises data center and AWS, providing a secure, low-latency connection without traversing the internet.",
     optionExplanations: [
-      "VPNゲートウェイは、インターネット経由の暗号化された接続を提供しますが、Direct Connectの方が、低レイテンシで、帯域幅が安定しています。",
-      "VPCピアリングは、AWS内の2つのVPC間の接続に使用され、オンプレミスデータセンターとの接続には使用できません。",
-      "インターネットゲートウェイを使用してパブリックインターネット経由で接続することは、セキュリティリスクが高く、レイテンシも高くなります。",
-      "✓ 正解: AWS Direct Connectは、オンプレミスデータセンターとAWSの間に専用ネットワーク接続を確立するサービスです。Direct Connectは、インターネットを経由せずに、プライベートな接続を提供し、ネットワークのレイテンシが低く、帯域幅が安定しています。1Gbpsまたは10Gbpsの専用接続、または50Mbps〜10Gbpsのホスト接続を選択できます。Direct Connectは、VPN接続と比較して、より高い帯域幅、より低いレイテンシ、より安定したネットワークパフォーマンスを提供します。また、データ転送コストも削減できます。複数のVPCやAWSアカウントに接続するために、Direct Connect Gatewayを使用できます。"
+      "A VPN gateway provides an encrypted connection over the internet, but Direct Connect offers lower latency and more stable bandwidth.",
+      "VPC peering is used for connections between two VPCs within AWS and cannot be used to connect to an on-premises data center.",
+      "Connecting over the public internet using an internet gateway presents security risks and results in higher latency.",
+      "✓ Correct: AWS Direct Connect is a service that establishes a dedicated network connection between an on-premises data center and AWS. Direct Connect provides a private connection without traversing the internet, offering low network latency and stable bandwidth. You can choose a dedicated connection of 1 Gbps or 10 Gbps, or a hosted connection of 50 Mbps to 10 Gbps. Compared to VPN connections, Direct Connect provides higher bandwidth, lower latency, and more stable network performance. Data transfer costs can also be reduced. A Direct Connect Gateway can be used to connect to multiple VPCs and AWS accounts."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/directconnect/latest/UserGuide/Welcome.html", title: "Welcome" }
+      { url: "https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html", title: "What is AWS Direct Connect?" }
     ]
   },
   {
     id: 66,
-    question: "ある企業は、Amazon S3バケットに保存されているログファイルを分析するために、Amazon Athenaを使用しています。ログファイルは、毎日増加し、クエリのパフォーマンスが低下しています。同社は、クエリのパフォーマンスを向上させ、コストを削減したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses Amazon Athena to analyze log files stored in an Amazon S3 bucket. Log files grow daily and query performance is degrading. The company wants to improve query performance and reduce costs.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3バケット内のデータをパーティション化する。",
-      "S3バケットのストレージクラスをS3 Glacierに変更する。",
-      "Athenaのクエリ結果をキャッシュする。",
-      "S3バケットのレプリケーションを有効にする。"
+      "Partition the data in the S3 bucket.",
+      "Change the S3 bucket storage class to S3 Glacier.",
+      "Cache Athena query results.",
+      "Enable S3 bucket replication."
     ],
     correctAnswer: 0,
-    category: "アプリケーション統合",
-    explanation: "S3バケット内のデータをパーティション化することで、Athenaがスキャンするデータ量を削減し、クエリのパフォーマンスを向上させ、コストを削減できます。",
+    category: "Application Integration",
+    explanation: "Partitioning data in the S3 bucket reduces the amount of data Athena scans, improving query performance and reducing costs.",
     optionExplanations: [
-      "✓ 正解: S3バケット内のデータをパーティション化することで、Athenaがスキャンするデータ量を削減し、クエリのパフォーマンスを向上させ、コストを削減できます。パーティションは、データを論理的なセグメントに分割する方法で、通常、日付（年、月、日）や地域などの列に基づいて作成されます。例えば、ログファイルを`s3://bucket/logs/year=2023/month=01/day=15/`のようなディレクトリ構造で保存します。クエリでWHERE句を使用してパーティションを指定すると（例：WHERE year='2023' AND month='01'）、Athenaは該当するパーティションのみをスキャンし、クエリ時間とコストが大幅に削減されます。",
-      "S3 Glacierは、アーカイブストレージで、頻繁にアクセスされるデータには適していません。Athenaでのクエリパフォーマンスには影響しません。",
-      "Athenaは、クエリ結果を自動的にS3にキャッシュしますが、パーティション化の方が、クエリパフォーマンスの向上に効果的です。",
-      "S3レプリケーションは、データの冗長性と可用性を向上させますが、クエリパフォーマンスには直接影響しません。"
+      "✓ Correct: Partitioning data in the S3 bucket reduces the amount of data Athena scans, improving query performance and reducing costs. Partitions logically divide data into segments, typically based on columns such as date (year, month, day) or region. For example, log files are stored in a directory structure like s3://bucket/logs/year=2023/month=01/day=15/. Using a WHERE clause to specify a partition in a query (e.g., WHERE year='2023' AND month='01') causes Athena to scan only the relevant partitions, dramatically reducing query time and costs.",
+      "S3 Glacier is archive storage and is not suitable for frequently accessed data. It does not affect Athena query performance.",
+      "Athena automatically caches query results to S3, but partitioning is more effective for improving query performance.",
+      "S3 replication improves data redundancy and availability but does not directly affect query performance."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/athena/latest/ug/partitions.html", title: "Partitions" }
+      { url: "https://docs.aws.amazon.com/athena/latest/ug/partitions.html", title: "Partitioning data in Athena" }
     ]
   },
   {
     id: 67,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、ユーザーがアップロードしたファイルをAmazon S3バケットに保存します。同社は、ユーザーが直接S3にファイルをアップロードできるようにし、EC2インスタンスの負荷を軽減したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances. The application stores files uploaded by users in an Amazon S3 bucket. The company wants to allow users to upload files directly to S3 to reduce the load on EC2 instances.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3バケットをパブリックアクセス可能にする。",
-      "IAMユーザーのアクセスキーをクライアントに配布する。",
-      "S3署名付きURL（Pre-signed URL）を使用して、一時的なアップロード権限を付与する。",
-      "S3バケットポリシーを使用して、すべてのユーザーにアップロード権限を付与する。"
+      "Make the S3 bucket publicly accessible.",
+      "Distribute IAM user access keys to clients.",
+      "Use S3 pre-signed URLs to grant temporary upload permissions.",
+      "Use an S3 bucket policy to grant all users upload permissions."
     ],
     correctAnswer: 2,
-    category: "ストレージ",
-    explanation: "S3署名付きURL（Pre-signed URL）を使用することで、ユーザーに一時的なアップロード権限を付与し、直接S3にファイルをアップロードできるようにします。これにより、EC2インスタンスの負荷が軽減され、セキュリティも維持されます。",
+    category: "Storage",
+    explanation: "Using S3 pre-signed URLs grants users temporary upload permissions, allowing them to upload files directly to S3. This reduces the load on EC2 instances while maintaining security.",
     optionExplanations: [
-      "S3バケットをパブリックアクセス可能にすることは、セキュリティリスクが非常に高く、誰でもファイルをアップロードできてしまいます。",
-      "IAMユーザーのアクセスキーをクライアントに配布することは、セキュリティリスクが非常に高く、アクセスキーが漏洩する可能性があります。",
-      "✓ 正解: S3署名付きURL（Pre-signed URL）は、一時的なアップロード権限を付与するための安全な方法です。アプリケーションは、AWS SDKを使用して署名付きURLを生成し、クライアントに返します。クライアントは、この署名付きURLを使用して、直接S3にファイルをアップロードできます。署名付きURLには、有効期限（例：15分）が設定され、期限が切れると使用できなくなります。これにより、EC2インスタンスを経由せずに、ユーザーが直接S3にファイルをアップロードでき、EC2インスタンスの負荷が軽減されます。また、IAMクレデンシャルをクライアントに公開する必要がなく、セキュリティが維持されます。",
-      "S3バケットポリシーですべてのユーザーにアップロード権限を付与することは、セキュリティリスクが高く、不正なファイルがアップロードされる可能性があります。"
+      "Making the S3 bucket publicly accessible presents a very high security risk and allows anyone to upload files.",
+      "Distributing IAM user access keys to clients presents a very high security risk and can result in the keys being exposed.",
+      "✓ Correct: S3 pre-signed URLs are a secure way to grant temporary upload permissions. The application generates a pre-signed URL using the AWS SDK and returns it to the client. The client uses this URL to upload files directly to S3. The URL has an expiration time (e.g., 15 minutes) and becomes unusable after it expires. This allows users to upload files directly to S3 without going through EC2 instances, reducing EC2 load. IAM credentials do not need to be exposed to clients, maintaining security.",
+      "Using an S3 bucket policy to grant all users upload permissions presents a high security risk and can allow unauthorized files to be uploaded."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/PresignedUrlUploadObject.html", title: "Amazon S3 ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/PresignedUrlUploadObject.html", title: "Uploading objects using presigned URLs" }
     ]
   },
   {
     id: 68,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的に大量のデータをAmazon S3バケットにアップロードしますが、インターネット経由のデータ転送コストが高くなっています。同社は、データ転送コストを削減したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances that regularly uploads large amounts of data to an Amazon S3 bucket. Internet data transfer costs are high. The company wants to reduce data transfer costs.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3 Transfer Accelerationを使用する。",
-      "AWS Direct Connectを使用する。",
-      "VPCエンドポイント（Gateway Endpoint）を使用して、S3にプライベート接続する。",
-      "Amazon CloudFrontを使用する。"
+      "Use S3 Transfer Acceleration.",
+      "Use AWS Direct Connect.",
+      "Use a VPC Gateway Endpoint for private connectivity to S3.",
+      "Use Amazon CloudFront."
     ],
     correctAnswer: 2,
-    category: "ネットワーキング",
-    explanation: "VPCエンドポイント（Gateway Endpoint）を使用することで、インターネットを経由せずに、VPC内からS3にプライベート接続でき、データ転送コストを削減できます。",
+    category: "Networking",
+    explanation: "Using a VPC Gateway Endpoint enables private connectivity from within the VPC to S3 without traversing the internet, reducing data transfer costs.",
     optionExplanations: [
-      "S3 Transfer Accelerationは、長距離のデータ転送を高速化しますが、データ転送コストは削減されません。むしろ、追加料金が発生します。",
-      "Direct Connectは、オンプレミスとAWS間の接続に使用され、VPC内のEC2からS3へのデータ転送コスト削減には、VPCエンドポイントの方が適しています。",
-      "✓ 正解: VPCエンドポイント（Gateway Endpoint）を使用することで、インターネットを経由せずに、VPC内からS3にプライベート接続できます。Gateway Endpointは、VPCのルートテーブルに追加され、S3へのトラフィックをプライベートネットワーク経由でルーティングします。これにより、NATゲートウェイやインターネットゲートウェイを経由する必要がなくなり、データ転送コストが削減されます。また、セキュリティも向上し、トラフィックがインターネットに露出しません。Gateway Endpointは無料で使用でき、追加料金は発生しません。S3とDynamoDB用のGateway Endpointが利用可能です。",
-      "CloudFrontは、コンテンツ配信ネットワークで、S3へのデータアップロードのコスト削減には使用されません。"
+      "S3 Transfer Acceleration speeds up long-distance data transfers but does not reduce data transfer costs — it actually incurs additional charges.",
+      "Direct Connect is used for on-premises to AWS connectivity. A VPC Endpoint is more appropriate for reducing data transfer costs from EC2 to S3 within a VPC.",
+      "✓ Correct: Using a VPC Gateway Endpoint enables private connectivity from within the VPC to S3 without traversing the internet. The Gateway Endpoint is added to the VPC route table and routes S3 traffic through the private network. This eliminates the need for a NAT gateway or internet gateway, reducing data transfer costs. Security is also improved as traffic is not exposed to the internet. Gateway Endpoints are free to use with no additional charges. Gateway Endpoints are available for S3 and DynamoDB.",
+      "CloudFront is a content delivery network and is not used to reduce data upload costs to S3."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/vpc/latest/privatelink/vpc-endpoints-s3.html", title: "Amazon S3 とは" }
+      { url: "https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html", title: "Access Amazon S3 using an interface VPC endpoint" }
     ]
   },
   {
     id: 69,
-    question: "ある企業は、Amazon RDS for PostgreSQLデータベースを使用しています。同社は、データベースのバックアップを長期間保存し、コンプライアンス要件を満たしたいと考えています。RDSの自動バックアップの保持期間は最大35日ですが、同社は1年間保存する必要があります。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses an Amazon RDS for PostgreSQL database. The company wants to store database backups for a long period to meet compliance requirements. The maximum RDS automated backup retention period is 35 days, but the company needs to retain backups for one year.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "RDSの自動バックアップの保持期間を1年に設定する。",
-      "AWS Backupを使用して、バックアップを管理する。",
-      "RDSスナップショットを手動で作成し、必要な期間保持する。",
-      "データベースをAmazon S3にエクスポートする。"
+      "Set the RDS automated backup retention period to one year.",
+      "Use AWS Backup to manage backups.",
+      "Manually create RDS snapshots and retain them for the required period.",
+      "Export the database to Amazon S3."
     ],
     correctAnswer: 1,
-    category: "データベース",
-    explanation: "AWS Backupを使用することで、RDSデータベースのバックアップを一元管理し、長期間保存できます。バックアップポリシーを設定して、自動的にバックアップを作成し、保持期間を指定できます。",
+    category: "Database",
+    explanation: "Using AWS Backup enables centralized management of RDS database backups and long-term retention. Backup policies can be configured to automatically create backups and specify the retention period.",
     optionExplanations: [
-      "RDSの自動バックアップの保持期間は最大35日で、1年に設定することはできません。",
-      "✓ 正解: AWS Backupは、AWSサービス全体のバックアップを一元管理するフルマネージド型サービスです。RDS、EBS、EFS、DynamoDB、Storage Gatewayなどのバックアップを自動化し、保持期間を柔軟に設定できます。バックアップポリシー（バックアッププラン）を作成し、バックアップの頻度（例：毎日）、保持期間（例：1年）、バックアップウィンドウを指定できます。AWS Backupは、バックアップのライフサイクル管理もサポートし、古いバックアップを自動的に削除したり、コールドストレージに移行したりできます。また、クロスリージョンバックアップやクロスアカウントバックアップもサポートし、災害復旧とコンプライアンス要件を満たすことができます。",
-      "手動スナップショットを作成することは可能ですが、AWS Backupの方が、バックアップの管理と自動化が容易です。",
-      "データベースをS3にエクスポートすることは可能ですが、AWS Backupの方が、バックアップと復元の管理が容易で、RDSに最適化されています。"
+      "The maximum RDS automated backup retention period is 35 days and cannot be set to one year.",
+      "✓ Correct: AWS Backup is a fully managed service that centralizes backup management across AWS services. It automates backups for RDS, EBS, EFS, DynamoDB, Storage Gateway, and more, with flexible retention period settings. Backup policies (backup plans) can specify backup frequency (e.g., daily), retention period (e.g., one year), and backup windows. AWS Backup also supports backup lifecycle management, automatically deleting old backups or transitioning them to cold storage. Cross-region and cross-account backups are also supported, meeting disaster recovery and compliance requirements.",
+      "Manually creating snapshots is possible, but AWS Backup makes backup management and automation easier.",
+      "Exporting the database to S3 is possible, but AWS Backup is easier to manage for backup and restore and is optimized for RDS."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/aws-backup/latest/devguide/whatisbackup.html", title: "Whatisbackup" }
+      { url: "https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html", title: "What is AWS Backup?" }
     ]
   },
   {
     id: 70,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、Application Load Balancer (ALB)の背後にあり、Auto Scalingグループで管理されています。同社は、アプリケーションのデプロイメントを自動化し、ダウンタイムを最小限に抑えたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきデプロイメント戦略はどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances behind an Application Load Balancer (ALB), managed by an Auto Scaling group. The company wants to automate application deployments and minimize downtime.\n\nWhich deployment strategy should a solutions architect recommend to meet these requirements?",
     options: [
-      "すべてのインスタンスを同時に新しいバージョンに更新する（All-at-once）。",
-      "ローリングデプロイメントを使用して、インスタンスを段階的に更新する。",
-      "カナリアデプロイメントを使用して、一部のユーザーに新しいバージョンを提供する。",
-      "ブルー/グリーンデプロイメントを使用して、新しい環境を作成し、トラフィックを切り替える。"
+      "Update all instances to the new version simultaneously (all-at-once).",
+      "Use a rolling deployment to update instances gradually.",
+      "Use a canary deployment to deliver the new version to a subset of users.",
+      "Use a blue/green deployment to create a new environment and switch traffic."
     ],
     correctAnswer: 3,
-    category: "コンピューティング",
-    explanation: "ブルー/グリーンデプロイメントを使用することで、新しい環境（グリーン）を作成し、テストした後、ALBのターゲットグループを切り替えてトラフィックを新しい環境にルーティングします。問題が発生した場合、すぐに元の環境（ブルー）に戻すことができ、ダウンタイムを最小限に抑えることができます。",
+    category: "Compute",
+    explanation: "Using a blue/green deployment creates a new environment (green), tests it, then switches the ALB target group to route traffic to the new environment. If issues arise, you can immediately revert to the original environment (blue), minimizing downtime.",
     optionExplanations: [
-      "All-at-onceデプロイメントは、すべてのインスタンスを同時に更新するため、ダウンタイムが発生し、問題が発生した場合のロールバックが困難です。",
-      "ローリングデプロイメントは、インスタンスを段階的に更新するため、ダウンタイムを削減できますが、ブルー/グリーンデプロイメントの方が、ロールバックが容易で、リスクが低いです。",
-      "カナリアデプロイメントは、一部のユーザーに新しいバージョンを提供し、段階的にロールアウトする戦略ですが、ブルー/グリーンデプロイメントの方が、完全なロールバックが容易です。",
-      "✓ 正解: ブルー/グリーンデプロイメントは、新しい環境（グリーン）を作成し、既存の環境（ブルー）と並行して実行する戦略です。新しい環境をテストし、問題がないことを確認した後、ALBのターゲットグループを切り替えて、トラフィックを新しい環境にルーティングします。切り替えは瞬時に行われ、ダウンタイムはほぼゼロです。問題が発生した場合、すぐに元の環境に戻すことができ、ロールバックが容易です。AWS CodeDeployは、ブルー/グリーンデプロイメントをサポートし、Auto ScalingグループとALBと統合できます。この戦略は、リスクが低く、本番環境でのデプロイメントに最適です。"
+      "All-at-once deployment updates all instances simultaneously, causing downtime and making rollback difficult if issues arise.",
+      "Rolling deployment updates instances gradually, reducing downtime, but blue/green deployment is easier to roll back and lower risk.",
+      "Canary deployment delivers the new version to a subset of users and rolls out gradually, but blue/green deployment makes full rollback easier.",
+      "✓ Correct: Blue/green deployment creates a new environment (green) and runs it in parallel with the existing environment (blue). After testing the new environment and confirming there are no issues, the ALB target group is switched to route traffic to the new environment. The switch is instantaneous with virtually zero downtime. If issues arise, you can immediately revert to the original environment, making rollback easy. AWS CodeDeploy supports blue/green deployments and can be integrated with Auto Scaling groups and ALBs. This strategy is low risk and ideal for production deployments."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/whitepapers/latest/overview-deployment-options/bluegreen-deployments.html", title: "Bluegreen Deployments" }
+      { url: "https://docs.aws.amazon.com/whitepapers/latest/overview-deployment-options/bluegreen-deployments.html", title: "Blue/green deployments" }
     ]
   },
   {
     id: 71,
-    question: "ある企業は、Amazon S3バケットに保存されている静的ウェブサイトを持っています。ウェブサイトは、世界中のユーザーからアクセスされますが、レイテンシが高く、ユーザーエクスペリエンスが低下しています。同社は、レイテンシを削減し、ウェブサイトのパフォーマンスを向上させたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a static website stored in an Amazon S3 bucket. The website is accessed by users worldwide, but high latency is degrading user experience. The company wants to reduce latency and improve website performance.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3バケットを複数のリージョンにレプリケートする。",
-      "S3 Transfer Accelerationを有効にする。",
-      "Amazon CloudFrontディストリビューションを作成し、S3バケットをオリジンとして設定する。",
-      "Amazon Route 53のレイテンシベースルーティングを使用する。"
+      "Replicate the S3 bucket to multiple Regions.",
+      "Enable S3 Transfer Acceleration.",
+      "Create an Amazon CloudFront distribution with the S3 bucket as the origin.",
+      "Use Amazon Route 53 latency-based routing."
     ],
     correctAnswer: 2,
-    category: "ネットワーキング",
-    explanation: "Amazon CloudFrontディストリビューションを作成し、S3バケットをオリジンとして設定することで、コンテンツをエッジロケーションにキャッシュし、世界中のユーザーに低レイテンシでコンテンツを配信できます。",
+    category: "Networking",
+    explanation: "Creating an Amazon CloudFront distribution with the S3 bucket as the origin caches content at edge locations and delivers it to global users with low latency.",
     optionExplanations: [
-      "S3バケットを複数のリージョンにレプリケートすることは可能ですが、CloudFrontの方が、グローバルなエッジロケーションを活用して、より低いレイテンシを実現できます。",
-      "S3 Transfer Accelerationは、S3へのアップロード速度を向上させるためのサービスで、ダウンロード速度の向上には、CloudFrontの方が適しています。",
-      "✓ 正解: Amazon CloudFrontは、グローバルなコンテンツ配信ネットワーク(CDN)サービスです。CloudFrontディストリビューションを作成し、S3バケットをオリジンとして設定することで、コンテンツを世界中のエッジロケーション(400以上)にキャッシュできます。ユーザーは、最も近いエッジロケーションからコンテンツを取得するため、レイテンシが大幅に削減されます。また、S3への直接リクエストが減少するため、S3のコストも削減されます。CloudFrontは、SSL/TLS、カスタムドメイン、アクセス制限、圧縮などの高度な機能も提供します。",
-      "Route 53のレイテンシベースルーティングは、複数のリージョンにリソースがある場合に有効ですが、単一のS3バケットの場合、CloudFrontの方が効果的です。"
+      "Replicating the S3 bucket to multiple Regions is possible, but CloudFront achieves lower latency by leveraging global edge locations.",
+      "S3 Transfer Acceleration speeds up uploads to S3. CloudFront is more appropriate for improving download speed.",
+      "✓ Correct: Amazon CloudFront is a global content delivery network (CDN) service. Creating a CloudFront distribution with the S3 bucket as the origin caches content at more than 400 edge locations worldwide. Users retrieve content from the edge location closest to them, dramatically reducing latency. Direct requests to S3 are also reduced, lowering S3 costs. CloudFront also provides advanced features such as SSL/TLS, custom domains, access restrictions, and compression.",
+      "Route 53 latency-based routing is effective when resources are in multiple Regions, but for a single S3 bucket, CloudFront is more effective."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/Introduction.html", title: "Amazon CloudFront ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html", title: "What is Amazon CloudFront?" }
     ]
   },
   {
     id: 72,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAmazon SQSキューからメッセージを取得し、処理します。処理には時間がかかるため、メッセージの可視性タイムアウトが切れる前に処理が完了しないことがあります。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically retrieves and processes messages from an Amazon SQS queue. Processing takes time, and the message visibility timeout sometimes expires before processing is complete.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "処理中にChangeMessageVisibilityAPIを使用して、可視性タイムアウトを延長する。",
-      "SQSキューのデフォルト可視性タイムアウトを増やす。",
-      "SQSキューの受信待機時間を増やす。",
-      "SQSキューのメッセージ保持期間を増やす。"
+      "Use the ChangeMessageVisibility API during processing to extend the visibility timeout.",
+      "Increase the default visibility timeout for the SQS queue.",
+      "Increase the SQS queue's receive wait time.",
+      "Increase the SQS queue's message retention period."
     ],
     correctAnswer: 0,
-    category: "アプリケーション統合",
-    explanation: "処理中にChangeMessageVisibilityAPIを使用して、可視性タイムアウトを延長することで、メッセージが他のコンシューマーに配信されるのを防ぎ、処理を完了できます。",
+    category: "Application Integration",
+    explanation: "Using the ChangeMessageVisibility API during processing to extend the visibility timeout prevents the message from being delivered to other consumers, allowing processing to complete.",
     optionExplanations: [
-      "✓ 正解: 可視性タイムアウトは、メッセージが取得された後、他のコンシューマーに表示されない期間です。処理に時間がかかる場合、可視性タイムアウトが切れる前に、ChangeMessageVisibilityAPIを使用して、タイムアウトを延長できます。これにより、メッセージが他のコンシューマーに配信されるのを防ぎ、処理を完了できます。処理の進行状況に応じて、複数回延長することも可能です。最大12時間まで延長できます。処理が完了したら、DeleteMessageAPIを使用してメッセージを削除します。",
-      "デフォルト可視性タイムアウトを増やすことは可能ですが、すべてのメッセージに適用されるため、柔軟性が低いです。ChangeMessageVisibilityを使用する方が、個別のメッセージごとに調整できます。",
-      "受信待機時間は、ロングポーリングの設定で、メッセージの取得効率を向上させますが、可視性タイムアウトの問題には対処できません。",
-      "メッセージ保持期間は、メッセージがキューに保持される期間で、可視性タイムアウトとは異なります。"
+      "✓ Correct: The visibility timeout is the period after a message is retrieved during which it is not visible to other consumers. If processing takes a long time, the ChangeMessageVisibility API can be used to extend the timeout before it expires. This prevents the message from being delivered to other consumers, allowing processing to complete. The timeout can be extended multiple times as processing progresses, up to a maximum of 12 hours. After processing is complete, the message is deleted using the DeleteMessage API.",
+      "Increasing the default visibility timeout is possible, but it applies to all messages, reducing flexibility. Using ChangeMessageVisibility allows adjustment per individual message.",
+      "Receive wait time is a long polling setting that improves message retrieval efficiency, but does not address the visibility timeout issue.",
+      "Message retention period is how long a message is kept in the queue and is different from the visibility timeout."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html", title: "Sqs Visibility Timeout" }
+      { url: "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-visibility-timeout.html", title: "Amazon SQS visibility timeout" }
     ]
   },
   {
     id: 73,
-    question: "ある企業は、Amazon Aurora MySQLデータベースクラスターを使用しています。同社は、読み取り負荷が高く、プライマリインスタンスのパフォーマンスが低下しています。読み取り負荷を分散し、プライマリインスタンスの負荷を軽減したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses an Amazon Aurora MySQL database cluster. The company has high read load and the primary instance performance is degrading. The company wants to distribute the read load and reduce the burden on the primary instance.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "プライマリインスタンスのインスタンスタイプを大きくする。",
-      "Amazon ElastiCache for Redisを使用する。",
-      "DynamoDB Accelerator (DAX)を使用する。",
-      "Aurora Read Replicaを追加し、読み取りエンドポイントを使用する。"
+      "Increase the primary instance type.",
+      "Use Amazon ElastiCache for Redis.",
+      "Use DynamoDB Accelerator (DAX).",
+      "Add Aurora Read Replicas and use the reader endpoint."
     ],
     correctAnswer: 3,
-    category: "データベース",
-    explanation: "Aurora Read Replicaを追加し、読み取りエンドポイントを使用することで、読み取り負荷を複数のレプリカに分散し、プライマリインスタンスの負荷を軽減できます。",
+    category: "Database",
+    explanation: "Adding Aurora Read Replicas and using the reader endpoint distributes read load across multiple replicas and reduces the burden on the primary instance.",
     optionExplanations: [
-      "プライマリインスタンスのインスタンスタイプを大きくすることで、パフォーマンスを向上させることができますが、Read Replicaを使用する方が、読み取り負荷を分散でき、コスト効率的です。",
-      "ElastiCache for Redisは、キャッシュソリューションとして有効ですが、Read Replicaの方が、Auroraとの統合が容易で、管理が簡単です。",
-      "DAXは、DynamoDB専用のキャッシュで、Auroraには使用できません。",
-      "✓ 正解: Aurora Read Replicaは、プライマリインスタンスのデータを非同期でレプリケートする読み取り専用のインスタンスです。最大15個のRead Replicaを追加でき、読み取り負荷を分散できます。Auroraは、読み取りエンドポイント(Reader Endpoint)を提供し、このエンドポイントに接続すると、自動的に利用可能なRead Replicaに負荷分散されます。これにより、プライマリインスタンスの負荷が軽減され、書き込みパフォーマンスが向上します。Read Replicaは、プライマリインスタンスと同じストレージを共有するため、レプリケーションのレイテンシが非常に低く(通常10ms以下)、データの一貫性が高いです。"
+      "Increasing the primary instance type can improve performance, but using Read Replicas distributes read load more efficiently and is more cost-effective.",
+      "ElastiCache for Redis is an effective caching solution, but Read Replicas are easier to integrate with Aurora and simpler to manage.",
+      "DAX is a cache purpose-built for DynamoDB and cannot be used with Aurora.",
+      "✓ Correct: Aurora Read Replicas are read-only instances that asynchronously replicate data from the primary instance. Up to 15 Read Replicas can be added to distribute read load. Aurora provides a reader endpoint that automatically load-balances to available Read Replicas when connected. This reduces the load on the primary instance and improves write performance. Read Replicas share the same storage as the primary instance, resulting in very low replication latency (typically less than 10 ms) and high data consistency."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/AuroraUserGuide/Aurora.Replication.html", title: "Amazon RDS ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Replication.html", title: "Replication with Amazon Aurora" }
     ]
   },
   {
     id: 74,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、機密データを処理し、コンプライアンス要件により、すべてのネットワークトラフィックを暗号化する必要があります。同社は、EC2インスタンス間の通信を暗号化したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances that processes sensitive data. Compliance requirements mandate that all network traffic must be encrypted. The company wants to encrypt communication between EC2 instances.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "VPCフローログを有効にする。",
-      "Network Load Balancer (NLB)でTLS終端を設定する。",
-      "アプリケーションレベルでTLS/SSLを実装する。",
-      "AWS PrivateLinkを使用する。"
+      "Enable VPC flow logs.",
+      "Configure TLS termination on a Network Load Balancer (NLB).",
+      "Implement TLS/SSL at the application level.",
+      "Use AWS PrivateLink."
     ],
     correctAnswer: 2,
-    category: "セキュリティとコンプライアンス",
-    explanation: "アプリケーションレベルでTLS/SSLを実装することで、EC2インスタンス間の通信をエンドツーエンドで暗号化し、コンプライアンス要件を満たすことができます。",
+    category: "Security and Compliance",
+    explanation: "Implementing TLS/SSL at the application level encrypts communication between EC2 instances end-to-end and satisfies compliance requirements.",
     optionExplanations: [
-      "VPCフローログは、ネットワークトラフィックのログを記録するサービスで、暗号化には使用されません。",
-      "NLBでTLS終端を設定することは可能ですが、EC2インスタンス間の直接通信を暗号化するには、アプリケーションレベルでの実装が必要です。",
-      "✓ 正解: アプリケーションレベルでTLS/SSLを実装することで、EC2インスタンス間の通信をエンドツーエンドで暗号化できます。アプリケーションは、TLS/SSLプロトコルを使用して、データを暗号化して送信し、受信側で復号化します。これにより、ネットワーク上でデータが傍受されても、内容を読み取ることができません。AWS Certificate Manager (ACM)を使用して、SSL/TLS証明書を管理できます。また、アプリケーションは、相互TLS認証を実装して、通信相手の認証も行うことができます。この方法は、コンプライアンス要件を満たし、データの機密性を保護します。",
-      "AWS PrivateLinkは、VPC間のプライベート接続を提供しますが、EC2インスタンス間の通信の暗号化には、アプリケーションレベルでの実装が必要です。"
+      "VPC flow logs record network traffic logs and are not used for encryption.",
+      "Configuring TLS termination on an NLB is possible, but application-level implementation is required to encrypt direct communication between EC2 instances.",
+      "✓ Correct: Implementing TLS/SSL at the application level encrypts communication between EC2 instances end-to-end. The application uses TLS/SSL protocols to encrypt data before sending and decrypt it on receipt, preventing the content from being read even if intercepted on the network. AWS Certificate Manager (ACM) can be used to manage SSL/TLS certificates. The application can also implement mutual TLS authentication to authenticate communicating parties. This satisfies compliance requirements and protects data confidentiality.",
+      "AWS PrivateLink provides private connectivity between VPCs, but application-level implementation is required to encrypt communication between EC2 instances."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/data-protection.html", title: "Data Protection" }
+      { url: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/data-protection.html", title: "Data protection in Amazon EC2" }
     ]
   },
   {
     id: 75,
-    question: "ある企業は、Amazon S3バケットに保存されている大量のデータを持っています。データは、頻繁にアクセスされる最初の30日間はS3 Standardに保存され、その後はアクセス頻度が低下します。同社は、ストレージコストを削減したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a large amount of data stored in Amazon S3. Data is stored in S3 Standard for the first 30 days when it is frequently accessed, but access frequency decreases after that. The company wants to reduce storage costs.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3 Intelligent-Tieringストレージクラスを使用する。",
-      "S3ライフサイクルポリシーを設定して、30日後にS3 Glacier Flexible Retrievalに移行する。",
-      "すべてのデータをS3 One Zone-IAに保存する。",
-      "S3ライフサイクルポリシーを設定して、30日後にS3 Standard-IAに移行する。"
+      "Use the S3 Intelligent-Tiering storage class.",
+      "Configure an S3 lifecycle policy to transition to S3 Glacier Flexible Retrieval after 30 days.",
+      "Store all data in S3 One Zone-IA.",
+      "Configure an S3 lifecycle policy to transition to S3 Standard-IA after 30 days."
     ],
     correctAnswer: 3,
-    category: "ストレージ",
-    explanation: "S3ライフサイクルポリシーを設定して、30日後にS3 Standard-IAに移行することで、アクセス頻度の低いデータのストレージコストを削減できます。",
+    category: "Storage",
+    explanation: "Configuring an S3 lifecycle policy to transition to S3 Standard-IA after 30 days reduces storage costs for infrequently accessed data.",
     optionExplanations: [
-      "S3 Intelligent-Tieringは、アクセスパターンに基づいて自動的にストレージクラスを変更しますが、最小保存期間が30日のため、最初の30日間のコストは削減されません。また、モニタリング料金が発生します。",
-      "S3 Glacier Flexible Retrievalは、アーカイブストレージで、取り出しに時間がかかります(数分〜数時間)。アクセス頻度が低いだけで、まだアクセスされる可能性がある場合、S3 Standard-IAの方が適しています。",
-      "S3 One Zone-IAは、単一のアベイラビリティーゾーンにデータを保存するため、耐久性が低く、重要なデータには適していません。また、最初の30日間のコストは削減されません。",
-      "✓ 正解: S3ライフサイクルポリシーを設定して、30日後にS3 Standard-IA(Infrequent Access)に移行することで、アクセス頻度の低いデータのストレージコストを削減できます。S3 Standard-IAは、S3 Standardと同じ耐久性と可用性を提供しますが、ストレージコストが約45%低くなります。データは即座にアクセス可能で、取り出し料金が発生しますが、アクセス頻度が低い場合、全体的なコストは削減されます。ライフサイクルポリシーは、オブジェクトの作成日または最終アクセス日に基づいて、自動的にストレージクラスを移行します。"
+      "S3 Intelligent-Tiering automatically changes storage classes based on access patterns, but the minimum storage period is 30 days so it does not reduce costs for the first 30 days. It also incurs monitoring fees.",
+      "S3 Glacier Flexible Retrieval is archive storage with slow retrieval times (minutes to hours). If data may still be accessed occasionally, S3 Standard-IA is more appropriate.",
+      "S3 One Zone-IA stores data in a single Availability Zone, resulting in lower durability and is not suitable for important data. It also does not reduce costs for the first 30 days.",
+      "✓ Correct: Configuring an S3 lifecycle policy to transition to S3 Standard-IA (Infrequent Access) after 30 days reduces storage costs for infrequently accessed data. S3 Standard-IA provides the same durability and availability as S3 Standard but costs approximately 45% less for storage. Data is immediately accessible, with a retrieval fee, but overall costs are reduced for infrequently accessed data. The lifecycle policy automatically transitions storage classes based on object creation or last access date."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html", title: "Amazon S3 ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/lifecycle-transition-general-considerations.html", title: "Transitioning objects using Amazon S3 Lifecycle" }
     ]
   },
   {
     id: 76,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、ユーザーのセッション情報を保存する必要があります。同社は、複数のEC2インスタンス間でセッション情報を共有し、インスタンスが終了してもセッション情報が失われないようにしたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances. The application needs to store user session information. The company wants to share session information across multiple EC2 instances and ensure that session data is not lost when an instance is terminated.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "EC2インスタンスのローカルストレージにセッション情報を保存する。",
-      "Amazon EBSボリュームにセッション情報を保存する。",
-      "Amazon S3バケットにセッション情報を保存する。",
-      "Amazon ElastiCache for Redisを使用して、セッション情報を保存する。"
+      "Store session information in local storage on EC2 instances.",
+      "Store session information in an Amazon EBS volume.",
+      "Store session information in an Amazon S3 bucket.",
+      "Use Amazon ElastiCache for Redis to store session information."
     ],
     correctAnswer: 3,
-    category: "データベース",
-    explanation: "Amazon ElastiCache for Redisを使用して、セッション情報を保存することで、複数のEC2インスタンス間でセッション情報を共有し、高速にアクセスできます。",
+    category: "Database",
+    explanation: "Using Amazon ElastiCache for Redis to store session information allows session data to be shared across multiple EC2 instances and accessed quickly.",
     optionExplanations: [
-      "EC2インスタンスのローカルストレージにセッション情報を保存すると、インスタンスが終了した場合、セッション情報が失われます。また、複数のインスタンス間で共有できません。",
-      "EBSボリュームは、単一のEC2インスタンスにアタッチされるため、複数のインスタンス間で共有できません。",
-      "S3は、オブジェクトストレージで、セッション情報のような頻繁にアクセスされるデータには適していません。レイテンシが高く、コストも高くなります。",
-      "✓ 正解: Amazon ElastiCache for Redisは、インメモリデータストアで、セッション情報の保存に最適です。Redisは、高速な読み書きパフォーマンスを提供し、複数のEC2インスタンスから同時にアクセスできます。セッション情報は、Redisクラスターに保存され、インスタンスが終了してもデータは保持されます。Redisは、データの有効期限(TTL)を設定でき、古いセッション情報を自動的に削除できます。また、レプリケーションとフェイルオーバーをサポートし、高可用性を提供します。ElastiCacheは、フルマネージド型サービスで、パッチ適用、バックアップ、モニタリングが自動化されています。"
+      "Storing session information in local storage on EC2 instances means session data is lost if the instance is terminated, and it cannot be shared across multiple instances.",
+      "EBS volumes are attached to a single EC2 instance and cannot be shared across multiple instances.",
+      "S3 is object storage and is not suitable for frequently accessed data such as session information. It has high latency and can be costly.",
+      "✓ Correct: Amazon ElastiCache for Redis is an in-memory data store ideal for storing session information. Redis provides fast read/write performance and allows simultaneous access from multiple EC2 instances. Session data is stored in the Redis cluster and persists even when an instance is terminated. Redis supports TTL (time-to-live) settings to automatically expire old session data, and it supports replication and failover for high availability. ElastiCache is a fully managed service with automated patching, backups, and monitoring."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonElastiCache/latest/red-ug/elasticache-use-cases.html", title: "Amazon ElastiCache とは" }
+      { url: "https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/elasticache-use-cases.html", title: "Amazon ElastiCache Use Cases" }
     ]
   },
   {
     id: 77,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAWS Lambda関数を呼び出して、データ処理を実行します。同社は、Lambda関数の実行を非同期で行い、アプリケーションの応答時間を短縮したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically invokes AWS Lambda functions to perform data processing. The company wants to invoke Lambda functions asynchronously to reduce application response time.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Lambda関数を同期的に呼び出し、結果を待つ。",
-      "Lambda関数を非同期的に呼び出し、結果を待たずに処理を続ける。",
-      "Amazon SQSキューを使用して、Lambda関数をトリガーする。",
-      "AWS Step Functionsを使用して、Lambda関数を実行する。"
+      "Invoke the Lambda function synchronously and wait for the result.",
+      "Invoke the Lambda function asynchronously and continue processing without waiting for the result.",
+      "Use an Amazon SQS queue to trigger the Lambda function.",
+      "Use AWS Step Functions to execute the Lambda function."
     ],
     correctAnswer: 1,
-    category: "コンピューティング",
-    explanation: "Lambda関数を非同期的に呼び出すことで、アプリケーションは結果を待たずに処理を続けることができ、応答時間が短縮されます。",
+    category: "Compute",
+    explanation: "Invoking Lambda functions asynchronously allows the application to continue processing without waiting for results, reducing response time.",
     optionExplanations: [
-      "Lambda関数を同期的に呼び出すと、アプリケーションは結果を待つ必要があり、応答時間が長くなります。",
-      "✓ 正解: Lambda関数を非同期的に呼び出すことで、アプリケーションは結果を待たずに処理を続けることができ、応答時間が短縮されます。非同期呼び出しでは、AWS SDKの`InvocationType`パラメータを`Event`に設定します。Lambdaは、リクエストをキューに追加し、すぐに202ステータスコードを返します。Lambda関数は、バックグラウンドで実行され、結果はアプリケーションに返されません。エラーが発生した場合、Lambdaは自動的にリトライ(最大2回)を実行します。非同期呼び出しの結果を処理する必要がある場合、Lambda Destinationsを使用して、成功または失敗時にSQS、SNS、EventBridge、または別のLambda関数に結果を送信できます。",
-      "SQSキューを使用してLambda関数をトリガーすることも有効な方法ですが、シンプルな非同期呼び出しの場合、直接非同期呼び出しを使用する方が簡単です。",
-      "Step Functionsは、複雑なワークフローの管理に適していますが、シンプルな非同期呼び出しには、直接非同期呼び出しを使用する方が適しています。"
+      "Invoking Lambda functions synchronously requires the application to wait for results, increasing response time.",
+      "✓ Correct: Invoking Lambda functions asynchronously allows the application to continue processing without waiting for results, reducing response time. For asynchronous invocation, set the InvocationType parameter in the AWS SDK to Event. Lambda adds the request to a queue and immediately returns a 202 status code. The Lambda function runs in the background and results are not returned to the application. If an error occurs, Lambda automatically retries (up to 2 times). If you need to handle the result of an asynchronous invocation, Lambda Destinations can send the result to SQS, SNS, EventBridge, or another Lambda function on success or failure.",
+      "Using an SQS queue to trigger a Lambda function is also a valid approach, but for simple asynchronous invocation, invoking directly is simpler.",
+      "Step Functions is well-suited for managing complex workflows, but for simple asynchronous invocation, invoking directly is more appropriate."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/invocation-async.html", title: "AWS Lambda ドキュメント" }
+      { url: "https://docs.aws.amazon.com/lambda/latest/dg/invocation-async.html", title: "Asynchronous invocation" }
     ]
   },
   {
     id: 78,
-    question: "ある企業は、Amazon RDS for PostgreSQLデータベースを使用しています。同社は、データベースのパフォーマンスを向上させるために、読み取りクエリをキャッシュしたいと考えています。また、データベースへの変更が発生した場合、キャッシュを自動的に無効化したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses an Amazon RDS for PostgreSQL database. The company wants to cache read queries to improve database performance. When changes occur in the database, the cache should be automatically invalidated.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "RDS Read Replicaを使用する。",
-      "Amazon RDS Proxyを使用する。",
-      "Amazon ElastiCache for Redisを使用し、アプリケーションでキャッシュの無効化ロジックを実装する。",
-      "Amazon DynamoDB Accelerator (DAX)を使用する。"
+      "Use an RDS Read Replica.",
+      "Use Amazon RDS Proxy.",
+      "Use Amazon ElastiCache for Redis and implement cache invalidation logic in the application.",
+      "Use Amazon DynamoDB Accelerator (DAX)."
     ],
     correctAnswer: 2,
-    category: "データベース",
-    explanation: "Amazon ElastiCache for Redisを使用し、アプリケーションでキャッシュの無効化ロジックを実装することで、読み取りクエリをキャッシュし、データベースへの変更時にキャッシュを無効化できます。",
+    category: "Database",
+    explanation: "Using Amazon ElastiCache for Redis and implementing cache invalidation logic in the application allows read queries to be cached and the cache to be invalidated when changes occur in the database.",
     optionExplanations: [
-      "RDS Read Replicaは、読み取り負荷を分散しますが、クエリのキャッシュ機能は提供しません。",
-      "RDS Proxyは、データベース接続のプーリングと管理を提供しますが、クエリのキャッシュ機能は提供しません。",
-      "✓ 正解: Amazon ElastiCache for Redisを使用し、アプリケーションでキャッシュの無効化ロジックを実装することで、読み取りクエリをキャッシュし、パフォーマンスを向上させることができます。一般的なキャッシュ戦略には、Cache-Aside(Lazy Loading)とWrite-Throughがあります。Cache-Asideでは、アプリケーションは最初にキャッシュをチェックし、データがない場合はデータベースから取得してキャッシュに保存します。Write-Throughでは、データベースへの書き込み時に、同時にキャッシュも更新します。データベースへの変更が発生した場合、アプリケーションは該当するキャッシュキーを削除または更新して、キャッシュを無効化します。Redisは、Pub/Sub機能を使用して、複数のアプリケーションインスタンス間でキャッシュの無効化を通知することもできます。",
-      "DAXは、DynamoDB専用のキャッシュで、RDSには使用できません。"
+      "An RDS Read Replica distributes read load but does not provide query caching.",
+      "RDS Proxy provides connection pooling and management for databases but does not provide query caching.",
+      "✓ Correct: Using Amazon ElastiCache for Redis and implementing cache invalidation logic in the application allows read queries to be cached and performance to be improved. Common caching strategies include Cache-Aside (Lazy Loading) and Write-Through. With Cache-Aside, the application first checks the cache and, if the data is not there, retrieves it from the database and stores it in the cache. With Write-Through, the cache is also updated at the same time as database writes. When changes occur in the database, the application deletes or updates the relevant cache key to invalidate the cache. Redis can also use Pub/Sub to notify multiple application instances of cache invalidation.",
+      "DAX is a cache purpose-built for DynamoDB and cannot be used with RDS."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonElastiCache/latest/red-ug/Strategies.html", title: "Amazon ElastiCache ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Strategies.html", title: "Caching strategies" }
     ]
   },
   {
     id: 79,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的に大量のログデータを生成し、Amazon S3バケットに保存します。同社は、ログデータを長期間保存する必要がありますが、アクセス頻度は非常に低いです。ストレージコストを最小限に抑えたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきS3ストレージクラスはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances that periodically generates large amounts of log data and stores it in an Amazon S3 bucket. The company needs to retain log data for a long time, but access frequency is very low. The company wants to minimize storage costs.\n\nWhich S3 storage class should a solutions architect recommend to meet these requirements?",
     options: [
       "S3 Standard",
       "S3 Glacier Deep Archive",
@@ -1732,924 +1732,924 @@ const awsSAAQuestions = [
       "S3 Intelligent-Tiering"
     ],
     correctAnswer: 1,
-    category: "ストレージ",
-    explanation: "S3 Glacier Deep Archiveは、最も低コストのストレージクラスで、長期間保存され、アクセス頻度が非常に低いデータに最適です。",
+    category: "Storage",
+    explanation: "S3 Glacier Deep Archive is the lowest-cost storage class, ideal for data that is retained for long periods and accessed very infrequently.",
     optionExplanations: [
-      "S3 Standardは、頻繁にアクセスされるデータ向けで、ストレージコストが最も高いです。",
-      "✓ 正解: S3 Glacier Deep Archiveは、最も低コストのストレージクラスで、長期間保存され、アクセス頻度が非常に低いデータに最適です。ストレージコストは、S3 Standardの約1/25で、年に1〜2回程度しかアクセスされないデータに適しています。データの取り出しには、標準取り出しで12時間、一括取り出しで48時間かかります。最小保存期間は180日で、それより前に削除すると、残りの期間分の料金が発生します。コンプライアンス要件により、ログデータを長期間保存する必要がある場合に最適です。S3ライフサイクルポリシーを使用して、自動的にGlacier Deep Archiveに移行できます。",
-      "S3 Standard-IAは、アクセス頻度の低いデータ向けですが、Glacier Deep Archiveの方がストレージコストが低いです。",
-      "S3 Intelligent-Tieringは、アクセスパターンに基づいて自動的にストレージクラスを変更しますが、アクセス頻度が非常に低いことが分かっている場合、Glacier Deep Archiveを直接使用する方がコスト効率的です。"
+      "S3 Standard is designed for frequently accessed data and has the highest storage cost.",
+      "✓ Correct: S3 Glacier Deep Archive is the lowest-cost storage class, ideal for data that is retained for long periods and accessed very infrequently. Storage costs are approximately 1/25 of S3 Standard, making it suitable for data accessed only 1-2 times per year. Data retrieval takes 12 hours for standard retrieval or 48 hours for bulk retrieval. The minimum storage period is 180 days; deleting before that incurs a fee for the remaining period. It is ideal when compliance requirements mandate long-term retention of log data. An S3 lifecycle policy can be used to automatically transition to Glacier Deep Archive.",
+      "S3 Standard-IA is designed for infrequently accessed data, but Glacier Deep Archive has lower storage costs.",
+      "S3 Intelligent-Tiering automatically changes storage classes based on access patterns, but if it is known that access frequency is very low, using Glacier Deep Archive directly is more cost-efficient."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/storage-class-intro.html", title: "Amazon S3 ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html", title: "Using Amazon S3 storage classes" }
     ]
   },
   {
     id: 80,
-    question: "ある企業は、Amazon VPC内で実行されているアプリケーションを持っています。アプリケーションは、特定のIPアドレス範囲からのトラフィックのみを許可し、他のすべてのトラフィックをブロックしたいと考えています。同社は、VPCレベルでトラフィックを制御したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running in an Amazon VPC. The company wants to allow only traffic from a specific IP address range and block all other traffic. The company wants to control traffic at the VPC level.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Network ACL (NACL)を使用して、許可するIPアドレス範囲を指定し、他のすべてのトラフィックを拒否する。",
-      "セキュリティグループを使用して、許可するIPアドレス範囲を指定する。",
-      "AWS WAFを使用して、IPアドレスベースのルールを設定する。",
-      "VPCフローログを使用して、トラフィックを監視する。"
+      "Use a Network ACL (NACL) to specify allowed IP address ranges and deny all other traffic.",
+      "Use security groups to specify allowed IP address ranges.",
+      "Use AWS WAF to configure IP address-based rules.",
+      "Use VPC flow logs to monitor traffic."
     ],
     correctAnswer: 0,
-    category: "ネットワーキング",
-    explanation: "Network ACL (NACL)を使用して、許可するIPアドレス範囲を指定し、他のすべてのトラフィックを拒否することで、VPCレベルでトラフィックを制御できます。",
+    category: "Networking",
+    explanation: "Using a Network ACL (NACL) to specify allowed IP address ranges and deny all other traffic controls traffic at the VPC level.",
     optionExplanations: [
-      "✓ 正解: Network ACL (NACL)は、サブネットレベルのファイアウォールで、インバウンドとアウトバウンドのトラフィックを制御します。NACLは、許可ルールと拒否ルールの両方を設定でき、ルールは番号順に評価されます。特定のIPアドレス範囲を許可するルールを設定し、最後にすべてのトラフィックを拒否するルールを設定することで、要件を満たすことができます。NACLは、ステートレスで、インバウンドとアウトバウンドのルールを個別に設定する必要があります。セキュリティグループと組み合わせて、多層防御を実現できます。",
-      "セキュリティグループは、インスタンスレベルのファイアウォールで、許可ルールのみを設定できます。明示的な拒否ルールは設定できません。また、デフォルトですべてのトラフィックが拒否されるため、許可するトラフィックのみを指定します。",
-      "AWS WAFは、Webアプリケーションファイアウォールで、ALB、CloudFront、API Gatewayと統合されます。VPCレベルのトラフィック制御には、NACLの方が適しています。",
-      "VPCフローログは、トラフィックのログを記録するサービスで、トラフィックの制御には使用されません。"
+      "✓ Correct: Network ACLs (NACLs) are subnet-level firewalls that control inbound and outbound traffic. NACLs can configure both allow and deny rules, evaluated in numerical order. Setting rules to allow specific IP address ranges and a final rule to deny all traffic satisfies the requirements. NACLs are stateless and require separate inbound and outbound rules. They can be combined with security groups to implement defense in depth.",
+      "Security groups are instance-level firewalls that can only configure allow rules. Explicit deny rules cannot be set. By default, all traffic is denied, and only allowed traffic is specified.",
+      "AWS WAF is a web application firewall that integrates with ALB, CloudFront, and API Gateway. NACLs are more appropriate for VPC-level traffic control.",
+      "VPC flow logs record traffic logs and are not used for traffic control."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/vpc/latest/userguide/vpc-network-acls.html", title: "Amazon VPC とは" }
+      { url: "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html", title: "Control subnet traffic with network access control lists" }
     ]
   },
   {
     id: 81,
-    question: "ある企業は、オンプレミスのデータセンターからAWSへの移行を計画しています。同社は、数百TBのデータをAmazon S3に転送する必要があります。インターネット接続の帯域幅が限られているため、データ転送に数ヶ月かかる可能性があります。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべき最も費用対効果の高いソリューションはどれですか。",
+    question: "A company is planning a migration from its on-premises data center to AWS. The company needs to transfer hundreds of TB of data to Amazon S3. The internet connection bandwidth is limited, potentially taking months to transfer the data.\n\nWhich solution should a solutions architect recommend as the most cost-effective?",
     options: [
-      "AWS Snowballデバイスを使用して、データを物理的に転送する。",
-      "AWS Direct Connectを使用して、専用ネットワーク接続を確立し、データを転送する。",
-      "Amazon S3 Transfer Accelerationを使用して、データ転送を高速化する。",
-      "AWS DataSyncを使用して、インターネット経由でデータを転送する。"
+      "Use AWS Snowball devices to physically transfer the data.",
+      "Use AWS Direct Connect to establish a dedicated network connection and transfer the data.",
+      "Use Amazon S3 Transfer Acceleration to speed up data transfer.",
+      "Use AWS DataSync to transfer data over the internet."
     ],
     correctAnswer: 0,
-    category: "アプリケーション統合",
-    explanation: "AWS Snowballは、数十TBから数百TBのデータを物理的に転送するための最も費用対効果の高いソリューションです。インターネット帯域幅が限られている場合に特に有効です。",
+    category: "Application Integration",
+    explanation: "AWS Snowball is the most cost-effective solution for physically transferring tens to hundreds of TB of data, especially when internet bandwidth is limited.",
     optionExplanations: [
-      "✓ 正解: AWS Snowballは、大量のデータを物理的に転送するための専用デバイスです。80TBまたは50TBのストレージ容量を持ち、データを暗号化して安全に転送できます。インターネット帯域幅が限られている場合や、数十TBから数百TBのデータを転送する場合に最も費用対効果が高いソリューションです。デバイスをオンプレミスに配送し、データをコピーした後、AWSに返送します。AWSがデバイスを受け取ると、データがS3バケットにインポートされます。",
-      "AWS Direct Connectは、専用ネットワーク接続を提供しますが、初期セットアップに時間とコストがかかります。数百TBの一度限りのデータ転送には、Snowballの方が費用対効果が高いです。",
-      "S3 Transfer Accelerationは、インターネット経由のデータ転送を高速化しますが、帯域幅が限られている場合は効果が限定的で、大量のデータ転送には高額になる可能性があります。",
-      "AWS DataSyncは、オンプレミスとAWS間のデータ転送を自動化しますが、インターネット経由で転送するため、帯域幅が限られている場合は時間がかかります。"
+      "✓ Correct: AWS Snowball is a dedicated device for physically transferring large amounts of data. It has storage capacity of 80 TB or 50 TB and transfers data securely with encryption. It is the most cost-effective solution when internet bandwidth is limited or when transferring tens to hundreds of TB. A device is shipped to your on-premises location, data is copied to it, and it is shipped back to AWS. When AWS receives the device, the data is imported into an S3 bucket.",
+      "AWS Direct Connect provides a dedicated network connection, but initial setup takes time and costs money. Snowball is more cost-effective for a one-time transfer of hundreds of TB.",
+      "S3 Transfer Acceleration speeds up internet-based data transfers, but is limited in effect when bandwidth is constrained and can be expensive for large data volumes.",
+      "AWS DataSync automates data transfer between on-premises and AWS, but transfers over the internet, which takes a long time when bandwidth is limited."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/snowball/latest/ug/whatissnowball.html", title: "Whatissnowball" }
+      { url: "https://docs.aws.amazon.com/snowball/latest/ug/whatissnowball.html", title: "What is AWS Snowball?" }
     ]
   },
   {
     id: 82,
-    question: "ある企業は、Amazon RDS for MySQLデータベースを使用しています。同社は、データベースのパフォーマンスを向上させるために、読み取りトラフィックをスケールアウトしたいと考えています。また、プライマリデータベースに障害が発生した場合の高可用性も確保したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses an Amazon RDS for MySQL database. The company wants to scale out read traffic to improve database performance. The company also wants to ensure high availability if the primary database fails.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon RDS Multi-AZ配置を有効にする。",
-      "Amazon RDS Read Replicaを作成する。",
-      "Amazon RDS Multi-AZ配置を有効にし、Read Replicaを作成する。",
-      "Amazon ElastiCacheを使用して、データベースクエリをキャッシュする。"
+      "Enable Amazon RDS Multi-AZ deployment.",
+      "Create an Amazon RDS Read Replica.",
+      "Enable Amazon RDS Multi-AZ deployment and create a Read Replica.",
+      "Use Amazon ElastiCache to cache database queries."
     ],
     correctAnswer: 2,
-    category: "データベース",
-    explanation: "Multi-AZ配置により高可用性を確保し、Read Replicaにより読み取りトラフィックをスケールアウトできます。両方を組み合わせることで、すべての要件を満たすことができます。",
+    category: "Database",
+    explanation: "Multi-AZ deployment ensures high availability, and Read Replicas scale out read traffic. Combining both satisfies all requirements.",
     optionExplanations: [
-      "Multi-AZ配置は、高可用性を提供しますが、読み取りトラフィックのスケールアウトには使用できません。スタンバイレプリカは、フェイルオーバー時のみ使用されます。",
-      "Read Replicaは、読み取りトラフィックをスケールアウトできますが、自動フェイルオーバー機能は提供しません。高可用性の要件を完全には満たしません。",
-      "✓ 正解: Multi-AZ配置とRead Replicaを組み合わせることで、両方の要件を満たすことができます。Multi-AZ配置により、プライマリデータベースに障害が発生した場合、自動的にスタンバイレプリカにフェイルオーバーされ、高可用性が確保されます。Read Replicaにより、読み取りトラフィックを複数のレプリカに分散し、パフォーマンスを向上させることができます。Read Replicaは、最大15個まで作成でき、異なるリージョンにも配置できます。",
-      "ElastiCacheは、データベースクエリのキャッシュに有効ですが、高可用性の要件を直接満たすものではありません。また、キャッシュ戦略の実装が必要です。"
+      "Multi-AZ deployment provides high availability but cannot scale out read traffic. The standby replica is used only for failover.",
+      "Read Replicas can scale out read traffic but do not provide automatic failover. They do not fully satisfy the high availability requirement.",
+      "✓ Correct: Combining Multi-AZ deployment and Read Replicas satisfies both requirements. Multi-AZ deployment automatically fails over to the standby replica if the primary database fails, ensuring high availability. Read Replicas distribute read traffic across multiple replicas to improve performance. Up to 15 Read Replicas can be created and can be placed in different Regions.",
+      "ElastiCache is effective for caching database queries but does not directly satisfy the high availability requirement. It also requires implementing a caching strategy."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html", title: "マルチ AZ 配置" },
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/USER_ReadRepl.html", title: "Amazon RDS ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html", title: "Multi-AZ DB instance deployments" },
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_ReadRepl.html", title: "Working with DB instance read replicas" }
     ]
   },
   {
     id: 83,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているWebアプリケーションを持っています。アプリケーションは、ユーザーがアップロードした画像を処理し、サムネイルを生成します。画像処理には数分かかることがあり、ユーザーは処理が完了するまで待つ必要があります。同社は、ユーザーエクスペリエンスを向上させるために、画像処理を非同期で実行したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances. The application processes images uploaded by users and generates thumbnails. Image processing can take several minutes, requiring users to wait until processing is complete. The company wants to run image processing asynchronously to improve user experience.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon EC2インスタンスのサイズを大きくして、処理速度を向上させる。",
-      "AWS Lambda関数を使用して、画像処理を同期的に実行する。",
-      "Amazon SQSキューを使用して、画像処理タスクをキューに追加し、別のEC2インスタンスで処理する。",
-      "Amazon CloudFrontを使用して、画像配信を高速化する。"
+      "Increase the EC2 instance size to improve processing speed.",
+      "Use an AWS Lambda function to run image processing synchronously.",
+      "Use an Amazon SQS queue to enqueue image processing tasks and process them on separate EC2 instances.",
+      "Use Amazon CloudFront to speed up image delivery."
     ],
     correctAnswer: 2,
-    category: "アプリケーション統合",
-    explanation: "Amazon SQSキューを使用することで、画像処理タスクを非同期で実行でき、ユーザーは処理が完了するまで待つ必要がありません。",
+    category: "Application Integration",
+    explanation: "Using an Amazon SQS queue allows image processing tasks to run asynchronously, so users no longer need to wait for processing to complete.",
     optionExplanations: [
-      "EC2インスタンスのサイズを大きくしても、処理が同期的に実行される限り、ユーザーは待つ必要があります。非同期処理が必要です。",
-      "Lambda関数を同期的に実行すると、ユーザーは処理が完了するまで待つ必要があり、要件を満たしません。Lambda関数をSQSと組み合わせて非同期で実行することは可能です。",
-      "✓ 正解: Amazon SQSキューを使用することで、画像処理タスクを非同期で実行できます。Webアプリケーションは、ユーザーが画像をアップロードすると、処理タスクをSQSキューに追加し、すぐにレスポンスを返します。別のEC2インスタンス（ワーカー）がキューからメッセージを取得し、画像処理を実行します。これにより、ユーザーは処理が完了するまで待つ必要がなく、ユーザーエクスペリエンスが向上します。SQSは、メッセージの配信を保証し、スケーラブルで信頼性の高いキューイングサービスです。",
-      "CloudFrontは、画像配信を高速化しますが、画像処理を非同期で実行する要件を満たしません。"
+      "Increasing the EC2 instance size will not help as long as processing runs synchronously — users still need to wait. Asynchronous processing is needed.",
+      "Running Lambda functions synchronously still requires users to wait for processing to complete and does not satisfy the requirements. Lambda functions can be run asynchronously in combination with SQS.",
+      "✓ Correct: Using an Amazon SQS queue allows image processing tasks to run asynchronously. When a user uploads an image, the web application adds the processing task to the SQS queue and immediately returns a response. Separate EC2 worker instances retrieve messages from the queue and run image processing. This means users no longer need to wait for processing to complete, improving user experience. SQS guarantees message delivery and is a scalable, reliable queuing service.",
+      "CloudFront speeds up image delivery but does not satisfy the requirement to run image processing asynchronously."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html", title: "Welcome" }
+      { url: "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html", title: "What is Amazon Simple Queue Service?" }
     ]
   },
   {
     id: 84,
-    question: "ある企業は、Amazon S3バケットに保存されているログファイルを分析する必要があります。ログファイルは、毎日数GBのデータが追加され、過去のデータも含めて分析する必要があります。同社は、SQLクエリを使用してログデータを分析したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべき最も費用対効果の高いソリューションはどれですか。",
+    question: "A company needs to analyze log files stored in an Amazon S3 bucket. Several GB of data are added daily, and both current and historical data need to be analyzed. The company wants to analyze log data using SQL queries.\n\nWhich solution should a solutions architect recommend as the most cost-effective?",
     options: [
-      "Amazon EMRクラスターを作成し、Sparkを使用してログデータを分析する。",
-      "Amazon RDSデータベースを作成し、ログデータをインポートしてクエリする。",
-      "Amazon Redshiftクラスターを作成し、ログデータをロードしてクエリする。",
-      "Amazon Athenaを使用して、S3バケット内のログファイルを直接クエリする。"
+      "Create an Amazon EMR cluster and use Spark to analyze log data.",
+      "Create an Amazon RDS database, import log data, and query it.",
+      "Create an Amazon Redshift cluster, load log data, and query it.",
+      "Use Amazon Athena to directly query log files in the S3 bucket."
     ],
     correctAnswer: 3,
-    category: "アプリケーション統合",
-    explanation: "Amazon Athenaは、S3バケット内のデータを直接SQLクエリできるサーバーレスサービスで、インフラストラクチャの管理が不要で、クエリ実行時のみ課金されるため、最も費用対効果が高いソリューションです。",
+    category: "Application Integration",
+    explanation: "Amazon Athena is a serverless service that can directly query data in S3 using SQL. It requires no infrastructure management and charges only for queries executed, making it the most cost-effective solution.",
     optionExplanations: [
-      "EMRは、大規模なデータ処理に適していますが、クラスターの管理が必要で、SQLクエリよりも複雑です。ログファイルの分析には、Athenaの方が適しています。",
-      "RDSデータベースは、ログデータのインポートと管理に手間がかかり、継続的なインフラストラクチャコストが発生します。大量のログデータの分析には、Athenaの方が費用対効果が高いです。",
-      "Redshiftは、大規模なデータウェアハウスに適していますが、クラスターの管理とコストが発生します。ログファイルの分析には、Athenaの方がシンプルで費用対効果が高いです。",
-      "✓ 正解: Amazon Athenaは、S3バケット内のデータを直接SQLクエリできるサーバーレスの対話型クエリサービスです。インフラストラクチャの管理が不要で、クエリを実行した分だけ課金されます。標準SQLを使用でき、CSV、JSON、Parquet、ORCなどの形式をサポートしています。ログファイルの分析に最適で、AWS Glueデータカタログと統合して、テーブル定義を管理できます。パーティショニングを使用することで、クエリのパフォーマンスとコストを最適化できます。"
+      "EMR is suitable for large-scale data processing but requires cluster management and is more complex than SQL queries. Athena is more appropriate for log file analysis.",
+      "An RDS database requires effort to import and manage log data and incurs ongoing infrastructure costs. Athena is more cost-effective for analyzing large amounts of log data.",
+      "Redshift is suitable for large data warehouses but requires cluster management and costs. Athena is simpler and more cost-effective for log file analysis.",
+      "✓ Correct: Amazon Athena is a serverless interactive query service that can directly query data in S3 using SQL. It requires no infrastructure management and charges only per query executed. Standard SQL can be used, and it supports CSV, JSON, Parquet, ORC, and other formats. It is ideal for log file analysis and integrates with AWS Glue Data Catalog to manage table definitions. Partitioning can be used to optimize query performance and costs."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/athena/latest/ug/what-is.html", title: "What Is" }
+      { url: "https://docs.aws.amazon.com/athena/latest/ug/what-is.html", title: "What is Amazon Athena?" }
     ]
   },
   {
     id: 85,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、機密情報を含むデータベース接続文字列とAPIキーを使用します。同社は、これらの機密情報をセキュアに保存し、アプリケーションから簡単にアクセスできるようにしたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application uses database connection strings and API keys that contain sensitive information. The company wants to store this sensitive information securely and make it easily accessible from the application.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "機密情報をEC2インスタンスの環境変数に保存する。",
-      "機密情報をAmazon S3バケットに保存し、IAMロールを使用してアクセスする。",
-      "機密情報をアプリケーションのソースコードにハードコードする。",
-      "AWS Secrets Managerを使用して、機密情報を保存し、IAMロールを使用してアクセスする。"
+      "Store sensitive information in environment variables on EC2 instances.",
+      "Store sensitive information in an Amazon S3 bucket and access it using an IAM role.",
+      "Hard-code sensitive information in the application source code.",
+      "Use AWS Secrets Manager to store sensitive information and access it using an IAM role."
     ],
     correctAnswer: 3,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Secrets Managerは、機密情報をセキュアに保存し、自動的にローテーションできるマネージドサービスです。IAMロールを使用してアクセス制御を行い、監査ログも提供します。",
+    category: "Security and Compliance",
+    explanation: "AWS Secrets Manager is a managed service that securely stores sensitive information and can automatically rotate it. Access is controlled using IAM roles and audit logs are provided.",
     optionExplanations: [
-      "環境変数に機密情報を保存すると、プロセスリストやログに露出する可能性があり、セキュリティリスクがあります。また、ローテーションの自動化が困難です。",
-      "S3バケットに機密情報を保存することは可能ですが、Secrets Managerの方が機密情報の管理に特化しており、自動ローテーション、バージョン管理、監査ログなどの機能を提供します。",
-      "機密情報をソースコードにハードコードすることは、重大なセキュリティリスクです。ソースコードがバージョン管理システムに保存されると、機密情報が露出する可能性があります。",
-      "✓ 正解: AWS Secrets Managerは、データベース認証情報、APIキー、その他の機密情報をセキュアに保存、管理、取得するためのマネージドサービスです。機密情報を暗号化して保存し、IAMポリシーを使用してアクセス制御を行います。自動的なシークレットのローテーション機能を提供し、RDS、Redshift、DocumentDBなどのデータベースと統合されています。バージョン管理により、シークレットの変更履歴を追跡でき、CloudTrailと統合して監査ログを記録します。アプリケーションは、AWS SDKを使用してSecrets Managerからシークレットを取得できます。"
+      "Storing sensitive information in environment variables can expose it in process lists or logs, presenting a security risk. Automatic rotation is also difficult.",
+      "Storing sensitive information in an S3 bucket is possible, but Secrets Manager is more specialized for managing sensitive information and provides automatic rotation, versioning, and audit logging.",
+      "Hard-coding sensitive information in source code is a serious security risk. If the source code is stored in a version control system, sensitive information may be exposed.",
+      "✓ Correct: AWS Secrets Manager is a managed service for securely storing, managing, and retrieving database credentials, API keys, and other sensitive information. It stores secrets encrypted and controls access using IAM policies. It provides automatic secret rotation and integrates with databases such as RDS, Redshift, and DocumentDB. Version management allows tracking of secret change history, and CloudTrail integration records audit logs. Applications can retrieve secrets from Secrets Manager using the AWS SDK."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/secretsmanager/latest/userguide/intro.html", title: "Intro" }
+      { url: "https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html", title: "What is AWS Secrets Manager?" }
     ]
   },
   {
     id: 86,
-    question: "ある企業は、グローバルなユーザーベースを持つWebアプリケーションを運営しています。同社は、世界中のユーザーに低レイテンシーでコンテンツを配信したいと考えています。また、DDoS攻撃から保護し、SSL/TLS証明書を管理したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company operates a web application with a global user base. The company wants to deliver content to users worldwide with low latency. It also wants to protect against DDoS attacks and manage SSL/TLS certificates.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS Global Acceleratorを使用して、トラフィックを最適化する。",
-      "複数のリージョンにEC2インスタンスをデプロイし、Route 53のレイテンシーベースルーティングを使用する。",
-      "Amazon CloudFrontディストリビューションを作成し、AWS ShieldとAWS Certificate Managerを統合する。",
-      "Elastic Load Balancerを複数のリージョンにデプロイする。"
+      "Use AWS Global Accelerator to optimize traffic.",
+      "Deploy EC2 instances in multiple regions and use Route 53 latency-based routing.",
+      "Create an Amazon CloudFront distribution and integrate AWS Shield and AWS Certificate Manager.",
+      "Deploy Elastic Load Balancers in multiple regions."
     ],
     correctAnswer: 2,
-    category: "ネットワーキング",
-    explanation: "Amazon CloudFrontは、グローバルなコンテンツ配信ネットワーク(CDN)で、世界中のエッジロケーションから低レイテンシーでコンテンツを配信します。AWS Shieldによる自動DDoS保護とAWS Certificate Managerによる無料のSSL/TLS証明書管理が統合されています。",
+    category: "Networking",
+    explanation: "Amazon CloudFront is a global content delivery network (CDN) that delivers content with low latency from edge locations worldwide. It integrates automatically with AWS Shield for DDoS protection and AWS Certificate Manager for free SSL/TLS certificate management.",
     optionExplanations: [
-      "AWS Global Acceleratorは、TCPとUDPトラフィックの最適化に適していますが、HTTPSコンテンツの配信には、CloudFrontの方が適しています。",
-      "複数のリージョンへのデプロイとRoute 53のレイテンシーベースルーティングは、低レイテンシーを実現できますが、CloudFrontの方がエッジロケーションが多く、より低レイテンシーです。また、DDoS保護とSSL/TLS証明書管理の統合が容易です。",
-      "✓ 正解: Amazon CloudFrontは、グローバルなコンテンツ配信ネットワーク(CDN)で、世界中の400以上のエッジロケーションから低レイテンシーでコンテンツを配信します。静的コンテンツと動的コンテンツの両方をキャッシュでき、オリジンサーバーへの負荷を軽減します。AWS Shield Standardが自動的に統合され、DDoS攻撃から保護されます。AWS Certificate Manager (ACM)と統合され、無料のSSL/TLS証明書を簡単に管理できます。AWS WAFと統合して、Webアプリケーションファイアウォール機能を追加することもできます。",
-      "複数のリージョンにELBをデプロイすることは可能ですが、CloudFrontの方がエッジロケーションが多く、より低レイテンシーでコンテンツを配信できます。"
+      "AWS Global Accelerator is well-suited for optimizing TCP and UDP traffic, but for HTTPS content delivery, CloudFront is more appropriate.",
+      "Deploying to multiple regions with Route 53 latency-based routing can achieve low latency, but CloudFront has more edge locations and lower latency. It also makes DDoS protection and SSL/TLS certificate management integration easier.",
+      "✓ Correct: Amazon CloudFront is a global CDN that delivers content with low latency from over 400 edge locations worldwide. It can cache both static and dynamic content, reducing load on origin servers. AWS Shield Standard is automatically integrated to protect against DDoS attacks. Integration with AWS Certificate Manager (ACM) allows free SSL/TLS certificates to be managed easily. AWS WAF can also be integrated to add web application firewall capabilities.",
+      "Deploying ELBs in multiple regions is possible, but CloudFront has more edge locations and can deliver content with lower latency."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/Introduction.html", title: "Amazon CloudFront ドキュメント" },
-      { url: "https://docs.aws.amazon.com/ja_jp/waf/latest/developerguide/shield-chapter.html", title: "AWS Shield とは" }
+      { url: "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html", title: "What is Amazon CloudFront?" },
+      { url: "https://docs.aws.amazon.com/waf/latest/developerguide/shield-chapter.html", title: "AWS Shield" }
     ]
   },
   {
     id: 87,
-    question: "ある企業は、Amazon ECS (Elastic Container Service)を使用してコンテナ化されたアプリケーションを実行しています。同社は、コンテナのログを一元的に収集し、分析したいと考えています。また、ログを長期間保存し、検索可能にしたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company runs containerized applications using Amazon ECS (Elastic Container Service). The company wants to centrally collect and analyze container logs. It also wants to retain logs for a long period and make them searchable.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon CloudWatch Logsを使用して、コンテナログを収集し、CloudWatch Logs Insightsで分析する。",
-      "Amazon S3バケットにログを直接書き込み、Amazon Athenaで分析する。",
-      "Amazon ElasticsearchServiceを使用して、ログを収集し、Kibanaで分析する。",
-      "EC2インスタンスにログを保存し、手動で分析する。"
+      "Use Amazon CloudWatch Logs to collect container logs and analyze them with CloudWatch Logs Insights.",
+      "Write logs directly to an Amazon S3 bucket and analyze them with Amazon Athena.",
+      "Use Amazon Elasticsearch Service to collect logs and analyze them with Kibana.",
+      "Store logs on EC2 instances and analyze them manually."
     ],
     correctAnswer: 0,
-    category: "モニタリングとコスト最適化",
-    explanation: "Amazon CloudWatch Logsは、ECSコンテナログを自動的に収集し、CloudWatch Logs Insightsを使用してSQLライクなクエリで分析できます。ログの長期保存も設定でき、最も統合されたソリューションです。",
+    category: "Monitoring and Cost Optimization",
+    explanation: "Amazon CloudWatch Logs automatically collects ECS container logs and allows SQL-like query analysis using CloudWatch Logs Insights. Long-term retention can be configured, making it the most integrated solution.",
     optionExplanations: [
-      "✓ 正解: Amazon CloudWatch Logsは、ECSコンテナログを自動的に収集するための最も統合されたソリューションです。ECSタスク定義でログドライバーとしてawslogsを指定するだけで、コンテナの標準出力と標準エラー出力がCloudWatch Logsに送信されます。CloudWatch Logs Insightsを使用して、SQLライクなクエリでログを分析でき、リアルタイムでログを検索できます。ログの保持期間を設定して長期保存でき、S3にエクスポートしてさらに長期保存することもできます。CloudWatchアラームと統合して、特定のログパターンに基づいてアラートを設定できます。",
-      "S3バケットに直接ログを書き込むには、アプリケーションの変更が必要で、CloudWatch Logsの方が統合が容易です。Athenaでの分析は可能ですが、リアルタイム性に欠けます。",
-      "Amazon ElasticsearchService (現在のAmazon OpenSearch Service)は、高度なログ分析に適していますが、セットアップと管理が複雑で、コストも高くなります。CloudWatch Logsの方がシンプルで費用対効果が高いです。",
-      "EC2インスタンスにログを保存することは、スケーラビリティと可用性に問題があり、手動分析は効率的ではありません。"
+      "✓ Correct: Amazon CloudWatch Logs is the most integrated solution for automatically collecting ECS container logs. Simply specify awslogs as the log driver in the ECS task definition to send container stdout and stderr to CloudWatch Logs. CloudWatch Logs Insights enables SQL-like queries to analyze logs and search in real time. Retention periods can be set for long-term storage, and logs can be exported to S3 for even longer retention. CloudWatch Alarms can be integrated to set alerts based on specific log patterns.",
+      "Writing logs directly to an S3 bucket requires application changes, whereas CloudWatch Logs integration is simpler. Analysis with Athena is possible but lacks real-time capability.",
+      "Amazon Elasticsearch Service (now Amazon OpenSearch Service) is suitable for advanced log analysis, but setup and management are complex and costly. CloudWatch Logs is simpler and more cost-effective.",
+      "Storing logs on EC2 instances has scalability and availability issues, and manual analysis is inefficient."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/using_cloudwatch_logs.html", title: "Amazon CloudWatch とは" },
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/logs/AnalyzingLogData.html", title: "Amazon CloudWatch ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_cloudwatch_logs.html", title: "Using CloudWatch Logs with Amazon ECS" },
+      { url: "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html", title: "Analyzing log data with CloudWatch Logs Insights" }
     ]
   },
   {
     id: 88,
-    question: "ある企業は、Amazon S3バケットに保存されている静的Webサイトをホストしています。同社は、特定の国からのアクセスをブロックし、他の国からのアクセスのみを許可したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company hosts a static website stored in an Amazon S3 bucket. The company wants to block access from specific countries and allow access only from other countries.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon CloudFrontディストリビューションを作成し、地理的制限(Geo Restriction)を設定する。",
-      "S3バケットポリシーを使用して、IPアドレス範囲に基づいてアクセスを制限する。",
-      "AWS WAFを使用して、地理的ルールを設定する。",
-      "Network ACLを使用して、特定の国からのトラフィックをブロックする。"
+      "Create an Amazon CloudFront distribution and configure geographic restrictions (Geo Restriction).",
+      "Use an S3 bucket policy to restrict access based on IP address ranges.",
+      "Use AWS WAF to configure geographic rules.",
+      "Use a Network ACL to block traffic from specific countries."
     ],
     correctAnswer: 0,
-    category: "セキュリティとコンプライアンス",
-    explanation: "Amazon CloudFrontの地理的制限機能を使用することで、特定の国からのアクセスを簡単にブロックまたは許可できます。",
+    category: "Security and Compliance",
+    explanation: "Using Amazon CloudFront's geographic restriction feature allows access from specific countries to be easily blocked or permitted.",
     optionExplanations: [
-      "✓ 正解: Amazon CloudFrontの地理的制限(Geo Restriction)機能を使用することで、特定の国からのアクセスを簡単にブロックまたは許可できます。CloudFrontディストリビューションを作成し、S3バケットをオリジンとして設定します。地理的制限設定で、ホワイトリスト(許可する国のリスト)またはブラックリスト(ブロックする国のリスト)を指定できます。CloudFrontは、ユーザーのIPアドレスから国を判定し、設定に基づいてアクセスを制御します。この機能は、追加コストなしで利用でき、設定も簡単です。",
-      "S3バケットポリシーでIPアドレス範囲を指定することは可能ですが、国ごとのIPアドレス範囲を管理するのは複雑で、IPアドレスは変更される可能性があります。CloudFrontの地理的制限の方が簡単です。",
-      "AWS WAFを使用して地理的ルールを設定することも可能ですが、CloudFrontの地理的制限機能の方がシンプルで、この要件には十分です。WAFは、より複雑なルールが必要な場合に使用します。",
-      "Network ACLは、VPC内のサブネットレベルのファイアウォールで、S3バケットへのアクセス制御には使用できません。"
+      "✓ Correct: Amazon CloudFront's geographic restriction (Geo Restriction) feature allows access from specific countries to be easily blocked or permitted. Create a CloudFront distribution with the S3 bucket as the origin. In the geographic restriction settings, specify an allowlist (list of permitted countries) or a blocklist (list of blocked countries). CloudFront determines the country from the user's IP address and controls access based on the configuration. This feature is available at no additional cost and is easy to configure.",
+      "Specifying IP address ranges in an S3 bucket policy is possible, but managing IP ranges per country is complex and IP addresses can change. CloudFront geographic restriction is simpler.",
+      "Using AWS WAF to configure geographic rules is also possible, but CloudFront's geographic restriction feature is simpler and sufficient for this requirement. WAF is used when more complex rules are needed.",
+      "Network ACLs are subnet-level firewalls within a VPC and cannot be used to control access to an S3 bucket."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html", title: "Amazon CloudFront ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/georestrictions.html", title: "Restricting the geographic distribution of your content" }
     ]
   },
   {
     id: 89,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAWS APIを呼び出して、他のAWSサービスと連携します。同社は、EC2インスタンスにアクセスキーとシークレットキーを保存せずに、セキュアにAWS APIを呼び出したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically calls AWS APIs to interact with other AWS services. The company wants to call AWS APIs securely without storing access keys and secret keys on EC2 instances.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "IAMロールをEC2インスタンスにアタッチし、必要な権限を付与する。",
-      "IAMユーザーのアクセスキーとシークレットキーを環境変数に保存する。",
-      "AWS Secrets Managerにアクセスキーとシークレットキーを保存し、アプリケーションから取得する。",
-      "アクセスキーとシークレットキーをアプリケーションのソースコードにハードコードする。"
+      "Attach an IAM role to the EC2 instance and grant the required permissions.",
+      "Store IAM user access keys and secret keys in environment variables.",
+      "Store access keys and secret keys in AWS Secrets Manager and retrieve them from the application.",
+      "Hard-code access keys and secret keys in the application source code."
     ],
     correctAnswer: 0,
-    category: "セキュリティとコンプライアンス",
-    explanation: "IAMロールをEC2インスタンスにアタッチすることで、アクセスキーとシークレットキーを保存せずに、一時的な認証情報を使用してAWS APIを呼び出すことができます。これは、最もセキュアで推奨される方法です。",
+    category: "Security and Compliance",
+    explanation: "Attaching an IAM role to an EC2 instance allows AWS APIs to be called securely using temporary credentials without storing access keys and secret keys. This is the most secure and recommended approach.",
     optionExplanations: [
-      "✓ 正解: IAMロールをEC2インスタンスにアタッチすることで、アクセスキーとシークレットキーを保存せずに、セキュアにAWS APIを呼び出すことができます。EC2インスタンスは、インスタンスメタデータサービスから一時的な認証情報を自動的に取得し、AWS SDKがこれを使用してAPIを呼び出します。一時的な認証情報は、定期的に自動的にローテーションされ、セキュリティが向上します。IAMロールには、必要な権限のみを付与し、最小権限の原則に従います。この方法は、AWSのベストプラクティスで推奨されています。",
-      "環境変数にアクセスキーとシークレットキーを保存することは、セキュリティリスクがあります。プロセスリストやログに露出する可能性があり、キーのローテーションも手動で行う必要があります。",
-      "Secrets Managerにアクセスキーとシークレットキーを保存することは可能ですが、IAMロールを使用する方がシンプルで、一時的な認証情報を使用するため、よりセキュアです。",
-      "アクセスキーとシークレットキーをソースコードにハードコードすることは、重大なセキュリティリスクです。ソースコードがバージョン管理システムに保存されると、認証情報が露出する可能性があります。"
+      "✓ Correct: Attaching an IAM role to an EC2 instance allows AWS APIs to be called securely without storing access keys and secret keys. The EC2 instance automatically retrieves temporary credentials from the instance metadata service, and the AWS SDK uses these credentials to call APIs. Temporary credentials are automatically rotated periodically, improving security. Grant only the required permissions to the IAM role, following the principle of least privilege. This approach is recommended as an AWS best practice.",
+      "Storing access keys and secret keys in environment variables presents a security risk. They may be exposed in process lists or logs, and key rotation must be performed manually.",
+      "Storing access keys and secret keys in Secrets Manager is possible, but using an IAM role is simpler and more secure because it uses temporary credentials.",
+      "Hard-coding access keys and secret keys in source code is a serious security risk. If the source code is stored in a version control system, credentials may be exposed."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html", title: "AWS Identity and Access Management (IAM) とは" }
+      { url: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html", title: "IAM roles for Amazon EC2" }
     ]
   },
   {
     id: 90,
-    question: "ある企業は、Amazon RDS for PostgreSQLデータベースを使用しています。同社は、データベースのバックアップを自動的に取得し、災害復旧のために別のリージョンにバックアップをコピーしたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses an Amazon RDS for PostgreSQL database. The company wants to automatically back up the database and copy backups to a different region for disaster recovery.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "RDS Read Replicaを別のリージョンに作成する。",
-      "RDSスナップショットを手動で作成し、別のリージョンにコピーする。",
-      "AWS Lambda関数を作成し、定期的にデータベースをエクスポートしてS3バケットに保存する。",
-      "RDSの自動バックアップを有効にし、AWS Backupを使用してクロスリージョンバックアップを設定する。"
+      "Create an RDS Read Replica in a different region.",
+      "Manually create RDS snapshots and copy them to a different region.",
+      "Create an AWS Lambda function to periodically export the database and store it in an S3 bucket.",
+      "Enable RDS automated backups and use AWS Backup to configure cross-region backups."
     ],
     correctAnswer: 3,
-    category: "データベース",
-    explanation: "RDSの自動バックアップとAWS Backupを使用することで、バックアップを自動的に取得し、クロスリージョンバックアップを簡単に設定できます。",
+    category: "Database",
+    explanation: "Using RDS automated backups and AWS Backup allows backups to be taken automatically and cross-region backups to be configured easily.",
     optionExplanations: [
-      "Read Replicaは、読み取りトラフィックのスケールアウトと災害復旧に使用できますが、バックアップの代わりにはなりません。Read Replicaは、プライマリデータベースと同期されており、誤ってデータを削除した場合、Read Replicaにも反映されます。バックアップは、特定の時点にデータを復元するために必要です。",
-      "手動でスナップショットを作成し、別のリージョンにコピーすることは可能ですが、自動化されていないため、運用負荷が高く、ヒューマンエラーのリスクがあります。",
-      "Lambda関数を使用してデータベースをエクスポートすることは可能ですが、RDSの自動バックアップとAWS Backupを使用する方がシンプルで、RDSに最適化されています。",
-      "✓ 正解: RDSの自動バックアップを有効にすることで、データベースの日次バックアップが自動的に取得されます。バックアップ保持期間は、1〜35日間で設定できます。AWS Backupを使用することで、クロスリージョンバックアップを簡単に設定でき、バックアップポリシーを一元管理できます。AWS Backupは、RDSスナップショットを自動的に別のリージョンにコピーし、災害復旧に備えることができます。バックアップのライフサイクル管理も自動化でき、古いバックアップを自動的に削除できます。"
+      "A Read Replica can be used for read scale-out and disaster recovery, but it is not a replacement for backups. A Read Replica is synchronized with the primary database, so accidental data deletion is also reflected in the Read Replica. Backups are required to restore data to a specific point in time.",
+      "Manually creating snapshots and copying them to a different region is possible, but it is not automated, leading to high operational overhead and a risk of human error.",
+      "Using a Lambda function to export the database is possible, but using RDS automated backups and AWS Backup is simpler and optimized for RDS.",
+      "✓ Correct: Enabling RDS automated backups automatically takes daily database backups. The backup retention period can be configured from 1 to 35 days. Using AWS Backup makes it easy to configure cross-region backups and centrally manage backup policies. AWS Backup automatically copies RDS snapshots to another region to prepare for disaster recovery. Backup lifecycle management can also be automated to automatically delete old backups."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html", title: "Amazon RDS ドキュメント" },
-      { url: "https://docs.aws.amazon.com/ja_jp/aws-backup/latest/devguide/whatisbackup.html", title: "Whatisbackup" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html", title: "Working with automated backups" },
+      { url: "https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html", title: "What is AWS Backup?" }
     ]
   },
   {
     id: 91,
-    question: "ある企業は、Amazon API Gatewayを使用してRESTful APIを公開しています。同社は、APIへのアクセスを認証されたユーザーのみに制限し、ユーザー管理を簡素化したいと考えています。また、ソーシャルIDプロバイダー(Google、Facebook)を使用したサインインもサポートしたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company exposes a RESTful API using Amazon API Gateway. The company wants to restrict API access to authenticated users only and simplify user management. It also wants to support sign-in using social identity providers (Google, Facebook).\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "API Gatewayでカスタムオーソライザー(Lambda関数)を作成し、独自の認証ロジックを実装する。",
-      "AWS IAMユーザーを作成し、API Gatewayでアクセスキーを使用して認証する。",
-      "Amazon Cognitoユーザープールを作成し、API Gatewayオーソライザーとして設定する。",
-      "AWS Secrets Managerにユーザー認証情報を保存し、API Gatewayで検証する。"
+      "Create a custom authorizer (Lambda function) in API Gateway and implement custom authentication logic.",
+      "Create AWS IAM users and authenticate using access keys in API Gateway.",
+      "Create an Amazon Cognito user pool and configure it as an API Gateway authorizer.",
+      "Store user credentials in AWS Secrets Manager and validate them in API Gateway."
     ],
     correctAnswer: 2,
-    category: "セキュリティとコンプライアンス",
-    explanation: "Amazon Cognitoユーザープールは、ユーザー管理、認証、ソーシャルIDプロバイダーとの統合を提供するマネージドサービスです。API Gatewayと簡単に統合でき、すべての要件を満たします。",
+    category: "Security and Compliance",
+    explanation: "Amazon Cognito user pools are a managed service that provides user management, authentication, and integration with social identity providers. They integrate easily with API Gateway and satisfy all requirements.",
     optionExplanations: [
-      "カスタムオーソライザーを使用することは可能ですが、独自の認証ロジックを実装・維持する必要があり、Cognitoを使用する方がシンプルで、ソーシャルIDプロバイダーとの統合も容易です。",
-      "IAMユーザーは、AWSリソースへのアクセス管理に適していますが、エンドユーザーの認証には適していません。また、ソーシャルIDプロバイダーとの統合はサポートしていません。",
-      "✓ 正解: Amazon Cognitoユーザープールは、ユーザーのサインアップ、サインイン、アクセス制御を提供するマネージドサービスです。ソーシャルIDプロバイダー(Google、Facebook、Amazon)やSAML 2.0ベースのIDプロバイダーとの統合をサポートしています。API Gatewayのオーソライザーとして設定することで、JWTトークンを使用してAPIへのアクセスを認証できます。多要素認証(MFA)、パスワードポリシー、アカウント復旧などの機能も提供します。ユーザー管理のインフラストラクチャを構築・運用する必要がなく、スケーラブルで安全なソリューションです。",
-      "Secrets Managerは、機密情報の保存に適していますが、ユーザー認証とソーシャルIDプロバイダーとの統合には、Cognitoの方が適しています。"
+      "Using a custom authorizer is possible, but it requires implementing and maintaining custom authentication logic. Using Cognito is simpler and makes integration with social identity providers easier.",
+      "IAM users are suitable for managing access to AWS resources but are not appropriate for end-user authentication. They also do not support integration with social identity providers.",
+      "✓ Correct: Amazon Cognito user pools are a managed service that provides user sign-up, sign-in, and access control. They support integration with social identity providers (Google, Facebook, Amazon) and SAML 2.0-based identity providers. Configuring them as an API Gateway authorizer allows API access to be authenticated using JWT tokens. Features such as multi-factor authentication (MFA), password policies, and account recovery are also provided. There is no need to build or operate user management infrastructure, making it a scalable and secure solution.",
+      "Secrets Manager is suitable for storing sensitive information, but for user authentication and integration with social identity providers, Cognito is more appropriate."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html", title: "Apigateway Integrate With Cognito" },
-      { url: "https://docs.aws.amazon.com/ja_jp/cognito/latest/developerguide/cognito-user-identity-pools.html", title: "Cognito User Identity Pools" }
+      { url: "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html", title: "Using Amazon Cognito user pools as authorizer" },
+      { url: "https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html", title: "Amazon Cognito user pools" }
     ]
   },
   {
     id: 92,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているレガシーアプリケーションを持っています。アプリケーションは、ローカルファイルシステムに大量のデータを保存します。同社は、複数のEC2インスタンス間でデータを共有し、高可用性を確保したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきストレージソリューションはどれですか。",
+    question: "A company has a legacy application running on Amazon EC2 instances. The application stores large amounts of data on the local file system. The company wants to share data across multiple EC2 instances and ensure high availability.\n\nWhich storage solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon EBS (Elastic Block Store)ボリュームを使用し、複数のインスタンスにアタッチする。",
-      "インスタンスストアボリュームを使用する。",
-      "Amazon S3バケットを使用し、S3 APIを使用してデータにアクセスする。",
-      "Amazon EFS (Elastic File System)を使用し、複数のインスタンスからマウントする。"
+      "Use Amazon EBS (Elastic Block Store) volumes and attach them to multiple instances.",
+      "Use instance store volumes.",
+      "Use an Amazon S3 bucket and access data using the S3 API.",
+      "Use Amazon EFS (Elastic File System) and mount it from multiple instances."
     ],
     correctAnswer: 3,
-    category: "ストレージ",
-    explanation: "Amazon EFSは、複数のEC2インスタンスから同時にアクセスできる共有ファイルシステムで、高可用性と耐久性を提供します。NFSプロトコルを使用し、既存のアプリケーションを変更せずに使用できます。",
+    category: "Storage",
+    explanation: "Amazon EFS is a shared file system that can be accessed simultaneously from multiple EC2 instances, providing high availability and durability. It uses the NFS protocol and can be used without modifying existing applications.",
     optionExplanations: [
-      "EBSボリュームは、通常、一度に1つのEC2インスタンスにのみアタッチできます(Multi-Attach機能は特定のユースケースに限定されます)。複数のインスタンス間でデータを共有するには、EFSの方が適しています。",
-      "インスタンスストアボリュームは、一時的なストレージで、インスタンスが停止または終了するとデータが失われます。高可用性の要件を満たしません。",
-      "S3は、オブジェクトストレージで、ファイルシステムではありません。S3 APIを使用するには、アプリケーションの変更が必要です。レガシーアプリケーションがローカルファイルシステムを使用している場合、EFSの方が適しています。",
-      "✓ 正解: Amazon EFSは、複数のEC2インスタンスから同時にアクセスできるフルマネージドの共有ファイルシステムです。NFSv4プロトコルを使用し、既存のアプリケーションを変更せずに使用できます。複数のアベイラビリティーゾーンにまたがって自動的にレプリケートされ、高可用性と耐久性を提供します。ストレージ容量は自動的にスケールし、使用した分だけ課金されます。パフォーマンスモード(汎用、最大I/O)とスループットモード(バースト、プロビジョンド)を選択でき、ワークロードに最適化できます。"
+      "EBS volumes can typically only be attached to one EC2 instance at a time (the Multi-Attach feature is limited to specific use cases). EFS is more suitable for sharing data across multiple instances.",
+      "Instance store volumes are temporary storage; data is lost when the instance is stopped or terminated. They do not satisfy the high availability requirement.",
+      "S3 is object storage, not a file system. Accessing data via the S3 API requires application changes. If the legacy application uses a local file system, EFS is more appropriate.",
+      "✓ Correct: Amazon EFS is a fully managed shared file system that can be accessed simultaneously from multiple EC2 instances. It uses the NFSv4 protocol and can be used without modifying existing applications. It automatically replicates across multiple Availability Zones, providing high availability and durability. Storage capacity scales automatically and you are charged only for what you use. Performance mode (General Purpose, Max I/O) and throughput mode (Bursting, Provisioned) can be selected to optimize for the workload."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/efs/latest/ug/whatisefs.html", title: "Whatisefs" }
+      { url: "https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html", title: "What is Amazon Elastic File System?" }
     ]
   },
   {
     id: 93,
-    question: "ある企業は、Amazon DynamoDBテーブルを使用しています。同社は、テーブルのデータを別のリージョンにレプリケートし、災害復旧とグローバルな読み取りパフォーマンスの向上を実現したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses an Amazon DynamoDB table. The company wants to replicate the table's data to a different region to achieve disaster recovery and improve global read performance.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "DynamoDB Streamsを使用して、Lambda関数で別のリージョンのテーブルにデータをコピーする。",
-      "DynamoDBグローバルテーブルを使用する。",
-      "AWS Database Migration Service (DMS)を使用して、データをレプリケートする。",
-      "DynamoDBのバックアップを定期的に作成し、別のリージョンに復元する。"
+      "Use DynamoDB Streams and a Lambda function to copy data to a table in a different region.",
+      "Use DynamoDB global tables.",
+      "Use AWS Database Migration Service (DMS) to replicate data.",
+      "Periodically create DynamoDB backups and restore them in a different region."
     ],
     correctAnswer: 1,
-    category: "データベース",
-    explanation: "DynamoDBグローバルテーブルは、複数のリージョン間で自動的にデータをレプリケートし、マルチリージョンの読み取りと書き込みを提供します。災害復旧とグローバルなパフォーマンス向上の両方を実現できます。",
+    category: "Database",
+    explanation: "DynamoDB global tables automatically replicate data across multiple regions and provide multi-region read and write. Both disaster recovery and global performance improvement can be achieved.",
     optionExplanations: [
-      "DynamoDB StreamsとLambda関数を使用してレプリケーションを実装することは可能ですが、グローバルテーブルを使用する方がシンプルで、マネージドソリューションです。",
-      "✓ 正解: DynamoDBグローバルテーブルは、複数のAWSリージョン間で自動的にデータをレプリケートするフルマネージドのマルチリージョン、マルチアクティブデータベースです。各リージョンのテーブルは、読み取りと書き込みの両方をサポートし、変更は他のリージョンに自動的にレプリケートされます。通常、1秒未満でレプリケーションが完了し、最終的な整合性が保証されます。災害復旧のために、別のリージョンにフェイルオーバーでき、グローバルなユーザーに低レイテンシーでデータを提供できます。競合解決は、最後の書き込みが優先されるポリシーで自動的に処理されます。",
-      "DMSは、データベース間の移行やレプリケーションに使用されますが、DynamoDBのマルチリージョンレプリケーションには、グローバルテーブルの方が適しています。",
-      "定期的なバックアップと復元は、災害復旧には使用できますが、リアルタイムのレプリケーションではなく、グローバルな読み取りパフォーマンスの向上には適していません。"
+      "Implementing replication using DynamoDB Streams and Lambda functions is possible, but using global tables is simpler and a managed solution.",
+      "✓ Correct: DynamoDB global tables are a fully managed, multi-region, multi-active database that automatically replicates data across multiple AWS Regions. Each region's table supports both read and write operations, and changes are automatically replicated to other regions. Replication typically completes in under one second, guaranteeing eventual consistency. Failover to another region is possible for disaster recovery, and data can be served to global users with low latency. Conflict resolution is automatically handled using a last-writer-wins policy.",
+      "DMS is used for database migration and replication, but for DynamoDB multi-region replication, global tables are more appropriate.",
+      "Periodic backups and restores can be used for disaster recovery, but they are not real-time replication and are not suitable for improving global read performance."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/GlobalTables.html", title: "Amazon DynamoDB ドキュメント" }
+      { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GlobalTables.html", title: "Global tables - multi-Region replication for DynamoDB" }
     ]
   },
   {
     id: 94,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているWebアプリケーションを持っています。アプリケーションは、セッション情報をローカルに保存しています。同社は、Application Load Balancer (ALB)の背後に複数のインスタンスをデプロイし、高可用性を実現したいと考えています。しかし、ユーザーのセッション情報を維持する必要があります。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances. The application stores session information locally. The company wants to deploy multiple instances behind an Application Load Balancer (ALB) for high availability while maintaining user session information.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "ALBのスティッキーセッション(セッションアフィニティ)を有効にする。",
-      "Amazon ElastiCacheを使用して、セッション情報を保存する。",
-      "Amazon DynamoDBを使用して、セッション情報を保存する。",
-      "Amazon EFSを使用して、セッション情報を共有する。"
+      "Enable ALB sticky sessions (session affinity).",
+      "Use Amazon ElastiCache to store session information.",
+      "Use Amazon DynamoDB to store session information.",
+      "Use Amazon EFS to share session information."
     ],
     correctAnswer: 1,
-    category: "高可用性とスケーラビリティ",
-    explanation: "Amazon ElastiCacheを使用してセッション情報を保存することで、複数のインスタンス間でセッションを共有でき、高可用性とパフォーマンスを実現できます。これは、セッション管理のベストプラクティスです。",
+    category: "High Availability and Scalability",
+    explanation: "Using Amazon ElastiCache to store session information allows sessions to be shared across multiple instances, achieving high availability and performance. This is a session management best practice.",
     optionExplanations: [
-      "ALBのスティッキーセッションは、ユーザーを同じインスタンスにルーティングしますが、そのインスタンスが停止した場合、セッション情報が失われます。高可用性の要件を完全には満たしません。",
-      "✓ 正解: Amazon ElastiCacheを使用してセッション情報を保存することで、複数のEC2インスタンス間でセッションを共有でき、高可用性とパフォーマンスを実現できます。ElastiCacheは、RedisまたはMemcachedをサポートし、インメモリキャッシュとして高速なアクセスを提供します。Redisを使用する場合、マルチAZ配置とレプリケーションにより、高可用性を確保できます。セッション情報を外部化することで、インスタンスが停止してもセッションが維持され、ユーザーエクスペリエンスが向上します。これは、ステートレスなアプリケーション設計のベストプラクティスです。",
-      "DynamoDBを使用してセッション情報を保存することも可能ですが、ElastiCacheの方が低レイテンシーで、セッション管理に最適化されています。",
-      "EFSを使用してセッション情報を共有することは可能ですが、ElastiCacheの方が低レイテンシーで、セッション管理に適しています。"
+      "ALB sticky sessions route users to the same instance, but if that instance is stopped, session information is lost. They do not fully satisfy the high availability requirement.",
+      "✓ Correct: Using Amazon ElastiCache to store session information allows sessions to be shared across multiple EC2 instances, achieving high availability and performance. ElastiCache supports Redis or Memcached and provides fast access as an in-memory cache. When using Redis, multi-AZ deployment and replication ensure high availability. Externalizing session information means sessions are maintained even if an instance is stopped, improving user experience. This is a best practice for stateless application design.",
+      "Using DynamoDB to store session information is also possible, but ElastiCache has lower latency and is optimized for session management.",
+      "Using EFS to share session information is possible, but ElastiCache has lower latency and is better suited for session management."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/elasticache/index.html", title: "Index" }
+      { url: "https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/elasticache-use-cases.html", title: "Amazon ElastiCache use cases" }
     ]
   },
   {
     id: 95,
-    question: "ある企業は、Amazon S3バケットに保存されている大量の画像ファイルを持っています。同社は、画像がアップロードされたときに自動的にサムネイルを生成し、別のS3バケットに保存したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべき最も費用対効果の高いソリューションはどれですか。",
+    question: "A company has a large number of image files stored in an Amazon S3 bucket. The company wants to automatically generate thumbnails when images are uploaded and store them in a separate S3 bucket.\n\nWhich solution should a solutions architect recommend as the most cost-effective?",
     options: [
-      "AWS Lambda関数を作成し、S3イベント通知をトリガーとして設定する。",
-      "Amazon EC2インスタンスを常時実行し、S3バケットをポーリングして新しい画像を検出する。",
-      "Amazon SQSキューを使用して、画像処理タスクをキューに追加し、EC2インスタンスで処理する。",
-      "AWS Batchを使用して、画像処理ジョブを実行する。"
+      "Create an AWS Lambda function and configure S3 event notifications as the trigger.",
+      "Run an Amazon EC2 instance continuously and poll the S3 bucket to detect new images.",
+      "Use an Amazon SQS queue to add image processing tasks and process them on EC2 instances.",
+      "Use AWS Batch to run image processing jobs."
     ],
     correctAnswer: 0,
-    category: "コンピューティング",
-    explanation: "AWS Lambda関数とS3イベント通知を使用することで、画像がアップロードされたときに自動的にサムネイルを生成できます。サーバーレスで、実行時間に応じて課金されるため、最も費用対効果が高いソリューションです。",
+    category: "Compute",
+    explanation: "Using an AWS Lambda function with S3 event notifications allows thumbnails to be generated automatically when images are uploaded. It is serverless, charges only for execution time, and is the most cost-effective solution.",
     optionExplanations: [
-      "✓ 正解: AWS Lambda関数とS3イベント通知を使用することで、画像がアップロードされたときに自動的にサムネイルを生成できます。S3バケットにオブジェクトが作成されると、S3イベント通知がLambda関数をトリガーし、Lambda関数が画像を処理してサムネイルを生成します。サーバーレスで、インフラストラクチャの管理が不要で、実行時間に応じて課金されるため、最も費用対効果が高いソリューションです。Lambda関数は、自動的にスケールし、同時に複数の画像を処理できます。画像処理ライブラリ(Pillow、ImageMagickなど)をLambdaレイヤーとして追加できます。",
-      "EC2インスタンスを常時実行することは、コストが高く、S3バケットをポーリングすることは効率的ではありません。イベント駆動型のアプローチの方が適しています。",
-      "SQSキューとEC2インスタンスを使用することは可能ですが、Lambda関数を使用する方がシンプルで、サーバーレスで費用対効果が高いです。",
-      "AWS Batchは、大規模なバッチ処理ジョブに適していますが、イベント駆動型の画像処理には、Lambda関数の方が適しています。"
+      "✓ Correct: Using an AWS Lambda function with S3 event notifications allows thumbnails to be generated automatically when images are uploaded. When an object is created in the S3 bucket, the S3 event notification triggers the Lambda function, which processes the image and generates a thumbnail. It is serverless, requires no infrastructure management, and charges only for execution time, making it the most cost-effective solution. Lambda functions scale automatically and can process multiple images simultaneously. Image processing libraries (such as Pillow or ImageMagick) can be added as Lambda Layers.",
+      "Running an EC2 instance continuously is costly, and polling the S3 bucket is inefficient. An event-driven approach is more appropriate.",
+      "Using an SQS queue and EC2 instances is possible, but using a Lambda function is simpler, serverless, and more cost-effective.",
+      "AWS Batch is suitable for large-scale batch processing jobs, but for event-driven image processing, a Lambda function is more appropriate."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/with-s3.html", title: "Amazon S3 とは" }
+      { url: "https://docs.aws.amazon.com/lambda/latest/dg/with-s3.html", title: "Using AWS Lambda with Amazon S3" }
     ]
   },
   {
     id: 96,
-    question: "ある企業は、Amazon VPC内で実行されているアプリケーションを持っています。アプリケーションは、インターネットからアクセスできる必要がありますが、EC2インスタンスはプライベートサブネットに配置したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running in an Amazon VPC. The application must be accessible from the internet, but the company wants to place EC2 instances in private subnets.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "EC2インスタンスにElastic IPアドレスを割り当てる。",
-      "NAT Gatewayをプライベートサブネットに配置する。",
-      "Application Load Balancer (ALB)をパブリックサブネットに配置し、プライベートサブネットのEC2インスタンスにトラフィックをルーティングする。",
-      "インターネットゲートウェイをプライベートサブネットに接続する。"
+      "Assign an Elastic IP address to the EC2 instances.",
+      "Place a NAT Gateway in the private subnet.",
+      "Place an Application Load Balancer (ALB) in the public subnet and route traffic to EC2 instances in the private subnet.",
+      "Attach an internet gateway to the private subnet."
     ],
     correctAnswer: 2,
-    category: "ネットワーキング",
-    explanation: "Application Load Balancer (ALB)をパブリックサブネットに配置し、プライベートサブネットのEC2インスタンスにトラフィックをルーティングすることで、インターネットからアクセスできるようにしながら、EC2インスタンスをプライベートに保つことができます。",
+    category: "Networking",
+    explanation: "Placing an Application Load Balancer (ALB) in the public subnet and routing traffic to EC2 instances in the private subnet allows internet access while keeping the EC2 instances private.",
     optionExplanations: [
-      "Elastic IPアドレスをEC2インスタンスに割り当てるには、インスタンスがパブリックサブネットに配置されている必要があります。プライベートサブネットのインスタンスには、Elastic IPを直接割り当てることはできません。",
-      "NAT Gatewayは、プライベートサブネットのインスタンスがインターネットにアクセスするために使用されますが、インターネットからプライベートサブネットのインスタンスへのアクセスを提供するものではありません。",
-      "✓ 正解: Application Load Balancer (ALB)をパブリックサブネットに配置し、プライベートサブネットのEC2インスタンスにトラフィックをルーティングすることで、インターネットからアクセスできるようにしながら、EC2インスタンスをプライベートに保つことができます。ALBは、複数のアベイラビリティーゾーンにまたがって配置でき、高可用性を提供します。ALBは、パブリックIPアドレスを持ち、インターネットからのトラフィックを受け取り、プライベートIPアドレスを持つEC2インスタンスにルーティングします。これにより、EC2インスタンスをインターネットから直接アクセスできないようにし、セキュリティを向上させることができます。",
-      "インターネットゲートウェイは、VPCレベルで接続され、パブリックサブネットのインスタンスがインターネットにアクセスするために使用されます。プライベートサブネットに直接接続することはできません。"
+      "Assigning an Elastic IP address to EC2 instances requires the instances to be in a public subnet. Elastic IPs cannot be directly assigned to instances in private subnets.",
+      "A NAT Gateway is used to allow instances in private subnets to access the internet, but it does not provide inbound internet access to private subnet instances.",
+      "✓ Correct: Placing an Application Load Balancer (ALB) in the public subnet and routing traffic to EC2 instances in the private subnet allows internet access while keeping the EC2 instances private. The ALB can be placed across multiple Availability Zones for high availability. The ALB has a public IP address, receives traffic from the internet, and routes it to EC2 instances with private IP addresses. This prevents EC2 instances from being directly accessible from the internet, improving security.",
+      "An internet gateway is attached at the VPC level and is used by instances in public subnets to access the internet. It cannot be directly attached to a private subnet."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/elasticloadbalancing/latest/application/application-load-balancers.html", title: "Application Load Balancer" }
+      { url: "https://docs.aws.amazon.com/elasticloadbalancing/latest/application/application-load-balancers.html", title: "What is an Application Load Balancer?" }
     ]
   },
   {
     id: 97,
-    question: "ある企業は、Amazon Redshiftクラスターを使用してデータウェアハウスを運用しています。同社は、クエリのパフォーマンスを向上させるために、頻繁にアクセスされるデータをキャッシュしたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company operates a data warehouse using an Amazon Redshift cluster. The company wants to cache frequently accessed data to improve query performance.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Redshiftの結果キャッシュ機能を使用する。",
-      "Amazon ElastiCacheを使用して、クエリ結果をキャッシュする。",
-      "Amazon S3にクエリ結果をエクスポートし、S3から読み取る。",
-      "Redshiftクラスターのノードタイプを大きくする。"
+      "Use the Redshift result caching feature.",
+      "Use Amazon ElastiCache to cache query results.",
+      "Export query results to Amazon S3 and read from S3.",
+      "Upgrade the Redshift cluster node type."
     ],
     correctAnswer: 0,
-    category: "データベース",
-    explanation: "Redshiftの結果キャッシュ機能は、同じクエリが実行されたときに、以前の結果を自動的に返すことで、クエリのパフォーマンスを大幅に向上させます。追加のインフラストラクチャは不要です。",
+    category: "Database",
+    explanation: "The Redshift result caching feature automatically returns previous results when the same query is executed, significantly improving query performance. No additional infrastructure is required.",
     optionExplanations: [
-      "✓ 正解: Redshiftの結果キャッシュ機能は、同じクエリが実行されたときに、以前の結果を自動的に返すことで、クエリのパフォーマンスを大幅に向上させます。結果キャッシュは、クラスターのリーダーノードに保存され、基になるデータが変更されていない場合、キャッシュされた結果が使用されます。これにより、クエリの実行時間が数秒から数ミリ秒に短縮されることがあります。結果キャッシュは、デフォルトで有効になっており、追加のインフラストラクチャや設定は不要です。キャッシュのサイズは、クラスターのノードタイプに応じて自動的に管理されます。",
-      "ElastiCacheを使用してクエリ結果をキャッシュすることは可能ですが、アプリケーションの変更が必要で、Redshiftの結果キャッシュ機能を使用する方がシンプルです。",
-      "S3にクエリ結果をエクスポートすることは可能ですが、手動でのデータ管理が必要で、Redshiftの結果キャッシュ機能を使用する方が自動的で効率的です。",
-      "ノードタイプを大きくすることで、クエリのパフォーマンスを向上させることはできますが、コストが増加します。結果キャッシュ機能を使用する方が費用対効果が高いです。"
+      "✓ Correct: The Redshift result caching feature automatically returns previous results when the same query is executed, significantly improving query performance. The result cache is stored on the cluster's leader node; if the underlying data has not changed, the cached result is used. This can reduce query execution time from seconds to milliseconds. Result caching is enabled by default and requires no additional infrastructure or configuration. Cache size is automatically managed based on the cluster's node type.",
+      "Using ElastiCache to cache query results is possible, but it requires application changes. Using Redshift's result caching feature is simpler.",
+      "Exporting query results to S3 is possible, but it requires manual data management. Redshift's result caching feature is more automatic and efficient.",
+      "Upgrading the node type can improve query performance, but it increases costs. Using the result caching feature is more cost-effective."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/c-result-caching.html", title: "C Result Caching" }
+      { url: "https://docs.aws.amazon.com/redshift/latest/dg/c-result-caching.html", title: "Result caching" }
     ]
   },
   {
     id: 98,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAmazon S3バケットからデータを読み取ります。同社は、S3へのアクセスを高速化し、データ転送コストを削減したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically reads data from an Amazon S3 bucket. The company wants to speed up access to S3 and reduce data transfer costs.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon CloudFrontディストリビューションを作成し、S3バケットをオリジンとして設定する。",
-      "S3 Transfer Accelerationを有効にする。",
-      "EC2インスタンスとS3バケットを同じリージョンに配置する。",
-      "VPCエンドポイント(Gateway Endpoint)をS3用に作成する。"
+      "Create an Amazon CloudFront distribution and configure the S3 bucket as the origin.",
+      "Enable S3 Transfer Acceleration.",
+      "Place the EC2 instances and S3 bucket in the same region.",
+      "Create a VPC endpoint (Gateway Endpoint) for S3."
     ],
     correctAnswer: 3,
-    category: "ネットワーキング",
-    explanation: "VPCエンドポイント(Gateway Endpoint)をS3用に作成することで、VPC内のEC2インスタンスからS3へのトラフィックがAWSネットワーク内を経由し、インターネットゲートウェイやNAT Gatewayを経由しないため、データ転送コストが削減され、パフォーマンスが向上します。",
+    category: "Networking",
+    explanation: "Creating a VPC endpoint (Gateway Endpoint) for S3 routes traffic from EC2 instances in the VPC to S3 through the AWS network, bypassing the internet gateway and NAT Gateway. This reduces data transfer costs and improves performance.",
     optionExplanations: [
-      "CloudFrontは、グローバルなコンテンツ配信に適していますが、VPC内のEC2インスタンスからS3へのアクセスには、VPCエンドポイントの方が適しています。",
-      "S3 Transfer Accelerationは、インターネット経由でS3にデータをアップロードする際の高速化に適していますが、VPC内のEC2インスタンスからのアクセスには、VPCエンドポイントの方が適しています。",
-      "EC2インスタンスとS3バケットを同じリージョンに配置することで、レイテンシーを削減できますが、VPCエンドポイントを使用することで、さらにコストとパフォーマンスを最適化できます。",
-      "✓ 正解: VPCエンドポイント(Gateway Endpoint)をS3用に作成することで、VPC内のEC2インスタンスからS3へのトラフィックがAWSネットワーク内を経由し、インターネットゲートウェイやNAT Gatewayを経由しないため、データ転送コストが削減され、パフォーマンスが向上します。VPCエンドポイントは、無料で使用でき、ルートテーブルに追加するだけで設定できます。プライベートサブネットのインスタンスからS3にアクセスする場合、NAT Gatewayのデータ転送料金を削減できます。セキュリティも向上し、S3へのトラフィックがインターネットを経由しません。"
+      "CloudFront is suitable for global content delivery, but for access from EC2 instances within a VPC to S3, a VPC endpoint is more appropriate.",
+      "S3 Transfer Acceleration is suitable for speeding up data uploads to S3 over the internet, but for access from EC2 instances within a VPC, a VPC endpoint is more appropriate.",
+      "Placing EC2 instances and the S3 bucket in the same region reduces latency, but using a VPC endpoint further optimizes costs and performance.",
+      "✓ Correct: Creating a VPC endpoint (Gateway Endpoint) for S3 routes traffic from EC2 instances in the VPC to S3 through the AWS network, bypassing the internet gateway and NAT Gateway. This reduces data transfer costs and improves performance. VPC endpoints are free and can be configured by simply adding them to the route table. For instances in private subnets accessing S3, this reduces NAT Gateway data transfer charges. Security is also improved as S3 traffic does not traverse the internet."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/vpc/latest/privatelink/vpc-endpoints-s3.html", title: "Amazon S3 とは" }
+      { url: "https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html", title: "Gateway endpoints for Amazon S3" }
     ]
   },
   {
     id: 99,
-    question: "ある企業は、Amazon RDS for MySQLデータベースを使用しています。同社は、データベースのパフォーマンスを監視し、スロークエリを特定して最適化したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company uses an Amazon RDS for MySQL database. The company wants to monitor database performance, identify slow queries, and optimize them.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon CloudWatch Logsを使用して、データベースログを収集する。",
-      "Amazon Athenaを使用して、データベースログを分析する。",
-      "AWS X-Rayを使用して、データベースクエリをトレースする。",
-      "RDS Performance Insightsを有効にする。"
+      "Use Amazon CloudWatch Logs to collect database logs.",
+      "Use Amazon Athena to analyze database logs.",
+      "Use AWS X-Ray to trace database queries.",
+      "Enable RDS Performance Insights."
     ],
     correctAnswer: 3,
-    category: "モニタリングとコスト最適化",
-    explanation: "RDS Performance Insightsは、データベースのパフォーマンスを監視し、スロークエリを特定するための専用ツールです。視覚的なダッシュボードで、データベースの負荷とクエリのパフォーマンスを簡単に分析できます。",
+    category: "Monitoring and Cost Optimization",
+    explanation: "RDS Performance Insights is a dedicated tool for monitoring database performance and identifying slow queries. A visual dashboard makes it easy to analyze database load and query performance.",
     optionExplanations: [
-      "CloudWatch Logsを使用してデータベースログを収集することは可能ですが、Performance Insightsの方がデータベースパフォーマンスの監視に特化しており、視覚的なダッシュボードを提供します。",
-      "Athenaは、S3のデータを分析するためのツールで、データベースログの分析には使用できますが、Performance Insightsの方がリアルタイムで視覚的なダッシュボードを提供します。",
-      "X-Rayは、分散アプリケーションのトレースに適していますが、データベースのスロークエリの特定には、Performance Insightsの方が適しています。",
-      "✓ 正解: RDS Performance Insightsは、データベースのパフォーマンスを監視し、スロークエリを特定するための専用ツールです。視覚的なダッシュボードで、データベースの負荷(DB Load)を時系列で表示し、どのクエリがリソースを最も消費しているかを簡単に特定できます。上位のSQLステートメント、待機イベント、ホスト、ユーザーなどでフィルタリングでき、パフォーマンスのボトルネックを迅速に診断できます。過去のパフォーマンスデータを保持し、トレンド分析も可能です。RDSコンソールから簡単に有効にでき、追加のインフラストラクチャは不要です。"
+      "Using CloudWatch Logs to collect database logs is possible, but Performance Insights is more specialized for database performance monitoring and provides a visual dashboard.",
+      "Athena is a tool for analyzing data in S3 and can be used for database log analysis, but Performance Insights provides a real-time visual dashboard.",
+      "X-Ray is suitable for tracing distributed applications, but for identifying database slow queries, Performance Insights is more appropriate.",
+      "✓ Correct: RDS Performance Insights is a dedicated tool for monitoring database performance and identifying slow queries. A visual dashboard displays database load (DB Load) as a time series, making it easy to identify which queries consume the most resources. Filtering by top SQL statements, wait events, hosts, and users enables rapid diagnosis of performance bottlenecks. Historical performance data is retained for trend analysis. It can be easily enabled from the RDS console with no additional infrastructure required."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/USER_PerfInsights.html", title: "Amazon RDS ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_PerfInsights.html", title: "Monitoring DB load with Performance Insights" }
     ]
   },
   {
     id: 100,
-    question: "ある企業は、Amazon S3バケットに保存されているデータを、コンプライアンス要件により、削除や変更から保護する必要があります。同社は、指定した期間、オブジェクトを削除または上書きできないようにしたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company needs to protect data stored in an Amazon S3 bucket from deletion or modification due to compliance requirements. The company wants to prevent objects from being deleted or overwritten for a specified period.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3バケットポリシーを使用して、削除と上書きを拒否する。",
-      "AWS IAMポリシーを使用して、削除と上書きを拒否する。",
-      "S3バージョニングを有効にする。",
-      "S3 Object Lockを使用して、保持期間を設定する。"
+      "Use an S3 bucket policy to deny deletion and overwrite.",
+      "Use an AWS IAM policy to deny deletion and overwrite.",
+      "Enable S3 Versioning.",
+      "Use S3 Object Lock to set a retention period."
     ],
     correctAnswer: 3,
-    category: "セキュリティとコンプライアンス",
-    explanation: "S3 Object Lockは、WORM (Write Once Read Many)モデルを使用して、指定した期間、オブジェクトを削除または上書きできないようにします。コンプライアンス要件を満たすための最適なソリューションです。",
+    category: "Security and Compliance",
+    explanation: "S3 Object Lock uses a WORM (Write Once Read Many) model to prevent objects from being deleted or overwritten for a specified period. It is the optimal solution for meeting compliance requirements.",
     optionExplanations: [
-      "S3バケットポリシーを使用して削除と上書きを拒否することは可能ですが、管理者がポリシーを変更できるため、コンプライアンス要件を完全には満たしません。Object Lockの方が強力な保護を提供します。",
-      "IAMポリシーを使用して削除と上書きを拒否することは可能ですが、管理者がポリシーを変更できるため、コンプライアンス要件を完全には満たしません。Object Lockの方が強力な保護を提供します。",
-      "S3バージョニングは、オブジェクトの以前のバージョンを保持しますが、削除や上書きを防ぐものではありません。Object Lockと組み合わせて使用することで、より強力な保護を実現できます。",
-      "✓ 正解: S3 Object Lockは、WORM (Write Once Read Many)モデルを使用して、指定した期間、オブジェクトを削除または上書きできないようにします。2つのモードがあります: ガバナンスモード(特別な権限を持つユーザーは保持設定を変更可能)とコンプライアンスモード(保持期間中、誰もオブジェクトを削除または変更できない)。コンプライアンスモードは、規制要件を満たすための最も強力な保護を提供します。保持期間は、日数または年数で指定でき、期間が終了するまでオブジェクトは保護されます。リーガルホールド機能を使用して、保持期間に関係なく、無期限にオブジェクトを保護することもできます。"
+      "Using an S3 bucket policy to deny deletion and overwrite is possible, but an administrator can modify the policy, so it does not fully satisfy compliance requirements. Object Lock provides stronger protection.",
+      "Using an IAM policy to deny deletion and overwrite is possible, but an administrator can modify the policy, so it does not fully satisfy compliance requirements. Object Lock provides stronger protection.",
+      "S3 Versioning retains previous versions of objects but does not prevent deletion or overwrite. Using it together with Object Lock provides stronger protection.",
+      "✓ Correct: S3 Object Lock uses a WORM (Write Once Read Many) model to prevent objects from being deleted or overwritten for a specified period. Two modes are available: Governance mode (users with special permissions can modify retention settings) and Compliance mode (no one can delete or modify objects during the retention period). Compliance mode provides the strongest protection for meeting regulatory requirements. The retention period can be specified in days or years, and objects are protected until the period ends. The Legal Hold feature can also be used to protect objects indefinitely, regardless of the retention period."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/object-lock.html", title: "Amazon S3 ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html", title: "Using S3 Object Lock" }
     ]
   },
   {
     id: 81,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、ユーザーのアップロードしたファイルを処理し、結果をAmazon S3に保存します。ファイル処理には数分かかることがあり、同社は処理の進行状況をユーザーに通知したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances. The application processes files uploaded by users and stores the results in Amazon S3. File processing can take several minutes, and the company wants to notify users of processing progress.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon SQSキューを使用して、処理タスクをキューに追加し、定期的にポーリングして進行状況を確認する。",
-      "AWS Step Functionsを使用して、処理ワークフローを管理し、Amazon SNSで通知を送信する。",
-      "Amazon EventBridgeを使用して、処理イベントをキャプチャし、AWS Lambdaで通知を送信する。",
-      "Amazon Kinesis Data Streamsを使用して、処理イベントをストリーミングする。"
+      "Use an Amazon SQS queue to add processing tasks and periodically poll for progress.",
+      "Use AWS Step Functions to manage the processing workflow and send notifications via Amazon SNS.",
+      "Use Amazon EventBridge to capture processing events and send notifications via AWS Lambda.",
+      "Use Amazon Kinesis Data Streams to stream processing events."
     ],
     correctAnswer: 1,
-    category: "アプリケーション統合",
-    explanation: "AWS Step Functionsを使用して、処理ワークフローを管理し、各ステップの完了時にAmazon SNSで通知を送信することで、ユーザーに処理の進行状況を通知できます。",
+    category: "Application Integration",
+    explanation: "Using AWS Step Functions to manage the processing workflow and sending notifications via Amazon SNS at each step's completion allows users to be notified of processing progress.",
     optionExplanations: [
-      "SQSキューを使用することは可能ですが、進行状況の追跡と通知には、Step Functionsの方が適しています。",
-      "✓ 正解: AWS Step Functionsは、複数のAWSサービスを組み合わせたワークフローを視覚的に設計し、実行するサーバーレスオーケストレーションサービスです。ファイル処理ワークフローを複数のステップ(アップロード、検証、処理、保存)に分割し、各ステップの完了時にAmazon SNSを使用してユーザーに通知を送信できます。Step Functionsは、ワークフローの状態を追跡し、エラーハンドリング、リトライ、タイムアウトを自動的に管理します。また、ワークフローの実行履歴を可視化し、デバッグが容易です。長時間実行されるワークフローもサポートし、最大1年間実行できます。",
-      "EventBridgeは、イベント駆動アーキテクチャに適していますが、複数ステップのワークフロー管理には、Step Functionsの方が適しています。",
-      "Kinesis Data Streamsは、リアルタイムのストリーミングデータ処理に使用されますが、ワークフロー管理には、Step Functionsの方が適しています。"
+      "Using an SQS queue is possible, but Step Functions is more appropriate for progress tracking and notifications.",
+      "✓ Correct: AWS Step Functions is a serverless orchestration service for visually designing and executing workflows combining multiple AWS services. The file processing workflow can be divided into multiple steps (upload, validation, processing, storage), and Amazon SNS can be used to send notifications to users upon each step's completion. Step Functions tracks workflow state and automatically manages error handling, retries, and timeouts. Workflow execution history is visualized, making debugging easy. Long-running workflows are also supported, with a maximum execution time of one year.",
+      "EventBridge is suitable for event-driven architectures, but for multi-step workflow management, Step Functions is more appropriate.",
+      "Kinesis Data Streams is used for real-time streaming data processing, but for workflow management, Step Functions is more appropriate."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/step-functions/latest/dg/welcome.html", title: "AWS Step Functions ドキュメント" }
+      { url: "https://docs.aws.amazon.com/step-functions/latest/dg/welcome.html", title: "What is AWS Step Functions?" }
     ]
   },
   {
     id: 82,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAWS Secrets Managerから機密情報を取得します。同社は、Secrets Managerへのアクセスコストを削減したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically retrieves sensitive information from AWS Secrets Manager. The company wants to reduce the cost of accessing Secrets Manager.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS Systems Manager Parameter Storeに機密情報を移行する。",
-      "Secrets Managerから取得した機密情報をアプリケーションのメモリにキャッシュする。",
-      "機密情報をAmazon S3バケットに保存する。",
-      "機密情報をAmazon DynamoDBテーブルに保存する。"
+      "Migrate sensitive information to AWS Systems Manager Parameter Store.",
+      "Cache sensitive information retrieved from Secrets Manager in application memory.",
+      "Store sensitive information in an Amazon S3 bucket.",
+      "Store sensitive information in an Amazon DynamoDB table."
     ],
     correctAnswer: 1,
-    category: "セキュリティとコンプライアンス",
-    explanation: "Secrets Managerから取得した機密情報をアプリケーションのメモリにキャッシュすることで、API呼び出しの回数を削減し、コストを削減できます。",
+    category: "Security and Compliance",
+    explanation: "Caching sensitive information retrieved from Secrets Manager in application memory reduces the number of API calls and lowers costs.",
     optionExplanations: [
-      "Parameter Storeに移行することも有効な方法ですが、Secrets Managerは自動ローテーション機能を提供するため、機密情報の管理には適しています。キャッシュを使用する方が、Secrets Managerの機能を維持しつつ、コストを削減できます。",
-      "✓ 正解: Secrets Managerから取得した機密情報をアプリケーションのメモリにキャッシュすることで、API呼び出しの回数を削減し、コストを削減できます。Secrets Managerは、API呼び出しごとに課金されるため、頻繁にアクセスする場合、コストが高くなります。機密情報をキャッシュし、定期的に更新(例：1時間ごと)することで、API呼び出しを大幅に削減できます。AWS Secrets Manager Caching Clientライブラリを使用すると、キャッシュの実装が簡単になります。キャッシュのTTL(Time To Live)を適切に設定し、機密情報のローテーション時に自動的に更新されるようにします。",
-      "S3バケットに機密情報を保存することは、セキュリティリスクが高く、Secrets Managerの自動ローテーション機能も失われます。",
-      "DynamoDBに機密情報を保存することは可能ですが、Secrets Managerの自動ローテーション機能が失われ、セキュリティ管理が複雑になります。"
+      "Migrating to Parameter Store is also a valid approach, but Secrets Manager provides automatic rotation, making it suitable for managing sensitive information. Using caching maintains Secrets Manager's features while reducing costs.",
+      "✓ Correct: Caching sensitive information retrieved from Secrets Manager in application memory reduces the number of API calls and lowers costs. Secrets Manager charges per API call, so frequent access can be expensive. Caching the sensitive information and refreshing it periodically (e.g., every hour) can significantly reduce API calls. Using the AWS Secrets Manager Caching Client library simplifies cache implementation. Set an appropriate TTL (Time To Live) for the cache so that it is automatically updated when secrets are rotated.",
+      "Storing sensitive information in an S3 bucket carries a high security risk and loses Secrets Manager's automatic rotation feature.",
+      "Storing sensitive information in DynamoDB is possible, but it loses Secrets Manager's automatic rotation feature and complicates security management."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/secretsmanager/latest/userguide/retrieving-secrets.html", title: "Retrieving Secrets" }
+      { url: "https://docs.aws.amazon.com/secretsmanager/latest/userguide/retrieving-secrets.html", title: "Retrieve secrets from AWS Secrets Manager" }
     ]
   },
   {
     id: 83,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的に大量のデータをAmazon Redshiftデータウェアハウスにロードします。同社は、データロードのパフォーマンスを向上させたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically loads large amounts of data into an Amazon Redshift data warehouse. The company wants to improve data load performance.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "データをCSV形式でS3にアップロードし、Redshift COPYコマンドを使用してロードする。",
-      "データをINSERT文を使用して、直接Redshiftにロードする。",
-      "データを圧縮してS3にアップロードし、Redshift COPYコマンドを使用してロードする。",
-      "AWS Database Migration Service (DMS)を使用して、データをロードする。"
+      "Upload data in CSV format to S3 and load it using the Redshift COPY command.",
+      "Load data directly into Redshift using INSERT statements.",
+      "Compress data, upload it to S3, and load it using the Redshift COPY command.",
+      "Use AWS Database Migration Service (DMS) to load data."
     ],
     correctAnswer: 2,
-    category: "アプリケーション統合",
-    explanation: "データを圧縮してS3にアップロードし、Redshift COPYコマンドを使用してロードすることで、データ転送時間とロード時間を大幅に削減できます。",
+    category: "Application Integration",
+    explanation: "Compressing data, uploading it to S3, and loading it using the Redshift COPY command can significantly reduce data transfer time and load time.",
     optionExplanations: [
-      "CSV形式でロードすることは可能ですが、圧縮する方が、データ転送時間とロード時間を大幅に削減できます。",
-      "INSERT文を使用して直接ロードすることは、パフォーマンスが低く、大量のデータには適していません。COPYコマンドの方が、並列処理により高速です。",
-      "✓ 正解: データを圧縮してS3にアップロードし、Redshift COPYコマンドを使用してロードすることで、データ転送時間とロード時間を大幅に削減できます。Redshiftは、gzip、bzip2、lzopなどの圧縮形式をサポートしています。圧縮により、S3へのアップロード時間が短縮され、ネットワーク帯域幅の使用量が削減されます。また、RedshiftのCOPYコマンドは、並列処理を使用して、複数のファイルを同時にロードできるため、パフォーマンスが向上します。データを複数の小さなファイルに分割し、圧縮してS3にアップロードすることで、最大のパフォーマンスを実現できます。",
-      "DMSは、データベース間の移行に使用されますが、定期的なデータロードには、COPYコマンドの方が適しています。"
+      "Loading in CSV format is possible, but compressing the data can significantly reduce data transfer time and load time.",
+      "Loading directly using INSERT statements has poor performance and is not suitable for large amounts of data. The COPY command is faster because it uses parallel processing.",
+      "✓ Correct: Compressing data, uploading it to S3, and loading it using the Redshift COPY command can significantly reduce data transfer time and load time. Redshift supports compression formats such as gzip, bzip2, and lzop. Compression reduces the time to upload to S3 and decreases network bandwidth usage. The Redshift COPY command uses parallel processing to load multiple files simultaneously, improving performance. Splitting data into multiple smaller files, compressing them, and uploading to S3 achieves maximum performance.",
+      "DMS is used for migration between databases, but for periodic data loading, the COPY command is more appropriate."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/redshift/latest/dg/c_best-practices-loading-data.html", title: "C Best Practices Loading Data" }
+      { url: "https://docs.aws.amazon.com/redshift/latest/dg/c_best-practices-loading-data.html", title: "Best practices for loading data" }
     ]
   },
   {
     id: 84,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、Amazon RDS for MySQLデータベースに接続します。同社は、データベース接続の管理を改善し、接続プールを最適化したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application connects to an Amazon RDS for MySQL database. The company wants to improve database connection management and optimize connection pooling.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "アプリケーションで接続プールライブラリを使用する。",
-      "RDS Read Replicaを追加する。",
-      "Amazon RDS Proxyを使用する。",
-      "RDSインスタンスのmax_connectionsパラメータを増やす。"
+      "Use a connection pooling library in the application.",
+      "Add an RDS Read Replica.",
+      "Use Amazon RDS Proxy.",
+      "Increase the max_connections parameter on the RDS instance."
     ],
     correctAnswer: 2,
-    category: "データベース",
-    explanation: "Amazon RDS Proxyを使用することで、データベース接続の管理を改善し、接続プールを最適化できます。RDS Proxyは、接続プーリング、フェイルオーバー、IAM認証をサポートします。",
+    category: "Database",
+    explanation: "Using Amazon RDS Proxy improves database connection management and optimizes connection pooling. RDS Proxy supports connection pooling, failover, and IAM authentication.",
     optionExplanations: [
-      "アプリケーションで接続プールライブラリを使用することは有効ですが、RDS Proxyの方が、接続管理を一元化し、フェイルオーバーやIAM認証などの高度な機能を提供します。",
-      "Read Replicaは、読み取り負荷を分散しますが、接続管理の改善には、RDS Proxyの方が適しています。",
-      "✓ 正解: Amazon RDS Proxyは、RDSデータベースの前に配置されるフルマネージド型のデータベースプロキシです。RDS Proxyは、アプリケーションからの接続をプールし、データベースへの接続数を削減します。これにより、データベースのメモリとCPUの使用量が削減され、パフォーマンスが向上します。また、RDS Proxyは、データベースのフェイルオーバー時に、接続を自動的に新しいインスタンスにルーティングし、フェイルオーバー時間を最大66%短縮します。IAM認証をサポートし、データベースの認証情報をSecrets Managerに保存できます。サーバーレスアプリケーション(Lambda)との統合に特に有効です。",
-      "max_connectionsパラメータを増やすことは可能ですが、データベースのメモリとCPUの使用量が増加します。RDS Proxyを使用する方が、効率的です。"
+      "Using a connection pooling library in the application is effective, but RDS Proxy centralizes connection management and provides advanced features such as failover and IAM authentication.",
+      "A Read Replica distributes read load but is not appropriate for improving connection management. RDS Proxy is more suitable.",
+      "✓ Correct: Amazon RDS Proxy is a fully managed database proxy placed in front of RDS databases. RDS Proxy pools connections from applications and reduces the number of connections to the database. This reduces database memory and CPU usage and improves performance. RDS Proxy also automatically routes connections to the new instance during a database failover, reducing failover time by up to 66%. It supports IAM authentication and can store database credentials in Secrets Manager. It is particularly effective for integration with serverless applications (Lambda).",
+      "Increasing the max_connections parameter is possible, but it increases database memory and CPU usage. Using RDS Proxy is more efficient."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/rds-proxy.html", title: "Amazon RDS とは" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/rds-proxy.html", title: "Using Amazon RDS Proxy" }
     ]
   },
   {
     id: 85,
-    question: "ある企業は、Amazon S3バケットに保存されている大量の画像ファイルを持っています。画像は、機械学習モデルのトレーニングに使用されます。同社は、画像ファイルへのアクセスを高速化し、トレーニング時間を短縮したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a large number of image files stored in an Amazon S3 bucket. The images are used for training machine learning models. The company wants to speed up access to image files and reduce training time.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon FSx for Lustreを使用して、S3データをキャッシュする。",
-      "S3 Transfer Accelerationを有効にする。",
-      "Amazon EFSを使用して、画像ファイルを保存する。",
-      "Amazon EBSボリュームに画像ファイルをコピーする。"
+      "Use Amazon FSx for Lustre to cache S3 data.",
+      "Enable S3 Transfer Acceleration.",
+      "Use Amazon EFS to store image files.",
+      "Copy image files to Amazon EBS volumes."
     ],
     correctAnswer: 0,
-    category: "ストレージ",
-    explanation: "Amazon FSx for Lustreを使用して、S3データをキャッシュすることで、高速なファイルアクセスを実現し、機械学習トレーニングのパフォーマンスを向上させることができます。",
+    category: "Storage",
+    explanation: "Using Amazon FSx for Lustre to cache S3 data enables fast file access and improves machine learning training performance.",
     optionExplanations: [
-      "✓ 正解: Amazon FSx for Lustreは、高性能な並列ファイルシステムで、機械学習、ハイパフォーマンスコンピューティング(HPC)、ビデオ処理などのワークロードに最適です。FSx for Lustreは、S3バケットと統合され、S3データを自動的にキャッシュします。ファイルシステムは、数百GB/sのスループットと数百万IOPSを提供し、S3への直接アクセスと比較して、大幅に高速です。機械学習トレーニングでは、大量の画像ファイルに頻繁にアクセスするため、FSx for Lustreのキャッシュにより、トレーニング時間が大幅に短縮されます。また、複数のEC2インスタンスから同時にアクセスでき、分散トレーニングに適しています。",
-      "S3 Transfer Accelerationは、S3へのアップロード速度を向上させますが、ダウンロード速度の向上には、FSx for Lustreの方が適しています。",
-      "EFSは、共有ファイルシステムですが、FSx for Lustreの方が、機械学習ワークロードに最適化されており、パフォーマンスが高いです。",
-      "EBSボリュームに画像ファイルをコピーすることは可能ですが、単一のEC2インスタンスにしかアタッチできず、分散トレーニングには適していません。"
+      "✓ Correct: Amazon FSx for Lustre is a high-performance parallel file system optimized for machine learning, high-performance computing (HPC), and video processing workloads. FSx for Lustre integrates with S3 buckets and automatically caches S3 data. The file system provides hundreds of GB/s of throughput and millions of IOPS, significantly faster than direct S3 access. Machine learning training frequently accesses large numbers of image files, so FSx for Lustre caching significantly reduces training time. It also allows simultaneous access from multiple EC2 instances, making it suitable for distributed training.",
+      "S3 Transfer Acceleration speeds up uploads to S3, but for improving download speeds, FSx for Lustre is more appropriate.",
+      "EFS is a shared file system, but FSx for Lustre is optimized for machine learning workloads and offers higher performance.",
+      "Copying image files to EBS volumes is possible, but they can only be attached to a single EC2 instance and are not suitable for distributed training."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/fsx/latest/LustreGuide/what-is.html", title: "What Is" }
+      { url: "https://docs.aws.amazon.com/fsx/latest/LustreGuide/what-is.html", title: "What is Amazon FSx for Lustre?" }
     ]
   },
   {
     id: 86,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、ユーザーの位置情報に基づいて、最も近いリージョンにトラフィックをルーティングしたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきAmazon Route 53のルーティングポリシーはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances. The application wants to route traffic to the nearest region based on user location.\n\nWhich Amazon Route 53 routing policy should a solutions architect recommend to meet these requirements?",
     options: [
-      "シンプルルーティングポリシー",
-      "地理的近接性ルーティングポリシー",
-      "レイテンシベースルーティングポリシー",
-      "加重ルーティングポリシー"
+      "Simple routing policy",
+      "Geoproximity routing policy",
+      "Latency-based routing policy",
+      "Weighted routing policy"
     ],
     correctAnswer: 1,
-    category: "ネットワーキング",
-    explanation: "地理的近接性ルーティングポリシーを使用することで、ユーザーの位置情報に基づいて、最も近いリージョンにトラフィックをルーティングできます。",
+    category: "Networking",
+    explanation: "Using the geoproximity routing policy allows traffic to be routed to the nearest region based on user location.",
     optionExplanations: [
-      "シンプルルーティングポリシーは、単一のリソースにトラフィックをルーティングするため、複数のリージョンへのルーティングには適していません。",
-      "✓ 正解: 地理的近接性ルーティングポリシーは、ユーザーとリソースの地理的な位置に基づいて、トラフィックをルーティングします。各リソースの地理的座標(緯度と経度)またはAWSリージョンを指定し、ユーザーの位置から最も近いリソースにトラフィックをルーティングします。バイアス値を設定することで、特定のリソースへのトラフィックを増減できます。例えば、特定のリージョンのキャパシティが高い場合、バイアス値を増やして、より多くのトラフィックをそのリージョンにルーティングできます。Route 53 Traffic Flowを使用して、視覚的にルーティングポリシーを設計できます。",
-      "レイテンシベースルーティングポリシーは、ユーザーから最も低いレイテンシのリージョンにトラフィックをルーティングしますが、地理的近接性ルーティングの方が、位置情報に基づいたルーティングに適しています。",
-      "加重ルーティングポリシーは、トラフィックを指定した割合で複数のリソースに分散しますが、ユーザーの位置情報に基づいたルーティングには適していません。"
+      "Simple routing policy routes traffic to a single resource and is not suitable for routing to multiple regions.",
+      "✓ Correct: The geoproximity routing policy routes traffic based on the geographic location of users and resources. Geographic coordinates (latitude and longitude) or AWS regions are specified for each resource, and traffic is routed to the nearest resource from the user's location. Bias values can be set to increase or decrease traffic to specific resources. For example, if a particular region has high capacity, the bias value can be increased to route more traffic to that region. Route 53 Traffic Flow can be used to visually design routing policies.",
+      "Latency-based routing routes traffic to the region with the lowest latency from the user, but geoproximity routing is more appropriate for location-based routing.",
+      "Weighted routing distributes traffic across multiple resources at specified percentages but is not suitable for location-based routing."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/Route53/latest/DeveloperGuide/routing-policy-geo-proximity.html", title: "Routing Policy Geo Proximity" }
+      { url: "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy-geo-proximity.html", title: "Geoproximity routing" }
     ]
   },
   {
     id: 87,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAWS Lambda関数を呼び出しますが、Lambda関数のコールドスタート時間が長く、パフォーマンスが低下しています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically invokes AWS Lambda functions, but Lambda function cold start times are long, causing performance degradation.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Lambda Provisioned Concurrencyを使用する。",
-      "Lambda関数のメモリサイズを増やす。",
-      "Lambda関数のタイムアウト時間を増やす。",
-      "Lambda関数を複数のリージョンにデプロイする。"
+      "Use Lambda Provisioned Concurrency.",
+      "Increase the Lambda function memory size.",
+      "Increase the Lambda function timeout.",
+      "Deploy the Lambda function in multiple regions."
     ],
     correctAnswer: 0,
-    category: "コンピューティング",
-    explanation: "Lambda Provisioned Concurrencyを使用することで、Lambda関数を事前に初期化し、コールドスタートを回避できます。",
+    category: "Compute",
+    explanation: "Using Lambda Provisioned Concurrency pre-initializes Lambda functions and avoids cold starts.",
     optionExplanations: [
-      "✓ 正解: Lambda Provisioned Concurrencyは、Lambda関数を事前に初期化し、常に指定した数の実行環境を準備しておく機能です。これにより、コールドスタートが回避され、一貫した低レイテンシを実現できます。Provisioned Concurrencyを設定すると、Lambda関数は常に初期化された状態で待機し、リクエストが到着するとすぐに実行されます。本番環境で予測可能なパフォーマンスが必要な場合に最適です。Application Auto Scalingと統合して、トラフィックに応じて自動的にProvisioned Concurrencyを調整できます。",
-      "Lambda関数のメモリサイズを増やすことで、実行速度は向上しますが、コールドスタート時間には大きな影響はありません。Provisioned Concurrencyの方が、コールドスタートを回避できます。",
-      "タイムアウト時間を増やすことは、長時間実行される関数には有効ですが、コールドスタート時間には影響しません。",
-      "Lambda関数を複数のリージョンにデプロイすることは、可用性を向上させますが、コールドスタート時間には影響しません。"
+      "✓ Correct: Lambda Provisioned Concurrency pre-initializes Lambda functions and keeps a specified number of execution environments ready at all times. This avoids cold starts and achieves consistent low latency. With Provisioned Concurrency configured, Lambda functions are always in an initialized state and execute immediately when requests arrive. It is ideal for production environments that require predictable performance. It can be integrated with Application Auto Scaling to automatically adjust Provisioned Concurrency based on traffic.",
+      "Increasing the Lambda function memory size improves execution speed, but does not have a significant effect on cold start time. Provisioned Concurrency is better for avoiding cold starts.",
+      "Increasing the timeout is useful for long-running functions but does not affect cold start time.",
+      "Deploying Lambda functions in multiple regions improves availability but does not affect cold start time."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/provisioned-concurrency.html", title: "AWS Lambda ドキュメント" }
+      { url: "https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html", title: "Managing Lambda provisioned concurrency" }
     ]
   },
   {
     id: 88,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、Amazon DynamoDBテーブルに大量のデータを書き込みますが、書き込みスループットが不足し、スロットリングが発生しています。同社は、コストを最小限に抑えながら、スロットリングを回避したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application writes large amounts of data to an Amazon DynamoDB table, but write throughput is insufficient and throttling is occurring. The company wants to avoid throttling while minimizing costs.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "指数バックオフとジッターを実装して、リトライロジックを改善する。",
-      "DynamoDBオンデマンドキャパシティモードに切り替える。",
-      "DynamoDBのプロビジョニングされた書き込みキャパシティユニット(WCU)を増やす。",
-      "DynamoDBグローバルセカンダリインデックス(GSI)を作成する。"
+      "Implement exponential backoff with jitter to improve retry logic.",
+      "Switch to DynamoDB on-demand capacity mode.",
+      "Increase the DynamoDB provisioned write capacity units (WCUs).",
+      "Create a DynamoDB Global Secondary Index (GSI)."
     ],
     correctAnswer: 0,
-    category: "データベース",
-    explanation: "指数バックオフとジッターを実装して、リトライロジックを改善することで、スロットリングエラーを適切に処理し、コストを最小限に抑えることができます。",
+    category: "Database",
+    explanation: "Implementing exponential backoff with jitter to improve retry logic allows throttling errors to be handled appropriately while minimizing costs.",
     optionExplanations: [
-      "✓ 正解: 指数バックオフとジッターを実装して、リトライロジックを改善することで、スロットリングエラーを適切に処理し、コストを最小限に抑えることができます。DynamoDBは、スロットリングが発生した場合、ProvisionedThroughputExceededExceptionを返します。指数バックオフは、リトライ間隔を徐々に増やすことで(例：100ms、200ms、400ms、800ms)、DynamoDBへの負荷を減らします。ジッターは、リトライ間隔にランダムな遅延を追加することで、複数のクライアントが同時にリトライすることによる衝突を減らします。AWS SDKは、デフォルトで指数バックオフとジッターを実装しています。また、DynamoDB Auto Scalingを使用して、トラフィックに応じて自動的にWCUを調整することも検討できます。",
-      "オンデマンドキャパシティモードに切り替えることでスロットリングを回避できますが、予測可能なワークロードの場合、プロビジョニングされたキャパシティモードの方がコスト効率的です。",
-      "WCUを増やすことでスロットリングを回避できますが、コストが増加します。指数バックオフとジッターを実装する方が、コスト効率的です。",
-      "GSIは、異なるクエリパターンをサポートするために使用されますが、書き込みスロットリングの回避には直接役立ちません。"
+      "✓ Correct: Implementing exponential backoff with jitter to improve retry logic allows throttling errors to be handled appropriately while minimizing costs. DynamoDB returns a ProvisionedThroughputExceededException when throttling occurs. Exponential backoff gradually increases the retry interval (e.g., 100ms, 200ms, 400ms, 800ms), reducing load on DynamoDB. Jitter adds a random delay to the retry interval, reducing collisions when multiple clients retry simultaneously. The AWS SDK implements exponential backoff with jitter by default. DynamoDB Auto Scaling can also be considered to automatically adjust WCUs based on traffic.",
+      "Switching to on-demand capacity mode avoids throttling, but for predictable workloads, provisioned capacity mode is more cost-efficient.",
+      "Increasing WCUs avoids throttling but increases costs. Implementing exponential backoff with jitter is more cost-efficient.",
+      "GSIs are used to support different query patterns but do not directly help avoid write throttling."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/Programming.Errors.html", title: "Amazon DynamoDB ドキュメント" }
+      { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Programming.Errors.html", title: "Error handling with DynamoDB" }
     ]
   },
   {
     id: 89,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAmazon S3バケットから大量のファイルをダウンロードします。同社は、S3からのデータ転送コストを削減したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically downloads large numbers of files from an Amazon S3 bucket. The company wants to reduce data transfer costs from S3.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "VPCエンドポイント(Gateway Endpoint)を使用する。",
-      "Amazon CloudFrontを使用して、S3コンテンツをキャッシュする。",
-      "S3 Transfer Accelerationを使用する。",
-      "S3バケットをEC2インスタンスと同じリージョンに配置する。"
+      "Use a VPC endpoint (Gateway Endpoint).",
+      "Use Amazon CloudFront to cache S3 content.",
+      "Use S3 Transfer Acceleration.",
+      "Place the S3 bucket in the same region as the EC2 instances."
     ],
     correctAnswer: 3,
-    category: "ストレージ",
-    explanation: "S3バケットをEC2インスタンスと同じリージョンに配置することで、リージョン間のデータ転送コストを回避できます。同一リージョン内のデータ転送は無料です。",
+    category: "Storage",
+    explanation: "Placing the S3 bucket in the same region as the EC2 instances avoids inter-region data transfer costs. Data transfer within the same region is free.",
     optionExplanations: [
-      "VPCエンドポイントは、インターネットゲートウェイやNATゲートウェイを経由せずにS3にアクセスできますが、同一リージョン内のデータ転送は既に無料です。",
-      "CloudFrontは、エンドユーザーへのコンテンツ配信に適していますが、EC2からS3へのデータ転送コスト削減には、同一リージョン配置の方が効果的です。",
-      "S3 Transfer Accelerationは、長距離のデータ転送を高速化しますが、追加料金が発生し、コスト削減にはなりません。",
-      "✓ 正解: S3バケットをEC2インスタンスと同じリージョンに配置することで、リージョン間のデータ転送コストを回避できます。AWSでは、同一リージョン内のEC2とS3間のデータ転送は無料です。リージョン間のデータ転送には、データ転送料金が発生します(例：us-east-1からus-west-2へのデータ転送)。アプリケーションとS3バケットを同じリージョンに配置することで、データ転送コストを完全に削減できます。また、レイテンシも低くなり、パフォーマンスが向上します。"
+      "A VPC endpoint allows access to S3 without going through an internet gateway or NAT gateway, but data transfer within the same region is already free.",
+      "CloudFront is suitable for delivering content to end users, but placing resources in the same region is more effective for reducing data transfer costs from EC2 to S3.",
+      "S3 Transfer Acceleration speeds up long-distance data transfers but incurs additional charges and does not reduce costs.",
+      "✓ Correct: Placing the S3 bucket in the same region as the EC2 instances avoids inter-region data transfer costs. AWS does not charge for data transfer between EC2 and S3 within the same region. Inter-region data transfers incur data transfer charges (e.g., data transfer from us-east-1 to us-west-2). Placing the application and S3 bucket in the same region completely eliminates data transfer costs. Latency is also lower, improving performance."
     ],
     references: [
-      { url: "https://aws.amazon.com/jp/s3/pricing/", title: "料金" }
+      { url: "https://aws.amazon.com/s3/pricing/", title: "Amazon S3 pricing" }
     ]
   },
   {
     id: 90,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAWS Systems Manager Parameter Storeから設定情報を取得します。同社は、Parameter Storeへのアクセスを監査し、誰がいつパラメータにアクセスしたかを追跡したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically retrieves configuration information from AWS Systems Manager Parameter Store. The company wants to audit access to Parameter Store and track who accessed parameters and when.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS CloudTrailを使用して、Parameter StoreのAPI呼び出しを記録する。",
-      "Amazon CloudWatch Logsを使用して、Parameter Storeのアクセスログを記録する。",
-      "AWS Configを使用して、Parameter Storeの設定変更を追跡する。",
-      "VPCフローログを使用して、Parameter Storeへのネットワークトラフィックを記録する。"
+      "Use AWS CloudTrail to record Parameter Store API calls.",
+      "Use Amazon CloudWatch Logs to record Parameter Store access logs.",
+      "Use AWS Config to track Parameter Store configuration changes.",
+      "Use VPC flow logs to record network traffic to Parameter Store."
     ],
     correctAnswer: 0,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS CloudTrailを使用して、Parameter StoreのAPI呼び出しを記録することで、誰がいつパラメータにアクセスしたかを追跡できます。",
+    category: "Security and Compliance",
+    explanation: "Using AWS CloudTrail to record Parameter Store API calls allows tracking of who accessed parameters and when.",
     optionExplanations: [
-      "✓ 正解: AWS CloudTrailは、AWSアカウント内のAPI呼び出しを記録する監査サービスです。CloudTrailを使用して、Parameter StoreのAPI呼び出し(GetParameter、PutParameter、DeleteParameterなど)を記録できます。CloudTrailログには、誰が(IAMユーザーまたはロール)、いつ(タイムスタンプ)、どのパラメータに(パラメータ名)、どのような操作を(API呼び出し)行ったかが記録されます。CloudTrailログは、S3バケットに保存され、CloudWatch Logsに送信して、リアルタイムで監視することもできます。また、AWS Athenaを使用して、CloudTrailログをクエリし、分析できます。コンプライアンス要件や監査要件を満たすために不可欠です。",
-      "CloudWatch Logsは、アプリケーションログの記録に使用されますが、Parameter StoreのAPI呼び出しの監査には、CloudTrailの方が適しています。",
-      "AWS Configは、AWSリソースの設定変更を追跡しますが、Parameter StoreのAPI呼び出しの監査には、CloudTrailの方が適しています。",
-      "VPCフローログは、ネットワークトラフィックを記録しますが、Parameter StoreのAPI呼び出しの監査には、CloudTrailの方が適しています。"
+      "✓ Correct: AWS CloudTrail is an auditing service that records API calls in the AWS account. CloudTrail can record Parameter Store API calls (GetParameter, PutParameter, DeleteParameter, etc.). CloudTrail logs record who (IAM user or role), when (timestamp), which parameter (parameter name), and what operation (API call) was performed. CloudTrail logs are stored in an S3 bucket and can also be sent to CloudWatch Logs for real-time monitoring. AWS Athena can also be used to query and analyze CloudTrail logs. It is essential for meeting compliance and audit requirements.",
+      "CloudWatch Logs is used for recording application logs, but for auditing Parameter Store API calls, CloudTrail is more appropriate.",
+      "AWS Config tracks configuration changes to AWS resources, but for auditing Parameter Store API calls, CloudTrail is more appropriate.",
+      "VPC flow logs record network traffic, but for auditing Parameter Store API calls, CloudTrail is more appropriate."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/systems-manager/latest/userguide/monitoring-cloudtrail-logs.html", title: "AWS CloudTrail とは" }
+      { url: "https://docs.aws.amazon.com/systems-manager/latest/userguide/monitoring-cloudtrail-logs.html", title: "Logging AWS Systems Manager API calls with AWS CloudTrail" }
     ]
   },
   {
     id: 91,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、Application Load Balancer (ALB)の背後にあり、HTTPS接続を使用します。同社は、SSL/TLS証明書の管理を簡素化し、自動更新したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances. The application is behind an Application Load Balancer (ALB) and uses HTTPS connections. The company wants to simplify SSL/TLS certificate management and enable automatic renewal.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Let's Encryptから証明書を取得し、EC2インスタンスにインストールする。",
-      "AWS Certificate Manager (ACM)を使用して、証明書を発行し、ALBにアタッチする。",
-      "自己署名証明書を作成し、ALBにアタッチする。",
-      "サードパーティの認証局から証明書を購入し、ALBにアタッチする。"
+      "Obtain a certificate from Let's Encrypt and install it on EC2 instances.",
+      "Use AWS Certificate Manager (ACM) to issue a certificate and attach it to the ALB.",
+      "Create a self-signed certificate and attach it to the ALB.",
+      "Purchase a certificate from a third-party certificate authority and attach it to the ALB."
     ],
     correctAnswer: 1,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Certificate Manager (ACM)を使用して、証明書を発行し、ALBにアタッチすることで、証明書の管理を簡素化し、自動更新できます。",
+    category: "Security and Compliance",
+    explanation: "Using AWS Certificate Manager (ACM) to issue a certificate and attach it to the ALB simplifies certificate management and enables automatic renewal.",
     optionExplanations: [
-      "Let's Encryptから証明書を取得することは可能ですが、手動で更新する必要があり、ACMの方が管理が簡単です。",
-      "✓ 正解: AWS Certificate Manager (ACM)は、SSL/TLS証明書の発行、管理、デプロイを簡素化するサービスです。ACMを使用して、パブリック証明書を無料で発行し、ALB、CloudFront、API Gatewayなどのサービスにアタッチできます。ACMは、証明書の自動更新をサポートし、有効期限が近づくと自動的に新しい証明書を発行し、デプロイします。これにより、証明書の期限切れによるサービス停止を防ぐことができます。また、ACMは、ワイルドカード証明書もサポートし、複数のサブドメインに対応できます。証明書の管理が完全に自動化され、運用負荷が大幅に削減されます。",
-      "自己署名証明書は、ブラウザで警告が表示され、本番環境には適していません。",
-      "サードパーティの認証局から証明書を購入することは可能ですが、コストがかかり、手動で更新する必要があります。ACMの方が、無料で自動更新されます。"
+      "Obtaining a certificate from Let's Encrypt is possible, but manual renewal is required. ACM is easier to manage.",
+      "✓ Correct: AWS Certificate Manager (ACM) is a service that simplifies the issuance, management, and deployment of SSL/TLS certificates. ACM can be used to issue public certificates for free and attach them to services such as ALB, CloudFront, and API Gateway. ACM supports automatic certificate renewal and automatically issues and deploys new certificates as they approach expiration. This prevents service outages caused by expired certificates. ACM also supports wildcard certificates for multiple subdomains. Certificate management is fully automated, significantly reducing operational overhead.",
+      "Self-signed certificates display warnings in browsers and are not suitable for production environments.",
+      "Purchasing a certificate from a third-party certificate authority is possible, but it incurs costs and requires manual renewal. ACM is free and automatically renewed."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/acm/latest/userguide/acm-overview.html", title: "Acm Overview" }
+      { url: "https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html", title: "What is AWS Certificate Manager?" }
     ]
   },
   {
     id: 92,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAmazon S3バケットにログファイルを書き込みます。同社は、ログファイルが書き込まれたときに、自動的にAWS Lambda関数をトリガーして、ログを分析したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically writes log files to an Amazon S3 bucket. The company wants to automatically trigger an AWS Lambda function when log files are written to analyze the logs.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon CloudWatch Eventsを使用して、定期的にLambda関数をトリガーする。",
-      "AWS Step Functionsを使用して、ログ分析ワークフローを管理する。",
-      "Amazon SQSキューを使用して、ログファイルのパスをキューに追加し、Lambda関数でポーリングする。",
-      "S3イベント通知を設定して、オブジェクト作成時にLambda関数をトリガーする。"
+      "Use Amazon CloudWatch Events to periodically trigger the Lambda function.",
+      "Use AWS Step Functions to manage the log analysis workflow.",
+      "Use an Amazon SQS queue to add log file paths and have the Lambda function poll the queue.",
+      "Configure S3 event notifications to trigger the Lambda function when objects are created."
     ],
     correctAnswer: 3,
-    category: "アプリケーション統合",
-    explanation: "S3イベント通知を設定して、オブジェクト作成時にLambda関数をトリガーすることで、ログファイルが書き込まれたときに自動的にログを分析できます。",
+    category: "Application Integration",
+    explanation: "Configuring S3 event notifications to trigger a Lambda function when objects are created allows logs to be automatically analyzed when log files are written.",
     optionExplanations: [
-      "CloudWatch Eventsを使用して定期的にトリガーすることは可能ですが、ログファイルが書き込まれたときにリアルタイムでトリガーするには、S3イベント通知の方が適しています。",
-      "Step Functionsは、複雑なワークフローの管理に適していますが、シンプルなログ分析には、S3イベント通知の方が適しています。",
-      "SQSキューを使用することは可能ですが、S3イベント通知を使用する方が、直接Lambda関数をトリガーでき、シンプルです。",
-      "✓ 正解: S3イベント通知は、S3バケット内でイベント(オブジェクトの作成、削除、復元など)が発生したときに、Lambda関数、SNSトピック、SQSキューに通知を送信する機能です。オブジェクト作成イベント(s3:ObjectCreated:*)を設定することで、ログファイルがS3に書き込まれたときに、自動的にLambda関数がトリガーされます。Lambda関数は、イベント情報(バケット名、オブジェクトキーなど)を受け取り、ログファイルを取得して分析できます。リアルタイムで処理が実行され、遅延が最小限に抑えられます。プレフィックスやサフィックスを使用して、特定のログファイルのみをフィルタリングすることもできます。"
+      "Using CloudWatch Events to trigger periodically is possible, but S3 event notifications are more appropriate for triggering in real time when log files are written.",
+      "Step Functions is suitable for managing complex workflows, but S3 event notifications are more appropriate for simple log analysis.",
+      "Using an SQS queue is possible, but using S3 event notifications is simpler and allows direct Lambda function triggering.",
+      "✓ Correct: S3 event notifications send notifications to Lambda functions, SNS topics, or SQS queues when events (object creation, deletion, restoration, etc.) occur in an S3 bucket. Configuring object creation events (s3:ObjectCreated:*) causes the Lambda function to be automatically triggered when log files are written to S3. The Lambda function receives event information (bucket name, object key, etc.) and can retrieve and analyze log files. Processing is performed in real time with minimal delay. Prefix and suffix filters can also be used to filter specific log files."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/NotificationHowTo.html", title: "Amazon S3 ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/NotificationHowTo.html", title: "Amazon S3 Event Notifications" }
     ]
   },
   {
     id: 93,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAmazon DynamoDBテーブルからデータを読み取りますが、読み取り一貫性が重要です。同社は、最新のデータを確実に取得したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきDynamoDBの読み取りオプションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically reads data from an Amazon DynamoDB table, and read consistency is important. The company wants to ensure it always retrieves the latest data.\n\nWhich DynamoDB read option should a solutions architect recommend to meet these requirements?",
     options: [
-      "強い整合性のある読み取り(Strongly Consistent Read)",
-      "結果整合性のある読み取り(Eventually Consistent Read)",
-      "トランザクション読み取り(Transactional Read)",
-      "バッチ読み取り(Batch Read)"
+      "Strongly Consistent Read",
+      "Eventually Consistent Read",
+      "Transactional Read",
+      "Batch Read"
     ],
     correctAnswer: 0,
-    category: "データベース",
-    explanation: "強い整合性のある読み取り(Strongly Consistent Read)を使用することで、最新のデータを確実に取得できます。",
+    category: "Database",
+    explanation: "Using Strongly Consistent Read guarantees that the latest data is always retrieved.",
     optionExplanations: [
-      "✓ 正解: 強い整合性のある読み取り(Strongly Consistent Read)は、最新の書き込みが反映されたデータを返すことを保証します。DynamoDBは、デフォルトで結果整合性のある読み取りを使用しますが、GetItemやQueryのConsistentReadパラメータをtrueに設定することで、強い整合性のある読み取りを使用できます。強い整合性のある読み取りは、すべてのレプリカからの応答を待つため、結果整合性のある読み取りよりもレイテンシが高く、RCU(読み取りキャパシティユニット)の消費量が2倍になります。しかし、最新のデータを確実に取得する必要がある場合に不可欠です。",
-      "結果整合性のある読み取りは、最新のデータが返されない可能性があります。強い整合性のある読み取りの方が、最新のデータを確実に取得できます。",
-      "トランザクション読み取りは、複数のアイテムをアトミックに読み取る場合に使用されますが、単一アイテムの最新データ取得には、強い整合性のある読み取りの方が適しています。",
-      "バッチ読み取りは、複数のアイテムを一度に読み取る効率的な方法ですが、読み取り一貫性とは別の概念です。"
+      "✓ Correct: Strongly Consistent Read guarantees that data reflecting the most recent writes is returned. DynamoDB uses Eventually Consistent Read by default, but setting the ConsistentRead parameter to true in GetItem or Query enables Strongly Consistent Read. Strongly Consistent Read waits for responses from all replicas, so it has higher latency than Eventually Consistent Read and consumes twice as many RCUs (Read Capacity Units). However, it is essential when the latest data must be reliably retrieved.",
+      "Eventually Consistent Read may not return the latest data. Strongly Consistent Read is more reliable for retrieving the latest data.",
+      "Transactional Read is used when multiple items need to be read atomically, but Strongly Consistent Read is more appropriate for retrieving the latest data for a single item.",
+      "Batch Read is an efficient method for reading multiple items at once, but it is a separate concept from read consistency."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html", title: "Amazon DynamoDB ドキュメント" }
+      { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.ReadConsistency.html", title: "Read consistency" }
     ]
   },
   {
     id: 94,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的に大量のデータをAmazon Kinesisデータストリームに送信します。同社は、Kinesisデータストリームのスループットを向上させたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically sends large amounts of data to an Amazon Kinesis data stream. The company wants to improve the throughput of the Kinesis data stream.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon Kinesis Data Firehoseを使用する。",
-      "Kinesisデータストリームの保持期間を増やす。",
-      "Kinesisデータストリームのシャード数を増やす。",
-      "Amazon SQSキューを使用する。"
+      "Use Amazon Kinesis Data Firehose.",
+      "Increase the retention period of the Kinesis data stream.",
+      "Increase the number of shards in the Kinesis data stream.",
+      "Use an Amazon SQS queue."
     ],
     correctAnswer: 2,
-    category: "アプリケーション統合",
-    explanation: "Kinesisデータストリームのシャード数を増やすことで、スループットを向上させることができます。各シャードは、1MB/秒の書き込みと2MB/秒の読み取りをサポートします。",
+    category: "Application Integration",
+    explanation: "Increasing the number of shards in the Kinesis data stream improves throughput. Each shard supports 1 MB/s write and 2 MB/s read.",
     optionExplanations: [
-      "Kinesis Data Firehoseは、データをS3、Redshift、Elasticsearchなどに配信するサービスで、リアルタイムのストリーミング処理には、Kinesis Data Streamsの方が適しています。",
-      "保持期間を増やすことは、データの保存期間を延長しますが、スループットには影響しません。",
-      "✓ 正解: Kinesisデータストリームのシャード数を増やすことで、スループットを向上させることができます。各シャードは、1MB/秒の書き込みスループットと1,000レコード/秒の書き込みレート、2MB/秒の読み取りスループットをサポートします。データストリームのスループットは、シャード数に比例します。例えば、10シャードのストリームは、10MB/秒の書き込みスループットをサポートします。シャード数は、UpdateShardCountAPIを使用して動的に増減できます。また、Application Auto Scalingを使用して、トラフィックに応じて自動的にシャード数を調整することもできます。",
-      "SQSキューは、メッセージキューサービスで、リアルタイムのストリーミングデータ処理には、Kinesisの方が適しています。"
+      "Kinesis Data Firehose is a service that delivers data to S3, Redshift, Elasticsearch, and other destinations. For real-time streaming processing, Kinesis Data Streams is more appropriate.",
+      "Increasing the retention period extends how long data is stored but does not affect throughput.",
+      "✓ Correct: Increasing the number of shards in the Kinesis data stream improves throughput. Each shard supports 1 MB/s write throughput, 1,000 records/s write rate, and 2 MB/s read throughput. The data stream's throughput is proportional to the number of shards. For example, a stream with 10 shards supports 10 MB/s write throughput. The shard count can be dynamically scaled up or down using the UpdateShardCount API. Application Auto Scaling can also be used to automatically adjust the shard count based on traffic.",
+      "SQS is a message queuing service. For real-time streaming data processing, Kinesis is more appropriate."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/streams/latest/dev/key-concepts.html", title: "Key Concepts" }
+      { url: "https://docs.aws.amazon.com/streams/latest/dev/key-concepts.html", title: "Amazon Kinesis Data Streams Terminology and Concepts" }
     ]
   },
   {
     id: 95,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、Amazon RDS for MySQLデータベースに接続します。同社は、データベースのパスワードを定期的にローテーションし、セキュリティを向上させたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application connects to an Amazon RDS for MySQL database. The company wants to periodically rotate the database password to improve security.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "AWS Systems Manager Parameter Storeを使用して、パスワードを保存し、手動でローテーションする。",
-      "Amazon S3バケットにパスワードを保存し、定期的に更新する。",
-      "AWS Secrets Managerを使用して、パスワードを保存し、自動ローテーションを設定する。",
-      "IAMロールを使用して、データベースに接続する。"
+      "Use AWS Systems Manager Parameter Store to store the password and rotate it manually.",
+      "Store the password in an Amazon S3 bucket and update it periodically.",
+      "Use AWS Secrets Manager to store the password and configure automatic rotation.",
+      "Use an IAM role to connect to the database."
     ],
     correctAnswer: 2,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Secrets Managerを使用して、パスワードを保存し、自動ローテーションを設定することで、セキュリティを向上させることができます。",
+    category: "Security and Compliance",
+    explanation: "Using AWS Secrets Manager to store the password and configure automatic rotation improves security.",
     optionExplanations: [
-      "Parameter Storeを使用することは可能ですが、自動ローテーション機能はありません。Secrets Managerの方が、自動ローテーションをサポートしています。",
-      "S3バケットにパスワードを保存することは、セキュリティリスクが高く、自動ローテーション機能もありません。",
-      "✓ 正解: AWS Secrets Managerは、データベースの認証情報、APIキー、その他の機密情報を安全に保存し、管理するサービスです。Secrets Managerは、RDS、Redshift、DocumentDBなどのデータベースのパスワードの自動ローテーションをサポートしています。ローテーションスケジュール(例：30日ごと)を設定すると、Secrets Managerは自動的にLambda関数を呼び出して、新しいパスワードを生成し、データベースとSecrets Managerの両方を更新します。アプリケーションは、Secrets ManagerのAPIを使用して、常に最新のパスワードを取得できます。これにより、パスワードの定期的なローテーションが自動化され、セキュリティが向上します。",
-      "IAMロールを使用してデータベースに接続することは、RDS Proxyと組み合わせて可能ですが、すべてのデータベースエンジンでサポートされているわけではありません。Secrets Managerの方が、汎用的です。"
+      "Using Parameter Store is possible, but it does not support automatic rotation. Secrets Manager supports automatic rotation.",
+      "Storing the password in an S3 bucket carries a high security risk and does not provide automatic rotation.",
+      "✓ Correct: AWS Secrets Manager is a service for securely storing and managing database credentials, API keys, and other sensitive information. Secrets Manager supports automatic rotation of passwords for databases such as RDS, Redshift, and DocumentDB. Setting a rotation schedule (e.g., every 30 days) causes Secrets Manager to automatically invoke a Lambda function to generate a new password and update both the database and Secrets Manager. Applications can use the Secrets Manager API to always retrieve the latest password. This automates periodic password rotation and improves security.",
+      "Using an IAM role to connect to the database is possible in combination with RDS Proxy, but it is not supported for all database engines. Secrets Manager is more versatile."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/secretsmanager/latest/userguide/rotating-secrets.html", title: "Rotating Secrets" }
+      { url: "https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html", title: "Rotating your AWS Secrets Manager secrets" }
     ]
   },
   {
     id: 96,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているウェブアプリケーションを持っています。アプリケーションは、ユーザーのアップロードしたファイルをAmazon S3バケットに保存します。同社は、S3バケット内のファイルが誤って削除されないように保護したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has a web application running on Amazon EC2 instances. The application stores files uploaded by users in an Amazon S3 bucket. The company wants to protect files in the S3 bucket from accidental deletion.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3バケットポリシーを使用して、削除操作を拒否する。",
-      "IAMポリシーを使用して、削除権限を制限する。",
-      "S3 Object Lockを使用する。",
-      "S3バージョニングを有効にし、MFA Deleteを設定する。"
+      "Use an S3 bucket policy to deny delete operations.",
+      "Use an IAM policy to restrict delete permissions.",
+      "Use S3 Object Lock.",
+      "Enable S3 Versioning and configure MFA Delete."
     ],
     correctAnswer: 3,
-    category: "ストレージ",
-    explanation: "S3バージョニングを有効にし、MFA Deleteを設定することで、ファイルが誤って削除されないように保護できます。",
+    category: "Storage",
+    explanation: "Enabling S3 Versioning and configuring MFA Delete protects files from accidental deletion.",
     optionExplanations: [
-      "S3バケットポリシーを使用して削除操作を拒否することは可能ですが、管理者がポリシーを変更できるため、完全な保護にはなりません。",
-      "IAMポリシーを使用して削除権限を制限することは有効ですが、管理者がポリシーを変更できるため、MFA Deleteの方が強力な保護を提供します。",
-      "S3 Object Lockは、WORM(Write Once Read Many)モデルで、指定した期間オブジェクトを削除できないようにしますが、誤削除の保護には、バージョニングとMFA Deleteの方が柔軟です。",
-      "✓ 正解: S3バージョニングを有効にすることで、オブジェクトの以前のバージョンを保持し、誤って削除された場合でも復元できます。さらに、MFA Delete(多要素認証削除)を設定することで、オブジェクトのバージョンを完全に削除したり、バージョニングを無効にしたりする際に、MFAデバイスによる認証が必要になります。これにより、誤った削除や悪意のある削除から保護されます。MFA Deleteは、バケット所有者のルートアカウントのみが設定でき、高いセキュリティレベルを提供します。削除マーカーが追加されるだけで、実際のデータは保持されます。"
+      "Using an S3 bucket policy to deny delete operations is possible, but an administrator can modify the policy, so it does not provide complete protection.",
+      "Using an IAM policy to restrict delete permissions is effective, but an administrator can modify the policy. MFA Delete provides stronger protection.",
+      "S3 Object Lock uses a WORM (Write Once Read Many) model to prevent objects from being deleted for a specified period, but versioning and MFA Delete are more flexible for protecting against accidental deletion.",
+      "✓ Correct: Enabling S3 Versioning retains previous versions of objects, allowing recovery even if they are accidentally deleted. Additionally, configuring MFA Delete (Multi-Factor Authentication Delete) requires authentication with an MFA device when permanently deleting an object version or disabling versioning. This protects against accidental or malicious deletion. MFA Delete can only be configured by the root account of the bucket owner, providing a high level of security. A delete marker is added, but the actual data is retained."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/Versioning.html", title: "Amazon S3 ドキュメント" },
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/MultiFactorAuthenticationDelete.html", title: "Amazon S3 ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html", title: "Using versioning in S3 buckets" },
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiFactorAuthenticationDelete.html", title: "Configuring MFA delete" }
     ]
   },
   {
     id: 97,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAWS Lambda関数を呼び出して、データ処理を実行します。Lambda関数の実行時間が長く、タイムアウトが発生することがあります。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically invokes AWS Lambda functions to perform data processing. Lambda function execution time is long and timeouts sometimes occur.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Amazon ECS on Fargateを使用して、長時間実行されるタスクを実行する。",
-      "Lambda関数を複数の小さな関数に分割し、AWS Step Functionsで連携させる。",
-      "Lambda関数のメモリサイズを増やす。",
-      "Lambda関数のタイムアウト時間を最大値(15分)に設定する。"
+      "Use Amazon ECS on Fargate to run long-running tasks.",
+      "Split Lambda functions into multiple smaller functions and chain them with AWS Step Functions.",
+      "Increase the Lambda function memory size.",
+      "Set the Lambda function timeout to the maximum value (15 minutes)."
     ],
     correctAnswer: 0,
-    category: "コンピューティング",
-    explanation: "Amazon ECS on Fargateを使用して、長時間実行されるタスクを実行することで、Lambda関数のタイムアウト制限を回避できます。",
+    category: "Compute",
+    explanation: "Using Amazon ECS on Fargate to run long-running tasks avoids the Lambda function timeout limit.",
     optionExplanations: [
-      "✓ 正解: Amazon ECS on Fargateは、サーバーレスのコンテナ実行環境で、長時間実行されるタスクに適しています。Lambda関数の最大実行時間は15分ですが、ECS on Fargateには実行時間の制限がありません。長時間実行されるデータ処理タスク(例：動画エンコーディング、大規模なデータ分析)は、ECS on Fargateで実行する方が適しています。Fargateは、サーバーの管理が不要で、必要なCPUとメモリを指定するだけで、コンテナを実行できます。また、Auto Scalingをサポートし、トラフィックに応じて自動的にスケールします。",
-      "Lambda関数を複数の小さな関数に分割し、Step Functionsで連携させることは有効な方法ですが、処理が本質的に長時間かかる場合、ECS on Fargateの方が適しています。",
-      "Lambda関数のメモリサイズを増やすことで実行速度は向上しますが、本質的に長時間かかる処理には、ECS on Fargateの方が適しています。",
-      "Lambda関数のタイムアウト時間を最大値(15分)に設定することは可能ですが、それでもタイムアウトが発生する場合、他のソリューションが必要です。"
+      "✓ Correct: Amazon ECS on Fargate is a serverless container execution environment suitable for long-running tasks. Lambda functions have a maximum execution time of 15 minutes, but ECS on Fargate has no execution time limit. Long-running data processing tasks (e.g., video encoding, large-scale data analysis) are better suited to run on ECS on Fargate. Fargate requires no server management; you simply specify the required CPU and memory to run containers. It also supports Auto Scaling, automatically scaling based on traffic.",
+      "Splitting Lambda functions into multiple smaller functions and chaining them with Step Functions is a valid approach, but if processing is inherently long-running, ECS on Fargate is more appropriate.",
+      "Increasing Lambda function memory size improves execution speed, but for inherently long-running processing, ECS on Fargate is more appropriate.",
+      "Setting the Lambda function timeout to the maximum value (15 minutes) is possible, but if timeouts still occur, another solution is needed."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/gettingstarted-limits.html", title: "AWS Lambda ドキュメント" }
+      { url: "https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html", title: "Lambda quotas" }
     ]
   },
   {
     id: 98,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、Amazon ElastiCache for Redisクラスターに接続します。同社は、Redisクラスターの可用性を向上させ、フェイルオーバー時のダウンタイムを最小限に抑えたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application connects to an Amazon ElastiCache for Redis cluster. The company wants to improve Redis cluster availability and minimize downtime during failover.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Redisクラスターのノード数を増やす。",
-      "RedisクラスターでマルチAZ配置を有効にする。",
-      "Redisクラスターのインスタンスタイプを大きくする。",
-      "複数のRedisクラスターを作成し、アプリケーションで負荷分散する。"
+      "Increase the number of nodes in the Redis cluster.",
+      "Enable Multi-AZ deployment for the Redis cluster.",
+      "Upgrade the Redis cluster instance type.",
+      "Create multiple Redis clusters and load balance with the application."
     ],
     correctAnswer: 1,
-    category: "データベース",
-    explanation: "RedisクラスターでマルチAZ配置を有効にすることで、可用性を向上させ、フェイルオーバー時のダウンタイムを最小限に抑えることができます。",
+    category: "Database",
+    explanation: "Enabling Multi-AZ deployment for the Redis cluster improves availability and minimizes downtime during failover.",
     optionExplanations: [
-      "Redisクラスターのノード数を増やすことは、読み取りパフォーマンスを向上させますが、可用性の向上には、マルチAZ配置の方が効果的です。",
-      "✓ 正解: RedisクラスターでマルチAZ配置を有効にすることで、可用性を向上させ、フェイルオーバー時のダウンタイムを最小限に抑えることができます。マルチAZ配置では、プライマリノードと1つ以上のレプリカノードが異なるアベイラビリティーゾーンに配置されます。プライマリノードに障害が発生した場合、ElastiCacheは自動的にレプリカノードをプライマリに昇格させ、フェイルオーバーを実行します。フェイルオーバーは通常数分以内に完了し、アプリケーションは同じエンドポイントを使用して接続を継続できます。また、自動バックアップとポイントインタイムリカバリもサポートされています。",
-      "インスタンスタイプを大きくすることは、パフォーマンスを向上させますが、可用性の向上には、マルチAZ配置の方が効果的です。",
-      "複数のRedisクラスターを作成し、アプリケーションで負荷分散することは可能ですが、マルチAZ配置の方が、管理が簡単で、自動フェイルオーバーをサポートしています。"
+      "Increasing the number of nodes in the Redis cluster improves read performance, but Multi-AZ deployment is more effective for improving availability.",
+      "✓ Correct: Enabling Multi-AZ deployment for the Redis cluster improves availability and minimizes downtime during failover. In Multi-AZ deployment, the primary node and one or more replica nodes are placed in different Availability Zones. If the primary node fails, ElastiCache automatically promotes a replica node to primary and performs failover. Failover typically completes within a few minutes, and applications can continue connecting using the same endpoint. Automatic backups and point-in-time recovery are also supported.",
+      "Upgrading the instance type improves performance, but Multi-AZ deployment is more effective for improving availability.",
+      "Creating multiple Redis clusters and load balancing with the application is possible, but Multi-AZ deployment is easier to manage and supports automatic failover."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonElastiCache/latest/red-ug/AutoFailover.html", title: "Amazon ElastiCache ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoFailover.html", title: "Minimizing downtime in ElastiCache for Redis with Multi-AZ" }
     ]
   },
   {
     id: 99,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAmazon S3バケットから大量のファイルを読み取ります。同社は、S3からの読み取りパフォーマンスを向上させたいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically reads large numbers of files from an Amazon S3 bucket. The company wants to improve read performance from S3.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "S3 Transfer Accelerationを有効にする。",
-      "Amazon CloudFrontを使用して、S3コンテンツをキャッシュする。",
-      "S3バケット内のファイルに適切なプレフィックスを使用して、リクエストを分散する。",
-      "S3バケットをEC2インスタンスと同じアベイラビリティーゾーンに配置する。"
+      "Enable S3 Transfer Acceleration.",
+      "Use Amazon CloudFront to cache S3 content.",
+      "Use appropriate prefixes for files in the S3 bucket to distribute requests.",
+      "Place the S3 bucket in the same Availability Zone as the EC2 instances."
     ],
     correctAnswer: 2,
-    category: "ストレージ",
-    explanation: "S3バケット内のファイルに適切なプレフィックスを使用して、リクエストを分散することで、S3からの読み取りパフォーマンスを向上させることができます。",
+    category: "Storage",
+    explanation: "Using appropriate prefixes for files in the S3 bucket to distribute requests improves read performance from S3.",
     optionExplanations: [
-      "S3 Transfer Accelerationは、長距離のデータ転送を高速化しますが、同一リージョン内の読み取りパフォーマンスには、プレフィックスの分散の方が効果的です。",
-      "CloudFrontは、エンドユーザーへのコンテンツ配信に適していますが、EC2からS3への読み取りパフォーマンス向上には、プレフィックスの分散の方が効果的です。",
-      "✓ 正解: S3バケット内のファイルに適切なプレフィックスを使用して、リクエストを分散することで、S3からの読み取りパフォーマンスを向上させることができます。S3は、プレフィックスごとに3,500リクエスト/秒のPUTリクエストと5,500リクエスト/秒のGETリクエストをサポートします。ファイルを複数のプレフィックスに分散することで(例：bucket/prefix1/、bucket/prefix2/、bucket/prefix3/)、合計のスループットを向上させることができます。例えば、10個のプレフィックスを使用すると、55,000リクエスト/秒のGETリクエストをサポートできます。また、並列リクエストを使用して、複数のファイルを同時にダウンロードすることも効果的です。",
-      "S3はリージョンレベルのサービスで、特定のアベイラビリティーゾーンに配置することはできません。"
+      "S3 Transfer Acceleration speeds up long-distance data transfers, but distributing prefixes is more effective for improving read performance within the same region.",
+      "CloudFront is suitable for delivering content to end users, but distributing prefixes is more effective for improving read performance from EC2 to S3.",
+      "✓ Correct: Using appropriate prefixes for files in the S3 bucket to distribute requests improves read performance from S3. S3 supports 3,500 PUT requests/s and 5,500 GET requests/s per prefix. Distributing files across multiple prefixes (e.g., bucket/prefix1/, bucket/prefix2/, bucket/prefix3/) increases total throughput. For example, using 10 prefixes supports 55,000 GET requests/s. Using parallel requests to download multiple files simultaneously is also effective.",
+      "S3 is a region-level service and cannot be placed in a specific Availability Zone."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/optimizing-performance.html", title: "Amazon S3 ドキュメント" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/optimizing-performance.html", title: "Best practices design patterns: optimizing Amazon S3 performance" }
     ]
   },
   {
     id: 100,
-    question: "ある企業は、Amazon EC2インスタンスで実行されているアプリケーションを持っています。アプリケーションは、定期的にAWS Lambda関数を呼び出して、データ処理を実行します。同社は、Lambda関数の実行コストを削減したいと考えています。\n\nこれらの要件を満たすために、ソリューションアーキテクトが推奨すべきソリューションはどれですか。",
+    question: "A company has an application running on Amazon EC2 instances. The application periodically invokes AWS Lambda functions to perform data processing. The company wants to reduce Lambda function execution costs.\n\nWhich solution should a solutions architect recommend to meet these requirements?",
     options: [
-      "Lambda関数のコードを最適化して、実行時間を短縮する。",
-      "Lambda関数のメモリサイズを減らす。",
-      "Lambda関数のタイムアウト時間を減らす。",
-      "Lambda Savings Plansを購入する。"
+      "Optimize Lambda function code to reduce execution time.",
+      "Reduce the Lambda function memory size.",
+      "Reduce the Lambda function timeout.",
+      "Purchase Lambda Savings Plans."
     ],
     correctAnswer: 0,
-    category: "コンピューティング",
-    explanation: "Lambda関数のコードを最適化して、実行時間を短縮することで、実行コストを削減できます。Lambdaの料金は、実行時間とメモリサイズに基づいて計算されます。",
+    category: "Compute",
+    explanation: "Optimizing Lambda function code to reduce execution time lowers execution costs. Lambda pricing is calculated based on execution time and memory size.",
     optionExplanations: [
-      "✓ 正解: Lambda関数のコードを最適化して、実行時間を短縮することで、実行コストを削減できます。Lambdaの料金は、実行時間(ミリ秒単位)とメモリサイズ(GB単位)の積(GB-秒)に基づいて計算されます。コードを最適化することで、実行時間を短縮し、コストを削減できます。最適化の方法には、不要なライブラリのインポートを削除する、効率的なアルゴリズムを使用する、外部APIへの呼び出しを最小限に抑える、接続プーリングを使用する、Lambda Layersを使用して共通コードを共有する、などがあります。また、適切なメモリサイズを選択することも重要です。メモリサイズを増やすと、CPUパワーも増加し、実行時間が短縮される場合があります。",
-      "Lambda関数のメモリサイズを減らすことでコストは削減されますが、実行時間が長くなる可能性があります。コードを最適化する方が、全体的なコスト削減に効果的です。",
-      "タイムアウト時間を減らすことは、実行時間が長い関数を強制的に終了させるだけで、コスト削減にはなりません。",
-      "Lambda Savings Plansを購入することで、長期的なコスト削減が可能ですが、まずコードを最適化する方が、即座に効果があります。"
+      "✓ Correct: Optimizing Lambda function code to reduce execution time lowers execution costs. Lambda pricing is calculated based on the product of execution time (in milliseconds) and memory size (in GB) (GB-seconds). Optimizing code reduces execution time and costs. Optimization methods include removing unnecessary library imports, using efficient algorithms, minimizing calls to external APIs, using connection pooling, and using Lambda Layers to share common code. Selecting an appropriate memory size is also important. Increasing memory size also increases CPU power, which may reduce execution time.",
+      "Reducing Lambda function memory size lowers costs, but may increase execution time. Optimizing code is more effective for overall cost reduction.",
+      "Reducing the timeout only forcibly terminates functions with long execution times and does not reduce costs.",
+      "Purchasing Lambda Savings Plans enables long-term cost reduction, but optimizing code first is more immediately effective."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/best-practices.html", title: "AWS Lambda ドキュメント" }
+      { url: "https://docs.aws.amazon.com/lambda/latest/dg/best-practices.html", title: "Best practices for working with AWS Lambda functions" }
     ]
   }
 ];

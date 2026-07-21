@@ -1,127 +1,127 @@
 const questionsData = [
   {
     id: "dva-001",
-    question: "ある企業が、レガシーアプリケーションをAmazon EC2インスタンスに移行しています。アプリケーションは、ソースコードに保存されているユーザー名とパスワードを使用してMySQLデータベースに接続します。同社は、データベースをAmazon RDS for MySQL DBインスタンスに移行します。移行の一環として、会社はデータベース認証情報を保存し、自動的にローテーションする安全な方法を実装する必要があります。\n\nこれらの要件を満たすソリューションはどれですか。",
+    question: "A company is migrating a legacy application to Amazon EC2 instances. The application connects to a MySQL database using a username and password stored in the source code. The company is migrating the database to an Amazon RDS for MySQL DB instance. As part of the migration, the company must implement a secure way to store and automatically rotate the database credentials.\n\nWhich solution meets these requirements?",
     options: [
-      "データベース認証情報をAmazon Machine Image (AMI)の環境変数に保存する。AMIを置き換えて認証情報をローテーションする。",
-      "データベース認証情報をAWS Secrets Managerに保存する。認証情報を自動的にローテーションするようにSecrets Managerを設定する。",
-      "データベース認証情報をEC2インスタンスの環境変数に保存する。EC2インスタンスを再起動して認証情報をローテーションする。",
-      "データベース認証情報をAWS Systems Manager Parameter Storeに保存する。認証情報を自動的にローテーションするようにParameter Storeを設定する。"
+      "Store the database credentials in environment variables of an Amazon Machine Image (AMI). Replace the AMI to rotate the credentials.",
+      "Store the database credentials in AWS Secrets Manager. Configure Secrets Manager to automatically rotate the credentials.",
+      "Store the database credentials in environment variables on the EC2 instances. Restart the EC2 instances to rotate the credentials.",
+      "Store the database credentials in AWS Systems Manager Parameter Store. Configure Parameter Store to automatically rotate the credentials."
     ],
     correctAnswer: 1,
-    category: "セキュリティ",
-    explanation: "AWS Secrets Managerは、データベース、アプリケーション、サービス、その他のITリソースにアクセスするために必要な認証情報を保護するのに役立ちます。Secrets Managerを使用すると、データベースの認証情報、APIキー、その他のシークレットをそのライフサイクルを通してローテーション、管理、取得できます。ユーザーおよびアプリケーションはSecrets Manager APIコールを行うことでシークレットを取得するため、機密情報をプレーンテキストでハードコーディングする必要がなくなります。Secrets Managerは、組み込み統合により、Amazon RDS、Amazon Redshift、およびAmazon DocumentDB (MongoDB互換)でシークレットのローテーションを行います。",
+    category: "Security",
+    explanation: "AWS Secrets Manager helps protect credentials needed to access your databases, applications, services, and other IT resources. With Secrets Manager, you can rotate, manage, and retrieve database credentials, API keys, and other secrets throughout their lifecycle. Users and applications retrieve secrets with a call to Secrets Manager APIs, eliminating the need to hardcode sensitive information in plain text. Secrets Manager offers built-in integrations for rotating secrets for Amazon RDS, Amazon Redshift, and Amazon DocumentDB (with MongoDB compatibility).",
     optionExplanations: [
-      "誤り：AMIの環境変数に認証情報を保存することはセキュリティのベストプラクティスではなく、AMIを置き換えることは非効率的です。また、自動ローテーション機能もありません。",
-      "正解：Secrets Managerは認証情報の安全な保存と自動ローテーション機能を提供し、RDSとの組み込み統合により、要件を完全に満たします。",
-      "誤り：EC2インスタンスの環境変数に認証情報を保存することはセキュリティリスクがあり、インスタンスを再起動する方法は非効率的で自動化されていません。",
-      "誤り：Parameter Storeは認証情報を保存できますが、自動ローテーション機能は組み込まれていません。手動でローテーションロジックを実装する必要があります。"
+      "Incorrect: Storing credentials in AMI environment variables is not a security best practice, and replacing AMIs to rotate credentials is inefficient. There is also no automatic rotation capability.",
+      "Correct: Secrets Manager provides secure credential storage and automatic rotation capability, with built-in RDS integration that fully satisfies the requirements.",
+      "Incorrect: Storing credentials in EC2 instance environment variables poses a security risk, and restarting instances to rotate them is inefficient and not automated.",
+      "Incorrect: Parameter Store can store credentials, but does not have built-in automatic rotation. You would need to implement the rotation logic manually."
     ]
   },
   {
     id: "dva-002",
-    question: "デベロッパーは、ユーザーがほぼリアルタイムでコメントを投稿したりフィードバックを受け取ったりできるようにする必要があるウェブアプリケーションを作成しています。\n\nこれらの要件を満たすソリューションはどれですか (2つ選択)。",
+    question: "A developer is creating a web application that needs to allow users to post comments and receive feedback in near-real time.\n\nWhich solutions meet these requirements? (Choose TWO.)",
     options: [
-      "AWS AppSyncスキーマと対応するAPIを作成する。Amazon DynamoDBテーブルをデータストアとして使用する。",
-      "Amazon API GatewayでWebSocket APIを作成する。AWS Lambda関数をバックエンドとして使用する。Amazon DynamoDBテーブルをデータストアとして使用する。",
-      "Amazon RDSデータベースによってバックアップされるAWS Elastic Beanstalkアプリケーションを作成する。長期間有効なTCP/IPソケットを許可するようにアプリケーションを構成する。",
+      "Create an AWS AppSync schema and corresponding API. Use an Amazon DynamoDB table as the data store.",
+      "Create a WebSocket API in Amazon API Gateway. Use an AWS Lambda function as the backend. Use an Amazon DynamoDB table as the data store.",
+      "Create an AWS Elastic Beanstalk application backed by an Amazon RDS database. Configure the application to allow long-lived TCP/IP sockets.",
       undefined,
-      "Amazon CloudFrontへのWebSocket接続を確立する。AWS Lambda関数をCloudFrontディストリビューションのオリジンとして使用する。Amazon Aurora DBクラスターをデータストアとして使用する。"
+      "Establish a WebSocket connection to Amazon CloudFront. Use an AWS Lambda function as the origin for the CloudFront distribution. Use an Amazon Aurora DB cluster as the data store."
     ],
     correctAnswer: 3,
-    category: "アプリケーション統合",
-    explanation: "AWS AppSyncは、GraphQLを使用してアプリケーションが必要とする正確なデータを取得できるようにするマネージド型サービスです。AWS AppSyncを使用して、Amazon DynamoDBを含むさまざまなデータソースでリアルタイムの更新を必要とするスケーラブルなアプリケーションを構築できます。\n\nAmazon API GatewayではAWSのサービス(Lambda、DynamoDBなど)またはHTTPエンドポイント向けのステートフルフロントエンドとしてWebSocket APIを作成できます。WebSocket APIは、クライアントアプリケーションから受信するメッセージの内容に基づき、バックエンドを呼び出します。リクエストを受信して応答するREST APIとは異なり、WebSocket APIはクライアントアプリケーションとバックエンド間の双方向通信をサポートします。",
+    category: "Application Integration",
+    explanation: "AWS AppSync is a managed service that uses GraphQL to make it easy for applications to get exactly the data they need. With AWS AppSync, you can build scalable applications that require real-time updates with a variety of data sources including Amazon DynamoDB.\n\nWith Amazon API Gateway you can create WebSocket APIs as a stateful frontend for an AWS service (such as Lambda or DynamoDB) or for an HTTP endpoint. The WebSocket API invokes your backend based on the content of the messages it receives from client apps. Unlike a REST API, which receives and responds to requests, a WebSocket API supports two-way communication between client apps and your backend.",
     optionExplanations: [
-      "正解：AWS AppSyncはGraphQLとリアルタイムサブスクリプションをサポートし、DynamoDBと統合してリアルタイム通信を実現できます。",
-      "正解：API GatewayのWebSocket APIは双方向通信をサポートし、Lambdaと組み合わせることでリアルタイム機能を実装できます。",
-      "誤り：Elastic BeanstalkとRDSの組み合わせは従来型のアプリケーションには適していますが、リアルタイム通信には最適化されていません。",
+      "Correct: AWS AppSync supports GraphQL and real-time subscriptions, and integrates with DynamoDB to enable real-time communication.",
+      "Correct: API Gateway WebSocket APIs support bidirectional communication and, combined with Lambda, can implement real-time functionality.",
+      "Incorrect: The combination of Elastic Beanstalk and RDS is suitable for traditional applications but is not optimized for real-time communication.",
       undefined,
-      "誤り：CloudFrontはWebSocket接続をサポートしていません。WebSocketにはAPI Gatewayを使用する必要があります。"
+      "Incorrect: CloudFront does not support WebSocket connections. API Gateway should be used for WebSocket."
     ]
   },
   {
     id: "dva-003",
-    question: "デベロッパーがサインアップとサインインの機能をアプリケーションに追加しています。アプリケーションは、ユーザーのサインインイベントのログを記録するために、カスタム分析ソリューションへのAPIコールを行う必要があります。\n\nこれらの要件を満たすために、デベロッパーはどのアクションの組み合わせを実行すべきですか (2つ選択)。",
+    question: "A developer is adding sign-up and sign-in functionality to an application. The application must make API calls to a custom analytics solution to log user sign-in events.\n\nWhich combination of actions should the developer take to meet these requirements? (Choose TWO.)",
     options: [
       undefined,
-      "AWS Identity and Access Management (IAM)を使用して、サインアップとサインイン機能を提供する。",
-      "ユーザーが認証されたときにAPIコールを行うようにAWS Configルールを設定する。",
-      "Amazon API Gatewayメソッドを呼び出して、ユーザーが認証されたときにAPIコールを行う。",
-      "ユーザーが認証されたときに、AWS Lambda関数を呼び出してAPIコールを行う。"
+      "Use AWS Identity and Access Management (IAM) to provide the sign-up and sign-in functionality.",
+      "Configure an AWS Config rule to make API calls when a user is authenticated.",
+      "Invoke an Amazon API Gateway method to make API calls when a user is authenticated.",
+      "Invoke an AWS Lambda function to make API calls when a user is authenticated."
     ],
     correctAnswer: 0,
-    category: "セキュリティ",
-    explanation: "Amazon Cognitoは、ユーザーのサインアップ、サインイン、およびアクセス制御をウェブおよびモバイルアプリケーションに追加します。また、カスタム分析ソリューションへのAPIコールを行うAWS Lambda関数を作成し、Amazon Cognito認証後トリガーを使用してその関数を呼び出すこともできます。",
+    category: "Security",
+    explanation: "Amazon Cognito adds user sign-up, sign-in, and access control to web and mobile applications. You can also create an AWS Lambda function to make API calls to a custom analytics solution, and use an Amazon Cognito post-authentication trigger to invoke that function.",
     optionExplanations: [
       undefined,
-      "誤り：IAMはAWSリソースへのアクセス管理に使用されますが、アプリケーションユーザーのサインアップ・サインイン機能には適していません。",
-      "誤り：AWS Configはリソースの設定変更を追跡するサービスであり、ユーザー認証イベントの処理には使用されません。",
-      "誤り：API Gatewayは直接認証イベントを処理しません。Cognitoトリガーを使用する方が適切です。",
-      "正解：Cognito認証後トリガーを使用してLambda関数を呼び出し、カスタム分析ソリューションへのAPIコールを実行できます。"
+      "Incorrect: IAM is used for managing access to AWS resources, and is not suitable for application user sign-up and sign-in functionality.",
+      "Incorrect: AWS Config is a service for tracking configuration changes to resources, and is not used to handle user authentication events.",
+      "Incorrect: API Gateway does not directly handle authentication events. Using Cognito triggers is more appropriate.",
+      "Correct: A Cognito post-authentication trigger can invoke a Lambda function to make API calls to the custom analytics solution."
     ]
   },
   {
     id: "dva-004",
-    question: "ある会社がAWSアカウントのREST APIにAmazon API Gatewayを使用しています。デベロッパーは、別のAWSアカウントのIAMユーザーのみにAPIへのアクセスを許可したいと考えています。\n\nこれらの要件を満たすために、デベロッパーが取るべきステップの組み合わせはどれですか (2つ選択)。",
+    question: "A company uses Amazon API Gateway for a REST API in one AWS account. A developer wants to grant access to the API only to IAM users from a different AWS account.\n\nWhich combination of steps should the developer take to meet these requirements? (Choose TWO.)",
     options: [
-      "IAMアクセス許可ポリシーを作成する。ポリシーを各IAMユーザーに添付する。APIのメソッド認可タイプをAWS_IAMに設定する。署名バージョン4を使用してAPIリクエストに署名する。",
-      "Amazon Cognitoのユーザープールを作成する。各IAMユーザーをユーザープールに追加する。APIのメソッド認可タイプをCOGNITO_USER_POOLSに設定する。Amazon CognitoでIAM認証情報を使用して認証する。IDトークンをリクエストヘッダーに追加する。",
-      "Amazon Cognitoアイデンティティプールを作成する。各IAMユーザーをアイデンティティプールに追加する。APIのメソッド認可タイプをCOGNITO_USER_POOLSに設定する。Amazon CognitoでIAM認証情報を使用して認証する。アクセストークンをリクエストヘッダーに追加する。",
+      "Create an IAM permission policy. Attach the policy to each IAM user. Set the API method authorization type to AWS_IAM. Sign the API requests using Signature Version 4.",
+      "Create an Amazon Cognito user pool. Add each IAM user to the user pool. Set the API method authorization type to COGNITO_USER_POOLS. Authenticate using IAM credentials in Amazon Cognito. Add the ID token to the request header.",
+      "Create an Amazon Cognito identity pool. Add each IAM user to the identity pool. Set the API method authorization type to COGNITO_USER_POOLS. Authenticate using IAM credentials in Amazon Cognito. Add the access token to the request header.",
       undefined,
-      "API用のAmazon Cognitoオーソライザーを作成して、各IAMユーザーのみにアクセスを許可する。APIのメソッド認可タイプをCOGNITO_USER_POOLSに設定する。"
+      "Create an Amazon Cognito authorizer for the API to grant access only to each IAM user. Set the API method authorization type to COGNITO_USER_POOLS."
     ],
     correctAnswer: 3,
-    category: "セキュリティ",
-    explanation: "リソースポリシーは、署名バージョン4 (Sigv4)プロトコルを使用して、あるAWSアカウントのAPIアクセスを別のAWSアカウントのユーザーに許可できます。IAMアクセス許可ポリシーとリソースポリシーを組み合わせることで、クロスアカウントアクセスを安全に実装できます。",
+    category: "Security",
+    explanation: "A resource policy can grant API access in one AWS account to users in a different AWS account using the Signature Version 4 (SigV4) protocol. By combining IAM permission policies with a resource policy, you can securely implement cross-account access.",
     optionExplanations: [
-      "正解：IAMポリシーとAWS_IAM認可タイプ、Sigv4署名を使用することで、IAMベースの認証を実装できます。",
-      "誤り：Cognitoユーザープールはアプリケーションユーザー向けであり、IAMユーザーとは異なります。IAMユーザーをユーザープールに追加することはできません。",
-      "誤り：アイデンティティプールはフェデレーテッドアイデンティティ用であり、IAMユーザーを直接追加する方法ではありません。",
+      "Correct: Using IAM policies with the AWS_IAM authorization type and SigV4 signing implements IAM-based authentication.",
+      "Incorrect: Cognito user pools are for application users and are different from IAM users. IAM users cannot be added to a user pool.",
+      "Incorrect: Identity pools are for federated identities and are not a method for directly adding IAM users.",
       undefined,
-      "誤り：Cognitoオーソライザーはアプリケーションユーザー向けであり、IAMユーザーの認証には適していません。"
+      "Incorrect: Cognito authorizers are for application users and are not suitable for authenticating IAM users."
     ]
   },
   {
     id: "dva-005",
-    question: "デベロッパーは、テキストファイルを.pdfファイルに変換する新しいアプリケーションを構築しています。別のアプリケーションが、テキストファイルをソースAmazon S3バケットに書き込みます。新しいアプリケーションは、Amazon S3に到着したファイルを読み取り、AWS Lambda関数を使用してファイルを.pdfファイルに変換する必要があります。デベロッパーは、Amazon S3とAmazon CloudWatch Logsへのアクセスを許可するIAM Policyを作成しました。\n\nLambda関数に正しいアクセス許可があることを確認するために、デベロッパーは何をすべきですか。",
+    question: "A developer is building a new application that converts text files to .pdf files. A separate application writes text files to a source Amazon S3 bucket. The new application must read files as they arrive in Amazon S3 and use an AWS Lambda function to convert the files to .pdf files. The developer has created an IAM policy that grants access to Amazon S3 and Amazon CloudWatch Logs.\n\nWhat should the developer do to ensure that the Lambda function has the correct permissions?",
     options: [
-      "AWS Identity and Access Management (IAM)を使用してLambda実行ロールを作成する。IAM Policyをロールに添付する。IAMロールをLambda関数に環境変数として保存する。",
-      "AWS Identity and Access Management (IAM)を使用してLambda実行ユーザーを作成する。IAM Policyをユーザーに添付する。Lambda実行ユーザーをLambda関数に割り当てる。",
-      "AWS Identity and Access Management (IAM)を使用してLambda実行ロールを作成する。IAM Policyをロールに添付する。Lambda実行ロールをLambda関数に割り当てる。",
-      "AWS Identity and Access Management (IAM)を使用してLambda実行ユーザーを作成する。IAM Policyをユーザーに添付する。IAMユーザーの認証情報をLambda関数に環境変数として保存する。"
+      "Use AWS Identity and Access Management (IAM) to create a Lambda execution role. Attach the IAM policy to the role. Store the IAM role as an environment variable on the Lambda function.",
+      "Use AWS Identity and Access Management (IAM) to create a Lambda execution user. Attach the IAM policy to the user. Assign the Lambda execution user to the Lambda function.",
+      "Use AWS Identity and Access Management (IAM) to create a Lambda execution role. Attach the IAM policy to the role. Assign the Lambda execution role to the Lambda function.",
+      "Use AWS Identity and Access Management (IAM) to create a Lambda execution user. Attach the IAM policy to the user. Store the IAM user credentials as environment variables on the Lambda function."
     ],
     correctAnswer: 2,
-    category: "セキュリティ",
-    explanation: "AWS Lambda関数の実行ロールは、AWSのサービスとリソースにアクセスするためのアクセス許可をLambda関数に付与します。このロールは関数を作成するときに指定し、Lambdaは関数が呼び出されるときにロールを引き受けます。実行ロールを使用することで、認証情報をハードコーディングすることなく、安全にAWSリソースにアクセスできます。",
+    category: "Security",
+    explanation: "An execution role for an AWS Lambda function grants the function the permissions it needs to access AWS services and resources. You specify this role when you create the function, and Lambda assumes the role when the function is invoked. Using an execution role allows secure access to AWS resources without hardcoding credentials.",
     optionExplanations: [
-      "誤り：IAMロールを環境変数として保存することはできません。ロールはLambda関数の設定で直接割り当てます。",
-      "誤り：Lambdaはロールを使用し、IAMユーザーを使用しません。IAMユーザーは人間またはアプリケーション用です。",
-      "正解：Lambda実行ロールを作成し、必要なポリシーを添付して関数に割り当てることが、Lambdaのベストプラクティスです。",
-      "誤り：認証情報を環境変数に保存することはセキュリティのベストプラクティスではなく、Lambdaでは実行ロールを使用すべきです。"
+      "Incorrect: An IAM role cannot be stored as an environment variable. The role is assigned directly in the Lambda function's configuration.",
+      "Incorrect: Lambda uses roles, not IAM users. IAM users are for humans or applications, not for Lambda functions.",
+      "Correct: Creating a Lambda execution role, attaching the required policy, and assigning it to the function is the Lambda best practice.",
+      "Incorrect: Storing credentials as environment variables is not a security best practice. Lambda should use an execution role."
     ]
   },
   {
     id: "dva-006",
-    question: "デベロッパーは、機密性の高いデータをデータベースに保存するアプリケーションに取り組んでいます。デベロッパーは、データを保護するために、エンベロープ暗号化と共にAWS Key Management Service (AWS KMS)を使用する必要があります。\n\nこれらの要件を満たすために、デベロッパーはどのようにデータ暗号化を設定すべきですか。",
+    question: "A developer is working on an application that stores highly sensitive data in a database. The developer must use AWS Key Management Service (AWS KMS) with envelope encryption to protect the data.\n\nHow should the developer configure the data encryption to meet these requirements?",
     options: [
-      "KMSキーを使用してデータを暗号化する。暗号化されたデータをデータベースに保存する。",
-      "生成されたデータキーを使用してデータを暗号化する。暗号化されたデータをデータベースに保存する。",
-      "生成されたデータキーを使用してデータを暗号化する。暗号化されたデータと暗号化されたデータキーをデータベースに保存する。",
-      "生成されたデータキーを使用してデータを暗号化する。暗号化されたデータとデータキーIDをデータベースに保存する。"
+      "Use a KMS key to encrypt the data. Store the encrypted data in the database.",
+      "Use a generated data key to encrypt the data. Store the encrypted data in the database.",
+      "Use a generated data key to encrypt the data. Store both the encrypted data and the encrypted data key in the database.",
+      "Use a generated data key to encrypt the data. Store the encrypted data and the data key ID in the database."
     ],
     correctAnswer: 2,
-    category: "セキュリティ",
-    explanation: "エンベロープ暗号化は、データキーでプレーンテキストデータを暗号化し、そのデータキーを別のキーで暗号化する手法です。データキーを使用してデータベース内の暗号化されたデータを復号化できるように、暗号化された形式のデータキーを保存する必要があります。KMSのGenerateDataKey APIを使用してデータキーを生成し、プレーンテキストと暗号化されたバージョンの両方を取得します。プレーンテキストのデータキーでデータを暗号化した後、プレーンテキストのデータキーをメモリから削除し、暗号化されたデータキーのみを保存します。",
+    category: "Security",
+    explanation: "Envelope encryption is the practice of encrypting plaintext data with a data key, and then encrypting the data key under another key. You must store the encrypted form of the data key so that you can later decrypt the encrypted data in the database. Use the KMS GenerateDataKey API to generate a data key and obtain both the plaintext and encrypted versions. After encrypting the data with the plaintext data key, delete the plaintext key from memory and store only the encrypted data key.",
     optionExplanations: [
-      "誤り：KMSキーを直接使用してデータを暗号化することは、大量のデータには非効率的です。エンベロープ暗号化ではデータキーを使用します。",
-      "誤り：暗号化されたデータキーを保存しないと、後でデータを復号化できません。",
-      "正解：エンベロープ暗号化の正しい実装では、暗号化されたデータと暗号化されたデータキーの両方を保存します。復号化時にKMSを使用してデータキーを復号化し、そのデータキーでデータを復号化します。",
-      "誤り：データキーIDだけでは復号化できません。暗号化されたデータキー自体を保存する必要があります。"
+      "Incorrect: Using a KMS key to directly encrypt data is inefficient for large amounts of data. Envelope encryption uses a data key for this purpose.",
+      "Incorrect: Without storing the encrypted data key, you cannot decrypt the data later.",
+      "Correct: The correct implementation of envelope encryption stores both the encrypted data and the encrypted data key. At decryption time, use KMS to decrypt the data key, then use that key to decrypt the data.",
+      "Incorrect: The data key ID alone is not sufficient to decrypt. You must store the encrypted data key itself."
     ]
   },
   {
     id: "dva-007",
-    question: "デベロッパーが会社の既存のレコードストレージアプリケーションにAmazon ElastiCache for Memcachedを追加しようとしています。デベロッパーは、一般的なレコード処理パターンの分析に基づいて遅延読み込みを使用することにしました。\n\n遅延読み込みを正しく実装する擬似コードの例はどれですか。",
+    question: "A developer is adding Amazon ElastiCache for Memcached to a company's existing record storage application. The developer has decided to use lazy loading based on an analysis of common record access patterns.\n\nWhich pseudocode example correctly implements lazy loading?",
     options: [
       "record_value = cache.get(record_key)\nif (record_value == NULL)\n    record_value = db.query(\"SELECT Details FROM Records WHERE ID == {0}\", record_key)\n    cache.set(record_key, record_value)",
       "record_value = db.query(\"UPDATE Records SET Details = {1} WHERE ID == {0}\", record_key, record_value)\ncache.set(record_key, record_value)",
@@ -129,877 +129,877 @@ const questionsData = [
       "record_value = db.query(\"SELECT Details FROM Records WHERE ID == {0}\", record_key)\nif (record_value != NULL)\n    cache.set(record_key, record_value)"
     ],
     correctAnswer: 0,
-    category: "データベース",
-    explanation: "遅延読み込み(Lazy Loading)は、レコードが必要になるまでレコードが読み込まれないキャッシュ戦略です。遅延読み込みを実装すると、アプリケーションはまずキャッシュにレコードがないかチェックします。レコードが存在しない場合、アプリケーションはデータベースからレコードを取得し、レコードをキャッシュに保存します。この戦略により、頻繁にアクセスされるデータのみがキャッシュされ、キャッシュメモリが効率的に使用されます。",
+    category: "Database",
+    explanation: "Lazy loading is a caching strategy in which records are not loaded until they are needed. When lazy loading is implemented, the application first checks the cache for the record. If the record does not exist, the application retrieves the record from the database and stores it in the cache. This strategy ensures that only frequently accessed data is cached, making efficient use of cache memory.",
     optionExplanations: [
-      "正解：まずキャッシュをチェックし、データが存在しない場合のみデータベースから取得してキャッシュに保存します。これが遅延読み込みの正しい実装です。",
-      "誤り：これはUPDATE操作であり、読み込み操作ではありません。遅延読み込みは読み取りキャッシュ戦略です。",
-      "誤り：キャッシュから取得した後にUPDATE操作を実行しており、読み取りロジックが含まれていません。",
-      "誤り：常にデータベースから読み取っており、キャッシュを最初にチェックしていません。これではキャッシュの利点が活かされません。"
+      "Correct: This checks the cache first and only retrieves from the database when data is absent, then stores it in the cache. This is the correct implementation of lazy loading.",
+      "Incorrect: This is an UPDATE operation, not a read operation. Lazy loading is a read caching strategy.",
+      "Incorrect: This retrieves from the cache and then performs an UPDATE operation; it does not include read logic.",
+      "Incorrect: This always reads from the database and does not check the cache first, so the benefits of caching are not realized."
     ]
   },
   {
     id: "dva-008",
-    question: "デベロッパーは、Amazon API Gatewayを使用するウェブアプリケーションを構築しています。デベロッパーは、開発(dev)ワークロードと本番(prod)ワークロード用に異なる環境を維持したいと考えています。このAPIは、dev用1つとprod用1つの2つのエイリアスを持つAWS Lambda関数によってサポートされます。\n\nデベロッパーは、最低限の構成でこれらの環境をどのように維持できますか。",
+    question: "A developer is building a web application that uses Amazon API Gateway. The developer wants to maintain separate environments for development (dev) and production (prod) workloads. The API is backed by an AWS Lambda function that has two aliases: one for dev and one for prod.\n\nHow can the developer maintain these environments with the least amount of configuration?",
     options: [
-      "環境ごとにREST APIを作成する。APIをLambda関数の対応するdevおよびprodエイリアスと統合する。APIをそれぞれのステージにデプロイする。ステージURLを使用してAPIにアクセスする。",
-      "REST APIを1つ作成する。APIをLambda関数のdevエイリアスと統合する。APIをdev環境にデプロイする。CanaryがLambda prodエイリアスと統合されるprod環境のCanaryリリースデプロイを設定する。",
-      "REST APIを1つ作成する。エイリアスの代わりにステージ変数を使用して、APIをLambda関数と統合する。APIをdevとprodの2つの異なるステージにデプロイする。値として異なるエイリアスを持つステージ変数を各ステージに作成する。異なるステージURLを使用してAPIにアクセスする。",
-      "REST APIを1つ作成する。APIをLambda関数のprodエイリアスと統合する。APIをprod環境にデプロイする。CanaryがLambda devエイリアスと統合される、dev環境のCanaryリリースデプロイを設定する。"
+      "Create a REST API for each environment. Integrate the APIs with the corresponding dev and prod aliases of the Lambda function. Deploy each API to its respective stage. Access the APIs using the stage URLs.",
+      "Create one REST API. Integrate the API with the dev alias of the Lambda function. Deploy the API to the dev environment. Configure a canary release deployment for the prod environment where the canary integrates with the Lambda prod alias.",
+      "Create one REST API. Use a stage variable instead of an alias to integrate the API with the Lambda function. Deploy the API to two different stages for dev and prod. Create a stage variable in each stage with a different alias as the value. Access the APIs using different stage URLs.",
+      "Create one REST API. Integrate the API with the prod alias of the Lambda function. Deploy the API to the prod environment. Configure a canary release deployment for the dev environment where the canary integrates with the Lambda dev alias."
     ],
     correctAnswer: 2,
-    category: "デプロイメント",
-    explanation: "Amazon API Gatewayのデプロイステージでは、APIごとに複数のリリースステージを管理できます。APIデプロイメントステージがさまざまなバックエンドエンドポイントとやり取りできるように、ステージ変数を設定できます。API Gatewayステージ変数を使用して、複数のバージョンとエイリアスを持つ単一のAWS Lambda関数をリファレンスできます。この方法により、1つのAPIで複数の環境を管理でき、構成が最小限に抑えられます。",
+    category: "Deployment",
+    explanation: "Amazon API Gateway deployment stages let you manage multiple release stages for each API. You can configure stage variables so that the API deployment stage can interact with different backend endpoints. Using API Gateway stage variables, you can reference a single AWS Lambda function that has multiple versions and aliases. This approach lets you manage multiple environments with one API, minimizing configuration.",
     optionExplanations: [
-      "誤り：環境ごとに別々のAPIを作成すると、管理が複雑になり、構成が増加します。最低限の構成という要件を満たしません。",
-      "誤り：Canaryデプロイメントはトラフィック分割用であり、完全に分離されたdev/prod環境の管理には適していません。",
-      "正解：1つのAPIとステージ変数を使用することで、最小限の構成で複数の環境を管理できます。各ステージで異なるLambdaエイリアスを参照できます。",
-      "誤り：Canaryデプロイメントの使用方法が不適切であり、dev環境にCanaryを使用することは一般的ではありません。"
+      "Incorrect: Creating a separate API for each environment increases management complexity and configuration. This does not meet the least-configuration requirement.",
+      "Incorrect: Canary deployments are for traffic splitting and are not suited for managing fully isolated dev/prod environments.",
+      "Correct: Using one API with stage variables allows multiple environments to be managed with minimal configuration. Each stage can reference a different Lambda alias.",
+      "Incorrect: This misuses canary deployments, and using a canary for the dev environment is not a common or recommended approach."
     ]
   },
   {
     id: "dva-009",
-    question: "デベロッパーが、Amazon EC2インスタンスのフリートで実行されるアプリケーションのパフォーマンスを追跡したいと考えています。デベロッパーは、フリート全体の平均リクエストレイテンシーや最大リクエストレイテンシーなどの統計を表示および追跡したいと考えています。デベロッパーは、平均応答時間がしきい値を超えた場合にすぐに通知を受け取りたいと考えています。\n\nこれらの要件を満たすソリューションはどれですか。",
+    question: "A developer wants to track the performance of an application running on a fleet of Amazon EC2 instances. The developer wants to view and track statistics such as average request latency and maximum request latency across the fleet. The developer wants to receive an immediate notification when the average response time exceeds a threshold.\n\nWhich solution meets these requirements?",
     options: [
-      "各EC2インスタンスでcronジョブを設定して、応答時間を測定し、Amazon S3バケットに保存されているログファイルを毎分更新する。Amazon S3イベント通知を使用して、ログファイルを読み取り、Amazon OpenSearch Serviceクラスターに新しいエントリを書き込むAWS Lambda関数を呼び出す。OpenSearchダッシュボードで結果を視覚化する。応答時間がしきい値を超えたときにAmazon Simple Notification Service (Amazon SNS)トピックにアラートを送信するようにOpenSearch Serviceを設定する。",
-      "応答時間をログファイルに書き込むようにアプリケーションを設定する。EC2インスタンスにAmazon CloudWatchエージェントをインストールして設定し、アプリケーションログをCloudWatch Logsにストリーミングする。ログから応答時間のメトリクスフィルターを作成する。CloudWatchコンソールでメトリクスのグラフを表示する。応答時間メトリクスの平均がしきい値を超えたときにAmazon Simple Notification Service (Amazon SNS)通知を送信するCloudWatchアラームを作成する。",
-      "応答時間をシステムログに書き込むようにアプリケーションを設定する。Amazon InspectorエージェントをEC2インスタンスにインストールして設定し、継続的にログを読み取り、応答時間をAmazon EventBridge (Amazon CloudWatch Events)に送信する。EventBridge (CloudWatch Events)コンソールでメトリクスのグラフを表示する。応答時間メトリクスの平均がしきい値を超えたときにAmazon Simple Notification Service (Amazon SNS)通知を送信するようにEventBridge (CloudWatch Events)カスタムルールを設定する。",
-      "AWS Systems Managerエージェント(SSMエージェント)をEC2インスタンスにインストールして設定し、応答時間をモニタリングし、応答時間をカスタムメトリクスとしてAmazon CloudWatchに送信する。Amazon QuickSightでメトリクスのグラフを表示する。応答時間メトリクスの平均がしきい値を超えたときにAmazon Simple Notification Service (Amazon SNS)通知を送信するCloudWatchアラームを作成する。"
+      "Configure a cron job on each EC2 instance to measure response times and update a log file stored in an Amazon S3 bucket every minute. Use Amazon S3 event notifications to invoke an AWS Lambda function that reads the log file and writes new entries to an Amazon OpenSearch Service cluster. Visualize the results in an OpenSearch dashboard. Configure OpenSearch Service to send an alert to an Amazon Simple Notification Service (Amazon SNS) topic when response time exceeds the threshold.",
+      "Configure the application to write response times to a log file. Install and configure the Amazon CloudWatch agent on the EC2 instances to stream the application logs to CloudWatch Logs. Create a metric filter for response time from the logs. View a graph of the metrics in the CloudWatch console. Create a CloudWatch alarm to send an Amazon Simple Notification Service (Amazon SNS) notification when the average of the response time metric exceeds the threshold.",
+      "Configure the application to write response times to a system log. Install and configure the Amazon Inspector agent on the EC2 instances to continuously read the logs and send response times to Amazon EventBridge (Amazon CloudWatch Events). View a graph of the metrics in the EventBridge (CloudWatch Events) console. Configure a custom EventBridge (CloudWatch Events) rule to send an Amazon Simple Notification Service (Amazon SNS) notification when the average of the response time metric exceeds the threshold.",
+      "Install and configure the AWS Systems Manager Agent (SSM Agent) on the EC2 instances to monitor response times and send them to Amazon CloudWatch as a custom metric. View a graph of the metrics in Amazon QuickSight. Create a CloudWatch alarm to send an Amazon Simple Notification Service (Amazon SNS) notification when the average of the response time metric exceeds the threshold."
     ],
     correctAnswer: 1,
-    category: "モニタリング",
-    explanation: "ログとメトリクスをCloudWatchにストリーミングするようにAmazon CloudWatchエージェントを設定できます。CloudWatch Logsに保存されているログからメトリクスフィルターを作成することもできます。メトリクスフィルターを使用すると、ログデータから数値メトリクスを抽出し、CloudWatchメトリクスとして保存できます。その後、CloudWatchアラームを使用してしきい値を監視し、SNS通知を送信できます。このソリューションは、要件を満たす最もシンプルで効果的な方法です。",
+    category: "Monitoring",
+    explanation: "You can configure the Amazon CloudWatch agent to stream logs and metrics to CloudWatch. You can also create metric filters from logs stored in CloudWatch Logs. Metric filters let you extract numerical metrics from log data and store them as CloudWatch metrics. You can then use CloudWatch alarms to monitor thresholds and send SNS notifications. This solution is the simplest and most effective way to meet the requirements.",
     optionExplanations: [
-      "誤り：S3とOpenSearch Serviceを使用する方法は複雑すぎて、リアルタイムアラートには適していません。また、コストも高くなります。",
-      "正解：CloudWatchエージェント、ログ、メトリクスフィルター、アラームを使用することで、要件を効率的に満たすことができます。",
-      "誤り：Amazon Inspectorはセキュリティ評価サービスであり、アプリケーションメトリクスの収集には使用されません。",
-      "誤り：SSMエージェントは主にシステム管理用であり、カスタムアプリケーションメトリクスの収集には適していません。また、QuickSightはビジネスインテリジェンスツールであり、リアルタイムモニタリングには適していません。"
+      "Incorrect: Using S3 and OpenSearch Service is overly complex and not well suited for real-time alerting. It also increases cost.",
+      "Correct: Using the CloudWatch agent, logs, metric filters, and alarms efficiently satisfies all the requirements.",
+      "Incorrect: Amazon Inspector is a security assessment service and is not used for collecting application performance metrics.",
+      "Incorrect: SSM Agent is primarily for system management and is not suitable for collecting custom application metrics. QuickSight is a business intelligence tool and is not appropriate for real-time monitoring."
     ]
   },
   {
     id: "dva-010",
-    question: "デベロッパーがアプリケーションをローカルでテストし、そのアプリケーションをAWS Lambda関数にデプロイしました。デプロイパッケージサイズのクォータを超えないようにするため、デベロッパーはデプロイファイルに依存関係を含めませんでした。デベロッパーがアプリケーションをリモートでテストする場合、依存関係がないためLambda関数は実行されません。\n\nこの問題を解決するソリューションはどれですか。",
+    question: "A developer tested an application locally and deployed it to an AWS Lambda function. To avoid exceeding the deployment package size quota, the developer did not include dependencies in the deployment file. When the developer tests the application remotely, the Lambda function does not run because of missing dependencies.\n\nWhich solution resolves this issue?",
     options: [
-      "Lambdaコンソールエディタを使用してコードを更新し、不足している依存関係を含める。",
-      "不足している依存関係を含む追加の.zipファイルを作成する。.zipファイルを元のLambdaデプロイパッケージに含める。",
-      "不足している依存関係を含むレイヤーを作成する。Lambda関数にレイヤーを添付する。",
-      "Lambda関数の環境変数に不足している依存関係へのリファレンスを追加する。"
+      "Use the Lambda console editor to update the code and include the missing dependencies.",
+      "Create an additional .zip file that contains the missing dependencies. Include the .zip file in the original Lambda deployment package.",
+      "Create a layer that contains the missing dependencies. Attach the layer to the Lambda function.",
+      "Add a reference to the missing dependencies in the Lambda function's environment variables."
     ],
     correctAnswer: 2,
-    category: "デプロイメント",
-    explanation: "追加のコードとコンテンツをレイヤーの形式で取り込むようにAWS Lambda関数を設定できます。レイヤーは、ライブラリ、カスタムランタイム、またはその他の依存関係を含む.zipファイルアーカイブです。レイヤーを使用すると、デプロイパッケージにライブラリを含めることなく、Lambda関数でライブラリを使用できます。レイヤーは複数の関数で共有でき、デプロイパッケージのサイズを小さく保つことができます。",
+    category: "Deployment",
+    explanation: "You can configure an AWS Lambda function to pull in additional code and content in the form of layers. A layer is a .zip file archive that can contain libraries, a custom runtime, or other dependencies. Using layers allows Lambda functions to use libraries without including them in the deployment package. Layers can be shared across multiple functions and help keep deployment packages small.",
     optionExplanations: [
-      "誤り：Lambdaコンソールエディタには3MBのサイズ制限があり、大きな依存関係を追加するには適していません。",
-      "誤り：依存関係を含めるとデプロイパッケージサイズが増加し、クォータを超える可能性があります。これは元の問題を解決しません。",
-      "正解：Lambdaレイヤーを使用することで、依存関係を別々に管理でき、デプロイパッケージサイズを小さく保ちながら必要なライブラリを使用できます。",
-      "誤り：環境変数は設定値を保存するためのものであり、依存関係のコードを含めることはできません。"
+      "Incorrect: The Lambda console editor has a 3 MB size limit, making it unsuitable for adding large dependencies.",
+      "Incorrect: Including dependencies in the deployment package increases its size and may cause it to exceed the quota. This does not solve the original problem.",
+      "Correct: Using a Lambda layer allows dependencies to be managed separately, keeping the deployment package small while still making the required libraries available.",
+      "Incorrect: Environment variables are for storing configuration values and cannot contain dependency code."
     ]
   },
   {
     id: "dva-011",
-    question: "デベロッパーは、AWS CodePipelineを使用してCI/CDパイプラインを構築しています。パイプラインは、ソースコードの変更を検出し、自動的にビルド、テスト、デプロイを実行する必要があります。デベロッパーは、デプロイ前に手動承認ステップを追加したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのアクションを実行すべきですか。",
+    question: "A developer is building a CI/CD pipeline using AWS CodePipeline. The pipeline must detect source code changes and automatically run build, test, and deploy stages. The developer wants to add a manual approval step before deployment.\n\nWhat action should the developer take to meet these requirements?",
     options: [
-      "CodePipelineに手動承認アクションを追加する。承認者にAmazon SNS通知を送信するように設定する。",
-      "AWS Lambda関数を作成して承認ロジックを実装する。Lambda関数をCodePipelineのカスタムアクションとして追加する。",
-      "AWS Step Functionsを使用して承認ワークフローを作成する。Step FunctionsをCodePipelineと統合する。",
-      "Amazon SQSキューを作成して承認リクエストを管理する。CodePipelineからSQSにメッセージを送信する。"
+      "Add a manual approval action to CodePipeline. Configure it to send an Amazon SNS notification to the approver.",
+      "Create an AWS Lambda function to implement the approval logic. Add the Lambda function as a custom action in CodePipeline.",
+      "Use AWS Step Functions to create an approval workflow. Integrate Step Functions with CodePipeline.",
+      "Create an Amazon SQS queue to manage approval requests. Send messages from CodePipeline to SQS."
     ],
     correctAnswer: 0,
-    category: "デプロイメント",
-    explanation: "AWS CodePipelineは、手動承認アクションをネイティブにサポートしています。手動承認アクションをパイプラインに追加すると、パイプラインの実行が一時停止し、指定された承認者が承認または却下するまで待機します。Amazon SNS通知を設定することで、承認者に通知を送信できます。これは最もシンプルで効果的な方法です。",
+    category: "Deployment",
+    explanation: "AWS CodePipeline natively supports manual approval actions. When a manual approval action is added to a pipeline, the pipeline execution pauses and waits until the designated approver approves or rejects it. You can configure Amazon SNS notifications to alert the approver. This is the simplest and most effective approach.",
     optionExplanations: [
-      "正解：CodePipelineの手動承認アクションは、デプロイ前の承認プロセスを実装する標準的な方法です。SNS通知により承認者に即座に通知できます。",
-      "誤り：Lambda関数で承認ロジックを実装することは可能ですが、CodePipelineの組み込み手動承認アクションを使用する方が簡単で効率的です。",
-      "誤り：Step Functionsは複雑なワークフローには適していますが、単純な手動承認にはCodePipelineの組み込み機能で十分です。",
-      "誤り：SQSキューを使用することは可能ですが、CodePipelineの手動承認アクションを使用する方が統合が簡単で管理しやすいです。"
+      "Correct: A CodePipeline manual approval action is the standard way to implement a pre-deployment approval process. SNS notifications allow immediate notification to approvers.",
+      "Incorrect: Implementing approval logic in a Lambda function is possible but more complex. CodePipeline's built-in manual approval action is simpler and more efficient.",
+      "Incorrect: Step Functions is suitable for complex workflows, but CodePipeline's built-in functionality is sufficient for a simple manual approval.",
+      "Incorrect: Using an SQS queue is possible but unnecessary. CodePipeline's manual approval action is easier to integrate and manage."
     ]
   },
   {
     id: "dva-012",
-    question: "デベロッパーは、Amazon DynamoDBテーブルに大量のデータを書き込むアプリケーションを開発しています。アプリケーションは、書き込みスループットを最大化し、コストを最小限に抑える必要があります。テーブルのパーティションキーは、ユーザーIDです。\n\nこれらの要件を満たすために、デベロッパーはどのアプローチを取るべきですか。",
+    question: "A developer is building an application that writes large amounts of data to an Amazon DynamoDB table. The application must maximize write throughput and minimize cost. The table's partition key is a user ID.\n\nWhich approach should the developer take to meet these requirements?",
     options: [
-      "すべての書き込みに同じパーティションキー値を使用して、データを1つのパーティションに集中させる。",
-      "すべての書き込み操作にバッチ書き込みAPIを使用する。",
-      "DynamoDBのプロビジョニングされたスループットを最大値に設定する。",
-      "パーティションキーにランダムなサフィックスを追加して、書き込みを複数のパーティションに分散させる。"
+      "Use the same partition key value for all writes to concentrate data in one partition.",
+      "Use the batch write API for all write operations.",
+      "Set the DynamoDB provisioned throughput to the maximum value.",
+      "Add a random suffix to the partition key to distribute writes across multiple partitions."
     ],
     correctAnswer: 3,
-    category: "データベース",
-    explanation: "DynamoDBのパフォーマンスを最大化するには、書き込みを複数のパーティションに均等に分散させることが重要です。パーティションキーにランダムなサフィックス（例：ユーザーID + ランダム数値）を追加することで、ホットパーティションを回避し、書き込みスループットを向上させることができます。これにより、DynamoDBの分散アーキテクチャを最大限に活用できます。",
+    category: "Database",
+    explanation: "To maximize DynamoDB performance, it is important to distribute writes evenly across multiple partitions. Adding a random suffix to the partition key (for example, user ID + random number) avoids hot partitions and improves write throughput. This makes full use of DynamoDB's distributed architecture.",
     optionExplanations: [
-      "誤り：すべての書き込みを1つのパーティションに集中させると、ホットパーティションが発生し、スループットが制限されます。これはアンチパターンです。",
-      "誤り：バッチ書き込みは効率的ですが、ホットパーティションの問題は解決されません。パーティションキーの設計が重要です。",
-      "誤り：プロビジョニングされたスループットを増やすだけでは、ホットパーティションの問題は解決されません。また、コストが増加します。",
-      "正解：パーティションキーにランダムなサフィックスを追加することで、書き込みを複数のパーティションに分散させ、スループットを最大化できます。"
+      "Incorrect: Concentrating all writes on a single partition creates a hot partition, which throttles throughput. This is an anti-pattern.",
+      "Incorrect: Batch writes are efficient, but they do not resolve the hot partition problem. Partition key design is what matters.",
+      "Incorrect: Simply increasing provisioned throughput does not solve hot partition issues and also increases cost.",
+      "Correct: Adding a random suffix to the partition key distributes writes across multiple partitions and maximizes write throughput."
     ]
   },
   {
     id: "dva-013",
-    question: "デベロッパーは、AWS X-Rayを使用してマイクロサービスアプリケーションのパフォーマンスを分析しています。アプリケーションは、複数のAWS Lambda関数とAmazon DynamoDBテーブルで構成されています。デベロッパーは、各Lambda関数の実行時間とDynamoDBへのクエリ時間を詳細に追跡したいと考えています。\n\nこれらの要件を満たすために、デベロッパーは何をすべきですか。",
+    question: "A developer is using AWS X-Ray to analyze the performance of a microservices application. The application consists of multiple AWS Lambda functions and Amazon DynamoDB tables. The developer wants to track in detail the execution time of each Lambda function and the query time to DynamoDB.\n\nWhat should the developer do to meet these requirements?",
     options: [
-      "Lambda関数の環境変数でX-Rayトレースを有効にする。追加のコード変更は不要。",
-      "Lambda関数のコードにX-Ray SDKを追加し、カスタムサブセグメントを作成する。",
-      "CloudWatch Logsを使用してLambda関数の実行時間をログに記録する。",
-      "AWS CloudTrailを使用してLambda関数とDynamoDBの呼び出しを追跡する。"
+      "Enable X-Ray tracing in the Lambda function's environment variables. No additional code changes are needed.",
+      "Add the X-Ray SDK to the Lambda function code and create custom subsegments.",
+      "Use CloudWatch Logs to record the execution time of the Lambda functions.",
+      "Use AWS CloudTrail to track Lambda function and DynamoDB invocations."
     ],
     correctAnswer: 1,
-    category: "モニタリング",
-    explanation: "AWS X-Rayで詳細なトレース情報を取得するには、X-Ray SDKをアプリケーションコードに統合し、カスタムサブセグメントを作成する必要があります。これにより、Lambda関数内の特定のコードブロックやDynamoDBクエリの実行時間を個別に追跡できます。X-Ray SDKは、DynamoDBなどのAWSサービスへの呼び出しを自動的にインストルメント化します。",
+    category: "Monitoring",
+    explanation: "To obtain detailed trace information with AWS X-Ray, you must integrate the X-Ray SDK into your application code and create custom subsegments. This allows you to individually track the execution time of specific code blocks within Lambda functions and DynamoDB query times. The X-Ray SDK automatically instruments calls to AWS services such as DynamoDB.",
     optionExplanations: [
-      "誤り：環境変数でX-Rayを有効にするだけでは、基本的なトレース情報しか取得できません。詳細な分析にはSDKの統合が必要です。",
-      "正解：X-Ray SDKを使用してカスタムサブセグメントを作成することで、アプリケーションの詳細なパフォーマンス分析が可能になります。",
-      "誤り：CloudWatch Logsはログ記録には適していますが、X-Rayのような分散トレーシング機能は提供しません。",
-      "誤り：CloudTrailはAPI呼び出しの監査ログを提供しますが、パフォーマンス分析には適していません。"
+      "Incorrect: Enabling X-Ray through environment variables alone provides only basic trace information. SDK integration is required for detailed analysis.",
+      "Correct: Using the X-Ray SDK to create custom subsegments enables detailed performance analysis of the application.",
+      "Incorrect: CloudWatch Logs is suitable for logging but does not provide distributed tracing capabilities like X-Ray.",
+      "Incorrect: CloudTrail provides audit logs for API calls but is not suitable for performance analysis."
     ]
   },
   {
     id: "dva-014",
-    question: "デベロッパーは、Amazon S3バケットに保存されている画像ファイルのサムネイルを自動的に生成するサーバーレスアプリケーションを構築しています。画像がS3にアップロードされると、AWS Lambda関数がトリガーされ、サムネイルを生成して別のS3バケットに保存する必要があります。\n\nこれらの要件を満たすために、デベロッパーはどのように設定すべきですか。",
+    question: "A developer is building a serverless application that automatically generates thumbnails for image files stored in an Amazon S3 bucket. When an image is uploaded to S3, an AWS Lambda function must be triggered, generate a thumbnail, and store it in a different S3 bucket.\n\nHow should the developer configure this to meet these requirements?",
     options: [
-      "S3バケットにイベント通知を設定し、Lambda関数を直接呼び出す。",
-      "Amazon CloudWatch Eventsを使用してS3イベントを監視し、Lambda関数を呼び出す。",
-      "Amazon SQSキューを作成し、S3イベント通知をキューに送信する。Lambda関数がキューからメッセージをポーリングする。",
-      "AWS Step Functionsを使用してS3イベントを処理し、Lambda関数を呼び出す。"
+      "Configure event notifications on the S3 bucket to invoke the Lambda function directly.",
+      "Use Amazon CloudWatch Events to monitor S3 events and invoke the Lambda function.",
+      "Create an Amazon SQS queue and send S3 event notifications to the queue. Have the Lambda function poll the queue for messages.",
+      "Use AWS Step Functions to process S3 events and invoke the Lambda function."
     ],
     correctAnswer: 0,
-    category: "アプリケーション統合",
-    explanation: "Amazon S3は、オブジェクトの作成、削除、復元などのイベントが発生したときに通知を送信できます。S3イベント通知を使用してLambda関数を直接呼び出すことが、最もシンプルで効率的な方法です。S3バケットの設定でイベント通知を有効にし、Lambda関数をターゲットとして指定するだけで実装できます。",
+    category: "Application Integration",
+    explanation: "Amazon S3 can send notifications when events such as object creation, deletion, or restoration occur. Using S3 event notifications to invoke a Lambda function directly is the simplest and most efficient approach. You only need to enable event notifications in the S3 bucket configuration and specify the Lambda function as the target.",
     optionExplanations: [
-      "正解：S3イベント通知を使用してLambda関数を直接呼び出すことが、最もシンプルで効率的な実装方法です。",
-      "誤り：CloudWatch Events（現在はEventBridge）を使用することも可能ですが、S3イベント通知を直接使用する方が簡単です。",
-      "誤り：SQSキューを中間に配置することは可能ですが、この要件には不要な複雑さを追加します。ただし、処理の失敗時の再試行が必要な場合は有効です。",
-      "誤り：Step Functionsは複雑なワークフローには適していますが、単純なイベント駆動型処理にはS3イベント通知で十分です。"
+      "Correct: Using S3 event notifications to directly invoke the Lambda function is the simplest and most efficient implementation.",
+      "Incorrect: Using CloudWatch Events (now EventBridge) is possible but more complex than using S3 event notifications directly.",
+      "Incorrect: Placing an SQS queue as an intermediary is possible but adds unnecessary complexity for this requirement. It would be appropriate if retry behavior on processing failure is needed.",
+      "Incorrect: Step Functions is suitable for complex workflows, but S3 event notifications are sufficient for simple event-driven processing."
     ]
   },
   {
     id: "dva-015",
-    question: "デベロッパーは、AWS Elastic Beanstalkを使用してウェブアプリケーションをデプロイしています。アプリケーションは、環境ごとに異なる設定値（データベース接続文字列、APIキーなど）を使用する必要があります。デベロッパーは、これらの設定値を安全に管理し、アプリケーションコードから分離したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのアプローチを取るべきですか。",
+    question: "A developer is deploying a web application using AWS Elastic Beanstalk. The application must use different configuration values (such as database connection strings and API keys) for each environment. The developer wants to manage these configuration values securely and keep them separate from the application code.\n\nWhich approach should the developer take to meet these requirements?",
     options: [
-      "設定値をアプリケーションコードにハードコーディングし、環境ごとに異なるブランチを使用する。",
-      "Elastic Beanstalkの環境プロパティを使用して設定値を定義し、アプリケーションから環境変数として読み取る。",
-      "設定値をS3バケットに保存し、アプリケーション起動時にダウンロードする。",
-      "設定値をAmazon RDSデータベースに保存し、アプリケーションから読み取る。"
+      "Hardcode the configuration values in the application code and use different branches for each environment.",
+      "Use Elastic Beanstalk environment properties to define the configuration values and read them as environment variables from the application.",
+      "Store the configuration values in an S3 bucket and download them at application startup.",
+      "Store the configuration values in an Amazon RDS database and read them from the application."
     ],
     correctAnswer: 1,
-    category: "デプロイメント",
-    explanation: "AWS Elastic Beanstalkの環境プロパティを使用することが、設定値を管理する推奨される方法です。環境プロパティは、Elastic Beanstalkコンソール、CLI、または設定ファイルを使用して定義でき、アプリケーションから環境変数として読み取ることができます。これにより、設定値をコードから分離し、環境ごとに異なる値を簡単に管理できます。機密情報については、AWS Secrets Managerと組み合わせて使用することもできます。",
+    category: "Deployment",
+    explanation: "Using AWS Elastic Beanstalk environment properties is the recommended approach for managing configuration values. Environment properties can be defined using the Elastic Beanstalk console, CLI, or configuration files and can be read from the application as environment variables. This separates configuration values from code and makes it easy to manage different values per environment. For sensitive information, you can also use AWS Secrets Manager in combination.",
     optionExplanations: [
-      "誤り：設定値をハードコーディングすることはセキュリティリスクがあり、管理が困難です。ベストプラクティスではありません。",
-      "正解：Elastic Beanstalkの環境プロパティを使用することで、設定値を安全に管理し、環境ごとに異なる値を簡単に設定できます。",
-      "誤り：S3バケットを使用することは可能ですが、Elastic Beanstalkの環境プロパティを使用する方が簡単で統合されています。",
-      "誤り：設定値をデータベースに保存することは一般的ではなく、不要な複雑さを追加します。"
+      "Incorrect: Hardcoding configuration values poses a security risk and is difficult to manage. This is not a best practice.",
+      "Correct: Using Elastic Beanstalk environment properties allows configuration values to be managed securely and different values to be set per environment easily.",
+      "Incorrect: Using an S3 bucket is possible but more complex. Using Elastic Beanstalk environment properties is simpler and already integrated.",
+      "Incorrect: Storing configuration values in a database is uncommon and adds unnecessary complexity."
     ]
   },
   {
     id: "dva-016",
-    question: "デベロッパーは、Amazon API Gatewayを使用してREST APIを構築しています。APIは、1秒あたり数千のリクエストを処理する必要があり、バックエンドのAWS Lambda関数が過負荷にならないようにする必要があります。\n\nこれらの要件を満たすために、デベロッパーはどの機能を実装すべきですか。",
+    question: "A developer is building a REST API using Amazon API Gateway. The API must handle thousands of requests per second and must prevent the backend AWS Lambda function from becoming overloaded.\n\nWhich feature should the developer implement to meet these requirements?",
     options: [
-      "API Gatewayのキャッシングを有効にして、頻繁にアクセスされるレスポンスをキャッシュする。",
-      "Lambda関数の同時実行数制限を設定する。",
-      "API Gatewayのスロットリング設定を構成して、リクエストレートを制限する。",
-      "Amazon CloudFrontをAPI Gatewayの前に配置して、リクエストを分散させる。"
+      "Enable API Gateway caching to cache responses for frequently accessed requests.",
+      "Configure a concurrency limit on the Lambda function.",
+      "Configure the API Gateway throttling settings to limit the request rate.",
+      "Place Amazon CloudFront in front of API Gateway to distribute requests."
     ],
     correctAnswer: 2,
-    category: "アプリケーション統合",
-    explanation: "API Gatewayのスロットリング設定を使用することで、APIへのリクエストレートを制限し、バックエンドのLambda関数を保護できます。スロットリングは、ステージレベルまたはメソッドレベルで設定でき、バーストリミットと定常状態リミットを指定できます。これにより、Lambda関数が過負荷にならないようにしながら、予測可能なパフォーマンスを提供できます。",
+    category: "Application Integration",
+    explanation: "Using API Gateway throttling settings allows you to limit the rate of requests to the API and protect the backend Lambda function. Throttling can be configured at the stage level or the method level, and you can specify a burst limit and a steady-state rate limit. This ensures predictable performance while preventing the Lambda function from being overloaded.",
     optionExplanations: [
-      "誤り：キャッシングはパフォーマンスを向上させますが、Lambda関数の過負荷を直接防ぐものではありません。キャッシュミス時にはLambda関数が呼び出されます。",
-      "誤り：Lambda関数の同時実行数制限は有効ですが、API Gatewayレベルでスロットリングを設定する方が、より細かい制御が可能です。",
-      "正解：API Gatewayのスロットリング設定を使用することで、リクエストレートを制限し、バックエンドを保護できます。",
-      "誤り：CloudFrontはコンテンツ配信には適していますが、API Gatewayのスロットリング機能を置き換えるものではありません。"
+      "Incorrect: Caching improves performance but does not directly prevent the Lambda function from being overloaded. On a cache miss, the Lambda function is still invoked.",
+      "Incorrect: A Lambda concurrency limit is effective, but configuring throttling at the API Gateway level provides finer-grained control.",
+      "Correct: Configuring API Gateway throttling settings limits the request rate and protects the backend.",
+      "Incorrect: CloudFront is suitable for content delivery but does not replace API Gateway's throttling capability."
     ]
   },
   {
     id: "dva-017",
-    question: "デベロッパーは、AWS CodeCommitリポジトリに保存されているソースコードを使用してアプリケーションを構築しています。デベロッパーは、特定のブランチへのプッシュが発生したときに、自動的にビルドプロセスを開始したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのサービスを使用すべきですか。",
+    question: "A developer is building an application using source code stored in an AWS CodeCommit repository. The developer wants to automatically start a build process whenever a push to a specific branch occurs.\n\nWhich service should the developer use to meet these requirements?",
     options: [
-      "AWS CodeBuildを使用し、CodeCommitリポジトリをソースとして設定する。",
-      "Amazon EventBridge (CloudWatch Events)を使用してCodeCommitイベントを監視し、AWS CodeBuildを呼び出す。",
-      "AWS Lambda関数を作成してCodeCommitイベントを処理し、CodeBuildを呼び出す。",
-      "AWS CodePipelineを使用してCodeCommitをソースステージとし、CodeBuildをビルドステージとして設定する。"
+      "Use AWS CodeBuild and configure the CodeCommit repository as the source.",
+      "Use Amazon EventBridge (CloudWatch Events) to monitor CodeCommit events and invoke AWS CodeBuild.",
+      "Create an AWS Lambda function to process CodeCommit events and invoke CodeBuild.",
+      "Use AWS CodePipeline with CodeCommit as the source stage and CodeBuild as the build stage."
     ],
     correctAnswer: 3,
-    category: "デプロイメント",
-    explanation: "AWS CodePipelineは、ソースコードの変更を自動的に検出し、ビルド、テスト、デプロイのプロセスを実行するCI/CDサービスです。CodeCommitをソースステージとして設定し、CodeBuildをビルドステージとして設定することで、特定のブランチへのプッシュが発生したときに自動的にビルドプロセスを開始できます。これは最も統合された方法であり、追加の設定やコードが最小限で済みます。",
+    category: "Deployment",
+    explanation: "AWS CodePipeline is a CI/CD service that automatically detects source code changes and runs build, test, and deploy processes. By configuring CodeCommit as the source stage and CodeBuild as the build stage, the build process starts automatically whenever a push to a specific branch occurs. This is the most integrated approach and requires minimal additional configuration or code.",
     optionExplanations: [
-      "誤り：CodeBuildは手動で開始するか、他のサービスから呼び出す必要があります。CodeCommitイベントを直接監視する機能はありません。",
-      "誤り：EventBridgeを使用することは可能ですが、CodePipelineを使用する方が簡単で、CI/CDワークフロー全体を管理できます。",
-      "誤り：Lambda関数を使用することは可能ですが、CodePipelineを使用する方が統合されており、管理が簡単です。",
-      "正解：CodePipelineを使用することで、CodeCommitの変更を自動的に検出し、ビルドプロセスを開始できます。これが最も推奨される方法です。"
+      "Incorrect: CodeBuild must be started manually or invoked by another service. It does not have native capability to monitor CodeCommit events directly.",
+      "Incorrect: Using EventBridge is possible but more involved. CodePipeline is simpler and manages the entire CI/CD workflow.",
+      "Incorrect: Using a Lambda function is possible but CodePipeline is more integrated and easier to manage.",
+      "Correct: Using CodePipeline automatically detects changes in CodeCommit and starts the build process. This is the most recommended approach."
     ]
   },
   {
     id: "dva-018",
-    question: "デベロッパーは、Amazon SQSキューを使用してメッセージを処理するアプリケーションを開発しています。メッセージの処理には最大5分かかる場合があります。デベロッパーは、メッセージが処理中に他のコンシューマーによって取得されないようにする必要があります。\n\nこれらの要件を満たすために、デベロッパーはどのように設定すべきですか。",
+    question: "A developer is building an application that processes messages from an Amazon SQS queue. Processing a message can take up to 5 minutes. The developer must prevent messages from being retrieved by other consumers while they are being processed.\n\nHow should the developer configure this to meet these requirements?",
     options: [
-      "SQSキューのメッセージ保持期間を5分以上に設定する。",
-      "SQSキューの可視性タイムアウトを5分以上に設定する。",
-      "SQSキューの配信遅延を5分に設定する。",
-      "SQSキューのロングポーリングを有効にする。"
+      "Set the message retention period of the SQS queue to more than 5 minutes.",
+      "Set the visibility timeout of the SQS queue to more than 5 minutes.",
+      "Set the delivery delay of the SQS queue to 5 minutes.",
+      "Enable long polling on the SQS queue."
     ],
     correctAnswer: 1,
-    category: "アプリケーション統合",
-    explanation: "Amazon SQSの可視性タイムアウトは、メッセージがコンシューマーによって取得された後、他のコンシューマーから見えなくなる時間を制御します。メッセージの処理に最大5分かかる場合は、可視性タイムアウトを5分以上（例：6分）に設定する必要があります。これにより、メッセージが処理中に他のコンシューマーによって取得されることを防ぎます。処理が完了したら、メッセージを削除する必要があります。",
+    category: "Application Integration",
+    explanation: "The Amazon SQS visibility timeout controls how long a message remains invisible to other consumers after it has been retrieved by a consumer. If processing a message can take up to 5 minutes, the visibility timeout must be set to more than 5 minutes (for example, 6 minutes). This prevents other consumers from retrieving the message while it is being processed. After processing is complete, the message must be deleted.",
     optionExplanations: [
-      "誤り：メッセージ保持期間は、メッセージがキューに保持される最大時間を制御しますが、処理中の可視性には影響しません。",
-      "正解：可視性タイムアウトを適切に設定することで、メッセージが処理中に他のコンシューマーによって取得されることを防ぎます。",
-      "誤り：配信遅延は、メッセージがキューに追加されてから最初に取得可能になるまでの時間を制御しますが、処理中の可視性には影響しません。",
-      "誤り：ロングポーリングは、空のレスポンスを減らすための機能であり、メッセージの可視性には影響しません。"
+      "Incorrect: The message retention period controls the maximum time a message is kept in the queue, but it does not affect visibility during processing.",
+      "Correct: Setting the visibility timeout appropriately prevents messages from being retrieved by other consumers while they are being processed.",
+      "Incorrect: The delivery delay controls how long after a message is added to the queue before it becomes available for the first time, but it does not affect visibility during processing.",
+      "Incorrect: Long polling reduces the number of empty responses but does not affect message visibility."
     ]
   },
   {
     id: "dva-019",
-    question: "デベロッパーは、AWS SAM (Serverless Application Model)を使用してサーバーレスアプリケーションをデプロイしています。アプリケーションは、複数のAWS Lambda関数とAmazon DynamoDBテーブルで構成されています。デベロッパーは、ローカル環境でアプリケーションをテストしたいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのツールを使用すべきですか。",
+    question: "A developer is deploying a serverless application using AWS SAM (Serverless Application Model). The application consists of multiple AWS Lambda functions and Amazon DynamoDB tables. The developer wants to test the application in a local environment.\n\nWhich tool should the developer use to meet these requirements?",
     options: [
-      "AWS SAM CLIのsam local start-apiコマンドを使用して、ローカルでAPIをテストする。",
-      "AWS Lambda コンソールのテスト機能を使用して、各Lambda関数を個別にテストする。",
-      "Docker Composeを使用して、Lambda関数とDynamoDBのローカル環境を構築する。",
-      "AWS CloudFormationのChangeSetを使用して、テスト環境にデプロイする。"
+      "Use the sam local start-api command of the AWS SAM CLI to test the API locally.",
+      "Use the test feature in the AWS Lambda console to test each Lambda function individually.",
+      "Use Docker Compose to build a local environment for the Lambda functions and DynamoDB.",
+      "Use AWS CloudFormation ChangeSets to deploy to a test environment."
     ],
     correctAnswer: 0,
-    category: "デプロイメント",
-    explanation: "AWS SAM CLIは、サーバーレスアプリケーションをローカルで実行およびテストするための機能を提供します。sam local start-apiコマンドを使用すると、ローカルでAPI Gatewayをエミュレートし、Lambda関数を呼び出すことができます。また、sam local invoke コマンドを使用して、個別のLambda関数をテストすることもできます。SAM CLIは、DynamoDB Localとも統合できます。",
+    category: "Deployment",
+    explanation: "The AWS SAM CLI provides the ability to run and test serverless applications locally. The sam local start-api command emulates API Gateway locally and invokes Lambda functions. You can also use the sam local invoke command to test individual Lambda functions. The SAM CLI can also be integrated with DynamoDB Local.",
     optionExplanations: [
-      "正解：AWS SAM CLIを使用することで、ローカル環境でサーバーレスアプリケーションを効率的にテストできます。",
-      "誤り：Lambdaコンソールのテスト機能は有用ですが、ローカル環境でのテストには適していません。また、API Gatewayとの統合をテストできません。",
-      "誤り：Docker Composeを使用することは可能ですが、SAM CLIを使用する方が簡単で、SAMテンプレートと統合されています。",
-      "誤り：CloudFormation ChangeSetはデプロイ前の変更をプレビューするための機能であり、ローカルテストには適していません。"
+      "Correct: Using the AWS SAM CLI allows serverless applications to be efficiently tested in a local environment.",
+      "Incorrect: The Lambda console test feature is useful but not suitable for local environment testing. It also cannot test API Gateway integrations.",
+      "Incorrect: Using Docker Compose is possible but the SAM CLI is simpler and already integrated with SAM templates.",
+      "Incorrect: CloudFormation ChangeSets are used to preview changes before deployment and are not suitable for local testing."
     ]
   },
   {
     id: "dva-020",
-    question: "デベロッパーは、Amazon Kinesisデータストリームを使用してリアルタイムデータを処理するアプリケーションを開発しています。アプリケーションは、複数のコンシューマーが同じデータストリームから独立してデータを読み取る必要があります。各コンシューマーは、すべてのレコードを処理する必要があります。\n\nこれらの要件を満たすために、デベロッパーはどのアプローチを取るべきですか。",
+    question: "A developer is building an application that processes real-time data using an Amazon Kinesis data stream. Multiple consumers must independently read data from the same data stream. Each consumer must process all records.\n\nWhich approach should the developer take to meet these requirements?",
     options: [
-      "各コンシューマーに異なるKinesisデータストリームを作成する。",
-      "Amazon SQSキューを使用して、Kinesisデータストリームからのデータを配信する。",
-      "各コンシューマーが同じシャードイテレータを使用してデータを読み取るように設定する。",
-      "Kinesis Data Streamsの拡張ファンアウト機能を使用して、各コンシューマーに専用のスループットを提供する。"
+      "Create a different Kinesis data stream for each consumer.",
+      "Use an Amazon SQS queue to deliver data from the Kinesis data stream.",
+      "Configure each consumer to read data using the same shard iterator.",
+      "Use the enhanced fan-out feature of Kinesis Data Streams to provide dedicated throughput to each consumer."
     ],
     correctAnswer: 3,
-    category: "アプリケーション統合",
-    explanation: "Kinesis Data Streamsの拡張ファンアウト機能を使用すると、複数のコンシューマーが同じデータストリームから独立してデータを読み取ることができます。各コンシューマーは、専用の2 MB/秒のスループットを取得し、他のコンシューマーの影響を受けません。これにより、複数のアプリケーションが同じストリームからリアルタイムでデータを処理できます。",
+    category: "Application Integration",
+    explanation: "The enhanced fan-out feature of Kinesis Data Streams allows multiple consumers to independently read data from the same data stream. Each consumer gets dedicated throughput of 2 MB/second per shard and is not affected by other consumers. This enables multiple applications to process data from the same stream in real time.",
     optionExplanations: [
-      "誤り：各コンシューマーに異なるストリームを作成すると、データの重複とコストの増加につながります。",
-      "誤り：SQSキューを使用することは可能ですが、Kinesisの拡張ファンアウト機能を使用する方が、リアルタイム処理に適しています。",
-      "誤り：同じシャードイテレータを使用すると、コンシューマー間でスループットが共有され、パフォーマンスが低下します。",
-      "正解：拡張ファンアウト機能を使用することで、複数のコンシューマーが独立してデータを読み取り、専用のスループットを取得できます。"
+      "Incorrect: Creating a different stream for each consumer leads to data duplication and increased cost.",
+      "Incorrect: Using an SQS queue is possible, but the Kinesis enhanced fan-out feature is better suited for real-time processing.",
+      "Incorrect: Using the same shard iterator causes throughput to be shared among consumers, degrading performance.",
+      "Correct: Using enhanced fan-out allows multiple consumers to independently read data and each receive dedicated throughput."
     ]
   },
   {
     id: "dva-021",
-    question: "デベロッパーは、AWS Lambda関数を使用してファイル処理アプリケーションを構築しています。Lambda関数は、大きなファイルを処理する際にメモリ不足エラーが発生します。デベロッパーは、Lambda関数のパフォーマンスを最適化し、メモリ使用量を削減したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのアプローチを取るべきですか (2つ選択)。",
+    question: "A developer is building a file processing application using an AWS Lambda function. The Lambda function encounters out-of-memory errors when processing large files. The developer wants to optimize the Lambda function's performance and reduce memory usage.\n\nWhich approaches should the developer take to meet these requirements? (Choose TWO.)",
     options: [
-      "Lambda関数のメモリ設定を増やす。メモリを増やすとCPUパワーも増加する。",
-      "ファイルをストリーミング処理して、一度にメモリに読み込むデータ量を減らす。",
+      "Increase the memory configuration of the Lambda function. Increasing memory also increases CPU power.",
+      "Process files using streaming to reduce the amount of data loaded into memory at one time.",
       undefined,
-      "ファイルを小さなチャンクに分割し、複数のLambda関数を並列実行する。",
-      "Lambda関数のコードをコンパイル済みバイナリに変換する。"
+      "Split files into smaller chunks and run multiple Lambda functions in parallel.",
+      "Convert the Lambda function code to a compiled binary."
     ],
     correctAnswer: 2,
-    category: "コンピューティング",
-    explanation: "Lambda関数のメモリ不足問題を解決するには、2つの主要なアプローチがあります。1つ目は、Lambda関数のメモリ設定を増やすことです。Lambdaでは、メモリを増やすとCPUパワーも比例して増加するため、処理速度も向上します。2つ目は、ファイルをストリーミング処理することで、一度にメモリに読み込むデータ量を減らすことです。これにより、大きなファイルでもメモリ効率的に処理できます。",
+    category: "Compute",
+    explanation: "There are two main approaches to resolving out-of-memory issues in a Lambda function. First, increase the memory configuration of the Lambda function. In Lambda, increasing memory proportionally increases CPU power, which also improves processing speed. Second, process files using streaming to reduce the amount of data loaded into memory at one time. This allows large files to be processed in a memory-efficient way.",
     optionExplanations: [
-      "正解：Lambda関数のメモリを増やすことで、より多くのデータを処理でき、CPUパワーも増加して処理速度が向上します。",
-      "正解：ストリーミング処理を使用することで、ファイル全体をメモリに読み込むことなく、効率的に処理できます。",
+      "Correct: Increasing the Lambda function's memory allows more data to be processed and increases CPU power, improving processing speed.",
+      "Correct: Using streaming processing allows files to be processed efficiently without loading the entire file into memory.",
       undefined,
-      "誤り：ファイルを分割して並列処理することは有効ですが、この問題の直接的な解決策ではありません。また、複雑さが増します。",
-      "誤り：コンパイル済みバイナリに変換しても、メモリ使用量は大きく変わりません。"
+      "Incorrect: Splitting files and running parallel processing is effective but is not a direct solution to this problem and adds complexity.",
+      "Incorrect: Converting to a compiled binary does not significantly reduce memory usage."
     ]
   },
   {
     id: "dva-022",
-    question: "デベロッパーは、Amazon RDS for PostgreSQLデータベースを使用するアプリケーションを開発しています。アプリケーションは、データベース接続を効率的に管理し、接続プールを使用してパフォーマンスを向上させる必要があります。\n\nこれらの要件を満たすために、デベロッパーはどのサービスを使用すべきですか。",
+    question: "A developer is building an application that uses an Amazon RDS for PostgreSQL database. The application must manage database connections efficiently and use connection pooling to improve performance.\n\nWhich service should the developer use to meet these requirements?",
     options: [
-      "RDSリードレプリカを作成して、読み取りトラフィックを分散させる。",
-      "AWS Lambda関数内で接続プールライブラリを使用する。",
-      "Amazon ElastiCacheを使用して、データベースクエリ結果をキャッシュする。",
-      "Amazon RDS Proxyを使用して、データベース接続を管理する。"
+      "Create RDS read replicas to distribute read traffic.",
+      "Use a connection pooling library inside the AWS Lambda function.",
+      "Use Amazon ElastiCache to cache database query results.",
+      "Use Amazon RDS Proxy to manage database connections."
     ],
     correctAnswer: 3,
-    category: "データベース",
-    explanation: "Amazon RDS Proxyは、アプリケーションとRDSデータベース間の接続を管理するフルマネージドサービスです。RDS Proxyは、データベース接続をプールし、再利用することで、接続のオーバーヘッドを削減し、アプリケーションのスケーラビリティを向上させます。特にサーバーレスアプリケーション（Lambda関数など）では、RDS Proxyを使用することで、接続数の急増を防ぎ、データベースの安定性を保つことができます。",
+    category: "Database",
+    explanation: "Amazon RDS Proxy is a fully managed service that manages connections between your application and an RDS database. RDS Proxy pools and reuses database connections, reducing connection overhead and improving application scalability. For serverless applications in particular (such as Lambda functions), RDS Proxy prevents connection count spikes and maintains database stability.",
     optionExplanations: [
-      "誤り：リードレプリカは読み取りトラフィックの分散には有効ですが、接続管理の問題は解決されません。",
-      "誤り：Lambda関数内で接続プールを実装することは困難です。Lambda関数は短命であり、接続プールの利点を十分に活用できません。",
-      "誤り：ElastiCacheはクエリ結果のキャッシュには有効ですが、データベース接続の管理には使用されません。",
-      "正解：RDS Proxyは、データベース接続を効率的に管理し、接続プールを提供するマネージドサービスです。"
+      "Incorrect: Read replicas are effective for distributing read traffic but do not resolve connection management issues.",
+      "Incorrect: Implementing connection pooling inside a Lambda function is difficult. Lambda functions are short-lived and cannot fully benefit from connection pooling.",
+      "Incorrect: ElastiCache is effective for caching query results but is not used for managing database connections.",
+      "Correct: RDS Proxy is a managed service that efficiently manages database connections and provides connection pooling."
     ]
   },
   {
     id: "dva-023",
-    question: "デベロッパーは、AWS Step Functionsを使用して複雑なワークフローを実装しています。ワークフローの1つのステップが失敗した場合、デベロッパーは自動的に再試行し、それでも失敗した場合は代替パスを実行したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどの機能を使用すべきですか。",
+    question: "A developer is implementing a complex workflow using AWS Step Functions. If one step of the workflow fails, the developer wants to automatically retry it, and if it still fails, execute an alternative path.\n\nWhich feature should the developer use to meet these requirements?",
     options: [
-      "Step Functionsの再試行ポリシーとキャッチブロックを使用する。",
-      "AWS Lambda関数内でtry-catchブロックを実装する。",
-      "Amazon SQSデッドレターキューを使用して、失敗したメッセージを処理する。",
-      "Amazon CloudWatch Alarmsを使用して、失敗を検出し、別のワークフローを開始する。"
+      "Use the Step Functions retry policy and Catch block.",
+      "Implement a try-catch block inside the AWS Lambda function.",
+      "Use an Amazon SQS dead-letter queue to handle failed messages.",
+      "Use Amazon CloudWatch Alarms to detect failures and start a separate workflow."
     ],
     correctAnswer: 0,
-    category: "アプリケーション統合",
-    explanation: "AWS Step Functionsは、エラーハンドリングのための組み込み機能を提供しています。再試行ポリシー（Retry）を使用すると、ステップが失敗した場合に自動的に再試行できます。キャッチブロック（Catch）を使用すると、再試行後も失敗した場合に代替パスを実行できます。これらの機能を組み合わせることで、堅牢なエラーハンドリングを実装できます。",
+    category: "Application Integration",
+    explanation: "AWS Step Functions provides built-in features for error handling. The Retry policy automatically retries a step when it fails. The Catch block executes an alternative path when retries are exhausted and the step still fails. Combining these features allows robust error handling to be implemented declaratively.",
     optionExplanations: [
-      "正解：Step Functionsの再試行ポリシーとキャッチブロックを使用することで、エラーハンドリングを宣言的に実装できます。",
-      "誤り：Lambda関数内でエラーハンドリングを実装することは可能ですが、Step Functionsの組み込み機能を使用する方が管理しやすく、ワークフロー全体の可視性が向上します。",
-      "誤り：SQSデッドレターキューは、メッセージキューのエラーハンドリングには適していますが、Step Functionsワークフローには直接適用されません。",
-      "誤り：CloudWatch Alarmsを使用することは可能ですが、Step Functionsの組み込み機能を使用する方が簡単で効率的です。"
+      "Correct: Using the Step Functions retry policy and Catch block allows error handling to be implemented declaratively.",
+      "Incorrect: Implementing error handling inside a Lambda function is possible, but using Step Functions' built-in features is easier to manage and improves visibility across the entire workflow.",
+      "Incorrect: SQS dead-letter queues are suitable for message queue error handling but do not apply directly to Step Functions workflows.",
+      "Incorrect: Using CloudWatch Alarms is possible but Step Functions' built-in features are simpler and more efficient."
     ]
   },
   {
     id: "dva-024",
-    question: "デベロッパーは、Amazon API Gatewayを使用してREST APIを構築しています。APIは、異なるクライアントアプリケーション（ウェブ、モバイル、パートナー）からのリクエストを処理する必要があります。デベロッパーは、各クライアントタイプに異なるレート制限を適用したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどの機能を使用すべきですか。",
+    question: "A developer is building a REST API using Amazon API Gateway. The API must handle requests from different client applications (web, mobile, and partner). The developer wants to apply different rate limits to each client type.\n\nWhich feature should the developer use to meet these requirements?",
     options: [
-      "AWS WAFを使用して、クライアントIPアドレスに基づいてレート制限を適用する。",
-      "API Gatewayの使用量プランとAPIキーを使用して、クライアントごとにレート制限を設定する。",
-      "Lambda関数内でカスタムレート制限ロジックを実装する。",
-      "Amazon CloudFrontのレート制限機能を使用する。"
+      "Use AWS WAF to apply rate limits based on client IP addresses.",
+      "Use API Gateway usage plans and API keys to configure per-client rate limits.",
+      "Implement custom rate-limiting logic inside the Lambda function.",
+      "Use the rate-limiting feature of Amazon CloudFront."
     ],
     correctAnswer: 1,
-    category: "アプリケーション統合",
-    explanation: "API Gatewayの使用量プラン（Usage Plans）とAPIキーを使用することで、クライアントごとに異なるレート制限とクォータを設定できます。使用量プランでは、リクエストレート（1秒あたりのリクエスト数）とバーストリミット、および月間クォータを定義できます。各クライアントにAPIキーを発行し、適切な使用量プランに関連付けることで、きめ細かいアクセス制御が可能になります。",
+    category: "Application Integration",
+    explanation: "Using API Gateway usage plans and API keys allows you to configure different rate limits and quotas for each client. A usage plan defines the request rate (requests per second), burst limit, and monthly quota. By issuing an API key to each client and associating it with the appropriate usage plan, you can implement fine-grained access control.",
     optionExplanations: [
-      "誤り：AWS WAFはセキュリティ保護には有効ですが、API Gatewayの使用量プランを使用する方が、きめ細かいレート制限の管理に適しています。",
-      "正解：API Gatewayの使用量プランとAPIキーを使用することで、クライアントごとに異なるレート制限を簡単に実装できます。",
-      "誤り：Lambda関数内でレート制限を実装することは可能ですが、API Gatewayの組み込み機能を使用する方が効率的です。",
-      "誤り：CloudFrontはコンテンツ配信には適していますが、API Gatewayの使用量プランを置き換えるものではありません。"
+      "Incorrect: AWS WAF is effective for security protection, but API Gateway usage plans are better suited for fine-grained rate limit management per client.",
+      "Correct: Using API Gateway usage plans and API keys makes it easy to implement different rate limits for each client.",
+      "Incorrect: Implementing rate limiting inside a Lambda function is possible but less efficient than using API Gateway's built-in features.",
+      "Incorrect: CloudFront is suitable for content delivery but does not replace API Gateway usage plans."
     ]
   },
   {
     id: "dva-025",
-    question: "デベロッパーは、AWS CodeDeployを使用してAmazon EC2インスタンスにアプリケーションをデプロイしています。デベロッパーは、デプロイ中にアプリケーションのダウンタイムを最小限に抑え、問題が発生した場合は自動的にロールバックしたいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのデプロイ設定を使用すべきですか。",
+    question: "A developer is deploying an application to Amazon EC2 instances using AWS CodeDeploy. The developer wants to minimize application downtime during deployments and automatically roll back if a problem occurs.\n\nWhich deployment configuration should the developer use to meet these requirements?",
     options: [
-      "AllAtOnce デプロイ設定を使用して、すべてのインスタンスに同時にデプロイする。",
-      "Blue/Green デプロイを使用して、新しい環境にデプロイし、トラフィックを切り替える。",
-      "HalfAtATime デプロイ設定を使用して、インスタンスの半分ずつデプロイする。",
-      "OneAtATime デプロイ設定を使用して、1つずつインスタンスにデプロイする。"
+      "Use the AllAtOnce deployment configuration to deploy to all instances simultaneously.",
+      "Use a Blue/Green deployment to deploy to a new environment and then shift traffic.",
+      "Use the HalfAtATime deployment configuration to deploy to half of the instances at a time.",
+      "Use the OneAtATime deployment configuration to deploy to one instance at a time."
     ],
     correctAnswer: 1,
-    category: "デプロイメント",
-    explanation: "Blue/Greenデプロイは、ダウンタイムを最小限に抑え、安全なロールバックを可能にする最適な方法です。Blue/Greenデプロイでは、新しいバージョンのアプリケーションを新しい環境（Green）にデプロイし、テストが完了したらトラフィックを古い環境（Blue）から新しい環境に切り替えます。問題が発生した場合は、トラフィックを即座に元の環境に戻すことができます。",
+    category: "Deployment",
+    explanation: "A Blue/Green deployment is the best approach for minimizing downtime and enabling safe rollback. In a Blue/Green deployment, the new version of the application is deployed to a new environment (Green), and once testing is complete, traffic is shifted from the old environment (Blue) to the new one. If a problem occurs, traffic can be immediately shifted back to the original environment.",
     optionExplanations: [
-      "誤り：AllAtOnceデプロイは、すべてのインスタンスに同時にデプロイするため、ダウンタイムが発生し、ロールバックも困難です。",
-      "正解：Blue/Greenデプロイは、ダウンタイムを最小限に抑え、安全で迅速なロールバックを可能にします。",
-      "誤り：HalfAtATimeデプロイは、ダウンタイムを減らすことはできますが、Blue/Greenデプロイほど安全ではありません。",
-      "誤り：OneAtATimeデプロイは、ダウンタイムを減らすことはできますが、デプロイに時間がかかり、Blue/Greenデプロイほど安全ではありません。"
+      "Incorrect: AllAtOnce deploys to all instances simultaneously, causing downtime and making rollback difficult.",
+      "Correct: Blue/Green deployment minimizes downtime and enables safe, rapid rollback.",
+      "Incorrect: HalfAtATime can reduce downtime but is not as safe as Blue/Green deployment.",
+      "Incorrect: OneAtATime can reduce downtime but takes longer to deploy and is not as safe as Blue/Green deployment."
     ]
   },
   {
     id: "dva-026",
-    question: "デベロッパーは、Amazon S3バケットに保存されている機密データを暗号化する必要があります。デベロッパーは、暗号化キーを完全に制御し、キーのローテーションを自動化したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどの暗号化オプションを使用すべきですか。",
+    question: "A developer needs to encrypt sensitive data stored in an Amazon S3 bucket. The developer wants full control over the encryption keys and wants to automate key rotation.\n\nWhich encryption option should the developer use to meet these requirements?",
     options: [
-      "S3マネージド暗号化キー (SSE-S3) を使用する。",
-      "クライアント側暗号化を使用して、S3にアップロードする前にデータを暗号化する。",
-      "カスタマー提供の暗号化キー (SSE-C) を使用する。",
-      "AWS KMSマネージド暗号化キー (SSE-KMS) を使用する。"
+      "Use S3-managed encryption keys (SSE-S3).",
+      "Use client-side encryption to encrypt the data before uploading it to S3.",
+      "Use customer-provided encryption keys (SSE-C).",
+      "Use AWS KMS-managed encryption keys (SSE-KMS)."
     ],
     correctAnswer: 3,
-    category: "セキュリティ",
-    explanation: "AWS KMSマネージド暗号化キー（SSE-KMS）を使用することで、暗号化キーを完全に制御し、キーのローテーションを自動化できます。KMSでは、カスタマーマネージドキー（CMK）を作成し、キーポリシーを使用してアクセスを制御できます。また、KMSは自動キーローテーションをサポートしており、年に1回自動的にキーマテリアルをローテーションできます。さらに、KMSはすべてのキー使用をCloudTrailでログに記録するため、監査要件も満たせます。",
+    category: "Security",
+    explanation: "Using AWS KMS-managed encryption keys (SSE-KMS) provides full control over the encryption keys and allows key rotation to be automated. With KMS, you can create a customer managed key (CMK) and control access using key policies. KMS also supports automatic key rotation, which rotates the key material once a year. In addition, KMS logs all key usage in CloudTrail, which satisfies audit requirements.",
     optionExplanations: [
-      "誤り：SSE-S3は簡単に使用できますが、暗号化キーの完全な制御はできません。キーはAWSが管理します。",
-      "誤り：クライアント側暗号化では、暗号化キーを自分で管理する必要があり、自動ローテーションはサポートされていません。",
-      "誤り：SSE-Cでは、暗号化キーを自分で管理する必要がありますが、自動ローテーションはサポートされていません。また、キーの管理が複雑になります。",
-      "正解：SSE-KMSを使用することで、暗号化キーを完全に制御し、自動キーローテーションを有効にできます。"
+      "Incorrect: SSE-S3 is easy to use, but it does not provide full control over the encryption keys. The keys are managed by AWS.",
+      "Incorrect: With client-side encryption, you must manage the encryption keys yourself, and automatic rotation is not supported.",
+      "Incorrect: With SSE-C, you must manage the encryption keys yourself, and automatic rotation is not supported. Key management also becomes more complex.",
+      "Correct: Using SSE-KMS provides full control over encryption keys and allows automatic key rotation to be enabled."
     ]
   },
   {
     id: "dva-027",
-    question: "デベロッパーは、AWS Lambda関数を使用してイベント駆動型アプリケーションを構築しています。Lambda関数は、Amazon DynamoDB Streamsからイベントを処理します。デベロッパーは、処理に失敗したレコードを自動的に再試行し、それでも失敗した場合は別のキューに送信したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどの機能を使用すべきですか。",
+    question: "A developer is building an event-driven application using an AWS Lambda function. The Lambda function processes events from Amazon DynamoDB Streams. The developer wants to automatically retry records that fail processing and, if they still fail, send them to a separate queue.\n\nWhich feature should the developer use to meet these requirements?",
     options: [
-      "Step Functionsを使用してDynamoDB Streamsイベントを処理する。",
-      "DynamoDB Streamsの設定で再試行ポリシーを構成する。",
-      "Lambda関数内でtry-catchブロックを実装し、失敗したレコードをSQSに送信する。",
-      "Lambda関数の再試行動作を設定し、失敗時の送信先（Destination）としてSQSキューを指定する。"
+      "Use Step Functions to process DynamoDB Streams events.",
+      "Configure a retry policy in the DynamoDB Streams settings.",
+      "Implement a try-catch block inside the Lambda function and send failed records to SQS.",
+      "Configure the Lambda function's retry behavior and specify an SQS queue as the on-failure destination."
     ],
     correctAnswer: 3,
-    category: "アプリケーション統合",
-    explanation: "AWS Lambdaは、イベントソースマッピングの再試行動作と失敗時の送信先（Destination）機能を提供しています。DynamoDB Streamsをイベントソースとして使用する場合、Lambda関数が失敗したレコードを自動的に再試行し、最大再試行回数に達した後、失敗したレコードを指定された送信先（SQSキュー、SNSトピック、別のLambda関数など）に送信できます。これにより、エラーハンドリングを宣言的に実装できます。",
+    category: "Application Integration",
+    explanation: "AWS Lambda provides retry behavior and on-failure destination features for event source mappings. When using DynamoDB Streams as an event source, Lambda automatically retries failed records and, after the maximum number of retries is reached, sends the failed records to a specified destination (such as an SQS queue, SNS topic, or another Lambda function). This allows error handling to be implemented declaratively.",
     optionExplanations: [
-      "誤り：Step Functionsを使用することは可能ですが、この要件にはLambdaの組み込み機能で十分です。",
-      "誤り：DynamoDB Streams自体には再試行ポリシーの設定はありません。再試行はLambda側で設定します。",
-      "誤り：Lambda関数内でエラーハンドリングを実装することは可能ですが、Lambdaの組み込み機能を使用する方が管理しやすいです。",
-      "正解：Lambdaの再試行動作と失敗時の送信先機能を使用することで、エラーハンドリングを簡単に実装できます。"
+      "Incorrect: Using Step Functions is possible, but Lambda's built-in features are sufficient for this requirement.",
+      "Incorrect: DynamoDB Streams itself does not have a retry policy setting. Retries are configured on the Lambda side.",
+      "Incorrect: Implementing error handling inside a Lambda function is possible, but using Lambda's built-in features is easier to manage.",
+      "Correct: Using Lambda's retry behavior and on-failure destination feature makes it easy to implement error handling."
     ]
   },
   {
     id: "dva-028",
-    question: "デベロッパーは、Amazon ECS (Elastic Container Service) を使用してコンテナ化されたアプリケーションを実行しています。アプリケーションは、機密情報（データベースパスワード、APIキーなど）を使用する必要があります。デベロッパーは、これらの機密情報を安全に管理したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのアプローチを取るべきですか。",
+    question: "A developer is running a containerized application using Amazon ECS (Elastic Container Service). The application needs to use sensitive information such as database passwords and API keys. The developer wants to manage this sensitive information securely.\n\nWhich approach should the developer take to meet these requirements?",
     options: [
-      "機密情報をDockerイメージに埋め込む。",
-      "機密情報をECSタスク定義の環境変数として定義する。",
-      "AWS Secrets Managerに機密情報を保存し、ECSタスク定義でシークレットを参照する。",
-      "機密情報をS3バケットに保存し、コンテナ起動時にダウンロードする。"
+      "Embed the sensitive information in the Docker image.",
+      "Define the sensitive information as environment variables in the ECS task definition.",
+      "Store the sensitive information in AWS Secrets Manager and reference the secrets in the ECS task definition.",
+      "Store the sensitive information in an S3 bucket and download it when the container starts."
     ],
     correctAnswer: 2,
-    category: "セキュリティ",
-    explanation: "AWS Secrets Managerに機密情報を保存し、ECSタスク定義でシークレットを参照することが、最も安全で推奨される方法です。ECSは、Secrets Managerとの統合をネイティブにサポートしており、タスク定義でシークレットのARNを指定するだけで、コンテナ起動時に自動的にシークレットを取得し、環境変数として注入できます。これにより、機密情報をコードやイメージから分離し、集中管理できます。",
+    category: "Security",
+    explanation: "Storing sensitive information in AWS Secrets Manager and referencing the secrets in the ECS task definition is the most secure and recommended approach. ECS natively supports integration with Secrets Manager. By specifying the secret ARN in the task definition, the secret is automatically retrieved and injected as an environment variable when the container starts. This separates sensitive information from code and images, enabling centralized management.",
     optionExplanations: [
-      "誤り：機密情報をDockerイメージに埋め込むことは、重大なセキュリティリスクです。イメージが漏洩すると、機密情報も漏洩します。",
-      "誤り：ECSタスク定義の環境変数として定義することは可能ですが、機密情報がプレーンテキストで保存されるため、セキュリティリスクがあります。",
-      "正解：Secrets Managerを使用することで、機密情報を安全に管理し、ECSタスクに自動的に注入できます。",
-      "誤り：S3バケットを使用することは可能ですが、Secrets Managerを使用する方が、機密情報の管理に特化しており、より安全です。"
+      "Incorrect: Embedding sensitive information in a Docker image is a serious security risk. If the image is exposed, the sensitive information is also exposed.",
+      "Incorrect: Defining sensitive information as environment variables in an ECS task definition is possible, but the information is stored in plain text, posing a security risk.",
+      "Correct: Using Secrets Manager allows sensitive information to be managed securely and automatically injected into ECS tasks.",
+      "Incorrect: Using an S3 bucket is possible, but Secrets Manager is purpose-built for managing sensitive information and is more secure."
     ]
   },
   {
     id: "dva-029",
-    question: "デベロッパーは、AWS CloudFormationを使用してインフラストラクチャをコードとして管理しています。デベロッパーは、CloudFormationスタックの更新時に、変更が適用される前に変更内容を確認したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどの機能を使用すべきですか。",
+    question: "A developer is managing infrastructure as code using AWS CloudFormation. The developer wants to review the changes before they are applied when updating a CloudFormation stack.\n\nWhich feature should the developer use to meet these requirements?",
     options: [
-      "CloudFormation Driftを使用して、スタックの変更を検出する。",
-      "CloudFormation StackPolicyを使用して、変更を制限する。",
-      "AWS Configを使用して、スタックの変更を監視する。",
-      "CloudFormation ChangeSetを作成して、変更内容をプレビューする。"
+      "Use CloudFormation Drift to detect changes to the stack.",
+      "Use a CloudFormation Stack Policy to restrict changes.",
+      "Use AWS Config to monitor stack changes.",
+      "Create a CloudFormation ChangeSet to preview the changes."
     ],
     correctAnswer: 3,
-    category: "デプロイメント",
-    explanation: "CloudFormation ChangeSetは、スタックの更新を実行する前に、変更内容をプレビューできる機能です。ChangeSetを作成すると、CloudFormationは提案された変更を分析し、どのリソースが追加、変更、削除されるかを表示します。これにより、意図しない変更を防ぎ、更新の影響を事前に理解できます。ChangeSetを確認した後、実行するか破棄するかを選択できます。",
+    category: "Deployment",
+    explanation: "A CloudFormation ChangeSet allows you to preview changes before executing a stack update. When you create a ChangeSet, CloudFormation analyzes the proposed changes and shows which resources will be added, modified, or deleted. This prevents unintended changes and allows you to understand the impact of an update in advance. After reviewing the ChangeSet, you can choose to execute it or discard it.",
     optionExplanations: [
-      "誤り：CloudFormation Driftは、スタックの実際の状態とテンプレートの差異を検出する機能ですが、更新前のプレビューには使用されません。",
-      "誤り：StackPolicyは、スタック更新時に特定のリソースを保護するための機能ですが、変更内容のプレビューには使用されません。",
-      "誤り：AWS Configは、リソースの設定変更を追跡するサービスですが、CloudFormationスタック更新のプレビューには使用されません。",
-      "正解：CloudFormation ChangeSetを使用することで、スタック更新前に変更内容を安全にプレビューできます。"
+      "Incorrect: CloudFormation Drift detects differences between the actual state of a stack and the template, but it is not used to preview changes before an update.",
+      "Incorrect: A Stack Policy protects specific resources during a stack update, but it is not used to preview changes.",
+      "Incorrect: AWS Config tracks configuration changes to resources, but it is not used to preview CloudFormation stack updates.",
+      "Correct: Using a CloudFormation ChangeSet allows you to safely preview changes before updating the stack."
     ]
   },
   {
     id: "dva-030",
-    question: "デベロッパーは、Amazon API Gatewayを使用してREST APIを構築しています。APIは、複数のバックエンドサービス（Lambda関数、HTTPエンドポイント、AWSサービス）を統合する必要があります。デベロッパーは、各バックエンドサービスへのリクエストとレスポンスを変換したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどの機能を使用すべきですか。",
+    question: "A developer is building a REST API using Amazon API Gateway. The API must integrate with multiple backend services (Lambda functions, HTTP endpoints, and AWS services). The developer wants to transform the requests and responses to and from each backend service.\n\nWhich feature should the developer use to meet these requirements?",
     options: [
-      "API Gatewayのマッピングテンプレートを使用して、リクエストとレスポンスを変換する。",
-      "Lambda関数を使用して、リクエストとレスポンスを変換する。",
-      "AWS Step Functionsを使用して、複数のバックエンドサービスを統合する。",
-      "Amazon EventBridgeを使用して、リクエストをルーティングする。"
+      "Use API Gateway mapping templates to transform requests and responses.",
+      "Use a Lambda function to transform requests and responses.",
+      "Use AWS Step Functions to integrate multiple backend services.",
+      "Use Amazon EventBridge to route requests."
     ],
     correctAnswer: 0,
-    category: "アプリケーション統合",
-    explanation: "API Gatewayのマッピングテンプレートは、リクエストとレスポンスのデータ変換を行うための強力な機能です。マッピングテンプレートは、Velocity Template Language (VTL) を使用して記述され、クライアントからのリクエストをバックエンドサービスが期待する形式に変換したり、バックエンドからのレスポンスをクライアントが期待する形式に変換したりできます。これにより、バックエンドサービスを変更することなく、APIの入出力形式を柔軟に制御できます。",
+    category: "Application Integration",
+    explanation: "API Gateway mapping templates are a powerful feature for transforming request and response data. Mapping templates are written using the Velocity Template Language (VTL) and can transform requests from clients into the format expected by backend services, and transform responses from backend services into the format expected by clients. This allows flexible control over the API's input and output formats without modifying the backend services.",
     optionExplanations: [
-      "正解：API Gatewayのマッピングテンプレートを使用することで、リクエストとレスポンスを効率的に変換できます。",
-      "誤り：Lambda関数を使用してデータ変換を行うことは可能ですが、API Gatewayのマッピングテンプレートを使用する方が、追加のコストや遅延を避けられます。",
-      "誤り：Step Functionsは複雑なワークフローには適していますが、単純なデータ変換にはAPI Gatewayのマッピングテンプレートで十分です。",
-      "誤り：EventBridgeはイベント駆動型アーキテクチャには適していますが、API Gatewayのリクエスト/レスポンス変換には使用されません。"
+      "Correct: Using API Gateway mapping templates allows requests and responses to be transformed efficiently.",
+      "Incorrect: Using a Lambda function for data transformation is possible, but using API Gateway mapping templates avoids additional cost and latency.",
+      "Incorrect: Step Functions is suitable for complex workflows, but API Gateway mapping templates are sufficient for simple data transformation.",
+      "Incorrect: EventBridge is suitable for event-driven architectures but is not used for API Gateway request/response transformation."
     ]
   },
   {
     id: "dva-031",
-    question: "デベロッパーは、Amazon EventBridge (CloudWatch Events) を使用してイベント駆動型アーキテクチャを構築しています。複数のAWSアカウントからのイベントを単一のイベントバスで処理したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのように設定すべきですか。",
+    question: "A developer is building an event-driven architecture using Amazon EventBridge (CloudWatch Events). The developer wants to process events from multiple AWS accounts on a single event bus.\n\nHow should the developer configure this to meet these requirements?",
     options: [
-      "クロスアカウントイベントバスポリシーを設定して、他のアカウントからのイベントを受信する。",
-      "各AWSアカウントにEventBridgeイベントバスを作成し、イベントを手動で転送する。",
-      "AWS Lambda関数を使用して、各アカウントからイベントを収集する。",
-      "Amazon SNSトピックを使用して、各アカウントからイベントを集約する。"
+      "Configure a cross-account event bus policy to receive events from other accounts.",
+      "Create an EventBridge event bus in each AWS account and manually forward events.",
+      "Use an AWS Lambda function to collect events from each account.",
+      "Use an Amazon SNS topic to aggregate events from each account."
     ],
     correctAnswer: 0,
-    category: "アプリケーション統合",
-    explanation: "Amazon EventBridgeは、クロスアカウントイベント配信をネイティブにサポートしています。イベントバスにリソースベースのポリシーを設定することで、他のAWSアカウントからイベントを受信できます。送信側のアカウントでは、ターゲットとして他のアカウントのイベントバスを指定するだけで、イベントを送信できます。これにより、複数のアカウントからのイベントを単一のイベントバスで集中管理できます。",
+    category: "Application Integration",
+    explanation: "Amazon EventBridge natively supports cross-account event delivery. By configuring a resource-based policy on an event bus, you can receive events from other AWS accounts. In the sending account, you only need to specify the event bus in the other account as the target to send events. This allows events from multiple accounts to be centrally managed on a single event bus.",
     optionExplanations: [
-      "正解：EventBridgeのクロスアカウントイベントバスポリシーを使用することで、複数のアカウントからイベントを受信できます。",
-      "誤り：手動でイベントを転送することは非効率的で、EventBridgeのクロスアカウント機能を使用する方が簡単です。",
-      "誤り：Lambda関数を使用することは可能ですが、EventBridgeのネイティブ機能を使用する方が効率的です。",
-      "誤り：SNSトピックを使用することは可能ですが、EventBridgeのクロスアカウント機能を使用する方が、イベント駆動型アーキテクチャに適しています。"
+      "Correct: Using an EventBridge cross-account event bus policy allows events to be received from multiple accounts.",
+      "Incorrect: Manually forwarding events is inefficient. Using EventBridge's cross-account feature is simpler.",
+      "Incorrect: Using a Lambda function is possible, but using EventBridge's native feature is more efficient.",
+      "Incorrect: Using an SNS topic is possible, but EventBridge's cross-account feature is better suited for event-driven architectures."
     ]
   },
   {
     id: "dva-032",
-    question: "デベロッパーは、AWS AppSyncを使用してGraphQL APIを構築しています。APIは、Amazon DynamoDBテーブルからデータを取得し、リアルタイムでクライアントに更新を配信する必要があります。\n\nこれらの要件を満たすために、デベロッパーはどの機能を使用すべきですか。",
+    question: "A developer is building a GraphQL API using AWS AppSync. The API must retrieve data from an Amazon DynamoDB table and deliver real-time updates to clients.\n\nWhich features should the developer use to meet these requirements?",
     options: [
-      "AppSyncのリゾルバーとDynamoDBデータソースを使用する。リアルタイム更新にはWebSocketを手動で実装する。",
-      "API GatewayのWebSocket APIを使用して、リアルタイム更新を実装する。",
-      "Lambda関数を使用してDynamoDBからデータを取得し、Amazon SNSでクライアントに通知する。",
-      "AppSyncのリゾルバー、DynamoDBデータソース、およびサブスクリプションを使用する。"
+      "Use AppSync resolvers and a DynamoDB data source. Manually implement WebSocket for real-time updates.",
+      "Use the API Gateway WebSocket API to implement real-time updates.",
+      "Use a Lambda function to retrieve data from DynamoDB and use Amazon SNS to notify clients.",
+      "Use AppSync resolvers, a DynamoDB data source, and subscriptions."
     ],
     correctAnswer: 3,
-    category: "アプリケーション統合",
-    explanation: "AWS AppSyncは、GraphQLのサブスクリプション機能をネイティブにサポートしており、リアルタイム更新を簡単に実装できます。AppSyncのリゾルバーを使用してDynamoDBデータソースに接続し、ミューテーション（データ変更）が発生したときにサブスクリプションを通じてクライアントに自動的に更新を配信できます。AppSyncは、WebSocket接続を自動的に管理するため、手動でWebSocketを実装する必要はありません。",
+    category: "Application Integration",
+    explanation: "AWS AppSync natively supports GraphQL subscriptions, making it easy to implement real-time updates. By using AppSync resolvers to connect to a DynamoDB data source, updates can be automatically delivered to clients via subscriptions whenever a mutation (data change) occurs. AppSync automatically manages WebSocket connections, so there is no need to implement WebSocket manually.",
     optionExplanations: [
-      "誤り：AppSyncはWebSocket接続を自動的に管理するため、手動でWebSocketを実装する必要はありません。",
-      "誤り：API GatewayのWebSocket APIを使用することは可能ですが、AppSyncを使用する方がGraphQL APIには適しています。",
-      "誤り：Lambda関数とSNSを使用することは可能ですが、AppSyncのネイティブ機能を使用する方が簡単で効率的です。",
-      "正解：AppSyncのリゾルバー、DynamoDBデータソース、サブスクリプションを使用することで、リアルタイム更新を簡単に実装できます。"
+      "Incorrect: AppSync automatically manages WebSocket connections, so there is no need to implement WebSocket manually.",
+      "Incorrect: Using the API Gateway WebSocket API is possible, but AppSync is better suited for GraphQL APIs.",
+      "Incorrect: Using a Lambda function and SNS is possible, but using AppSync's native features is simpler and more efficient.",
+      "Correct: Using AppSync resolvers, a DynamoDB data source, and subscriptions makes it easy to implement real-time updates."
     ]
   },
   {
     id: "dva-033",
-    question: "デベロッパーは、AWS CodeArtifactを使用してソフトウェアパッケージを管理しています。デベロッパーは、パブリックリポジトリ（npm、PyPI、Mavenなど）からのパッケージをキャッシュし、ビルドプロセスを高速化したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのように設定すべきですか。",
+    question: "A developer is managing software packages using AWS CodeArtifact. The developer wants to cache packages from public repositories (such as npm, PyPI, and Maven) to speed up the build process.\n\nHow should the developer configure this to meet these requirements?",
     options: [
-      "S3バケットを使用して、パブリックリポジトリからのパッケージをキャッシュする。",
-      "Lambda関数を使用して、パブリックリポジトリからパッケージをダウンロードし、CodeArtifactにアップロードする。",
-      "CodeArtifactリポジトリに外部接続を設定して、パブリックリポジトリからパッケージを自動的にキャッシュする。",
-      "Amazon ElastiCacheを使用して、パッケージメタデータをキャッシュする。"
+      "Use an S3 bucket to cache packages from public repositories.",
+      "Use a Lambda function to download packages from public repositories and upload them to CodeArtifact.",
+      "Configure an external connection on the CodeArtifact repository to automatically cache packages from public repositories.",
+      "Use Amazon ElastiCache to cache package metadata."
     ],
     correctAnswer: 2,
-    category: "デプロイメント",
-    explanation: "AWS CodeArtifactは、外部接続機能を提供しており、パブリックリポジトリ（npm、PyPI、Maven Centralなど）からパッケージを自動的にキャッシュできます。CodeArtifactリポジトリに外部接続を設定すると、パッケージが最初にリクエストされたときにパブリックリポジトリから取得され、CodeArtifactにキャッシュされます。その後のリクエストでは、キャッシュされたパッケージが使用されるため、ビルドプロセスが高速化されます。",
+    category: "Deployment",
+    explanation: "AWS CodeArtifact provides an external connection feature that allows packages to be automatically cached from public repositories such as npm, PyPI, and Maven Central. When an external connection is configured on a CodeArtifact repository, the package is retrieved from the public repository the first time it is requested and cached in CodeArtifact. Subsequent requests use the cached package, speeding up the build process.",
     optionExplanations: [
-      "誤り：S3バケットを使用することは可能ですが、CodeArtifactを使用する方がパッケージ管理に特化しており、より適しています。",
-      "誤り：Lambda関数を使用することは可能ですが、CodeArtifactの外部接続機能を使用する方が簡単で効率的です。",
-      "正解：CodeArtifactの外部接続機能を使用することで、パブリックリポジトリからのパッケージを自動的にキャッシュできます。",
-      "誤り：ElastiCacheはデータキャッシュには適していますが、パッケージ管理にはCodeArtifactを使用する方が適しています。"
+      "Incorrect: Using an S3 bucket is possible, but CodeArtifact is purpose-built for package management and is more appropriate.",
+      "Incorrect: Using a Lambda function is possible, but using CodeArtifact's external connection feature is simpler and more efficient.",
+      "Correct: Using CodeArtifact's external connection feature allows packages from public repositories to be automatically cached.",
+      "Incorrect: ElastiCache is suitable for data caching, but CodeArtifact is more appropriate for package management."
     ]
   },
   {
     id: "dva-034",
-    question: "デベロッパーは、Amazon Cognitoユーザープールを使用してユーザー認証を実装しています。デベロッパーは、ユーザーがサインアップ時に追加の検証ステップを実行したいと考えています（例：企業メールドメインの確認、外部APIでのユーザー情報の検証）。\n\nこれらの要件を満たすために、デベロッパーはどの機能を使用すべきですか。",
+    question: "A developer is implementing user authentication using an Amazon Cognito user pool. The developer wants to perform additional validation steps when a user signs up (for example, verifying a corporate email domain or validating user information against an external API).\n\nWhich feature should the developer use to meet these requirements?",
     options: [
-      "Cognitoのプリサインアップトリガーを使用して、Lambda関数でカスタム検証ロジックを実装する。",
-      "Cognitoのポストコンファメーショントリガーを使用して、Lambda関数でカスタム検証ロジックを実装する。",
-      "API Gatewayを使用して、サインアップリクエストをインターセプトし、検証を実行する。",
-      "AWS WAFを使用して、サインアップリクエストをフィルタリングする。"
+      "Use the Cognito pre sign-up trigger to implement custom validation logic in a Lambda function.",
+      "Use the Cognito post confirmation trigger to implement custom validation logic in a Lambda function.",
+      "Use API Gateway to intercept sign-up requests and perform validation.",
+      "Use AWS WAF to filter sign-up requests."
     ],
     correctAnswer: 0,
-    category: "セキュリティ",
-    explanation: "Amazon Cognitoのプリサインアップトリガーは、ユーザーがサインアップする前にカスタムロジックを実行できるLambda関数です。このトリガーを使用して、企業メールドメインの確認、外部APIでのユーザー情報の検証、カスタム属性の追加などを実行できます。検証が失敗した場合は、サインアップを拒否できます。これにより、ユーザープールに登録されるユーザーを制御できます。",
+    category: "Security",
+    explanation: "The Amazon Cognito pre sign-up trigger is a Lambda function that runs custom logic before a user signs up. This trigger can be used to verify a corporate email domain, validate user information against an external API, or add custom attributes. If validation fails, the sign-up can be rejected. This gives you control over which users are registered in the user pool.",
     optionExplanations: [
-      "正解：Cognitoのプリサインアップトリガーを使用することで、サインアップ前にカスタム検証ロジックを実装できます。",
-      "誤り：ポストコンファメーショントリガーは、ユーザーがメールアドレスを確認した後に実行されるため、サインアップ時の検証には適していません。",
-      "誤り：API Gatewayを使用することは可能ですが、Cognitoのトリガーを使用する方が統合されており、管理しやすいです。",
-      "誤り：AWS WAFはセキュリティ保護には有効ですが、カスタムビジネスロジックの検証には適していません。"
+      "Correct: Using the Cognito pre sign-up trigger allows custom validation logic to be implemented before sign-up.",
+      "Incorrect: The post confirmation trigger runs after the user confirms their email address, so it is not suitable for validation at sign-up time.",
+      "Incorrect: Using API Gateway is possible, but using Cognito triggers is more integrated and easier to manage.",
+      "Incorrect: AWS WAF is effective for security protection but is not suitable for custom business logic validation."
     ]
   },
   {
     id: "dva-035",
-    question: "デベロッパーは、AWS Fargateを使用してコンテナ化されたアプリケーションを実行しています。アプリケーションは、複数のコンテナ間で共有ストレージが必要です。デベロッパーは、コンテナが再起動されてもデータが永続化されるようにしたいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのストレージオプションを使用すべきですか。",
+    question: "A developer is running a containerized application using AWS Fargate. The application requires shared storage across multiple containers. The developer wants to ensure data is persisted even if a container restarts.\n\nWhich storage option should the developer use to meet these requirements?",
     options: [
-      "Amazon EFS (Elastic File System) をFargateタスクにマウントする。",
-      "Amazon EBS (Elastic Block Store) ボリュームをFargateタスクにアタッチする。",
-      "Dockerボリュームを使用して、コンテナ間でデータを共有する。",
-      "Amazon S3バケットを使用して、データを保存する。"
+      "Mount Amazon EFS (Elastic File System) to the Fargate task.",
+      "Attach an Amazon EBS (Elastic Block Store) volume to the Fargate task.",
+      "Use Docker volumes to share data between containers.",
+      "Use an Amazon S3 bucket to store the data."
     ],
     correctAnswer: 0,
-    category: "コンピューティング",
-    explanation: "Amazon EFS (Elastic File System) は、AWS Fargateタスクにマウントできる唯一の永続的な共有ストレージオプションです。EFSを使用すると、複数のコンテナ間でファイルシステムを共有でき、コンテナが再起動されてもデータが永続化されます。EFSは、Fargateタスク定義でボリュームとして設定し、コンテナのマウントポイントを指定することで使用できます。",
+    category: "Compute",
+    explanation: "Amazon EFS (Elastic File System) is the persistent shared storage option that can be mounted to AWS Fargate tasks. With EFS, a file system can be shared across multiple containers, and data persists even if the container restarts. EFS is configured as a volume in the Fargate task definition, and a mount point is specified for the container.",
     optionExplanations: [
-      "正解：Amazon EFSをFargateタスクにマウントすることで、永続的な共有ストレージを実現できます。",
-      "誤り：EBSボリュームは、Fargateタスクには直接アタッチできません。EBSはEC2インスタンス用です。",
-      "誤り：Dockerボリュームは、同じタスク内のコンテナ間でデータを共有できますが、タスクが終了するとデータは失われます。",
-      "誤り：S3バケットを使用することは可能ですが、ファイルシステムとしてマウントするにはEFSを使用する方が適しています。"
+      "Correct: Mounting Amazon EFS to a Fargate task provides persistent shared storage.",
+      "Incorrect: EBS volumes cannot be directly attached to Fargate tasks. EBS is for EC2 instances.",
+      "Incorrect: Docker volumes can share data between containers within the same task, but the data is lost when the task ends.",
+      "Incorrect: Using an S3 bucket is possible, but EFS is more appropriate for mounting as a file system."
     ]
   },
   {
     id: "dva-036",
-    question: "デベロッパーは、Amazon DynamoDBテーブルを使用するアプリケーションを開発しています。アプリケーションは、複数の項目を一度に取得する必要があり、読み取りスループットを最適化したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのAPIオペレーションを使用すべきですか。",
+    question: "A developer is building an application that uses an Amazon DynamoDB table. The application needs to retrieve multiple items at once and wants to optimize read throughput.\n\nWhich API operation should the developer use to meet these requirements?",
     options: [
-      "GetItem APIを複数回呼び出して、各項目を個別に取得する。",
-      "BatchGetItem APIを使用して、複数の項目を一度に取得する。",
-      "Query APIを使用して、パーティションキーに基づいて項目を取得する。",
-      "Scan APIを使用して、テーブル全体をスキャンする。"
+      "Call the GetItem API multiple times to retrieve each item individually.",
+      "Use the BatchGetItem API to retrieve multiple items at once.",
+      "Use the Query API to retrieve items based on a partition key.",
+      "Use the Scan API to scan the entire table."
     ],
     correctAnswer: 1,
-    category: "データベース",
-    explanation: "DynamoDBのBatchGetItem APIは、最大100個の項目を一度に取得できる効率的な方法です。BatchGetItemは、複数のGetItemリクエストを1つのAPIコールにまとめることで、ネットワークオーバーヘッドを削減し、スループットを向上させます。また、BatchGetItemは、複数のテーブルから項目を取得することもできます。",
+    category: "Database",
+    explanation: "The DynamoDB BatchGetItem API is an efficient way to retrieve up to 100 items at once. BatchGetItem combines multiple GetItem requests into a single API call, reducing network overhead and improving throughput. BatchGetItem can also retrieve items from multiple tables.",
     optionExplanations: [
-      "誤り：GetItemを複数回呼び出すことは非効率的で、ネットワークオーバーヘッドが増加します。BatchGetItemを使用する方が効率的です。",
-      "正解：BatchGetItem APIを使用することで、複数の項目を効率的に一度に取得できます。",
-      "誤り：Query APIは、パーティションキーに基づいて項目を取得するのに適していますが、特定の項目を取得する場合はBatchGetItemの方が適しています。",
-      "誤り：Scan APIは、テーブル全体をスキャンするため、非効率的でコストが高くなります。特定の項目を取得する場合は使用すべきではありません。"
+      "Incorrect: Calling GetItem multiple times is inefficient and increases network overhead. Using BatchGetItem is more efficient.",
+      "Correct: Using the BatchGetItem API allows multiple items to be retrieved efficiently in a single call.",
+      "Incorrect: The Query API is suitable for retrieving items based on a partition key, but BatchGetItem is more appropriate when retrieving specific items.",
+      "Incorrect: The Scan API scans the entire table, which is inefficient and costly. It should not be used when retrieving specific items."
     ]
   },
   {
     id: "dva-037",
-    question: "デベロッパーは、AWS Systems Manager Parameter Storeを使用してアプリケーション設定を管理しています。デベロッパーは、パラメータの変更を追跡し、変更が発生したときに自動的にアクションを実行したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのサービスを使用すべきですか。",
+    question: "A developer is managing application configuration using AWS Systems Manager Parameter Store. The developer wants to track parameter changes and automatically take action when a change occurs.\n\nWhich services should the developer use to meet these requirements?",
     options: [
-      "Amazon CloudWatch Logsを使用してParameter Storeの変更をモニタリングする。",
-      "AWS Configを使用してParameter Storeの変更を追跡する。",
-      "AWS CloudTrailを使用してParameter Storeの変更をログに記録し、Amazon EventBridgeでイベントを処理する。",
-      "AWS X-Rayを使用してParameter Storeの変更をトレースする。"
+      "Use Amazon CloudWatch Logs to monitor changes to Parameter Store.",
+      "Use AWS Config to track changes to Parameter Store.",
+      "Use AWS CloudTrail to log changes to Parameter Store and use Amazon EventBridge to process the events.",
+      "Use AWS X-Ray to trace changes to Parameter Store."
     ],
     correctAnswer: 2,
-    category: "モニタリング",
-    explanation: "AWS CloudTrailは、Parameter Storeへのすべての API呼び出しをログに記録します。これには、パラメータの作成、更新、削除が含まれます。CloudTrailイベントをAmazon EventBridgeに送信することで、パラメータの変更が発生したときに自動的にアクション（Lambda関数の呼び出し、SNS通知の送信など）を実行できます。これにより、パラメータの変更を追跡し、自動化されたワークフローを実装できます。",
+    category: "Monitoring",
+    explanation: "AWS CloudTrail logs all API calls to Parameter Store, including parameter creation, updates, and deletion. By sending CloudTrail events to Amazon EventBridge, you can automatically take actions (such as invoking a Lambda function or sending an SNS notification) when a parameter change occurs. This allows you to track parameter changes and implement automated workflows.",
     optionExplanations: [
-      "誤り：CloudWatch Logsは、ログの保存と分析には適していますが、Parameter Storeの変更を自動的に検出する機能はありません。",
-      "誤り：AWS Configは、リソースの設定変更を追跡するサービスですが、Parameter Storeの変更を直接追跡する機能はありません。",
-      "正解：CloudTrailとEventBridgeを組み合わせることで、Parameter Storeの変更を追跡し、自動的にアクションを実行できます。",
-      "誤り：X-Rayは、アプリケーションのトレーシングには適していますが、Parameter Storeの変更追跡には使用されません。"
+      "Incorrect: CloudWatch Logs is suitable for storing and analyzing logs, but it does not have the ability to automatically detect Parameter Store changes.",
+      "Incorrect: AWS Config is a service for tracking configuration changes to resources, but it does not directly track Parameter Store changes.",
+      "Correct: Combining CloudTrail and EventBridge allows you to track Parameter Store changes and automatically take action.",
+      "Incorrect: X-Ray is suitable for application tracing but is not used to track Parameter Store changes."
     ]
   },
   {
     id: "dva-038",
-    question: "デベロッパーは、AWS Lambda関数を使用してデータ処理アプリケーションを構築しています。Lambda関数は、Amazon S3バケットから大きなファイルをダウンロードして処理する必要があります。デベロッパーは、Lambda関数の/tmpディレクトリの容量制限（512 MB）を超えないようにしたいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのアプローチを取るべきですか。",
+    question: "A developer is building a data processing application using an AWS Lambda function. The Lambda function needs to download and process large files from an Amazon S3 bucket. The developer wants to avoid exceeding the Lambda function's /tmp directory capacity limit (512 MB).\n\nWhich approach should the developer take to meet these requirements?",
     options: [
-      "Lambda関数のメモリ設定を増やして、/tmpディレクトリの容量を増やす。",
-      "Amazon EFSをLambda関数にマウントして、大きなファイルを保存する。",
-      "S3 Select APIを使用して、ファイルの必要な部分のみを取得する。",
-      "ファイルをAmazon EBSボリュームにダウンロードする。"
+      "Increase the Lambda function's memory configuration to increase the /tmp directory capacity.",
+      "Mount Amazon EFS to the Lambda function to store large files.",
+      "Use the S3 Select API to retrieve only the required portions of the file.",
+      "Download the file to an Amazon EBS volume."
     ],
     correctAnswer: 2,
-    category: "コンピューティング",
-    explanation: "Amazon S3 Selectは、S3オブジェクトから必要なデータのみを取得できる機能です。SQLライクなクエリを使用して、CSV、JSON、Parquetファイルから特定の行や列を抽出できます。これにより、ファイル全体をダウンロードすることなく、必要なデータのみを処理できるため、Lambda関数の/tmpディレクトリの容量制限を回避できます。また、データ転送量も削減されるため、コストも削減できます。",
+    category: "Compute",
+    explanation: "Amazon S3 Select is a feature that allows you to retrieve only the data you need from an S3 object. Using SQL-like queries, you can extract specific rows or columns from CSV, JSON, and Parquet files. This allows you to process only the required data without downloading the entire file, avoiding the Lambda function's /tmp directory capacity limit. It also reduces data transfer volume, lowering costs.",
     optionExplanations: [
-      "誤り：Lambda関数のメモリを増やしても、/tmpディレクトリの容量は512 MBのまま変わりません（2020年以降は10 GBまで設定可能ですが、それでも制限があります）。",
-      "誤り：EFSをマウントすることは可能ですが、S3 Selectを使用する方が簡単で、データ転送量も削減できます。",
-      "正解：S3 Select APIを使用することで、ファイルの必要な部分のみを取得し、/tmpディレクトリの容量制限を回避できます。",
-      "誤り：Lambda関数にEBSボリュームを直接アタッチすることはできません。"
+      "Incorrect: Increasing the Lambda function's memory does not increase the /tmp directory capacity, which remains at 512 MB (configurable up to 10 GB since 2020, but still limited).",
+      "Incorrect: Mounting EFS is possible, but using S3 Select is simpler and also reduces data transfer volume.",
+      "Correct: Using the S3 Select API allows you to retrieve only the required portions of a file and avoid the /tmp directory capacity limit.",
+      "Incorrect: EBS volumes cannot be directly attached to Lambda functions."
     ]
   },
   {
     id: "dva-039",
-    question: "デベロッパーは、Amazon API Gatewayを使用してREST APIを構築しています。APIは、バックエンドのLambda関数が処理を完了する前にクライアントにレスポンスを返す必要があります（非同期処理）。\n\nこれらの要件を満たすために、デベロッパーはどのように設定すべきですか。",
+    question: "A developer is building a REST API using Amazon API Gateway. The API must return a response to the client before the backend Lambda function completes processing (asynchronous processing).\n\nHow should the developer configure this to meet these requirements?",
     options: [
-      "API GatewayのLambda統合タイプを「Lambda 非プロキシ統合」に設定し、Lambda関数を非同期で呼び出す。",
-      "API GatewayのLambda統合タイプを「Lambda プロキシ統合」に設定する。",
-      "Lambda関数内でAmazon SQSキューにメッセージを送信し、即座にレスポンスを返す。",
-      "Step Functionsを使用して、非同期ワークフローを実装する。"
+      "Set the API Gateway Lambda integration type to Lambda non-proxy integration and configure the Lambda function to be invoked asynchronously.",
+      "Set the API Gateway Lambda integration type to Lambda proxy integration.",
+      "Send a message to an Amazon SQS queue inside the Lambda function and return an immediate response.",
+      "Use Step Functions to implement an asynchronous workflow."
     ],
     correctAnswer: 0,
-    category: "アプリケーション統合",
-    explanation: "API Gatewayでは、Lambda統合タイプを「Lambda 非プロキシ統合」に設定し、呼び出しタイプを「Event」（非同期）に設定することで、Lambda関数を非同期で呼び出すことができます。この設定では、API Gatewayは即座にクライアントにレスポンス（通常は202 Accepted）を返し、Lambda関数はバックグラウンドで実行されます。これにより、長時間実行される処理をクライアントを待たせることなく実行できます。",
+    category: "Application Integration",
+    explanation: "In API Gateway, you can invoke a Lambda function asynchronously by setting the Lambda integration type to Lambda non-proxy integration and setting the invocation type to Event (asynchronous). With this configuration, API Gateway immediately returns a response to the client (typically 202 Accepted), and the Lambda function runs in the background. This allows long-running processing to proceed without making the client wait.",
     optionExplanations: [
-      "正解：Lambda 非プロキシ統合で非同期呼び出しを設定することで、クライアントを待たせずに処理を実行できます。",
-      "誤り：Lambda プロキシ統合は、Lambda関数のレスポンスをそのままクライアントに返すため、非同期処理には適していません。",
-      "誤り：SQSキューを使用することは可能ですが、API Gatewayの非同期Lambda呼び出し機能を使用する方が簡単です。",
-      "誤り：Step Functionsを使用することは可能ですが、単純な非同期処理にはAPI Gatewayの機能で十分です。"
+      "Correct: Configuring an asynchronous invocation with Lambda non-proxy integration allows processing to run without making the client wait.",
+      "Incorrect: Lambda proxy integration passes the Lambda function's response directly to the client, so it is not suitable for asynchronous processing.",
+      "Incorrect: Using an SQS queue is possible, but using API Gateway's asynchronous Lambda invocation is simpler.",
+      "Incorrect: Using Step Functions is possible, but API Gateway's built-in capability is sufficient for simple asynchronous processing."
     ]
   },
   {
     id: "dva-040",
-    question: "デベロッパーは、AWS CodeBuildを使用してアプリケーションをビルドしています。ビルドプロセスは、プライベートなGitリポジトリからソースコードを取得する必要があります。デベロッパーは、GitHubの個人アクセストークンを安全に管理したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのように設定すべきですか。",
+    question: "A developer is building an application using AWS CodeBuild. The build process needs to retrieve source code from a private Git repository. The developer wants to manage the GitHub personal access token securely.\n\nHow should the developer configure this to meet these requirements?",
     options: [
-      "個人アクセストークンをAWS Secrets Managerに保存し、CodeBuildプロジェクトで参照する。",
-      "個人アクセストークンをCodeBuildプロジェクトの環境変数として定義する。",
-      "個人アクセストークンをbuildspec.ymlファイルにハードコーディングする。",
-      "個人アクセストークンをS3バケットに保存し、ビルド時にダウンロードする。"
+      "Store the personal access token in AWS Secrets Manager and reference it in the CodeBuild project.",
+      "Define the personal access token as an environment variable in the CodeBuild project.",
+      "Hardcode the personal access token in the buildspec.yml file.",
+      "Store the personal access token in an S3 bucket and download it at build time."
     ],
     correctAnswer: 0,
-    category: "セキュリティ",
-    explanation: "AWS Secrets Managerに個人アクセストークンを保存し、CodeBuildプロジェクトで参照することが、最も安全で推奨される方法です。CodeBuildは、Secrets Managerとの統合をネイティブにサポートしており、環境変数としてシークレットを参照できます。buildspec.ymlファイルで、環境変数の値としてSecrets ManagerのARNを指定するだけで、ビルド時に自動的にシークレットが取得されます。これにより、機密情報をコードやプロジェクト設定から分離し、集中管理できます。",
+    category: "Security",
+    explanation: "Storing the personal access token in AWS Secrets Manager and referencing it in the CodeBuild project is the most secure and recommended approach. CodeBuild natively supports integration with Secrets Manager and can reference secrets as environment variables. In the buildspec.yml file, you only need to specify the Secrets Manager ARN as the value of an environment variable, and the secret is automatically retrieved at build time. This separates sensitive information from code and project configuration, enabling centralized management.",
     optionExplanations: [
-      "正解：Secrets Managerを使用することで、個人アクセストークンを安全に管理し、CodeBuildプロジェクトで参照できます。",
-      "誤り：環境変数として定義することは可能ですが、機密情報がプレーンテキストで保存されるため、セキュリティリスクがあります。",
-      "誤り：buildspec.ymlファイルにハードコーディングすることは、重大なセキュリティリスクです。",
-      "誤り：S3バケットを使用することは可能ですが、Secrets Managerを使用する方が、機密情報の管理に特化しており、より安全です。"
+      "Correct: Using Secrets Manager allows the personal access token to be managed securely and referenced in the CodeBuild project.",
+      "Incorrect: Defining it as an environment variable is possible, but sensitive information is stored in plain text, posing a security risk.",
+      "Incorrect: Hardcoding in the buildspec.yml file is a serious security risk.",
+      "Incorrect: Using an S3 bucket is possible, but Secrets Manager is purpose-built for managing sensitive information and is more secure."
     ]
   },
   {
     id: "dva-041",
-    question: "デベロッパーは、Amazon DynamoDBテーブルを使用するアプリケーションを開発しています。アプリケーションは、条件付き書き込みを実行して、項目が存在しない場合のみ新しい項目を作成する必要があります。\n\nこれらの要件を満たすために、デベロッパーはどのAPIパラメータを使用すべきですか。",
+    question: "A developer is building an application that uses an Amazon DynamoDB table. The application needs to perform a conditional write to create a new item only if the item does not already exist.\n\nWhich API parameter should the developer use to meet these requirements?",
     options: [
-      "PutItem APIでConditionExpressionパラメータを使用して、attribute_not_exists条件を指定する。",
-      "UpdateItem APIでConditionExpressionパラメータを使用して、attribute_exists条件を指定する。",
-      "PutItem APIでExpectedパラメータを使用して、項目の存在を確認する。",
-      "TransactWriteItems APIを使用して、トランザクション内で項目の存在を確認する。"
+      "Use the ConditionExpression parameter with the PutItem API and specify the attribute_not_exists condition.",
+      "Use the ConditionExpression parameter with the UpdateItem API and specify the attribute_exists condition.",
+      "Use the Expected parameter with the PutItem API to check for the item's existence.",
+      "Use the TransactWriteItems API to check for the item's existence within a transaction."
     ],
     correctAnswer: 0,
-    category: "データベース",
-    explanation: "DynamoDBのPutItem APIでConditionExpressionパラメータを使用し、attribute_not_exists関数を指定することで、項目が存在しない場合のみ新しい項目を作成できます。この条件が満たされない場合（項目が既に存在する場合）、PutItem操作は失敗し、ConditionalCheckFailedExceptionが返されます。これにより、競合状態を防ぎ、データの整合性を保つことができます。",
+    category: "Database",
+    explanation: "Using the ConditionExpression parameter with the DynamoDB PutItem API and specifying the attribute_not_exists function allows a new item to be created only if the item does not already exist. If the condition is not met (that is, the item already exists), the PutItem operation fails and a ConditionalCheckFailedException is returned. This prevents race conditions and maintains data integrity.",
     optionExplanations: [
-      "正解：PutItem APIでConditionExpressionとattribute_not_exists関数を使用することで、項目が存在しない場合のみ作成できます。",
-      "誤り：UpdateItem APIは既存の項目を更新するためのものであり、attribute_exists条件は項目が存在する場合に更新を実行します。",
-      "誤り：Expectedパラメータは古い条件式の構文であり、ConditionExpressionを使用する方が推奨されます。",
-      "誤り：TransactWriteItemsを使用することは可能ですが、単純な条件付き書き込みにはPutItemで十分です。"
+      "Correct: Using ConditionExpression with the attribute_not_exists function on the PutItem API allows an item to be created only if it does not already exist.",
+      "Incorrect: The UpdateItem API is for updating existing items, and the attribute_exists condition performs the update when the item exists.",
+      "Incorrect: The Expected parameter is a legacy condition expression syntax. Using ConditionExpression is recommended.",
+      "Incorrect: Using TransactWriteItems is possible, but PutItem is sufficient for simple conditional writes."
     ]
   },
   {
     id: "dva-042",
-    question: "デベロッパーは、AWS Lambda関数を使用してイメージ処理アプリケーションを構築しています。Lambda関数は、複数のAWSサービス（S3、DynamoDB、SNSなど）にアクセスする必要があります。デベロッパーは、最小権限の原則に従ってIAMポリシーを設定したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのアプローチを取るべきですか (2つ選択)。",
+    question: "A developer is building an image processing application using an AWS Lambda function. The Lambda function needs to access multiple AWS services (S3, DynamoDB, SNS, etc.). The developer wants to configure IAM policies following the principle of least privilege.\n\nWhich approaches should the developer take to meet these requirements? (Choose TWO.)",
     options: [
-      "Lambda関数に必要な各AWSサービスへのアクセス許可のみを含むカスタムIAMポリシーを作成する。",
-      "Lambda関数にAdministratorAccessマネージドポリシーをアタッチする。",
-      "IAMポリシーでリソースARNを指定して、特定のS3バケットやDynamoDBテーブルへのアクセスのみを許可する。",
+      "Create a custom IAM policy that includes only the permissions needed to access each AWS service required by the Lambda function.",
+      "Attach the AdministratorAccess managed policy to the Lambda function.",
+      "Specify resource ARNs in the IAM policy to allow access only to specific S3 buckets and DynamoDB tables.",
       undefined,
-      "すべてのAWSサービスへのフルアクセスを許可するワイルドカード(*)を使用する。"
+      "Use a wildcard (*) to grant full access to all AWS services."
     ],
     correctAnswer: 3,
-    category: "セキュリティ",
-    explanation: "最小権限の原則に従うには、Lambda関数に必要な操作とリソースへのアクセスのみを許可するカスタムIAMポリシーを作成する必要があります。具体的には、必要なAWSサービスへのアクセス許可のみを含むポリシーを作成し、リソースARNを指定して特定のリソース（S3バケット、DynamoDBテーブルなど）へのアクセスのみを許可します。これにより、Lambda関数が侵害された場合の影響を最小限に抑えることができます。",
+    category: "Security",
+    explanation: "To follow the principle of least privilege, you must create a custom IAM policy that allows only the operations and resource access the Lambda function requires. Specifically, create a policy that includes only the permissions needed for the required AWS services, and specify resource ARNs to allow access only to specific resources (S3 buckets, DynamoDB tables, etc.). This minimizes the impact if the Lambda function is compromised.",
     optionExplanations: [
-      "正解：必要なサービスへのアクセス許可のみを含むカスタムポリシーを作成することが、最小権限の原則に従う方法です。",
-      "誤り：AdministratorAccessは、すべてのAWSサービスへのフルアクセスを許可するため、最小権限の原則に反します。",
-      "正解：リソースARNを指定することで、特定のリソースへのアクセスのみを許可し、最小権限を実現できます。",
+      "Correct: Creating a custom policy that includes only the permissions needed for required services follows the principle of least privilege.",
+      "Incorrect: AdministratorAccess grants full access to all AWS services, which violates the principle of least privilege.",
+      "Correct: Specifying resource ARNs allows access only to specific resources, achieving least privilege.",
       undefined,
-      "誤り：ワイルドカードを使用すると、すべてのリソースへのアクセスが許可されるため、最小権限の原則に反します。"
+      "Incorrect: Using a wildcard grants access to all resources, which violates the principle of least privilege."
     ]
   },
   {
     id: "dva-043",
-    question: "デベロッパーは、Amazon API Gatewayを使用してREST APIを構築しています。APIは、CORSを有効にして、異なるドメインからのリクエストを受け入れる必要があります。\n\nこれらの要件を満たすために、デベロッパーはどのように設定すべきですか。",
+    question: "A developer is building a REST API using Amazon API Gateway. The API must enable CORS to accept requests from different domains.\n\nHow should the developer configure this to meet these requirements?",
     options: [
-      "AWS WAFを使用して、CORSリクエストをフィルタリングする。",
-      "Lambda関数内でCORSヘッダーをレスポンスに追加する。",
-      "CloudFrontディストリビューションを使用して、CORSヘッダーを追加する。",
-      "API GatewayコンソールでCORSを有効にし、許可するオリジン、メソッド、ヘッダーを設定する。"
+      "Use AWS WAF to filter CORS requests.",
+      "Add CORS headers to responses inside the Lambda function.",
+      "Use a CloudFront distribution to add CORS headers.",
+      "Enable CORS in the API Gateway console and configure the allowed origins, methods, and headers."
     ],
     correctAnswer: 3,
-    category: "アプリケーション統合",
-    explanation: "API GatewayでCORSを有効にする最も簡単な方法は、API Gatewayコンソールで「CORSを有効にする」オプションを使用することです。これにより、API Gatewayは自動的にOPTIONSメソッドを作成し、適切なCORSヘッダー（Access-Control-Allow-Origin、Access-Control-Allow-Methods、Access-Control-Allow-Headersなど）をレスポンスに追加します。許可するオリジン、メソッド、ヘッダーを指定することで、セキュリティを保ちながらクロスオリジンリクエストを受け入れることができます。",
+    category: "Application Integration",
+    explanation: "The simplest way to enable CORS in API Gateway is to use the Enable CORS option in the API Gateway console. This causes API Gateway to automatically create an OPTIONS method and add the appropriate CORS headers (such as Access-Control-Allow-Origin, Access-Control-Allow-Methods, and Access-Control-Allow-Headers) to responses. By specifying the allowed origins, methods, and headers, you can accept cross-origin requests while maintaining security.",
     optionExplanations: [
-      "誤り：AWS WAFはセキュリティ保護には有効ですが、CORSの設定には使用されません。",
-      "誤り：Lambda関数内でCORSヘッダーを追加することは可能ですが、API GatewayのCORS機能を使用する方が簡単で、OPTIONSプリフライトリクエストも自動的に処理されます。",
-      "誤り：CloudFrontを使用することは可能ですが、API GatewayのCORS機能を使用する方が直接的で効率的です。",
-      "正解：API GatewayコンソールでCORSを有効にすることが、最も簡単で推奨される方法です。"
+      "Incorrect: AWS WAF is effective for security protection but is not used to configure CORS.",
+      "Incorrect: Adding CORS headers inside the Lambda function is possible, but using API Gateway's CORS feature is simpler and also automatically handles OPTIONS preflight requests.",
+      "Incorrect: Using CloudFront is possible, but using API Gateway's CORS feature is more direct and efficient.",
+      "Correct: Enabling CORS in the API Gateway console is the simplest and most recommended approach."
     ]
   },
   {
     id: "dva-044",
-    question: "デベロッパーは、AWS CodePipelineを使用してCI/CDパイプラインを構築しています。パイプラインは、複数の環境（開発、ステージング、本番）にアプリケーションをデプロイする必要があります。デベロッパーは、各環境で異なる設定値を使用したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのアプローチを取るべきですか。",
+    question: "A developer is building a CI/CD pipeline using AWS CodePipeline. The pipeline must deploy an application to multiple environments (development, staging, and production). The developer wants to use different configuration values for each environment.\n\nWhich approach should the developer take to meet these requirements?",
     options: [
-      "CodePipelineの変数機能を使用して、環境ごとに異なる値を定義する。",
-      "AWS Systems Manager Parameter Storeに環境ごとの設定値を保存し、デプロイ時に取得する。",
-      "各環境用に別々のCodePipelineを作成する。",
-      "CloudFormationテンプレートに設定値をハードコーディングする。"
+      "Use the CodePipeline variables feature to define different values for each environment.",
+      "Store per-environment configuration values in AWS Systems Manager Parameter Store and retrieve them at deployment time.",
+      "Create a separate CodePipeline for each environment.",
+      "Hardcode configuration values in the CloudFormation template."
     ],
     correctAnswer: 1,
-    category: "デプロイメント",
-    explanation: "AWS Systems Manager Parameter Storeに環境ごとの設定値を保存し、デプロイ時に取得することが、最も柔軟で管理しやすい方法です。Parameter Storeでは、環境名をパラメータ名のプレフィックスとして使用することで（例：/dev/database/url、/prod/database/url）、環境ごとに異なる値を管理できます。デプロイスクリプトやCloudFormationテンプレートで、環境名に基づいて適切なパラメータを取得することで、単一のパイプラインで複数の環境をサポートできます。",
+    category: "Deployment",
+    explanation: "Storing per-environment configuration values in AWS Systems Manager Parameter Store and retrieving them at deployment time is the most flexible and manageable approach. In Parameter Store, you can manage different values per environment by using the environment name as a prefix in the parameter name (for example, /dev/database/url and /prod/database/url). By retrieving the appropriate parameter based on the environment name in deployment scripts or CloudFormation templates, a single pipeline can support multiple environments.",
     optionExplanations: [
-      "誤り：CodePipelineの変数機能は有用ですが、Parameter Storeを使用する方が、設定値の集中管理と変更の追跡が容易です。",
-      "正解：Parameter Storeを使用することで、環境ごとの設定値を集中管理し、単一のパイプラインで複数の環境をサポートできます。",
-      "誤り：各環境用に別々のパイプラインを作成すると、管理が複雑になり、コードの重複が発生します。",
-      "誤り：設定値をハードコーディングすることは、柔軟性がなく、セキュリティリスクもあります。"
+      "Incorrect: The CodePipeline variables feature is useful, but using Parameter Store makes centralized management and change tracking of configuration values easier.",
+      "Correct: Using Parameter Store allows per-environment configuration values to be centrally managed and a single pipeline to support multiple environments.",
+      "Incorrect: Creating a separate pipeline for each environment increases management complexity and causes code duplication.",
+      "Incorrect: Hardcoding configuration values is inflexible and poses a security risk."
     ]
   },
   {
     id: "dva-045",
-    question: "デベロッパーは、Amazon SQSキューを使用してメッセージを処理するアプリケーションを開発しています。アプリケーションは、メッセージの処理順序を保証する必要があります。\n\nこれらの要件を満たすために、デベロッパーはどのタイプのSQSキューを使用すべきですか。",
+    question: "A developer is building an application that processes messages from an Amazon SQS queue. The application must guarantee the order in which messages are processed.\n\nWhich type of SQS queue should the developer use to meet these requirements?",
     options: [
-      "FIFOキューを使用する。",
-      "スタンダードキューを使用する。",
-      "デッドレターキューを使用する。",
-      "遅延キューを使用する。"
+      "Use a FIFO queue.",
+      "Use a standard queue.",
+      "Use a dead-letter queue.",
+      "Use a delay queue."
     ],
     correctAnswer: 0,
-    category: "アプリケーション統合",
-    explanation: "Amazon SQS FIFOキューは、メッセージの処理順序を保証し、重複を防ぐ機能を提供します。FIFOキューでは、メッセージは送信された順序で正確に1回だけ処理されます。メッセージグループIDを使用することで、関連するメッセージをグループ化し、グループ内での順序を保証できます。これにより、順序が重要なアプリケーション（注文処理、金融取引など）で使用できます。",
+    category: "Application Integration",
+    explanation: "Amazon SQS FIFO queues guarantee the order in which messages are processed and prevent duplicates. With a FIFO queue, messages are processed exactly once in the order they were sent. Using a message group ID, related messages can be grouped and order within the group is guaranteed. This makes FIFO queues suitable for order-sensitive applications such as order processing and financial transactions.",
     optionExplanations: [
-      "正解：FIFOキューは、メッセージの処理順序を保証し、重複を防ぐため、この要件に最適です。",
-      "誤り：スタンダードキューは、ベストエフォートの順序付けを提供しますが、厳密な順序保証はありません。また、メッセージの重複も発生する可能性があります。",
-      "誤り：デッドレターキューは、処理に失敗したメッセージを保存するための機能であり、順序保証とは関係ありません。",
-      "誤り：遅延キューは、メッセージの配信を遅延させる機能であり、順序保証とは関係ありません。"
+      "Correct: A FIFO queue guarantees message processing order and prevents duplicates, making it ideal for this requirement.",
+      "Incorrect: Standard queues provide best-effort ordering but do not guarantee strict ordering. Duplicate messages can also occur.",
+      "Incorrect: A dead-letter queue is a feature for storing messages that failed processing and is not related to ordering guarantees.",
+      "Incorrect: A delay queue is a feature for delaying message delivery and is not related to ordering guarantees."
     ]
   },
   {
     id: "dva-046",
-    question: "デベロッパーは、AWS Lambda関数を使用してデータ処理アプリケーションを構築しています。Lambda関数は、外部APIを呼び出す必要がありますが、APIのレート制限により、時々エラーが発生します。デベロッパーは、エラーが発生した場合に自動的に再試行したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのアプローチを取るべきですか。",
+    question: "A developer is building a data processing application using an AWS Lambda function. The Lambda function needs to call an external API, but rate limiting on the API occasionally causes errors. The developer wants to automatically retry when an error occurs.\n\nWhich approach should the developer take to meet these requirements?",
     options: [
-      "Lambda関数内でtry-catchブロックを実装し、エラーが発生した場合に再試行ロジックを実行する。",
-      "Lambda関数の非同期呼び出しの再試行設定を構成する。",
-      "Step Functionsを使用して、再試行ロジックを実装する。",
-      "Amazon SQSキューを使用して、失敗したリクエストを再処理する。"
+      "Implement a try-catch block inside the Lambda function and run retry logic when an error occurs.",
+      "Configure the retry settings for asynchronous invocation of the Lambda function.",
+      "Use Step Functions to implement retry logic.",
+      "Use an Amazon SQS queue to reprocess failed requests."
     ],
     correctAnswer: 1,
-    category: "コンピューティング",
-    explanation: "AWS Lambdaの非同期呼び出しでは、エラーが発生した場合に自動的に再試行する機能が組み込まれています。Lambda関数の設定で、最大再試行回数（0〜2回）と最大イベント有効期間（1分〜6時間）を指定できます。また、失敗時の送信先（Destination）を設定することで、再試行後も失敗したイベントをSQSキューやSNSトピックに送信できます。これにより、Lambda関数内で複雑な再試行ロジックを実装する必要がなくなります。",
+    category: "Compute",
+    explanation: "AWS Lambda's asynchronous invocation has a built-in feature that automatically retries when an error occurs. In the Lambda function configuration, you can specify the maximum number of retries (0–2) and the maximum event age (1 minute to 6 hours). You can also configure an on-failure destination so that events that still fail after retries are sent to an SQS queue or SNS topic. This eliminates the need to implement complex retry logic inside the Lambda function.",
     optionExplanations: [
-      "誤り：Lambda関数内で再試行ロジックを実装することは可能ですが、Lambdaの組み込み再試行機能を使用する方が簡単で、コードも簡潔になります。",
-      "正解：Lambdaの非同期呼び出しの再試行設定を使用することで、自動的に再試行を実装できます。",
-      "誤り：Step Functionsを使用することは可能ですが、単純な再試行にはLambdaの組み込み機能で十分です。",
-      "誤り：SQSキューを使用することは可能ですが、Lambdaの再試行機能を使用する方が直接的で効率的です。"
+      "Incorrect: Implementing retry logic inside the Lambda function is possible, but using Lambda's built-in retry feature is simpler and keeps the code concise.",
+      "Correct: Configuring the retry settings for Lambda's asynchronous invocation allows automatic retries to be implemented.",
+      "Incorrect: Using Step Functions is possible, but Lambda's built-in feature is sufficient for simple retries.",
+      "Incorrect: Using an SQS queue is possible, but Lambda's retry feature is more direct and efficient."
     ]
   },
   {
     id: "dva-047",
-    question: "デベロッパーは、Amazon CloudFrontを使用してウェブアプリケーションを配信しています。アプリケーションは、ユーザーの地理的位置に基づいて異なるコンテンツを表示する必要があります。\n\nこれらの要件を満たすために、デベロッパーはどの機能を使用すべきですか。",
+    question: "A developer is delivering a web application using Amazon CloudFront. The application must display different content based on the user's geographic location.\n\nWhich feature should the developer use to meet these requirements?",
     options: [
-      "CloudFrontの地理的制限機能を使用して、特定の国からのアクセスをブロックする。",
-      "Lambda@Edgeを使用して、ユーザーの地理的位置に基づいてコンテンツをカスタマイズする。",
-      "CloudFrontのカスタムヘッダー機能を使用して、ユーザーの国情報をオリジンに転送する。",
-      "AWS WAFを使用して、ユーザーの地理的位置に基づいてリクエストをフィルタリングする。"
+      "Use CloudFront's geographic restriction feature to block access from specific countries.",
+      "Use Lambda@Edge to customize content based on the user's geographic location.",
+      "Use CloudFront's custom header feature to forward the user's country information to the origin.",
+      "Use AWS WAF to filter requests based on the user's geographic location."
     ],
     correctAnswer: 1,
-    category: "コンピューティング",
-    explanation: "Lambda@Edgeを使用することで、CloudFrontのエッジロケーションでLambda関数を実行し、ユーザーの地理的位置に基づいてコンテンツをカスタマイズできます。CloudFrontは、リクエストヘッダーにユーザーの国、地域、都市などの情報を自動的に追加します。Lambda@Edge関数でこれらのヘッダーを読み取り、ユーザーの位置に基づいて異なるコンテンツを返したり、異なるオリジンにリクエストをルーティングしたりできます。",
+    category: "Compute",
+    explanation: "Using Lambda@Edge allows Lambda functions to run at CloudFront edge locations and customize content based on the user's geographic location. CloudFront automatically adds information such as the user's country, region, and city to request headers. Lambda@Edge functions can read these headers and return different content or route requests to different origins based on the user's location.",
     optionExplanations: [
-      "誤り：地理的制限機能は、特定の国からのアクセスをブロックするためのものであり、コンテンツのカスタマイズには使用されません。",
-      "正解：Lambda@Edgeを使用することで、ユーザーの地理的位置に基づいてコンテンツを動的にカスタマイズできます。",
-      "誤り：カスタムヘッダーを使用することは可能ですが、Lambda@Edgeを使用する方が、エッジロケーションでコンテンツをカスタマイズでき、レイテンシが低くなります。",
-      "誤り：AWS WAFはセキュリティ保護には有効ですが、コンテンツのカスタマイズには適していません。"
+      "Incorrect: The geographic restriction feature is for blocking access from specific countries and is not used to customize content.",
+      "Correct: Using Lambda@Edge allows content to be dynamically customized based on the user's geographic location.",
+      "Incorrect: Using custom headers is possible, but Lambda@Edge allows content to be customized at edge locations with lower latency.",
+      "Incorrect: AWS WAF is effective for security protection but is not suitable for content customization."
     ]
   },
   {
     id: "dva-048",
-    question: "デベロッパーは、Amazon DynamoDBテーブルを使用するアプリケーションを開発しています。アプリケーションは、複数の項目を一度に書き込む必要があり、すべての書き込みが成功するか、すべて失敗するかのいずれかである必要があります（トランザクション）。\n\nこれらの要件を満たすために、デベロッパーはどのAPIオペレーションを使用すべきですか。",
+    question: "A developer is building an application that uses an Amazon DynamoDB table. The application needs to write multiple items at once, and all writes must either all succeed or all fail (transaction).\n\nWhich API operation should the developer use to meet these requirements?",
     options: [
-      "BatchWriteItem APIを使用して、複数の項目を一度に書き込む。",
-      "TransactWriteItems APIを使用して、トランザクション内で複数の項目を書き込む。",
-      "PutItem APIを複数回呼び出して、各項目を個別に書き込む。",
-      "UpdateItem APIを使用して、複数の項目を更新する。"
+      "Use the BatchWriteItem API to write multiple items at once.",
+      "Use the TransactWriteItems API to write multiple items within a transaction.",
+      "Call the PutItem API multiple times to write each item individually.",
+      "Use the UpdateItem API to update multiple items."
     ],
     correctAnswer: 1,
-    category: "データベース",
-    explanation: "DynamoDBのTransactWriteItems APIは、ACID（原子性、一貫性、独立性、永続性）トランザクションをサポートしており、複数の項目への書き込み操作をすべて成功させるか、すべて失敗させるかのいずれかを保証します。TransactWriteItemsでは、最大25個の項目に対してPut、Update、Delete、ConditionCheck操作を実行できます。いずれかの操作が失敗した場合、トランザクション全体がロールバックされます。",
+    category: "Database",
+    explanation: "The DynamoDB TransactWriteItems API supports ACID (Atomicity, Consistency, Isolation, Durability) transactions, guaranteeing that write operations on multiple items either all succeed or all fail. TransactWriteItems can perform Put, Update, Delete, and ConditionCheck operations on up to 25 items. If any operation fails, the entire transaction is rolled back.",
     optionExplanations: [
-      "誤り：BatchWriteItemは、複数の項目を効率的に書き込むことができますが、トランザクション保証はありません。一部の書き込みが成功し、一部が失敗する可能性があります。",
-      "正解：TransactWriteItems APIを使用することで、ACIDトランザクションを実装し、すべての書き込みが成功するか失敗するかを保証できます。",
-      "誤り：PutItemを複数回呼び出すことは非効率的で、トランザクション保証もありません。",
-      "誤り：UpdateItemは、既存の項目を更新するためのものであり、複数の項目へのトランザクション書き込みには適していません。"
+      "Incorrect: BatchWriteItem can write multiple items efficiently, but it does not provide transaction guarantees. Some writes may succeed while others fail.",
+      "Correct: Using the TransactWriteItems API implements ACID transactions, guaranteeing that all writes either succeed or fail together.",
+      "Incorrect: Calling PutItem multiple times is inefficient and provides no transaction guarantees.",
+      "Incorrect: UpdateItem is for updating existing items and is not suitable for transactional writes across multiple items."
     ]
   },
   {
     id: "dva-049",
-    question: "デベロッパーは、AWS Amplifyを使用してモバイルアプリケーションのバックエンドを構築しています。アプリケーションは、ユーザーがオフラインでもデータを操作でき、オンラインに戻ったときに自動的に同期する必要があります。\n\nこれらの要件を満たすために、デベロッパーはどのAmplify機能を使用すべきですか。",
+    question: "A developer is building a mobile application backend using AWS Amplify. The application must allow users to work with data while offline and automatically sync when they come back online.\n\nWhich Amplify feature should the developer use to meet these requirements?",
     options: [
-      "Amplify Storageを使用して、ファイルをS3に保存する。",
-      "Amplify DataStoreを使用して、オフラインデータ同期を実装する。",
-      "Amplify APIを使用して、GraphQL APIを呼び出す。",
-      "Amplify Authを使用して、ユーザー認証を実装する。"
+      "Use Amplify Storage to save files to S3.",
+      "Use Amplify DataStore to implement offline data synchronization.",
+      "Use Amplify API to call a GraphQL API.",
+      "Use Amplify Auth to implement user authentication."
     ],
     correctAnswer: 1,
-    category: "アプリケーション統合",
-    explanation: "AWS Amplify DataStoreは、オフラインファーストのデータ同期機能を提供するライブラリです。DataStoreを使用すると、アプリケーションはローカルデータベースにデータを保存し、オフラインでもデータの読み取りと書き込みができます。オンラインに戻ると、DataStoreは自動的にローカルの変更をクラウド（AppSync GraphQL API）と同期し、競合解決も自動的に処理します。これにより、シームレスなオフライン体験を提供できます。",
+    category: "Application Integration",
+    explanation: "AWS Amplify DataStore is a library that provides offline-first data synchronization. With DataStore, the application stores data in a local database and can read and write data while offline. When the device comes back online, DataStore automatically synchronizes local changes with the cloud (AppSync GraphQL API) and handles conflict resolution automatically. This provides a seamless offline experience.",
     optionExplanations: [
-      "誤り：Amplify Storageは、ファイルの保存には適していますが、構造化データのオフライン同期には適していません。",
-      "正解：Amplify DataStoreを使用することで、オフラインデータ同期を簡単に実装できます。",
-      "誤り：Amplify APIは、GraphQL APIの呼び出しには適していますが、オフライン同期機能は提供しません。",
-      "誤り：Amplify Authは、ユーザー認証には適していますが、データ同期には使用されません。"
+      "Incorrect: Amplify Storage is suitable for storing files but is not appropriate for offline synchronization of structured data.",
+      "Correct: Using Amplify DataStore makes it easy to implement offline data synchronization.",
+      "Incorrect: Amplify API is suitable for calling GraphQL APIs but does not provide offline synchronization functionality.",
+      "Incorrect: Amplify Auth is suitable for user authentication but is not used for data synchronization."
     ]
   },
   {
     id: "dva-050",
-    question: "デベロッパーは、AWS CodeCommitリポジトリを使用してソースコードを管理しています。デベロッパーは、特定のブランチへのプッシュを制限し、プルリクエストのレビューと承認を必須にしたいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどの機能を使用すべきですか。",
+    question: "A developer is managing source code using an AWS CodeCommit repository. The developer wants to restrict pushes to specific branches and require pull request review and approval.\n\nWhich feature should the developer use to meet these requirements?",
     options: [
-      "AWS Lambda関数を使用して、プッシュイベントを監視し、不正なプッシュをブロックする。",
-      "IAMポリシーを使用して、特定のブランチへのプッシュを制限する。",
-      "CodeCommitの承認ルールテンプレートを使用して、プルリクエストの承認を必須にする。",
-      "AWS Configを使用して、ブランチ保護ルールを監視する。"
+      "Use an AWS Lambda function to monitor push events and block unauthorized pushes.",
+      "Use IAM policies to restrict pushes to specific branches.",
+      "Use CodeCommit approval rule templates to require pull request approval.",
+      "Use AWS Config to monitor branch protection rules."
     ],
     correctAnswer: 2,
-    category: "デプロイメント",
-    explanation: "AWS CodeCommitの承認ルールテンプレートを使用することで、プルリクエストのレビューと承認を必須にできます。承認ルールテンプレートでは、必要な承認者の数、承認者のIAMユーザーまたはロール、承認プールなどを定義できます。また、特定のブランチ（例：mainブランチ）への直接プッシュを制限し、プルリクエストを通じてのみ変更をマージできるようにすることもできます。これにより、コードレビュープロセスを強制し、コード品質を向上させることができます。",
+    category: "Deployment",
+    explanation: "Using AWS CodeCommit approval rule templates allows pull request review and approval to be made mandatory. In an approval rule template, you can define the required number of approvers, the IAM users or roles that can approve, and the approval pool. You can also restrict direct pushes to specific branches (for example, the main branch) and require changes to be merged only through pull requests. This enforces the code review process and improves code quality.",
     optionExplanations: [
-      "誤り：Lambda関数を使用することは可能ですが、CodeCommitの組み込み機能を使用する方が簡単で効率的です。",
-      "誤り：IAMポリシーを使用してブランチへのアクセスを制限することは可能ですが、承認ルールテンプレートを使用する方が、プルリクエストワークフローに統合されており、管理しやすいです。",
-      "正解：CodeCommitの承認ルールテンプレートを使用することで、プルリクエストの承認を必須にし、ブランチ保護を実装できます。",
-      "誤り：AWS Configは、リソースの設定変更を追跡するサービスですが、ブランチ保護の実装には使用されません。"
+      "Incorrect: Using a Lambda function is possible, but using CodeCommit's built-in feature is simpler and more efficient.",
+      "Incorrect: Using IAM policies to restrict branch access is possible, but using approval rule templates is more integrated with the pull request workflow and easier to manage.",
+      "Correct: Using CodeCommit approval rule templates allows pull request approval to be required and branch protection to be implemented.",
+      "Incorrect: AWS Config is a service for tracking configuration changes to resources and is not used to implement branch protection."
     ]
   },
   {
     id: "dva-051",
-    question: "デベロッパーは、テキストファイルを.pdfファイルに変換する新しいアプリケーションを構築しています。別のアプリケーションが、テキストファイルをソースAmazon S3バケットに書き込みます。新しいアプリケーションは、Amazon S3に到着したファイルを読み取り、AWS Lambda関数を使用してファイルを.pdfファイルに変換する必要があります。デベロッパーは、Amazon S3とAmazon CloudWatch Logsへのアクセスを許可するIAM Policyを作成しました。\n\nLambda関数に正しいアクセス許可があることを確認するために、デベロッパーは何をすべきですか。",
+    question: "A developer is building a new application that converts text files to .pdf files. A separate application writes text files to a source Amazon S3 bucket. The new application must read files as they arrive in Amazon S3 and use an AWS Lambda function to convert the files to .pdf files. The developer has created an IAM policy that grants access to Amazon S3 and Amazon CloudWatch Logs.\n\nWhat should the developer do to ensure that the Lambda function has the correct permissions?",
     options: [
-      "AWS Identity and Access Management (IAM)を使用してLambda実行ユーザーを作成する。IAM Policyをユーザーにアタッチする。IAMユーザーの認証情報をLambda関数に環境変数として保存する。",
-      "AWS Identity and Access Management (IAM)を使用してLambda実行ユーザーを作成する。IAM Policyをユーザーにアタッチする。Lambda実行ユーザーをLambda関数に割り当てる。",
-      "AWS Identity and Access Management (IAM)を使用してLambda実行ロールを作成する。IAM Policyをロールにアタッチする。IAMロールをLambda関数に環境変数として保存する。",
-      "AWS Identity and Access Management (IAM)を使用してLambda実行ロールを作成する。IAM PolicyをロールにアタッチするLambda実行ロールをLambda関数に割り当てる。"
+      "Use AWS Identity and Access Management (IAM) to create a Lambda execution user. Attach the IAM policy to the user. Store the IAM user credentials as environment variables on the Lambda function.",
+      "Use AWS Identity and Access Management (IAM) to create a Lambda execution user. Attach the IAM policy to the user. Assign the Lambda execution user to the Lambda function.",
+      "Use AWS Identity and Access Management (IAM) to create a Lambda execution role. Attach the IAM policy to the role. Store the IAM role as an environment variable on the Lambda function.",
+      "Use AWS Identity and Access Management (IAM) to create a Lambda execution role. Attach the IAM policy to the role. Assign the Lambda execution role to the Lambda function."
     ],
     correctAnswer: 3,
-    category: "セキュリティ",
-    explanation: "AWS Lambda関数の実行ロールは、AWSのサービスとリソースにアクセスするためのアクセス許可をLambda関数に付与します。このロールは関数を作成するときに指定し、Lambdaは関数が呼び出されるときにロールを引き受けます。実行ロールを使用することで、認証情報をハードコーディングすることなく、安全にAWSリソースにアクセスできます。Lambda関数には、IAMユーザーではなくIAMロールを使用するのがベストプラクティスです。",
+    category: "Security",
+    explanation: "An execution role for an AWS Lambda function grants the function the permissions it needs to access AWS services and resources. You specify this role when you create the function, and Lambda assumes the role when the function is invoked. Using an execution role allows secure access to AWS resources without hardcoding credentials. Using an IAM role rather than an IAM user is the best practice for Lambda functions.",
     optionExplanations: [
-      "誤り：IAMユーザーの認証情報を環境変数に保存することはセキュリティリスクがあり、ベストプラクティスではありません。",
-      "誤り：Lambda関数にはIAMユーザーではなく、IAMロールを使用する必要があります。IAMユーザーは人間またはアプリケーション用です。",
-      "誤り：IAMロールを環境変数として保存することはできません。ロールは関数の設定で直接割り当てる必要があります。",
-      "正解：Lambda実行ロールを作成し、必要なポリシーをアタッチして関数に割り当てることで、安全にAWSリソースにアクセスできます。"
+      "Incorrect: Storing IAM user credentials as environment variables poses a security risk and is not a best practice.",
+      "Incorrect: Lambda functions require an IAM role, not an IAM user. IAM users are for humans or applications, not for Lambda functions.",
+      "Incorrect: An IAM role cannot be stored as an environment variable. The role must be assigned directly in the function's configuration.",
+      "Correct: Creating a Lambda execution role, attaching the required policy, and assigning it to the function is the secure best practice for accessing AWS resources."
     ]
   },
   {
     id: "dva-052",
-    question: "デベロッパーは、機密性の高いデータをデータベースに保存するアプリケーションに取り組んでいます。デベロッパーは、データを保護するために、エンベロープ暗号化と共にAWS Key Management Service (AWS KMS)を使用する必要があります。\n\nこれらの要件を満たすために、デベロッパーはどのようにデータ暗号化を設定すべきですか。",
+    question: "A developer is working on an application that stores highly sensitive data in a database. The developer must use AWS Key Management Service (AWS KMS) with envelope encryption to protect the data.\n\nHow should the developer configure the data encryption to meet these requirements?",
     options: [
-      "KMSキーを使用してデータを暗号化する。暗号化されたデータをデータベースに保存する。",
-      "生成されたデータキーを使用してデータを暗号化する。暗号化されたデータをデータベースに保存する。",
-      "生成されたデータキーを使用してデータを暗号化する。暗号化されたデータと暗号化されたデータキーをデータベースに保存する。",
-      "生成されたデータキーを使用してデータを暗号化する。暗号化されたデータとデータキーIDをデータベースに保存する。"
+      "Use a KMS key to encrypt the data. Store the encrypted data in the database.",
+      "Use a generated data key to encrypt the data. Store the encrypted data in the database.",
+      "Use a generated data key to encrypt the data. Store both the encrypted data and the encrypted data key in the database.",
+      "Use a generated data key to encrypt the data. Store the encrypted data and the data key ID in the database."
     ],
     correctAnswer: 2,
-    category: "セキュリティ",
-    explanation: "エンベロープ暗号化は、データキーでプレーンテキストデータを暗号化し、そのデータキーを別のキー（KMSキー）で暗号化する手法です。データキーを使用してデータベース内の暗号化されたデータを復号化できるように、暗号化された形式のデータキーを保存する必要があります。復号化時には、まずKMSを使用してデータキーを復号化し、その後データキーを使用してデータを復号化します。この方法により、大量のデータを効率的に暗号化でき、KMSキーは直接データの暗号化には使用されません。",
+    category: "Security",
+    explanation: "Envelope encryption is the practice of encrypting plaintext data with a data key, and then encrypting that data key under another key (the KMS key). You must store the encrypted form of the data key so that you can later decrypt the encrypted data in the database. At decryption time, first use KMS to decrypt the data key, then use the data key to decrypt the data. This approach allows large amounts of data to be encrypted efficiently, and the KMS key is never used to directly encrypt the data.",
     optionExplanations: [
-      "誤り：KMSキーを直接使用してデータを暗号化することは、大量のデータには非効率的です。エンベロープ暗号化ではデータキーを使用します。",
-      "誤り：暗号化されたデータキーを保存しないと、後でデータを復号化できません。",
-      "正解：エンベロープ暗号化では、データキーでデータを暗号化し、暗号化されたデータと暗号化されたデータキーの両方を保存します。",
-      "誤り：データキーIDだけでは不十分です。暗号化されたデータキー自体を保存する必要があります。"
+      "Incorrect: Using a KMS key to directly encrypt data is inefficient for large amounts of data. Envelope encryption uses a data key for this purpose.",
+      "Incorrect: Without storing the encrypted data key, you cannot decrypt the data later.",
+      "Correct: In envelope encryption, data is encrypted with a data key, and both the encrypted data and the encrypted data key are stored.",
+      "Incorrect: The data key ID alone is not sufficient. You must store the encrypted data key itself."
     ]
   },
   {
     id: "dva-053",
-    question: "デベロッパーが会社の既存のレコードストレージアプリケーションにAmazon ElastiCache for Memcachedを追加しようとしています。デベロッパーは、一般的なレコード処理パターンの分析に基づいて遅延読み込みを使用することにしました。\n\n遅延読み込みを正しく実装する擬似コードの例はどれですか。",
+    question: "A developer is adding Amazon ElastiCache for Memcached to a company's existing record storage application. The developer has decided to use lazy loading based on an analysis of common record access patterns.\n\nWhich pseudocode example correctly implements lazy loading?",
     options: [
       "record_value = db.query(\"UPDATE Records SET Details = {1} WHERE ID == {0}\", record_key, record_value)\ncache.set(record_key, record_value)",
       "record_value = cache.get(record_key)\nif (record_value == NULL)\n    record_value = db.query(\"SELECT Details FROM Records WHERE ID == {0}\", record_key)\n    cache.set(record_key, record_value)",
@@ -1007,345 +1007,345 @@ const questionsData = [
       "record_value = db.query(\"SELECT Details FROM Records WHERE ID == {0}\", record_key)\nif (record_value != NULL)\n    cache.set(record_key, record_value)"
     ],
     correctAnswer: 1,
-    category: "データベース",
-    explanation: "遅延読み込み（Lazy Loading）は、レコードが必要になるまでレコードが読み込まれないキャッシュ戦略です。遅延読み込みを実装すると、アプリケーションはまずキャッシュにレコードがないかチェックします。レコードが存在しない場合（キャッシュミス）、アプリケーションはデータベースからレコードを取得し、レコードをキャッシュに保存します。次回同じレコードが要求されたときは、キャッシュから直接取得できるため、データベースへのアクセスが不要になり、パフォーマンスが向上します。",
+    category: "Database",
+    explanation: "Lazy loading is a caching strategy in which records are not loaded until they are needed. When lazy loading is implemented, the application first checks the cache for the record. If the record does not exist (a cache miss), the application retrieves it from the database and stores it in the cache. The next time the same record is requested, it can be retrieved directly from the cache, eliminating the need to access the database and improving performance.",
     optionExplanations: [
-      "誤り：これはUPDATE操作であり、読み込み操作ではありません。遅延読み込みは読み込み操作に関するパターンです。",
-      "正解：まずキャッシュをチェックし、データがない場合のみデータベースから取得してキャッシュに保存する、正しい遅延読み込みパターンです。",
-      "誤り：キャッシュから取得した後にUPDATE操作を実行しており、遅延読み込みのパターンではありません。",
-      "誤り：常にデータベースから読み込んでおり、キャッシュを優先的にチェックしていないため、遅延読み込みの利点が得られません。"
+      "Incorrect: This is an UPDATE operation, not a read operation. Lazy loading is a pattern for read operations.",
+      "Correct: This checks the cache first and only retrieves from the database when data is absent, then stores it in the cache — the correct lazy loading pattern.",
+      "Incorrect: This retrieves from the cache and then performs an UPDATE operation, which is not the lazy loading pattern.",
+      "Incorrect: This always reads from the database and does not check the cache first, so the benefits of lazy loading are not realized."
     ]
   },
   {
     id: "dva-054",
-    question: "デベロッパーは、Amazon API Gatewayを使用するウェブアプリケーションを構築しています。デベロッパーは、開発（dev）ワークロードと本番（prod）ワークロード用に異なる環境を維持したいと考えています。このAPIは、dev用1つとprod用1つの2つのエイリアスを持つAWS Lambda関数によってサポートされます。\n\nデベロッパーは、最低限の構成でこれらの環境をどのように維持できますか。",
+    question: "A developer is building a web application that uses Amazon API Gateway. The developer wants to maintain separate environments for development (dev) and production (prod) workloads. The API is backed by an AWS Lambda function that has two aliases: one for dev and one for prod.\n\nHow can the developer maintain these environments with the least amount of configuration?",
     options: [
-      "環境ごとにREST APIを作成する。APIをLambda関数の対応するdevおよびprodエイリアスと統合する。APIをそれぞれのステージにデプロイする。ステージURLを使用してAPIにアクセスする。",
-      "REST APIを1つ作成する。APIをLambda関数のprodエイリアスと統合する。APIをprod環境にデプロイする。CanaryがLambda devエイリアスと統合される、dev環境のCanaryリリースデプロイを設定する。",
-      "REST APIを1つ作成する。APIをLambda関数のdevエイリアスと統合する。APIをdev環境にデプロイする。CanaryがLambda prodエイリアスと統合されるprod環境のCanaryリリースデプロイを設定する。",
-      "REST APIを1つ作成する。エイリアスの代わりにステージ変数を使用して、APIをLambda関数と統合する。APIをdevとprodの2つの異なるステージにデプロイする。値として異なるエイリアスを持つステージ変数を各ステージに作成する。異なるステージURLを使用してAPIにアクセスする。"
+      "Create a REST API for each environment. Integrate the APIs with the corresponding dev and prod aliases of the Lambda function. Deploy each API to its respective stage. Access the APIs using the stage URLs.",
+      "Create one REST API. Integrate the API with the prod alias of the Lambda function. Deploy the API to the prod environment. Configure a canary release deployment for the dev environment where the canary integrates with the Lambda dev alias.",
+      "Create one REST API. Integrate the API with the dev alias of the Lambda function. Deploy the API to the dev environment. Configure a canary release deployment for the prod environment where the canary integrates with the Lambda prod alias.",
+      "Create one REST API. Use a stage variable instead of an alias to integrate the API with the Lambda function. Deploy the API to two different stages for dev and prod. Create a stage variable in each stage with a different alias as the value. Access the APIs using different stage URLs."
     ],
     correctAnswer: 3,
-    category: "デプロイメント",
-    explanation: "Amazon API Gatewayのデプロイステージでは、APIごとに複数のリリースステージを管理できます。APIデプロイメントステージがさまざまなバックエンドエンドポイントとやり取りできるように、ステージ変数を設定できます。API Gatewayステージ変数を使用して、複数のバージョンとエイリアスを持つ単一のAWS Lambda関数をリファレンスできます。この方法により、1つのAPIを作成し、ステージ変数を使用して異なる環境（dev、prod）を管理できるため、構成が最小限で済みます。",
+    category: "Deployment",
+    explanation: "Amazon API Gateway deployment stages let you manage multiple release stages for each API. You can configure stage variables so that the API deployment stage can interact with different backend endpoints. Using API Gateway stage variables, you can reference a single AWS Lambda function with multiple versions and aliases. This approach allows you to create one API and use stage variables to manage different environments (dev, prod), minimizing configuration.",
     optionExplanations: [
-      "誤り：環境ごとに別々のAPIを作成することは可能ですが、構成が複雑になり、最低限の構成という要件を満たしません。",
-      "誤り：Canaryリリースの使用方法が不適切であり、dev環境とprod環境の分離には適していません。",
-      "誤り：Canaryリリースは段階的なデプロイメントに使用されますが、dev環境とprod環境を分離する目的には適していません。",
-      "正解：1つのAPIとステージ変数を使用することで、最小限の構成で複数の環境を管理できます。各ステージで異なるLambdaエイリアスを参照できます。"
+      "Incorrect: Creating a separate API for each environment is possible but increases complexity and does not meet the least-configuration requirement.",
+      "Incorrect: This misuses canary releases, which are not appropriate for separating dev and prod environments.",
+      "Incorrect: Canary releases are used for gradual deployments and are not suited for the purpose of separating dev and prod environments.",
+      "Correct: Using one API with stage variables allows multiple environments to be managed with minimal configuration. Each stage can reference a different Lambda alias."
     ]
   },
   {
     id: "dva-055",
-    question: "デベロッパーが、Amazon EC2インスタンスのフリートで実行されるアプリケーションのパフォーマンスを追跡したいと考えています。デベロッパーは、フリート全体の平均リクエストレイテンシーや最大リクエストレイテンシーなどの統計を表示および追跡したいと考えています。デベロッパーは、平均応答時間がしきい値を超えた場合にすぐに通知を受け取りたいと考えています。\n\nこれらの要件を満たすソリューションはどれですか。",
+    question: "A developer wants to track the performance of an application running on a fleet of Amazon EC2 instances. The developer wants to view and track statistics such as average request latency and maximum request latency across the fleet. The developer wants to receive an immediate notification when the average response time exceeds a threshold.\n\nWhich solution meets these requirements?",
     options: [
-      "各EC2インスタンスでcronジョブを設定して、応答時間を測定し、Amazon S3バケットに保存されているログファイルを毎分更新する。Amazon S3イベント通知を使用して、ログファイルを読み取り、Amazon OpenSearch Serviceクラスターに新しいエントリを書き込むAWS Lambda関数を呼び出す。OpenSearchダッシュボードで結果を視覚化する。応答時間がしきい値を超えたときにAmazon Simple Notification Service (Amazon SNS)トピックにアラートを送信するようにOpenSearch Serviceを設定する。",
-      "応答時間をシステムログに書き込むようにアプリケーションを設定する。Amazon InspectorエージェントをEC2インスタンスにインストールして設定し、継続的にログを読み取り、応答時間をAmazon EventBridge (Amazon CloudWatch Events)に送信する。EventBridge (CloudWatch Events)コンソールでメトリクスのグラフを表示する。応答時間メトリクスの平均がしきい値を超えたときにAmazon Simple Notification Service (Amazon SNS)通知を送信するようにEventBridge (CloudWatch Events)カスタムルールを設定する。",
-      "AWS Systems Managerエージェント (SSMエージェント)をEC2インスタンスにインストールして設定し、応答時間をモニタリングし、応答時間をカスタムメトリクスとしてAmazon CloudWatchに送信する。Amazon QuickSightでメトリクスのグラフを表示する。応答時間メトリクスの平均がしきい値を超えたときにAmazon Simple Notification Service (Amazon SNS)通知を送信するCloudWatchアラームを作成する。",
-      "応答時間をログファイルに書き込むようにアプリケーションを設定する。EC2インスタンスにAmazon CloudWatchエージェントをインストールして設定し、アプリケーションログをCloudWatch Logsにストリーミングする。ログから応答時間のメトリクスフィルターを作成する。CloudWatchコンソールでメトリクスのグラフを表示する。応答時間メトリクスの平均がしきい値を超えたときにAmazon Simple Notification Service (Amazon SNS)通知を送信するCloudWatchアラームを作成する。"
+      "Configure a cron job on each EC2 instance to measure response times and update a log file stored in an Amazon S3 bucket every minute. Use Amazon S3 event notifications to invoke an AWS Lambda function that reads the log file and writes new entries to an Amazon OpenSearch Service cluster. Visualize the results in an OpenSearch dashboard. Configure OpenSearch Service to send an alert to an Amazon Simple Notification Service (Amazon SNS) topic when response time exceeds the threshold.",
+      "Configure the application to write response times to a system log. Install and configure the Amazon Inspector agent on the EC2 instances to continuously read the logs and send response times to Amazon EventBridge (Amazon CloudWatch Events). View a graph of the metrics in the EventBridge (CloudWatch Events) console. Configure a custom EventBridge (CloudWatch Events) rule to send an Amazon Simple Notification Service (Amazon SNS) notification when the average of the response time metric exceeds the threshold.",
+      "Install and configure the AWS Systems Manager Agent (SSM Agent) on the EC2 instances to monitor response times and send them to Amazon CloudWatch as a custom metric. View a graph of the metrics in Amazon QuickSight. Create a CloudWatch alarm to send an Amazon Simple Notification Service (Amazon SNS) notification when the average of the response time metric exceeds the threshold.",
+      "Configure the application to write response times to a log file. Install and configure the Amazon CloudWatch agent on the EC2 instances to stream the application logs to CloudWatch Logs. Create a metric filter for response time from the logs. View a graph of the metrics in the CloudWatch console. Create a CloudWatch alarm to send an Amazon Simple Notification Service (Amazon SNS) notification when the average of the response time metric exceeds the threshold."
     ],
     correctAnswer: 3,
-    category: "モニタリング",
-    explanation: "ログとメトリクスをCloudWatchにストリーミングするようにAmazon CloudWatchエージェントを設定できます。CloudWatch Logsに保存されているログからメトリクスフィルターを作成することもできます。メトリクスフィルターを使用すると、ログデータから特定のパターンを検索し、それをCloudWatchメトリクスに変換できます。その後、CloudWatchアラームを設定して、メトリクスがしきい値を超えたときに通知を受け取ることができます。この方法は、EC2フリート全体のパフォーマンスを監視するための標準的で効率的なアプローチです。",
+    category: "Monitoring",
+    explanation: "You can configure the Amazon CloudWatch agent to stream logs and metrics to CloudWatch. You can also create metric filters from logs stored in CloudWatch Logs. Metric filters allow you to search log data for specific patterns and convert them into CloudWatch metrics. You can then configure CloudWatch alarms to receive notifications when a metric exceeds a threshold. This is the standard and efficient approach for monitoring performance across an EC2 fleet.",
     optionExplanations: [
-      "誤り：S3とOpenSearch Serviceを使用する方法は複雑すぎて、要件を満たすためには過剰です。CloudWatchを使用する方が簡単で効率的です。",
-      "誤り：Amazon Inspectorはセキュリティ評価サービスであり、アプリケーションパフォーマンスの監視には使用されません。",
-      "誤り：SSMエージェントは主にシステム管理に使用され、アプリケーションパフォーマンスの監視には最適ではありません。また、QuickSightはビジネスインテリジェンスツールであり、リアルタイム監視には適していません。",
-      "正解：CloudWatchエージェント、メトリクスフィルター、CloudWatchアラームを使用することで、効率的にパフォーマンスを監視し、通知を受け取ることができます。"
+      "Incorrect: Using S3 and OpenSearch Service is overly complex and excessive for meeting these requirements. Using CloudWatch is simpler and more efficient.",
+      "Incorrect: Amazon Inspector is a security assessment service and is not used for monitoring application performance.",
+      "Incorrect: SSM Agent is primarily used for system management and is not optimal for monitoring application performance. QuickSight is a business intelligence tool and is not suitable for real-time monitoring.",
+      "Correct: Using the CloudWatch agent, metric filters, and CloudWatch alarms allows performance to be monitored efficiently and notifications to be received."
     ]
   },
   {
     id: "dva-056",
-    question: "デベロッパーがアプリケーションをローカルでテストし、そのアプリケーションをAWS Lambda関数にデプロイしました。デプロイパッケージサイズのクォータを超えないようにするため、デベロッパーはデプロイファイルに依存関係を含めませんでした。デベロッパーがアプリケーションをリモートでテストする場合、依存関係がないためLambda関数は実行されません。\n\nこの問題を解決するソリューションはどれですか。",
+    question: "A developer tested an application locally and deployed it to an AWS Lambda function. To avoid exceeding the deployment package size quota, the developer did not include dependencies in the deployment file. When the developer tests the application remotely, the Lambda function does not run because of missing dependencies.\n\nWhich solution resolves this issue?",
     options: [
-      "Lambdaコンソールエディタを使用してコードを更新し、不足している依存関係を含める。",
-      "不足している依存関係を含む追加の.zipファイルを作成する。.zipファイルを元のLambdaデプロイパッケージに含める。",
-      "不足している依存関係を含むレイヤーを作成する。Lambda関数にレイヤーをアタッチする。",
-      "Lambda関数の環境変数に不足している依存関係へのリファレンスを追加する。"
+      "Use the Lambda console editor to update the code and include the missing dependencies.",
+      "Create an additional .zip file that contains the missing dependencies. Include the .zip file in the original Lambda deployment package.",
+      "Create a layer that contains the missing dependencies. Attach the layer to the Lambda function.",
+      "Add a reference to the missing dependencies in the Lambda function's environment variables."
     ],
     correctAnswer: 2,
-    category: "デプロイメント",
-    explanation: "追加のコードとコンテンツをレイヤーの形式で取り込むようにAWS Lambda関数を設定できます。レイヤーは、ライブラリ、カスタムランタイム、またはその他の依存関係を含む.zipファイルアーカイブです。レイヤーを使用すると、デプロイパッケージにライブラリを含めることなく、Lambda関数でライブラリを使用できます。これにより、デプロイパッケージのサイズを小さく保ち、複数の関数で同じ依存関係を共有できます。レイヤーは最大5つまで関数にアタッチでき、各レイヤーは最大50MBまで可能です。",
+    category: "Deployment",
+    explanation: "You can configure an AWS Lambda function to pull in additional code and content in the form of layers. A layer is a .zip file archive that can contain libraries, a custom runtime, or other dependencies. Using layers allows Lambda functions to use libraries without including them in the deployment package. This keeps the deployment package small and allows the same dependencies to be shared across multiple functions. Up to five layers can be attached to a function, and each layer can be up to 50 MB.",
     optionExplanations: [
-      "誤り：コンソールエディタには制限があり、大きな依存関係を追加するには適していません。また、デプロイパッケージサイズの問題は解決されません。",
-      "誤り：依存関係をデプロイパッケージに含めると、パッケージサイズが大きくなり、クォータを超える可能性があります。",
-      "正解：Lambdaレイヤーを使用することで、依存関係を別々に管理し、デプロイパッケージサイズを小さく保つことができます。",
-      "誤り：環境変数は設定値を保存するためのものであり、依存関係のコードを含めることはできません。"
+      "Incorrect: The console editor has limitations and is not suitable for adding large dependencies. It also does not resolve the deployment package size issue.",
+      "Incorrect: Including dependencies in the deployment package increases its size and may cause it to exceed the quota.",
+      "Correct: Using a Lambda layer allows dependencies to be managed separately and keeps the deployment package small.",
+      "Incorrect: Environment variables are for storing configuration values and cannot contain dependency code."
     ]
   },
   {
     id: "dva-057",
-    question: "ある会社がAWSアカウントのREST APIにAmazon API Gatewayを使用しています。デベロッパーは、別のAWSアカウントのIAMユーザーのみにAPIへのアクセスを許可したいと考えています。\n\nこれらの要件を満たすために、デベロッパーが取るべきステップの組み合わせはどれですか (2つ選択)。",
+    question: "A company uses Amazon API Gateway for a REST API in one AWS account. A developer wants to grant access to the API only to IAM users from a different AWS account.\n\nWhich combination of steps should the developer take to meet these requirements? (Choose TWO.)",
     options: [
       undefined,
-      "Amazon Cognitoのユーザープールを作成する。各IAMユーザーをユーザープールに追加する。APIのメソッド認可タイプをCOGNITO_USER_POOLSに設定する。Amazon CognitoでIAM認証情報を使用して認証する。IDトークンをリクエストヘッダーに追加する。",
-      "Amazon Cognitoアイデンティティプールを作成する。各IAMユーザーをアイデンティティプールに追加する。APIのメソッド認可タイプをCOGNITO_USER_POOLSに設定する。Amazon CognitoでIAM認証情報を使用して認証する。アクセストークンをリクエストヘッダーに追加する。",
-      "各IAMユーザーのみにアクセスを許可するAPIのリソースポリシーを作成する。",
-      "API用のAmazon Cognitoオーソライザーを作成して、各IAMユーザーのみにアクセスを許可する。APIのメソッド認可タイプをCOGNITO_USER_POOLSに設定する。"
+      "Create an Amazon Cognito user pool. Add each IAM user to the user pool. Set the API method authorization type to COGNITO_USER_POOLS. Authenticate using IAM credentials in Amazon Cognito. Add the ID token to the request header.",
+      "Create an Amazon Cognito identity pool. Add each IAM user to the identity pool. Set the API method authorization type to COGNITO_USER_POOLS. Authenticate using IAM credentials in Amazon Cognito. Add the access token to the request header.",
+      "Create a resource policy for the API that grants access only to each IAM user.",
+      "Create an Amazon Cognito authorizer for the API to grant access only to each IAM user. Set the API method authorization type to COGNITO_USER_POOLS."
     ],
     correctAnswer: 0,
-    category: "セキュリティ",
-    explanation: "リソースポリシーは、署名バージョン4 (Sigv4)プロトコルを使用して、あるAWSアカウントのAPIアクセスを別のAWSアカウントのユーザーに許可できます。IAMアクセス許可ポリシーを各IAMユーザーにアタッチし、APIのメソッド認可タイプをAWS_IAMに設定することで、クロスアカウントアクセスを実現できます。また、APIのリソースポリシーを使用して、特定のAWSアカウントのIAMユーザーのみにアクセスを許可することもできます。両方のアプローチを組み合わせることで、セキュアなクロスアカウントAPIアクセスが実現されます。",
+    category: "Security",
+    explanation: "A resource policy can grant API access in one AWS account to users in a different AWS account using the Signature Version 4 (SigV4) protocol. By attaching an IAM permission policy to each IAM user and setting the API method authorization type to AWS_IAM, cross-account access can be achieved. A resource policy on the API can also be used to allow access only to IAM users from a specific AWS account. Combining both approaches achieves secure cross-account API access.",
     optionExplanations: [
       undefined,
-      "誤り：Cognitoユーザープールは、IAMユーザーではなく、アプリケーションユーザーの認証に使用されます。",
-      "誤り：Cognitoアイデンティティプールの使用方法が不適切であり、IAMユーザーを直接追加することはできません。",
-      "正解：リソースポリシーを使用して、特定のAWSアカウントのIAMユーザーのみにAPIアクセスを許可できます。",
-      "誤り：Cognitoオーソライザーは、IAMユーザーではなく、Cognitoユーザープールのユーザーを認証するために使用されます。"
+      "Incorrect: Cognito user pools are used to authenticate application users, not IAM users.",
+      "Incorrect: Cognito identity pools are used incorrectly here; IAM users cannot be directly added to an identity pool in this way.",
+      "Correct: A resource policy can be used to grant API access only to IAM users from a specific AWS account.",
+      "Incorrect: Cognito authorizers are used to authenticate Cognito user pool users, not IAM users."
     ]
   },
   {
     id: "dva-058",
-    question: "デベロッパーは、AWS CodePipelineを使用してCI/CDパイプラインを構築しています。パイプラインは、ソースコードをAWS CodeCommitから取得し、AWS CodeBuildでビルドし、AWS CodeDeployを使用してAmazon EC2インスタンスにデプロイします。デベロッパーは、本番環境へのデプロイ前に手動承認ステップを追加したいと考えています。\n\nこの要件を満たすために、デベロッパーは何をすべきですか。",
+    question: "A developer is building a CI/CD pipeline using AWS CodePipeline. The pipeline retrieves source code from AWS CodeCommit, builds it with AWS CodeBuild, and deploys it to Amazon EC2 instances using AWS CodeDeploy. The developer wants to add a manual approval step before deploying to the production environment.\n\nWhat should the developer do to meet this requirement?",
     options: [
-      "AWS Step Functionsステートマシンを作成して、承認ワークフローを管理する。CodePipelineからStep Functionsを呼び出す。",
-      "AWS Lambda関数を作成して、デプロイ前に承認をチェックする。Lambda関数をCodePipelineのカスタムアクションとして追加する。",
-      "CodePipelineに手動承認アクションを追加する。Amazon SNSトピックを作成し、承認者に通知を送信するように設定する。",
-      "Amazon EventBridgeルールを作成して、デプロイイベントを監視する。承認が必要な場合は、デプロイを一時停止する。"
+      "Create an AWS Step Functions state machine to manage the approval workflow. Invoke Step Functions from CodePipeline.",
+      "Create an AWS Lambda function to check for approval before deployment. Add the Lambda function as a custom action in CodePipeline.",
+      "Add a manual approval action to CodePipeline. Create an Amazon SNS topic and configure it to send notifications to approvers.",
+      "Create an Amazon EventBridge rule to monitor deployment events. Pause the deployment when approval is required."
     ],
     correctAnswer: 2,
-    category: "デプロイメント",
-    explanation: "AWS CodePipelineは、手動承認アクションをネイティブにサポートしています。手動承認アクションをパイプラインに追加すると、パイプラインの実行がそのステージで一時停止し、承認者が承認または却下するまで待機します。Amazon SNSトピックを設定することで、承認が必要なときに承認者に自動的に通知を送信できます。承認者はCodePipelineコンソールまたはAPIを使用して、承認または却下を行うことができます。この方法は、シンプルで効率的であり、追加のサービスやカスタムコードを必要としません。",
+    category: "Deployment",
+    explanation: "AWS CodePipeline natively supports manual approval actions. When a manual approval action is added to a pipeline, the pipeline execution pauses at that stage and waits until an approver approves or rejects it. By configuring an Amazon SNS topic, approvers can be automatically notified when approval is needed. Approvers can approve or reject using the CodePipeline console or API. This approach is simple and efficient, requiring no additional services or custom code.",
     optionExplanations: [
-      "誤り：Step Functionsを使用することは可能ですが、単純な承認ワークフローには過剰であり、CodePipelineの組み込み機能で十分です。",
-      "誤り：Lambda関数を使用することは可能ですが、CodePipelineの組み込み手動承認機能を使用する方が簡単で効率的です。",
-      "正解：CodePipelineの手動承認アクションとSNS通知を使用することで、シンプルに承認ワークフローを実装できます。",
-      "誤り：EventBridgeはイベント駆動型のアーキテクチャに使用されますが、手動承認ワークフローには適していません。"
+      "Incorrect: Using Step Functions is possible but is excessive for a simple approval workflow. CodePipeline's built-in feature is sufficient.",
+      "Incorrect: Using a Lambda function is possible but CodePipeline's built-in manual approval feature is simpler and more efficient.",
+      "Correct: Using CodePipeline's manual approval action with SNS notifications allows the approval workflow to be implemented simply.",
+      "Incorrect: EventBridge is used for event-driven architectures and is not suitable for a manual approval workflow."
     ]
   },
   {
     id: "dva-059",
-    question: "デベロッパーは、Amazon DynamoDBテーブルを使用するサーバーレスアプリケーションを構築しています。アプリケーションは、高いトラフィックを処理する必要があり、読み取り操作が書き込み操作よりもはるかに多くなります。デベロッパーは、コストを最適化しながら、一貫したパフォーマンスを確保したいと考えています。\n\nこれらの要件を満たすために、デベロッパーはどのDynamoDB機能を使用すべきですか。",
+    question: "A developer is building a serverless application that uses an Amazon DynamoDB table. The application must handle high traffic, and read operations will significantly outnumber write operations. The developer wants to ensure consistent performance while optimizing costs.\n\nWhich DynamoDB feature should the developer use to meet these requirements?",
     options: [
-      "DynamoDBオンデマンドキャパシティモードを使用する。",
-      "DynamoDBプロビジョニングキャパシティモードを使用し、Auto Scalingを有効にする。",
-      "DynamoDB Accelerator (DAX)を使用して、読み取りパフォーマンスを向上させる。",
-      "DynamoDBグローバルセカンダリインデックス (GSI)を作成して、読み取りパフォーマンスを向上させる。"
+      "Use DynamoDB on-demand capacity mode.",
+      "Use DynamoDB provisioned capacity mode with Auto Scaling enabled.",
+      "Use DynamoDB Accelerator (DAX) to improve read performance.",
+      "Create a DynamoDB Global Secondary Index (GSI) to improve read performance."
     ],
     correctAnswer: 2,
-    category: "データベース",
-    explanation: "Amazon DynamoDB Accelerator (DAX)は、DynamoDB用のフルマネージド型インメモリキャッシュです。DAXは、読み取り集約型のワークロードに対して、マイクロ秒単位の応答時間を提供します。DAXを使用すると、アプリケーションコードを変更することなく、DynamoDBテーブルへの読み取りパフォーマンスを大幅に向上させることができます。DAXは、頻繁にアクセスされるデータをキャッシュすることで、DynamoDBへの読み取りリクエストを削減し、コストを最適化します。読み取り操作が書き込み操作よりもはるかに多い場合、DAXは最適なソリューションです。",
+    category: "Database",
+    explanation: "Amazon DynamoDB Accelerator (DAX) is a fully managed in-memory cache for DynamoDB. DAX provides microsecond response times for read-intensive workloads. Using DAX allows read performance on DynamoDB tables to be significantly improved without changing application code. By caching frequently accessed data, DAX reduces read requests to DynamoDB and optimizes costs. When read operations significantly outnumber write operations, DAX is the optimal solution.",
     optionExplanations: [
-      "誤り：オンデマンドモードは予測不可能なワークロードに適していますが、読み取りパフォーマンスを特に向上させるものではありません。",
-      "誤り：プロビジョニングモードとAuto Scalingは容量管理に役立ちますが、読み取りパフォーマンスを大幅に向上させるものではありません。",
-      "正解：DAXは読み取り集約型のワークロードに最適で、マイクロ秒単位の応答時間を提供し、コストを最適化します。",
-      "誤り：GSIはクエリパターンを最適化するために使用されますが、読み取りパフォーマンスを大幅に向上させるものではありません。"
+      "Incorrect: On-demand mode is suitable for unpredictable workloads but does not specifically improve read performance.",
+      "Incorrect: Provisioned mode with Auto Scaling helps with capacity management but does not significantly improve read performance.",
+      "Correct: DAX is optimal for read-intensive workloads, providing microsecond response times and optimizing costs.",
+      "Incorrect: GSIs are used to optimize query patterns but do not significantly improve read performance on their own."
     ]
   },
   {
     id: "dva-060",
-    question: "デベロッパーは、AWS X-Rayを使用してマイクロサービスアプリケーションをトレースしています。アプリケーションは、複数のAWS Lambda関数とAmazon API Gatewayで構成されています。デベロッパーは、特定のLambda関数の実行時間が長いことに気づき、その関数内の特定のコードセグメントのパフォーマンスを詳細に分析したいと考えています。\n\nこの要件を満たすために、デベロッパーは何をすべきですか。",
+    question: "A developer is tracing a microservices application using AWS X-Ray. The application consists of multiple AWS Lambda functions and Amazon API Gateway. The developer notices that a particular Lambda function has a long execution time and wants to analyze the performance of specific code segments within that function in detail.\n\nWhat should the developer do to meet this requirement?",
     options: [
-      "Lambda関数のメモリサイズを増やして、パフォーマンスを向上させる。",
-      "X-Ray SDKを使用して、Lambda関数内にカスタムサブセグメントを作成する。",
-      "CloudWatch Logsを使用して、Lambda関数の実行時間をログに記録する。",
-      "AWS CloudTrailを使用して、Lambda関数の呼び出しを追跡する。"
+      "Increase the memory size of the Lambda function to improve performance.",
+      "Use the X-Ray SDK to create custom subsegments inside the Lambda function.",
+      "Use CloudWatch Logs to record the execution time of the Lambda function.",
+      "Use AWS CloudTrail to track Lambda function invocations."
     ],
     correctAnswer: 1,
-    category: "モニタリング",
-    explanation: "AWS X-Ray SDKを使用すると、Lambda関数内にカスタムサブセグメントを作成できます。サブセグメントを使用することで、関数内の特定のコードセグメント（例：データベースクエリ、外部APIコール、特定の処理ロジック）のパフォーマンスを詳細に分析できます。各サブセグメントには、開始時刻、終了時刻、メタデータ、注釈などの情報が含まれます。X-Rayコンソールでサービスマップとトレースを表示することで、どのコードセグメントがボトルネックになっているかを特定し、最適化することができます。",
+    category: "Monitoring",
+    explanation: "Using the AWS X-Ray SDK allows custom subsegments to be created inside a Lambda function. Subsegments enable detailed analysis of the performance of specific code segments within the function, such as database queries, external API calls, or particular processing logic. Each subsegment includes information such as start time, end time, metadata, and annotations. By viewing the service map and traces in the X-Ray console, you can identify which code segments are bottlenecks and optimize them.",
     optionExplanations: [
-      "誤り：メモリサイズを増やすことはパフォーマンス向上に役立つ場合がありますが、特定のコードセグメントの詳細な分析には役立ちません。",
-      "正解：X-Ray SDKのカスタムサブセグメントを使用することで、関数内の特定のコードセグメントのパフォーマンスを詳細に分析できます。",
-      "誤り：CloudWatch Logsは実行時間をログに記録できますが、X-Rayのような詳細なトレース情報や視覚化は提供しません。",
-      "誤り：CloudTrailはAPI呼び出しを記録するサービスであり、アプリケーションのパフォーマンス分析には使用されません。"
+      "Incorrect: Increasing memory size may improve performance in some cases, but it does not help with detailed analysis of specific code segments.",
+      "Correct: Using custom subsegments with the X-Ray SDK allows detailed performance analysis of specific code segments inside the function.",
+      "Incorrect: CloudWatch Logs can record execution times, but it does not provide the detailed trace information or visualization that X-Ray offers.",
+      "Incorrect: CloudTrail is a service for recording API calls and is not used for application performance analysis."
     ]
   },
   {
     id: "dva-061",  // eslint-disable-line
-    question: "デベロッパーは、AWS Lambda関数でAmazon DynamoDBにアクセスするコードを開発しています。Lambda関数のコード内にAWSアクセスキーとシークレットキーをハードコーディングせずに、DynamoDBへのアクセス権限を付与するベストプラクティスはどれですか。",
+    question: "A developer is writing code to access Amazon DynamoDB from an AWS Lambda function. What is the best practice for granting the Lambda function access to DynamoDB without hardcoding AWS access keys and secret keys in the function code?",
     options: [
-      "Lambda関数の環境変数にアクセスキーとシークレットキーを設定する。",
-      "Lambda関数に実行ロール（IAMロール）をアタッチし、DynamoDBへのアクセス権限を付与する。",
-      "Lambda関数のコード内にアクセスキーとシークレットキーをハードコーディングする。",
-      "AWS Secrets Managerにアクセスキーを保存し、Lambda関数の起動時に取得する。"
+      "Set the access key and secret key as environment variables on the Lambda function.",
+      "Attach an execution role (IAM role) to the Lambda function and grant it access to DynamoDB.",
+      "Hardcode the access key and secret key in the Lambda function code.",
+      "Store the access key in AWS Secrets Manager and retrieve it when the Lambda function starts."
     ],
     correctAnswer: 1,
-    category: "セキュリティ",
-    explanation: "AWS Lambda関数にIAM実行ロールをアタッチすることが、AWSリソースへのアクセス権限を付与するベストプラクティスです。Lambda関数が実行されると、AWS STSを通じて一時的な認証情報が自動的に取得され、コードからAWS SDKを使用してDynamoDBにアクセスできます。アクセスキーのハードコーディングや環境変数への保存は、セキュリティリスクがあるため避けるべきです。",
+    category: "Security",
+    explanation: "Attaching an IAM execution role to an AWS Lambda function is the best practice for granting access to AWS resources. When the Lambda function runs, temporary credentials are automatically obtained through AWS STS, allowing the code to access DynamoDB using the AWS SDK. Hardcoding access keys or storing them in environment variables poses a security risk and should be avoided.",
     optionExplanations: [
-      "誤り：環境変数へのアクセスキー保存はハードコーディングよりは改善されますが、IAMロールを使用する方がセキュアです。ロールは一時的な認証情報を自動ローテーションします。",
-      "正解：IAM実行ロールをLambdaにアタッチする方法が最もセキュアなベストプラクティスです。一時的な認証情報が自動管理され、長期的なアクセスキーを管理する必要がありません。",
-      "誤り：コード内へのハードコーディングは最も危険な方法です。ソースコードが漏洩した場合に認証情報が露出します。",
-      "誤り：Secrets Managerの使用は有効なアプローチですが、IAMロールが利用できる場合はIAMロールを使用する方がシンプルで推奨されます。"
+      "Incorrect: Storing access keys in environment variables is an improvement over hardcoding, but using an IAM role is more secure. Roles automatically rotate temporary credentials.",
+      "Correct: Attaching an IAM execution role to Lambda is the most secure best practice. Temporary credentials are managed automatically, and there is no need to manage long-term access keys.",
+      "Incorrect: Hardcoding in the code is the most dangerous approach. Credentials are exposed if the source code is leaked.",
+      "Incorrect: Using Secrets Manager is a valid approach, but when an IAM role is available, using an IAM role is simpler and recommended."
     ]
   },
   {
     id: "dva-062",
-    question: "デベロッパーは、Amazon SQSキューを使用してメッセージを処理するアプリケーションを開発しています。メッセージの処理が失敗した場合に、そのメッセージを別のキューに移動して後で調査できるようにしたいと考えています。\n\nこの要件を満たすために、デベロッパーはどのように設定すべきですか。",
+    question: "A developer is building an application that processes messages from an Amazon SQS queue. When message processing fails, the developer wants to move the message to a separate queue for later investigation.\n\nHow should the developer configure this to meet this requirement?",
     options: [
-      "Lambda関数のエラーハンドリングでメッセージを別のキューに手動で転送する。",
-      "SQSキューにデッドレターキュー（DLQ）を設定し、最大受信回数を超えたメッセージを自動的に転送する。",
-      "CloudWatch Alarmsを使用して、失敗したメッセージを検出し別のキューに移動する。",
-      "SQSのメッセージタイマーを使用して、失敗したメッセージを遅延させる。"
+      "Manually forward the message to another queue using error handling in the Lambda function.",
+      "Configure a dead-letter queue (DLQ) on the SQS queue to automatically transfer messages that exceed the maximum receive count.",
+      "Use CloudWatch Alarms to detect failed messages and move them to another queue.",
+      "Use the SQS message timer to delay failed messages."
     ],
     correctAnswer: 1,
-    category: "アプリケーション統合",
-    explanation: "Amazon SQSのデッドレターキュー（DLQ）は、正常に処理できなかったメッセージを自動的に別のキューに移動するための機能です。ソースキューに最大受信回数（maxReceiveCount）を設定すると、その回数を超えて処理に失敗したメッセージが自動的にDLQに転送されます。DLQに蓄積されたメッセージを後で調査・再処理することで、メッセージの損失を防ぎ、問題の原因を特定できます。",
+    category: "Application Integration",
+    explanation: "The Amazon SQS dead-letter queue (DLQ) is a feature that automatically moves messages that could not be processed successfully to a separate queue. By setting a maximum receive count (maxReceiveCount) on the source queue, messages that fail processing more than that number of times are automatically transferred to the DLQ. By investigating and reprocessing messages accumulated in the DLQ, you can prevent message loss and identify the root cause of issues.",
     optionExplanations: [
-      "誤り：手動転送は実装が複雑になり、エラー処理のロジックがコードに混在します。DLQを使用する方がシンプルで確実です。",
-      "正解：DLQはSQSのネイティブ機能で、失敗メッセージの自動転送と保管を簡単に実装できます。",
-      "誤り：CloudWatch Alarmsはメトリクスの監視には使用しますが、メッセージの転送機能はありません。",
-      "誤り：メッセージタイマーは配信を遅延させる機能であり、失敗したメッセージを別のキューに移動する機能ではありません。"
+      "Incorrect: Manual forwarding adds complexity and mixes error handling logic into the code. Using a DLQ is simpler and more reliable.",
+      "Correct: A DLQ is a native SQS feature that makes it easy to implement automatic transfer and storage of failed messages.",
+      "Incorrect: CloudWatch Alarms are used for monitoring metrics and do not have a message forwarding capability.",
+      "Incorrect: A message timer delays delivery and is not a feature for moving failed messages to another queue."
     ]
   },
   {
     id: "dva-063",
-    question: "デベロッパーは、AWS Elastic Beanstalkを使用してWebアプリケーションをデプロイしています。新しいバージョンをデプロイする際に、既存のインスタンスをすべて新バージョンに更新してから古いバージョンを削除するのではなく、一部のインスタンスずつ更新することで、デプロイ中もアプリケーションを稼働し続けたいと考えています。\n\nこの要件に最も適したデプロイポリシーはどれですか。",
+    question: "A developer is deploying a web application using AWS Elastic Beanstalk. When deploying a new version, the developer wants to keep the application running during deployment by updating a subset of instances at a time, rather than updating all instances to the new version at once before removing the old version.\n\nWhich deployment policy best suits this requirement?",
     options: [
-      "All at once（一度にすべて）",
-      "Rolling（ローリング）",
-      "Immutable（イミュータブル）",
+      "All at once",
+      "Rolling",
+      "Immutable",
       "Blue/Green"
     ],
     correctAnswer: 1,
-    category: "デプロイメント",
-    explanation: "Elastic BeanstalkのRolling（ローリング）デプロイポリシーは、インスタンスをバッチに分けて順番に更新します。各バッチのインスタンスが新しいバージョンに更新されている間も、残りのインスタンスは古いバージョンで稼働し続けるため、デプロイ中もアプリケーションのダウンタイムを最小化できます。All at onceはすべてのインスタンスを同時に更新するためダウンタイムが発生します。Immutableは新しいインスタンスセットを作成し、Blue/Greenは別の環境を用意して切り替えます。",
+    category: "Deployment",
+    explanation: "The Elastic Beanstalk Rolling deployment policy updates instances in batches one at a time. While instances in each batch are being updated to the new version, the remaining instances continue to run the old version, minimizing application downtime during deployment. All at once updates all instances simultaneously and causes downtime. Immutable creates a new set of instances, and Blue/Green prepares a separate environment and switches traffic.",
     optionExplanations: [
-      "誤り：All at onceはすべてのインスタンスを同時に更新するため、デプロイ中にダウンタイムが発生します。",
-      "正解：Rollingデプロイは一部のインスタンスずつ順番に更新するため、デプロイ中もアプリケーションが稼働し続けます。",
-      "誤り：Immutableは新しいインスタンスセットを別途作成して切り替えるため、より安全ですがリソースコストが高くなります。",
-      "誤り：Blue/Greenは完全に別の環境を用意してDNSレベルで切り替える方式で、最も安全ですが最もコストがかかります。"
+      "Incorrect: All at once updates all instances simultaneously, causing downtime during deployment.",
+      "Correct: Rolling deployment updates a subset of instances at a time in sequence, so the application keeps running during deployment.",
+      "Incorrect: Immutable creates a separate new set of instances before switching, which is safer but incurs higher resource costs.",
+      "Incorrect: Blue/Green prepares a completely separate environment and switches at the DNS level — the safest approach but the most costly."
     ]
   },
   {
     id: "dva-064",
-    question: "デベロッパーは、Amazon API GatewayとAWS Lambdaを使用してREST APIを構築しています。APIのレスポンス時間を短縮するために、頻繁にアクセスされる同じパラメータのレスポンスをキャッシュしたいと考えています。\n\nこの要件を満たすために、デベロッパーはどの機能を使用すべきですか。",
+    question: "A developer is building a REST API using Amazon API Gateway and AWS Lambda. To reduce API response time, the developer wants to cache responses for frequently accessed requests with the same parameters.\n\nWhich feature should the developer use to meet this requirement?",
     options: [
-      "Lambda関数内でAmazon ElastiCacheを使用してレスポンスをキャッシュする。",
-      "API Gatewayのステージでキャッシュを有効化し、TTLを設定する。",
-      "CloudFrontディストリビューションをAPI Gatewayの前に配置してキャッシュする。",
-      "Lambda関数の予約済み同時実行数を増やしてレスポンス時間を改善する。"
+      "Use Amazon ElastiCache inside the Lambda function to cache responses.",
+      "Enable caching at the API Gateway stage and configure a TTL.",
+      "Place a CloudFront distribution in front of API Gateway to cache responses.",
+      "Increase the reserved concurrency of the Lambda function to improve response time."
     ],
     correctAnswer: 1,
-    category: "開発",
-    explanation: "Amazon API Gatewayには、APIレスポンスをキャッシュするネイティブ機能があります。ステージレベルでキャッシュを有効化し、TTL（Time To Live）を設定することで、同じリクエストに対してLambdaを呼び出さずにキャッシュされたレスポンスを返せます。これにより、バックエンドへの呼び出し回数が削減され、レスポンス時間の短縮とコスト削減を同時に実現できます。",
+    category: "Development",
+    explanation: "Amazon API Gateway has a native feature for caching API responses. By enabling caching at the stage level and setting a TTL (Time To Live), cached responses can be returned for identical requests without invoking Lambda. This reduces the number of backend calls, simultaneously decreasing response time and lowering costs.",
     optionExplanations: [
-      "誤り：ElastiCacheはアプリケーションレベルのキャッシュには有効ですが、API Gatewayのネイティブキャッシュ機能の方がシンプルに実装できます。",
-      "正解：API Gatewayのキャッシュ機能を使用することで、Lambdaを呼び出さずにキャッシュされたレスポンスを返せます。",
-      "誤り：CloudFrontも有効なキャッシュ手段ですが、API Gatewayのネイティブキャッシュ機能がより直接的な解決策です。",
-      "誤り：予約済み同時実行数はコールドスタートの軽減には役立ちますが、キャッシュによるレスポンス時間短縮とは異なります。"
+      "Incorrect: ElastiCache is effective for application-level caching, but API Gateway's native caching feature is simpler to implement.",
+      "Correct: Using API Gateway's caching feature allows cached responses to be returned without invoking Lambda.",
+      "Incorrect: CloudFront is also an effective caching option, but API Gateway's native caching is a more direct solution.",
+      "Incorrect: Reserved concurrency helps mitigate cold starts but is different from reducing response time through caching."
     ]
   },
   {
     id: "dva-065",
-    question: "デベロッパーは、AWS CloudFormationを使用してインフラストラクチャをコードとして管理しています。スタックの更新時に、特定のリソース（Amazon RDSインスタンス）が誤って削除されないように保護したいと考えています。\n\nこの要件を満たすために、デベロッパーはどのように設定すべきですか。",
+    question: "A developer is managing infrastructure as code using AWS CloudFormation. The developer wants to protect a specific resource (an Amazon RDS instance) from being accidentally deleted during a stack update.\n\nHow should the developer configure this to meet this requirement?",
     options: [
-      "CloudFormationテンプレートでRDSリソースにDeletionPolicy: Retainを設定する。",
-      "RDSインスタンスにIAMポリシーを適用して削除を禁止する。",
-      "CloudFormationスタックにスタックポリシーを設定して、特定リソースの更新・削除を拒否する。",
-      "RDSインスタンスの自動バックアップを有効にする。"
+      "Set DeletionPolicy: Retain on the RDS resource in the CloudFormation template.",
+      "Apply an IAM policy to the RDS instance to prohibit deletion.",
+      "Configure a stack policy on the CloudFormation stack to deny updates and deletions of specific resources.",
+      "Enable automatic backups on the RDS instance."
     ],
     correctAnswer: 2,
-    category: "デプロイメント",
-    explanation: "CloudFormationのスタックポリシーは、スタックの更新操作中に特定リソースへの意図しない変更を防ぐためのJSONドキュメントです。スタックポリシーでDenyアクションを設定することで、指定したリソースの更新・置換・削除を禁止できます。DeletionPolicy: Retainはスタック削除時にリソースを保持しますが、スタック更新時の保護はスタックポリシーが適切です。",
+    category: "Deployment",
+    explanation: "A CloudFormation stack policy is a JSON document that prevents unintended changes to specific resources during stack update operations. By setting a Deny action in the stack policy, you can prohibit updates, replacements, and deletions of specified resources. DeletionPolicy: Retain preserves a resource when the stack is deleted, but a stack policy is the appropriate mechanism for protection during stack updates.",
     optionExplanations: [
-      "誤り：DeletionPolicy: Retainはスタック全体が削除される際にリソースを保持しますが、スタック更新中のリソース変更は防げません。",
-      "誤り：IAMポリシーはユーザー・ロールへのアクセス制御に使用しますが、CloudFormationの更新操作を制御するにはスタックポリシーが適切です。",
-      "正解：スタックポリシーを使用することで、特定リソースの更新・削除をスタック更新中に禁止できます。",
-      "誤り：自動バックアップはデータ保護には有効ですが、CloudFormationによるリソース削除を防ぐ機能はありません。"
+      "Incorrect: DeletionPolicy: Retain preserves the resource when the entire stack is deleted, but it does not prevent resource changes during a stack update.",
+      "Incorrect: IAM policies are used for access control on users and roles, but a stack policy is appropriate for controlling CloudFormation update operations.",
+      "Correct: Using a stack policy allows updates and deletions of specific resources to be denied during stack updates.",
+      "Incorrect: Automatic backups are effective for data protection but do not prevent resource deletion by CloudFormation."
     ]
   },
   {
     id: "dva-066",
-    question: "デベロッパーは、Amazon DynamoDBテーブルを設計しています。アプリケーションは特定のユーザーIDに紐づく注文データを、注文日時の新しい順に取得する必要があります。また、特定の期間内の注文のみを効率的に絞り込みたいと考えています。\n\nこの要件を最も効率的に満たすテーブル設計はどれですか。",
+    question: "A developer is designing an Amazon DynamoDB table. The application needs to retrieve order data associated with a specific user ID in order of newest order date. The developer also wants to efficiently filter only orders within a specific time period.\n\nWhich table design most efficiently meets these requirements?",
     options: [
-      "ユーザーIDをパーティションキー、注文日時をソートキーとして設定し、Query APIで取得する。",
-      "注文IDをパーティションキーとして設定し、Scan APIでユーザーIDと日時を絞り込む。",
-      "ユーザーIDをパーティションキーのみとして設定し、取得後にアプリケーション側でソートする。",
-      "注文日時をパーティションキー、ユーザーIDをソートキーとして設定する。"
+      "Set the user ID as the partition key and the order date as the sort key, and retrieve data using the Query API.",
+      "Set the order ID as the partition key and filter by user ID and date using the Scan API.",
+      "Set the user ID as the partition key only, and sort the results on the application side after retrieval.",
+      "Set the order date as the partition key and the user ID as the sort key."
     ],
     correctAnswer: 0,
-    category: "データベース",
-    explanation: "DynamoDBでは、パーティションキーで特定のユーザーのデータを効率的に取得でき、ソートキーで範囲クエリ（between、begins_with等）が使用できます。ユーザーIDをパーティションキー、注文日時をソートキーとして設計することで、Query APIを使用して特定ユーザーの注文を日時順に取得でき、KeyConditionExpressionで期間指定も効率的に行えます。Scan APIは全件スキャンするため非効率です。",
+    category: "Database",
+    explanation: "In DynamoDB, the partition key efficiently localizes data for a specific user, and the sort key allows range queries (such as between and begins_with). By designing the table with the user ID as the partition key and the order date as the sort key, the Query API can be used to retrieve a specific user's orders in date order, and KeyConditionExpression can efficiently specify a time range. The Scan API performs a full-table scan and is inefficient.",
     optionExplanations: [
-      "正解：パーティションキー（ユーザーID）でデータを局所化し、ソートキー（注文日時）でQuery時の範囲絞り込みと並び順を実現できます。",
-      "誤り：Scan APIは全テーブルをスキャンするため、データ量が増えると非効率でコストが高くなります。",
-      "誤り：アプリケーション側でのソートは全件取得が必要となり、テーブルが大きくなるほど非効率になります。",
-      "誤り：注文日時をパーティションキーにすると、ホットパーティション問題が発生し、特定ユーザーの注文一覧取得が非効率になります。"
+      "Correct: The partition key (user ID) localizes data, and the sort key (order date) enables range filtering and ordering during Query operations.",
+      "Incorrect: The Scan API scans the entire table, which becomes inefficient and costly as data volume grows.",
+      "Incorrect: Sorting on the application side requires retrieving all items, which becomes increasingly inefficient as the table grows.",
+      "Incorrect: Using the order date as the partition key creates a hot partition problem and makes retrieving all orders for a specific user inefficient."
     ]
   },
   {
     id: "dva-067",
-    question: "デベロッパーは、AWS Lambda関数のコールドスタート時間を短縮したいと考えています。Lambda関数はJavaで実装されており、初回起動時に時間がかかる問題があります。\n\nコールドスタートを軽減するためのベストプラクティスとして適切なものはどれですか（2つ選択）。",
+    question: "A developer wants to reduce the cold start time of an AWS Lambda function. The Lambda function is implemented in Java and takes a long time on its first invocation.\n\nWhich best practices are appropriate for mitigating cold starts? (Choose TWO.)",
     options: [
-      "Lambda関数のメモリサイズを増やす。",
-      "Lambda SnapStartを有効化する（Java 11以降）。",
-      "Lambda関数のタイムアウト値を増やす。",
-      "Lambda関数のコードサイズを最小化し、不要な依存ライブラリを削除する。",
-      "Lambda関数をVPC内に配置する。"
+      "Increase the memory size of the Lambda function.",
+      "Enable Lambda SnapStart (Java 11 and later).",
+      "Increase the timeout value of the Lambda function.",
+      "Minimize the Lambda function's code size and remove unnecessary dependency libraries.",
+      "Place the Lambda function inside a VPC."
     ],
     correctAnswer: 3,
-    category: "コンピューティング",
-    explanation: "Javaのコールドスタート軽減には主に2つのアプローチが有効です。①Lambda SnapStart（Java 11以降対応）は、初期化済みのスナップショットから関数を起動することでコールドスタート時間を大幅に削減します。②デプロイパッケージサイズの最小化は、クラスのロード時間を削減します。不要な依存ライブラリを除去し、Lambda Layersを活用することで初期化時間を短縮できます。メモリ増加はCPU比例で処理速度は向上しますが、根本的なコールドスタート軽減策として最優先ではありません。",
+    category: "Compute",
+    explanation: "Two main approaches are effective for mitigating Java cold starts. First, Lambda SnapStart (supported for Java 11 and later) significantly reduces cold start time by launching the function from a pre-initialized snapshot. Second, minimizing the deployment package size reduces class loading time. Removing unnecessary dependency libraries and leveraging Lambda Layers shortens initialization time. Increasing memory also proportionally increases CPU and processing speed, but it is not the highest-priority fundamental solution for cold start mitigation.",
     optionExplanations: [
-      "誤り：メモリサイズを増やすとCPUも比例して増加し処理は速くなりますが、コールドスタートの根本的な解決策ではありません。",
-      "正解：Lambda SnapStartはJavaの初期化スナップショットを再利用することで、コールドスタート時間を大幅に短縮できます。",
-      "誤り：タイムアウト値の増加はコールドスタート時間の短縮には関係しません。",
-      "正解：デプロイパッケージを小さくすることで、クラスローディングやJVM起動に要する時間を削減できます。",
-      "誤り：VPC内配置はネットワーク初期化が追加されるため、むしろコールドスタートが悪化する可能性があります。"
+      "Incorrect: Increasing memory size proportionally increases CPU and processing speed, but it is not a fundamental solution to cold starts.",
+      "Correct: Lambda SnapStart significantly reduces cold start time by reusing a Java initialization snapshot.",
+      "Incorrect: Increasing the timeout value has no effect on reducing cold start time.",
+      "Correct: Reducing the deployment package size decreases the time required for class loading and JVM startup.",
+      "Incorrect: Placing the function inside a VPC adds network initialization overhead and may actually worsen cold starts."
     ]
   },
   {
     id: "dva-068",
-    question: "デベロッパーは、Amazon Kinesis Data Streamsを使用してリアルタイムのクリックストリームデータを処理するアプリケーションを構築しています。アプリケーションで処理エラーが発生し、特定のレコードを再処理したいと考えています。\n\nKinesis Data Streamsの特性として、再処理を可能にしているものはどれですか。",
+    question: "A developer is building an application that processes real-time clickstream data using Amazon Kinesis Data Streams. A processing error occurs in the application, and the developer wants to reprocess specific records.\n\nWhich characteristic of Kinesis Data Streams enables reprocessing?",
     options: [
-      "Kinesisのレコードは処理後に自動的に削除されるため、再処理はできない。",
-      "Kinesisのレコードはデフォルトで24時間（最大365日）保持されるため、シャードイテレータを使用して再読み込みできる。",
-      "Kinesisのレコードは処理完了後にデッドレターキューに移動され、そこから再処理できる。",
-      "Kinesisのレコードは処理後にS3に自動バックアップされるため、S3から再処理できる。"
+      "Kinesis records are automatically deleted after processing, so reprocessing is not possible.",
+      "Kinesis records are retained for 24 hours by default (up to 365 days), so they can be re-read using a shard iterator.",
+      "Kinesis records are moved to a dead-letter queue after processing, from which they can be reprocessed.",
+      "Kinesis records are automatically backed up to S3 after processing, so they can be reprocessed from S3."
     ],
     correctAnswer: 1,
-    category: "アプリケーション統合",
-    explanation: "Amazon Kinesis Data Streamsは、レコードをデフォルト24時間（延長設定で最大365日）保持するため、コンシューマーが処理済みのレコードでも保持期間内であれば再度読み込むことができます。シャードイテレータのタイプとしてAT_TIMESTAMP（特定時刻から）やAT_SEQUENCE_NUMBER（特定シーケンス番号から）を使用することで、任意の位置からレコードを再読み込みして再処理できます。これはSQSとの大きな違いのひとつです。",
+    category: "Application Integration",
+    explanation: "Amazon Kinesis Data Streams retains records for 24 hours by default (up to 365 days with extended retention), so even records that have already been processed by a consumer can be re-read as long as they are within the retention period. By using shard iterator types such as AT_TIMESTAMP (from a specific time) or AT_SEQUENCE_NUMBER (from a specific sequence number), records can be re-read from any position for reprocessing. This is one of the key differences from SQS.",
     optionExplanations: [
-      "誤り：Kinesisのレコードはコンシューマーが処理しても削除されず、保持期間内は何度でも読み込み可能です。",
-      "正解：Kinesisはレコードを保持期間中は削除しないため、シャードイテレータで任意の位置から再読み込みできます。",
-      "誤り：KinesisにはSQSのようなデッドレターキュー機能はありません。",
-      "誤り：Kinesisはレコードを自動的にS3にバックアップしません。Kinesis Data Firehoseを使用すれば別途S3に配信できます。"
+      "Incorrect: Kinesis records are not deleted when a consumer processes them; they can be read any number of times within the retention period.",
+      "Correct: Because Kinesis does not delete records during the retention period, they can be re-read from any position using a shard iterator.",
+      "Incorrect: Kinesis does not have a dead-letter queue feature like SQS.",
+      "Incorrect: Kinesis does not automatically back up records to S3. Kinesis Data Firehose can be used to deliver records to S3 separately."
     ]
   },
   {
     id: "dva-069",
-    question: "デベロッパーは、AWS CodePipelineを使用してCI/CDパイプラインを構築しています。ソースコードはAWS CodeCommitに保存されており、テストにはAWS CodeBuild、デプロイにはAWS CodeDeployを使用しています。CodeBuildのビルドステージでテストが失敗した場合の動作として正しいものはどれですか。",
+    question: "A developer is building a CI/CD pipeline using AWS CodePipeline. Source code is stored in AWS CodeCommit, AWS CodeBuild is used for testing, and AWS CodeDeploy is used for deployment. What is the correct behavior when a test fails in the CodeBuild build stage?",
     options: [
-      "テストが失敗してもパイプラインは続行し、デプロイステージが実行される。",
-      "テストが失敗するとそのステージが失敗となり、後続のデプロイステージは実行されずパイプラインが停止する。",
-      "テストが失敗すると自動的にリトライが3回行われ、すべて失敗した場合のみパイプラインが停止する。",
-      "テストが失敗するとSNS通知のみが送信され、デプロイステージは通常通り実行される。"
+      "The pipeline continues even if the test fails, and the deploy stage is executed.",
+      "When a test fails, that stage fails and the pipeline stops without executing subsequent deploy stages.",
+      "When a test fails, a retry is automatically attempted 3 times, and the pipeline stops only if all retries fail.",
+      "When a test fails, only an SNS notification is sent and the deploy stage runs as normal."
     ],
     correctAnswer: 1,
-    category: "デプロイメント",
-    explanation: "AWS CodePipelineでは、あるステージが失敗するとパイプラインの実行がそのステージで停止し、後続のステージは実行されません。CodeBuildのビルド・テストステージで失敗が発生した場合、CodeDeployによるデプロイステージは実行されません。これにより、テストが失敗したコードが本番環境にデプロイされることを防ぎます。パイプラインのステータスはFailed状態になり、CloudWatchイベントやSNS通知で失敗を検知できます。",
+    category: "Deployment",
+    explanation: "In AWS CodePipeline, when a stage fails, the pipeline execution stops at that stage and subsequent stages are not executed. If a failure occurs in the CodeBuild build and test stage, the CodeDeploy deployment stage is not executed. This prevents code that failed testing from being deployed to the production environment. The pipeline status becomes Failed, and the failure can be detected via CloudWatch events or SNS notifications.",
     optionExplanations: [
-      "誤り：CodePipelineはステージが失敗すると後続ステージを実行しません。これがCI/CDの重要な特性です。",
-      "正解：ステージ失敗によりパイプラインが停止し、テストが通らないコードのデプロイを自動的に防ぎます。",
-      "誤り：CodePipelineはデフォルトでステージ失敗時に自動リトライは行いません（手動リトライは可能）。",
-      "誤り：テスト失敗時にデプロイが実行されてしまうことはありません。"
+      "Incorrect: CodePipeline does not execute subsequent stages when a stage fails. This is an important characteristic of CI/CD.",
+      "Correct: A stage failure stops the pipeline and automatically prevents code that did not pass testing from being deployed.",
+      "Incorrect: By default, CodePipeline does not automatically retry on stage failure (manual retry is possible).",
+      "Incorrect: When a test fails, the deploy stage is never executed."
     ]
   },
   {
     id: "dva-070",
-    question: "デベロッパーは、Amazon EC2インスタンス上で動作するアプリケーションのパフォーマンス問題をトラブルシューティングしています。アプリケーションのレスポンス時間が断続的に遅くなる問題が発生しており、CPUやメモリの使用率はCloudWatchで正常範囲内を示しています。デベロッパーは問題の根本原因を特定するために、アプリケーション内部の処理フローを詳細に分析したいと考えています。\n\nこの目的に最も適したAWSサービスはどれですか。",
+    question: "A developer is troubleshooting a performance issue with an application running on Amazon EC2 instances. The application intermittently experiences slow response times, but CPU and memory utilization shown in CloudWatch are within normal ranges. The developer wants to analyze the application's internal processing flow in detail to identify the root cause of the problem.\n\nWhich AWS service is best suited for this purpose?",
     options: [
-      "Amazon CloudWatch Logs Insights を使用してログを分析する。",
-      "AWS X-Ray を使用してアプリケーションのトレースを収集・分析する。",
-      "AWS CloudTrail を使用してAPI呼び出しを分析する。",
-      "Amazon Inspector を使用してアプリケーションの脆弱性を評価する。"
+      "Use Amazon CloudWatch Logs Insights to analyze logs.",
+      "Use AWS X-Ray to collect and analyze application traces.",
+      "Use AWS CloudTrail to analyze API calls.",
+      "Use Amazon Inspector to assess application vulnerabilities."
     ],
     correctAnswer: 1,
-    category: "トラブルシューティング",
-    explanation: "AWS X-Rayは、アプリケーションの内部処理フローをトレースするためのサービスです。X-Ray SDKをアプリケーションに組み込むことで、リクエストが処理される際の各コンポーネント（データベースクエリ、外部API呼び出し、内部サービス呼び出しなど）の実行時間をセグメント・サブセグメントとして記録します。サービスマップでボトルネックを視覚的に特定でき、断続的に発生するレスポンス遅延の原因特定に最適です。CloudWatch MetricsやLogsだけでは見えにくいアプリケーション内部の問題を特定できます。",
+    category: "Troubleshooting",
+    explanation: "AWS X-Ray is a service for tracing the internal processing flow of an application. By integrating the X-Ray SDK into the application, the execution time of each component (such as database queries, external API calls, and internal service calls) as the request is processed is recorded as segments and subsegments. Bottlenecks can be visually identified in the service map, making it ideal for identifying the cause of intermittent response delays. It can identify internal application problems that are difficult to see with CloudWatch Metrics or Logs alone.",
     optionExplanations: [
-      "誤り：CloudWatch Logs Insightsはログの検索・分析には有効ですが、アプリケーション内部の処理フローのトレースはX-Rayが適しています。",
-      "正解：X-Rayはアプリケーションの各処理ステップの実行時間をトレースし、断続的なパフォーマンス問題の根本原因特定に最適です。",
-      "誤り：CloudTrailはAWS APIへの呼び出しを記録するサービスであり、アプリケーション内部のパフォーマンス分析には使用しません。",
-      "誤り：Amazon Inspectorはセキュリティ脆弱性の評価に使用するサービスであり、パフォーマンス問題のトラブルシューティングには使用しません。"
+      "Incorrect: CloudWatch Logs Insights is effective for searching and analyzing logs, but X-Ray is more appropriate for tracing the internal processing flow of an application.",
+      "Correct: X-Ray traces the execution time of each processing step in an application and is best for identifying the root cause of intermittent performance issues.",
+      "Incorrect: CloudTrail is a service for recording calls to AWS APIs and is not used for analyzing internal application performance.",
+      "Incorrect: Amazon Inspector is used for assessing security vulnerabilities and is not used for troubleshooting performance issues."
     ]
   },
   {
     id: "dva-071",
-    question: "デベロッパーは、AWS SAM（Serverless Application Model）を使用してサーバーレスアプリケーションを開発しています。ローカル環境でLambda関数をテストするために、開発者が使用すべきコマンドはどれですか。",
+    question: "A developer is building a serverless application using AWS SAM (Serverless Application Model). Which command should the developer use to test the Lambda function locally?",
     options: [
       "sam build",
       "sam local invoke",
@@ -1353,436 +1353,436 @@ const questionsData = [
       "sam validate"
     ],
     correctAnswer: 1,
-    category: "開発",
-    explanation: "AWS SAM CLIの `sam local invoke` コマンドを使用することで、ローカル環境でLambda関数を実行してテストできます。Dockerを使用してLambdaランタイム環境をエミュレートし、イベントデータを渡して関数の動作を確認できます。`sam build` はアプリケーションのビルド、`sam deploy` はAWSへのデプロイ、`sam validate` はテンプレートの検証に使用します。",
+    category: "Development",
+    explanation: "The `sam local invoke` command from the AWS SAM CLI allows you to run and test Lambda functions locally. It uses Docker to emulate the Lambda runtime environment and lets you pass event data to verify function behavior. `sam build` builds the deployment package, `sam deploy` deploys to AWS, and `sam validate` checks the template syntax.",
     optionExplanations: [
-      "誤り：`sam build` はデプロイパッケージのビルドに使用するコマンドであり、ローカルテストには使用しません。",
-      "正解：`sam local invoke` はローカル環境でLambda関数を実行してテストするためのコマンドです。",
-      "誤り：`sam deploy` はビルド済みのアプリケーションをAWSにデプロイするコマンドです。",
-      "誤り：`sam validate` はSAMテンプレートの構文チェックを行うコマンドです。"
+      "Incorrect: `sam build` is used to build the deployment package and is not used for local testing.",
+      "Correct: `sam local invoke` is the command for running and testing Lambda functions in a local environment.",
+      "Incorrect: `sam deploy` deploys a built application to AWS.",
+      "Incorrect: `sam validate` performs a syntax check on the SAM template."
     ]
   },
   {
     id: "dva-072",
-    question: "デベロッパーは、Amazon DynamoDBを使用するアプリケーションで、読み取りが非常に多いワークロードを処理しています。DynamoDB テーブルへの読み取りスループットを向上させ、コストを削減したいと考えています。\n\nこの要件を満たすために、デベロッパーはどのサービスを使用すべきですか。",
+    question: "A developer is working on an application that uses Amazon DynamoDB and needs to handle a read-heavy workload. The developer wants to improve read throughput on the DynamoDB table and reduce costs.\n\nWhich service should the developer use to meet this requirement?",
     options: [
-      "Amazon ElastiCache for Redis をDynamoDBの前段に配置してキャッシュする。",
-      "Amazon DynamoDB Accelerator（DAX）をDynamoDBの前段に配置する。",
-      "DynamoDBのプロビジョニングされたキャパシティを増加させる。",
-      "DynamoDBのグローバルテーブルを使用してリードレプリカを作成する。"
+      "Place Amazon ElastiCache for Redis in front of DynamoDB for caching.",
+      "Place Amazon DynamoDB Accelerator (DAX) in front of DynamoDB.",
+      "Increase the provisioned capacity of DynamoDB.",
+      "Use DynamoDB global tables to create read replicas."
     ],
     correctAnswer: 1,
-    category: "データベース",
-    explanation: "Amazon DynamoDB Accelerator（DAX）は、DynamoDB専用のインメモリキャッシュサービスです。DAXはDynamoDB APIと完全互換であるため、アプリケーションのコード変更を最小限に抑えながら読み取りパフォーマンスをマイクロ秒単位まで向上させられます。ElastiCacheも有効ですが、アプリケーション側でキャッシュロジックの実装が必要です。DAXはDynamoDBとシームレスに統合されており、DynamoDB専用のキャッシュには最適な選択肢です。",
+    category: "Database",
+    explanation: "Amazon DynamoDB Accelerator (DAX) is an in-memory cache service purpose-built for DynamoDB. Because DAX is fully compatible with the DynamoDB API, you can improve read performance to microseconds with minimal code changes. ElastiCache is also effective but requires implementing caching logic in the application. DAX integrates seamlessly with DynamoDB and is the optimal choice for a DynamoDB-specific cache.",
     optionExplanations: [
-      "誤り：ElastiCacheはDynamoDBの前段キャッシュとして使用できますが、アプリケーションコードへのキャッシュロジック実装が必要でDAXより複雑です。",
-      "正解：DAXはDynamoDB APIと互換性があり、コード変更を最小化しながら読み取り性能をマイクロ秒レベルに向上させます。",
-      "誤り：キャパシティ増加はスループット向上になりますが、コスト削減にはつながりません。",
-      "誤り：グローバルテーブルはマルチリージョンレプリケーション用であり、単一リージョンの読み取りキャッシュには適しません。"
+      "Incorrect: ElastiCache can be used as a front-end cache for DynamoDB, but it requires implementing caching logic in the application code and is more complex than DAX.",
+      "Correct: DAX is compatible with the DynamoDB API and improves read performance to microsecond-level with minimal code changes.",
+      "Incorrect: Increasing capacity improves throughput but does not reduce costs.",
+      "Incorrect: Global tables are for multi-region replication and are not suitable for read caching within a single region."
     ]
   },
   {
     id: "dva-073",
-    question: "デベロッパーは、Amazon S3バケットに保存されたオブジェクトへのアクセスを一時的に許可する必要があります。認証されていない外部ユーザーに対して、特定のオブジェクトを期限付きでダウンロードさせたいと考えています。\n\nこの要件を満たすために、デベロッパーはどの機能を使用すべきですか。",
+    question: "A developer needs to temporarily grant access to objects stored in an Amazon S3 bucket. The developer wants unauthenticated external users to download a specific object for a limited time.\n\nWhich feature should the developer use to meet this requirement?",
     options: [
-      "S3バケットのACLをpublicに設定して、オブジェクトを公開する。",
-      "S3バケットポリシーでIPアドレス制限付きのアクセスを許可する。",
-      "S3の署名付きURL（Presigned URL）を生成して、外部ユーザーに提供する。",
-      "Amazon CloudFrontのOAI（Origin Access Identity）を設定する。"
+      "Set the S3 bucket ACL to public to expose the object.",
+      "Allow access with IP address restrictions via an S3 bucket policy.",
+      "Generate an S3 Presigned URL and provide it to the external user.",
+      "Configure Amazon CloudFront with an OAI (Origin Access Identity)."
     ],
     correctAnswer: 2,
-    category: "セキュリティ",
-    explanation: "Amazon S3の署名付きURL（Presigned URL）は、特定のオブジェクトへの一時的なアクセスを提供します。URLには有効期限が含まれており、期限内であれば認証なしでオブジェクトにアクセスできます。AWS SDKを使用して生成でき、有効期限は秒単位で指定可能です。バケット全体を公開する必要がなく、最小権限の原則に沿った安全な方法です。",
+    category: "Security",
+    explanation: "Amazon S3 Presigned URLs provide temporary access to a specific object. The URL includes an expiration time, allowing access without authentication as long as the URL is valid. They can be generated using the AWS SDK, with the expiration specified in seconds. This approach does not require making the entire bucket public and follows the principle of least privilege.",
     optionExplanations: [
-      "誤り：バケットACLをpublicに設定するとすべてのオブジェクトが永続的に公開されてしまい、セキュリティリスクがあります。",
-      "誤り：IPアドレス制限は特定ユーザーへの一時的なアクセス許可には適しておらず、管理も複雑になります。",
-      "正解：署名付きURLは期限付きの一時的なアクセスを提供し、特定オブジェクトのみを安全に共有できます。",
-      "誤り：CloudFrontのOAIはCloudFront経由のアクセス制御に使用するものであり、外部ユーザーへの一時的な直接アクセス許可には適しません。"
+      "Incorrect: Setting the bucket ACL to public permanently exposes all objects, creating a security risk.",
+      "Incorrect: IP address restrictions are not suitable for granting temporary access to specific users and add management complexity.",
+      "Correct: A Presigned URL provides time-limited temporary access and allows secure sharing of a specific object.",
+      "Incorrect: CloudFront OAI is used to control access through CloudFront and is not appropriate for granting temporary direct access to external users."
     ]
   },
   {
     id: "dva-074",
-    question: "デベロッパーは、AWS Lambda関数を使用してデータを処理するアプリケーションを開発しています。Lambda関数は、共通のビジネスロジックライブラリを複数の関数で共有して使用する必要があります。各Lambda関数のデプロイパッケージサイズを小さくしたいと考えています。\n\nこの要件を満たすために、デベロッパーはどの機能を使用すべきですか。",
+    question: "A developer is building an application that uses AWS Lambda functions to process data. The Lambda functions need to share a common business logic library across multiple functions. The developer wants to minimize the deployment package size of each Lambda function.\n\nWhich feature should the developer use to meet this requirement?",
     options: [
-      "共通ライブラリを含むベースイメージを作成し、すべてのLambda関数でそのイメージを使用する。",
-      "AWS Lambda Layersを使用して、共通ライブラリを別途パッケージ化して共有する。",
-      "共通ライブラリをAmazon S3に保存し、Lambda関数の起動時にダウンロードする。",
-      "共通ライブラリを各Lambda関数のデプロイパッケージに含める。"
+      "Create a base image containing the common library and use it for all Lambda functions.",
+      "Use AWS Lambda Layers to package the common library separately and share it.",
+      "Store the common library in Amazon S3 and download it at Lambda startup.",
+      "Include the common library in each Lambda function's deployment package."
     ],
     correctAnswer: 1,
-    category: "開発",
-    explanation: "AWS Lambda Layersは、Lambda関数間で共通のコード、ライブラリ、設定などを共有するための仕組みです。共通ライブラリをLayerとして一度パッケージ化・登録すると、複数のLambda関数から参照できます。各Lambda関数のデプロイパッケージにライブラリを含める必要がなくなるため、デプロイパッケージサイズを大幅に削減できます。Layerは最大5つまで関数にアタッチでき、バージョン管理も可能です。",
+    category: "Development",
+    explanation: "AWS Lambda Layers provide a mechanism to share common code, libraries, and configuration across Lambda functions. By packaging and registering the common library as a Layer once, multiple Lambda functions can reference it. This eliminates the need to include the library in each function's deployment package, significantly reducing package size. Up to 5 layers can be attached to a function, and versioning is supported.",
     optionExplanations: [
-      "誤り：コンテナイメージを使用する方法も有効ですが、Lambda Layersの方が既存のzipデプロイメントに対してシンプルに共有を実現できます。",
-      "正解：Lambda Layersを使用することで、共通ライブラリを各関数のパッケージに含めずに共有でき、パッケージサイズを削減できます。",
-      "誤り：S3からの起動時ダウンロードは実装が複雑で、コールドスタート時間も増加します。",
-      "誤り：各関数に同じライブラリを含めると、パッケージサイズが大きくなり、更新時に全関数を再デプロイする必要があります。"
+      "Incorrect: Using a container image is also valid, but Lambda Layers are simpler for sharing code with existing zip deployments.",
+      "Correct: Lambda Layers allow sharing a common library without bundling it into each function's package, reducing deployment package size.",
+      "Incorrect: Downloading from S3 at startup is complex to implement and increases cold start time.",
+      "Incorrect: Including the same library in every function increases package size and requires redeploying all functions when the library is updated."
     ]
   },
   {
     id: "dva-075",
-    question: "デベロッパーは、Amazon API Gatewayに対して、特定のIPアドレスからのリクエストのみを許可し、それ以外のリクエストをブロックしたいと考えています。\n\nこの要件を満たすために、デベロッパーはどのように設定すべきですか。",
+    question: "A developer wants to allow requests to Amazon API Gateway only from specific IP addresses and block all other requests.\n\nHow should the developer configure this requirement?",
     options: [
-      "API GatewayのリソースポリシーにIPアドレスベースの許可ルールを設定する。",
-      "Lambda オーソライザーを使用して、リクエストのIPアドレスを検証する。",
-      "API GatewayのステージにWAFウェブACLをアタッチし、IPセットルールを設定する。",
-      "API Gatewayのメソッドに使用量プランとAPIキーを設定する。"
+      "Configure IP address-based allow rules in the API Gateway resource policy.",
+      "Use a Lambda authorizer to validate the IP address of the request.",
+      "Attach a WAF web ACL to the API Gateway stage and configure an IP set rule.",
+      "Configure a usage plan and API key on the API Gateway method."
     ],
     correctAnswer: 2,
-    category: "セキュリティ",
-    explanation: "AWS WAF（Web Application Firewall）をAPI Gatewayステージにアタッチし、IPセットルールを設定することで、特定のIPアドレスからのリクエストのみを許可・ブロックできます。WAFはIPアドレスのホワイトリスト・ブラックリスト管理が得意で、CIDRブロック単位での制御が可能です。リソースポリシーでもIP制限は可能ですが、WAFはより柔軟なルール管理と詳細なログ記録が可能です。",
+    category: "Security",
+    explanation: "By attaching AWS WAF (Web Application Firewall) to an API Gateway stage and configuring an IP set rule, you can allow or block requests from specific IP addresses. WAF excels at managing IP address allow lists and block lists and supports control at the CIDR block level. While IP restriction is also possible with resource policies, WAF provides more flexible rule management and detailed logging.",
     optionExplanations: [
-      "誤り：リソースポリシーでのIP制限も可能ですが、WAFの方が柔軟なルール管理・レート制限・ログ記録が可能です。",
-      "誤り：Lambdaオーソライザーはカスタム認証ロジックの実装に使用しますが、IP制限にはWAFの方が適しています。",
-      "正解：WAFのIPセットルールを使用することで、特定IPアドレスからのリクエストを効率的に許可・ブロックできます。",
-      "誤り：使用量プランとAPIキーはAPIの利用制限と認証に使用するものであり、IPアドレスベースのアクセス制御には使用しません。"
+      "Incorrect: IP restriction via a resource policy is possible, but WAF offers more flexible rule management, rate limiting, and logging.",
+      "Incorrect: Lambda authorizers are used to implement custom authentication logic; WAF is more appropriate for IP-based restrictions.",
+      "Correct: WAF IP set rules allow you to efficiently allow or block requests from specific IP addresses.",
+      "Incorrect: Usage plans and API keys are used for API usage throttling and authentication, not for IP address-based access control."
     ]
   },
   {
     id: "dva-076",
-    question: "デベロッパーは、AWS Step Functionsを使用して注文処理ワークフローを実装しています。ワークフローの中で外部APIを呼び出すステップがあり、一時的なエラー（タイムアウトや503エラー）が発生した場合に自動的にリトライしたいと考えています。\n\nStep Functionsでリトライを設定するために使用するフィールドはどれですか。",
+    question: "A developer is implementing an order processing workflow using AWS Step Functions. One step in the workflow calls an external API, and the developer wants to automatically retry on transient errors (such as timeouts or 503 errors).\n\nWhich field is used to configure retries in Step Functions?",
     options: [
-      "ステートマシン定義のErrorEquals と RetryPolicy フィールドを使用する。",
-      "ステートの定義に Retry フィールドを追加し、ErrorEquals と MaxAttempts を指定する。",
-      "Lambda関数内でtry-catchを使用して、エラー時に自身を再呼び出しする。",
-      "CloudWatch Eventsを使用して、失敗したワークフローを定期的に再実行する。"
+      "Use the ErrorEquals and RetryPolicy fields in the state machine definition.",
+      "Add a Retry field to the state definition and specify ErrorEquals and MaxAttempts.",
+      "Use try-catch in the Lambda function to re-invoke itself on error.",
+      "Use CloudWatch Events to periodically re-run failed workflows."
     ],
     correctAnswer: 1,
-    category: "アプリケーション統合",
-    explanation: "AWS Step Functionsでは、ステートの定義に `Retry` フィールドを追加することで自動リトライを設定できます。`ErrorEquals` で対象とするエラータイプを指定し、`MaxAttempts` でリトライ回数、`IntervalSeconds` で初回待機時間、`BackoffRate` でバックオフ倍率を設定できます。これにより、一時的なエラーに対してエクスポネンシャルバックオフ付きのリトライを宣言的に設定でき、Lambda関数側にリトライロジックを実装する必要がありません。",
+    category: "Application Integration",
+    explanation: "In AWS Step Functions, you can configure automatic retries by adding a `Retry` field to a state definition. Use `ErrorEquals` to specify the target error types, `MaxAttempts` for the number of retries, `IntervalSeconds` for the initial wait time, and `BackoffRate` for the backoff multiplier. This allows declarative configuration of retries with exponential backoff for transient errors, without needing to implement retry logic in the Lambda function.",
     optionExplanations: [
-      "誤り：`RetryPolicy` というフィールドは存在しません。正しくは `Retry` フィールドを使用します。",
-      "正解：`Retry` フィールドに `ErrorEquals` と `MaxAttempts` などを設定することで、自動リトライを宣言的に実装できます。",
-      "誤り：Lambda関数内でのリトライ実装は可能ですが、Step Functionsのリトライ機能を使う方がワークフロー全体として管理しやすくなります。",
-      "誤り：CloudWatch Eventsによる定期的な再実行はリトライではなくスケジュール実行であり、即時のエラー時リトライには適しません。"
+      "Incorrect: There is no field called `RetryPolicy`. The correct field to use is `Retry`.",
+      "Correct: By configuring the `Retry` field with `ErrorEquals`, `MaxAttempts`, and other properties, automatic retries can be implemented declaratively.",
+      "Incorrect: Implementing retries inside the Lambda function is possible, but using Step Functions' retry feature is easier to manage at the workflow level.",
+      "Incorrect: Periodic re-runs via CloudWatch Events are scheduled executions, not immediate retries on error."
     ]
   },
   {
     id: "dva-077",
-    question: "デベロッパーは、Amazon EC2インスタンスで動作するアプリケーションのログをAmazon CloudWatch Logsに送信したいと考えています。\n\nこの要件を満たすために、デベロッパーはどのように設定すべきですか。",
+    question: "A developer wants to send application logs from an Amazon EC2 instance to Amazon CloudWatch Logs.\n\nHow should the developer configure this?",
     options: [
-      "アプリケーションのコードを修正して、CloudWatch Logs APIを直接呼び出す。",
-      "EC2インスタンスにCloudWatch Logsエージェント（CloudWatch Agentまたは旧awslogsエージェント）をインストールして設定する。",
-      "CloudTrailを有効化して、アプリケーションのログを自動収集する。",
-      "Amazon Kinesis Data Firehoseを使用して、ログをCloudWatch Logsに転送する。"
+      "Modify the application code to call the CloudWatch Logs API directly.",
+      "Install and configure the CloudWatch Logs agent (CloudWatch Agent or the legacy awslogs agent) on the EC2 instance.",
+      "Enable CloudTrail to automatically collect application logs.",
+      "Use Amazon Kinesis Data Firehose to forward logs to CloudWatch Logs."
     ],
     correctAnswer: 1,
-    category: "モニタリング",
-    explanation: "EC2インスタンスのアプリケーションログをCloudWatch Logsに送信するには、CloudWatch AgentをEC2インスタンスにインストールして設定する方法が標準的です。CloudWatch Agentの設定ファイルで収集するログファイルのパス、ロググループ名、ログストリーム名を指定します。インスタンスにCloudWatch Logsへの書き込み権限を持つIAMロールをアタッチする必要があります。アプリケーションコードの変更なしに任意のログファイルを収集できます。",
+    category: "Monitoring",
+    explanation: "The standard approach to sending application logs from an EC2 instance to CloudWatch Logs is to install and configure the CloudWatch Agent on the instance. In the agent configuration file, specify the log file paths, log group names, and log stream names to collect. The instance requires an IAM role with write permissions to CloudWatch Logs. Any log file can be collected without modifying the application code.",
     optionExplanations: [
-      "誤り：APIを直接呼び出す方法も可能ですが、アプリケーションコードの修正が必要で、CloudWatch Agentを使う方が汎用的です。",
-      "正解：CloudWatch Agentはアプリケーション変更なしにログファイルを収集してCloudWatch Logsに送信できます。",
-      "誤り：CloudTrailはAWS APIコールの記録に使用するものであり、アプリケーションログの収集には使用しません。",
-      "誤り：Kinesis Data FirehoseはストリーミングデータをS3やRedshiftなどに配信するサービスであり、EC2のログ収集には CloudWatch Agentが適しています。"
+      "Incorrect: Calling the API directly is possible but requires modifying the application code; using the CloudWatch Agent is more versatile.",
+      "Correct: The CloudWatch Agent can collect log files and send them to CloudWatch Logs without any application changes.",
+      "Incorrect: CloudTrail is used to record AWS API calls and is not used for collecting application logs.",
+      "Incorrect: Kinesis Data Firehose delivers streaming data to destinations such as S3 and Redshift; the CloudWatch Agent is the appropriate solution for collecting EC2 logs."
     ]
   },
   {
     id: "dva-078",
-    question: "デベロッパーは、Amazon Cognito ユーザープールを使用して認証されたユーザーに対して、AWS リソース（S3バケットなど）への直接アクセス権限を付与したいと考えています。\n\nこの要件を満たすために、デベロッパーはどのサービスを使用すべきですか。",
+    question: "A developer wants to grant users authenticated through an Amazon Cognito User Pool direct access to AWS resources (such as an S3 bucket).\n\nWhich service should the developer use to meet this requirement?",
     options: [
-      "Amazon Cognito ユーザープールのグループにIAMロールを直接アタッチする。",
-      "Amazon Cognito アイデンティティプール（フェデレーティッドアイデンティティ）を使用して、認証済みユーザーに一時的なAWS認証情報を付与する。",
-      "ユーザーごとにIAMユーザーを作成してAWSリソースへのアクセス権限を付与する。",
-      "API Gatewayを経由してすべてのAWSリソースアクセスをプロキシする。"
+      "Directly attach an IAM role to an Amazon Cognito User Pool group.",
+      "Use Amazon Cognito Identity Pool (Federated Identities) to issue temporary AWS credentials to authenticated users.",
+      "Create an IAM user for each user and grant access to AWS resources.",
+      "Proxy all AWS resource access through API Gateway."
     ],
     correctAnswer: 1,
-    category: "セキュリティ",
-    explanation: "Amazon Cognitoアイデンティティプール（フェデレーティッドアイデンティティ）を使用することで、Cognitoユーザープールで認証されたユーザーに一時的なAWS認証情報（IAMロール経由）を付与できます。ユーザーはこの一時的な認証情報を使用して、S3やDynamoDBなどのAWSリソースに直接アクセスできます。ユーザーごとにIAMユーザーを作成する方法は、ユーザー数が増えると管理が困難になるため避けるべきです。",
+    category: "Security",
+    explanation: "By using Amazon Cognito Identity Pool (Federated Identities), you can issue temporary AWS credentials (via an IAM role) to users authenticated through a Cognito User Pool. Users can use these temporary credentials to directly access AWS resources such as S3 and DynamoDB. Creating an IAM user for every user becomes unmanageable as the user base grows and should be avoided.",
     optionExplanations: [
-      "誤り：Cognitoユーザープールのグループに紐づくIAMロールはアイデンティティプールと組み合わせて使用するものであり、直接AWSリソースアクセス権限を付与するにはアイデンティティプールが必要です。",
-      "正解：Cognitoアイデンティティプールを使用することで、認証済みユーザーに一時的なAWS認証情報を安全に付与できます。",
-      "誤り：ユーザーごとのIAMユーザー作成はスケーラビリティがなく、AWSのベストプラクティスに反します。",
-      "誤り：API Gateway経由のプロキシは有効なアーキテクチャですが、クライアントからAWSリソースへの直接アクセスが必要な場合はアイデンティティプールが適切です。"
+      "Incorrect: IAM roles linked to Cognito User Pool groups are used in combination with an Identity Pool; an Identity Pool is required to grant direct AWS resource access.",
+      "Correct: Using a Cognito Identity Pool allows temporary AWS credentials to be securely issued to authenticated users.",
+      "Incorrect: Creating an IAM user per user lacks scalability and goes against AWS best practices.",
+      "Incorrect: Proxying through API Gateway is a valid architecture, but an Identity Pool is the appropriate solution when direct client access to AWS resources is required."
     ]
   },
   {
     id: "dva-079",
-    question: "デベロッパーは、AWS CodeDeployを使用してAmazon EC2インスタンスへのアプリケーションデプロイを自動化しています。新しいバージョンのデプロイ後にエラーが検出された場合に、素早く前のバージョンに戻したいと考えています。\n\nCodeDeployでこの要件を満たすための機能はどれですか。",
+    question: "A developer is automating application deployments to Amazon EC2 instances using AWS CodeDeploy. When an error is detected after deploying a new version, the developer wants to quickly revert to the previous version.\n\nWhich CodeDeploy feature meets this requirement?",
     options: [
-      "前のバージョンのアプリケーションリビジョンを使用して新しいデプロイを手動で実行する。",
-      "CodeDeployのロールバック機能を使用して、デプロイ失敗または指定したCloudWatchアラームのしきい値超過時に自動的に前のバージョンに戻す。",
-      "EC2インスタンスのAMIスナップショットから新しいインスタンスを起動して置き換える。",
-      "AWS Elastic Beanstalkに移行して、組み込みのロールバック機能を使用する。"
+      "Manually run a new deployment using the previous application revision.",
+      "Use CodeDeploy's rollback feature to automatically revert to the previous version on deployment failure or when a specified CloudWatch alarm threshold is breached.",
+      "Launch a new instance from an EC2 instance AMI snapshot to replace it.",
+      "Migrate to AWS Elastic Beanstalk and use its built-in rollback feature."
     ],
     correctAnswer: 1,
-    category: "デプロイメント",
-    explanation: "AWS CodeDeployには自動ロールバック機能があります。デプロイグループの設定で自動ロールバックを有効化し、「デプロイ失敗時」や「指定したCloudWatchアラームのしきい値超過時」をトリガーとして設定できます。自動ロールバックが発動すると、CodeDeployは直前に成功したリビジョンを再デプロイして前のバージョンに戻します。これにより、エラー検出から復旧までを自動化できます。",
+    category: "Deployment",
+    explanation: "AWS CodeDeploy has an automatic rollback feature. You can enable automatic rollback in the deployment group settings and configure triggers such as 'deployment failure' or 'a specified CloudWatch alarm threshold is breached'. When automatic rollback is triggered, CodeDeploy redeploys the last successful revision to revert to the previous version, automating the recovery from error detection.",
     optionExplanations: [
-      "誤り：手動での再デプロイも可能ですが、自動ロールバック機能を使用する方が迅速で確実です。",
-      "正解：CodeDeployの自動ロールバック機能を設定することで、デプロイ失敗やアラーム発火時に自動的に前バージョンへ戻せます。",
-      "誤り：AMIスナップショットからのインスタンス起動は、CodeDeployとは独立した方法でありロールバックには不適切です。",
-      "誤り：Elastic Beanstalkへの移行は大規模な変更が必要で、CodeDeployの自動ロールバック機能で要件を満たせます。"
+      "Incorrect: Manual redeployment is possible, but using the automatic rollback feature is faster and more reliable.",
+      "Correct: Configuring CodeDeploy's automatic rollback feature allows automatic reversion to the previous version on deployment failure or alarm trigger.",
+      "Incorrect: Launching an instance from an AMI snapshot is independent of CodeDeploy and is not appropriate for rollback.",
+      "Incorrect: Migrating to Elastic Beanstalk requires significant changes; CodeDeploy's automatic rollback feature can satisfy the requirement."
     ]
   },
   {
     id: "dva-080",
-    question: "デベロッパーは、Amazon SQSを使用してメッセージを送受信するアプリケーションを開発しています。コンシューマーがメッセージを受信して処理を開始した後、他のコンシューマーが同じメッセージを処理しないようにしたいと考えています。処理が完了したらメッセージを削除します。\n\nこの動作を実現するSQSの機能はどれですか。",
+    question: "A developer is building an application that sends and receives messages using Amazon SQS. After a consumer receives and starts processing a message, the developer wants to prevent other consumers from processing the same message. The message will be deleted once processing is complete.\n\nWhich SQS feature enables this behavior?",
     options: [
-      "SQSのFIFOキューを使用して、メッセージの重複配信を防ぐ。",
-      "SQSの可視性タイムアウト（Visibility Timeout）を適切に設定する。",
-      "SQSのメッセージ保持期間を短く設定する。",
-      "SQSのロングポーリングを使用して、メッセージを効率的に受信する。"
+      "Use an SQS FIFO queue to prevent duplicate message delivery.",
+      "Configure an appropriate SQS Visibility Timeout.",
+      "Set a short message retention period for the SQS queue.",
+      "Use SQS long polling to receive messages efficiently."
     ],
     correctAnswer: 1,
-    category: "アプリケーション統合",
-    explanation: "SQSの可視性タイムアウト（Visibility Timeout）は、コンシューマーがメッセージを受信してから処理完了・削除するまでの間、他のコンシューマーからそのメッセージを見えなくする機能です。受信したコンシューマーがタイムアウト内に処理を完了してメッセージを削除すれば、他のコンシューマーは同じメッセージを処理しません。処理が失敗してタイムアウトが切れると、メッセージは再び見えるようになり他のコンシューマーが処理できます。",
+    category: "Application Integration",
+    explanation: "The SQS Visibility Timeout hides a message from other consumers from the moment a consumer receives it until processing is complete and the message is deleted. If the receiving consumer completes processing and deletes the message within the timeout, no other consumer will process the same message. If processing fails and the timeout expires, the message becomes visible again and can be processed by another consumer.",
     optionExplanations: [
-      "誤り：FIFOキューはメッセージの順序保証と重複排除に使用しますが、処理中のメッセージを他から隠す機能は可視性タイムアウトです。",
-      "正解：可視性タイムアウトを処理時間より長く設定することで、処理中のメッセージが他のコンシューマーに見えないようにできます。",
-      "誤り：メッセージ保持期間はキューにメッセージを保持する最大時間であり、同時処理の防止には関係しません。",
-      "誤り：ロングポーリングはメッセージ受信の効率化のための機能であり、同時処理の防止には関係しません。"
+      "Incorrect: FIFO queues are used for message ordering and deduplication; the feature that hides a message from other consumers during processing is Visibility Timeout.",
+      "Correct: Setting the Visibility Timeout longer than the processing time prevents a message being processed from being visible to other consumers.",
+      "Incorrect: Message retention period is the maximum time a message is kept in the queue and is unrelated to preventing concurrent processing.",
+      "Incorrect: Long polling is a feature for efficient message retrieval and is unrelated to preventing concurrent processing."
     ]
   },
   {
     id: "dva-081",
-    question: "デベロッパーは、AWS Lambda関数をAmazon VPC内に配置しています。Lambda関数からインターネット上の外部APIを呼び出す必要がありますが、接続できない状態です。\n\nこの問題を解決するために、デベロッパーはどのように設定すべきですか。",
+    question: "A developer has placed an AWS Lambda function inside an Amazon VPC. The Lambda function needs to call an external API on the internet but is unable to connect.\n\nHow should the developer configure this to resolve the issue?",
     options: [
-      "Lambda関数のタイムアウト値を増やす。",
-      "Lambda関数にElastic IPアドレスを割り当てる。",
-      "VPCにNATゲートウェイを作成し、Lambda関数をプライベートサブネットに配置する。",
-      "Lambda関数のメモリサイズを増やす。"
+      "Increase the Lambda function's timeout value.",
+      "Assign an Elastic IP address to the Lambda function.",
+      "Create a NAT gateway in the VPC and place the Lambda function in a private subnet.",
+      "Increase the Lambda function's memory size."
     ],
     correctAnswer: 2,
-    category: "トラブルシューティング",
-    explanation: "VPC内に配置されたLambda関数がインターネットにアクセスするには、NATゲートウェイ（またはNATインスタンス）が必要です。Lambda関数をプライベートサブネットに配置し、そのサブネットのルートテーブルでインターネット向けトラフィックをNATゲートウェイに向けます。NATゲートウェイはパブリックサブネットに配置します。Lambda関数にElastic IPを直接割り当てることはできません。",
+    category: "Troubleshooting",
+    explanation: "A Lambda function placed inside a VPC requires a NAT gateway (or NAT instance) to access the internet. Place the Lambda function in a private subnet and configure the subnet's route table to direct internet-bound traffic to the NAT gateway, which is placed in a public subnet. An Elastic IP cannot be directly assigned to a Lambda function.",
     optionExplanations: [
-      "誤り：タイムアウト値の変更はネットワーク接続の問題を解決しません。",
-      "誤り：Lambda関数にElastic IPを直接割り当てることはできません。",
-      "正解：VPC内のLambdaがインターネットにアクセスするには、NATゲートウェイ経由のルーティングが必要です。",
-      "誤り：メモリサイズの変更はネットワーク接続の問題を解決しません。"
+      "Incorrect: Changing the timeout value does not resolve network connectivity issues.",
+      "Incorrect: An Elastic IP cannot be directly assigned to a Lambda function.",
+      "Correct: A Lambda function inside a VPC requires routing through a NAT gateway to access the internet.",
+      "Incorrect: Changing the memory size does not resolve network connectivity issues."
     ]
   },
   {
     id: "dva-082",
-    question: "デベロッパーは、Amazon DynamoDBテーブルへの書き込み操作を実装しています。複数の属性を持つ項目を書き込む際に、指定した条件が満たされる場合のみ書き込みを成功させたいと考えています（例：同じパーティションキーの項目が存在しない場合のみ新規作成）。\n\nこの要件を満たすために使用するDynamoDBの機能はどれですか。",
+    question: "A developer is implementing write operations to an Amazon DynamoDB table. When writing an item with multiple attributes, the developer wants the write to succeed only if a specified condition is met (for example, create a new item only if an item with the same partition key does not exist).\n\nWhich DynamoDB feature should the developer use to meet this requirement?",
     options: [
-      "TransactWriteItemsを使用して、トランザクション内で書き込む。",
-      "PutItem APIにConditionExpressionを指定して、条件付き書き込みを行う。",
-      "BatchWriteItemを使用して、複数の項目を一括書き込みする。",
-      "UpdateItemを使用して、既存項目のみを更新する。"
+      "Use TransactWriteItems to write within a transaction.",
+      "Specify a ConditionExpression in the PutItem API to perform a conditional write.",
+      "Use BatchWriteItem to write multiple items in bulk.",
+      "Use UpdateItem to update only existing items."
     ],
     correctAnswer: 1,
-    category: "データベース",
-    explanation: "DynamoDBのConditionExpressionは、PutItem・UpdateItem・DeleteItem操作に条件を付加する機能です。`attribute_not_exists(pk)` のような条件を指定することで、対象のパーティションキーを持つ項目が存在しない場合のみ書き込みを実行できます。条件が満たされない場合はConditionalCheckFailedExceptionが発生します。これにより、競合状態を防ぐ楽観的ロックパターンも実装できます。",
+    category: "Database",
+    explanation: "DynamoDB's ConditionExpression adds a condition to PutItem, UpdateItem, and DeleteItem operations. By specifying a condition such as `attribute_not_exists(pk)`, the write is executed only if no item with that partition key exists. If the condition is not met, a ConditionalCheckFailedException is thrown. This also enables the optimistic locking pattern to prevent race conditions.",
     optionExplanations: [
-      "誤り：TransactWriteItemsは複数テーブルにまたがるACIDトランザクションに使用しますが、単純な条件付き書き込みにはConditionExpressionが適切です。",
-      "正解：ConditionExpressionを使用することで、指定条件を満たす場合のみ書き込みを実行できます。",
-      "誤り：BatchWriteItemは複数項目の一括書き込みに使用しますが、条件付き書き込みはサポートしていません。",
-      "誤り：UpdateItemは既存項目の更新に使用しますが、新規作成時の重複チェックにはPutItemのConditionExpressionが適切です。"
+      "Incorrect: TransactWriteItems is used for ACID transactions across multiple tables, but ConditionExpression is more appropriate for a simple conditional write.",
+      "Correct: Using ConditionExpression allows you to execute a write only when a specified condition is satisfied.",
+      "Incorrect: BatchWriteItem is used for bulk writes of multiple items but does not support conditional writes.",
+      "Incorrect: UpdateItem is used to update existing items; PutItem with a ConditionExpression is appropriate for duplicate checks on new item creation."
     ]
   },
   {
     id: "dva-083",
-    question: "デベロッパーは、Amazon API Gatewayを使用してAPIを公開しています。APIの特定のエンドポイントへのリクエストレートを制限して、バックエンドへの過負荷を防ぎたいと考えています。\n\nAPI Gatewayでリクエストレートを制限するために使用する機能はどれですか。",
+    question: "A developer is exposing an API using Amazon API Gateway and wants to limit the request rate to a specific endpoint to prevent overloading the backend.\n\nWhich feature is used to limit the request rate in API Gateway?",
     options: [
-      "API Gatewayのリソースポリシーでレート制限を設定する。",
-      "API Gatewayのステージでデフォルトのスロットリングとバーストリミットを設定し、必要に応じてメソッドレベルでオーバーライドする。",
-      "Lambda オーソライザーでリクエスト頻度を検証する。",
-      "Amazon CloudFrontのキャッシュ設定でリクエスト数を削減する。"
+      "Configure rate limiting in the API Gateway resource policy.",
+      "Set default throttling and burst limits at the API Gateway stage level, and override at the method level as needed.",
+      "Use a Lambda authorizer to validate request frequency.",
+      "Reduce the number of requests using Amazon CloudFront cache settings."
     ],
     correctAnswer: 1,
-    category: "開発",
-    explanation: "Amazon API Gatewayのスロットリング設定を使用することで、APIへのリクエストレートを制限できます。ステージレベルでデフォルトのレート制限（1秒あたりのリクエスト数）とバーストリミット（同時リクエストの最大数）を設定し、さらにメソッドレベルで個別にオーバーライドすることも可能です。制限を超えたリクエストには429 Too Many Requestsが返されます。使用量プランとAPIキーを組み合わせると、クライアントごとの制限も設定できます。",
+    category: "Development",
+    explanation: "API Gateway's throttling settings allow you to limit the request rate to an API. Set default rate limits (requests per second) and burst limits (maximum concurrent requests) at the stage level, and optionally override them at the method level. Requests that exceed the limit receive a 429 Too Many Requests response. Combining usage plans with API keys also allows per-client limits.",
     optionExplanations: [
-      "誤り：リソースポリシーはIPアドレスやVPCからのアクセス制御に使用するものであり、レート制限には使用しません。",
-      "正解：API Gatewayのスロットリング設定でステージ・メソッドレベルのレート制限を設定できます。",
-      "誤り：Lambdaオーソライザーは認証・認可に使用するものであり、レート制限には適していません。",
-      "誤り：CloudFrontのキャッシュはリクエスト数削減に貢献しますが、API Gatewayレベルのスロットリングではありません。"
+      "Incorrect: Resource policies are used to control access by IP address or VPC and are not used for rate limiting.",
+      "Correct: API Gateway throttling settings allow stage- and method-level rate limits to be configured.",
+      "Incorrect: Lambda authorizers are used for authentication and authorization, not rate limiting.",
+      "Incorrect: CloudFront caching helps reduce the number of requests but is not API Gateway-level throttling."
     ]
   },
   {
     id: "dva-084",
-    question: "デベロッパーは、AWS CodeBuildを使用してアプリケーションをビルドしています。ビルド中にユニットテストを実行し、テスト結果レポートをAWS CodeBuildに表示させたいと考えています。\n\nこの要件を満たすために、デベロッパーはどのように設定すべきですか。",
+    question: "A developer is using AWS CodeBuild to build an application. The developer wants to run unit tests during the build and display the test result report in AWS CodeBuild.\n\nHow should the developer configure this?",
     options: [
-      "テスト結果をAmazon S3バケットにアップロードし、マネジメントコンソールから確認する。",
-      "buildspec.ymlのreportsセクションにテストレポートの出力先とファイル形式を指定する。",
-      "CloudWatch Logsにテスト結果をログ出力し、Logs Insightsで集計する。",
-      "テスト結果をSNSトピックに送信して通知する。"
+      "Upload the test results to an Amazon S3 bucket and review them in the management console.",
+      "Specify the test report output location and file format in the reports section of buildspec.yml.",
+      "Log test results to CloudWatch Logs and aggregate them with Logs Insights.",
+      "Send test results to an SNS topic for notification."
     ],
     correctAnswer: 1,
-    category: "デプロイメント",
-    explanation: "AWS CodeBuildのテストレポート機能を使用するには、buildspec.ymlの `reports` セクションでレポートグループ名、テスト結果ファイルのパス、ファイル形式（JUnit XML、Cucumber JSON等）を指定します。ビルド実行後、CodeBuildコンソールのテストレポートタブで合否件数・実行時間・失敗したテストケースの詳細を確認できます。CIパイプラインのテスト可視化に活用できます。",
+    category: "Deployment",
+    explanation: "To use AWS CodeBuild's test report feature, specify the report group name, the path to the test result file, and the file format (JUnit XML, Cucumber JSON, etc.) in the `reports` section of buildspec.yml. After the build runs, you can review the pass/fail count, execution time, and details of failed test cases in the Test Reports tab of the CodeBuild console.",
     optionExplanations: [
-      "誤り：S3へのアップロードも可能ですが、CodeBuildのテストレポート機能を使う方がコンソール上で直接確認できて便利です。",
-      "正解：buildspec.ymlのreportsセクションを設定することで、CodeBuildコンソール上でテスト結果を確認できます。",
-      "誤り：CloudWatch Logsでのログ出力はデバッグには有効ですが、テストレポートの可視化には適していません。",
-      "誤り：SNS通知はビルド完了の通知に使用しますが、テスト結果の詳細レポートには対応していません。"
+      "Incorrect: Uploading to S3 is possible, but using CodeBuild's test report feature allows you to review results directly in the console.",
+      "Correct: Configuring the reports section of buildspec.yml enables test results to be viewed in the CodeBuild console.",
+      "Incorrect: Logging to CloudWatch Logs is useful for debugging but is not suitable for test report visualization.",
+      "Incorrect: SNS notifications are used for build completion alerts and do not support detailed test result reports."
     ]
   },
   {
     id: "dva-085",
-    question: "デベロッパーは、Amazon S3にオブジェクトがアップロードされたことをトリガーにAWS Lambda関数を実行するアーキテクチャを構築しています。S3バケットとLambda関数は同じAWSアカウントにあります。\n\nS3からLambdaを呼び出すために必要な設定はどれですか。",
+    question: "A developer is building an architecture that triggers an AWS Lambda function when an object is uploaded to Amazon S3. The S3 bucket and Lambda function are in the same AWS account.\n\nWhich configuration is required to invoke Lambda from S3?",
     options: [
-      "LambdaのIAM実行ロールにS3からの呼び出しを許可するポリシーを追加する。",
-      "S3バケットポリシーでLambda関数の実行を許可する。",
-      "Lambda関数のリソースベースポリシーでS3バケットからの呼び出しを許可し、S3バケットのイベント通知でLambdaを指定する。",
-      "EventBridgeルールを作成してS3イベントをLambdaに転送する設定のみ行う。"
+      "Add a policy to the Lambda IAM execution role that allows invocation from S3.",
+      "Allow Lambda function execution in the S3 bucket policy.",
+      "Allow invocation from the S3 bucket in the Lambda function's resource-based policy, and specify Lambda in the S3 bucket's event notification.",
+      "Only create an EventBridge rule to forward S3 events to Lambda."
     ],
     correctAnswer: 2,
-    category: "開発",
-    explanation: "S3のイベント通知からLambdaを直接呼び出すには2つの設定が必要です。①Lambda関数のリソースベースポリシー（アクセス許可）でS3サービスプリンシパル（s3.amazonaws.com）からの呼び出しを許可します。②S3バケットのイベント通知設定で、対象イベント（例：s3:ObjectCreated:*）とトリガー先のLambda関数を指定します。コンソールでS3トリガーを追加すると、リソースベースポリシーは自動的に設定されます。",
+    category: "Development",
+    explanation: "Two configurations are required to directly invoke Lambda from S3 event notifications. ① Allow invocation from the S3 service principal (s3.amazonaws.com) in the Lambda function's resource-based policy (permissions). ② In the S3 bucket's event notification settings, specify the target event (e.g., s3:ObjectCreated:*) and the destination Lambda function. When you add an S3 trigger in the console, the resource-based policy is configured automatically.",
     optionExplanations: [
-      "誤り：Lambda実行ロールはLambdaが他のAWSサービスを呼び出す権限であり、S3がLambdaを呼び出す権限とは別です。",
-      "誤り：S3バケットポリシーはS3オブジェクトへのアクセス制御に使用するものであり、Lambdaの呼び出し許可はLambdaのリソースベースポリシーで設定します。",
-      "正解：Lambda関数のリソースベースポリシーでS3からの呼び出しを許可し、S3側でイベント通知を設定する必要があります。",
-      "誤り：EventBridge経由での連携も可能ですが、S3のネイティブイベント通知機能でLambdaを直接呼び出す方がシンプルです。"
+      "Incorrect: The Lambda execution role grants permissions for Lambda to call other AWS services; it is separate from the permission for S3 to invoke Lambda.",
+      "Incorrect: An S3 bucket policy controls access to S3 objects; the permission for Lambda invocation is configured in Lambda's resource-based policy.",
+      "Correct: You need to allow invocation from S3 in the Lambda resource-based policy and configure the event notification on the S3 side.",
+      "Incorrect: Integration via EventBridge is also possible, but using S3's native event notification to invoke Lambda directly is simpler."
     ]
   },
   {
     id: "dva-086",
-    question: "デベロッパーは、AWS Systems Manager Parameter StoreとAWS Secrets Managerのどちらを使用するか検討しています。データベースのパスワードを保存し、90日ごとに自動ローテーションする必要があります。\n\nこの要件に最も適したサービスはどれですか。",
+    question: "A developer is deciding whether to use AWS Systems Manager Parameter Store or AWS Secrets Manager. The developer needs to store a database password and automatically rotate it every 90 days.\n\nWhich service is most appropriate for this requirement?",
     options: [
-      "AWS Systems Manager Parameter Store（標準パラメータ）を使用する。",
-      "AWS Systems Manager Parameter Store（SecureString）を使用し、Lambda関数でローテーションを実装する。",
-      "AWS Secrets Managerを使用して、自動ローテーションを設定する。",
-      "Amazon S3に暗号化して保存し、定期的にLambda関数で更新する。"
+      "Use AWS Systems Manager Parameter Store (Standard parameter).",
+      "Use AWS Systems Manager Parameter Store (SecureString) and implement rotation with a Lambda function.",
+      "Use AWS Secrets Manager and configure automatic rotation.",
+      "Store encrypted in Amazon S3 and update periodically with a Lambda function."
     ],
     correctAnswer: 2,
-    category: "セキュリティ",
-    explanation: "AWS Secrets Managerは、シークレットの保存・取得・自動ローテーションを統合的に提供するサービスです。RDS・Redshift・DocumentDBのパスワードについては組み込みのローテーション機能があり、Lambda関数を自動作成して設定した間隔（例：90日）で自動ローテーションを実行します。Parameter StoreにはネイティブのSecureString自動ローテーション機能がないため、自動ローテーションが要件の場合はSecrets Managerが最適です。",
+    category: "Security",
+    explanation: "AWS Secrets Manager provides an integrated service for storing, retrieving, and automatically rotating secrets. For passwords for RDS, Redshift, and DocumentDB, it has a built-in rotation feature that automatically creates a Lambda function and performs rotation at a configured interval (e.g., 90 days). Parameter Store does not natively support automatic SecureString rotation, so Secrets Manager is the best choice when automatic rotation is a requirement.",
     optionExplanations: [
-      "誤り：標準パラメータは暗号化されないため、パスワードの保存には適していません。",
-      "誤り：Parameter StoreのSecureStringは暗号化されますが、自動ローテーション機能はネイティブに備わっていません。",
-      "正解：Secrets Managerは自動ローテーション機能を組み込みで提供しており、この要件に最適です。",
-      "誤り：S3への保存はセキュリティ管理が複雑になり、Secrets Managerと比較してベストプラクティスに反します。"
+      "Incorrect: Standard parameters are not encrypted and are not suitable for storing passwords.",
+      "Incorrect: Parameter Store SecureString is encrypted, but automatic rotation is not natively supported.",
+      "Correct: Secrets Manager provides built-in automatic rotation and is the best fit for this requirement.",
+      "Incorrect: Storing in S3 adds complexity to security management and is not a best practice compared to Secrets Manager."
     ]
   },
   {
     id: "dva-087",
-    question: "デベロッパーは、Amazon SQS FIFOキューを使用してメッセージを処理するアプリケーションを開発しています。同じグループのメッセージは順序通りに処理され、重複して処理されないようにしたいと考えています。\n\nFIFOキューでメッセージの重複排除を実現するために必要な設定はどれですか。",
+    question: "A developer is building an application that processes messages using an Amazon SQS FIFO queue. Messages in the same group must be processed in order and must not be processed more than once.\n\nWhich configuration is required to enable message deduplication on a FIFO queue?",
     options: [
-      "キューのVisibility Timeoutを長く設定する。",
-      "メッセージ送信時にMessageGroupIdとMessageDeduplicationId（またはコンテンツベースの重複排除を有効化）を指定する。",
-      "デッドレターキューを設定して重複メッセージを除外する。",
-      "SQSのロングポーリングを有効化する。"
+      "Set a long Visibility Timeout on the queue.",
+      "Specify MessageGroupId and MessageDeduplicationId when sending messages (or enable content-based deduplication).",
+      "Configure a dead-letter queue to filter out duplicate messages.",
+      "Enable SQS long polling."
     ],
     correctAnswer: 1,
-    category: "アプリケーション統合",
-    explanation: "SQS FIFOキューで重複排除を実現するには、①`MessageGroupId`（同一グループ内での順序保証）と②`MessageDeduplicationId`（重複排除ID）を指定します。同じMessageDeduplicationIdを持つメッセージは5分間の重複排除インターバル内に再送信されても1回のみ配信されます。代替として、キューの「コンテンツベースの重複排除」を有効化するとメッセージ本文のSHA-256ハッシュが自動的にDeduplicationIdとして使用されます。",
+    category: "Application Integration",
+    explanation: "To achieve deduplication on an SQS FIFO queue, specify ① `MessageGroupId` (for ordering within a group) and ② `MessageDeduplicationId` (deduplication ID). Messages with the same MessageDeduplicationId sent within the 5-minute deduplication interval are delivered only once. Alternatively, enabling 'content-based deduplication' on the queue automatically uses a SHA-256 hash of the message body as the DeduplicationId.",
     optionExplanations: [
-      "誤り：Visibility Timeoutは処理中メッセージの隠蔽に使用するものであり、重複排除とは関係ありません。",
-      "正解：MessageGroupIdとMessageDeduplicationIdの指定（またはコンテンツベース重複排除の有効化）でFIFOキューの重複排除が実現できます。",
-      "誤り：デッドレターキューは処理失敗メッセージの管理に使用するものであり、重複排除には使用しません。",
-      "誤り：ロングポーリングはメッセージ受信の効率化のための機能であり、重複排除とは関係ありません。"
+      "Incorrect: Visibility Timeout is used to hide messages being processed and is unrelated to deduplication.",
+      "Correct: Specifying MessageGroupId and MessageDeduplicationId (or enabling content-based deduplication) achieves FIFO queue deduplication.",
+      "Incorrect: A dead-letter queue is used to manage failed messages and is not used for deduplication.",
+      "Incorrect: Long polling is a feature for efficient message retrieval and is unrelated to deduplication."
     ]
   },
   {
     id: "dva-088",
-    question: "デベロッパーは、AWS CloudFormationテンプレートで同じリソース設定を複数のリージョンにデプロイしたいと考えています。リージョンごとに異なるAMI IDを使用する必要があります。テンプレートをリージョンごとに修正せずに対応したいと考えています。\n\nこの要件を満たすために、デベロッパーはどの機能を使用すべきですか。",
+    question: "A developer wants to deploy the same resource configuration to multiple regions using an AWS CloudFormation template. A different AMI ID must be used per region. The developer wants to handle this without modifying the template for each region.\n\nWhich feature should the developer use to meet this requirement?",
     options: [
-      "テンプレートのParametersセクションでAMI IDを入力パラメータとして定義し、デプロイ時に指定する。",
-      "テンプレートのMappingsセクションにリージョンとAMI IDのマッピングテーブルを定義し、Fn::FindInMap関数で参照する。",
-      "各リージョン用に個別のテンプレートファイルを作成してAMI IDをハードコーディングする。",
-      "Lambda-backed Custom Resourceを使用してデプロイ時にAMI IDを動的に取得する。"
+      "Define the AMI ID as an input parameter in the template's Parameters section and specify it at deploy time.",
+      "Define a region-to-AMI-ID mapping table in the template's Mappings section and reference it using the Fn::FindInMap function.",
+      "Create a separate template file for each region and hard-code the AMI ID.",
+      "Use a Lambda-backed Custom Resource to dynamically retrieve the AMI ID at deploy time."
     ],
     correctAnswer: 1,
-    category: "デプロイメント",
-    explanation: "CloudFormationのMappingsセクションは、キーと値のマッピングテーブルを定義する機能です。リージョン名をキーとしてAMI IDをマッピングしておき、`Fn::FindInMap` 関数と `AWS::Region` 擬似パラメータを組み合わせることで、デプロイ先リージョンに応じた適切なAMI IDを自動的に参照できます。テンプレートを修正せずに複数リージョンへのデプロイに対応できます。",
+    category: "Deployment",
+    explanation: "The CloudFormation Mappings section defines a key-value mapping table. By mapping region names to AMI IDs and combining the `Fn::FindInMap` function with the `AWS::Region` pseudo parameter, the appropriate AMI ID for the deployment region is automatically resolved. This allows deploying to multiple regions without modifying the template.",
     optionExplanations: [
-      "誤り：Parametersでの定義も可能ですが、デプロイのたびに正しいAMI IDを入力する必要があり、ミスが発生しやすくなります。",
-      "正解：MappingsセクションとFn::FindInMapを使用することで、リージョンごとのAMI IDを自動的に参照できます。",
-      "誤り：リージョンごとに別テンプレートを作成すると管理が複雑になり、変更時の修正箇所が増えます。",
-      "誤り：Custom Resourceは可能ですが、Mappingsを使う方がシンプルで確実です。"
+      "Incorrect: Defining in Parameters is possible, but it requires entering the correct AMI ID at every deployment, which is error-prone.",
+      "Correct: Using the Mappings section with Fn::FindInMap allows the AMI ID to be automatically resolved per region.",
+      "Incorrect: Creating a separate template per region adds management complexity and increases the number of places to update on changes.",
+      "Incorrect: A Custom Resource is possible but using Mappings is simpler and more reliable."
     ]
   },
   {
     id: "dva-089",
-    question: "デベロッパーは、AWS Lambda関数のエラーをモニタリングしています。Lambda関数が特定のエラーレートを超えた場合に、開発チームにメール通知を送りたいと考えています。\n\nこの要件を満たすための最も適切な設定はどれですか。",
+    question: "A developer is monitoring errors in an AWS Lambda function. When the Lambda function exceeds a specific error rate, the developer wants to send an email notification to the development team.\n\nWhat is the most appropriate configuration to meet this requirement?",
     options: [
-      "Lambda関数のコード内でエラーをキャッチしてAmazon SESで直接メールを送信する。",
-      "Amazon CloudWatch MetricsのLambda Errorsメトリクスに対してアラームを作成し、アラーム状態でAmazon SNSトピック経由でメール通知する。",
-      "AWS CloudTrailでLambdaの実行ログを監視してエラーを検出する。",
-      "Amazon EventBridgeルールでLambdaの失敗イベントを検知してSNS通知する。"
+      "Catch errors in the Lambda function code and send an email directly using Amazon SES.",
+      "Create an alarm on the Lambda Errors metric in Amazon CloudWatch Metrics and configure email notification via an Amazon SNS topic when the alarm is triggered.",
+      "Monitor Lambda execution logs with AWS CloudTrail to detect errors.",
+      "Detect Lambda failure events with an Amazon EventBridge rule and send an SNS notification."
     ],
     correctAnswer: 1,
-    category: "モニタリング",
-    explanation: "Amazon CloudWatchはLambda関数の実行メトリクス（Errors、Invocations、Duration、Throttlesなど）を自動的に収集します。CloudWatch Alarmを作成してErrorsメトリクスのしきい値を設定し、アラーム状態になった際のアクションとしてAmazon SNSトピックへの通知を設定できます。SNSトピックにメールアドレスをサブスクライブすることで、エラーレート超過時の自動メール通知が実現できます。",
+    category: "Monitoring",
+    explanation: "Amazon CloudWatch automatically collects Lambda function execution metrics (Errors, Invocations, Duration, Throttles, etc.). You can create a CloudWatch Alarm on the Errors metric to set a threshold and configure an action to publish to an Amazon SNS topic when the alarm state is triggered. By subscribing an email address to the SNS topic, automatic email notifications are sent when the error rate is exceeded.",
     optionExplanations: [
-      "誤り：コード内でのSES直接送信も可能ですが、CloudWatchアラームを使う方がコードを変更せずに監視できます。",
-      "正解：CloudWatch MetricsのErrorsアラーム + SNSメール通知が、Lambda関数のエラー監視の標準的なパターンです。",
-      "誤り：CloudTrailはAPI呼び出しの記録に使用するものであり、Lambda関数のエラーレート監視には適していません。",
-      "誤り：EventBridgeでもLambdaの失敗検知は可能ですが、メトリクスベースのエラーレート監視にはCloudWatchアラームが適切です。"
+      "Incorrect: Sending email directly via SES from code is possible, but using a CloudWatch alarm allows monitoring without code changes.",
+      "Correct: CloudWatch Metrics Errors alarm + SNS email notification is the standard pattern for Lambda function error monitoring.",
+      "Incorrect: CloudTrail is used to record API calls and is not appropriate for monitoring Lambda function error rates.",
+      "Incorrect: Detecting Lambda failures via EventBridge is possible, but CloudWatch alarms are the right tool for metrics-based error rate monitoring."
     ]
   },
   {
     id: "dva-090",
-    question: "デベロッパーは、マイクロサービスアーキテクチャを構築しており、複数のサービス間でのリクエストトレースを実装したいと考えています。あるサービスから別のサービスを呼び出す際に、トレースコンテキストを引き継いで分散トレースを実現したいと考えています。\n\nAWS X-Rayで分散トレースを実現するために必要な設定はどれですか。",
+    question: "A developer is building a microservices architecture and wants to implement request tracing across multiple services. When one service calls another, the developer wants to propagate the trace context to achieve distributed tracing.\n\nWhich configuration is required to enable distributed tracing with AWS X-Ray?",
     options: [
-      "各サービスのCloudWatch LogsにトレースIDを手動でログ出力し、Logs Insightsで紐付ける。",
-      "各サービスにX-Ray SDKを組み込み、アウトバウンドリクエストにX-Rayトレースヘッダー（X-Amzn-Trace-Id）を自動的に付与・伝播させる。",
-      "AWS CloudTrailを有効化して、全サービスのAPI呼び出しを自動的にトレースする。",
-      "Amazon CloudWatch Synthetics を使用して各サービスのエンドポイントを監視する。"
+      "Manually log the trace ID to CloudWatch Logs in each service and correlate them with Logs Insights.",
+      "Integrate the X-Ray SDK into each service to automatically add and propagate the X-Ray trace header (X-Amzn-Trace-Id) to outbound requests.",
+      "Enable AWS CloudTrail to automatically trace all service API calls.",
+      "Use Amazon CloudWatch Synthetics to monitor each service's endpoint."
     ],
     correctAnswer: 1,
-    category: "トラブルシューティング",
-    explanation: "AWS X-Rayの分散トレースは、X-Ray SDKが自動的に管理するトレースヘッダー（X-Amzn-Trace-Id）によって実現されます。X-Ray SDKを各サービスに組み込むと、インバウンドリクエストからトレースIDを取得し、アウトバウンドリクエスト（HTTP/HTTPS、AWS SDK呼び出しなど）に自動的に同じトレースIDを付与して伝播させます。これにより、複数のサービスにまたがるリクエストの流れをサービスマップとして可視化できます。",
+    category: "Troubleshooting",
+    explanation: "AWS X-Ray distributed tracing is achieved through the trace header (X-Amzn-Trace-Id) automatically managed by the X-Ray SDK. When the X-Ray SDK is integrated into each service, it retrieves the trace ID from inbound requests and automatically adds and propagates the same trace ID to outbound requests (HTTP/HTTPS, AWS SDK calls, etc.). This allows the flow of requests spanning multiple services to be visualized as a service map.",
     optionExplanations: [
-      "誤り：手動でのログ出力は管理が複雑でエラーが発生しやすく、X-Ray SDKの自動伝播に比べて不完全です。",
-      "正解：X-Ray SDKを各サービスに組み込むことで、トレースヘッダーの自動付与・伝播による分散トレースが実現できます。",
-      "誤り：CloudTrailはAWS APIコールの監査ログであり、アプリケーション内の分散トレースには使用しません。",
-      "誤り：CloudWatch Syntheticsはエンドポイントの死活監視に使用するものであり、分散トレースとは異なります。"
+      "Incorrect: Manual log output is complex to manage and error-prone, and is incomplete compared to the X-Ray SDK's automatic propagation.",
+      "Correct: Integrating the X-Ray SDK into each service enables distributed tracing through automatic trace header addition and propagation.",
+      "Incorrect: CloudTrail is an audit log of AWS API calls and is not used for distributed tracing within applications.",
+      "Incorrect: CloudWatch Synthetics is used for endpoint availability monitoring and is different from distributed tracing."
     ]
   },
   {
     id: "dva-091",
-    question: "デベロッパーは、Amazon DynamoDBテーブルのデータ変更をリアルタイムで検知し、変更内容を別のサービスに連携したいと考えています。項目の新規作成・更新・削除のイベントをキャプチャして処理する必要があります。\n\nこの要件を満たすために、デベロッパーはどの機能を使用すべきですか。",
+    question: "A developer wants to detect data changes in an Amazon DynamoDB table in real time and forward the changes to another service. The developer needs to capture and process events for item creation, updates, and deletions.\n\nWhich feature should the developer use to meet this requirement?",
     options: [
-      "DynamoDBテーブルをAmazon S3に定期的にエクスポートして変更を検知する。",
-      "DynamoDB Streamsを有効化し、AWS Lambda関数をトリガーとして設定する。",
-      "Amazon CloudWatch メトリクスでDynamoDBの書き込み数を監視してLambdaを起動する。",
-      "Amazon SQSキューを使用して、アプリケーション側から変更イベントを送信する。"
+      "Periodically export the DynamoDB table to Amazon S3 to detect changes.",
+      "Enable DynamoDB Streams and configure an AWS Lambda function as a trigger.",
+      "Monitor DynamoDB write counts with Amazon CloudWatch metrics and invoke Lambda.",
+      "Use an Amazon SQS queue to send change events from the application side."
     ],
     correctAnswer: 1,
-    category: "データベース",
-    explanation: "DynamoDB Streamsは、DynamoDBテーブルへのデータ変更（INSERT・MODIFY・REMOVE）をリアルタイムでキャプチャする機能です。変更内容は変更前後の値を含むストリームレコードとして最大24時間保持されます。Lambda関数をDynamoDB Streamsのイベントソースとして設定することで、変更を検知するたびにLambdaが自動的に呼び出され、変更内容を別のサービスやデータストアに連携できます。",
+    category: "Database",
+    explanation: "DynamoDB Streams captures data changes (INSERT, MODIFY, REMOVE) to a DynamoDB table in real time. Changes are retained as stream records, including before and after values, for up to 24 hours. By configuring a Lambda function as an event source for DynamoDB Streams, Lambda is automatically invoked whenever a change is detected, allowing the changes to be forwarded to another service or data store.",
     optionExplanations: [
-      "誤り：定期的なエクスポートはリアルタイム検知ではなくバッチ処理であり、要件を満たしません。",
-      "正解：DynamoDB StreamsとLambdaトリガーの組み合わせで、変更イベントをリアルタイムに処理できます。",
-      "誤り：CloudWatchメトリクスは書き込み数の監視には使用できますが、個々の項目変更内容の取得はできません。",
-      "誤り：SQSを使う方法はアプリケーション側の改修が必要で、DynamoDB Streamsのネイティブ機能より複雑になります。"
+      "Incorrect: Periodic exports are batch processing, not real-time detection, and do not meet the requirement.",
+      "Correct: The combination of DynamoDB Streams and a Lambda trigger allows change events to be processed in real time.",
+      "Incorrect: CloudWatch metrics can monitor write counts but cannot retrieve the content of individual item changes.",
+      "Incorrect: Using SQS requires modifying the application side and is more complex than using DynamoDB Streams' native feature."
     ]
   },
   {
     id: "dva-092",
-    question: "デベロッパーは、AWS Lambda関数で環境に応じた設定値（開発・ステージング・本番）を管理したいと考えています。コードを変更せずに環境ごとに異なる設定を適用する最もシンプルな方法はどれですか。",
+    question: "A developer wants to manage environment-specific configuration values (development, staging, production) for an AWS Lambda function. What is the simplest way to apply different configurations per environment without changing the code?",
     options: [
-      "Lambda関数のコード内にif文で環境ごとの設定値をハードコーディングする。",
-      "Lambda関数の環境変数に設定値を定義し、コードから参照する。",
-      "設定値をAmazon S3バケットに保存し、Lambda関数の起動ごとにダウンロードする。",
-      "Lambda関数のエイリアスを使用して、バージョンごとに異なる設定を管理する。"
+      "Hard-code the configuration values for each environment using if statements in the Lambda function code.",
+      "Define configuration values as Lambda function environment variables and reference them from the code.",
+      "Store configuration values in an Amazon S3 bucket and download them on each Lambda invocation.",
+      "Use Lambda function aliases to manage different configurations per version."
     ],
     correctAnswer: 1,
-    category: "開発",
-    explanation: "Lambda関数の環境変数を使用することで、コードを変更せずに環境ごとに異なる設定値を管理できます。関数のデプロイ設定として環境変数を定義し、コード内では`process.env.VARIABLE_NAME`（Node.js）などで参照します。環境ごとに異なるLambda関数（または同一関数の異なるエイリアス）に異なる環境変数を設定することで、コードを再利用しながら環境差分を管理できます。機密情報はKMSで暗号化することも可能です。",
+    category: "Development",
+    explanation: "Using Lambda function environment variables allows you to manage different configuration values per environment without changing code. Define environment variables in the function's deployment configuration and reference them in code using `process.env.VARIABLE_NAME` (Node.js) or equivalent. By setting different environment variables on different Lambda functions (or different aliases of the same function) per environment, you can reuse code while managing environment differences. Sensitive values can also be encrypted with KMS.",
     optionExplanations: [
-      "誤り：コード内へのハードコーディングはコード変更なしに設定を変えられないため、要件を満たしません。",
-      "正解：環境変数はLambdaのネイティブ機能で、コード変更なしに環境ごとの設定を適用できる最もシンプルな方法です。",
-      "誤り：S3からの取得も可能ですが、起動ごとのダウンロードはレイテンシ増加とコスト増につながり、環境変数より複雑です。",
-      "誤り：エイリアスはバージョン管理やトラフィック分割に使用しますが、設定値の管理には環境変数の方が適しています。"
+      "Incorrect: Hard-coding values in code means you cannot change configuration without modifying code, which does not meet the requirement.",
+      "Correct: Environment variables are a native Lambda feature and the simplest way to apply per-environment configuration without code changes.",
+      "Incorrect: Downloading from S3 is also possible but adds latency and cost on every invocation, making it more complex than environment variables.",
+      "Incorrect: Aliases are used for version management and traffic splitting; environment variables are more appropriate for configuration management."
     ]
   },
   {
     id: "dva-093",
-    question: "デベロッパーは、Amazon API Gatewayで公開しているAPIに対してOAuth 2.0のJWTトークンを使用した認証を実装したいと考えています。Amazon Cognitoユーザープールで発行されたトークンを検証する最もシンプルな方法はどれですか。",
+    question: "A developer wants to implement OAuth 2.0 JWT token-based authentication for an API exposed via Amazon API Gateway. What is the simplest way to validate tokens issued by an Amazon Cognito User Pool?",
     options: [
-      "Lambda オーソライザーを作成してJWTトークンの署名を手動で検証する。",
-      "API GatewayのCognitoユーザープールオーソライザーを設定する。",
-      "API Gatewayのリソースポリシーでトークンを検証するルールを設定する。",
-      "Lambda関数内でCognito APIを呼び出してトークンを検証する。"
+      "Create a Lambda authorizer to manually validate the JWT token signature.",
+      "Configure a Cognito User Pool authorizer in API Gateway.",
+      "Set rules in the API Gateway resource policy to validate the token.",
+      "Call the Cognito API inside the Lambda function to validate the token."
     ],
     correctAnswer: 1,
-    category: "セキュリティ",
-    explanation: "Amazon API GatewayはCognitoユーザープールとのネイティブ統合をサポートしており、オーソライザーとしてCognitoユーザープールを指定するだけでJWTトークンの検証を自動的に行います。リクエストのAuthorizationヘッダーに含まれるトークンをAPI Gatewayが自動的に検証し、有効な場合のみバックエンドにリクエストを転送します。Lambda オーソライザーを作成する必要がなく、最もシンプルに実装できます。",
+    category: "Security",
+    explanation: "Amazon API Gateway supports native integration with Cognito User Pools. By simply specifying a Cognito User Pool as the authorizer, JWT token validation is performed automatically. API Gateway automatically validates the token in the request's Authorization header and forwards the request to the backend only if the token is valid. No Lambda authorizer needs to be created, making this the simplest implementation.",
     optionExplanations: [
-      "誤り：Lambdaオーソライザーによる手動検証も可能ですが、Cognitoオーソライザーの方がコード実装不要でシンプルです。",
-      "正解：CognitoユーザープールオーソライザーはAPI GatewayのネイティブCognito統合で、最もシンプルにJWT検証を実装できます。",
-      "誤り：リソースポリシーはIPアドレスやVPCからのアクセス制御に使用するものであり、JWT検証には使用しません。",
-      "誤り：Lambda関数内での検証は可能ですが、認証ロジックがアプリケーションコードに混在し管理が複雑になります。"
+      "Incorrect: Manual validation with a Lambda authorizer is possible but Cognito authorizer requires no code implementation and is simpler.",
+      "Correct: The Cognito User Pool authorizer is a native API Gateway Cognito integration and is the simplest way to implement JWT validation.",
+      "Incorrect: Resource policies are used for access control by IP address or VPC and are not used for JWT validation.",
+      "Incorrect: Validation inside a Lambda function is possible but mixes authentication logic into application code, adding management complexity."
     ]
   },
   {
     id: "dva-094",
-    question: "デベロッパーは、AWS CodeDeployを使用してAWS Lambda関数の新バージョンをデプロイしています。新バージョンへのトラフィックを一度にすべて切り替えるのではなく、10分かけて段階的にトラフィックを移行し、問題が検出された場合に自動でロールバックしたいと考えています。\n\nこの要件に最も適したCodeDeployのデプロイ設定はどれですか。",
+    question: "A developer is deploying a new version of an AWS Lambda function using AWS CodeDeploy. Rather than switching all traffic to the new version at once, the developer wants to gradually shift traffic over 10 minutes and automatically roll back if an issue is detected.\n\nWhich CodeDeploy deployment configuration is most appropriate for this requirement?",
     options: [
       "CodeDeployDeploymentConfig: CodeDeployDefault.LambdaAllAtOnce",
       "CodeDeployDeploymentConfig: CodeDeployDefault.LambdaLinear10PercentEvery1Minute",
@@ -1790,127 +1790,127 @@ const questionsData = [
       "CodeDeployDeploymentConfig: CodeDeployDefault.LambdaLinear10PercentEvery10Minutes"
     ],
     correctAnswer: 2,
-    category: "デプロイメント",
-    explanation: "CodeDeployのLambdaデプロイ設定「LambdaCanary10Percent10Minutes」は、最初に新バージョンへ10%のトラフィックをシフトし、10分後に問題がなければ残り90%を一度に切り替えるカナリアデプロイです。CloudWatchアラームと組み合わせることで、10分間の観察期間中に問題が検出された場合に自動ロールバックが実行されます。Linearは均等な割合で段階的に増やす方式です。",
+    category: "Deployment",
+    explanation: "The CodeDeploy Lambda deployment configuration \"LambdaCanary10Percent10Minutes\" is a canary deployment that shifts 10% of traffic to the new version first, and if no issues are found after 10 minutes, switches the remaining 90% all at once. Combined with CloudWatch alarms, an automatic rollback is triggered if an issue is detected during the 10-minute observation period. Linear configurations increase traffic in equal increments.",
     optionExplanations: [
-      "誤り：AllAtOnceは全トラフィックを一度に新バージョンに切り替えるため、段階的移行の要件を満たしません。",
-      "誤り：Linear10PercentEvery1Minuteは1分ごとに10%ずつ増加させる方式で、10分で完了しますが要件の「10分かけて」とは異なります。",
-      "正解：Canary10Percent10Minutesは最初に10%、10分後に残り全てを切り替えるカナリア方式で、要件に最も適しています。",
-      "誤り：Linear10PercentEvery10Minuteは10分ごとに10%ずつ増加させる方式で、全切替まで100分かかります。"
+      "Incorrect: AllAtOnce switches all traffic to the new version at once and does not meet the requirement for gradual migration.",
+      "Incorrect: Linear10PercentEvery1Minute increases by 10% every minute and completes in 10 minutes, but this differs from the 'over 10 minutes' requirement.",
+      "Correct: Canary10Percent10Minutes is a canary approach that shifts 10% first, then switches the rest 10 minutes later, which best fits the requirement.",
+      "Incorrect: Linear10PercentEvery10Minutes increases by 10% every 10 minutes, taking 100 minutes for a full switchover."
     ]
   },
   {
     id: "dva-095",
-    question: "デベロッパーは、Amazon Kinesis Data Streamsのシャード数を見積もっています。1秒あたり500件のレコードが書き込まれ、各レコードのサイズは平均2KBです。書き込みスループットに基づいて必要な最小シャード数はいくつですか。",
+    question: "A developer is estimating the number of shards for Amazon Kinesis Data Streams. 500 records are written per second, and the average size of each record is 2 KB. What is the minimum number of shards required based on write throughput?",
     options: [
-      "1シャード",
-      "2シャード",
-      "3シャード",
-      "5シャード"
+      "1 shard",
+      "2 shards",
+      "3 shards",
+      "5 shards"
     ],
     correctAnswer: 1,
-    category: "アプリケーション統合",
-    explanation: "Kinesis Data Streamsの1シャードあたりの書き込み制限は、1秒あたり1,000レコードまたは1MB/秒のどちらか低い方です。このケースでは、レコード数：500件/秒（1シャードの上限1,000件以下）、データ量：500件 × 2KB = 1,000KB = 約1MB/秒（1シャードの上限1MB/秒にほぼ相当）となります。1MBをわずかに超える可能性があるため安全を考慮すると2シャードが適切です。レコード数だけでなくデータ量の制限も考慮する必要があります。",
+    category: "Application Integration",
+    explanation: "The write limit per shard in Kinesis Data Streams is 1,000 records per second or 1 MB/sec, whichever is lower. In this case: record count: 500/sec (within the 1,000/sec per-shard limit), data volume: 500 × 2 KB = 1,000 KB ≈ 1 MB/sec (nearly at the 1 MB/sec per-shard limit). Because the data volume could slightly exceed 1 MB, 2 shards is appropriate for safety. Both record count and data volume limits must be considered.",
     optionExplanations: [
-      "誤り：1シャードの書き込み上限は1MB/秒ですが、500件×2KB=1MB/秒でほぼ上限に達するため、余裕を持つと不足します。",
-      "正解：データ量が1シャードの上限（1MB/秒）にほぼ達するため、2シャードが最小の安全な構成です。",
-      "誤り：3シャードは余裕がありますが、要件の「最小シャード数」としては過剰です。",
-      "誤り：5シャードは過剰な構成です。"
+      "Incorrect: The write limit per shard is 1 MB/sec, but 500 × 2 KB = 1 MB/sec is nearly at the limit, leaving no room for safety.",
+      "Correct: Since the data volume almost reaches the per-shard limit (1 MB/sec), 2 shards is the minimum safe configuration.",
+      "Incorrect: 3 shards provides headroom but is excessive as the 'minimum number of shards'.",
+      "Incorrect: 5 shards is an over-provisioned configuration."
     ]
   },
   {
     id: "dva-096",
-    question: "デベロッパーは、AWS CloudFormationを使用してスタックをデプロイする際に、デプロイ前に変更内容を確認したいと考えています。実際にリソースを変更せずに、どのリソースが追加・変更・削除されるかを事前に確認する方法はどれですか。",
+    question: "A developer wants to review changes before deploying a stack using AWS CloudFormation. How can the developer preview which resources will be added, modified, or deleted without actually changing any resources?",
     options: [
-      "スタックを一度デプロイしてからロールバックする。",
-      "CloudFormationの変更セット（Change Sets）を作成して内容を確認する。",
-      "テスト用の別アカウントに同じテンプレートをデプロイして確認する。",
-      "AWS Configを使用してテンプレートの変更を分析する。"
+      "Deploy the stack once and then roll it back.",
+      "Create a CloudFormation Change Set and review the contents.",
+      "Deploy the same template to a separate test account to verify.",
+      "Use AWS Config to analyze changes to the template."
     ],
     correctAnswer: 1,
-    category: "デプロイメント",
-    explanation: "AWS CloudFormationの変更セット（Change Sets）は、スタックの更新前にどのリソースが変更されるかを事前確認する機能です。変更セットを作成するとCloudFormationは現在のスタック状態と新しいテンプレートを比較し、追加・変更・削除されるリソースの一覧を表示します。実際のリソース変更は行わないため、安全に変更内容を確認してから実行を判断できます。本番環境への変更前の確認に特に有効です。",
+    category: "Deployment",
+    explanation: "AWS CloudFormation Change Sets allow you to preview which resources will change before updating a stack. When you create a change set, CloudFormation compares the current stack state with the new template and displays a list of resources to be added, modified, or deleted. No actual resource changes are made, so you can safely review the changes before deciding to execute. This is especially useful for verifying changes before applying them to a production environment.",
     optionExplanations: [
-      "誤り：デプロイしてからロールバックすると実際にリソースが変更されてしまい、事前確認の目的を果たしません。",
-      "正解：変更セットを使用することで、実際のリソース変更なしに変更内容を事前確認できます。",
-      "誤り：別アカウントへのデプロイは確認方法としては不完全で、コストもかかります。",
-      "誤り：AWS Configはリソース設定の変更追跡に使用するものであり、CloudFormationの変更予測には使用しません。"
+      "Incorrect: Deploying and then rolling back actually changes resources, defeating the purpose of previewing changes.",
+      "Correct: Using a Change Set allows you to preview changes without making any actual resource modifications.",
+      "Incorrect: Deploying to a separate account is an incomplete verification method and incurs additional cost.",
+      "Incorrect: AWS Config is used to track changes to resource configurations and is not used to predict CloudFormation changes."
     ]
   },
   {
     id: "dva-097",
-    question: "デベロッパーは、Amazon S3のイベント通知を使用してオブジェクトのアップロードを処理しています。同じバケットへの大量のアップロードが発生した際に、Lambda関数の同時実行数が急増してアカウントの同時実行制限に達する問題が発生しています。\n\nLambda関数の同時実行数を制限するために、デベロッパーはどのように設定すべきですか。",
+    question: "A developer is processing object uploads using Amazon S3 event notifications. When a large number of uploads occur to the same bucket, the Lambda function's concurrent executions spike and reach the account concurrency limit.\n\nHow should the developer configure this to limit the Lambda function's concurrent executions?",
     options: [
-      "S3バケットのイベント通知を無効にして、バッチ処理に切り替える。",
-      "Lambda関数に予約済み同時実行数（Reserved Concurrency）を設定して、最大同時実行数を制限する。",
-      "Lambda関数のタイムアウト値を短くして、処理を早く完了させる。",
-      "CloudWatch アラームでLambdaの同時実行数を監視して手動でスケールダウンする。"
+      "Disable the S3 bucket event notification and switch to batch processing.",
+      "Set Reserved Concurrency on the Lambda function to limit the maximum number of concurrent executions.",
+      "Shorten the Lambda function's timeout value to complete processing faster.",
+      "Monitor Lambda concurrency with a CloudWatch alarm and manually scale down."
     ],
     correctAnswer: 1,
-    category: "コンピューティング",
-    explanation: "Lambda関数の予約済み同時実行数（Reserved Concurrency）を設定することで、その関数が使用できる最大同時実行数を制限できます。予約済み同時実行数を設定すると、その数を超えるリクエストはスロットリングされ（429エラー）、他の関数への影響を防ぎます。これにより、突発的な大量リクエスト時でもアカウント全体の同時実行制限に達することを防ぎ、他の重要な関数のキャパシティを確保できます。",
+    category: "Compute",
+    explanation: "Setting Reserved Concurrency on a Lambda function limits the maximum number of concurrent executions that function can use. Once Reserved Concurrency is set, requests exceeding that number are throttled (429 error), preventing impact on other functions. This prevents the account-wide concurrency limit from being reached during sudden traffic spikes and ensures capacity for other critical functions.",
     optionExplanations: [
-      "誤り：イベント通知を無効にするとアップロードイベントが処理されなくなり、要件を満たしません。",
-      "正解：予約済み同時実行数を設定することで、Lambda関数の最大同時実行数を制限してアカウント制限への影響を防げます。",
-      "誤り：タイムアウト値の短縮は処理未完了のリスクがあり、同時実行数の制限にはなりません。",
-      "誤り：手動でのスケールダウンは即時性がなく、自動化されていないため運用負荷が高くなります。"
+      "Incorrect: Disabling event notifications would stop upload events from being processed, failing to meet the requirement.",
+      "Correct: Setting Reserved Concurrency limits the maximum concurrent executions of the Lambda function and prevents impact on the account limit.",
+      "Incorrect: Shortening the timeout risks incomplete processing and does not limit concurrency.",
+      "Incorrect: Manual scale-down lacks immediacy and is not automated, increasing operational burden."
     ]
   },
   {
     id: "dva-098",
-    question: "デベロッパーは、AWS Lambda関数からAmazon RDSデータベースに接続するアプリケーションを開発しています。Lambda関数がスケールすると大量のデータベース接続が作成され、RDSの最大接続数に達してしまう問題が発生しています。\n\nこの問題を解決するために、デベロッパーはどのサービスを使用すべきですか。",
+    question: "A developer is building an application that connects from AWS Lambda functions to an Amazon RDS database. When Lambda scales out, a large number of database connections are created, reaching the RDS maximum connection limit.\n\nWhich service should the developer use to resolve this issue?",
     options: [
-      "Lambda関数のメモリを増やして処理を高速化し、接続時間を短縮する。",
-      "RDSインスタンスのサイズをアップグレードして最大接続数を増やす。",
-      "Amazon RDS Proxyを使用して、データベース接続をプーリングする。",
-      "Lambda関数の予約済み同時実行数を最大接続数以下に制限する。"
+      "Increase Lambda function memory to speed up processing and reduce connection time.",
+      "Upgrade the RDS instance size to increase the maximum number of connections.",
+      "Use Amazon RDS Proxy to pool database connections.",
+      "Limit the Lambda function's Reserved Concurrency to below the maximum connection count."
     ],
     correctAnswer: 2,
-    category: "データベース",
-    explanation: "Amazon RDS Proxyは、Lambdaのようなサーバーレス環境からRDSへの接続数爆発を解決するフルマネージドなデータベースプロキシです。RDS Proxyはアプリケーションからの接続をプールして再利用するため、実際にRDSに作成される接続数を大幅に削減できます。Lambdaが大量にスケールしても、RDS Proxyが接続をプールするため、RDSへの接続数は一定の範囲に収まります。アプリケーションのコード変更は最小限で導入できます。",
+    category: "Database",
+    explanation: "Amazon RDS Proxy is a fully managed database proxy that resolves connection explosion from serverless environments like Lambda to RDS. Because RDS Proxy pools and reuses connections from the application, it significantly reduces the number of connections actually created to RDS. Even when Lambda scales out massively, RDS Proxy keeps the number of RDS connections within a controlled range. It can be introduced with minimal application code changes.",
     optionExplanations: [
-      "誤り：メモリ増加は処理速度向上には役立ちますが、同時接続数の問題は解決しません。",
-      "誤り：RDSのアップグレードは最大接続数を増やしますが、根本的な接続爆発の問題は解決せず、コストも増加します。",
-      "正解：RDS Proxyは接続プーリングにより、Lambdaのスケール時でもRDSへの接続数を適切な範囲に制御できます。",
-      "誤り：同時実行数の制限はLambdaのスループットを下げるため、接続数管理の解決策としては不適切です。"
+      "Incorrect: Increasing memory helps speed up processing but does not resolve the concurrent connection issue.",
+      "Incorrect: Upgrading the RDS instance increases the maximum connections but does not solve the root cause of connection explosion and also increases cost.",
+      "Correct: RDS Proxy uses connection pooling to keep RDS connections within an appropriate range even when Lambda scales out.",
+      "Incorrect: Limiting Reserved Concurrency reduces Lambda throughput and is not an appropriate solution for connection management."
     ]
   },
   {
     id: "dva-099",
-    question: "デベロッパーは、AWS Elastic Beanstalkアプリケーションにカスタムの設定変更（Nginxの設定変更やパッケージのインストールなど）を適用したいと考えています。Elastic Beanstalkの標準設定では対応できない設定をデプロイ時に自動適用する方法はどれですか。",
+    question: "A developer wants to apply custom configuration changes (such as modifying Nginx configuration or installing packages) to an AWS Elastic Beanstalk application. How can the developer automatically apply configurations not supported by Elastic Beanstalk's standard settings at deploy time?",
     options: [
-      "EC2インスタンスに手動でSSH接続して設定変更を行う。",
-      "アプリケーションの .ebextensions ディレクトリに設定ファイル（.config）を配置する。",
-      "Elastic Beanstalkの環境変数にシェルコマンドを設定する。",
-      "AWS Systems Manager Run Commandを使用してEC2インスタンスに設定を適用する。"
+      "Manually SSH into the EC2 instance to make configuration changes.",
+      "Place configuration files (.config) in the application's .ebextensions directory.",
+      "Set shell commands in Elastic Beanstalk environment variables.",
+      "Use AWS Systems Manager Run Command to apply configuration to the EC2 instance."
     ],
     correctAnswer: 1,
-    category: "デプロイメント",
-    explanation: "AWS Elastic Beanstalkの `.ebextensions` は、アプリケーションのデプロイ時にカスタム設定を自動適用するための仕組みです。アプリケーションのソースコードルートに `.ebextensions` ディレクトリを作成し、YAML形式の `.config` ファイルを配置することで、パッケージのインストール、ファイルの作成、コマンドの実行、サービスの設定など様々なカスタマイズを宣言的に定義できます。デプロイのたびに自動的に適用されるため、インフラ設定をコードとして管理できます。",
+    category: "Deployment",
+    explanation: "AWS Elastic Beanstalk's `.ebextensions` is a mechanism for automatically applying custom configurations when an application is deployed. By creating a `.ebextensions` directory in the application source code root and placing YAML-format `.config` files in it, you can declaratively define various customizations such as installing packages, creating files, running commands, and configuring services. Because it is automatically applied on every deployment, infrastructure configuration can be managed as code.",
     optionExplanations: [
-      "誤り：手動でのSSH接続による設定変更は、次回のデプロイで上書きされる可能性があり、再現性がありません。",
-      "正解：.ebextensionsを使用することで、デプロイのたびにカスタム設定を自動適用できます。",
-      "誤り：環境変数はアプリケーションへの設定値の受け渡しに使用するものであり、システム設定のコマンド実行には使用しません。",
-      "誤り：Systems Manager Run Commandは手動または定期的な操作には使用できますが、デプロイ時の自動設定には.ebextensionsが適切です。"
+      "Incorrect: Manual SSH configuration changes may be overwritten by the next deployment and are not reproducible.",
+      "Correct: Using .ebextensions allows custom configuration to be automatically applied on every deployment.",
+      "Incorrect: Environment variables are used for passing configuration values to the application, not for running system configuration commands.",
+      "Incorrect: Systems Manager Run Command can be used for manual or periodic operations, but .ebextensions is appropriate for automatic configuration at deploy time."
     ]
   },
   {
     id: "dva-100",
-    question: "デベロッパーは、複数のAWSサービス（Lambda、DynamoDB、S3、API Gateway）で構成されるサーバーレスアプリケーションを運用しています。あるリクエストが複数のサービスをまたいで処理される際に、エラーが発生しましたが、どのサービスのどの処理でエラーが起きたのかを特定できない状態です。\n\nこの問題を解決するために、デベロッパーが取るべき最も効果的なアプローチはどれですか。",
+    question: "A developer is operating a serverless application composed of multiple AWS services (Lambda, DynamoDB, S3, API Gateway). When a request is processed across multiple services, an error occurs, but the developer cannot identify which service and which process caused the error.\n\nWhat is the most effective approach the developer should take to resolve this issue?",
     options: [
-      "各サービスのCloudWatch Logsを個別に確認して、エラーメッセージを手動で紐付ける。",
-      "AWS X-Rayのトレーシングをすべてのサービスで有効化し、サービスマップとトレースでエラーの発生箇所を特定する。",
-      "各Lambda関数にtry-catchを追加して、エラー時にSNS通知を送信するコードを実装する。",
-      "Amazon CloudWatch Dashboardを作成して、全サービスのメトリクスを一画面で確認する。"
+      "Review the CloudWatch Logs of each service individually and manually correlate the error messages.",
+      "Enable AWS X-Ray tracing on all services and use the service map and traces to identify where the error occurred.",
+      "Add try-catch to each Lambda function and implement code to send SNS notifications on error.",
+      "Create an Amazon CloudWatch Dashboard to view metrics for all services on a single screen."
     ],
     correctAnswer: 1,
-    category: "トラブルシューティング",
-    explanation: "AWS X-Rayは、マイクロサービス・サーバーレスアーキテクチャにおける分散トレーシングのための最適なサービスです。Lambda、API Gateway、DynamoDB、S3などのAWSサービスはX-Rayとのネイティブ統合を持っており、各サービスでX-Rayを有効化するだけでトレースデータを自動収集できます。X-Rayコンソールのサービスマップでリクエストの流れが可視化され、トレース詳細画面でどのサービスのどのセグメントでエラーが発生したかを一目で特定できます。",
+    category: "Troubleshooting",
+    explanation: "AWS X-Ray is the ideal service for distributed tracing in microservices and serverless architectures. AWS services such as Lambda, API Gateway, DynamoDB, and S3 have native integration with X-Ray, so trace data is automatically collected by simply enabling X-Ray on each service. The X-Ray console service map visualizes the request flow, and the trace detail view allows you to identify at a glance which service and which segment the error occurred in.",
     optionExplanations: [
-      "誤り：個別のCloudWatch Logsを手動で確認する方法は時間がかかり、複数サービスにまたがるリクエストの追跡が困難です。",
-      "正解：X-Rayの分散トレーシングにより、複数サービスにまたがるリクエストの流れを可視化し、エラー発生箇所を効率的に特定できます。",
-      "誤り：SNS通知の追加はエラー検知には有効ですが、どのサービスのどの処理でエラーが起きたかを特定するトレーシングには不十分です。",
-      "誤り：CloudWatch Dashboardはメトリクスの監視には有効ですが、特定リクエストのサービス間トレーシングにはX-Rayが適しています。"
+      "Incorrect: Reviewing individual CloudWatch Logs manually is time-consuming and makes it difficult to trace requests across multiple services.",
+      "Correct: X-Ray distributed tracing visualizes request flow across multiple services and allows efficient identification of where errors occur.",
+      "Incorrect: Adding SNS notifications is useful for error detection but is insufficient for tracing to identify which service and process caused the error.",
+      "Incorrect: CloudWatch Dashboard is effective for monitoring metrics but X-Ray is appropriate for tracing specific requests across services."
     ]
   }
 ];

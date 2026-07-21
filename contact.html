@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>お問い合わせ - スキマラーニング</title>
+    <title>Contact - Sukima Learning</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            font-family: 'Segoe UI', system-ui, sans-serif;
             background: #f8f9fa;
             min-height: 100vh;
         }
@@ -271,74 +271,73 @@
     </style>
 </head>
 <body>
-    <!-- ヘッダー -->
     <header>
         <div class="header-container">
             <a href="index.html" class="logo">スキマ・ラーニング</a>
-            <button class="hamburger" id="hamburger" aria-label="メニュー">
+            <button class="hamburger" id="hamburger" aria-label="Menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </button>
             <nav>
                 <ul id="navMenu">
-                    <li><a href="index.html#certifications">資格一覧</a></li>
-                    <li><a href="index.html#features">特徴</a></li>
-                    <li><a href="contact.html">お問い合わせ</a></li>
+                    <li><a href="index.html#certifications">Certifications</a></li>
+                    <li><a href="index.html#features">Features</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <div class="container">
-        <a href="index.html" class="back-link">← トップページに戻る</a>
+        <a href="index.html" class="back-link">← Back to Top</a>
         
-        <h1>お問い合わせ</h1>
-        <p class="subtitle">ご質問やご要望がございましたら、お気軽にお問い合わせください</p>
+        <h1>Contact Us</h1>
+        <p class="subtitle">Have a question or feedback? Feel free to reach out.</p>
 
         <div id="message" class="message"></div>
 
         <form id="contactForm">
             <div class="form-group">
-                <label for="name">お名前<span class="required">*</span></label>
-                <input type="text" id="name" name="name" required placeholder="山田 太郎">
+                <label for="name">Name<span class="required">*</span></label>
+                <input type="text" id="name" name="name" required placeholder="Your name">
             </div>
 
             <div class="form-group">
-                <label for="email">メールアドレス<span class="required">*</span></label>
+                <label for="email">Email<span class="required">*</span></label>
                 <input type="email" id="email" name="email" required placeholder="example@email.com">
             </div>
 
             <div class="form-group">
-                <label for="category">お問い合わせ種別<span class="required">*</span></label>
+                <label for="category">Category<span class="required">*</span></label>
                 <select id="category" name="category" required>
-                    <option value="">選択してください</option>
-                    <option value="content_error">問題・回答・解説の誤り</option>
-                    <option value="bug">不具合の報告</option>
-                    <option value="login">ログイン関連</option>
-                    <option value="feature">機能の要望</option>
-                    <option value="other">その他</option>
+                    <option value="">Please select</option>
+                    <option value="content_error">Error in question / answer / explanation</option>
+                    <option value="bug">Bug report</option>
+                    <option value="login">Login issue</option>
+                    <option value="feature">Feature request</option>
+                    <option value="other">Other</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label for="subject">件名<span class="required">*</span></label>
-                <input type="text" id="subject" name="subject" required placeholder="お問い合わせの件名">
+                <label for="subject">Subject<span class="required">*</span></label>
+                <input type="text" id="subject" name="subject" required placeholder="Subject of your inquiry">
             </div>
 
             <div class="form-group">
-                <label for="messageText">お問い合わせ内容<span class="required">*</span></label>
-                <textarea id="messageText" name="message" required placeholder="お問い合わせ内容を詳しくご記入ください"></textarea>
+                <label for="messageText">Message<span class="required">*</span></label>
+                <textarea id="messageText" name="message" required placeholder="Please describe your inquiry in detail."></textarea>
             </div>
 
-            <button type="submit" class="submit-btn">送信する</button>
+            <button type="submit" class="submit-btn">Send</button>
         </form>
 
         <div class="info-box">
-            <h3>📝 お問い合わせについて</h3>
+            <h3>📝 About inquiries</h3>
             <p>
-                お問い合わせいただいた内容は、通常2-3営業日以内にご返信いたします。<br>
-                ※土日祝日は対応できない場合がございます。予めご了承ください。
+                We typically respond within 2–3 business days.<br>
+                Please note that responses may be delayed on weekends and public holidays.
             </p>
         </div>
     </div>
@@ -346,18 +345,15 @@
     <script>
         const CONTACT_API_URL = 'https://sukima-learning.onrender.com/api/contact';
 
-        // お問い合わせフォームの送信処理
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const submitBtn = this.querySelector('.submit-btn');
             const messageDiv = document.getElementById('message');
             
-            // ボタンを無効化
             submitBtn.disabled = true;
-            submitBtn.textContent = '送信中...';
+            submitBtn.textContent = 'Sending...';
             
-            // フォームデータを取得
             const formData = {
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
@@ -379,36 +375,30 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    // 成功メッセージを表示
                     messageDiv.className = 'message success';
-                    messageDiv.textContent = 'お問い合わせを受け付けました。ご連絡ありがとうございます。2-3営業日以内にご返信いたします。';
+                    messageDiv.textContent = 'Your message has been received. Thank you! We will reply within 2–3 business days.';
                     messageDiv.style.display = 'block';
                     
-                    // フォームをリセット
                     this.reset();
                     
-                    // 5秒後にメッセージを非表示
                     setTimeout(() => {
                         messageDiv.style.display = 'none';
                     }, 5000);
                 } else {
-                    throw new Error(data.error || '送信に失敗しました');
+                    throw new Error(data.error || 'Failed to send message.');
                 }
                 
             } catch (error) {
                 console.error('Contact form error:', error);
-                // エラーメッセージを表示
                 messageDiv.className = 'message error';
-                messageDiv.textContent = error.message || '送信中にエラーが発生しました。もう一度お試しください。';
+                messageDiv.textContent = error.message || 'An error occurred. Please try again.';
                 messageDiv.style.display = 'block';
             } finally {
-                // ボタンを有効化
                 submitBtn.disabled = false;
-                submitBtn.textContent = '送信する';
+                submitBtn.textContent = 'Send';
             }
         });
 
-        // ハンバーガーメニューの動作
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
 

@@ -1,90 +1,96 @@
-// AWS Cloud Practitioner 予想問題データ
+// AWS Cloud Practitioner Practice Questions
 const awsCLFQuestions = [
   {
     id: 1,
-    question: "AWSクラウドの6つの利点に含まれないものはどれですか?",
+    question: "Which of the following is NOT one of the six advantages of AWS Cloud?",
     options: [
-      "俊敏性の向上",
-      "データセンターの運用と保守",
-      "数分で世界中にデプロイ",
-      "スケールによるコスト削減"
+      "Increase speed and agility",
+      "Operating and maintaining data centers",
+      "Go global in minutes",
+      "Benefit from massive economies of scale"
     ],
     correctAnswer: 1,
-    category: "クラウドの概念",
-    explanation: "AWSクラウドの6つの利点は、①固定費を変動費に、②スケールによるコスト削減、③キャパシティ予測が不要、④速度と俊敏性の向上、⑤データセンターの運用と保守への投資が不要、⑥数分で世界中にデプロイ、です。データセンターの運用と保守は不要になることが利点です。",
+    category: "Cloud Concepts",
+    explanation: "The six advantages of AWS Cloud are: ① Trade fixed expense for variable expense, ② Benefit from massive economies of scale, ③ Stop guessing capacity, ④ Increase speed and agility, ⑤ Stop spending money running and maintaining data centers, ⑥ Go global in minutes. Running and maintaining data centers is an advantage because AWS eliminates that need — it is not an advantage itself.",
     optionExplanations: [
-      "俊敏性の向上: AWSクラウドの利点の1つです。新しいリソースを数分で利用でき、実験やイノベーションが容易になります。",
-      "データセンターの運用と保守: ✓ 正解。これは「不要になる」ことが利点であり、利点そのものではありません。AWSがインフラを管理するため、顧客はデータセンターの運用と保守に投資する必要がなくなります。",
-      "数分で世界中にデプロイ: AWSクラウドの利点の1つです。グローバルインフラを活用して、世界中の複数のリージョンに迅速にアプリケーションをデプロイできます。",
-      "スケールによるコスト削減: AWSクラウドの利点の1つです。数十万の顧客の使用量が集約されることで、従量課金制の料金が低くなります。"
+      "Increase speed and agility: This is one of the six advantages of AWS Cloud. New resources can be provisioned in minutes, making experimentation and innovation easier.",
+      "Operating and maintaining data centers: ✓ Correct. This is something that becomes unnecessary — not an advantage in itself. Because AWS manages the infrastructure, customers no longer need to invest in running and maintaining data centers.",
+      "Go global in minutes: This is one of the six advantages of AWS Cloud. Using AWS global infrastructure, you can rapidly deploy applications to multiple regions around the world.",
+      "Benefit from massive economies of scale: This is one of the six advantages of AWS Cloud. The aggregated usage of hundreds of thousands of customers allows AWS to achieve lower pay-as-you-go prices."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html", title: "クラウドコンピューティングの 6 つの利点" }
+      { url: "https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html", title: "Six Advantages of Cloud Computing" }
     ]
   },
   {
     id: 2,
-    question: "AWS Well-Architected Frameworkの5つの柱に含まれないものはどれですか?",
+    question: "Which of the following is NOT one of the five pillars of the AWS Well-Architected Framework?",
     options: [
-      "コスト削減",
-      "セキュリティ",
-      "運用上の優秀性",
-      "パフォーマンス効率"
+      "Cost Reduction",
+      "Security",
+      "Operational Excellence",
+      "Performance Efficiency"
     ],
     correctAnswer: 0,
-    category: "クラウドの概念",
-    explanation: "AWS Well-Architected Frameworkの5つの柱は、①運用上の優秀性、②セキュリティ、③信頼性、④パフォーマンス効率、⑤コスト最適化です。「コスト削減」ではなく「コスト最適化」が正しい表現です。",
+    category: "Cloud Concepts",
+    explanation: "The five pillars of the AWS Well-Architected Framework are: ① Operational Excellence, ② Security, ③ Reliability, ④ Performance Efficiency, ⑤ Cost Optimization. The correct term is 'Cost Optimization,' not 'Cost Reduction.'",
     optionExplanations: [
-      "コスト削減: ✓ 正解。正しくは「コスト最適化」です。単なるコスト削減ではなく、ビジネス価値を最大化しながら最小のコストでシステムを実行することを目指します。",
-      "セキュリティ: Well-Architected Frameworkの5つの柱の1つです。データ保護、システム保護、特権管理などのセキュリティのベストプラクティスに焦点を当てています。",
-      "運用上の優秀性: Well-Architected Frameworkの5つの柱の1つです。システムの実行と監視、プロセスと手順の継続的な改善に焦点を当てています。",
-      "パフォーマンス効率: Well-Architected Frameworkの5つの柱の1つです。コンピューティングリソースを効率的に使用し、需要の変化やテクノロジーの進化に対応することに焦点を当てています。"
+      "Cost Reduction: ✓ Correct. The correct pillar is 'Cost Optimization.' It is not simply about cutting costs, but about running systems at the lowest cost while maximizing business value.",
+      "Security: This is one of the five pillars of the Well-Architected Framework. It focuses on security best practices such as data protection, system protection, and privilege management.",
+      "Operational Excellence: This is one of the five pillars of the Well-Architected Framework. It focuses on running and monitoring systems and continuously improving processes and procedures.",
+      "Performance Efficiency: This is one of the five pillars of the Well-Architected Framework. It focuses on using computing resources efficiently and adapting to changes in demand and technology evolution."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/wellarchitected/latest/framework/welcome.html", title: "AWS Well-Architected Framework" }
+      { url: "https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html", title: "AWS Well-Architected Framework" }
     ]
   },
   {
     id: 3,
-    question: "AWSの責任共有モデルにおいて、AWSが責任を持つのはどれですか?",
+    question: "Under the AWS Shared Responsibility Model, which of the following is AWS responsible for?",
     options: [
-      "物理的なデータセンターのセキュリティ",
-      "顧客データの暗号化",
-      "IAMユーザーの管理",
-      "アプリケーションのセキュリティパッチ"
+      "Physical security of data centers",
+      "Encryption of customer data",
+      "Management of IAM users",
+      "Security patching of applications"
     ],
     correctAnswer: 0,
-    category: "クラウドの概念",
-    explanation: "責任共有モデルでは、AWSは「クラウドのセキュリティ」（物理インフラ、ハードウェア、ネットワーク）に責任を持ち、顧客は「クラウド内のセキュリティ」（データ、アプリケーション、IAM）に責任を持ちます。",
+    category: "Cloud Concepts",
+    explanation: "Under the Shared Responsibility Model, AWS is responsible for 'Security OF the Cloud' (physical infrastructure, hardware, network), while customers are responsible for 'Security IN the Cloud' (data, applications, IAM).",
     optionExplanations: [
-      "物理的なデータセンターのセキュリティ: ✓ 正解。AWSの責任です。データセンターの物理的なセキュリティ、ハードウェア、ネットワークインフラなど「クラウドのセキュリティ」はAWSが管理します。",
-      "顧客データの暗号化: 顧客の責任です。データの暗号化、アクセス制御、バックアップなど、データの保護は顧客が管理します。",
-      "IAMユーザーの管理: 顧客の責任です。IAMユーザー、グループ、ロール、ポリシーの作成と管理は顧客が行います。",
-      "アプリケーションのセキュリティパッチ: 顧客の責任です。EC2インスタンス上のOS、アプリケーションのパッチ適用は顧客が管理します（マネージドサービスの場合はAWSが管理）。"
+      "Physical security of data centers: ✓ Correct. This is AWS's responsibility. Physical security of data centers, hardware, and network infrastructure — collectively 'Security OF the Cloud' — is managed by AWS.",
+      "Encryption of customer data: This is the customer's responsibility. Protecting data through encryption, access control, and backups is managed by the customer.",
+      "Management of IAM users: This is the customer's responsibility. Creating and managing IAM users, groups, roles, and policies is performed by the customer.",
+      "Security patching of applications: This is the customer's responsibility. Applying OS and application patches on EC2 instances is managed by the customer (AWS manages this for managed services)."
     ],
     references: [
-      { url: "https://aws.amazon.com/jp/compliance/shared-responsibility-model/", title: "責任共有モデル" }
+      { url: "https://aws.amazon.com/compliance/shared-responsibility-model/", title: "Shared Responsibility Model" }
     ]
   },
   {
     id: 4,
-    question: "AWS無料利用枠で12ヶ月間無料で使用できるサービスはどれですか?",
+    question: "Which of the following services are available free for 12 months under the AWS Free Tier?",
     options: [
-      "Amazon S3 (5GB)",
-      "上記すべて",
-      "Amazon RDS (750時間/月)",
-      "Amazon EC2 (t2.micro 750時間/月)"
+      "Amazon S3 (5 GB)",
+      "All of the above",
+      "Amazon RDS (750 hours/month)",
+      "Amazon EC2 (t2.micro, 750 hours/month)"
     ],
     correctAnswer: 1,
-    category: "請求・料金・サポート",
-    explanation: "AWS無料利用枠には、12ヶ月間無料のサービス（EC2 t2.micro、RDS、S3など）、常に無料のサービス（Lambda、DynamoDB）、短期間の無料トライアルがあります。",
+    category: "Billing, Pricing, and Support",
+    explanation: "The AWS Free Tier includes services free for 12 months (EC2 t2.micro, RDS, S3, etc.), always-free services (Lambda, DynamoDB), and short-term free trials.",
+    optionExplanations: [
+      "Amazon S3 (5 GB): This is one of the services available free for 12 months under the AWS Free Tier.",
+      "All of the above: ✓ Correct. Amazon S3 (5 GB), Amazon RDS (750 hours/month), and Amazon EC2 t2.micro (750 hours/month) are all available free for 12 months under the AWS Free Tier.",
+      "Amazon RDS (750 hours/month): This is one of the services available free for 12 months under the AWS Free Tier.",
+      "Amazon EC2 (t2.micro, 750 hours/month): This is one of the services available free for 12 months under the AWS Free Tier."
+    ],
     references: [
-      { url: "https://aws.amazon.com/jp/free/", title: "AWS 無料利用枠" }
+      { url: "https://aws.amazon.com/free/", title: "AWS Free Tier" }
     ]
   },
   {
     id: 5,
-    question: "AWSのサポートプランで、24時間365日の電話、チャット、メールサポートが含まれる最も安価なプランはどれですか?",
+    question: "Which is the least expensive AWS Support plan that includes 24/7 phone, chat, and email support?",
     options: [
       "Business",
       "Developer",
@@ -92,87 +98,87 @@ const awsCLFQuestions = [
       "Enterprise"
     ],
     correctAnswer: 0,
-    category: "請求・料金・サポート",
-    explanation: "Businessサポートプランから、24時間365日の電話、チャット、メールサポートが利用できます。Basicは無料ですがサポートが限定的、Developerは営業時間内のみです。",
+    category: "Billing, Pricing, and Support",
+    explanation: "The Business support plan is the least expensive plan that provides 24/7 phone, chat, and email support. The Basic plan is free but support is limited, and the Developer plan only offers email support during business hours.",
     optionExplanations: [
-      "Business: ✓ 正解。24時間365日の電話、チャット、メールサポートが利用でき、本番環境のワークロードに適しています。最も安価な24/7サポートプランです。",
-      "Developer: 営業時間内（現地時間）のメールサポートのみで、電話サポートはありません。開発・テスト環境向けです。",
-      "Basic: 無料プランで、ドキュメント、ホワイトペーパー、サポートフォーラムへのアクセスが可能ですが、技術サポートは含まれません。",
-      "Enterprise: 24時間365日のサポートに加え、専任のTechnical Account Manager（TAM）が付きます。Businessより高額ですが、ミッションクリティカルなワークロード向けです。"
+      "Business: ✓ Correct. The Business plan provides 24/7 phone, chat, and email support and is suited for production workloads. It is the least expensive plan with 24/7 support.",
+      "Developer: Offers email support only during business hours (local time) and does not include phone support. Intended for development and test environments.",
+      "Basic: The free plan that provides access to documentation, whitepapers, and support forums, but does not include technical support.",
+      "Enterprise: In addition to 24/7 support, includes a dedicated Technical Account Manager (TAM). More expensive than Business, but intended for mission-critical workloads."
     ],
     references: [
-      { url: "https://aws.amazon.com/jp/premiumsupport/plans/", title: "AWS サポートプラン" }
+      { url: "https://aws.amazon.com/premiumsupport/plans/", title: "AWS Support Plans" }
     ]
   },
   {
     id: 6,
-    question: "AWS Organizationsの主な利点はどれですか?",
+    question: "What is the primary benefit of AWS Organizations?",
     options: [
-      "複数のAWSアカウントを一元管理",
-      "EC2インスタンスの自動スケーリング",
-      "データベースのバックアップ",
-      "ネットワークトラフィックの監視"
+      "Centralized management of multiple AWS accounts",
+      "Automatic scaling of EC2 instances",
+      "Database backup",
+      "Monitoring network traffic"
     ],
     correctAnswer: 0,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Organizationsは、複数のAWSアカウントを一元的に管理し、請求の統合、ポリシーベースの管理、アカウント作成の自動化などを提供します。",
+    category: "Security and Compliance",
+    explanation: "AWS Organizations enables centralized management of multiple AWS accounts, providing consolidated billing, policy-based governance, and automated account creation.",
     optionExplanations: [
-      "複数のAWSアカウントを一元管理: ✓ 正解。AWS Organizationsの主な機能です。複数アカウントの階層的な管理、一括請求、Service Control Policies（SCP）によるガバナンスを提供します。",
-      "EC2インスタンスの自動スケーリング: Auto Scalingの機能です。AWS Organizationsはアカウント管理サービスで、リソースのスケーリングは行いません。",
-      "データベースのバックアップ: RDSやDynamoDBなどのデータベースサービスの機能です。AWS Organizationsはバックアップ機能を提供しません。",
-      "ネットワークトラフィックの監視: VPC Flow LogsやCloudWatchの機能です。AWS Organizationsはネットワーク監視サービスではありません。"
+      "Centralized management of multiple AWS accounts: ✓ Correct. This is the primary function of AWS Organizations. It provides hierarchical management of multiple accounts, consolidated billing, and governance through Service Control Policies (SCPs).",
+      "Automatic scaling of EC2 instances: This is a feature of Auto Scaling. AWS Organizations is an account management service and does not handle resource scaling.",
+      "Database backup: This is a feature of database services such as RDS and DynamoDB. AWS Organizations does not provide backup functionality.",
+      "Monitoring network traffic: This is a feature of VPC Flow Logs and CloudWatch. AWS Organizations is not a network monitoring service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/organizations/latest/userguide/orgs_introduction.html", title: "AWS Organizations とは" }
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html", title: "What is AWS Organizations" }
     ]
   },
   {
     id: 7,
-    question: "Amazon CloudWatchの主な用途は何ですか?",
+    question: "What is the primary use of Amazon CloudWatch?",
     options: [
-      "コスト管理",
-      "ユーザー認証",
-      "データベースのバックアップ",
-      "リソースの監視とログ管理"
+      "Cost management",
+      "User authentication",
+      "Database backup",
+      "Resource monitoring and log management"
     ],
     correctAnswer: 3,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "CloudWatchは、AWSリソースとアプリケーションの監視サービスで、メトリクスの収集、ログの管理、アラームの設定などができます。",
+    category: "Cloud Technology and Services",
+    explanation: "CloudWatch is a monitoring service for AWS resources and applications that collects metrics, manages logs, and allows you to set alarms.",
     optionExplanations: [
-      "コスト管理: これはAWS Cost ExplorerやBudgetsの機能です。CloudWatchは監視サービスです。",
-      "ユーザー認証: これはIAMやCognitoの機能です。CloudWatchはリソース監視サービスです。",
-      "データベースのバックアップ: これはRDSやDynamoDBの機能です。CloudWatchは監視とログ管理に特化しています。",
-      "リソースの監視とログ管理: ✓ 正解。CloudWatchは、EC2、RDS、Lambdaなどのメトリクスを収集し、ログを一元管理し、アラームを設定できる総合監視サービスです。"
+      "Cost management: This is a feature of AWS Cost Explorer and Budgets. CloudWatch is a monitoring service.",
+      "User authentication: This is a feature of IAM and Cognito. CloudWatch is a resource monitoring service.",
+      "Database backup: This is a feature of RDS and DynamoDB. CloudWatch is dedicated to monitoring and log management.",
+      "Resource monitoring and log management: ✓ Correct. CloudWatch is a comprehensive monitoring service that collects metrics from EC2, RDS, Lambda, and other services, centrally manages logs, and allows you to configure alarms."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html", title: "Amazon CloudWatch とは" }
+      { url: "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html", title: "What is Amazon CloudWatch" }
     ]
   },
   {
     id: 8,
-    question: "AWS Trusted Advisorが提供する推奨事項のカテゴリに含まれないものはどれですか?",
+    question: "Which of the following is NOT a recommendation category provided by AWS Trusted Advisor?",
     options: [
-      "コスト最適化",
-      "セキュリティ",
-      "耐障害性",
-      "データ移行"
+      "Cost Optimization",
+      "Security",
+      "Fault Tolerance",
+      "Data Migration"
     ],
     correctAnswer: 3,
-    category: "セキュリティとコンプライアンス",
-    explanation: "Trusted Advisorは、①コスト最適化、②パフォーマンス、③セキュリティ、④耐障害性、⑤サービス制限の5つのカテゴリで推奨事項を提供します。",
+    category: "Security and Compliance",
+    explanation: "Trusted Advisor provides recommendations across five categories: ① Cost Optimization, ② Performance, ③ Security, ④ Fault Tolerance, and ⑤ Service Limits.",
     optionExplanations: [
-      "コスト最適化: Trusted Advisorの5つのカテゴリの1つです。未使用のリソースや最適化の機会を特定します。",
-      "セキュリティ: Trusted Advisorの5つのカテゴリの1つです。セキュリティギャップを特定し、推奨事項を提供します。",
-      "耐障害性: Trusted Advisorの5つのカテゴリの1つです。システムの可用性と冗長性を向上させる推奨事項を提供します。",
-      "データ移行: ✓ 正解。これはTrusted Advisorのカテゴリには含まれません。データ移行はAWS Database Migration ServiceやSnowfamilyなどの別サービスで対応します。"
+      "Cost Optimization: This is one of the five categories of Trusted Advisor. It identifies unused resources and optimization opportunities.",
+      "Security: This is one of the five categories of Trusted Advisor. It identifies security gaps and provides recommendations.",
+      "Fault Tolerance: This is one of the five categories of Trusted Advisor. It provides recommendations to improve system availability and redundancy.",
+      "Data Migration: ✓ Correct. This is NOT one of the Trusted Advisor categories. Data migration is handled by separate services such as AWS Database Migration Service and the AWS Snow Family."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/awssupport/latest/user/trusted-advisor.html", title: "AWS Trusted Advisor" }
+      { url: "https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html", title: "AWS Trusted Advisor" }
     ]
   },
   {
     id: 9,
-    question: "Amazon S3のストレージクラスで、最も低コストなのはどれですか?",
+    question: "Which Amazon S3 storage class offers the lowest cost?",
     options: [
       "S3 Standard",
       "S3 Intelligent-Tiering",
@@ -180,97 +186,109 @@ const awsCLFQuestions = [
       "S3 Glacier Deep Archive"
     ],
     correctAnswer: 3,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "S3 Glacier Deep Archiveは、長期アーカイブ用の最も低コストなストレージクラスです。データの取り出しには12時間以上かかる場合があります。",
+    category: "Cloud Technology and Services",
+    explanation: "S3 Glacier Deep Archive is the lowest-cost storage class, designed for long-term archiving. Data retrieval can take 12 hours or more.",
+    optionExplanations: [
+      "S3 Standard: The default storage class for frequently accessed data. It offers high durability and availability but is more expensive than archival tiers.",
+      "S3 Intelligent-Tiering: Automatically moves objects between access tiers based on changing access patterns. Suitable when access patterns are unpredictable.",
+      "S3 One Zone-IA: Lower-cost option for infrequently accessed data stored in a single Availability Zone. Less durable than Standard-IA.",
+      "S3 Glacier Deep Archive: ✓ Correct. This is the lowest-cost storage class in Amazon S3, designed for long-term data archiving with retrieval times of 12 hours or more."
+    ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/storage-class-intro.html", title: "Amazon S3 ストレージクラス" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html", title: "Amazon S3 Storage Classes" }
     ]
   },
   {
     id: 10,
-    question: "AWS Cost Explorerの主な機能は何ですか?",
+    question: "What is the primary function of AWS Cost Explorer?",
     options: [
-      "リソースの監視",
-      "コストと使用状況の可視化と分析",
-      "セキュリティの脆弱性スキャン",
-      "データベースのパフォーマンス最適化"
+      "Resource monitoring",
+      "Visualizing and analyzing costs and usage",
+      "Scanning for security vulnerabilities",
+      "Optimizing database performance"
     ],
     correctAnswer: 1,
-    category: "請求・料金・サポート",
-    explanation: "AWS Cost Explorerは、AWSの支出とコストを可視化し、分析するためのツールです。過去のコストを確認し、将来のコストを予測できます。",
+    category: "Billing, Pricing, and Support",
+    explanation: "AWS Cost Explorer is a tool for visualizing and analyzing AWS spending and costs. You can review historical costs and forecast future costs.",
+    optionExplanations: [
+      "Resource monitoring: This is a feature of CloudWatch. Cost Explorer is dedicated to cost management.",
+      "Visualizing and analyzing costs and usage: ✓ Correct. Cost Explorer provides an interactive interface to view, understand, and manage AWS costs and usage over time. It also offers cost forecasting.",
+      "Scanning for security vulnerabilities: This is a feature of Amazon Inspector or AWS Security Hub. Cost Explorer is a cost management tool.",
+      "Optimizing database performance: This is a feature of RDS Performance Insights or DynamoDB Accelerator (DAX). Cost Explorer is focused on cost analysis."
+    ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/cost-management/latest/userguide/ce-what-is.html", title: "AWS Cost Explorer とは" }
+      { url: "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html", title: "What is AWS Cost Explorer" }
     ]
   },
   {
     id: 11,
-    question: "Amazon EC2のインスタンスタイプで、汎用的なワークロードに最適なのはどれですか?",
+    question: "Which Amazon EC2 instance type is best suited for general-purpose workloads?",
     options: [
-      "R6i (メモリ最適化)",
-      "C6i (コンピューティング最適化)",
-      "T3/T4g (バースト可能)",
-      "P4 (アクセラレーテッドコンピューティング)"
+      "R6i (Memory Optimized)",
+      "C6i (Compute Optimized)",
+      "T3/T4g (Burstable)",
+      "P4 (Accelerated Computing)"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "T3/T4gインスタンスは、バースト可能なパフォーマンスを提供し、Webサーバー、開発環境、小規模データベースなど、汎用的なワークロードに適しています。",
+    category: "Cloud Technology and Services",
+    explanation: "T3/T4g instances provide burstable performance and are well-suited for general-purpose workloads such as web servers, development environments, and small databases.",
     optionExplanations: [
-      "R6i (メモリ最適化): 大量のメモリが必要なワークロード（インメモリデータベース、ビッグデータ処理など）に最適化されています。",
-      "C6i (コンピューティング最適化): 高いコンピューティング性能が必要なワークロード（バッチ処理、科学計算など）に最適化されています。",
-      "T3/T4g (バースト可能): ✓ 正解。バランスの取れたコンピューティング、メモリ、ネットワークリソースを提供し、汎用的なワークロードに最適です。コスト効率も高いです。",
-      "P4 (アクセラレーテッドコンピューティング): GPU搭載で、機械学習、HPC、グラフィックス処理などの特殊なワークロードに最適化されています。"
+      "R6i (Memory Optimized): Optimized for workloads that require large amounts of memory, such as in-memory databases and big data processing.",
+      "C6i (Compute Optimized): Optimized for compute-intensive workloads such as batch processing and scientific computing.",
+      "T3/T4g (Burstable): ✓ Correct. Provides a balance of compute, memory, and network resources. Best suited for general-purpose workloads and offers high cost efficiency.",
+      "P4 (Accelerated Computing): Equipped with GPUs and optimized for specialized workloads such as machine learning, HPC, and graphics processing."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/instance-types.html", title: "Amazon EC2 インスタンスタイプ" }
+      { url: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html", title: "Amazon EC2 Instance Types" }
     ]
   },
   {
     id: 12,
-    question: "Amazon RDSで自動的に実行される管理タスクはどれですか?",
+    question: "Which of the following management tasks is automatically performed by Amazon RDS?",
     options: [
-      "ソフトウェアパッチの適用",
-      "データベーススキーマの設計",
-      "SQLクエリの最適化",
-      "アプリケーションコードのデバッグ"
+      "Applying software patches",
+      "Designing database schemas",
+      "Optimizing SQL queries",
+      "Debugging application code"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon RDSは、ソフトウェアパッチの適用、バックアップ、障害検出、リカバリなどの管理タスクを自動化します。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon RDS automates management tasks such as applying software patches, taking backups, detecting failures, and performing recovery.",
     optionExplanations: [
-      "ソフトウェアパッチの適用: ✓ 正解。RDSはデータベースエンジンのパッチを自動的に適用します。メンテナンスウィンドウで実行されます。",
-      "データベーススキーマの設計: 顧客の責任です。テーブル構造、インデックス、リレーションシップなどの設計は顧客が行います。",
-      "SQLクエリの最適化: 顧客の責任です。クエリのパフォーマンスチューニングはアプリケーション開発者が行います。",
-      "アプリケーションコードのデバッグ: 顧客の責任です。RDSはデータベース管理サービスで、アプリケーションコードは管理しません。"
+      "Applying software patches: ✓ Correct. RDS automatically applies patches to the database engine during a maintenance window.",
+      "Designing database schemas: This is the customer's responsibility. Designing table structures, indexes, and relationships is performed by the customer.",
+      "Optimizing SQL queries: This is the customer's responsibility. Query performance tuning is performed by application developers.",
+      "Debugging application code: This is the customer's responsibility. RDS is a database management service and does not manage application code."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/Welcome.html", title: "Amazon RDS とは" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Welcome.html", title: "What is Amazon RDS" }
     ]
   },
   {
     id: 13,
-    question: "AWS Lambdaの課金方法はどれですか?",
+    question: "How is AWS Lambda priced?",
     options: [
-      "インスタンスの実行時間",
-      "データ転送量のみ",
-      "ストレージ容量",
-      "リクエスト数と実行時間"
+      "Instance running time",
+      "Data transfer volume only",
+      "Storage capacity",
+      "Number of requests and execution duration"
     ],
     correctAnswer: 3,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "AWS Lambdaは、リクエスト数と実行時間（GB-秒）に基づいて課金されます。コードが実行されていない時間は課金されません。",
+    category: "Cloud Technology and Services",
+    explanation: "AWS Lambda is charged based on the number of requests and execution duration (in GB-seconds). There is no charge when your code is not running.",
     optionExplanations: [
-      "インスタンスの実行時間: EC2の課金モデルです。Lambdaはサーバーレスで、インスタンスの概念がありません。",
-      "データ転送量のみ: データ転送料金は別途かかりますが、これだけではありません。リクエスト数と実行時間が主な課金要素です。",
-      "ストレージ容量: S3やEBSの課金モデルです。Lambdaのコードストレージは無料です（一定の制限内）。",
-      "リクエスト数と実行時間: ✓ 正解。Lambdaは、関数が呼び出された回数と、実行時間（ミリ秒単位、メモリ割り当てに応じて計算）で課金されます。"
+      "Instance running time: This is the EC2 pricing model. Lambda is serverless and has no concept of instances.",
+      "Data transfer volume only: Data transfer charges apply separately, but this is not the only cost. The primary billing dimensions are the number of requests and execution duration.",
+      "Storage capacity: This is the pricing model for S3 and EBS. Lambda code storage is free within certain limits.",
+      "Number of requests and execution duration: ✓ Correct. Lambda charges are based on the number of times a function is invoked and the execution duration (measured in milliseconds, scaled by the memory allocation)."
     ],
     references: [
-      { url: "https://aws.amazon.com/jp/lambda/pricing/", title: "AWS Lambda 料金" }
+      { url: "https://aws.amazon.com/lambda/pricing/", title: "AWS Lambda Pricing" }
     ]
   },
   {
     id: 14,
-    question: "Amazon VPCで、インターネットからプライベートサブネット内のインスタンスへのアクセスを可能にするサービスはどれですか?",
+    question: "In Amazon VPC, which option enables secure access from the internet to instances in a private subnet?",
     options: [
       "Internet Gateway",
       "NAT Gateway",
@@ -278,1033 +296,1033 @@ const awsCLFQuestions = [
       "Bastion Host"
     ],
     correctAnswer: 3,
-    category: "セキュリティとコンプライアンス",
-    explanation: "Bastion Host（踏み台サーバー）は、パブリックサブネットに配置され、プライベートサブネット内のインスタンスへの安全なアクセスを提供します。",
+    category: "Security and Compliance",
+    explanation: "A Bastion Host (jump server) is placed in a public subnet and provides secure access to instances in a private subnet.",
     optionExplanations: [
-      "Internet Gateway: VPCとインターネット間の通信を可能にしますが、プライベートサブネットへの直接アクセスは提供しません。",
-      "NAT Gateway: プライベートサブネットからインターネットへの「アウトバウンド」通信を可能にしますが、インターネットからの「インバウンド」アクセスは許可しません。",
-      "VPC Peering: 2つのVPC間のプライベート通信を可能にしますが、インターネットからのアクセスには使用しません。",
-      "Bastion Host: ✓ 正解。パブリックサブネットに配置された踏み台サーバーで、SSH/RDP経由でプライベートサブネット内のインスタンスに安全にアクセスできます。"
+      "Internet Gateway: Enables communication between a VPC and the internet, but does not provide direct access to resources in a private subnet.",
+      "NAT Gateway: Allows outbound internet traffic from instances in a private subnet, but does not permit inbound access from the internet.",
+      "VPC Peering: Enables private communication between two VPCs, but is not used for internet access.",
+      "Bastion Host: ✓ Correct. A jump server placed in a public subnet that allows secure SSH/RDP access to instances in a private subnet."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/vpc/latest/userguide/what-is-amazon-vpc.html", title: "Amazon VPC とは" }
+      { url: "https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html", title: "What is Amazon VPC" }
     ]
   },
   {
     id: 15,
-    question: "AWS IAMのベストプラクティスに含まれないものはどれですか?",
+    question: "Which of the following is NOT an AWS IAM best practice?",
     options: [
-      "ルートユーザーの日常的な使用",
-      "多要素認証(MFA)の有効化",
-      "最小権限の原則の適用",
-      "IAMロールの使用"
+      "Using the root user for everyday tasks",
+      "Enabling multi-factor authentication (MFA)",
+      "Applying the principle of least privilege",
+      "Using IAM roles"
     ],
     correctAnswer: 0,
-    category: "セキュリティとコンプライアンス",
-    explanation: "ルートユーザーは最も強力な権限を持つため、日常的な使用は避け、初期設定やアカウント管理のみに使用すべきです。",
+    category: "Security and Compliance",
+    explanation: "Because the root user has the most powerful permissions, it should not be used for everyday tasks. It should only be used for initial setup and account management.",
     optionExplanations: [
-      "ルートユーザーの日常的な使用: ✓ 正解。これはベストプラクティスに「反します」。ルートユーザーは初期設定時のみ使用し、日常業務にはIAMユーザーを使用すべきです。",
-      "多要素認証(MFA)の有効化: IAMのベストプラクティスです。特にルートユーザーと特権ユーザーにはMFAを必ず有効化すべきです。",
-      "最小権限の原則の適用: IAMのベストプラクティスです。ユーザーには必要最小限の権限のみを付与します。",
-      "IAMロールの使用: IAMのベストプラクティスです。EC2インスタンスやLambda関数には、アクセスキーではなくIAMロールを使用します。"
+      "Using the root user for everyday tasks: ✓ Correct. This is AGAINST best practices. The root user should only be used during initial setup; IAM users should be used for day-to-day operations.",
+      "Enabling multi-factor authentication (MFA): This is an IAM best practice. MFA should always be enabled, especially for the root user and privileged users.",
+      "Applying the principle of least privilege: This is an IAM best practice. Users should be granted only the minimum permissions necessary to perform their tasks.",
+      "Using IAM roles: This is an IAM best practice. IAM roles should be used for EC2 instances and Lambda functions instead of access keys."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/best-practices.html", title: "IAM のベストプラクティス" }
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html", title: "IAM Best Practices" }
     ]
   },
   {
     id: 16,
-    question: "Amazon S3のデータ保護機能に含まれないものはどれですか?",
+    question: "Which of the following is NOT a data protection feature of Amazon S3?",
     options: [
-      "バージョニング",
-      "自動的なデータ圧縮",
-      "クロスリージョンレプリケーション",
-      "オブジェクトロック"
+      "Versioning",
+      "Automatic data compression",
+      "Cross-Region Replication",
+      "Object Lock"
     ],
     correctAnswer: 1,
-    category: "セキュリティとコンプライアンス",
-    explanation: "S3は、バージョニング、レプリケーション、オブジェクトロックなどのデータ保護機能を提供しますが、自動的なデータ圧縮機能はありません。",
+    category: "Security and Compliance",
+    explanation: "Amazon S3 provides data protection features such as versioning, replication, and Object Lock, but it does not offer automatic data compression.",
     optionExplanations: [
-      "バージョニング: S3のデータ保護機能です。オブジェクトの複数バージョンを保持し、誤削除や上書きから保護します。",
-      "自動的なデータ圧縮: ✓ 正解。S3は自動的なデータ圧縮機能を提供しません。圧縮が必要な場合は、アップロード前にクライアント側で行います。",
-      "クロスリージョンレプリケーション: S3のデータ保護機能です。別のリージョンにデータを自動的にレプリケートし、災害対策を強化します。",
-      "オブジェクトロック: S3のデータ保護機能です。WORM（Write Once Read Many）モデルでオブジェクトを保護し、削除や変更を防ぎます。"
+      "Versioning: This is an S3 data protection feature. It retains multiple versions of an object, protecting against accidental deletion or overwrite.",
+      "Automatic data compression: ✓ Correct. S3 does not provide automatic data compression. If compression is needed, it must be performed client-side before uploading.",
+      "Cross-Region Replication: This is an S3 data protection feature. It automatically replicates data to another region, strengthening disaster recovery.",
+      "Object Lock: This is an S3 data protection feature. It protects objects using a WORM (Write Once Read Many) model, preventing deletion or modification."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/Welcome.html", title: "Amazon S3 とは" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html", title: "What is Amazon S3" }
     ]
   },
   {
     id: 17,
-    question: "AWS CloudFormationの主な利点はどれですか?",
+    question: "What is the primary benefit of AWS CloudFormation?",
     options: [
-      "コスト削減の自動化",
-      "データベースのバックアップ",
-      "ネットワークトラフィックの監視",
-      "インフラストラクチャのコード化"
+      "Automated cost reduction",
+      "Database backup",
+      "Monitoring network traffic",
+      "Infrastructure as Code"
     ],
     correctAnswer: 3,
-    category: "クラウドの概念",
-    explanation: "CloudFormationは、Infrastructure as Code (IaC)を実現し、AWSリソースをテンプレートで定義・管理できます。",
+    category: "Cloud Concepts",
+    explanation: "CloudFormation enables Infrastructure as Code (IaC), allowing you to define and manage AWS resources using templates.",
     optionExplanations: [
-      "コスト削減の自動化: Cost ExplorerやBudgetsの機能です。CloudFormationはコスト管理ツールではありません（ただし、効率的なリソース管理でコスト削減に貢献できます）。",
-      "データベースのバックアップ: RDSやDynamoDBの機能です。CloudFormationはインフラのプロビジョニングサービスです。",
-      "ネットワークトラフィックの監視: VPC Flow LogsやCloudWatchの機能です。CloudFormationは監視サービスではありません。",
-      "インフラストラクチャのコード化: ✓ 正解。CloudFormationは、JSON/YAMLテンプレートでインフラを定義し、バージョン管理、再利用、自動化を可能にします。"
+      "Automated cost reduction: This is a feature of Cost Explorer and Budgets. CloudFormation is not a cost management tool (though efficient resource management can contribute to cost savings).",
+      "Database backup: This is a feature of RDS and DynamoDB. CloudFormation is an infrastructure provisioning service.",
+      "Monitoring network traffic: This is a feature of VPC Flow Logs and CloudWatch. CloudFormation is not a monitoring service.",
+      "Infrastructure as Code: ✓ Correct. CloudFormation lets you define infrastructure in JSON or YAML templates, enabling version control, reuse, and automation."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/Welcome.html", title: "AWS CloudFormation とは" }
+      { url: "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html", title: "What is AWS CloudFormation" }
     ]
   },
   {
     id: 18,
-    question: "Amazon CloudFrontの主な用途は何ですか?",
+    question: "What is the primary use of Amazon CloudFront?",
     options: [
-      "データベースのレプリケーション",
-      "コンテンツ配信の高速化",
-      "サーバーのバックアップ",
-      "ユーザー認証"
+      "Database replication",
+      "Accelerating content delivery",
+      "Server backup",
+      "User authentication"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "CloudFrontは、グローバルなエッジロケーションを使用してコンテンツを配信するCDN（Content Delivery Network）サービスです。",
+    category: "Cloud Technology and Services",
+    explanation: "CloudFront is a CDN (Content Delivery Network) service that delivers content using a global network of edge locations.",
     optionExplanations: [
-      "データベースのレプリケーション: RDSやDynamoDB Global Tablesの機能です。CloudFrontはCDNサービスです。",
-      "コンテンツ配信の高速化: ✓ 正解。CloudFrontは、世界中のエッジロケーションにコンテンツをキャッシュし、ユーザーに低レイテンシーで配信します。",
-      "サーバーのバックアップ: AWS BackupやEBS Snapshotsの機能です。CloudFrontはバックアップサービスではありません。",
-      "ユーザー認証: IAMやCognitoの機能です。CloudFrontはコンテンツ配信に特化しています。"
+      "Database replication: This is a feature of RDS and DynamoDB Global Tables. CloudFront is a CDN service.",
+      "Accelerating content delivery: ✓ Correct. CloudFront caches content at edge locations around the world and delivers it to users with low latency.",
+      "Server backup: This is a feature of AWS Backup and EBS Snapshots. CloudFront is not a backup service.",
+      "User authentication: This is a feature of IAM and Cognito. CloudFront is dedicated to content delivery."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/Introduction.html", title: "Amazon CloudFront とは" }
+      { url: "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html", title: "What is Amazon CloudFront" }
     ]
   },
   {
     id: 19,
-    question: "AWS Elastic Beanstalkの主な利点はどれですか?",
+    question: "What is the primary benefit of AWS Elastic Beanstalk?",
     options: [
-      "コストの自動削減",
-      "データベースのパフォーマンス最適化",
-      "ネットワークセキュリティの強化",
-      "アプリケーションのデプロイと管理の簡素化"
+      "Automated cost reduction",
+      "Database performance optimization",
+      "Enhanced network security",
+      "Simplified application deployment and management"
     ],
     correctAnswer: 3,
-    category: "クラウドの概念",
-    explanation: "Elastic Beanstalkは、アプリケーションのデプロイ、スケーリング、監視を自動化し、インフラ管理の複雑さを軽減します。",
+    category: "Cloud Concepts",
+    explanation: "Elastic Beanstalk automates application deployment, scaling, and monitoring, reducing the complexity of infrastructure management.",
     optionExplanations: [
-      "コストの自動削減: Cost ExplorerやSavings Plansの機能です。Elastic Beanstalkは運用の簡素化を提供します（結果的にコスト削減に貢献できます）。",
-      "データベースのパフォーマンス最適化: RDS Performance InsightsやDynamoDB Acceleratorの機能です。Elastic Beanstalkはアプリケーションデプロイサービスです。",
-      "ネットワークセキュリティの強化: Security GroupsやNetwork ACLsの機能です。Elastic Beanstalkはデプロイの簡素化に焦点を当てています。",
-      "アプリケーションのデプロイと管理の簡素化: ✓ 正解。Elastic Beanstalkは、コードをアップロードするだけで、キャパシティプロビジョニング、ロードバランシング、自動スケーリング、ヘルスモニタリングを自動的に処理します。"
+      "Automated cost reduction: This is a feature of Cost Explorer and Savings Plans. Elastic Beanstalk simplifies operations (which can indirectly contribute to cost savings).",
+      "Database performance optimization: This is a feature of RDS Performance Insights and DynamoDB Accelerator (DAX). Elastic Beanstalk is an application deployment service.",
+      "Enhanced network security: This is a feature of Security Groups and Network ACLs. Elastic Beanstalk focuses on simplifying deployment.",
+      "Simplified application deployment and management: ✓ Correct. With Elastic Beanstalk, you simply upload your code and it automatically handles capacity provisioning, load balancing, auto-scaling, and health monitoring."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/elasticbeanstalk/latest/dg/Welcome.html", title: "AWS Elastic Beanstalk とは" }
+      { url: "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html", title: "What is AWS Elastic Beanstalk" }
     ]
   },
   {
     id: 20,
-    question: "Amazon DynamoDBの主な特徴はどれですか?",
+    question: "What is the primary characteristic of Amazon DynamoDB?",
     options: [
-      "NoSQLデータベース",
-      "リレーショナルデータベース",
-      "データウェアハウス",
-      "インメモリキャッシュ"
+      "NoSQL database",
+      "Relational database",
+      "Data warehouse",
+      "In-memory cache"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "DynamoDBは、フルマネージドなNoSQLデータベースサービスで、高速で予測可能なパフォーマンスとシームレスなスケーラビリティを提供します。",
+    category: "Cloud Technology and Services",
+    explanation: "DynamoDB is a fully managed NoSQL database service that delivers fast, predictable performance with seamless scalability.",
     optionExplanations: [
-      "NoSQLデータベース: ✓ 正解。DynamoDBは、キー・バリュー型とドキュメント型のデータモデルをサポートするNoSQLデータベースで、ミリ秒単位のレイテンシーを実現します。",
-      "リレーショナルデータベース: RDSやAuroraの特徴です。DynamoDBはNoSQLデータベースです。",
-      "データウェアハウス: Amazon Redshiftの特徴です。DynamoDBはトランザクション処理に最適化されています。",
-      "インメモリキャッシュ: ElastiCacheの特徴です。DynamoDBは永続的なデータストアです（DAXでキャッシュ機能を追加可能）。"
+      "NoSQL database: ✓ Correct. DynamoDB is a NoSQL database that supports key-value and document data models, delivering single-digit millisecond latency at any scale.",
+      "Relational database: This describes RDS and Aurora. DynamoDB is a NoSQL database.",
+      "Data warehouse: This describes Amazon Redshift. DynamoDB is optimized for transactional workloads.",
+      "In-memory cache: This describes ElastiCache. DynamoDB is a persistent data store (caching can be added with DAX)."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/Introduction.html", title: "Amazon DynamoDB とは" }
+      { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Introduction.html", title: "What is Amazon DynamoDB" }
     ]
   },
   {
     id: 21,
-    question: "AWS Shieldが提供する保護はどれですか?",
+    question: "What type of protection does AWS Shield provide?",
     options: [
-      "データベースの暗号化",
-      "DDoS攻撃からの保護",
-      "ウイルススキャン",
-      "データバックアップ"
+      "Database encryption",
+      "Protection against DDoS attacks",
+      "Virus scanning",
+      "Data backup"
     ],
     correctAnswer: 1,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Shieldは、DDoS（分散型サービス拒否）攻撃からAWSで実行されるアプリケーションを保護するマネージドサービスです。",
+    category: "Security and Compliance",
+    explanation: "AWS Shield is a managed service that protects applications running on AWS from DDoS (Distributed Denial of Service) attacks.",
     optionExplanations: [
-      "データベースの暗号化: RDSやDynamoDBの暗号化機能です。Shieldはネットワーク層の保護サービスです。",
-      "DDoS攻撃からの保護: ✓ 正解。AWS Shieldは、DDoS攻撃を検出し、自動的に緩和します。StandardとAdvancedの2つのティアがあります。",
-      "ウイルススキャン: サードパーティのセキュリティソフトウェアの機能です。ShieldはDDoS保護に特化しています。",
-      "データバックアップ: AWS BackupやEBS Snapshotsの機能です。Shieldはネットワーク攻撃からの保護を提供します。"
+      "Database encryption: This is an encryption feature of RDS and DynamoDB. Shield is a network-layer protection service.",
+      "Protection against DDoS attacks: ✓ Correct. AWS Shield detects and automatically mitigates DDoS attacks. It is available in two tiers: Standard and Advanced.",
+      "Virus scanning: This is a feature of third-party security software. Shield is dedicated to DDoS protection.",
+      "Data backup: This is a feature of AWS Backup and EBS Snapshots. Shield provides protection against network-based attacks."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/waf/latest/developerguide/shield-chapter.html", title: "AWS Shield" }
+      { url: "https://docs.aws.amazon.com/waf/latest/developerguide/shield-chapter.html", title: "AWS Shield" }
     ]
   },
   {
     id: 22,
-    question: "Amazon Route 53の主な機能はどれですか?",
+    question: "What is the primary function of Amazon Route 53?",
     options: [
-      "コンテンツ配信",
-      "DNSサービス",
-      "ロードバランシング",
-      "データベース管理"
+      "Content delivery",
+      "DNS service",
+      "Load balancing",
+      "Database management"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Route 53は、可用性と拡張性に優れたDNS（Domain Name System）Webサービスで、ドメイン名をIPアドレスに変換します。",
+    category: "Cloud Technology and Services",
+    explanation: "Route 53 is a highly available and scalable DNS (Domain Name System) web service that translates domain names into IP addresses.",
     optionExplanations: [
-      "コンテンツ配信: CloudFrontの機能です。Route 53はDNSサービスです。",
-      "DNSサービス: ✓ 正解。Route 53は、ドメイン登録、DNSルーティング、ヘルスチェックを提供する高可用性DNSサービスです。",
-      "ロードバランシング: ELB（Elastic Load Balancing）の機能です。Route 53はDNSレベルでのトラフィック管理を提供します。",
-      "データベース管理: RDSやDynamoDBの機能です。Route 53はDNSサービスです。"
+      "Content delivery: This is a feature of CloudFront. Route 53 is a DNS service.",
+      "DNS service: ✓ Correct. Route 53 is a highly available DNS service providing domain registration, DNS routing, and health checking.",
+      "Load balancing: This is a feature of ELB (Elastic Load Balancing). Route 53 provides DNS-level traffic management.",
+      "Database management: This is a feature of RDS and DynamoDB. Route 53 is a DNS service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/Route53/latest/DeveloperGuide/Welcome.html", title: "Amazon Route 53 とは" }
+      { url: "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html", title: "What is Amazon Route 53" }
     ]
   },
   {
     id: 23,
-    question: "AWS Systems Managerの主な用途は何ですか?",
+    question: "What is the primary use of AWS Systems Manager?",
     options: [
-      "データベースのバックアップ",
-      "コスト分析",
-      "EC2インスタンスの運用管理",
-      "ネットワーク設計"
+      "Database backup",
+      "Cost analysis",
+      "Operational management of EC2 instances",
+      "Network design"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Systems Managerは、AWSリソースの可視化と制御を提供し、パッチ適用、設定管理、自動化などの運用タスクを簡素化します。",
+    category: "Cloud Technology and Services",
+    explanation: "Systems Manager provides visibility and control of AWS resources, simplifying operational tasks such as patch management, configuration management, and automation.",
     optionExplanations: [
-      "データベースのバックアップ: RDSやAWS Backupの機能です。Systems Managerは運用管理ツールです。",
-      "コスト分析: Cost ExplorerやBudgetsの機能です。Systems Managerは運用管理に焦点を当てています。",
-      "EC2インスタンスの運用管理: ✓ 正解。Systems Managerは、パッチ管理、設定管理、リモートコマンド実行、パラメータストアなど、EC2やオンプレミスサーバーの運用を統合管理します。",
-      "ネットワーク設計: VPCやTransit Gatewayの機能です。Systems Managerはリソース管理ツールです。"
+      "Database backup: This is a feature of RDS and AWS Backup. Systems Manager is an operational management tool.",
+      "Cost analysis: This is a feature of Cost Explorer and Budgets. Systems Manager focuses on operational management.",
+      "Operational management of EC2 instances: ✓ Correct. Systems Manager integrates patch management, configuration management, remote command execution, and Parameter Store to centrally manage EC2 and on-premises servers.",
+      "Network design: This is a feature of VPC and Transit Gateway. Systems Manager is a resource management tool."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/systems-manager/latest/userguide/what-is-systems-manager.html", title: "AWS Systems Manager とは" }
+      { url: "https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html", title: "What is AWS Systems Manager" }
     ]
   },
   {
     id: 24,
-    question: "Amazon EBSのスナップショットはどこに保存されますか?",
+    question: "Where are Amazon EBS snapshots stored?",
     options: [
-      "EC2インスタンスのローカルストレージ",
+      "EC2 instance local storage",
       "Amazon S3",
       "Amazon Glacier",
       "Amazon EFS"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "EBSスナップショットは、自動的にAmazon S3に保存され、高い耐久性とリージョン内での冗長性が確保されます。",
+    category: "Cloud Technology and Services",
+    explanation: "EBS snapshots are automatically stored in Amazon S3, providing high durability and redundancy within the region.",
     optionExplanations: [
-      "EC2インスタンスのローカルストレージ: インスタンスストアは一時的なストレージです。スナップショットは永続的なS3に保存されます。",
-      "Amazon S3: ✓ 正解。EBSスナップショットはS3に自動的に保存され、99.999999999%（イレブンナイン）の耐久性を持ちます。ユーザーはS3バケットを直接管理する必要はありません。",
-      "Amazon Glacier: 長期アーカイブストレージです。スナップショットはS3に保存されます（ライフサイクルポリシーでGlacierに移行可能）。",
-      "Amazon EFS: ファイルストレージサービスです。EBSスナップショットはS3に保存されます。"
+      "EC2 instance local storage: Instance store is temporary storage. Snapshots are stored in the persistent S3 service.",
+      "Amazon S3: ✓ Correct. EBS snapshots are automatically stored in S3, providing 99.999999999% (eleven nines) durability. Users do not need to manage S3 buckets directly.",
+      "Amazon Glacier: This is a long-term archival storage service. Snapshots are stored in S3 (they can be transitioned to Glacier via lifecycle policies).",
+      "Amazon EFS: This is a file storage service. EBS snapshots are stored in S3."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/EBSSnapshots.html", title: "Amazon EBS スナップショット" }
+      { url: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html", title: "Amazon EBS Snapshots" }
     ]
   },
   {
     id: 25,
-    question: "AWS Key Management Service (KMS)の主な用途は何ですか?",
+    question: "What is the primary use of AWS Key Management Service (KMS)?",
     options: [
-      "ユーザー認証",
-      "暗号化キーの管理",
-      "ネットワークトラフィックの監視",
-      "コスト最適化"
+      "User authentication",
+      "Managing encryption keys",
+      "Monitoring network traffic",
+      "Cost optimization"
     ],
     correctAnswer: 1,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS KMSは、暗号化キーの作成と管理を簡素化し、AWSサービスやアプリケーションでのデータ暗号化を制御します。",
+    category: "Security and Compliance",
+    explanation: "AWS KMS simplifies the creation and management of encryption keys, enabling you to control data encryption across AWS services and applications.",
     optionExplanations: [
-      "ユーザー認証: IAMやCognitoの機能です。KMSは暗号化キー管理サービスです。",
-      "暗号化キーの管理: ✓ 正解。KMSは、暗号化キーの作成、ローテーション、無効化、削除を管理し、キーの使用状況を監査できます。FIPS 140-2検証済みのハードウェアセキュリティモジュール（HSM）を使用します。",
-      "ネットワークトラフィックの監視: VPC Flow LogsやCloudWatchの機能です。KMSは暗号化に特化しています。",
-      "コスト最適化: Cost ExplorerやTrusted Advisorの機能です。KMSはセキュリティサービスです。"
+      "User authentication: This is a feature of IAM and Cognito. KMS is an encryption key management service.",
+      "Managing encryption keys: ✓ Correct. KMS manages the creation, rotation, disabling, and deletion of encryption keys, and provides audit logs of key usage. It uses FIPS 140-2 validated hardware security modules (HSMs).",
+      "Monitoring network traffic: This is a feature of VPC Flow Logs and CloudWatch. KMS is dedicated to encryption.",
+      "Cost optimization: This is a feature of Cost Explorer and Trusted Advisor. KMS is a security service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/kms/latest/developerguide/overview.html", title: "AWS Key Management Service とは" }
+      { url: "https://docs.aws.amazon.com/kms/latest/developerguide/overview.html", title: "What is AWS Key Management Service" }
     ]
   },
   {
     id: 26,
-    question: "Amazon SNS (Simple Notification Service)の主な用途は何ですか?",
+    question: "What is the primary use of Amazon SNS (Simple Notification Service)?",
     options: [
-      "データベースのレプリケーション",
-      "コンピューティングリソースの管理",
-      "ファイルストレージ",
-      "メッセージの配信"
+      "Database replication",
+      "Managing computing resources",
+      "File storage",
+      "Message delivery"
     ],
     correctAnswer: 3,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon SNSは、pub/sub（パブリッシュ/サブスクライブ）メッセージングサービスで、アプリケーション間やアプリケーションとユーザー間の通信を可能にします。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon SNS is a pub/sub (publish/subscribe) messaging service that enables communication between applications, and between applications and users.",
     optionExplanations: [
-      "データベースのレプリケーション: RDSやDynamoDB Global Tablesの機能です。SNSはメッセージングサービスです。",
-      "コンピューティングリソースの管理: EC2やAuto Scalingの機能です。SNSは通知サービスです。",
-      "ファイルストレージ: S3やEFSの機能です。SNSはメッセージ配信に特化しています。",
-      "メッセージの配信: ✓ 正解。SNSは、トピックにメッセージをパブリッシュし、複数のサブスクライバー（Lambda、SQS、HTTP、Email、SMSなど）に配信します。"
+      "Database replication: This is a feature of RDS and DynamoDB Global Tables. SNS is a messaging service.",
+      "Managing computing resources: This is a feature of EC2 and Auto Scaling. SNS is a notification service.",
+      "File storage: This is a feature of S3 and EFS. SNS is dedicated to message delivery.",
+      "Message delivery: ✓ Correct. SNS publishes messages to a topic and delivers them to multiple subscribers (Lambda, SQS, HTTP, Email, SMS, etc.)."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sns/latest/dg/welcome.html", title: "Amazon SNS とは" }
+      { url: "https://docs.aws.amazon.com/sns/latest/dg/welcome.html", title: "What is Amazon SNS" }
     ]
   },
   {
     id: 27,
-    question: "Amazon SQS (Simple Queue Service)の主な特徴はどれですか?",
+    question: "What is the primary characteristic of Amazon SQS (Simple Queue Service)?",
     options: [
-      "メッセージキューイング",
-      "リアルタイムストリーミング",
-      "データウェアハウス",
-      "コンテンツ配信"
+      "Message queuing",
+      "Real-time streaming",
+      "Data warehouse",
+      "Content delivery"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon SQSは、フルマネージドなメッセージキューイングサービスで、分散システムのコンポーネント間でメッセージを送受信できます。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon SQS is a fully managed message queuing service that enables sending and receiving messages between components of distributed systems.",
     optionExplanations: [
-      "メッセージキューイング: ✓ 正解。SQSは、メッセージを一時的に保存し、非同期処理を可能にします。StandardキューとFIFOキューの2種類があります。",
-      "リアルタイムストリーミング: Amazon Kinesisの機能です。SQSはメッセージキューイングサービスです。",
-      "データウェアハウス: Amazon Redshiftの機能です。SQSはメッセージングサービスです。",
-      "コンテンツ配信: CloudFrontの機能です。SQSはアプリケーション間通信に使用されます。"
+      "Message queuing: ✓ Correct. SQS temporarily stores messages and enables asynchronous processing. It offers two queue types: Standard and FIFO.",
+      "Real-time streaming: This is a feature of Amazon Kinesis. SQS is a message queuing service.",
+      "Data warehouse: This is a feature of Amazon Redshift. SQS is a messaging service.",
+      "Content delivery: This is a feature of CloudFront. SQS is used for inter-application communication."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html", title: "Amazon SQS とは" }
+      { url: "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html", title: "What is Amazon SQS" }
     ]
   },
   {
     id: 28,
-    question: "AWS Direct Connectの主な利点はどれですか?",
+    question: "What is the primary benefit of AWS Direct Connect?",
     options: [
-      "インターネット経由の暗号化通信",
-      "専用ネットワーク接続による安定した通信",
-      "サーバーレスアーキテクチャ",
-      "自動スケーリング"
+      "Encrypted communication over the internet",
+      "Stable communication via a dedicated network connection",
+      "Serverless architecture",
+      "Automatic scaling"
     ],
     correctAnswer: 1,
-    category: "クラウドの概念",
-    explanation: "AWS Direct Connectは、オンプレミス環境とAWS間に専用のネットワーク接続を確立し、より一貫したネットワークパフォーマンスを提供します。",
+    category: "Cloud Concepts",
+    explanation: "AWS Direct Connect establishes a dedicated network connection between an on-premises environment and AWS, providing more consistent network performance.",
     optionExplanations: [
-      "インターネット経由の暗号化通信: VPNの特徴です。Direct Connectは専用線接続を提供します。",
-      "専用ネットワーク接続による安定した通信: ✓ 正解。Direct Connectは、インターネットを経由せず、専用の物理接続でAWSに接続するため、帯域幅の安定性、低レイテンシー、セキュリティの向上が期待できます。",
-      "サーバーレスアーキテクチャ: LambdaやFargateの特徴です。Direct Connectはネットワーク接続サービスです。",
-      "自動スケーリング: Auto ScalingやLambdaの特徴です。Direct Connectは固定帯域幅の専用接続を提供します。"
+      "Encrypted communication over the internet: This describes VPN. Direct Connect provides a dedicated line connection.",
+      "Stable communication via a dedicated network connection: ✓ Correct. Direct Connect connects to AWS over a dedicated physical connection without going through the internet, delivering consistent bandwidth, low latency, and improved security.",
+      "Serverless architecture: This describes Lambda and Fargate. Direct Connect is a network connectivity service.",
+      "Automatic scaling: This describes Auto Scaling and Lambda. Direct Connect provides a fixed-bandwidth dedicated connection."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/directconnect/latest/UserGuide/Welcome.html", title: "AWS Direct Connect とは" }
+      { url: "https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html", title: "What is AWS Direct Connect" }
     ]
   },
   {
     id: 29,
-    question: "Amazon ElastiCacheがサポートするキャッシュエンジンはどれですか?",
+    question: "Which cache engines does Amazon ElastiCache support?",
     options: [
-      "RedisとMemcached",
-      "MySQLとPostgreSQL",
-      "MongoDBとCassandra",
-      "OracleとSQL Server"
+      "Redis and Memcached",
+      "MySQL and PostgreSQL",
+      "MongoDB and Cassandra",
+      "Oracle and SQL Server"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon ElastiCacheは、RedisとMemcachedの2つのオープンソースインメモリキャッシュエンジンをサポートしています。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon ElastiCache supports two open-source in-memory cache engines: Redis and Memcached.",
     optionExplanations: [
-      "RedisとMemcached: ✓ 正解。ElastiCacheは、RedisとMemcachedをフルマネージドサービスとして提供し、データベースやアプリケーションのパフォーマンスを向上させます。",
-      "MySQLとPostgreSQL: RDSでサポートされるリレーショナルデータベースエンジンです。ElastiCacheはキャッシュエンジンです。",
-      "MongoDBとCassandra: NoSQLデータベースです。ElastiCacheはインメモリキャッシュに特化しています。",
-      "OracleとSQL Server: RDSでサポートされる商用データベースエンジンです。ElastiCacheはキャッシュサービスです。"
+      "Redis and Memcached: ✓ Correct. ElastiCache provides Redis and Memcached as fully managed services, improving the performance of databases and applications.",
+      "MySQL and PostgreSQL: These are relational database engines supported by RDS. ElastiCache is a cache engine service.",
+      "MongoDB and Cassandra: These are NoSQL databases. ElastiCache is dedicated to in-memory caching.",
+      "Oracle and SQL Server: These are commercial database engines supported by RDS. ElastiCache is a caching service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonElastiCache/latest/red-ug/WhatIs.html", title: "Amazon ElastiCache とは" }
+      { url: "https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/WhatIs.html", title: "What is Amazon ElastiCache" }
     ]
   },
   {
     id: 30,
-    question: "AWS Configの主な用途は何ですか?",
+    question: "What is the primary use of AWS Config?",
     options: [
-      "コスト管理",
-      "データベースのバックアップ",
-      "リソース設定の記録と評価",
-      "ネットワークトラフィックの監視"
+      "Cost management",
+      "Database backup",
+      "Recording and evaluating resource configurations",
+      "Monitoring network traffic"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "AWS Configは、AWSリソースの設定を継続的に記録し、コンプライアンスルールに対して評価するサービスです。",
+    category: "Cloud Technology and Services",
+    explanation: "AWS Config is a service that continuously records AWS resource configurations and evaluates them against compliance rules.",
     optionExplanations: [
-      "コスト管理: Cost ExplorerやBudgetsの機能です。Configは設定管理サービスです。",
-      "データベースのバックアップ: RDSやAWS Backupの機能です。Configは設定の監査とコンプライアンスに焦点を当てています。",
-      "リソース設定の記録と評価: ✓ 正解。AWS Configは、リソースの設定変更を記録し、設定履歴を追跡し、コンプライアンスルールに対して自動的に評価します。",
-      "ネットワークトラフィックの監視: VPC Flow LogsやCloudWatchの機能です。Configはリソース設定の変更追跡を行います。"
+      "Cost management: This is a feature of Cost Explorer and Budgets. Config is a configuration management service.",
+      "Database backup: This is a feature of RDS and AWS Backup. Config focuses on configuration auditing and compliance.",
+      "Recording and evaluating resource configurations: ✓ Correct. AWS Config records configuration changes to resources, tracks configuration history, and automatically evaluates configurations against compliance rules.",
+      "Monitoring network traffic: This is a feature of VPC Flow Logs and CloudWatch. Config tracks changes to resource configurations."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/config/latest/developerguide/WhatIsConfig.html", title: "AWS Config とは" }
+      { url: "https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html", title: "What is AWS Config" }
     ]
   },
   {
     id: 31,
-    question: "Amazon Redshiftの主な用途は何ですか?",
+    question: "What is the primary use of Amazon Redshift?",
     options: [
-      "データウェアハウス",
-      "NoSQLデータベース",
-      "インメモリキャッシュ",
-      "オブジェクトストレージ"
+      "Data warehouse",
+      "NoSQL database",
+      "In-memory cache",
+      "Object storage"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon Redshiftは、ペタバイト規模のデータウェアハウスサービスで、大規模なデータ分析に最適化されています。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon Redshift is a petabyte-scale data warehouse service optimized for large-scale data analytics.",
     optionExplanations: [
-      "データウェアハウス: ✓ 正解。Redshiftは、列指向ストレージと並列処理を使用して、大規模なデータセットに対する複雑なクエリを高速に実行します。",
-      "NoSQLデータベース: DynamoDBやDocumentDBの特徴です。Redshiftはリレーショナルデータウェアハウスです。",
-      "インメモリキャッシュ: ElastiCacheの特徴です。Redshiftは分析用データウェアハウスです。",
-      "オブジェクトストレージ: S3の特徴です。Redshiftは構造化データの分析に特化しています。"
+      "Data warehouse: ✓ Correct. Redshift uses columnar storage and parallel processing to run complex queries against large datasets at high speed.",
+      "NoSQL database: This describes DynamoDB and DocumentDB. Redshift is a relational data warehouse.",
+      "In-memory cache: This describes ElastiCache. Redshift is an analytics data warehouse.",
+      "Object storage: This describes S3. Redshift is specialized for analyzing structured data."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/redshift/latest/mgmt/welcome.html", title: "Amazon Redshift とは" }
+      { url: "https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html", title: "What is Amazon Redshift" }
     ]
   },
   {
     id: 32,
-    question: "AWS Artifactの主な用途は何ですか?",
+    question: "What is the primary use of AWS Artifact?",
     options: [
-      "ネットワークの監視",
-      "アプリケーションのデプロイ",
-      "データベースの管理",
-      "コンプライアンスレポートへのアクセス"
+      "Network monitoring",
+      "Application deployment",
+      "Database management",
+      "Access to compliance reports"
     ],
     correctAnswer: 3,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Artifactは、AWSのセキュリティおよびコンプライアンスレポート、および特定のオンライン契約へのオンデマンドアクセスを提供します。",
+    category: "Security and Compliance",
+    explanation: "AWS Artifact provides on-demand access to AWS security and compliance reports and select online agreements.",
     optionExplanations: [
-      "ネットワークの監視: CloudWatchやVPC Flow Logsの機能です。Artifactはコンプライアンス文書サービスです。",
-      "アプリケーションのデプロイ: Elastic BeanstalkやCodeDeployの機能です。Artifactはコンプライアンス文書の提供サービスです。",
-      "データベースの管理: RDSやDynamoDBの機能です。Artifactは監査レポートへのアクセスを提供します。",
-      "コンプライアンスレポートへのアクセス: ✓ 正解。AWS Artifactは、SOC、PCI、ISO認証などのコンプライアンスレポートをダウンロードでき、監査や規制要件への対応を支援します。"
+      "Network monitoring: This is a feature of CloudWatch and VPC Flow Logs. Artifact is a compliance document service.",
+      "Application deployment: This is a feature of Elastic Beanstalk and CodeDeploy. Artifact is a compliance document delivery service.",
+      "Database management: This is a feature of RDS and DynamoDB. Artifact provides access to audit reports.",
+      "Access to compliance reports: ✓ Correct. AWS Artifact allows you to download compliance reports such as SOC, PCI, and ISO certifications, supporting audits and regulatory requirements."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/artifact/latest/ug/what-is-aws-artifact.html", title: "AWS Artifact とは" }
+      { url: "https://docs.aws.amazon.com/artifact/latest/ug/what-is-aws-artifact.html", title: "What is AWS Artifact" }
     ]
   },
   {
     id: 33,
-    question: "Amazon Athenaの主な特徴はどれですか?",
+    question: "What is the primary characteristic of Amazon Athena?",
     options: [
-      "NoSQLデータベース",
-      "データウェアハウス",
-      "リアルタイムストリーミング",
-      "S3データに対するサーバーレスクエリサービス"
+      "NoSQL database",
+      "Data warehouse",
+      "Real-time streaming",
+      "Serverless query service for data in S3"
     ],
     correctAnswer: 3,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon Athenaは、標準SQLを使用してAmazon S3内のデータを直接分析できるサーバーレスのインタラクティブクエリサービスです。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon Athena is a serverless interactive query service that lets you analyze data stored directly in Amazon S3 using standard SQL.",
     optionExplanations: [
-      "NoSQLデータベース: DynamoDBの特徴です。AthenaはS3データに対するSQLクエリサービスです。",
-      "データウェアハウス: Redshiftの特徴です。AthenaはS3上のデータを直接クエリします。",
-      "リアルタイムストリーミング: Kinesisの特徴です。Athenaはバッチクエリに適しています。",
-      "S3データに対するサーバーレスクエリサービス: ✓ 正解。Athenaは、インフラの管理不要で、S3に保存されたデータに対して標準SQLクエリを実行できます。使用したクエリに対してのみ課金されます。"
+      "NoSQL database: This describes DynamoDB. Athena is an SQL query service for data in S3.",
+      "Data warehouse: This describes Redshift. Athena queries data directly in S3.",
+      "Real-time streaming: This describes Kinesis. Athena is suited for batch queries.",
+      "Serverless query service for data in S3: ✓ Correct. Athena requires no infrastructure management and lets you run standard SQL queries against data stored in S3. You are charged only for the queries you run."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/athena/latest/ug/what-is.html", title: "Amazon Athena とは" }
+      { url: "https://docs.aws.amazon.com/athena/latest/ug/what-is.html", title: "What is Amazon Athena" }
     ]
   },
   {
     id: 34,
-    question: "AWS Budgetsの主な機能は何ですか?",
+    question: "What is the primary function of AWS Budgets?",
     options: [
-      "リソースの監視",
-      "ネットワークトラフィックの分析",
-      "データベースのバックアップ",
-      "コスト予算の設定とアラート"
+      "Resource monitoring",
+      "Analyzing network traffic",
+      "Database backup",
+      "Setting cost budgets and alerts"
     ],
     correctAnswer: 3,
-    category: "請求・料金・サポート",
-    explanation: "AWS Budgetsは、カスタムコスト予算と使用量予算を設定し、予算を超えた場合にアラートを受け取ることができます。",
+    category: "Billing, Pricing, and Support",
+    explanation: "AWS Budgets lets you set custom cost and usage budgets and receive alerts when your spending exceeds the budget threshold.",
     optionExplanations: [
-      "リソースの監視: CloudWatchの機能です。Budgetsはコスト管理に特化しています。",
-      "ネットワークトラフィックの分析: VPC Flow LogsやCloudWatchの機能です。Budgetsはコスト管理サービスです。",
-      "データベースのバックアップ: RDSやAWS Backupの機能です。Budgetsは予算管理ツールです。",
-      "コスト予算の設定とアラート: ✓ 正解。Budgetsは、月次、四半期、年次の予算を設定し、実際のコストや予測コストが予算を超えた場合にSNS経由でアラートを送信します。"
+      "Resource monitoring: This is a feature of CloudWatch. Budgets is dedicated to cost management.",
+      "Analyzing network traffic: This is a feature of VPC Flow Logs and CloudWatch. Budgets is a cost management service.",
+      "Database backup: This is a feature of RDS and AWS Backup. Budgets is a budget management tool.",
+      "Setting cost budgets and alerts: ✓ Correct. Budgets lets you set monthly, quarterly, or annual budgets and sends alerts via SNS when actual or forecasted costs exceed the threshold."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/cost-management/latest/userguide/budgets-managing-costs.html", title: "AWS Budgets" }
+      { url: "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html", title: "AWS Budgets" }
     ]
   },
   {
     id: 35,
-    question: "Amazon Cognitoの主な用途は何ですか?",
+    question: "What is the primary use of Amazon Cognito?",
     options: [
-      "データベース管理",
-      "コンテンツ配信",
-      "ユーザー認証とアクセス制御",
-      "ネットワーク監視"
+      "Database management",
+      "Content delivery",
+      "User authentication and access control",
+      "Network monitoring"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon Cognitoは、Webおよびモバイルアプリケーションにユーザーサインアップ、サインイン、アクセス制御機能を追加できるサービスです。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon Cognito is a service that adds user sign-up, sign-in, and access control capabilities to web and mobile applications.",
     optionExplanations: [
-      "データベース管理: RDSやDynamoDBの機能です。Cognitoは認証サービスです。",
-      "コンテンツ配信: CloudFrontの機能です。Cognitoはユーザー管理サービスです。",
-      "ユーザー認証とアクセス制御: ✓ 正解。Cognitoは、ユーザープール（認証）とIDプール（認可）を提供し、ソーシャルIDプロバイダー（Google、Facebookなど）との統合も可能です。",
-      "ネットワーク監視: CloudWatchやVPC Flow Logsの機能です。Cognitoは認証・認可サービスです。"
+      "Database management: This is a feature of RDS and DynamoDB. Cognito is an authentication service.",
+      "Content delivery: This is a feature of CloudFront. Cognito is a user management service.",
+      "User authentication and access control: ✓ Correct. Cognito provides user pools (authentication) and identity pools (authorization), and supports integration with social identity providers such as Google and Facebook.",
+      "Network monitoring: This is a feature of CloudWatch and VPC Flow Logs. Cognito is an authentication and authorization service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/cognito/latest/developerguide/what-is-amazon-cognito.html", title: "Amazon Cognito とは" }
+      { url: "https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html", title: "What is Amazon Cognito" }
     ]
   },
   {
     id: 36,
-    question: "AWS Global Acceleratorの主な利点はどれですか?",
+    question: "What is the primary benefit of AWS Global Accelerator?",
     options: [
-      "グローバルネットワークを使用したアプリケーションの可用性とパフォーマンス向上",
-      "データベースのレプリケーション",
-      "サーバーレスコンピューティング",
-      "データのアーカイブ"
+      "Improved application availability and performance using the global network",
+      "Database replication",
+      "Serverless computing",
+      "Data archiving"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "AWS Global Acceleratorは、AWSのグローバルネットワークを使用して、アプリケーションの可用性とパフォーマンスを向上させます。",
+    category: "Cloud Technology and Services",
+    explanation: "AWS Global Accelerator uses the AWS global network to improve the availability and performance of applications.",
     optionExplanations: [
-      "グローバルネットワークを使用したアプリケーションの可用性とパフォーマンス向上: ✓ 正解。Global Acceleratorは、静的なIPアドレスを提供し、AWSのグローバルネットワークを経由してトラフィックをルーティングし、レイテンシーを削減します。",
-      "データベースのレプリケーション: RDSやDynamoDB Global Tablesの機能です。Global Acceleratorはネットワーク最適化サービスです。",
-      "サーバーレスコンピューティング: Lambdaの特徴です。Global Acceleratorはネットワークサービスです。",
-      "データのアーカイブ: S3 GlacierやS3 Glacier Deep Archiveの機能です。Global Acceleratorはトラフィック管理サービスです。"
+      "Improved application availability and performance using the global network: ✓ Correct. Global Accelerator provides static IP addresses and routes traffic through the AWS global network, reducing latency.",
+      "Database replication: This is a feature of RDS and DynamoDB Global Tables. Global Accelerator is a network optimization service.",
+      "Serverless computing: This describes AWS Lambda. Global Accelerator is a network service.",
+      "Data archiving: This is a feature of S3 Glacier and S3 Glacier Deep Archive. Global Accelerator is a traffic management service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/global-accelerator/latest/dg/what-is-global-accelerator.html", title: "AWS Global Accelerator とは" }
+      { url: "https://docs.aws.amazon.com/global-accelerator/latest/dg/what-is-global-accelerator.html", title: "What is AWS Global Accelerator" }
     ]
   },
   {
     id: 37,
-    question: "Amazon Kinesis Data Streamsの主な用途は何ですか?",
+    question: "What is the primary use of Amazon Kinesis Data Streams?",
     options: [
-      "バッチデータ処理",
-      "オブジェクトストレージ",
-      "データウェアハウス",
-      "リアルタイムデータストリーミング"
+      "Batch data processing",
+      "Object storage",
+      "Data warehouse",
+      "Real-time data streaming"
     ],
     correctAnswer: 3,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon Kinesis Data Streamsは、リアルタイムでストリーミングデータを収集、処理、分析するためのサービスです。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon Kinesis Data Streams is a service for collecting, processing, and analyzing streaming data in real time.",
     optionExplanations: [
-      "バッチデータ処理: EMRやGlueの機能です。Kinesisはリアルタイムストリーミングに特化しています。",
-      "オブジェクトストレージ: S3の機能です。Kinesisはリアルタイムデータストリームの処理サービスです。",
-      "データウェアハウス: Redshiftの機能です。Kinesisはストリーミングデータの処理に使用されます。",
-      "リアルタイムデータストリーミング: ✓ 正解。Kinesis Data Streamsは、ログ、IoTデータ、クリックストリームなどのストリーミングデータをリアルタイムで取り込み、処理できます。"
+      "Batch data processing: This is a feature of EMR and Glue. Kinesis is dedicated to real-time streaming.",
+      "Object storage: This is a feature of S3. Kinesis is a service for processing real-time data streams.",
+      "Data warehouse: This is a feature of Redshift. Kinesis is used for processing streaming data.",
+      "Real-time data streaming: ✓ Correct. Kinesis Data Streams can ingest and process streaming data such as logs, IoT data, and clickstreams in real time."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/streams/latest/dev/introduction.html", title: "Amazon Kinesis Data Streams とは" }
+      { url: "https://docs.aws.amazon.com/streams/latest/dev/introduction.html", title: "What is Amazon Kinesis Data Streams" }
     ]
   },
   {
     id: 38,
-    question: "AWS Personal Health Dashboardの主な機能は何ですか?",
+    question: "What is the primary function of AWS Personal Health Dashboard?",
     options: [
-      "AWSサービスの健全性とイベントの通知",
-      "コスト分析",
-      "データベースのパフォーマンス監視",
-      "ネットワークトラフィックの分析"
+      "Notifications about AWS service health and events",
+      "Cost analysis",
+      "Database performance monitoring",
+      "Network traffic analysis"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "AWS Personal Health Dashboardは、AWSサービスのイベントや計画的なメンテナンスについて、パーソナライズされた情報とアラートを提供します。",
+    category: "Cloud Technology and Services",
+    explanation: "AWS Personal Health Dashboard provides personalized information and alerts about AWS service events and planned maintenance activities.",
     optionExplanations: [
-      "AWSサービスの健全性とイベントの通知: ✓ 正解。Personal Health Dashboardは、使用しているAWSリソースに影響を与える可能性のあるイベント（障害、メンテナンスなど）について、プロアクティブな通知を提供します。",
-      "コスト分析: Cost ExplorerやBudgetsの機能です。Personal Health Dashboardはサービス健全性の通知サービスです。",
-      "データベースのパフォーマンス監視: RDS Performance InsightsやCloudWatchの機能です。Personal Health Dashboardはサービスイベントの通知に特化しています。",
-      "ネットワークトラフィックの分析: VPC Flow LogsやCloudWatchの機能です。Personal Health Dashboardはサービス健全性の可視化ツールです。"
+      "Notifications about AWS service health and events: ✓ Correct. Personal Health Dashboard provides proactive notifications about events (outages, maintenance, etc.) that may affect your AWS resources.",
+      "Cost analysis: This is a feature of Cost Explorer and Budgets. Personal Health Dashboard is a service health notification service.",
+      "Database performance monitoring: This is a feature of RDS Performance Insights and CloudWatch. Personal Health Dashboard is dedicated to service event notifications.",
+      "Network traffic analysis: This is a feature of VPC Flow Logs and CloudWatch. Personal Health Dashboard is a service health visibility tool."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/health/latest/ug/what-is-aws-health.html", title: "AWS Health とは" }
+      { url: "https://docs.aws.amazon.com/health/latest/ug/what-is-aws-health.html", title: "What is AWS Health" }
     ]
   },
   {
     id: 39,
-    question: "Amazon EFSの主な特徴はどれですか?",
+    question: "What is the primary characteristic of Amazon EFS?",
     options: [
-      "ブロックストレージ",
-      "ファイルストレージ",
-      "オブジェクトストレージ",
-      "データウェアハウス"
+      "Block storage",
+      "File storage",
+      "Object storage",
+      "Data warehouse"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon EFS（Elastic File System）は、複数のEC2インスタンスから同時にアクセスできる、フルマネージドなファイルストレージサービスです。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon EFS (Elastic File System) is a fully managed file storage service that can be accessed simultaneously by multiple EC2 instances.",
     optionExplanations: [
-      "ブロックストレージ: EBSの特徴です。EFSはファイルシステムを提供します。",
-      "ファイルストレージ: ✓ 正解。EFSは、NFSv4プロトコルを使用し、複数のEC2インスタンスから同時にマウントできる共有ファイルシステムを提供します。自動的にスケールします。",
-      "オブジェクトストレージ: S3の特徴です。EFSはNFSプロトコルを使用するファイルストレージです。",
-      "データウェアハウス: Redshiftの特徴です。EFSはファイル共有サービスです。"
+      "Block storage: This describes EBS. EFS provides a file system.",
+      "File storage: ✓ Correct. EFS uses the NFSv4 protocol and provides a shared file system that can be mounted concurrently by multiple EC2 instances. It scales automatically.",
+      "Object storage: This describes S3. EFS is file storage using the NFS protocol.",
+      "Data warehouse: This describes Redshift. EFS is a file sharing service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/efs/latest/ug/whatisefs.html", title: "Amazon EFS とは" }
+      { url: "https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html", title: "What is Amazon EFS" }
     ]
   },
   {
     id: 40,
-    question: "AWS Service Catalogの主な用途は何ですか?",
+    question: "What is the primary use of AWS Service Catalog?",
     options: [
-      "コスト管理",
-      "ネットワーク監視",
-      "データベースのバックアップ",
-      "承認されたITサービスのカタログ管理"
+      "Cost management",
+      "Network monitoring",
+      "Database backup",
+      "Managing a catalog of approved IT services"
     ],
     correctAnswer: 3,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "AWS Service Catalogは、組織が承認したITサービスのカタログを作成および管理し、ガバナンスとコンプライアンスを維持しながらセルフサービスを実現します。",
+    category: "Cloud Technology and Services",
+    explanation: "AWS Service Catalog allows organizations to create and manage catalogs of approved IT services, enabling self-service while maintaining governance and compliance.",
     optionExplanations: [
-      "コスト管理: Cost ExplorerやBudgetsの機能です。Service Catalogはサービスカタログ管理ツールです。",
-      "ネットワーク監視: CloudWatchやVPC Flow Logsの機能です。Service Catalogはガバナンスツールです。",
-      "データベースのバックアップ: RDSやAWS Backupの機能です。Service Catalogはサービスプロビジョニングの管理ツールです。",
-      "承認されたITサービスのカタログ管理: ✓ 正解。Service Catalogは、CloudFormationテンプレートを製品として公開し、エンドユーザーが承認されたリソースのみをデプロイできるようにします。"
+      "Cost management: This is a feature of Cost Explorer and Budgets. Service Catalog is a service catalog management tool.",
+      "Network monitoring: This is a feature of CloudWatch and VPC Flow Logs. Service Catalog is a governance tool.",
+      "Database backup: This is a feature of RDS and AWS Backup. Service Catalog is a service provisioning management tool.",
+      "Managing a catalog of approved IT services: ✓ Correct. Service Catalog publishes CloudFormation templates as products, allowing end users to deploy only approved resources."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/servicecatalog/latest/adminguide/introduction.html", title: "AWS Service Catalog とは" }
+      { url: "https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html", title: "What is AWS Service Catalog" }
     ]
   },
   {
     id: 41,
-    question: "Amazon CloudFrontの主な用途は何ですか?",
+    question: "What is the primary use of Amazon CloudFront?",
     options: [
-      "データベースのレプリケーション",
-      "サーバーレスコンピューティング",
-      "コンテンツ配信ネットワーク(CDN)",
-      "ブロックストレージ"
+      "Database replication",
+      "Serverless computing",
+      "Content Delivery Network (CDN)",
+      "Block storage"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon CloudFrontは、AWSのグローバルなエッジロケーションネットワークを使用して、低レイテンシーでコンテンツを配信するCDNサービスです。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon CloudFront is a CDN service that delivers content with low latency using AWS's global network of edge locations.",
     optionExplanations: [
-      "データベースのレプリケーション: RDSやDynamoDB Global Tablesの機能です。CloudFrontはコンテンツ配信サービスです。",
-      "サーバーレスコンピューティング: AWS Lambdaの機能です。CloudFrontはコンテンツ配信に特化しています。",
-      "コンテンツ配信ネットワーク(CDN): ✓ 正解。CloudFrontは、世界中のエッジロケーションを通じて、静的・動的コンテンツを高速に配信します。",
-      "ブロックストレージ: Amazon EBSの機能です。CloudFrontはコンテンツキャッシングと配信を行います。"
+      "Database replication: This is a feature of RDS and DynamoDB Global Tables. CloudFront is a content delivery service.",
+      "Serverless computing: This is a feature of AWS Lambda. CloudFront is dedicated to content delivery.",
+      "Content Delivery Network (CDN): ✓ Correct. CloudFront delivers static and dynamic content at high speed through edge locations around the world.",
+      "Block storage: This is a feature of Amazon EBS. CloudFront performs content caching and delivery."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonCloudFront/latest/DeveloperGuide/Introduction.html", title: "Amazon CloudFront とは" }
+      { url: "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/Introduction.html", title: "What is Amazon CloudFront" }
     ]
   },
   {
     id: 42,
-    question: "AWS Organizationsの主な利点はどれですか?",
+    question: "What is the primary benefit of AWS Organizations?",
     options: [
-      "データベースのバックアップ自動化",
-      "複数のAWSアカウントを一元管理",
-      "アプリケーションのデプロイ",
-      "ネットワークトラフィックの監視"
+      "Automated database backup",
+      "Centralized management of multiple AWS accounts",
+      "Application deployment",
+      "Monitoring network traffic"
     ],
     correctAnswer: 1,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Organizationsは、複数のAWSアカウントを組織単位で一元管理し、請求の統合、ポリシーの適用、リソースの共有を可能にします。",
+    category: "Security and Compliance",
+    explanation: "AWS Organizations provides centralized management of multiple AWS accounts by organizational unit, enabling consolidated billing, policy enforcement, and resource sharing.",
     optionExplanations: [
-      "データベースのバックアップ自動化: AWS BackupやRDSの機能です。Organizationsはアカウント管理ツールです。",
-      "複数のAWSアカウントを一元管理: ✓ 正解。Organizationsは、複数アカウントの階層的な管理、統合請求、Service Control Policies(SCP)によるガバナンスを提供します。",
-      "アプリケーションのデプロイ: CodeDeployやElastic Beanstalkの機能です。Organizationsはアカウント構造の管理に焦点を当てています。",
-      "ネットワークトラフィックの監視: VPC Flow LogsやCloudWatchの機能です。Organizationsは組織レベルのガバナンスツールです。"
+      "Automated database backup: This is a feature of AWS Backup and RDS. Organizations is an account management tool.",
+      "Centralized management of multiple AWS accounts: ✓ Correct. Organizations provides hierarchical management of multiple accounts, consolidated billing, and governance through Service Control Policies (SCPs).",
+      "Application deployment: This is a feature of CodeDeploy and Elastic Beanstalk. Organizations focuses on managing account structure.",
+      "Monitoring network traffic: This is a feature of VPC Flow Logs and CloudWatch. Organizations is an organization-level governance tool."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/organizations/latest/userguide/orgs_introduction.html", title: "AWS Organizations とは" }
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html", title: "What is AWS Organizations" }
     ]
   },
   {
     id: 43,
-    question: "Amazon Route 53の主な機能はどれですか?",
+    question: "What is the primary function of Amazon Route 53?",
     options: [
-      "コンテンツ配信",
-      "データベース管理",
-      "DNSウェブサービス",
-      "ファイルストレージ"
+      "Content delivery",
+      "Database management",
+      "DNS web service",
+      "File storage"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon Route 53は、可用性と拡張性に優れたDNSウェブサービスで、ドメイン名をIPアドレスに変換し、トラフィックルーティングを管理します。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon Route 53 is a highly available and scalable DNS web service that translates domain names into IP addresses and manages traffic routing.",
     optionExplanations: [
-      "コンテンツ配信: CloudFrontの機能です。Route 53はDNSサービスですが、CloudFrontと連携できます。",
-      "データベース管理: RDSやDynamoDBの機能です。Route 53はDNSとトラフィックルーティングに特化しています。",
-      "DNSウェブサービス: ✓ 正解。Route 53は、ドメイン登録、DNSルーティング、ヘルスチェック機能を提供し、高可用性のトラフィック管理を実現します。",
-      "ファイルストレージ: S3やEFSの機能です。Route 53はネットワークルーティングサービスです。"
+      "Content delivery: This is a feature of CloudFront. Route 53 is a DNS service, though it can work with CloudFront.",
+      "Database management: This is a feature of RDS and DynamoDB. Route 53 is dedicated to DNS and traffic routing.",
+      "DNS web service: ✓ Correct. Route 53 provides domain registration, DNS routing, and health checking, enabling highly available traffic management.",
+      "File storage: This is a feature of S3 and EFS. Route 53 is a network routing service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/Route53/latest/DeveloperGuide/Welcome.html", title: "Amazon Route 53 とは" }
+      { url: "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/Welcome.html", title: "What is Amazon Route 53" }
     ]
   },
   {
     id: 44,
-    question: "AWS Trusted Advisorが提供する推奨事項のカテゴリに含まれないものはどれですか?",
+    question: "Which of the following is NOT a recommendation category provided by AWS Trusted Advisor?",
     options: [
-      "コスト最適化",
-      "セキュリティ",
-      "アプリケーション開発",
-      "パフォーマンス"
+      "Cost Optimization",
+      "Security",
+      "Application Development",
+      "Performance"
     ],
     correctAnswer: 2,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Trusted Advisorは、コスト最適化、セキュリティ、耐障害性、パフォーマンス、サービス制限の5つのカテゴリで推奨事項を提供します。",
+    category: "Security and Compliance",
+    explanation: "AWS Trusted Advisor provides recommendations across five categories: Cost Optimization, Security, Fault Tolerance, Performance, and Service Limits.",
     optionExplanations: [
-      "コスト最適化: Trusted Advisorの主要カテゴリの1つです。未使用リソースや最適化の機会を特定します。",
-      "セキュリティ: Trusted Advisorの主要カテゴリの1つです。セキュリティギャップや設定の問題を検出します。",
-      "アプリケーション開発: ✓ 正解。これはTrusted Advisorのカテゴリではありません。Trusted Advisorは、インフラストラクチャの最適化に焦点を当てています。",
-      "パフォーマンス: Trusted Advisorの主要カテゴリの1つです。リソースのパフォーマンス改善の機会を提案します。"
+      "Cost Optimization: This is one of the main Trusted Advisor categories. It identifies unused resources and optimization opportunities.",
+      "Security: This is one of the main Trusted Advisor categories. It detects security gaps and configuration issues.",
+      "Application Development: ✓ Correct. This is NOT a Trusted Advisor category. Trusted Advisor focuses on infrastructure optimization.",
+      "Performance: This is one of the main Trusted Advisor categories. It suggests opportunities to improve resource performance."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/awssupport/latest/user/trusted-advisor.html", title: "AWS Trusted Advisor" }
+      { url: "https://docs.aws.amazon.com/awssupport/latest/user/trusted-advisor.html", title: "AWS Trusted Advisor" }
     ]
   },
   {
     id: 45,
-    question: "Amazon Glacierの主な用途は何ですか?",
+    question: "What is the primary use of Amazon Glacier?",
     options: [
-      "リアルタイムデータ処理",
-      "コンテンツ配信",
-      "高速データベース",
-      "長期アーカイブストレージ"
+      "Real-time data processing",
+      "Content delivery",
+      "High-speed database",
+      "Long-term archival storage"
     ],
     correctAnswer: 3,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon Glacier(現在はS3 Glacier)は、低コストで長期的なデータアーカイブとバックアップに最適化されたストレージサービスです。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon Glacier (now S3 Glacier) is a low-cost storage service optimized for long-term data archiving and backup.",
     optionExplanations: [
-      "リアルタイムデータ処理: KinesisやLambdaの用途です。Glacierは低頻度アクセスのアーカイブ向けです。",
-      "コンテンツ配信: CloudFrontの用途です。Glacierはアーカイブストレージに特化しています。",
-      "高速データベース: DynamoDBやRDSの用途です。Glacierは即座のアクセスを必要としないデータ向けです。",
-      "長期アーカイブストレージ: ✓ 正解。S3 Glacierは、めったにアクセスしないデータの長期保存に最適で、取り出しに数分から数時間かかりますが、非常に低コストです。"
+      "Real-time data processing: This describes Kinesis and Lambda. Glacier is designed for infrequently accessed archives.",
+      "Content delivery: This describes CloudFront. Glacier is dedicated to archival storage.",
+      "High-speed database: This describes DynamoDB and RDS. Glacier is for data that does not require immediate access.",
+      "Long-term archival storage: ✓ Correct. S3 Glacier is ideal for long-term retention of rarely accessed data. Retrieval takes minutes to hours, but costs are very low."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/amazonglacier/latest/dev/introduction.html", title: "Amazon S3 Glacier とは" }
+      { url: "https://docs.aws.amazon.com/amazonglacier/latest/dev/introduction.html", title: "What is Amazon S3 Glacier" }
     ]
   },
   {
     id: 46,
-    question: "AWS CloudTrailの主な機能は何ですか?",
+    question: "What is the primary function of AWS CloudTrail?",
     options: [
-      "APIコールの記録と監査",
-      "コスト管理",
-      "データベースのバックアップ",
-      "負荷分散"
+      "Recording and auditing API calls",
+      "Cost management",
+      "Database backup",
+      "Load balancing"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "AWS CloudTrailは、AWSアカウント内のすべてのAPI呼び出しを記録し、ガバナンス、コンプライアンス、運用監査、リスク監査を支援します。",
+    category: "Cloud Technology and Services",
+    explanation: "AWS CloudTrail records all API calls made within an AWS account, supporting governance, compliance, operational auditing, and risk auditing.",
     optionExplanations: [
-      "APIコールの記録と監査: ✓ 正解。CloudTrailは、誰が、いつ、どのAWSリソースに対して何を行ったかを記録し、セキュリティ分析やトラブルシューティングに使用できます。",
-      "コスト管理: Cost ExplorerやBudgetsの機能です。CloudTrailはアクティビティログサービスです。",
-      "データベースのバックアップ: RDSやAWS Backupの機能です。CloudTrailはアクティビティの追跡に特化しています。",
-      "負荷分散: ELBの機能です。CloudTrailは監査ログサービスです。"
+      "Recording and auditing API calls: ✓ Correct. CloudTrail records who made an API call, when, and on which AWS resource, enabling security analysis and troubleshooting.",
+      "Cost management: This is a feature of Cost Explorer and Budgets. CloudTrail is an activity logging service.",
+      "Database backup: This is a feature of RDS and AWS Backup. CloudTrail is dedicated to activity tracking.",
+      "Load balancing: This is a feature of ELB. CloudTrail is an audit log service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/awscloudtrail/latest/userguide/cloudtrail-user-guide.html", title: "AWS CloudTrail とは" }
+      { url: "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html", title: "What is AWS CloudTrail" }
     ]
   },
   {
     id: 47,
-    question: "Amazon VPCのサブネットで、インターネットからアクセス可能なリソースを配置すべきなのはどれですか?",
+    question: "In Amazon VPC subnets, where should you place resources that need to be accessible from the internet?",
     options: [
-      "プライベートサブネット",
-      "パブリックサブネット",
-      "データベースサブネット",
-      "管理サブネット"
+      "Private subnet",
+      "Public subnet",
+      "Database subnet",
+      "Management subnet"
     ],
     correctAnswer: 1,
-    category: "クラウドの概念",
-    explanation: "パブリックサブネットは、インターネットゲートウェイへのルートを持ち、インターネットから直接アクセス可能なリソース(Webサーバーなど)を配置します。",
+    category: "Cloud Concepts",
+    explanation: "A public subnet has a route to an Internet Gateway and is where you place resources (such as web servers) that need to be directly accessible from the internet.",
     optionExplanations: [
-      "プライベートサブネット: インターネットゲートウェイへの直接ルートがなく、NATゲートウェイ経由でのみ外部通信が可能です。データベースやアプリケーションサーバーに適しています。",
-      "パブリックサブネット: ✓ 正解。インターネットゲートウェイへのルートを持ち、パブリックIPアドレスを持つリソースがインターネットと直接通信できます。",
-      "データベースサブネット: 一般的にプライベートサブネットに配置され、直接インターネットアクセスは避けるべきです。",
-      "管理サブネット: セキュリティのため、通常はプライベートサブネットに配置し、VPNやDirect Connect経由でアクセスします。"
+      "Private subnet: Has no direct route to an Internet Gateway; outbound internet communication is only possible via a NAT Gateway. Suitable for databases and application servers.",
+      "Public subnet: ✓ Correct. Has a route to an Internet Gateway, allowing resources with public IP addresses to communicate directly with the internet.",
+      "Database subnet: Databases are typically placed in private subnets and should not be directly accessible from the internet.",
+      "Management subnet: For security reasons, management resources are typically placed in private subnets and accessed via VPN or Direct Connect."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/vpc/latest/userguide/configure-subnets.html", title: "VPC のサブネット" }
+      { url: "https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html", title: "Subnets for your VPC" }
     ]
   },
   {
     id: 48,
-    question: "AWS Configの主な用途は何ですか?",
+    question: "What is the primary use of AWS Config?",
     options: [
-      "アプリケーションのデプロイ",
-      "データベースの管理",
-      "リソース設定の記録と評価",
-      "ネットワークの負荷分散"
+      "Application deployment",
+      "Database management",
+      "Recording and evaluating resource configurations",
+      "Network load balancing"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "AWS Configは、AWSリソースの設定を継続的に記録・評価し、コンプライアンス監査、セキュリティ分析、変更管理を支援します。",
+    category: "Cloud Technology and Services",
+    explanation: "AWS Config continuously records and evaluates AWS resource configurations, supporting compliance auditing, security analysis, and change management.",
     optionExplanations: [
-      "アプリケーションのデプロイ: CodeDeployやElastic Beanstalkの機能です。Configは設定管理ツールです。",
-      "データベースの管理: RDSやDynamoDBの機能です。Configはリソース設定の追跡に特化しています。",
-      "リソース設定の記録と評価: ✓ 正解。Configは、リソースの設定履歴を記録し、Config Rulesを使用して望ましい設定との適合性を評価します。",
-      "ネットワークの負荷分散: ELBの機能です。Configはコンプライアンスと設定管理のサービスです。"
+      "Application deployment: This is a feature of CodeDeploy and Elastic Beanstalk. Config is a configuration management tool.",
+      "Database management: This is a feature of RDS and DynamoDB. Config is dedicated to tracking resource configurations.",
+      "Recording and evaluating resource configurations: ✓ Correct. Config records the configuration history of resources and uses Config Rules to evaluate conformance against desired configurations.",
+      "Network load balancing: This is a feature of ELB. Config is a compliance and configuration management service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/config/latest/developerguide/WhatIsConfig.html", title: "AWS Config とは" }
+      { url: "https://docs.aws.amazon.com/config/latest/developerguide/WhatIsConfig.html", title: "What is AWS Config" }
     ]
   },
   {
     id: 49,
-    question: "Amazon SNS(Simple Notification Service)の主な機能は何ですか?",
+    question: "What is the primary function of Amazon SNS (Simple Notification Service)?",
     options: [
-      "データベースのレプリケーション",
-      "Pub/Subメッセージング",
-      "ファイルストレージ",
-      "コンテンツ配信"
+      "Database replication",
+      "Pub/Sub messaging",
+      "File storage",
+      "Content delivery"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon SNSは、アプリケーション間(A2A)およびアプリケーションとユーザー間(A2P)の通信のための、フルマネージド型のPub/Subメッセージングサービスです。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon SNS is a fully managed Pub/Sub messaging service for application-to-application (A2A) and application-to-person (A2P) communication.",
     optionExplanations: [
-      "データベースのレプリケーション: RDSやDynamoDBの機能です。SNSはメッセージング配信サービスです。",
-      "Pub/Subメッセージング: ✓ 正解。SNSは、トピックを通じて複数のサブスクライバー(Lambda、SQS、HTTP、Email、SMSなど)にメッセージを配信します。",
-      "ファイルストレージ: S3やEFSの機能です。SNSは通知とメッセージ配信に特化しています。",
-      "コンテンツ配信: CloudFrontの機能です。SNSはイベント駆動型の通知サービスです。"
+      "Database replication: This is a feature of RDS and DynamoDB. SNS is a message delivery service.",
+      "Pub/Sub messaging: ✓ Correct. SNS delivers messages through topics to multiple subscribers (Lambda, SQS, HTTP, Email, SMS, etc.).",
+      "File storage: This is a feature of S3 and EFS. SNS is dedicated to notifications and message delivery.",
+      "Content delivery: This is a feature of CloudFront. SNS is an event-driven notification service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sns/latest/dg/welcome.html", title: "Amazon SNS とは" }
+      { url: "https://docs.aws.amazon.com/sns/latest/dg/welcome.html", title: "What is Amazon SNS" }
     ]
   },
   {
     id: 50,
-    question: "AWS Systems Managerの主な機能に含まれないものはどれですか?",
+    question: "Which of the following is NOT a primary feature of AWS Systems Manager?",
     options: [
-      "パッチ管理",
-      "パラメータストア",
-      "データベースのクエリ最適化",
+      "Patch management",
+      "Parameter Store",
+      "Database query optimization",
       "Run Command"
     ],
     correctAnswer: 2,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Systems Managerは、AWSリソースの運用管理を自動化するサービスで、パッチ管理、設定管理、コマンド実行などの機能を提供します。",
+    category: "Security and Compliance",
+    explanation: "AWS Systems Manager automates operational management of AWS resources, providing features such as patch management, configuration management, and command execution.",
     optionExplanations: [
-      "パッチ管理: Systems Managerの主要機能の1つです。Patch Managerを使用して、EC2インスタンスやオンプレミスサーバーのパッチ適用を自動化できます。",
-      "パラメータストア: Systems Managerの主要機能の1つです。設定データや機密情報を安全に保存・管理できます。",
-      "データベースのクエリ最適化: ✓ 正解。これはRDS Performance InsightsやDatabase Migration Serviceの機能です。Systems Managerはインフラストラクチャ管理に焦点を当てています。",
-      "Run Command: Systems Managerの主要機能の1つです。複数のインスタンスに対してコマンドをリモート実行できます。"
+      "Patch management: This is one of the main features of Systems Manager. Patch Manager automates the patching of EC2 instances and on-premises servers.",
+      "Parameter Store: This is one of the main features of Systems Manager. It provides secure storage and management of configuration data and secrets.",
+      "Database query optimization: ✓ Correct. This is a feature of RDS Performance Insights and Database Migration Service. Systems Manager focuses on infrastructure management.",
+      "Run Command: This is one of the main features of Systems Manager. It allows remote execution of commands across multiple instances."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/systems-manager/latest/userguide/what-is-systems-manager.html", title: "AWS Systems Manager とは" }
+      { url: "https://docs.aws.amazon.com/systems-manager/latest/userguide/what-is-systems-manager.html", title: "What is AWS Systems Manager" }
     ]
   },
   {
     id: 51,
-    question: "AWS Direct Connectの主な利点は何ですか?",
+    question: "What is the primary benefit of AWS Direct Connect?",
     options: [
-      "インターネット経由の暗号化通信",
-      "データベースのバックアップ",
-      "サーバーレスアプリケーションの実行",
-      "専用ネットワーク接続による安定した帯域幅"
+      "Encrypted communication over the internet",
+      "Database backup",
+      "Running serverless applications",
+      "Stable bandwidth via a dedicated network connection"
     ],
     correctAnswer: 3,
-    category: "クラウドの概念",
-    explanation: "AWS Direct Connectは、オンプレミス環境とAWSを専用ネットワーク接続で結び、インターネットを経由せずに安定した帯域幅と低レイテンシーを実現します。",
+    category: "Cloud Concepts",
+    explanation: "AWS Direct Connect links an on-premises environment to AWS over a dedicated network connection, delivering stable bandwidth and low latency without going through the internet.",
     optionExplanations: [
-      "インターネット経由の暗号化通信: VPNの特徴です。Direct Connectは専用線接続を提供します。",
-      "データベースのバックアップ: AWS BackupやRDSの機能です。Direct Connectは専用ネットワーク接続を提供します。",
-      "サーバーレスアプリケーションの実行: Lambdaの機能です。Direct Connectはネットワーク接続サービスです。",
-      "専用ネットワーク接続による安定した帯域幅: ✓ 正解。Direct Connectは、データセンターとAWSを専用線で接続し、一貫したネットワークパフォーマンスとセキュリティを提供します。"
+      "Encrypted communication over the internet: This describes VPN. Direct Connect provides a dedicated line connection.",
+      "Database backup: This is a feature of AWS Backup and RDS. Direct Connect provides a dedicated network connection.",
+      "Running serverless applications: This is a feature of Lambda. Direct Connect is a network connectivity service.",
+      "Stable bandwidth via a dedicated network connection: ✓ Correct. Direct Connect connects your data center to AWS over a dedicated line, providing consistent network performance and security."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/directconnect/latest/UserGuide/Welcome.html", title: "AWS Direct Connect とは" }
+      { url: "https://docs.aws.amazon.com/directconnect/latest/UserGuide/Welcome.html", title: "What is AWS Direct Connect" }
     ]
   },
   {
     id: 52,
-    question: "Amazon Kinesis Data Streamsの主な用途は何ですか?",
+    question: "What is the primary use of Amazon Kinesis Data Streams?",
     options: [
-      "静的ウェブサイトのホスティング",
-      "長期データアーカイブ",
-      "リアルタイムストリーミングデータの処理",
-      "DNSルーティング"
+      "Static website hosting",
+      "Long-term data archiving",
+      "Processing real-time streaming data",
+      "DNS routing"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon Kinesis Data Streamsは、リアルタイムでストリーミングデータを収集・処理するためのフルマネージドサービスです。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon Kinesis Data Streams is a fully managed service for collecting and processing streaming data in real time.",
     optionExplanations: [
-      "静的ウェブサイトのホスティング: S3やAmplifyの機能です。Kinesisはストリーミングデータ処理に特化しています。",
-      "長期データアーカイブ: S3 GlacierやS3 Glacier Deep Archiveの用途です。Kinesisはリアルタイム処理向けです。",
-      "リアルタイムストリーミングデータの処理: ✓ 正解。Kinesis Data Streamsは、ログ、IoTデータ、クリックストリームなどの大量のストリーミングデータをリアルタイムで取り込み、処理できます。",
-      "DNSルーティング: Route 53の機能です。Kinesisはデータストリーミングサービスです。"
+      "Static website hosting: This is a feature of S3 and Amplify. Kinesis is dedicated to streaming data processing.",
+      "Long-term data archiving: This describes S3 Glacier and S3 Glacier Deep Archive. Kinesis is designed for real-time processing.",
+      "Processing real-time streaming data: ✓ Correct. Kinesis Data Streams can ingest and process large volumes of streaming data such as logs, IoT data, and clickstreams in real time.",
+      "DNS routing: This is a feature of Route 53. Kinesis is a data streaming service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/streams/latest/dev/introduction.html", title: "Amazon Kinesis Data Streams とは" }
+      { url: "https://docs.aws.amazon.com/streams/latest/dev/introduction.html", title: "What is Amazon Kinesis Data Streams" }
     ]
   },
   {
     id: 53,
-    question: "AWS Certificate Manager (ACM)の主な機能は何ですか?",
+    question: "What is the primary function of AWS Certificate Manager (ACM)?",
     options: [
-      "データベースの暗号化",
-      "IAMユーザーの認証",
-      "SSL/TLS証明書の管理",
-      "ファイルの圧縮"
+      "Database encryption",
+      "IAM user authentication",
+      "Managing SSL/TLS certificates",
+      "File compression"
     ],
     correctAnswer: 2,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Certificate Managerは、SSL/TLS証明書のプロビジョニング、管理、デプロイを簡素化するマネージドサービスです。",
+    category: "Security and Compliance",
+    explanation: "AWS Certificate Manager is a managed service that simplifies the provisioning, management, and deployment of SSL/TLS certificates.",
     optionExplanations: [
-      "データベースの暗号化: RDSやKMSの機能です。ACMは証明書管理に特化しています。",
-      "IAMユーザーの認証: IAMやCognitoの機能です。ACMは証明書のライフサイクル管理を行います。",
-      "SSL/TLS証明書の管理: ✓ 正解。ACMは、パブリックおよびプライベート証明書を無料で作成・管理し、ELB、CloudFront、API Gatewayなどと統合できます。",
-      "ファイルの圧縮: アプリケーションレベルの機能です。ACMはSSL/TLS証明書サービスです。"
+      "Database encryption: This is a feature of RDS and KMS. ACM is dedicated to certificate management.",
+      "IAM user authentication: This is a feature of IAM and Cognito. ACM handles the certificate lifecycle.",
+      "Managing SSL/TLS certificates: ✓ Correct. ACM lets you create and manage public and private certificates at no cost, and integrates with ELB, CloudFront, API Gateway, and more.",
+      "File compression: This is an application-level feature. ACM is an SSL/TLS certificate service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/acm/latest/userguide/acm-overview.html", title: "AWS Certificate Manager とは" }
+      { url: "https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html", title: "What is AWS Certificate Manager" }
     ]
   },
   {
     id: 54,
-    question: "Amazon SQS(Simple Queue Service)のメッセージ保持期間のデフォルト値はどれですか?",
+    question: "What is the default message retention period for Amazon SQS (Simple Queue Service)?",
     options: [
-      "4日間",
-      "1時間",
-      "7日間",
-      "14日間"
+      "4 days",
+      "1 hour",
+      "7 days",
+      "14 days"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon SQSのメッセージ保持期間のデフォルトは4日間で、最小1分から最大14日間まで設定可能です。",
+    category: "Cloud Technology and Services",
+    explanation: "The default message retention period for Amazon SQS is 4 days. It can be configured from a minimum of 1 minute to a maximum of 14 days.",
     optionExplanations: [
-      "4日間: ✓ 正解。SQSのメッセージ保持期間のデフォルトは4日間(96時間)で、必要に応じて1分から14日間の範囲で調整できます。",
-      "1時間: デフォルトより短い期間です。SQSは最小1分から設定できますが、デフォルトは4日間です。",
-      "7日間: デフォルトより長い期間です。7日間に設定することは可能ですが、デフォルトではありません。",
-      "14日間: 最大保持期間ですが、デフォルトではありません。長期保存が必要な場合に設定します。"
+      "4 days: ✓ Correct. The default SQS message retention period is 4 days (96 hours). It can be adjusted anywhere from 1 minute to 14 days as needed.",
+      "1 hour: This is shorter than the default. While SQS can be set as low as 1 minute, the default is 4 days.",
+      "7 days: This is longer than the default. Setting 7 days is possible, but it is not the default.",
+      "14 days: This is the maximum retention period, but not the default. It is set when long-term message retention is required."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html", title: "Amazon SQS とは" }
+      { url: "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html", title: "What is Amazon SQS" }
     ]
   },
   {
     id: 55,
-    question: "AWS Shieldが保護するのは主にどの種類の攻撃ですか?",
+    question: "What type of attack does AWS Shield primarily protect against?",
     options: [
-      "SQLインジェクション",
-      "パスワード総当たり攻撃",
-      "クロスサイトスクリプティング",
-      "DDoS攻撃"
+      "SQL injection",
+      "Brute-force password attacks",
+      "Cross-site scripting",
+      "DDoS attacks"
     ],
     correctAnswer: 3,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Shieldは、DDoS(分散型サービス拒否)攻撃からAWSリソースを保護するマネージドサービスです。StandardとAdvancedの2つのティアがあります。",
+    category: "Security and Compliance",
+    explanation: "AWS Shield is a managed service that protects AWS resources from DDoS (Distributed Denial of Service) attacks. It is available in two tiers: Standard and Advanced.",
     optionExplanations: [
-      "SQLインジェクション: AWS WAFで保護できる攻撃です。Shieldは主にDDoS攻撃に対応します。",
-      "パスワード総当たり攻撃: WAFやCognitoで対策できます。ShieldはDDoS攻撃の緩和に特化しています。",
-      "クロスサイトスクリプティング: AWS WAFで保護できる攻撃です。Shieldはネットワーク層の攻撃に焦点を当てています。",
-      "DDoS攻撃: ✓ 正解。Shield Standardはすべての顧客に無料で提供され、Shield Advancedは高度なDDoS保護と24/7サポートを提供します。"
+      "SQL injection: This is a type of attack mitigated by AWS WAF. Shield primarily addresses DDoS attacks.",
+      "Brute-force password attacks: These can be mitigated with WAF and Cognito. Shield specializes in DDoS attack mitigation.",
+      "Cross-site scripting: This is a type of attack mitigated by AWS WAF. Shield focuses on network-layer attacks.",
+      "DDoS attacks: ✓ Correct. Shield Standard is provided free to all customers, and Shield Advanced offers enhanced DDoS protection and 24/7 support."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/waf/latest/developerguide/shield-chapter.html", title: "AWS Shield" }
+      { url: "https://docs.aws.amazon.com/waf/latest/developerguide/shield-chapter.html", title: "AWS Shield" }
     ]
   },
   {
     id: 56,
-    question: "Amazon Athenaの主な特徴は何ですか?",
+    question: "What is the primary characteristic of Amazon Athena?",
     options: [
-      "S3データに対するサーバーレスクエリサービス",
-      "NoSQLデータベース",
-      "リレーショナルデータベース",
-      "メッセージキューサービス"
+      "Serverless query service for data in S3",
+      "NoSQL database",
+      "Relational database",
+      "Message queue service"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon Athenaは、標準SQLを使用してS3内のデータを直接分析できるサーバーレスのインタラクティブクエリサービスです。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon Athena is a serverless interactive query service that lets you analyze data stored directly in S3 using standard SQL.",
     optionExplanations: [
-      "S3データに対するサーバーレスクエリサービス: ✓ 正解。Athenaは、インフラストラクチャの管理不要で、S3に保存されたデータに対してSQLクエリを実行できます。使用したクエリ分のみ課金されます。",
-      "NoSQLデータベース: DynamoDBの特徴です。AthenaはS3データのクエリサービスです。",
-      "リレーショナルデータベース: RDSやAuroraの特徴です。Athenaはクエリエンジンです。",
-      "メッセージキューサービス: SQSの特徴です。Athenaはデータ分析サービスです。"
+      "Serverless query service for data in S3: ✓ Correct. Athena requires no infrastructure management and lets you run SQL queries against data stored in S3. You are charged only for the queries you run.",
+      "NoSQL database: This describes DynamoDB. Athena is an SQL query service for data in S3.",
+      "Relational database: This describes RDS and Aurora. Athena is a query engine.",
+      "Message queue service: This describes SQS. Athena is a data analytics service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/athena/latest/ug/what-is.html", title: "Amazon Athena とは" }
+      { url: "https://docs.aws.amazon.com/athena/latest/ug/what-is.html", title: "What is Amazon Athena" }
     ]
   },
   {
     id: 57,
-    question: "AWS Batchの主な用途は何ですか?",
+    question: "What is the primary use of AWS Batch?",
     options: [
-      "リアルタイムストリーミング",
-      "バッチコンピューティングジョブの実行",
-      "静的ウェブサイトのホスティング",
-      "DNSルーティング"
+      "Real-time streaming",
+      "Running batch computing jobs",
+      "Static website hosting",
+      "DNS routing"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "AWS Batchは、数十万のバッチコンピューティングジョブを効率的に実行できるフルマネージドサービスです。",
+    category: "Cloud Technology and Services",
+    explanation: "AWS Batch is a fully managed service that can efficiently run hundreds of thousands of batch computing jobs.",
     optionExplanations: [
-      "リアルタイムストリーミング: Kinesisの用途です。Batchはバッチ処理に特化しています。",
-      "バッチコンピューティングジョブの実行: ✓ 正解。AWS Batchは、コンピューティングリソースを動的にプロビジョニングし、ジョブのスケジューリングと実行を自動化します。",
-      "静的ウェブサイトのホスティング: S3やAmplifyの用途です。Batchはバッチ処理ワークロード向けです。",
-      "DNSルーティング: Route 53の機能です。Batchは大規模なバッチジョブの実行に使用されます。"
+      "Real-time streaming: This describes Kinesis. Batch is dedicated to batch processing.",
+      "Running batch computing jobs: ✓ Correct. AWS Batch dynamically provisions compute resources and automates job scheduling and execution.",
+      "Static website hosting: This describes S3 and Amplify. Batch is for batch processing workloads.",
+      "DNS routing: This is a feature of Route 53. Batch is used for running large-scale batch jobs."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/batch/latest/userguide/what-is-batch.html", title: "AWS Batch とは" }
+      { url: "https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html", title: "What is AWS Batch" }
     ]
   },
   {
     id: 58,
-    question: "Amazon Cognitoの主な機能は何ですか?",
+    question: "What is the primary function of Amazon Cognito?",
     options: [
-      "データベース管理",
-      "ネットワーク監視",
-      "ファイルストレージ",
-      "ユーザー認証とアクセス制御"
+      "Database management",
+      "Network monitoring",
+      "File storage",
+      "User authentication and access control"
     ],
     correctAnswer: 3,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon Cognitoは、ウェブおよびモバイルアプリケーションにユーザー認証、承認、ユーザー管理機能を提供するサービスです。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon Cognito is a service that provides user authentication, authorization, and user management for web and mobile applications.",
     optionExplanations: [
-      "データベース管理: RDSやDynamoDBの機能です。Cognitoは認証サービスです。",
-      "ネットワーク監視: CloudWatchやVPC Flow Logsの機能です。Cognitoは認証・認可サービスです。",
-      "ファイルストレージ: S3やEFSの機能です。Cognitoはユーザー管理と認証に特化しています。",
-      "ユーザー認証とアクセス制御: ✓ 正解。Cognitoは、ユーザープール(認証)とIDプール(認可)を提供し、ソーシャルIDプロバイダーやSAML 2.0との統合も可能です。"
+      "Database management: This is a feature of RDS and DynamoDB. Cognito is an authentication service.",
+      "Network monitoring: This is a feature of CloudWatch and VPC Flow Logs. Cognito is an authentication and authorization service.",
+      "File storage: This is a feature of S3 and EFS. Cognito is dedicated to user management and authentication.",
+      "User authentication and access control: ✓ Correct. Cognito provides user pools (authentication) and identity pools (authorization), and supports integration with social identity providers and SAML 2.0."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/cognito/latest/developerguide/what-is-amazon-cognito.html", title: "Amazon Cognito とは" }
+      { url: "https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html", title: "What is Amazon Cognito" }
     ]
   },
   {
     id: 59,
-    question: "AWS Secrets Managerの主な用途は何ですか?",
+    question: "What is the primary use of AWS Secrets Manager?",
     options: [
-      "機密情報の安全な保管とローテーション",
-      "データベースのバックアップ",
-      "ネットワークトラフィックの分析",
-      "コンテンツ配信"
+      "Secure storage and rotation of secrets",
+      "Database backup",
+      "Network traffic analysis",
+      "Content delivery"
     ],
     correctAnswer: 0,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Secrets Managerは、データベース認証情報、APIキー、その他の機密情報を安全に保管し、自動的にローテーションできるサービスです。",
+    category: "Security and Compliance",
+    explanation: "AWS Secrets Manager is a service that securely stores database credentials, API keys, and other secrets, with the ability to automatically rotate them.",
     optionExplanations: [
-      "機密情報の安全な保管とローテーション: ✓ 正解。Secrets Managerは、パスワード、APIキー、トークンなどを暗号化して保存し、自動ローテーション機能でセキュリティを強化します。",
-      "データベースのバックアップ: AWS BackupやRDSの機能です。Secrets Managerは機密情報管理サービスです。",
-      "ネットワークトラフィックの分析: VPC Flow LogsやCloudWatchの機能です。Secrets Managerはシークレット管理に特化しています。",
-      "コンテンツ配信: CloudFrontの機能です。Secrets Managerは認証情報の安全な管理を提供します。"
+      "Secure storage and rotation of secrets: ✓ Correct. Secrets Manager encrypts and stores passwords, API keys, and tokens, and enhances security through automatic rotation.",
+      "Database backup: This is a feature of AWS Backup and RDS. Secrets Manager is a secrets management service.",
+      "Network traffic analysis: This is a feature of VPC Flow Logs and CloudWatch. Secrets Manager is dedicated to secrets management.",
+      "Content delivery: This is a feature of CloudFront. Secrets Manager provides secure management of credentials."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/secretsmanager/latest/userguide/intro.html", title: "AWS Secrets Manager とは" }
+      { url: "https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html", title: "What is AWS Secrets Manager" }
     ]
   },
   {
     id: 60,
-    question: "Amazon EventBridgeの主な機能は何ですか?",
+    question: "What is the primary function of Amazon EventBridge?",
     options: [
-      "データベースのレプリケーション",
-      "ファイルの圧縮",
-      "イベント駆動型アーキテクチャのためのイベントバス",
-      "負荷分散"
+      "Database replication",
+      "File compression",
+      "Event bus for event-driven architectures",
+      "Load balancing"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon EventBridgeは、AWSサービス、SaaSアプリケーション、カスタムアプリケーション間でイベントを簡単に接続できるサーバーレスイベントバスサービスです。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon EventBridge is a serverless event bus service that makes it easy to connect events between AWS services, SaaS applications, and custom applications.",
     optionExplanations: [
-      "データベースのレプリケーション: RDSやDynamoDBの機能です。EventBridgeはイベントルーティングサービスです。",
-      "ファイルの圧縮: アプリケーションレベルの機能です。EventBridgeはイベント管理サービスです。",
-      "イベント駆動型アーキテクチャのためのイベントバス: ✓ 正解。EventBridgeは、イベントをフィルタリングし、複数のターゲット(Lambda、SNS、SQSなど)にルーティングできます。",
-      "負荷分散: ELBの機能です。EventBridgeはイベント駆動型の統合を実現します。"
+      "Database replication: This is a feature of RDS and DynamoDB. EventBridge is an event routing service.",
+      "File compression: This is an application-level feature. EventBridge is an event management service.",
+      "Event bus for event-driven architectures: ✓ Correct. EventBridge can filter events and route them to multiple targets (Lambda, SNS, SQS, etc.).",
+      "Load balancing: This is a feature of ELB. EventBridge enables event-driven integration."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/eventbridge/latest/userguide/eb-what-is.html", title: "Amazon EventBridge とは" }
+      { url: "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html", title: "What is Amazon EventBridge" }
     ]
   },
   {
     id: 61,
-    question: "EC2インスタンスのメタデータにアクセスするために使用するIPアドレスはどれですか?",
+    question: "Which IP address is used to access EC2 instance metadata?",
     options: [
       "169.254.169.254",
       "127.0.0.1",
@@ -1312,65 +1330,65 @@ const awsCLFQuestions = [
       "10.0.0.1"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "EC2インスタンスメタデータサービスには、特別なリンクローカルアドレス169.254.169.254を使用してアクセスします。",
+    category: "Cloud Technology and Services",
+    explanation: "The EC2 instance metadata service is accessed using the special link-local address 169.254.169.254.",
     optionExplanations: [
-      "169.254.169.254: ✓ 正解。このリンクローカルアドレスを使用して、インスタンス内からメタデータ(インスタンスID、AMI ID、IAMロールなど)にアクセスできます。",
-      "127.0.0.1: ローカルホスト(localhost)のIPアドレスです。EC2メタデータサービスには使用されません。",
-      "192.168.1.1: プライベートネットワークでよく使用されるゲートウェイアドレスですが、EC2メタデータサービスには関係ありません。",
-      "10.0.0.1: VPC内のプライベートIPアドレスの例ですが、メタデータサービスのアドレスではありません。"
+      "169.254.169.254: ✓ Correct. This link-local address is used from within an instance to access metadata such as the instance ID, AMI ID, and IAM role.",
+      "127.0.0.1: This is the localhost IP address. It is not used for the EC2 metadata service.",
+      "192.168.1.1: This is a commonly used gateway address in private networks but has no relation to the EC2 metadata service.",
+      "10.0.0.1: This is an example of a private IP address within a VPC, but it is not the metadata service address."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-instance-metadata.html", title: "インスタンスメタデータとユーザーデータ" }
+      { url: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html", title: "Instance metadata and user data" }
     ]
   },
   {
     id: 62,
-    question: "S3バケットのデフォルトのアクセス権限はどれですか?",
+    question: "What is the default access permission for an S3 bucket?",
     options: [
-      "パブリック読み取り可能",
-      "すべてのAWSアカウントがアクセス可能",
-      "認証されたユーザー全員がアクセス可能",
-      "プライベート(所有者のみアクセス可能)"
+      "Publicly readable",
+      "Accessible to all AWS accounts",
+      "Accessible to all authenticated users",
+      "Private (accessible only by the owner)"
     ],
     correctAnswer: 3,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "S3バケットは作成時にデフォルトでプライベートに設定され、バケット所有者のみがアクセスできます。明示的に権限を付与しない限り、他のユーザーはアクセスできません。",
+    category: "Cloud Technology and Services",
+    explanation: "S3 buckets are private by default when created — only the bucket owner can access them. No other user can access the bucket unless explicit permissions are granted.",
     optionExplanations: [
-      "パブリック読み取り可能: デフォルトではありません。パブリックアクセスを許可するには、明示的な設定が必要です。",
-      "すべてのAWSアカウントがアクセス可能: デフォルトではありません。クロスアカウントアクセスには明示的な権限設定が必要です。",
-      "認証されたユーザー全員がアクセス可能: デフォルトではありません。これは明示的に設定する必要があります。",
-      "プライベート(所有者のみアクセス可能): ✓ 正解。セキュリティのベストプラクティスとして、S3バケットはデフォルトでプライベートに設定されます。"
+      "Publicly readable: This is not the default. Explicit configuration is required to allow public access.",
+      "Accessible to all AWS accounts: This is not the default. Explicit permission configuration is required for cross-account access.",
+      "Accessible to all authenticated users: This is not the default. This must be explicitly configured.",
+      "Private (accessible only by the owner): ✓ Correct. As a security best practice, S3 buckets are configured as private by default."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/access-control-overview.html", title: "Amazon S3 のアクセス管理の概要" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-overview.html", title: "Overview of access control in Amazon S3" }
     ]
   },
   {
     id: 63,
-    question: "RDSのMulti-AZ配置で、プライマリインスタンスに障害が発生した場合、どのくらいの時間でフェイルオーバーが完了しますか?",
+    question: "In an RDS Multi-AZ deployment, how long does a failover typically take when the primary instance fails?",
     options: [
-      "数秒",
-      "1〜2分",
-      "5〜10分",
-      "30分以上"
+      "A few seconds",
+      "1–2 minutes",
+      "5–10 minutes",
+      "More than 30 minutes"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "RDS Multi-AZのフェイルオーバーは通常1〜2分以内に自動的に完了し、手動介入は不要です。",
+    category: "Cloud Technology and Services",
+    explanation: "RDS Multi-AZ failover typically completes automatically within 1–2 minutes with no manual intervention required.",
     optionExplanations: [
-      "数秒: 理想的ですが、DNS伝播とデータベース接続の再確立に時間がかかるため、通常は1〜2分かかります。",
-      "1〜2分: ✓ 正解。Multi-AZ配置では、プライマリインスタンスの障害を検出すると、自動的にスタンバイインスタンスにフェイルオーバーします。",
-      "5〜10分: 通常のフェイルオーバー時間より長いです。Multi-AZは高可用性のために最適化されています。",
-      "30分以上: Multi-AZのフェイルオーバーはこれほど長くかかりません。手動復旧が必要な場合の時間です。"
+      "A few seconds: While ideal, DNS propagation and re-establishment of database connections mean it typically takes 1–2 minutes.",
+      "1–2 minutes: ✓ Correct. In a Multi-AZ deployment, when a failure is detected on the primary instance, it automatically fails over to the standby instance.",
+      "5–10 minutes: This is longer than a typical failover. Multi-AZ is optimized for high availability.",
+      "More than 30 minutes: Multi-AZ failover does not take this long. This duration is more characteristic of manual recovery."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html", title: "Amazon RDS のマルチ AZ 配置" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html", title: "Multi-AZ deployments for Amazon RDS" }
     ]
   },
   {
     id: 64,
-    question: "IAMポリシーで、特定のアクションを明示的に拒否する場合に使用するステートメントはどれですか?",
+    question: "Which statement is used in an IAM policy to explicitly deny a specific action?",
     options: [
       "Allow",
       "Reject",
@@ -1378,153 +1396,153 @@ const awsCLFQuestions = [
       "Block"
     ],
     correctAnswer: 2,
-    category: "セキュリティとコンプライアンス",
-    explanation: "IAMポリシーでは、'Deny'ステートメントを使用してアクションを明示的に拒否します。Denyは常にAllowより優先されます。",
+    category: "Security and Compliance",
+    explanation: "In IAM policies, the 'Deny' statement is used to explicitly deny an action. Deny always takes precedence over Allow.",
     optionExplanations: [
-      "Allow: アクションを許可するために使用されます。Denyとは逆の効果を持ちます。",
-      "Reject: IAMポリシーで使用される有効なステートメントではありません。",
-      "Deny: ✓ 正解。明示的な拒否を設定し、他のすべてのAllowステートメントより優先されます。セキュリティの強化に重要です。",
-      "Block: IAMポリシーで使用される有効なステートメントではありません。"
+      "Allow: Used to permit an action. It has the opposite effect of Deny.",
+      "Reject: This is not a valid statement in IAM policies.",
+      "Deny: ✓ Correct. An explicit deny overrides all Allow statements. It is essential for enforcing security controls.",
+      "Block: This is not a valid statement in IAM policies."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/reference_policies_evaluation-logic.html", title: "ポリシーの評価論理" }
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html", title: "Policy evaluation logic" }
     ]
   },
   {
     id: 65,
-    question: "CloudWatchのデフォルトメトリクス保持期間で、1分間隔のデータポイントは何日間保持されますか?",
+    question: "How long does CloudWatch retain 1-minute interval data points by default?",
     options: [
-      "3日間",
-      "15日間",
-      "63日間",
-      "455日間"
+      "3 days",
+      "15 days",
+      "63 days",
+      "455 days"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "CloudWatchは、1分間隔のデータポイントを15日間保持します。より長期間のデータが必要な場合は、S3にエクスポートできます。",
+    category: "Cloud Technology and Services",
+    explanation: "CloudWatch retains 1-minute interval data points for 15 days. If longer retention is needed, data can be exported to S3.",
     optionExplanations: [
-      "3日間: 1分間隔のデータの保持期間より短いです。これは高頻度データの初期保持期間です。",
-      "15日間: ✓ 正解。1分間隔のメトリクスは15日間保持されます。5分間隔は63日間、1時間間隔は455日間保持されます。",
-      "63日間: 5分間隔のデータポイントの保持期間です。1分間隔のデータはこれより短い期間です。",
-      "455日間: 1時間間隔のデータポイントの保持期間です。1分間隔のデータはこれより短い期間です。"
+      "3 days: This is shorter than the retention period for 1-minute data. It applies to high-frequency data in its initial retention phase.",
+      "15 days: ✓ Correct. 1-minute interval metrics are retained for 15 days. 5-minute interval data is retained for 63 days, and 1-hour interval data is retained for 455 days.",
+      "63 days: This is the retention period for 5-minute interval data points, not 1-minute data.",
+      "455 days: This is the retention period for 1-hour interval data points, not 1-minute data."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html", title: "Amazon CloudWatch の概念" }
+      { url: "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/cloudwatch_concepts.html", title: "Amazon CloudWatch concepts" }
     ]
   },
   {
     id: 66,
-    question: "VPC内のサブネットで使用できないIPアドレスの数はいくつですか?(AWSが予約)",
+    question: "How many IP addresses does AWS reserve in each VPC subnet?",
     options: [
-      "2個",
-      "3個",
-      "5個",
-      "10個"
+      "2",
+      "3",
+      "5",
+      "10"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "AWSは各サブネットで5個のIPアドレスを予約します:ネットワークアドレス、VPCルーター、DNS、将来の使用、ブロードキャストアドレスです。",
+    category: "Cloud Technology and Services",
+    explanation: "AWS reserves 5 IP addresses in each subnet: the network address, VPC router, DNS, future use, and broadcast address.",
     optionExplanations: [
-      "2個: 予約されるIPアドレスの数より少ないです。ネットワークアドレスとブロードキャストアドレスだけではありません。",
-      "3個: 予約されるIPアドレスの数より少ないです。AWSは追加のアドレスも予約します。",
-      "5個: ✓ 正解。例えば10.0.0.0/24サブネットでは、.0(ネットワーク)、.1(VPCルーター)、.2(DNS)、.3(将来の使用)、.255(ブロードキャスト)が予約されます。",
-      "10個: 実際に予約されるIPアドレスの数より多いです。AWSは5個のみ予約します。"
+      "2: Fewer than the number of reserved addresses. It is not just the network and broadcast addresses.",
+      "3: Fewer than the number of reserved addresses. AWS also reserves additional addresses.",
+      "5: ✓ Correct. For example, in a 10.0.0.0/24 subnet: .0 (network), .1 (VPC router), .2 (DNS), .3 (future use), and .255 (broadcast) are reserved.",
+      "10: More than the actual number of reserved addresses. AWS reserves only 5."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/vpc/latest/userguide/configure-subnets.html", title: "VPC のサブネット" }
+      { url: "https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html", title: "Subnets for your VPC" }
     ]
   },
   {
     id: 67,
-    question: "Lambdaファンクションのデフォルトのタイムアウト時間はどれですか?",
+    question: "What is the default timeout for a Lambda function?",
     options: [
-      "1秒",
-      "15分",
-      "3秒",
-      "30秒"
+      "1 second",
+      "15 minutes",
+      "3 seconds",
+      "30 seconds"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "AWS Lambdaのデフォルトタイムアウトは3秒で、最大15分まで設定可能です。",
+    category: "Cloud Technology and Services",
+    explanation: "The default timeout for AWS Lambda is 3 seconds. It can be configured up to a maximum of 15 minutes.",
     optionExplanations: [
-      "1秒: デフォルトより短い時間です。最小タイムアウトは1秒ですが、デフォルトではありません。",
-      "15分: 最大タイムアウト時間ですが、デフォルトではありません。長時間実行するファンクションに設定します。",
-      "3秒: ✓ 正解。Lambdaファンクションのデフォルトタイムアウトは3秒です。必要に応じて1秒から15分(900秒)の範囲で調整できます。",
-      "30秒: デフォルトではありませんが、多くのユースケースで適切な設定値です。"
+      "1 second: This is shorter than the default. The minimum timeout is 1 second, but it is not the default.",
+      "15 minutes: This is the maximum timeout, but not the default. It is set for long-running functions.",
+      "3 seconds: ✓ Correct. The default timeout for a Lambda function is 3 seconds. It can be adjusted from 1 second to 15 minutes (900 seconds) as needed.",
+      "30 seconds: This is not the default, but it is an appropriate value for many use cases."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/lambda/latest/dg/configuration-function-common.html", title: "Lambda 関数の設定" }
+      { url: "https://docs.aws.amazon.com/lambda/latest/dg/configuration-function-common.html", title: "Lambda function configuration" }
     ]
   },
   {
     id: 68,
-    question: "EBSボリュームのスナップショットはどこに保存されますか?",
+    question: "Where are EBS volume snapshots stored?",
     options: [
       "Amazon S3",
-      "同じアベイラビリティーゾーン内",
+      "Within the same Availability Zone",
       "Amazon Glacier",
-      "EC2インスタンスのローカルストレージ"
+      "EC2 instance local storage"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "EBSスナップショットは自動的にAmazon S3に保存され、リージョン内で冗長化されます。ユーザーがS3バケットを管理する必要はありません。",
+    category: "Cloud Technology and Services",
+    explanation: "EBS snapshots are automatically stored in Amazon S3 and are redundantly stored within the region. Users do not need to manage S3 buckets directly.",
     optionExplanations: [
-      "Amazon S3: ✓ 正解。EBSスナップショットはS3に保存され、リージョン内で自動的に複製されます。これにより高い耐久性が確保されます。",
-      "同じアベイラビリティーゾーン内: EBSボリューム自体はAZ内に存在しますが、スナップショットはリージョンレベルで保存されます。",
-      "Amazon Glacier: デフォルトの保存先ではありません。長期アーカイブが必要な場合は、Data Lifecycle Managerで移行できます。",
-      "EC2インスタンスのローカルストレージ: スナップショットはインスタンスから独立して保存されます。"
+      "Amazon S3: ✓ Correct. EBS snapshots are stored in S3 and automatically replicated within the region, providing high durability.",
+      "Within the same Availability Zone: The EBS volume itself resides within an AZ, but snapshots are stored at the region level.",
+      "Amazon Glacier: This is not the default destination. For long-term archiving, snapshots can be transitioned using Data Lifecycle Manager.",
+      "EC2 instance local storage: Snapshots are stored independently from the instance."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/EBSSnapshots.html", title: "Amazon EBS スナップショット" }
+      { url: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html", title: "Amazon EBS snapshots" }
     ]
   },
   {
     id: 69,
-    question: "Auto Scalingグループで、インスタンスの起動に失敗した場合のデフォルトのクールダウン期間はどれですか?",
+    question: "What is the default cooldown period for an Auto Scaling group?",
     options: [
-      "60秒",
-      "300秒",
-      "600秒",
-      "クールダウンは適用されない"
+      "60 seconds",
+      "300 seconds",
+      "600 seconds",
+      "No cooldown is applied"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Auto Scalingグループのデフォルトクールダウン期間は300秒(5分)です。この期間中、追加のスケーリングアクティビティは一時停止されます。",
+    category: "Cloud Technology and Services",
+    explanation: "The default cooldown period for an Auto Scaling group is 300 seconds (5 minutes). During this period, additional scaling activities are paused.",
     optionExplanations: [
-      "60秒: デフォルトより短い期間です。クールダウン期間は調整可能ですが、デフォルトは300秒です。",
-      "300秒: ✓ 正解。デフォルトのクールダウン期間は300秒(5分)で、スケーリングアクティビティ後にメトリクスが安定するまでの時間を確保します。",
-      "600秒: デフォルトより長い期間です。必要に応じて設定できますが、デフォルトではありません。",
-      "クールダウンは適用されない: 誤りです。Auto Scalingはデフォルトでクールダウン期間を使用します。"
+      "60 seconds: This is shorter than the default. The cooldown period is configurable, but the default is 300 seconds.",
+      "300 seconds: ✓ Correct. The default cooldown period is 300 seconds (5 minutes), providing time for metrics to stabilize after a scaling activity.",
+      "600 seconds: This is longer than the default. It can be configured as needed, but it is not the default.",
+      "No cooldown is applied: Incorrect. Auto Scaling uses a cooldown period by default."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/autoscaling/ec2/userguide/ec2-auto-scaling-cooldown.html", title: "Auto Scaling のクールダウン期間" }
+      { url: "https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-cooldown.html", title: "Scaling cooldowns for Amazon EC2 Auto Scaling" }
     ]
   },
   {
     id: 70,
-    question: "DynamoDBのプロビジョニングされたキャパシティモードで、1つの読み込みキャパシティユニット(RCU)で読み取れる最大データサイズはどれですか?(強力な整合性のある読み込みの場合)",
+    question: "In DynamoDB provisioned capacity mode, what is the maximum item size that one Read Capacity Unit (RCU) can read per second with strongly consistent reads?",
     options: [
-      "4KB",
-      "1KB",
-      "8KB",
-      "16KB"
+      "4 KB",
+      "1 KB",
+      "8 KB",
+      "16 KB"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "1つのRCUは、強力な整合性のある読み込みで最大4KBのアイテムを1秒あたり1回読み取ることができます。結果整合性のある読み込みでは2回読み取れます。",
+    category: "Cloud Technology and Services",
+    explanation: "One RCU can perform one strongly consistent read per second for items up to 4 KB in size. For eventually consistent reads, it can perform two reads per second.",
     optionExplanations: [
-      "4KB: ✓ 正解。1 RCUは、強力な整合性のある読み込みで最大4KBのアイテムを1秒あたり1回、または結果整合性のある読み込みで2回読み取れます。",
-      "1KB: RCUで読み取れるデータサイズより小さいです。1つのRCUはより多くのデータを処理できます。",
-      "8KB: 1つのRCUで読み取れるサイズより大きいです。8KBのアイテムには2 RCUが必要です。",
-      "16KB: 1つのRCUで読み取れるサイズより大きいです。16KBのアイテムには4 RCUが必要です。"
+      "4 KB: ✓ Correct. One RCU supports one strongly consistent read per second (or two eventually consistent reads per second) for items up to 4 KB.",
+      "1 KB: This is smaller than the data size one RCU can read. One RCU handles more data.",
+      "8 KB: This exceeds what one RCU can read. An 8 KB item requires 2 RCUs.",
+      "16 KB: This exceeds what one RCU can read. A 16 KB item requires 4 RCUs."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/ProvisionedThroughput.html", title: "DynamoDB のプロビジョニングされたキャパシティモード" }
+      { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html", title: "DynamoDB provisioned capacity mode" }
     ]
   },
   {
     id: 71,
-    question: "次のうち、AWSのグローバルサービスはどれですか?",
+    question: "Which of the following is an AWS global service?",
     options: [
       "Amazon EC2",
       "Amazon S3",
@@ -1532,43 +1550,43 @@ const awsCLFQuestions = [
       "Amazon RDS"
     ],
     correctAnswer: 2,
-    category: "クラウドの概念",
-    explanation: "IAMはグローバルサービスで、リージョンを選択する必要がありません。ユーザー、グループ、ロール、ポリシーはすべてのリージョンで利用できます。",
+    category: "Cloud Concepts",
+    explanation: "IAM is a global service that does not require region selection. Users, groups, roles, and policies are available across all regions.",
     optionExplanations: [
-      "Amazon EC2: リージョナルサービスです。特定のリージョンとアベイラビリティーゾーンでインスタンスを起動します。",
-      "Amazon S3: バケットはリージョンに作成されますが、S3コンソールはグローバルビューを提供します。厳密にはリージョナルサービスです。",
-      "AWS IAM: ✓ 正解。IAMはグローバルサービスで、作成したユーザーやロールはすべてのリージョンで自動的に利用可能です。",
-      "Amazon RDS: リージョナルサービスです。データベースインスタンスは特定のリージョンとアベイラビリティーゾーンに作成されます。"
+      "Amazon EC2: This is a regional service. Instances are launched in a specific region and Availability Zone.",
+      "Amazon S3: Buckets are created in a region, though the S3 console provides a global view. Strictly speaking, it is a regional service.",
+      "AWS IAM: ✓ Correct. IAM is a global service; users and roles created in IAM are automatically available in all regions.",
+      "Amazon RDS: This is a regional service. Database instances are created in a specific region and Availability Zone."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/IAM/latest/UserGuide/introduction.html", title: "AWS IAM とは" }
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html", title: "What is IAM" }
     ]
   },
   {
     id: 72,
-    question: "EC2インスタンスで、停止と起動を繰り返した場合、変わらないものはどれですか?",
+    question: "Which of the following does NOT change when an EC2 instance is stopped and started?",
     options: [
-      "パブリックIPアドレス",
-      "インスタンスID",
-      "インスタンスストアのデータ",
-      "プライベートIPアドレス"
+      "Public IP address",
+      "Instance ID",
+      "Instance store data",
+      "Private IP address"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "インスタンスIDとプライベートIPアドレスは停止・起動後も変わりません。パブリックIPアドレスは変わり、インスタンスストアのデータは失われます。",
+    category: "Cloud Technology and Services",
+    explanation: "The instance ID and private IP address do not change after a stop/start cycle. The public IP address changes, and instance store data is lost.",
     optionExplanations: [
-      "パブリックIPアドレス: 停止・起動すると変わります。固定IPが必要な場合はElastic IPを使用します。",
-      "インスタンスID: ✓ 正解。インスタンスIDは、インスタンスが削除されるまで変わりません。停止・起動では変わりません。",
-      "インスタンスストアのデータ: 停止すると失われます。永続的なストレージにはEBSを使用します。",
-      "プライベートIPアドレス: インスタンスが存在する限り変わりません。VPC内での通信に使用されます。"
+      "Public IP address: This changes when an instance is stopped and started. Use an Elastic IP if a fixed IP is required.",
+      "Instance ID: ✓ Correct. The instance ID does not change until the instance is terminated. It persists through stop/start cycles.",
+      "Instance store data: This is lost when the instance is stopped. Use EBS for persistent storage.",
+      "Private IP address: This does not change as long as the instance exists. It is used for communication within the VPC."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html", title: "インスタンスのライフサイクル" }
+      { url: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-lifecycle.html", title: "EC2 instance lifecycle" }
     ]
   },
   {
     id: 73,
-    question: "S3のストレージクラスで、最も低コストなのはどれですか?",
+    question: "Which S3 storage class offers the lowest cost?",
     options: [
       "S3 Standard",
       "S3 Intelligent-Tiering",
@@ -1576,610 +1594,610 @@ const awsCLFQuestions = [
       "S3 One Zone-IA"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "S3 Glacier Deep Archiveは、年に1〜2回程度しかアクセスしないデータ向けの最も低コストなストレージクラスです。",
+    category: "Cloud Technology and Services",
+    explanation: "S3 Glacier Deep Archive is the lowest-cost storage class, designed for data accessed once or twice a year.",
     optionExplanations: [
-      "S3 Standard: 頻繁にアクセスするデータ向けで、最も高コストなストレージクラスです。",
-      "S3 Intelligent-Tiering: アクセスパターンに基づいて自動的に階層を移動しますが、Deep Archiveより高コストです。",
-      "S3 Glacier Deep Archive: ✓ 正解。最も低コストで、取り出しに12時間以上かかりますが、長期アーカイブに最適です。",
-      "S3 One Zone-IA: 低頻度アクセス向けですが、Deep Archiveより高コストです。単一AZに保存されます。"
+      "S3 Standard: Designed for frequently accessed data; it is the highest-cost storage class.",
+      "S3 Intelligent-Tiering: Automatically moves objects between tiers based on access patterns, but costs more than Deep Archive.",
+      "S3 Glacier Deep Archive: ✓ Correct. The lowest-cost class; retrieval takes 12 hours or more, but it is ideal for long-term archiving.",
+      "S3 One Zone-IA: Designed for infrequent access, but costs more than Deep Archive. Stored in a single AZ."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/storage-class-intro.html", title: "Amazon S3 ストレージクラス" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/storage-class-intro.html", title: "Amazon S3 storage classes" }
     ]
   },
   {
     id: 74,
-    question: "AWS Cost Explorerで確認できないものはどれですか?",
+    question: "Which of the following CANNOT be viewed in AWS Cost Explorer?",
     options: [
-      "過去のコスト傾向",
-      "サービス別のコスト内訳",
-      "将来のコスト予測",
-      "リアルタイムのリソース使用状況"
+      "Historical cost trends",
+      "Cost breakdown by service",
+      "Future cost forecasts",
+      "Real-time resource utilization"
     ],
     correctAnswer: 3,
-    category: "請求・料金・サポート",
-    explanation: "Cost Explorerは過去と予測のコストデータを提供しますが、リアルタイムのリソース使用状況はCloudWatchで確認します。",
+    category: "Billing, Pricing, and Support",
+    explanation: "Cost Explorer provides historical and forecasted cost data, but real-time resource utilization is monitored using CloudWatch.",
     optionExplanations: [
-      "過去のコスト傾向: Cost Explorerで確認できます。最大12ヶ月の履歴データを分析できます。",
-      "サービス別のコスト内訳: Cost Explorerで確認できます。EC2、S3、RDSなどサービスごとのコストを表示します。",
-      "将来のコスト予測: Cost Explorerで確認できます。機械学習を使用して最大12ヶ月先のコストを予測します。",
-      "リアルタイムのリソース使用状況: ✓ 正解。これはCloudWatchの機能です。Cost Explorerはコストデータに焦点を当てており、通常1日の遅延があります。"
+      "Historical cost trends: Viewable in Cost Explorer. You can analyze up to 12 months of historical data.",
+      "Cost breakdown by service: Viewable in Cost Explorer. Costs per service such as EC2, S3, and RDS are displayed.",
+      "Future cost forecasts: Viewable in Cost Explorer. Machine learning is used to forecast costs up to 12 months ahead.",
+      "Real-time resource utilization: ✓ Correct. This is a CloudWatch feature. Cost Explorer focuses on cost data and typically has a one-day delay."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/cost-management/latest/userguide/ce-what-is.html", title: "AWS Cost Explorer とは" }
+      { url: "https://docs.aws.amazon.com/cost-management/latest/userguide/ce-what-is.html", title: "What is AWS Cost Explorer" }
     ]
   },
   {
     id: 75,
-    question: "Amazon RDSで、データベースエンジンのメジャーバージョンアップグレードを実行する際、推奨される手順はどれですか?",
+    question: "What is the recommended approach when performing a major version upgrade of an Amazon RDS database engine?",
     options: [
-      "スナップショットを取得してからアップグレードする",
-      "本番環境で直接アップグレードする",
-      "Multi-AZを無効にしてからアップグレードする",
-      "バックアップを無効にしてからアップグレードする"
+      "Take a snapshot before upgrading",
+      "Upgrade directly in the production environment",
+      "Disable Multi-AZ before upgrading",
+      "Disable backups before upgrading"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "メジャーバージョンアップグレード前には、必ずスナップショットを取得してバックアップを確保することが推奨されます。",
+    category: "Cloud Technology and Services",
+    explanation: "Before a major version upgrade, it is recommended to always take a snapshot to secure a backup that can be used to roll back if issues arise.",
     optionExplanations: [
-      "スナップショットを取得してからアップグレードする: ✓ 正解。問題が発生した場合にロールバックできるよう、アップグレード前に必ずスナップショットを取得します。",
-      "本番環境で直接アップグレードする: リスクが高いです。まずスナップショットを取得し、可能であればテスト環境で検証すべきです。",
-      "Multi-AZを無効にしてからアップグレードする: 推奨されません。Multi-AZは高可用性を提供し、アップグレード中も有効にしておくべきです。",
-      "バックアップを無効にしてからアップグレードする: 危険です。バックアップは常に有効にしておくべきで、特にアップグレード時は重要です。"
+      "Take a snapshot before upgrading: ✓ Correct. Always take a snapshot before upgrading so you can roll back if a problem occurs.",
+      "Upgrade directly in the production environment: This is high risk. Always take a snapshot first, and validate in a test environment if possible.",
+      "Disable Multi-AZ before upgrading: Not recommended. Multi-AZ provides high availability and should remain enabled during upgrades.",
+      "Disable backups before upgrading: Dangerous. Backups should always be enabled, especially during upgrades."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Upgrading.html", title: "DB インスタンスのアップグレード" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Upgrading.html", title: "Upgrading a DB instance engine version" }
     ]
   },
   {
     id: 76,
-    question: "VPCピアリング接続について正しい説明はどれですか?",
+    question: "Which of the following correctly describes VPC peering connections?",
     options: [
-      "1対1の接続で、推移的なルーティングはサポートされない",
-      "異なるリージョン間では使用できない",
-      "重複するCIDRブロックを持つVPC間でも接続できる",
-      "推移的なルーティングがサポートされる"
+      "One-to-one connections with no support for transitive routing",
+      "Cannot be used between different regions",
+      "Can connect VPCs with overlapping CIDR blocks",
+      "Transitive routing is supported"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "VPCピアリングは1対1の接続で、推移的なルーティングはサポートされません。A-B、B-C間にピアリングがあっても、A-C間の通信には別途ピアリングが必要です。",
+    category: "Cloud Technology and Services",
+    explanation: "VPC peering is a one-to-one connection and does not support transitive routing. Even if peering exists between A–B and B–C, a separate peering connection is required for A–C communication.",
     optionExplanations: [
-      "1対1の接続で、推移的なルーティングはサポートされない: ✓ 正解。各VPCペア間に個別のピアリング接続が必要で、推移的なルーティングは機能しません。",
-      "異なるリージョン間では使用できない: 誤りです。クロスリージョンVPCピアリングは可能です。",
-      "重複するCIDRブロックを持つVPC間でも接続できる: 誤りです。CIDRブロックが重複するVPC間ではピアリングできません。",
-      "推移的なルーティングがサポートされる: 誤りです。VPCピアリングは推移的ルーティングをサポートしません。"
+      "One-to-one connections with no support for transitive routing: ✓ Correct. A separate peering connection is required for each VPC pair, and transitive routing does not work.",
+      "Cannot be used between different regions: Incorrect. Cross-region VPC peering is supported.",
+      "Can connect VPCs with overlapping CIDR blocks: Incorrect. VPCs with overlapping CIDR blocks cannot be peered.",
+      "Transitive routing is supported: Incorrect. VPC peering does not support transitive routing."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/vpc/latest/peering/what-is-vpc-peering.html", title: "VPC ピアリングとは" }
+      { url: "https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html", title: "What is VPC peering" }
     ]
   },
   {
     id: 77,
-    question: "AWS Budgetsで設定できないアラートタイプはどれですか?",
+    question: "Which of the following alert types CANNOT be configured in AWS Budgets?",
     options: [
-      "特定のIAMユーザーがログインした場合",
-      "予測コストが予算を超える見込みの場合",
-      "特定のサービスの使用量が閾値を超えた場合",
-      "実際のコストが予算を超えた場合"
+      "When a specific IAM user logs in",
+      "When forecasted costs are expected to exceed the budget",
+      "When usage of a specific service exceeds a threshold",
+      "When actual costs exceed the budget"
     ],
     correctAnswer: 0,
-    category: "請求・料金・サポート",
-    explanation: "AWS Budgetsはコストと使用量の監視に特化しており、IAMユーザーのログインイベントは監視しません。それはCloudTrailとEventBridgeの役割です。",
+    category: "Billing, Pricing, and Support",
+    explanation: "AWS Budgets is dedicated to monitoring costs and usage. It does not monitor IAM user login events — that is the role of CloudTrail and EventBridge.",
     optionExplanations: [
-      "特定のIAMユーザーがログインした場合: ✓ 正解。これはBudgetsの機能ではありません。IAMイベントの監視にはCloudTrailとEventBridgeを使用します。",
-      "予測コストが予算を超える見込みの場合: Budgetsで設定できます。機械学習を使用して将来のコストを予測し、予算超過が見込まれる場合にアラートします。",
-      "特定のサービスの使用量が閾値を超えた場合: Budgetsで設定できます。EC2時間数、S3ストレージ量などの使用量ベースのアラートが可能です。",
-      "実際のコストが予算を超えた場合: Budgetsで設定できます。実際のコストが閾値(例:80%、100%)を超えたときにアラートを送信します。"
+      "When a specific IAM user logs in: ✓ Correct. This is not a Budgets feature. Use CloudTrail and EventBridge to monitor IAM events.",
+      "When forecasted costs are expected to exceed the budget: This can be configured in Budgets. It uses machine learning to forecast future costs and alerts when a budget overrun is expected.",
+      "When usage of a specific service exceeds a threshold: This can be configured in Budgets. Usage-based alerts such as EC2 hours and S3 storage are available.",
+      "When actual costs exceed the budget: This can be configured in Budgets. Alerts are sent when actual costs exceed a threshold (e.g., 80%, 100%)."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/cost-management/latest/userguide/budgets-managing-costs.html", title: "AWS Budgets でコストを管理する" }
+      { url: "https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-managing-costs.html", title: "Managing your costs with AWS Budgets" }
     ]
   },
   {
     id: 78,
-    question: "Amazon CloudWatchのカスタムメトリクスで、最も高い解像度(最短の間隔)はどれですか?",
+    question: "What is the highest resolution (shortest interval) for Amazon CloudWatch custom metrics?",
     options: [
-      "1秒",
-      "5秒",
-      "10秒",
-      "1分"
+      "1 second",
+      "5 seconds",
+      "10 seconds",
+      "1 minute"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "CloudWatchのカスタムメトリクスは、高解像度メトリクスとして1秒間隔でデータを送信できます。",
+    category: "Cloud Technology and Services",
+    explanation: "CloudWatch custom metrics can be published as high-resolution metrics at 1-second intervals.",
     optionExplanations: [
-      "1秒: ✓ 正解。高解像度カスタムメトリクスは1秒間隔でデータポイントを送信でき、リアルタイムに近い監視が可能です。",
-      "5秒: 高解像度メトリクスでサポートされる間隔ですが、最短ではありません。",
-      "10秒: 高解像度メトリクスでサポートされる間隔ですが、最短ではありません。",
-      "1分: 標準解像度のメトリクスの間隔です。カスタムメトリクスはより高い解像度をサポートします。"
+      "1 second: ✓ Correct. High-resolution custom metrics can send data points at 1-second intervals, enabling near-real-time monitoring.",
+      "5 seconds: This is a supported interval for high-resolution metrics, but it is not the shortest.",
+      "10 seconds: This is a supported interval for high-resolution metrics, but it is not the shortest.",
+      "1 minute: This is the interval for standard-resolution metrics. Custom metrics support higher resolution."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonCloudWatch/latest/monitoring/publishingMetrics.html", title: "カスタムメトリクスの発行" }
+      { url: "https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html", title: "Publishing custom metrics" }
     ]
   },
   {
     id: 79,
-    question: "AWS Snowballを使用する主な理由はどれですか?",
+    question: "What is the primary reason to use AWS Snowball?",
     options: [
-      "大量データの物理的な転送",
-      "リアルタイムデータ分析",
-      "データベースのレプリケーション",
-      "アプリケーションのデプロイ"
+      "Physical transfer of large volumes of data",
+      "Real-time data analysis",
+      "Database replication",
+      "Application deployment"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "AWS Snowballは、ペタバイト規模の大量データをAWSに物理的に転送するためのデバイスで、ネットワーク転送が非効率な場合に使用します。",
+    category: "Cloud Technology and Services",
+    explanation: "AWS Snowball is a device for physically transferring petabyte-scale data to AWS, used when network transfer is inefficient.",
     optionExplanations: [
-      "大量データの物理的な転送: ✓ 正解。Snowballは、ネットワーク帯域幅が限られている場合や、大量データ(TB〜PB規模)を効率的にAWSに移行するために使用します。",
-      "リアルタイムデータ分析: KinesisやAthenaの用途です。Snowballは大量データの一括転送に使用されます。",
-      "データベースのレプリケーション: DMSやRDSの機能です。Snowballは一括データ転送デバイスです。",
-      "アプリケーションのデプロイ: CodeDeployやElastic Beanstalkの用途です。Snowballはデータ転送専用です。"
+      "Physical transfer of large volumes of data: ✓ Correct. Snowball is used to efficiently migrate large amounts of data (TB to PB scale) to AWS when network bandwidth is limited.",
+      "Real-time data analysis: This describes Kinesis and Athena. Snowball is used for bulk data transfer.",
+      "Database replication: This is a feature of DMS and RDS. Snowball is a bulk data transfer device.",
+      "Application deployment: This describes CodeDeploy and Elastic Beanstalk. Snowball is dedicated to data transfer."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/snowball/latest/ug/whatissnowball.html", title: "AWS Snowball とは" }
+      { url: "https://docs.aws.amazon.com/snowball/latest/ug/whatissnowball.html", title: "What is AWS Snowball" }
     ]
   },
   {
     id: 80,
-    question: "Amazon EFSとAmazon EBSの主な違いはどれですか?",
+    question: "What is the primary difference between Amazon EFS and Amazon EBS?",
     options: [
-      "EFSはブロックストレージ、EBSはファイルストレージ",
-      "EFSは複数のEC2インスタンスから同時アクセス可能、EBSは単一インスタンスのみ",
-      "EFSはリージョナル、EBSはグローバル",
-      "EFSはオブジェクトストレージ、EBSはブロックストレージ"
+      "EFS is block storage; EBS is file storage",
+      "EFS can be accessed simultaneously by multiple EC2 instances; EBS is limited to a single instance",
+      "EFS is regional; EBS is global",
+      "EFS is object storage; EBS is block storage"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "EFSは複数のEC2インスタンスから同時にマウントできるファイルストレージで、EBSは基本的に単一のEC2インスタンスにアタッチされるブロックストレージです。",
+    category: "Cloud Technology and Services",
+    explanation: "EFS is file storage that can be mounted simultaneously by multiple EC2 instances, while EBS is block storage that is typically attached to a single EC2 instance.",
     optionExplanations: [
-      "EFSはブロックストレージ、EBSはファイルストレージ: 逆です。EFSがファイルストレージ、EBSがブロックストレージです。",
-      "EFSは複数のEC2インスタンスから同時アクセス可能、EBSは単一インスタンスのみ: ✓ 正解。EFSは共有ファイルシステムとして複数インスタンスから同時アクセスでき、EBSは通常1つのインスタンスにアタッチされます。",
-      "EFSはリージョナル、EBSはグローバル: 両方ともリージョナルサービスです。グローバルではありません。",
-      "EFSはオブジェクトストレージ、EBSはブロックストレージ: EFSはファイルストレージです。オブジェクトストレージはS3です。"
+      "EFS is block storage; EBS is file storage: This is reversed. EFS is file storage and EBS is block storage.",
+      "EFS can be accessed simultaneously by multiple EC2 instances; EBS is limited to a single instance: ✓ Correct. EFS is a shared file system accessible by multiple instances simultaneously, while EBS is typically attached to one instance.",
+      "EFS is regional; EBS is global: Both are regional services. Neither is global.",
+      "EFS is object storage; EBS is block storage: EFS is file storage. Object storage is S3."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/efs/latest/ug/whatisefs.html", title: "Amazon EFS とは" }
+      { url: "https://docs.aws.amazon.com/efs/latest/ug/whatisefs.html", title: "What is Amazon EFS" }
     ]
   },
   {
     id: 81,
-    question: "AWS Elastic Beanstalkで自動的に管理されないものはどれですか?",
+    question: "Which of the following is NOT automatically managed by AWS Elastic Beanstalk?",
     options: [
-      "キャパシティのプロビジョニング",
-      "アプリケーションコードの開発",
-      "負荷分散",
-      "自動スケーリング"
+      "Capacity provisioning",
+      "Application code development",
+      "Load balancing",
+      "Auto scaling"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Elastic Beanstalkはインフラストラクチャの管理を自動化しますが、アプリケーションコードの開発は開発者の責任です。",
+    category: "Cloud Technology and Services",
+    explanation: "Elastic Beanstalk automates infrastructure management, but developing application code remains the developer's responsibility.",
     optionExplanations: [
-      "キャパシティのプロビジョニング: Elastic Beanstalkが自動的に管理します。必要なEC2インスタンスを自動的にプロビジョニングします。",
-      "アプリケーションコードの開発: ✓ 正解。これは開発者の責任です。Elastic Beanstalkはコードをデプロイして実行する環境を提供しますが、コード自体は開発者が作成します。",
-      "負荷分散: Elastic Beanstalkが自動的に管理します。ELBを使用して自動的に負荷分散を設定します。",
-      "自動スケーリング: Elastic Beanstalkが自動的に管理します。トラフィックに応じてインスタンス数を自動調整します。"
+      "Capacity provisioning: Automatically managed by Elastic Beanstalk. It automatically provisions the required EC2 instances.",
+      "Application code development: ✓ Correct. This is the developer's responsibility. Elastic Beanstalk provides an environment to deploy and run code, but the code itself must be written by the developer.",
+      "Load balancing: Automatically managed by Elastic Beanstalk. It automatically configures load balancing using ELB.",
+      "Auto scaling: Automatically managed by Elastic Beanstalk. It automatically adjusts the number of instances based on traffic."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/elasticbeanstalk/latest/dg/Welcome.html", title: "AWS Elastic Beanstalk とは" }
+      { url: "https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html", title: "What is AWS Elastic Beanstalk" }
     ]
   },
   {
     id: 82,
-    question: "Amazon Redshiftの主な用途はどれですか?",
+    question: "What is the primary use of Amazon Redshift?",
     options: [
-      "NoSQLデータベース",
-      "リアルタイムトランザクション処理",
-      "データウェアハウスと分析",
-      "オブジェクトストレージ"
+      "NoSQL database",
+      "Real-time transaction processing",
+      "Data warehouse and analytics",
+      "Object storage"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon Redshiftは、ペタバイト規模のデータウェアハウスサービスで、大規模なデータ分析に最適化されています。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon Redshift is a petabyte-scale data warehouse service optimized for large-scale data analytics.",
     optionExplanations: [
-      "NoSQLデータベース: DynamoDBの用途です。RedshiftはSQLベースのデータウェアハウスです。",
-      "リアルタイムトランザクション処理: RDSやAuroraの用途です。Redshiftは分析ワークロードに最適化されています。",
-      "データウェアハウスと分析: ✓ 正解。Redshiftは、大量の構造化データに対する複雑な分析クエリを高速に実行できるデータウェアハウスサービスです。",
-      "オブジェクトストレージ: S3の用途です。Redshiftはデータウェアハウスサービスです。"
+      "NoSQL database: This describes DynamoDB. Redshift is a SQL-based data warehouse.",
+      "Real-time transaction processing: This describes RDS and Aurora. Redshift is optimized for analytical workloads.",
+      "Data warehouse and analytics: ✓ Correct. Redshift is a data warehouse service that can rapidly run complex analytical queries against large volumes of structured data.",
+      "Object storage: This describes S3. Redshift is a data warehouse service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/redshift/latest/mgmt/welcome.html", title: "Amazon Redshift とは" }
+      { url: "https://docs.aws.amazon.com/redshift/latest/mgmt/welcome.html", title: "What is Amazon Redshift" }
     ]
   },
   {
     id: 83,
-    question: "AWS X-Rayの主な目的は何ですか?",
+    question: "What is the primary purpose of AWS X-Ray?",
     options: [
-      "コスト最適化",
-      "分散アプリケーションのトレースと分析",
-      "データベースのバックアップ",
-      "ネットワークセキュリティ"
+      "Cost optimization",
+      "Tracing and analyzing distributed applications",
+      "Database backup",
+      "Network security"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "AWS X-Rayは、分散アプリケーションのリクエストをトレースし、パフォーマンスのボトルネックやエラーを特定するためのサービスです。",
+    category: "Cloud Technology and Services",
+    explanation: "AWS X-Ray is a service for tracing requests through distributed applications and identifying performance bottlenecks and errors.",
     optionExplanations: [
-      "コスト最適化: Cost ExplorerやTrusted Advisorの目的です。X-Rayはアプリケーション分析ツールです。",
-      "分散アプリケーションのトレースと分析: ✓ 正解。X-Rayは、マイクロサービスアーキテクチャなどの分散システムで、リクエストの流れを可視化し、パフォーマンス問題を診断します。",
-      "データベースのバックアップ: AWS BackupやRDSの機能です。X-Rayはトレーシングサービスです。",
-      "ネットワークセキュリティ: Security GroupやNACLの目的です。X-Rayはアプリケーションの可観測性ツールです。"
+      "Cost optimization: This is the purpose of Cost Explorer and Trusted Advisor. X-Ray is an application analysis tool.",
+      "Tracing and analyzing distributed applications: ✓ Correct. X-Ray visualizes the flow of requests and diagnoses performance issues in distributed systems such as microservices architectures.",
+      "Database backup: This is a feature of AWS Backup and RDS. X-Ray is a tracing service.",
+      "Network security: This is the purpose of Security Groups and NACLs. X-Ray is an application observability tool."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/xray/latest/devguide/aws-xray.html", title: "AWS X-Ray とは" }
+      { url: "https://docs.aws.amazon.com/xray/latest/devguide/aws-xray.html", title: "What is AWS X-Ray" }
     ]
   },
   {
     id: 84,
-    question: "AWS Personal Health Dashboardが提供する情報はどれですか?",
+    question: "What information does AWS Personal Health Dashboard provide?",
     options: [
-      "AWSサービスの一般的な稼働状況のみ",
-      "セキュリティ脆弱性のスキャン結果",
-      "コスト最適化の推奨事項",
-      "自分のAWSリソースに影響を与えるイベントの通知"
+      "General availability status of AWS services only",
+      "Security vulnerability scan results",
+      "Cost optimization recommendations",
+      "Notifications about events affecting your own AWS resources"
     ],
     correctAnswer: 3,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Personal Health Dashboardは、自分のAWSアカウントのリソースに影響を与える可能性のあるイベントについて、パーソナライズされた通知を提供します。",
+    category: "Cloud Technology and Services",
+    explanation: "Personal Health Dashboard provides personalized notifications about events that may affect the resources in your AWS account.",
     optionExplanations: [
-      "AWSサービスの一般的な稼働状況のみ: これはService Health Dashboardの機能です。Personal Health Dashboardはよりパーソナライズされた情報を提供します。",
-      "セキュリティ脆弱性のスキャン結果: Inspectorや Security Hubの機能です。Personal Health Dashboardはサービスイベントを通知します。",
-      "コスト最適化の推奨事項: Trusted AdvisorやCost Explorerの機能です。Personal Health Dashboardは健全性イベントに焦点を当てています。",
-      "自分のAWSリソースに影響を与えるイベントの通知: ✓ 正解。メンテナンス、障害、セキュリティイベントなど、自分のリソースに影響する可能性のあるイベントについて通知します。"
+      "General availability status of AWS services only: This is a feature of the Service Health Dashboard. Personal Health Dashboard provides more personalized information.",
+      "Security vulnerability scan results: This is a feature of Inspector and Security Hub. Personal Health Dashboard sends notifications about service events.",
+      "Cost optimization recommendations: This is a feature of Trusted Advisor and Cost Explorer. Personal Health Dashboard focuses on health events.",
+      "Notifications about events affecting your own AWS resources: ✓ Correct. It notifies you about events such as maintenance, outages, and security incidents that may affect your resources."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/health/latest/ug/what-is-aws-health.html", title: "AWS Health とは" }
+      { url: "https://docs.aws.amazon.com/health/latest/ug/what-is-aws-health.html", title: "What is AWS Health" }
     ]
   },
   {
     id: 85,
-    question: "Amazon Aurora Serverlessの主な利点はどれですか?",
+    question: "What is the primary benefit of Amazon Aurora Serverless?",
     options: [
-      "固定容量で予測可能なコスト",
-      "使用量に応じた自動スケーリングと従量課金",
-      "NoSQLデータベース機能",
-      "オンプレミスでの実行"
+      "Fixed capacity with predictable costs",
+      "Automatic scaling based on usage with pay-per-use pricing",
+      "NoSQL database capabilities",
+      "Running on-premises"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Aurora Serverlessは、データベースの容量を自動的にスケールアップ・ダウンし、実際に使用した分だけ課金されるサーバーレスデータベースです。",
+    category: "Cloud Technology and Services",
+    explanation: "Aurora Serverless is a serverless database that automatically scales capacity up and down and charges only for what you actually use.",
     optionExplanations: [
-      "固定容量で予測可能なコスト: 通常のプロビジョニングされたAuroraの特徴です。Serverlessは変動する容量と従量課金が特徴です。",
-      "使用量に応じた自動スケーリングと従量課金: ✓ 正解。Aurora Serverlessは、ワークロードに応じて自動的にスケールし、データベースが使用されていない時は停止して、使用した分だけ課金されます。",
-      "NoSQLデータベース機能: Auroraはリレーショナルデータベースです。NoSQL機能はDynamoDBが提供します。",
-      "オンプレミスでの実行: Auroraはクラウドネイティブサービスで、オンプレミスでは実行できません。"
+      "Fixed capacity with predictable costs: This describes standard provisioned Aurora. Serverless features variable capacity and pay-per-use pricing.",
+      "Automatic scaling based on usage with pay-per-use pricing: ✓ Correct. Aurora Serverless automatically scales with the workload, pauses when not in use, and charges only for what is consumed.",
+      "NoSQL database capabilities: Aurora is a relational database. NoSQL capabilities are provided by DynamoDB.",
+      "Running on-premises: Aurora is a cloud-native service and cannot run on-premises."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html", title: "Amazon Aurora Serverless の使用" }
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html", title: "Using Amazon Aurora Serverless" }
     ]
   },
   {
     id: 86,
-    question: "AWS WAF(Web Application Firewall)で保護できる攻撃はどれですか?",
+    question: "Which types of attacks can AWS WAF (Web Application Firewall) protect against?",
     options: [
-      "DDoS攻撃のみ",
-      "物理的なデータセンターへの侵入",
-      "SQLインジェクションとクロスサイトスクリプティング",
-      "IAMユーザーの不正ログイン"
+      "DDoS attacks only",
+      "Physical intrusion into data centers",
+      "SQL injection and cross-site scripting",
+      "Unauthorized IAM user logins"
     ],
     correctAnswer: 2,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS WAFは、SQLインジェクション、クロスサイトスクリプティング(XSS)などの一般的なWebアプリケーション攻撃から保護します。",
+    category: "Security and Compliance",
+    explanation: "AWS WAF protects against common web application attacks such as SQL injection and cross-site scripting (XSS).",
     optionExplanations: [
-      "DDoS攻撃のみ: DDoS攻撃の保護はAWS Shieldの主な機能です。WAFはアプリケーション層の攻撃に焦点を当てています。",
-      "物理的なデータセンターへの侵入: これはAWSの物理セキュリティの責任範囲です。WAFはWebアプリケーション保護ツールです。",
-      "SQLインジェクションとクロスサイトスクリプティング: ✓ 正解。WAFは、カスタムルールやマネージドルールを使用して、SQLインジェクション、XSS、その他のOWASP Top 10の脅威から保護します。",
-      "IAMユーザーの不正ログイン: IAMポリシーやMFAで対策します。WAFはWebトラフィックのフィルタリングに特化しています。"
+      "DDoS attacks only: DDoS protection is the primary function of AWS Shield. WAF focuses on application-layer attacks.",
+      "Physical intrusion into data centers: This is within AWS's physical security responsibility. WAF is a web application protection tool.",
+      "SQL injection and cross-site scripting: ✓ Correct. WAF uses custom and managed rules to protect against SQL injection, XSS, and other OWASP Top 10 threats.",
+      "Unauthorized IAM user logins: These are addressed using IAM policies and MFA. WAF is dedicated to filtering web traffic."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/waf/latest/developerguide/what-is-aws-waf.html", title: "AWS WAF とは" }
+      { url: "https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html", title: "What is AWS WAF" }
     ]
   },
   {
     id: 87,
-    question: "Amazon S3のバージョニング機能を有効にした場合、オブジェクトを削除するとどうなりますか?",
+    question: "When S3 versioning is enabled and an object is deleted, what happens?",
     options: [
-      "オブジェクトは完全に削除される",
-      "最新バージョンのみが削除される",
-      "削除マーカーが追加され、以前のバージョンは保持される",
-      "すべてのバージョンが削除される"
+      "The object is permanently deleted",
+      "Only the latest version is deleted",
+      "A delete marker is added and all previous versions are retained",
+      "All versions are deleted"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "S3バージョニングが有効な場合、オブジェクトを削除すると削除マーカーが追加されますが、以前のバージョンはすべて保持されます。",
+    category: "Cloud Technology and Services",
+    explanation: "When S3 versioning is enabled and an object is deleted, a delete marker is added, but all previous versions are retained.",
     optionExplanations: [
-      "オブジェクトは完全に削除される: バージョニングが無効の場合の動作です。バージョニング有効時は削除マーカーが追加されます。",
-      "最新バージョンのみが削除される: 誤りです。削除マーカーが追加され、すべてのバージョンが保持されます。",
-      "削除マーカーが追加され、以前のバージョンは保持される: ✓ 正解。削除操作は新しい削除マーカーを作成し、すべての以前のバージョンは保持されるため、誤削除から保護できます。",
-      "すべてのバージョンが削除される: 誤りです。バージョンを完全に削除するには、各バージョンを個別に削除する必要があります。"
+      "The object is permanently deleted: This is the behavior when versioning is disabled. With versioning enabled, a delete marker is added instead.",
+      "Only the latest version is deleted: Incorrect. A delete marker is added, and all versions are retained.",
+      "A delete marker is added and all previous versions are retained: ✓ Correct. The delete operation creates a new delete marker, and all previous versions are preserved, protecting against accidental deletion.",
+      "All versions are deleted: Incorrect. To permanently delete all versions, each version must be deleted individually."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/Versioning.html", title: "S3 バケットでのバージョニングの使用" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/Versioning.html", title: "Using versioning in S3 buckets" }
     ]
   },
   {
     id: 88,
-    question: "AWS CloudFormationスタックの更新時に、変更セット(Change Set)を使用する主な理由はどれですか?",
+    question: "What is the primary reason to use a Change Set when updating an AWS CloudFormation stack?",
     options: [
-      "更新を高速化するため",
-      "コストを削減するため",
-      "変更内容を事前に確認してから適用するため",
-      "自動的にロールバックするため"
+      "To speed up the update",
+      "To reduce costs",
+      "To review changes before applying them",
+      "To automatically roll back"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "変更セットを使用すると、スタックに加えられる変更を実際に適用する前にプレビューでき、意図しない変更を防ぐことができます。",
+    category: "Cloud Technology and Services",
+    explanation: "Using a Change Set lets you preview the changes that will be made to a stack before actually applying them, preventing unintended modifications.",
     optionExplanations: [
-      "更新を高速化するため: 変更セットは速度向上のためではなく、安全性向上のための機能です。",
-      "コストを削減するため: 変更セット自体はコスト削減機能ではありません。安全な変更管理のためのツールです。",
-      "変更内容を事前に確認してから適用するため: ✓ 正解。変更セットは、リソースの追加、削除、変更をプレビューし、本番環境への影響を事前に評価できます。",
-      "自動的にロールバックするため: ロールバックは別の機能です。変更セットは変更のプレビューに使用されます。"
+      "To speed up the update: Change Sets are not for improving speed; they are a safety feature.",
+      "To reduce costs: Change Sets are not a cost-reduction feature. They are a tool for safe change management.",
+      "To review changes before applying them: ✓ Correct. A Change Set lets you preview additions, deletions, and modifications to resources and evaluate the impact on the production environment in advance.",
+      "To automatically roll back: Rollback is a separate feature. Change Sets are used to preview changes."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html", title: "変更セットを使用したスタックの更新" }
+      { url: "https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-changesets.html", title: "Updating stacks using change sets" }
     ]
   },
   {
     id: 89,
-    question: "Amazon DynamoDBのグローバルセカンダリインデックス(GSI)とローカルセカンダリインデックス(LSI)の主な違いはどれですか?",
+    question: "What is the primary difference between a Global Secondary Index (GSI) and a Local Secondary Index (LSI) in Amazon DynamoDB?",
     options: [
-      "LSIは作成後に追加可能、GSIはテーブル作成時のみ",
-      "GSIは作成後に追加可能、LSIはテーブル作成時のみ",
-      "GSIとLSIに違いはない",
-      "GSIはクエリのみ、LSIはスキャンのみ"
+      "LSI can be added after table creation; GSI can only be defined at table creation",
+      "GSI can be added after table creation; LSI can only be defined at table creation",
+      "There is no difference between GSI and LSI",
+      "GSI supports queries only; LSI supports scans only"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "GSIはテーブル作成後でも追加・削除できますが、LSIはテーブル作成時にのみ定義でき、後から変更できません。",
+    category: "Cloud Technology and Services",
+    explanation: "GSIs can be added or removed after a table is created, but LSIs can only be defined at table creation time and cannot be changed later.",
     optionExplanations: [
-      "LSIは作成後に追加可能、GSIはテーブル作成時のみ: 逆です。GSIが柔軟で、LSIが制限されています。",
-      "GSIは作成後に追加可能、LSIはテーブル作成時のみ: ✓ 正解。GSIは柔軟性が高く、いつでも追加・削除できますが、LSIはテーブル作成時に定義する必要があります。",
-      "GSIとLSIに違いはない: 誤りです。作成タイミング、パーティションキー、整合性モデルなど、多くの違いがあります。",
-      "GSIはクエリのみ、LSIはスキャンのみ: 誤りです。両方ともクエリとスキャンをサポートします。"
+      "LSI can be added after table creation; GSI can only be defined at table creation: This is reversed. GSI is flexible and LSI is restricted.",
+      "GSI can be added after table creation; LSI can only be defined at table creation: ✓ Correct. GSIs are flexible and can be added or removed at any time, but LSIs must be defined when the table is created.",
+      "There is no difference between GSI and LSI: Incorrect. There are many differences including creation timing, partition key, and consistency model.",
+      "GSI supports queries only; LSI supports scans only: Incorrect. Both support queries and scans."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/amazondynamodb/latest/developerguide/SecondaryIndexes.html", title: "DynamoDB のセカンダリインデックス" }
+      { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html", title: "Improving data access with secondary indexes in DynamoDB" }
     ]
   },
   {
     id: 90,
-    question: "AWS Systems Manager Session Managerの主な利点はどれですか?",
+    question: "What is the primary benefit of AWS Systems Manager Session Manager?",
     options: [
-      "コストを削減できる",
-      "データベースのバックアップを自動化できる",
-      "EC2インスタンスへのSSHポートを開く必要がない",
-      "アプリケーションをデプロイできる"
+      "Reduces costs",
+      "Automates database backups",
+      "No need to open SSH ports to EC2 instances",
+      "Deploys applications"
     ],
     correctAnswer: 2,
-    category: "セキュリティとコンプライアンス",
-    explanation: "Session Managerを使用すると、SSHポート(22)やRDPポート(3389)を開かずに、ブラウザベースまたはCLIでEC2インスタンスに安全にアクセスできます。",
+    category: "Security and Compliance",
+    explanation: "Session Manager allows you to securely access EC2 instances via a browser or CLI without opening SSH port 22 or RDP port 3389.",
     optionExplanations: [
-      "コストを削減できる: Session Manager自体は追加コストなしで使用できますが、主な目的はコスト削減ではなくセキュリティ向上です。",
-      "データベースのバックアップを自動化できる: AWS BackupやRDSの機能です。Session Managerはインスタンスアクセス管理ツールです。",
-      "EC2インスタンスへのSSHポートを開く必要がない: ✓ 正解。Session Managerは、インバウンドポートを開かずにインスタンスに接続でき、セキュリティが向上し、監査ログも自動的に記録されます。",
-      "アプリケーションをデプロイできる: CodeDeployやElastic Beanstalkの機能です。Session Managerはリモートアクセスツールです。"
+      "Reduces costs: Session Manager itself has no additional cost, but cost reduction is not its primary purpose — improved security is.",
+      "Automates database backups: This is a feature of AWS Backup and RDS. Session Manager is an instance access management tool.",
+      "No need to open SSH ports to EC2 instances: ✓ Correct. Session Manager connects to instances without opening inbound ports, improving security and automatically recording audit logs.",
+      "Deploys applications: This is a feature of CodeDeploy and Elastic Beanstalk. Session Manager is a remote access tool."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/systems-manager/latest/userguide/session-manager.html", title: "AWS Systems Manager Session Manager" }
+      { url: "https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html", title: "AWS Systems Manager Session Manager" }
     ]
   },
   {
     id: 91,
-    question: "AWS Transit Gatewayの主な用途は何ですか?",
+    question: "What is the primary use of AWS Transit Gateway?",
     options: [
-      "インターネットゲートウェイの代替",
-      "複数のVPCとオンプレミスネットワークを接続するハブ",
-      "データベースのレプリケーション",
-      "コンテンツ配信の高速化"
+      "Replacement for an Internet Gateway",
+      "A hub for connecting multiple VPCs and on-premises networks",
+      "Database replication",
+      "Accelerating content delivery"
     ],
     correctAnswer: 1,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Transit Gatewayは、複数のVPC、VPN接続、Direct Connect接続を単一のゲートウェイで接続できるネットワークハブです。",
+    category: "Cloud Technology and Services",
+    explanation: "Transit Gateway is a network hub that can connect multiple VPCs, VPN connections, and Direct Connect connections through a single gateway.",
     optionExplanations: [
-      "インターネットゲートウェイの代替: 誤りです。Transit Gatewayはプライベートネットワーク接続用で、インターネットゲートウェイとは異なる目的です。",
-      "複数のVPCとオンプレミスネットワークを接続するハブ: ✓ 正解。Transit Gatewayは、数千のVPCとオンプレミスネットワークを中央ハブで接続し、ネットワーク管理を簡素化します。",
-      "データベースのレプリケーション: RDSやDynamoDBの機能です。Transit Gatewayはネットワーク接続サービスです。",
-      "コンテンツ配信の高速化: CloudFrontの機能です。Transit Gatewayはネットワークルーティングに特化しています。"
+      "Replacement for an Internet Gateway: Incorrect. Transit Gateway is for private network connectivity and serves a different purpose than an Internet Gateway.",
+      "A hub for connecting multiple VPCs and on-premises networks: ✓ Correct. Transit Gateway connects thousands of VPCs and on-premises networks through a central hub, simplifying network management.",
+      "Database replication: This is a feature of RDS and DynamoDB. Transit Gateway is a network connectivity service.",
+      "Accelerating content delivery: This is a feature of CloudFront. Transit Gateway is dedicated to network routing."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/vpc/latest/tgw/what-is-transit-gateway.html", title: "Transit Gateway とは" }
+      { url: "https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html", title: "What is a transit gateway" }
     ]
   },
   {
     id: 92,
-    question: "Amazon ElastiCacheでサポートされているキャッシュエンジンはどれですか?",
+    question: "Which cache engines does Amazon ElastiCache support?",
     options: [
-      "OracleとSQL Server",
-      "MySQLとPostgreSQL",
-      "MongoDBとCassandra",
-      "RedisとMemcachedのみ"
+      "Oracle and SQL Server",
+      "MySQL and PostgreSQL",
+      "MongoDB and Cassandra",
+      "Redis and Memcached only"
     ],
     correctAnswer: 3,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon ElastiCacheは、RedisとMemcachedの2つのオープンソースインメモリキャッシュエンジンをサポートしています。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon ElastiCache supports two open-source in-memory cache engines: Redis and Memcached.",
     optionExplanations: [
-      "OracleとSQL Server: これらはRDSでサポートされる商用データベースエンジンです。",
-      "MySQLとPostgreSQL: これらはRDSやAuroraでサポートされるリレーショナルデータベースエンジンです。",
-      "MongoDBとCassandra: これらはNoSQLデータベースで、DocumentDBやKeyspacesでサポートされます。",
-      "RedisとMemcachedのみ: ✓ 正解。ElastiCacheは、RedisとMemcachedをフルマネージドサービスとして提供し、アプリケーションのパフォーマンスを向上させます。"
+      "Oracle and SQL Server: These are commercial database engines supported by RDS.",
+      "MySQL and PostgreSQL: These are relational database engines supported by RDS and Aurora.",
+      "MongoDB and Cassandra: These are NoSQL databases supported by DocumentDB and Keyspaces.",
+      "Redis and Memcached only: ✓ Correct. ElastiCache provides Redis and Memcached as fully managed services, improving application performance."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonElastiCache/latest/red-ug/WhatIs.html", title: "Amazon ElastiCache とは" }
+      { url: "https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/WhatIs.html", title: "What is Amazon ElastiCache" }
     ]
   },
   {
     id: 93,
-    question: "AWS Artifactで提供されるものはどれですか?",
+    question: "What does AWS Artifact provide?",
     options: [
-      "データベースのバックアップ",
-      "アプリケーションのビルド成果物",
-      "機械学習モデル",
-      "コンプライアンスレポートとセキュリティドキュメント"
+      "Database backups",
+      "Application build artifacts",
+      "Machine learning models",
+      "Compliance reports and security documents"
     ],
     correctAnswer: 3,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Artifactは、AWSのコンプライアンスレポート、セキュリティドキュメント、契約書にオンデマンドでアクセスできるサービスです。",
+    category: "Security and Compliance",
+    explanation: "AWS Artifact is a service that provides on-demand access to AWS compliance reports, security documents, and agreements.",
     optionExplanations: [
-      "データベースのバックアップ: AWS BackupやRDSで管理します。Artifactはドキュメント提供サービスです。",
-      "アプリケーションのビルド成果物: CodeArtifactやS3で管理します。AWS Artifactはコンプライアンスドキュメント専用です。",
-      "機械学習モデル: SageMakerで管理します。Artifactはコンプライアンス情報の提供に特化しています。",
-      "コンプライアンスレポートとセキュリティドキュメント: ✓ 正解。Artifactは、SOC、PCI、ISO認証レポートなど、AWSのコンプライアンス関連ドキュメントを提供します。"
+      "Database backups: These are managed by AWS Backup and RDS. Artifact is a document delivery service.",
+      "Application build artifacts: These are managed by CodeArtifact and S3. AWS Artifact is dedicated to compliance documents.",
+      "Machine learning models: These are managed by SageMaker. Artifact is dedicated to providing compliance information.",
+      "Compliance reports and security documents: ✓ Correct. Artifact provides AWS compliance-related documents such as SOC, PCI, and ISO certification reports."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/artifact/latest/ug/what-is-aws-artifact.html", title: "AWS Artifact とは" }
+      { url: "https://docs.aws.amazon.com/artifact/latest/ug/what-is-aws-artifact.html", title: "What is AWS Artifact" }
     ]
   },
   {
     id: 94,
-    question: "Amazon API Gatewayのスロットリング(調整)のデフォルト制限はどれですか?",
+    question: "What is the default throttling limit for Amazon API Gateway?",
     options: [
-      "1秒あたり1,000リクエスト",
-      "1秒あたり5,000リクエスト",
-      "1秒あたり10,000リクエスト",
-      "制限なし"
+      "1,000 requests per second",
+      "5,000 requests per second",
+      "10,000 requests per second",
+      "No limit"
     ],
     correctAnswer: 2,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "API Gatewayのデフォルトのスロットリング制限は、1秒あたり10,000リクエスト、バーストで5,000リクエストです。",
+    category: "Cloud Technology and Services",
+    explanation: "The default throttling limit for API Gateway is 10,000 requests per second for steady-state traffic and a burst of 5,000 requests.",
     optionExplanations: [
-      "1秒あたり1,000リクエスト: デフォルト制限より低いです。必要に応じて制限を引き下げることは可能です。",
-      "1秒あたり5,000リクエスト: バースト容量の値です。定常状態の制限はこれより高いです。",
-      "1秒あたり10,000リクエスト: ✓ 正解。API Gatewayは、デフォルトで1秒あたり10,000リクエストの定常状態制限と、5,000リクエストのバースト容量を提供します。",
-      "制限なし: 誤りです。API Gatewayにはデフォルトのスロットリング制限があり、必要に応じて引き上げをリクエストできます。"
+      "1,000 requests per second: This is below the default limit. The limit can be reduced if needed.",
+      "5,000 requests per second: This is the burst capacity value. The steady-state limit is higher.",
+      "10,000 requests per second: ✓ Correct. API Gateway provides a default steady-state limit of 10,000 requests per second and a burst capacity of 5,000 requests.",
+      "No limit: Incorrect. API Gateway has a default throttling limit, which can be increased by submitting a request."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/api-gateway-request-throttling.html", title: "API Gateway のスロットリング" }
+      { url: "https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html", title: "Throttling requests to your API" }
     ]
   },
   {
     id: 95,
-    question: "AWS Glueの主な機能はどれですか?",
+    question: "What is the primary function of AWS Glue?",
     options: [
-      "量子コンピューティング",
-      "コンテナオーケストレーション",
-      "ブロックチェーン管理",
-      "サーバーレスETL(抽出、変換、ロード)サービス"
+      "Quantum computing",
+      "Container orchestration",
+      "Blockchain management",
+      "Serverless ETL (Extract, Transform, Load) service"
     ],
     correctAnswer: 3,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "AWS Glueは、データの検出、準備、統合を簡素化するサーバーレスデータ統合サービスで、ETL処理に最適化されています。",
+    category: "Cloud Technology and Services",
+    explanation: "AWS Glue is a serverless data integration service that simplifies data discovery, preparation, and integration, optimized for ETL processing.",
     optionExplanations: [
-      "量子コンピューティング: Amazon Braketの領域です。GlueはETLとデータカタログサービスです。",
-      "コンテナオーケストレーション: ECSやEKSの機能です。Glueはデータ統合サービスです。",
-      "ブロックチェーン管理: Amazon Managed Blockchainの機能です。Glueはデータ処理に特化しています。",
-      "サーバーレスETL(抽出、変換、ロード)サービス: ✓ 正解。Glueは、データソースからデータを抽出し、変換して、データウェアハウスやデータレイクにロードするETLジョブを自動化します。"
+      "Quantum computing: This is the domain of Amazon Braket. Glue is an ETL and data catalog service.",
+      "Container orchestration: This is a feature of ECS and EKS. Glue is a data integration service.",
+      "Blockchain management: This is a feature of Amazon Managed Blockchain. Glue is dedicated to data processing.",
+      "Serverless ETL (Extract, Transform, Load) service: ✓ Correct. Glue automates ETL jobs that extract data from sources, transform it, and load it into data warehouses or data lakes."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/glue/latest/dg/what-is-glue.html", title: "AWS Glue とは" }
+      { url: "https://docs.aws.amazon.com/glue/latest/dg/what-is-glue.html", title: "What is AWS Glue" }
     ]
   },
   {
     id: 96,
-    question: "Amazon S3 Transfer Accelerationが使用するネットワークはどれですか?",
+    question: "Which network does Amazon S3 Transfer Acceleration use?",
     options: [
-      "インターネット",
+      "The internet",
       "AWS Direct Connect",
       "VPN",
-      "CloudFrontのエッジロケーション"
+      "CloudFront edge locations"
     ],
     correctAnswer: 3,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "S3 Transfer Accelerationは、CloudFrontのグローバルエッジロケーションネットワークを活用して、長距離のファイル転送を高速化します。",
+    category: "Cloud Technology and Services",
+    explanation: "S3 Transfer Acceleration leverages CloudFront's global edge location network to accelerate long-distance file transfers to and from Amazon S3.",
     optionExplanations: [
-      "インターネット: 通常のS3転送で使用されます。Transfer Accelerationはより最適化されたネットワークを使用します。",
-      "AWS Direct Connect: 専用線接続サービスです。Transfer Accelerationとは異なるアプローチです。",
-      "VPN: 暗号化された接続ですが、Transfer Accelerationの基盤ではありません。",
-      "CloudFrontのエッジロケーション: ✓ 正解。Transfer Accelerationは、CloudFrontのエッジロケーションを経由してAWSバックボーンネットワークを使用し、転送速度を最大化します。"
+      "The internet: This is used for standard S3 transfers. Transfer Acceleration uses a more optimized network path.",
+      "AWS Direct Connect: This is a dedicated connection service and represents a different approach from Transfer Acceleration.",
+      "VPN: This provides an encrypted connection but is not the underlying infrastructure for Transfer Acceleration.",
+      "✓ Correct: Transfer Acceleration routes uploads through CloudFront edge locations and then uses the AWS backbone network to maximize transfer speed over long distances."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/AmazonS3/latest/userguide/transfer-acceleration.html", title: "Amazon S3 Transfer Acceleration" }
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/transfer-acceleration.html", title: "Amazon S3 Transfer Acceleration" }
     ]
   },
   {
     id: 97,
-    question: "AWS Resource Access Manager (RAM)で共有できないリソースはどれですか?",
+    question: "Which resource CANNOT be shared using AWS Resource Access Manager (RAM)?",
     options: [
       "Transit Gateway",
       "Subnets",
       "Route 53 Resolver Rules",
-      "IAMユーザー"
+      "IAM users"
     ],
     correctAnswer: 3,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS RAMは、VPCサブネット、Transit Gateway、Route 53リソースなどを共有できますが、IAMユーザーやロールは共有できません。",
+    category: "Security and Compliance",
+    explanation: "AWS RAM can share resources such as VPC subnets, Transit Gateways, and Route 53 resources, but IAM users and roles cannot be shared through RAM.",
     optionExplanations: [
-      "Transit Gateway: RAMで共有できます。複数のアカウント間でTransit Gatewayを共有し、ネットワーク接続を簡素化できます。",
-      "Subnets: RAMで共有できます。VPCサブネットを他のアカウントと共有し、リソースを同じサブネットに配置できます。",
-      "Route 53 Resolver Rules: RAMで共有できます。DNS解決ルールを複数のアカウント間で共有できます。",
-      "IAMユーザー: ✓ 正解。IAMユーザー、グループ、ロールはアカウント固有で、RAMでは共有できません。クロスアカウントアクセスにはIAMロールを使用します。"
+      "Transit Gateway: This can be shared via RAM. Sharing a Transit Gateway across multiple accounts simplifies network connectivity.",
+      "Subnets: These can be shared via RAM. VPC subnets can be shared with other accounts so resources can be deployed in the same subnet.",
+      "Route 53 Resolver Rules: These can be shared via RAM, allowing DNS resolution rules to be shared across multiple accounts.",
+      "✓ Correct: IAM users, groups, and roles are account-specific and cannot be shared through RAM. For cross-account access, use IAM roles."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/ram/latest/userguide/what-is.html", title: "AWS Resource Access Manager とは" }
+      { url: "https://docs.aws.amazon.com/ram/latest/userguide/what-is.html", title: "What is AWS Resource Access Manager?" }
     ]
   },
   {
     id: 98,
-    question: "Amazon FSx for Windowsファイルサーバーの主な特徴はどれですか?",
+    question: "What is the primary characteristic of Amazon FSx for Windows File Server?",
     options: [
-      "Windows Server上に構築されたフルマネージドファイルストレージ",
-      "Linuxベースのファイルシステム",
-      "オブジェクトストレージ",
-      "ブロックストレージ"
+      "A fully managed file storage built on Windows Server",
+      "A Linux-based file system",
+      "Object storage",
+      "Block storage"
     ],
     correctAnswer: 0,
-    category: "クラウドテクノロジーとサービス",
-    explanation: "Amazon FSx for Windows File Serverは、Windows Server上に構築されたフルマネージドファイルストレージで、SMBプロトコルをサポートします。",
+    category: "Cloud Technology and Services",
+    explanation: "Amazon FSx for Windows File Server is a fully managed file storage built on Windows Server that supports the SMB protocol.",
     optionExplanations: [
-      "Windows Server上に構築されたフルマネージドファイルストレージ: ✓ 正解。FSx for Windowsは、Active Directory統合、SMBプロトコル、Windows NTFSファイルシステムをサポートします。",
-      "Linuxベースのファイルシステム: FSx for Lustreの特徴です。FSx for WindowsはWindows Serverベースです。",
-      "オブジェクトストレージ: S3の特徴です。FSxはファイルストレージサービスです。",
-      "ブロックストレージ: EBSの特徴です。FSxはファイルレベルのストレージを提供します。"
+      "✓ Correct: FSx for Windows supports Active Directory integration, the SMB protocol, and the Windows NTFS file system, making it a native Windows-compatible managed file storage service.",
+      "A Linux-based file system: This describes FSx for Lustre. FSx for Windows is Windows Server-based.",
+      "Object storage: This describes Amazon S3. FSx is a file storage service.",
+      "Block storage: This describes Amazon EBS. FSx provides file-level storage."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/fsx/latest/WindowsGuide/what-is.html", title: "Amazon FSx for Windows File Server とは" }
+      { url: "https://docs.aws.amazon.com/fsx/latest/WindowsGuide/what-is.html", title: "What is Amazon FSx for Windows File Server?" }
     ]
   },
   {
     id: 99,
-    question: "AWS Control Towerの主な目的は何ですか?",
+    question: "What is the primary purpose of AWS Control Tower?",
     options: [
-      "コスト管理",
-      "データベースの移行",
-      "マルチアカウント環境のセットアップと管理",
-      "機械学習モデルのトレーニング"
+      "Cost management",
+      "Database migration",
+      "Setting up and governing a multi-account AWS environment",
+      "Training machine learning models"
     ],
     correctAnswer: 2,
-    category: "セキュリティとコンプライアンス",
-    explanation: "AWS Control Towerは、ベストプラクティスに基づいた安全なマルチアカウントAWS環境を自動的にセットアップし、管理するサービスです。",
+    category: "Security and Compliance",
+    explanation: "AWS Control Tower is a service that automatically sets up and governs a secure, multi-account AWS environment based on best practices.",
     optionExplanations: [
-      "コスト管理: Cost ExplorerやBudgetsの目的です。Control Towerはガバナンスとコンプライアンスに焦点を当てています。",
-      "データベースの移行: Database Migration Serviceの目的です。Control Towerはアカウント管理ツールです。",
-      "マルチアカウント環境のセットアップと管理: ✓ 正解。Control Towerは、AWS Organizationsを基盤として、ガードレール、アカウントファクトリー、ダッシュボードを提供し、マルチアカウント環境を管理します。",
-      "機械学習モデルのトレーニング: SageMakerの目的です。Control Towerはガバナンスサービスです。"
+      "Cost management: This is the purpose of AWS Cost Explorer and AWS Budgets. Control Tower focuses on governance and compliance.",
+      "Database migration: This is the purpose of AWS Database Migration Service. Control Tower is an account management tool.",
+      "✓ Correct: Control Tower builds on AWS Organizations to provide guardrails, an Account Factory, and a dashboard for managing a multi-account AWS environment following best practices.",
+      "Training machine learning models: This is the purpose of Amazon SageMaker. Control Tower is a governance service."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/controltower/latest/userguide/what-is-control-tower.html", title: "AWS Control Tower とは" }
+      { url: "https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html", title: "What is AWS Control Tower?" }
     ]
   },
   {
     id: 100,
-    question: "Amazon Macie の主な機能は何ですか?",
+    question: "What is the primary function of Amazon Macie?",
     options: [
-      "ネットワークトラフィックの監視",
-      "アプリケーションのデプロイ",
-      "機密データの検出と保護",
-      "データベースのバックアップ"
+      "Monitoring network traffic",
+      "Deploying applications",
+      "Detecting and protecting sensitive data",
+      "Backing up databases"
     ],
     correctAnswer: 2,
-    category: "セキュリティとコンプライアンス",
-    explanation: "Amazon Macieは、機械学習を使用してS3内の機密データ(個人情報、クレジットカード番号など)を自動的に検出し、保護するセキュリティサービスです。",
+    category: "Security and Compliance",
+    explanation: "Amazon Macie is a security service that uses machine learning to automatically discover, classify, and protect sensitive data (such as personally identifiable information and credit card numbers) stored in Amazon S3.",
     optionExplanations: [
-      "ネットワークトラフィックの監視: VPC Flow LogsやCloudWatchの機能です。Macieはデータセキュリティに特化しています。",
-      "アプリケーションのデプロイ: CodeDeployやElastic Beanstalkの機能です。Macieはデータプライバシーツールです。",
-      "機密データの検出と保護: ✓ 正解。Macieは、S3バケット内の機密データを自動的にスキャンし、分類し、セキュリティリスクを特定してアラートを送信します。",
-      "データベースのバックアップ: AWS BackupやRDSの機能です。Macieは機密データの検出と分類に焦点を当てています。"
+      "Monitoring network traffic: This is the function of VPC Flow Logs and Amazon CloudWatch. Macie specializes in data security.",
+      "Deploying applications: This is the function of AWS CodeDeploy and AWS Elastic Beanstalk. Macie is a data privacy tool.",
+      "✓ Correct: Macie automatically scans S3 buckets for sensitive data, classifies it, identifies security risks, and sends alerts to help you protect your data.",
+      "Backing up databases: This is the function of AWS Backup and Amazon RDS. Macie focuses on sensitive data discovery and classification."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/macie/latest/user/what-is-macie.html", title: "Amazon Macie とは" }
+      { url: "https://docs.aws.amazon.com/macie/latest/user/what-is-macie.html", title: "What is Amazon Macie?" }
     ]
   }
 ];

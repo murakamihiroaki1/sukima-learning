@@ -2,7 +2,7 @@
 const awsAIFQuestions = [
   {
     id: 1,
-    question: "ある企業は、カスタマーサポートチャットボットを構築したいと考えています。自然言語を理解し、適切な応答を生成する必要があります。どのAWSサービスを使用すべきですか。",
+    question: "A company wants to build a customer support chatbot that understands natural language and generates appropriate responses. Which AWS service should they use?",
     options: [
       "Amazon Polly",
       "Amazon Transcribe",
@@ -10,43 +10,43 @@ const awsAIFQuestions = [
       "Amazon Translate"
     ],
     correctAnswer: 2,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Lexは、音声とテキストを使用した会話型インターフェースを構築するためのサービスです。自然言語理解(NLU)と自動音声認識(ASR)の機能を提供し、チャットボットの構築に最適です。Amazon Alexaと同じ技術を使用しています。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Lex is a service for building conversational interfaces using voice and text. It provides Natural Language Understanding (NLU) and Automatic Speech Recognition (ASR) capabilities, making it ideal for building chatbots. It uses the same technology that powers Amazon Alexa.",
     optionExplanations: [
-      "Amazon Pollyはテキストを音声に変換するサービスで、チャットボットの応答生成には適していません。",
-      "Amazon Transcribeは音声をテキストに変換するサービスで、チャットボットの理解機能の一部として使用できますが、単独では不十分です。",
-      "✓ 正解: Amazon Lexは会話型インターフェース構築に特化したサービスで、自然言語理解と対話管理機能を提供します。",
-      "Amazon Translateは言語翻訳サービスで、多言語対応には有用ですが、チャットボットの主要機能ではありません。"
+      "Amazon Polly converts text to speech and is not suitable as the primary response generation engine for a chatbot.",
+      "Amazon Transcribe converts speech to text and can be used as part of a chatbot's input processing, but is insufficient on its own.",
+      "✓ Correct: Amazon Lex is purpose-built for conversational interface development, providing natural language understanding and dialog management.",
+      "Amazon Translate is a language translation service useful for multilingual support, but it is not the core function of a chatbot."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/lex/latest/dg/what-is.html", title: "Amazon Lex とは" }
+      { url: "https://docs.aws.amazon.com/lex/latest/dg/what-is.html", title: "What is Amazon Lex?" }
     ]
   },
   {
     id: 2,
-    question: "機械学習モデルの学習データに個人情報が含まれている場合、責任あるAIの観点から最も重要な対策はどれですか。",
+    question: "When training machine learning models with data that contains personal information, which measure is most important from a responsible AI perspective?",
     options: [
-      "モデルのサイズを削減する",
-      "モデルの精度を最大化する",
-      "学習速度を向上させる",
-      "データの匿名化と暗号化を実施する"
+      "Reduce the model size",
+      "Maximize model accuracy",
+      "Improve training speed",
+      "Implement data anonymization and encryption"
     ],
     correctAnswer: 3,
-    category: "責任あるAI",
-    explanation: "責任あるAIの実践において、個人情報の保護は最優先事項です。データの匿名化により個人を特定できないようにし、暗号化により不正アクセスから保護することが重要です。これにより、プライバシーを保護しながらモデルの学習が可能になります。",
+    category: "Responsible AI",
+    explanation: "In responsible AI practice, protecting personal information is the top priority. Anonymizing data prevents individuals from being identified, while encryption protects against unauthorized access. This allows model training while safeguarding privacy.",
     optionExplanations: [
-      "モデルサイズの削減は効率化には有用ですが、個人情報保護とは直接関係ありません。",
-      "モデルの精度向上は重要ですが、個人情報保護よりも優先度は低くなります。",
-      "学習速度の向上は技術的な最適化であり、責任あるAIの観点からは二次的な要素です。",
-      "✓ 正解: データの匿名化と暗号化は、個人情報保護の基本的な対策です。GDPRなどの規制にも準拠するために必須です。"
+      "Reducing model size is useful for efficiency but is not directly related to personal data protection.",
+      "Improving model accuracy is important, but it has lower priority than protecting personal information.",
+      "Improving training speed is a technical optimization and is a secondary concern from a responsible AI perspective.",
+      "✓ Correct: Data anonymization and encryption are fundamental measures for personal information protection and are required to comply with regulations such as GDPR."
     ],
     references: [
-      { url: "https://aws.amazon.com/jp/machine-learning/responsible-ai/", title: "責任ある AI" }
+      { url: "https://aws.amazon.com/machine-learning/responsible-ai/", title: "Responsible AI" }
     ]
   },
   {
     id: 3,
-    question: "Amazon SageMakerで機械学習モデルを学習させる際、どのコンポーネントが学習ジョブを実行しますか。",
+    question: "When training a machine learning model with Amazon SageMaker, which component executes the training job?",
     options: [
       "Model Registry",
       "Endpoint",
@@ -54,65 +54,65 @@ const awsAIFQuestions = [
       "Training Job"
     ],
     correctAnswer: 3,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon SageMakerのTraining Jobは、指定されたアルゴリズムとデータを使用してモデルを学習させるコンポーネントです。学習が完了すると、モデルアーティファクトがS3に保存されます。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon SageMaker's Training Job is the component that trains a model using a specified algorithm and data. Once training is complete, model artifacts are saved to Amazon S3.",
     optionExplanations: [
-      "Model Registryはモデルのバージョン管理を行うコンポーネントで、学習自体は行いません。",
-      "Endpointは学習済みモデルをデプロイして推論を実行するためのコンポーネントです。",
-      "Notebook Instanceは開発環境であり、学習ジョブの実行環境ではありません。",
-      "✓ 正解: Training Jobは、SageMakerでモデル学習を実行する専用のコンポーネントです。"
+      "Model Registry manages model versions and does not execute training itself.",
+      "Endpoint deploys a trained model and performs inference; it does not run training jobs.",
+      "Notebook Instance is a development environment and is not the execution environment for training jobs.",
+      "✓ Correct: Training Job is the dedicated component in SageMaker for executing model training."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/how-it-works-training.html", title: "Amazon SageMaker でのモデルのトレーニング" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works-training.html", title: "Train a Model with Amazon SageMaker" }
     ]
   },
   {
     id: 4,
-    question: "生成AIモデルを使用する際、モデルが不適切または有害なコンテンツを生成するリスクを軽減するために、どの対策が最も効果的ですか。",
+    question: "When using a generative AI model, which measure is most effective for mitigating the risk of the model generating inappropriate or harmful content?",
     options: [
-      "モデルのパラメータ数を増やす",
-      "コンテンツフィルタリングとガードレールの実装",
-      "学習データのサイズを拡大する",
-      "推論速度を向上させる"
+      "Increase the number of model parameters",
+      "Implement content filtering and guardrails",
+      "Expand the size of training data",
+      "Improve inference speed"
     ],
     correctAnswer: 1,
-    category: "責任あるAI",
-    explanation: "生成AIの責任ある使用において、コンテンツフィルタリングとガードレールの実装は不可欠です。Amazon Bedrockなどのサービスでは、有害なコンテンツの検出とブロック機能が提供されており、安全なAIアプリケーションの構築を支援します。",
+    category: "Responsible AI",
+    explanation: "For responsible use of generative AI, implementing content filtering and guardrails is essential. Services such as Amazon Bedrock provide features to detect and block harmful content, helping build safe AI applications.",
     optionExplanations: [
-      "パラメータ数の増加は性能向上には寄与しますが、有害コンテンツの生成リスクを直接軽減するものではありません。",
-      "✓ 正解: コンテンツフィルタリングとガードレールにより、不適切な出力を防ぎ、安全なAI利用を実現できます。",
-      "学習データの拡大は有用ですが、適切なフィルタリングがなければ有害コンテンツのリスクは残ります。",
-      "推論速度の向上は効率化には有用ですが、コンテンツの安全性とは無関係です。"
+      "Increasing the number of parameters can improve performance but does not directly mitigate the risk of generating harmful content.",
+      "✓ Correct: Content filtering and guardrails prevent inappropriate outputs and enable safe AI usage.",
+      "Expanding training data is useful, but without proper filtering, the risk of harmful content remains.",
+      "Improving inference speed is useful for efficiency but is unrelated to content safety."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/guardrails.html", title: "Amazon Bedrock のガードレール" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html", title: "Guardrails for Amazon Bedrock" }
     ]
   },
   {
     id: 5,
-    question: "教師あり学習と教師なし学習の主な違いは何ですか。",
+    question: "What is the main difference between supervised learning and unsupervised learning?",
     options: [
-      "教師あり学習は安価で、教師なし学習は高価である",
-      "教師あり学習は高速で、教師なし学習は低速である",
-      "教師あり学習はクラウドで実行し、教師なし学習はオンプレミスで実行する",
-      "教師あり学習はラベル付きデータを使用し、教師なし学習はラベルなしデータを使用する"
+      "Supervised learning is inexpensive; unsupervised learning is expensive",
+      "Supervised learning is fast; unsupervised learning is slow",
+      "Supervised learning runs in the cloud; unsupervised learning runs on-premises",
+      "Supervised learning uses labeled data; unsupervised learning uses unlabeled data"
     ],
     correctAnswer: 3,
-    category: "AI/ML基礎",
-    explanation: "教師あり学習は、入力データとそれに対応する正解ラベル（教師データ）を使用してモデルを学習させます。一方、教師なし学習は正解ラベルのないデータからパターンや構造を発見します。分類や回帰は教師あり学習、クラスタリングや次元削減は教師なし学習の代表例です。",
+    category: "AI/ML Fundamentals",
+    explanation: "Supervised learning trains a model using input data paired with correct labels (training labels). Unsupervised learning, on the other hand, discovers patterns and structures from data without labels. Classification and regression are typical examples of supervised learning; clustering and dimensionality reduction are typical examples of unsupervised learning.",
     optionExplanations: [
-      "コストは学習方法ではなく、使用するリソースに依存します。",
-      "速度は学習方法ではなく、データサイズやアルゴリズムに依存します。",
-      "実行環境は学習方法の種類とは無関係です。",
-      "✓ 正解: ラベルの有無が教師あり学習と教師なし学習の本質的な違いです。"
+      "Cost depends on the resources used, not the learning method.",
+      "Speed depends on data size and the algorithm, not the learning method.",
+      "The execution environment is unrelated to the type of learning method.",
+      "✓ Correct: The presence or absence of labels is the fundamental difference between supervised and unsupervised learning."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/machine-learning/latest/dg/types-of-ml-models.html", title: "機械学習モデルのタイプ" }
+      { url: "https://docs.aws.amazon.com/machine-learning/latest/dg/types-of-ml-models.html", title: "Types of ML Models" }
     ]
   },
   {
     id: 6,
-    question: "Amazon Rekognitionを使用して画像内の顔を検出し、感情分析を行いたい場合、どの機能を使用すべきですか。",
+    question: "When using Amazon Rekognition to detect faces in an image and perform sentiment analysis, which feature should you use?",
     options: [
       "DetectFaces API",
       "DetectText API",
@@ -120,219 +120,219 @@ const awsAIFQuestions = [
       "SearchFaces API"
     ],
     correctAnswer: 0,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon RekognitionのDetectFaces APIは、画像内の顔を検出し、年齢範囲、性別、感情（喜び、悲しみ、怒りなど）、顔の向き、眼鏡の有無などの属性を分析します。感情分析を含む包括的な顔分析に最適です。",
+    category: "AWS AI/ML Services",
+    explanation: "The Amazon Rekognition DetectFaces API detects faces in an image and analyzes attributes such as age range, gender, emotions (happiness, sadness, anger, etc.), face orientation, and whether glasses are worn. It is ideal for comprehensive facial analysis including sentiment detection.",
     optionExplanations: [
-      "✓ 正解: DetectFaces APIは顔検出と感情分析を含む包括的な顔属性分析を提供します。",
-      "DetectText APIは画像内のテキストを検出するためのもので、顔分析には使用できません。",
-      "DetectLabels APIは画像内のオブジェクト、シーン、アクティビティを検出しますが、詳細な顔分析は行いません。",
-      "SearchFaces APIは顔コレクション内で類似した顔を検索するためのもので、感情分析は行いません。"
+      "✓ Correct: The DetectFaces API provides comprehensive facial attribute analysis, including face detection and emotion analysis.",
+      "The DetectText API detects text within images and cannot be used for facial analysis.",
+      "The DetectLabels API detects objects, scenes, and activities in images but does not perform detailed facial analysis.",
+      "The SearchFaces API searches for similar faces within a face collection and does not perform emotion analysis."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/rekognition/latest/dg/faces.html", title: "Amazon Rekognition での顔の検出と分析" }
+      { url: "https://docs.aws.amazon.com/rekognition/latest/dg/faces.html", title: "Detecting and Analyzing Faces with Amazon Rekognition" }
     ]
   },
   {
     id: 7,
-    question: "大規模言語モデル(LLM)を使用する際、プロンプトエンジニアリングで最も重要な原則は何ですか。",
+    question: "When using a large language model (LLM), what is the most important principle in prompt engineering?",
     options: [
-      "常に同じフォーマットを使用する",
-      "明確で具体的な指示を提供する",
-      "専門用語を避ける",
-      "プロンプトを可能な限り短くする"
+      "Always use the same format",
+      "Provide clear and specific instructions",
+      "Avoid technical terminology",
+      "Keep the prompt as short as possible"
     ],
     correctAnswer: 1,
-    category: "生成AI",
-    explanation: "プロンプトエンジニアリングにおいて、明確で具体的な指示を提供することが最も重要です。タスクの目的、期待される出力形式、制約条件などを明確に指定することで、LLMはより正確で有用な応答を生成できます。曖昧な指示は予期しない結果につながる可能性があります。",
+    category: "Generative AI",
+    explanation: "In prompt engineering, providing clear and specific instructions is the most important principle. By explicitly specifying the task objective, expected output format, and constraints, an LLM can generate more accurate and useful responses. Ambiguous instructions can lead to unexpected results.",
     optionExplanations: [
-      "タスクに応じて最適なフォーマットは異なるため、柔軟性が重要です。",
-      "✓ 正解: 明確で具体的な指示により、LLMは意図を正確に理解し、期待される出力を生成できます。",
-      "専門用語は文脈に応じて適切に使用すべきで、一律に避ける必要はありません。",
-      "プロンプトの長さよりも明確さが重要です。必要な情報は省略すべきではありません。"
+      "The optimal format varies by task, so flexibility is more important than consistency.",
+      "✓ Correct: Clear and specific instructions enable the LLM to accurately understand intent and produce the expected output.",
+      "Technical terminology should be used appropriately based on context; it does not need to be avoided universally.",
+      "Clarity matters more than prompt length. Necessary information should not be omitted."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/prompt-engineering-guidelines.html", title: "プロンプトエンジニアリングのガイドライン" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html", title: "Prompt Engineering Guidelines" }
     ]
   },
   {
     id: 8,
-    question: "機械学習モデルの公平性を評価する際、どの指標が最も重要ですか。",
+    question: "When evaluating the fairness of a machine learning model, which metric is most important?",
     options: [
-      "モデルのサイズ",
-      "モデルの全体的な精度",
-      "異なるグループ間でのモデル性能の一貫性",
-      "学習時間の短さ"
+      "Model size",
+      "Overall model accuracy",
+      "Consistency of model performance across different groups",
+      "Short training time"
     ],
     correctAnswer: 2,
-    category: "責任あるAI",
-    explanation: "責任あるAIの実践において、モデルの公平性は重要な要素です。異なる人口統計グループ（年齢、性別、人種など）間でモデルの性能が一貫しているかを評価することで、バイアスや差別的な結果を防ぐことができます。Amazon SageMaker Clarifyなどのツールがこの評価を支援します。",
+    category: "Responsible AI",
+    explanation: "In responsible AI practice, model fairness is a critical element. Evaluating whether model performance is consistent across different demographic groups (age, gender, race, etc.) helps prevent bias and discriminatory outcomes. Tools such as Amazon SageMaker Clarify support this evaluation.",
     optionExplanations: [
-      "モデルサイズは実装の考慮事項であり、公平性の評価には関係ありません。",
-      "全体的な精度が高くても、特定のグループで性能が低い場合、公平性の問題があります。",
-      "✓ 正解: グループ間での性能の一貫性は、モデルの公平性を評価する上で最も重要な指標です。",
-      "学習時間は効率性の指標であり、公平性とは直接関係ありません。"
+      "Model size is an implementation consideration and is not related to fairness evaluation.",
+      "High overall accuracy does not rule out fairness issues if performance is poor for specific groups.",
+      "✓ Correct: Consistency of performance across groups is the most important metric for evaluating model fairness.",
+      "Training time is an efficiency metric and is not directly related to fairness."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-fairness-and-explainability.html", title: "Amazon SageMaker Clarify による公平性と説明可能性" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-fairness-and-explainability.html", title: "Fairness and Explainability with Amazon SageMaker Clarify" }
     ]
   },
   {
     id: 9,
-    question: "Amazon Bedrockで基盤モデル(Foundation Model)を使用する主な利点は何ですか。",
+    question: "What is the main advantage of using Foundation Models in Amazon Bedrock?",
     options: [
-      "プログラミング知識が不要である",
-      "モデルを完全にゼロから学習させる必要がある",
-      "オンプレミスでのみ実行できる",
-      "事前学習済みモデルを簡単にカスタマイズして使用できる"
+      "No programming knowledge is required",
+      "Models must be trained entirely from scratch",
+      "Can only run on-premises",
+      "Pre-trained models can be easily customized and used"
     ],
     correctAnswer: 3,
-    category: "生成AI",
-    explanation: "Amazon Bedrockは、Anthropic、AI21 Labs、Stability AIなどの主要なAI企業が提供する事前学習済みの基盤モデルへのアクセスを提供します。これらのモデルは、ファインチューニングやプロンプトエンジニアリングを通じて、特定のユースケースに合わせてカスタマイズできます。ゼロから学習させる必要がないため、開発時間とコストを大幅に削減できます。",
+    category: "Generative AI",
+    explanation: "Amazon Bedrock provides access to pre-trained foundation models from leading AI companies such as Anthropic, AI21 Labs, and Stability AI. These models can be customized for specific use cases through fine-tuning and prompt engineering. Because there is no need to train from scratch, development time and costs are significantly reduced.",
     optionExplanations: [
-      "APIの使用には基本的なプログラミング知識が必要です。",
-      "Bedrockの目的は、ゼロからの学習を避け、既存のモデルを活用することです。",
-      "BedrockはAWSのマネージドサービスであり、クラウドで実行されます。",
-      "✓ 正解: Bedrockの主な利点は、高品質な事前学習済みモデルを簡単にカスタマイズして使用できることです。"
+      "Basic programming knowledge is required to use the API.",
+      "The purpose of Bedrock is to avoid training from scratch and to leverage existing models.",
+      "Bedrock is an AWS managed service and runs in the cloud.",
+      "✓ Correct: The main advantage of Bedrock is the ability to easily customize and use high-quality pre-trained models."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/what-is-bedrock.html", title: "Amazon Bedrock とは" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/what-is-bedrock.html", title: "What is Amazon Bedrock?" }
     ]
   },
   {
     id: 10,
-    question: "機械学習モデルの過学習(Overfitting)を防ぐための最も効果的な手法は何ですか。",
+    question: "What is the most effective technique for preventing overfitting in a machine learning model?",
     options: [
-      "学習データを増やすだけ",
-      "学習率を上げる",
-      "モデルの複雑さを最大化する",
-      "正則化とクロスバリデーションの使用"
+      "Simply adding more training data",
+      "Increasing the learning rate",
+      "Maximizing model complexity",
+      "Using regularization and cross-validation"
     ],
     correctAnswer: 3,
-    category: "AI/ML基礎",
-    explanation: "過学習は、モデルが学習データに過度に適合し、新しいデータに対する汎化性能が低下する現象です。正則化（L1/L2正則化、ドロップアウトなど）はモデルの複雑さを制御し、クロスバリデーションは異なるデータセットでモデルの性能を評価することで、過学習を効果的に防ぎます。",
+    category: "AI/ML Fundamentals",
+    explanation: "Overfitting occurs when a model becomes too closely fitted to the training data, degrading its ability to generalize to new data. Regularization (L1/L2 regularization, dropout, etc.) controls model complexity, and cross-validation evaluates model performance across different datasets, together effectively preventing overfitting.",
     optionExplanations: [
-      "データを増やすことは有用ですが、正則化などの技術と組み合わせる必要があります。",
-      "学習率の調整は収束速度に影響しますが、過学習の直接的な対策ではありません。",
-      "モデルの複雑さを最大化すると、過学習のリスクが高まります。",
-      "✓ 正解: 正則化とクロスバリデーションは、過学習を防ぐための標準的で効果的な手法です。"
+      "Adding more data is useful but needs to be combined with techniques such as regularization.",
+      "Adjusting the learning rate affects convergence speed but is not a direct countermeasure against overfitting.",
+      "Maximizing model complexity increases the risk of overfitting.",
+      "✓ Correct: Regularization and cross-validation are standard and effective techniques for preventing overfitting."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html", title: "モデルの適合: 過小適合と過学習" }
+      { url: "https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html", title: "Model Fit: Underfitting vs. Overfitting" }
     ]
   },
   {
     id: 11,
-    question: "Amazon Rekognitionで実行できないタスクはどれですか。",
+    question: "Which of the following tasks CANNOT be performed by Amazon Rekognition?",
     options: [
-      "画像内の物体検出",
-      "顔認識と感情分析",
-      "テキストから音声への変換",
-      "不適切なコンテンツの検出"
+      "Object detection in images",
+      "Facial recognition and emotion analysis",
+      "Text-to-speech conversion",
+      "Inappropriate content detection"
     ],
     correctAnswer: 2,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Rekognitionは画像・動画分析サービスで、物体検出、顔認識、感情分析、不適切なコンテンツ検出などを実行できます。テキストから音声への変換はAmazon Pollyの機能です。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Rekognition is an image and video analysis service capable of object detection, facial recognition, emotion analysis, and inappropriate content detection. Text-to-speech conversion is a feature of Amazon Polly.",
     optionExplanations: [
-      "画像内の物体検出: Rekognitionの主要機能の1つです。数千種類の物体やシーンを検出できます。",
-      "顔認識と感情分析: Rekognitionの主要機能の1つです。顔の検出、比較、感情の分析が可能です。",
-      "✓ 正解: テキストから音声への変換はAmazon Pollyの機能です。Rekognitionは画像・動画分析に特化しています。",
-      "不適切なコンテンツの検出: Rekognitionの主要機能の1つです。暴力的、成人向けコンテンツなどを検出できます。"
+      "Object detection in images: This is one of Rekognition's core features. It can detect thousands of objects and scenes.",
+      "Facial recognition and emotion analysis: This is one of Rekognition's core features. It supports face detection, comparison, and emotion analysis.",
+      "✓ Correct: Text-to-speech conversion is a feature of Amazon Polly. Rekognition specializes in image and video analysis.",
+      "Inappropriate content detection: This is one of Rekognition's core features. It can detect violent and adult content."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/rekognition/latest/dg/what-is.html", title: "Amazon Rekognition とは" }
+      { url: "https://docs.aws.amazon.com/rekognition/latest/dg/what-is.html", title: "What is Amazon Rekognition?" }
     ]
   },
   {
     id: 12,
-    question: "プロンプトエンジニアリングにおいて、Few-shot learningとは何ですか。",
+    question: "In prompt engineering, what is few-shot learning?",
     options: [
-      "モデルのパラメータを削減する",
-      "モデルに例を全く与えずにタスクを実行させる",
-      "モデルを完全に再学習させる",
-      "モデルに少数の例を与えてタスクを実行させる"
+      "Reducing model parameters",
+      "Having the model perform a task without providing any examples",
+      "Completely retraining the model",
+      "Having the model perform a task by providing a small number of examples"
     ],
     correctAnswer: 3,
-    category: "生成AI",
-    explanation: "Few-shot learningは、プロンプトに少数の例（通常2〜5個）を含めることで、モデルにタスクのパターンを理解させる手法です。Zero-shot（例なし）よりも精度が高く、Fine-tuning（完全な再学習）よりも簡単に実装できます。",
+    category: "Generative AI",
+    explanation: "Few-shot learning is a technique that includes a small number of examples (typically 2–5) in the prompt to help the model understand the task pattern. It achieves higher accuracy than zero-shot (no examples) and is easier to implement than fine-tuning (full retraining).",
     optionExplanations: [
-      "パラメータ削減はモデル圧縮の技術で、Few-shot learningとは異なります。",
-      "例を全く与えないのはZero-shot learningです。Few-shotは少数の例を使用します。",
-      "完全な再学習はFine-tuningです。Few-shotはプロンプトのみで対応します。",
-      "✓ 正解: Few-shot learningは、プロンプトに2〜5個程度の例を含めて、モデルにタスクを理解させる効果的な手法です。"
+      "Reducing parameters is a model compression technique and is different from few-shot learning.",
+      "Providing no examples at all is zero-shot learning. Few-shot uses a small number of examples.",
+      "Full retraining is fine-tuning. Few-shot relies on the prompt alone.",
+      "✓ Correct: Few-shot learning is an effective technique that includes roughly 2–5 examples in the prompt to help the model understand the task."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/prompt-engineering-guidelines.html", title: "プロンプトエンジニアリングのガイドライン" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html", title: "Prompt Engineering Guidelines" }
     ]
   },
   {
     id: 13,
-    question: "Amazon Comprehendの主な機能はどれですか。",
+    question: "What is the primary function of Amazon Comprehend?",
     options: [
-      "画像認識",
-      "動画編集",
-      "音声合成",
-      "自然言語処理とテキスト分析"
+      "Image recognition",
+      "Video editing",
+      "Speech synthesis",
+      "Natural language processing and text analysis"
     ],
     correctAnswer: 3,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Comprehendは、自然言語処理（NLP）を使用してテキストから洞察を抽出するサービスです。感情分析、エンティティ認識、キーフレーズ抽出、言語検出などの機能を提供します。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Comprehend is a service that uses natural language processing (NLP) to extract insights from text. It provides features such as sentiment analysis, entity recognition, key phrase extraction, and language detection.",
     optionExplanations: [
-      "画像認識はAmazon Rekognitionの機能です。Comprehendはテキスト分析に特化しています。",
-      "動画編集はメディア処理サービスの領域で、Comprehendの機能ではありません。",
-      "音声合成はAmazon Pollyの機能です。Comprehendはテキスト理解に焦点を当てています。",
-      "✓ 正解: Comprehendは、感情分析、エンティティ認識、トピックモデリングなどのNLP機能を提供します。"
+      "Image recognition is a feature of Amazon Rekognition. Comprehend specializes in text analysis.",
+      "Video editing is in the domain of media processing services and is not a Comprehend feature.",
+      "Speech synthesis is a feature of Amazon Polly. Comprehend focuses on text understanding.",
+      "✓ Correct: Comprehend provides NLP features including sentiment analysis, entity recognition, and topic modeling."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/comprehend/latest/dg/what-is.html", title: "Amazon Comprehend とは" }
+      { url: "https://docs.aws.amazon.com/comprehend/latest/dg/what-is.html", title: "What is Amazon Comprehend?" }
     ]
   },
   {
     id: 14,
-    question: "RAG（Retrieval-Augmented Generation）アーキテクチャの主な利点は何ですか。",
+    question: "What is the main advantage of a RAG (Retrieval-Augmented Generation) architecture?",
     options: [
-      "モデルの学習コストを削減できる",
-      "推論速度を10倍に向上できる",
-      "モデルのサイズを大幅に削減できる",
-      "外部知識ベースを活用して最新情報を提供できる"
+      "Reduces model training costs",
+      "Improves inference speed by 10x",
+      "Significantly reduces model size",
+      "Leverages an external knowledge base to provide up-to-date information"
     ],
     correctAnswer: 3,
-    category: "生成AI",
-    explanation: "RAGは、生成AIモデルと外部の知識ベース（ベクトルデータベースなど）を組み合わせるアーキテクチャです。モデルの再学習なしに最新情報や専門知識を活用でき、ハルシネーション（幻覚）を減らし、より正確で信頼性の高い回答を生成できます。",
+    category: "Generative AI",
+    explanation: "RAG is an architecture that combines a generative AI model with an external knowledge base (such as a vector database). It allows the model to leverage the latest information and domain expertise without retraining, reduces hallucinations, and produces more accurate and reliable answers.",
     optionExplanations: [
-      "RAGは推論時のコストは増加する可能性がありますが、再学習コストは削減できます。",
-      "RAGは知識検索のステップが追加されるため、推論速度は通常低下します。",
-      "RAGはモデルサイズ自体を削減するものではなく、外部知識を活用する仕組みです。",
-      "✓ 正解: RAGは外部知識ベースから関連情報を取得し、それを基に回答を生成するため、最新情報や専門知識を活用できます。"
+      "RAG may increase inference costs, but it can reduce retraining costs.",
+      "Because RAG adds a knowledge retrieval step, inference speed typically decreases.",
+      "RAG does not reduce the model size itself; it is a mechanism for leveraging external knowledge.",
+      "✓ Correct: RAG retrieves relevant information from an external knowledge base and uses it to generate answers, enabling access to up-to-date and specialized knowledge."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/jumpstart-foundation-models-customize-rag.html", title: "RAG を使用した基盤モデルのカスタマイズ" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/jumpstart-foundation-models-customize-rag.html", title: "Customizing Foundation Models with RAG" }
     ]
   },
   {
     id: 15,
-    question: "Amazon SageMaker Autopilotの主な機能は何ですか。",
+    question: "What is the primary feature of Amazon SageMaker Autopilot?",
     options: [
-      "手動でハイパーパラメータを調整する",
-      "機械学習モデルを自動的に構築、学習、調整する",
-      "データベースのバックアップを自動化する",
-      "ネットワーク設定を自動化する"
+      "Manually tuning hyperparameters",
+      "Automatically building, training, and tuning machine learning models",
+      "Automating database backups",
+      "Automating network configuration"
     ],
     correctAnswer: 1,
-    category: "AWSのAI/MLサービス",
-    explanation: "SageMaker Autopilotは、AutoML（自動機械学習）サービスで、データを提供するだけで、最適なアルゴリズムの選択、特徴量エンジニアリング、ハイパーパラメータチューニングを自動的に実行し、最良のモデルを生成します。",
+    category: "AWS AI/ML Services",
+    explanation: "SageMaker Autopilot is an AutoML (automated machine learning) service. Simply provide your data, and it automatically selects the optimal algorithm, performs feature engineering, and tunes hyperparameters to produce the best model.",
     optionExplanations: [
-      "Autopilotは自動化が目的で、手動調整を不要にします。",
-      "✓ 正解: Autopilotは、データサイエンスの専門知識がなくても、高品質な機械学習モデルを自動的に構築できます。",
-      "データベースバックアップはAWS Backupの機能で、Autopilotとは無関係です。",
-      "ネットワーク設定はVPCやネットワーキングサービスの領域です。"
+      "Autopilot is designed for automation and eliminates the need for manual tuning.",
+      "✓ Correct: Autopilot can automatically build high-quality machine learning models even without data science expertise.",
+      "Database backups are a feature of AWS Backup and are unrelated to Autopilot.",
+      "Network configuration is in the domain of VPC and networking services."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/autopilot-automate-model-development.html", title: "SageMaker Autopilot でモデル開発を自動化" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html", title: "Automate Model Development with SageMaker Autopilot" }
     ]
   },
   {
     id: 16,
-    question: "機械学習モデルのバイアスを検出・軽減するために、Amazon SageMakerで使用できる機能はどれですか。",
+    question: "Which Amazon SageMaker feature can be used to detect and mitigate bias in machine learning models?",
     options: [
       "SageMaker Neo",
       "SageMaker Pipelines",
@@ -340,769 +340,769 @@ const awsAIFQuestions = [
       "SageMaker Clarify"
     ],
     correctAnswer: 3,
-    category: "責任あるAI",
-    explanation: "SageMaker Clarifyは、機械学習モデルのバイアス検出と説明可能性を提供するツールです。学習データやモデル予測におけるバイアスを特定し、公平性を向上させるための洞察を提供します。",
+    category: "Responsible AI",
+    explanation: "SageMaker Clarify is a tool that provides bias detection and explainability for machine learning models. It identifies bias in training data and model predictions, and provides insights to improve fairness.",
     optionExplanations: [
-      "SageMaker Neoはモデルの最適化とコンパイルを行うサービスです。",
-      "SageMaker PipelinesはMLワークフローの自動化ツールです。",
-      "SageMaker Edge Managerはエッジデバイス上のモデル管理サービスです。",
-      "✓ 正解: SageMaker Clarifyは、バイアス検出、モデルの説明可能性、特徴量の重要度分析を提供します。"
+      "SageMaker Neo is a service for optimizing and compiling models.",
+      "SageMaker Pipelines is a tool for automating ML workflows.",
+      "SageMaker Edge Manager is a service for managing models on edge devices.",
+      "✓ Correct: SageMaker Clarify provides bias detection, model explainability, and feature importance analysis."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/clarify-fairness-and-explainability.html", title: "SageMaker Clarify による公平性と説明可能性" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/clarify-fairness-and-explainability.html", title: "Fairness and Explainability with SageMaker Clarify" }
     ]
   },
   {
     id: 17,
-    question: "Amazon Textractの主な用途は何ですか。",
+    question: "What is the primary use case for Amazon Textract?",
     options: [
-      "テキストの翻訳",
-      "テキストの感情分析",
-      "テキストの音声読み上げ",
-      "ドキュメントからのテキストとデータの抽出"
+      "Text translation",
+      "Text sentiment analysis",
+      "Text-to-speech",
+      "Extracting text and data from documents"
     ],
     correctAnswer: 3,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Textractは、スキャンされたドキュメント、PDF、画像からテキスト、手書き文字、表、フォームデータを自動的に抽出する機械学習サービスです。OCR（光学文字認識）を超えて、ドキュメントの構造も理解します。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Textract is a machine learning service that automatically extracts text, handwriting, tables, and form data from scanned documents, PDFs, and images. It goes beyond OCR (optical character recognition) to also understand the structure of documents.",
     optionExplanations: [
-      "テキストの翻訳はAmazon Translateの機能です。",
-      "テキストの感情分析はAmazon Comprehendの機能です。",
-      "テキストの音声読み上げはAmazon Pollyの機能です。",
-      "✓ 正解: Textractは、請求書、領収書、フォームなどからテキストとデータを自動抽出し、構造化データとして出力します。"
+      "Text translation is a feature of Amazon Translate.",
+      "Text sentiment analysis is a feature of Amazon Comprehend.",
+      "Text-to-speech is a feature of Amazon Polly.",
+      "✓ Correct: Textract automatically extracts text and data from invoices, receipts, forms, and other documents, outputting structured data."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/textract/latest/dg/what-is.html", title: "Amazon Textract とは" }
+      { url: "https://docs.aws.amazon.com/textract/latest/dg/what-is.html", title: "What is Amazon Textract?" }
     ]
   },
   {
     id: 18,
-    question: "生成AIモデルの「温度（Temperature）」パラメータを高く設定すると、どのような影響がありますか。",
+    question: "What is the effect of setting the Temperature parameter high in a generative AI model?",
     options: [
-      "より決定論的で予測可能な出力になる",
-      "モデルのサイズが削減される",
-      "推論速度が向上する",
-      "よりランダムで創造的な出力になる"
+      "Output becomes more deterministic and predictable",
+      "Model size is reduced",
+      "Inference speed improves",
+      "Output becomes more random and creative"
     ],
     correctAnswer: 3,
-    category: "生成AI",
-    explanation: "温度パラメータは、生成AIモデルの出力の多様性を制御します。温度を高く設定すると、モデルはより多様でランダムな出力を生成し、創造性が増します。温度を低く設定すると、より決定論的で予測可能な出力になります。",
+    category: "Generative AI",
+    explanation: "The temperature parameter controls the diversity of a generative AI model's output. Setting it high causes the model to produce more varied and random output, increasing creativity. Setting it low produces more deterministic and predictable output.",
     optionExplanations: [
-      "温度を低く設定すると決定論的になります。高く設定すると逆の効果があります。",
-      "温度パラメータはモデルサイズには影響しません。",
-      "温度パラメータは推論速度には影響しません。出力の多様性のみを制御します。",
-      "✓ 正解: 温度を高く設定すると、モデルはより多様で創造的な出力を生成しますが、一貫性は低下する可能性があります。"
+      "Setting temperature low makes output deterministic. Setting it high has the opposite effect.",
+      "The temperature parameter has no effect on model size.",
+      "The temperature parameter does not affect inference speed. It only controls output diversity.",
+      "✓ Correct: A high temperature causes the model to generate more diverse and creative output, though consistency may decrease."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/model-parameters.html", title: "モデルパラメータ" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html", title: "Model Parameters" }
     ]
   },
   {
     id: 19,
-    question: "Amazon Forecastの主な用途は何ですか。",
+    question: "What is the primary use case for Amazon Forecast?",
     options: [
-      "時系列予測",
-      "音声認識",
-      "テキスト生成",
-      "画像分類"
+      "Time-series forecasting",
+      "Speech recognition",
+      "Text generation",
+      "Image classification"
     ],
     correctAnswer: 0,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Forecastは、機械学習を使用して高精度な時系列予測を行うフルマネージドサービスです。需要予測、在庫計画、リソース計画などのビジネスユースケースに最適化されています。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Forecast is a fully managed service that uses machine learning to deliver highly accurate time-series forecasts. It is optimized for business use cases such as demand forecasting, inventory planning, and resource planning.",
     optionExplanations: [
-      "✓ 正解: Forecastは、売上予測、需要予測、リソース計画などの時系列データの予測に特化しています。",
-      "音声認識はAmazon Transcribeの機能です。",
-      "テキスト生成は生成AIモデル（BedrockやSageMaker）の機能です。",
-      "画像分類はAmazon Rekognitionの機能です。"
+      "✓ Correct: Forecast specializes in predicting time-series data for use cases such as sales forecasting, demand planning, and resource scheduling.",
+      "Speech recognition is a feature of Amazon Transcribe.",
+      "Text generation is a feature of generative AI models (Bedrock, SageMaker, etc.).",
+      "Image classification is a feature of Amazon Rekognition."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/forecast/latest/dg/what-is-forecast.html", title: "Amazon Forecast とは" }
+      { url: "https://docs.aws.amazon.com/forecast/latest/dg/what-is-forecast.html", title: "What is Amazon Forecast?" }
     ]
   },
   {
     id: 20,
-    question: "ファインチューニング（Fine-tuning）と比較した場合の、プロンプトエンジニアリングの主な利点は何ですか。",
+    question: "Compared to fine-tuning, what is the main advantage of prompt engineering?",
     options: [
-      "実装が迅速で、モデルの再学習が不要",
-      "モデルの精度が常に高い",
-      "計算コストが常に低い",
-      "すべてのタスクで最適"
+      "Fast to implement and no model retraining required",
+      "Model accuracy is always higher",
+      "Compute cost is always lower",
+      "Optimal for every task"
     ],
     correctAnswer: 0,
-    category: "生成AI",
-    explanation: "プロンプトエンジニアリングは、モデルの再学習なしに、プロンプトの設計だけでタスクを実行できるため、迅速に実装でき、コストも抑えられます。ファインチューニングは高精度が必要な場合に有効ですが、時間とコストがかかります。",
+    category: "Generative AI",
+    explanation: "Prompt engineering allows tasks to be performed through prompt design alone without retraining the model, enabling rapid implementation at lower cost. Fine-tuning is effective when high accuracy is required but takes more time and cost.",
     optionExplanations: [
-      "✓ 正解: プロンプトエンジニアリングは、モデルの再学習が不要で、迅速にタスクを実装できる点が大きな利点です。",
-      "プロンプトエンジニアリングは迅速ですが、精度はファインチューニングより低い場合があります。",
-      "複雑なプロンプトや大量の推論では、コストが高くなる場合もあります。",
-      "タスクによってはファインチューニングの方が適している場合もあります。"
+      "✓ Correct: The key advantage of prompt engineering is that it requires no model retraining and allows tasks to be implemented quickly.",
+      "Prompt engineering is fast, but accuracy may be lower than fine-tuning.",
+      "Complex prompts or high-volume inference can also lead to higher costs.",
+      "Depending on the task, fine-tuning may be more appropriate."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/prompt-engineering.html", title: "プロンプトエンジニアリング" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering.html", title: "Prompt Engineering" }
     ]
   },
   {
     id: 21,
-    question: "Amazon Personalizeの主な用途は何ですか。",
+    question: "What is the primary use case for Amazon Personalize?",
     options: [
-      "パーソナライズされた推薦システムの構築",
-      "画像認識",
-      "音声合成",
-      "データベース管理"
+      "Building personalized recommendation systems",
+      "Image recognition",
+      "Speech synthesis",
+      "Database management"
     ],
     correctAnswer: 0,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Personalizeは、機械学習を使用してパーソナライズされた推薦を提供するフルマネージドサービスです。Amazon.comで使用されているのと同じ技術を活用し、商品推薦、コンテンツ推薦、マーケティングパーソナライゼーションなどに使用できます。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Personalize is a fully managed service that uses machine learning to deliver personalized recommendations. It leverages the same technology used on Amazon.com and can be applied to product recommendations, content recommendations, and marketing personalization.",
     optionExplanations: [
-      "✓ 正解: Personalizeは、ユーザーの行動履歴に基づいて、パーソナライズされた商品やコンテンツの推薦を提供します。",
-      "画像認識はAmazon Rekognitionの機能です。",
-      "音声合成はAmazon Pollyの機能です。",
-      "データベース管理はRDSやDynamoDBの領域です。"
+      "✓ Correct: Personalize delivers personalized product and content recommendations based on user behavioral history.",
+      "Image recognition is a feature of Amazon Rekognition.",
+      "Speech synthesis is a feature of Amazon Polly.",
+      "Database management is in the domain of RDS and DynamoDB."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/personalize/latest/dg/what-is-personalize.html", title: "Amazon Personalize とは" }
+      { url: "https://docs.aws.amazon.com/personalize/latest/dg/what-is-personalize.html", title: "What is Amazon Personalize?" }
     ]
   },
   {
     id: 22,
-    question: "機械学習モデルの「ハルシネーション（幻覚）」とは何を指しますか。",
+    question: "What does \"hallucination\" refer to in the context of machine learning models?",
     options: [
-      "モデルが事実ではない情報を生成する現象",
-      "モデルが過学習している状態",
-      "モデルの学習速度が遅い状態",
-      "モデルのサイズが大きすぎる状態"
+      "A phenomenon where the model generates information that is not factual",
+      "A state in which the model is overfitting",
+      "A state in which the model's training speed is slow",
+      "A state in which the model size is too large"
     ],
     correctAnswer: 0,
-    category: "生成AI",
-    explanation: "ハルシネーションは、生成AIモデルが事実に基づかない、または誤った情報を自信を持って生成する現象です。RAG（Retrieval-Augmented Generation）やファクトチェック機能を使用することで、ハルシネーションを軽減できます。",
+    category: "Generative AI",
+    explanation: "Hallucination is a phenomenon in which a generative AI model confidently generates information that is not grounded in fact or is simply incorrect. It can be mitigated using RAG (Retrieval-Augmented Generation) and fact-checking capabilities.",
     optionExplanations: [
-      "✓ 正解: ハルシネーションは、モデルが存在しない事実や誤った情報を生成する現象で、生成AIの重要な課題の1つです。",
-      "過学習は、モデルが学習データに過度に適合する別の問題です。",
-      "学習速度の遅さは、ハルシネーションとは無関係な技術的な問題です。",
-      "モデルサイズは、ハルシネーションの直接的な原因ではありません。"
+      "✓ Correct: Hallucination is the phenomenon where a model generates non-existent facts or incorrect information, and is one of the key challenges of generative AI.",
+      "Overfitting is a separate problem where the model fits too closely to the training data.",
+      "Slow training speed is a technical issue unrelated to hallucination.",
+      "Model size is not a direct cause of hallucination."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/knowledge-base.html", title: "Amazon Bedrock のナレッジベース" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html", title: "Knowledge Bases for Amazon Bedrock" }
     ]
   },
   {
     id: 23,
-    question: "Amazon Kendraの主な機能は何ですか。",
+    question: "What is the primary feature of Amazon Kendra?",
     options: [
-      "画像検索",
-      "動画編集",
-      "インテリジェントな企業向け検索サービス",
-      "データベースクエリ"
+      "Image search",
+      "Video editing",
+      "Intelligent enterprise search service",
+      "Database queries"
     ],
     correctAnswer: 2,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Kendraは、機械学習を活用したインテリジェントな企業向け検索サービスです。自然言語クエリを理解し、ドキュメント、FAQ、ナレッジベースから関連性の高い回答を提供します。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Kendra is an intelligent enterprise search service powered by machine learning. It understands natural language queries and delivers highly relevant answers from documents, FAQs, and knowledge bases.",
     optionExplanations: [
-      "画像検索はAmazon Rekognitionの機能です。",
-      "動画編集はメディア処理サービスの領域です。",
-      "✓ 正解: Kendraは、自然言語処理を使用して、企業のドキュメントやデータから正確な回答を見つけ出します。",
-      "データベースクエリはRDSやAthenaの機能です。"
+      "Image search is a feature of Amazon Rekognition.",
+      "Video editing is in the domain of media processing services.",
+      "✓ Correct: Kendra uses natural language processing to find accurate answers from enterprise documents and data.",
+      "Database queries are in the domain of RDS and Athena."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/kendra/latest/dg/what-is-kendra.html", title: "Amazon Kendra とは" }
+      { url: "https://docs.aws.amazon.com/kendra/latest/dg/what-is-kendra.html", title: "What is Amazon Kendra?" }
     ]
   },
   {
     id: 24,
-    question: "Amazon SageMaker Data Wranglerの主な目的は何ですか。",
+    question: "What is the primary purpose of Amazon SageMaker Data Wrangler?",
     options: [
-      "モデルのデプロイ",
-      "モデルの監視",
-      "データの準備と特徴量エンジニアリング",
-      "コスト最適化"
+      "Model deployment",
+      "Model monitoring",
+      "Data preparation and feature engineering",
+      "Cost optimization"
     ],
     correctAnswer: 2,
-    category: "AWSのAI/MLサービス",
-    explanation: "SageMaker Data Wranglerは、機械学習のためのデータ準備を簡素化するビジュアルツールです。データのインポート、変換、特徴量エンジニアリング、データ品質の分析を、コードを書かずに実行できます。",
+    category: "AWS AI/ML Services",
+    explanation: "SageMaker Data Wrangler is a visual tool that simplifies data preparation for machine learning. It allows you to import, transform, and engineer features, and analyze data quality — all without writing code.",
     optionExplanations: [
-      "モデルのデプロイはSageMaker Endpointsの機能です。",
-      "モデルの監視はSageMaker Model Monitorの機能です。",
-      "✓ 正解: Data Wranglerは、データクリーニング、変換、特徴量エンジニアリングを視覚的に実行できるツールです。",
-      "コスト最適化はCost ExplorerやTrusted Advisorの領域です。"
+      "Model deployment is a feature of SageMaker Endpoints.",
+      "Model monitoring is a feature of SageMaker Model Monitor.",
+      "✓ Correct: Data Wrangler is a tool for visually performing data cleaning, transformation, and feature engineering.",
+      "Cost optimization is in the domain of Cost Explorer and Trusted Advisor."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/data-wrangler.html", title: "SageMaker Data Wrangler でデータを準備" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/data-wrangler.html", title: "Prepare Data with SageMaker Data Wrangler" }
     ]
   },
   {
     id: 25,
-    question: "トークン（Token）とは、生成AIモデルのコンテキストで何を指しますか。",
+    question: "In the context of generative AI models, what does a \"token\" refer to?",
     options: [
-      "セキュリティ認証キー",
-      "データベースのレコード",
-      "モデルのバージョン番号",
-      "テキストの最小単位（単語や文字の一部）"
+      "A security authentication key",
+      "A database record",
+      "A model version number",
+      "The smallest unit of text (a word or part of a word)"
     ],
     correctAnswer: 3,
-    category: "生成AI",
-    explanation: "トークンは、生成AIモデルがテキストを処理する際の基本単位です。単語、単語の一部、または文字として表現されます。モデルの入力と出力はトークン数で測定され、コストや制限もトークン数に基づいて計算されます。",
+    category: "Generative AI",
+    explanation: "A token is the basic unit by which a generative AI model processes text. It is represented as a word, part of a word, or a character. Model input and output are measured in token counts, and costs and limits are calculated based on the number of tokens.",
     optionExplanations: [
-      "セキュリティ認証キーは別の概念で、APIアクセスに使用されます。",
-      "データベースのレコードは、トークンとは異なる概念です。",
-      "モデルのバージョン番号は、トークンとは無関係です。",
-      "✓ 正解: トークンは、モデルがテキストを理解・生成する際の基本単位で、通常1トークンは約4文字（英語）または1〜2文字（日本語）に相当します。"
+      "A security authentication key is a different concept used for API access.",
+      "A database record is a concept unrelated to tokens.",
+      "A model version number is unrelated to tokens.",
+      "✓ Correct: A token is the fundamental unit for a model to understand and generate text — typically about 4 characters in English or 1–2 characters in Japanese."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/model-parameters.html", title: "モデルパラメータ" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html", title: "Model Parameters" }
     ]
   },
   {
     id: 26,
-    question: "Amazon SageMaker Feature Storeの主な目的は何ですか。",
+    question: "What is the primary purpose of Amazon SageMaker Feature Store?",
     options: [
-      "特徴量の保存、共有、管理",
-      "コスト分析",
-      "データの可視化",
-      "モデルのトレーニング"
+      "Storing, sharing, and managing features",
+      "Cost analysis",
+      "Data visualization",
+      "Model training"
     ],
     correctAnswer: 0,
-    category: "AWSのAI/MLサービス",
-    explanation: "SageMaker Feature Storeは、機械学習の特徴量を一元管理するリポジトリです。特徴量の保存、バージョン管理、共有、再利用を可能にし、学習と推論の両方で一貫した特徴量を使用できます。",
+    category: "AWS AI/ML Services",
+    explanation: "SageMaker Feature Store is a centralized repository for managing machine learning features. It enables storing, versioning, sharing, and reusing features, ensuring consistent features are used for both training and inference.",
     optionExplanations: [
-      "✓ 正解: Feature Storeは、特徴量の一元管理により、チーム間での特徴量の再利用と一貫性を実現します。",
-      "コスト分析はCost Explorerの機能です。",
-      "データの可視化はQuickSightやSageMaker Studioの機能です。",
-      "モデルのトレーニングはSageMaker Training Jobの機能です。"
+      "✓ Correct: Feature Store enables feature reuse and consistency across teams through centralized feature management.",
+      "Cost analysis is a feature of Cost Explorer.",
+      "Data visualization is a feature of QuickSight and SageMaker Studio.",
+      "Model training is a feature of SageMaker Training Jobs."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/feature-store.html", title: "SageMaker Feature Store" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/feature-store.html", title: "SageMaker Feature Store" }
     ]
   },
   {
     id: 27,
-    question: "エンベディング（Embedding）とは、機械学習のコンテキストで何を指しますか。",
+    question: "In the context of machine learning, what does \"embedding\" refer to?",
     options: [
-      "モデルをアプリケーションに組み込むこと",
-      "データを低次元のベクトル表現に変換すること",
-      "モデルを圧縮すること",
-      "データを暗号化すること"
+      "Integrating a model into an application",
+      "Converting data into a low-dimensional vector representation",
+      "Compressing a model",
+      "Encrypting data"
     ],
     correctAnswer: 1,
-    category: "AI/ML基礎",
-    explanation: "エンベディングは、テキスト、画像、音声などの高次元データを、意味的な関係を保持した低次元のベクトル表現に変換する技術です。類似性検索、推薦システム、RAGなどで広く使用されます。",
+    category: "AI/ML Fundamentals",
+    explanation: "An embedding is a technique that converts high-dimensional data such as text, images, or audio into a low-dimensional vector representation that preserves semantic relationships. It is widely used in similarity search, recommendation systems, and RAG.",
     optionExplanations: [
-      "モデルの組み込みは、デプロイメントの概念です。",
-      "✓ 正解: エンベディングは、データを数値ベクトルに変換し、機械学習モデルが処理しやすい形式にします。",
-      "モデル圧縮は、モデルサイズを削減する別の技術です。",
-      "データ暗号化は、セキュリティの概念です。"
+      "Integrating a model into an application is a deployment concept.",
+      "✓ Correct: An embedding converts data into a numerical vector, making it easier for machine learning models to process.",
+      "Model compression is a separate technique for reducing model size.",
+      "Data encryption is a security concept."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/embeddings.html", title: "エンベディングモデル" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/embeddings.html", title: "Embedding Models" }
     ]
   },
   {
     id: 28,
-    question: "Amazon Fraud Detectorの主な用途は何ですか。",
+    question: "What is the primary use case for Amazon Fraud Detector?",
     options: [
-      "画像の不正検出",
-      "オンライン詐欺とアカウント乗っ取りの検出",
-      "ネットワーク侵入の検出",
-      "コードの脆弱性検出"
+      "Detecting fraud in images",
+      "Detecting online fraud and account takeover",
+      "Detecting network intrusions",
+      "Detecting code vulnerabilities"
     ],
     correctAnswer: 1,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Fraud Detectorは、機械学習を使用してオンライン詐欺を検出するフルマネージドサービスです。不正なアカウント作成、支払い詐欺、偽レビューなどを自動的に識別します。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Fraud Detector is a fully managed service that uses machine learning to detect online fraud. It automatically identifies fraudulent account creation, payment fraud, fake reviews, and more.",
     optionExplanations: [
-      "画像の不正検出はAmazon Rekognitionの機能です。",
-      "✓ 正解: Fraud Detectorは、オンライン取引、アカウント登録、ゲストチェックアウトなどでの詐欺行為を検出します。",
-      "ネットワーク侵入の検出はGuardDutyの機能です。",
-      "コードの脆弱性検出はCodeGuruの機能です。"
+      "Detecting fraud in images is a feature of Amazon Rekognition.",
+      "✓ Correct: Fraud Detector detects fraudulent activity in online transactions, account registrations, guest checkouts, and more.",
+      "Detecting network intrusions is a feature of GuardDuty.",
+      "Detecting code vulnerabilities is a feature of CodeGuru."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/frauddetector/latest/ug/what-is-frauddetector.html", title: "Amazon Fraud Detector とは" }
+      { url: "https://docs.aws.amazon.com/frauddetector/latest/ug/what-is-frauddetector.html", title: "What is Amazon Fraud Detector?" }
     ]
   },
   {
     id: 29,
-    question: "コンテキストウィンドウ（Context Window）とは、生成AIモデルにおいて何を指しますか。",
+    question: "In the context of generative AI models, what does \"context window\" refer to?",
     options: [
-      "モデルが一度に処理できるトークンの最大数",
-      "モデルの学習時間",
-      "モデルのメモリサイズ",
-      "モデルの精度"
+      "The maximum number of tokens a model can process at one time",
+      "The model's training time",
+      "The model's memory size",
+      "The model's accuracy"
     ],
     correctAnswer: 0,
-    category: "生成AI",
-    explanation: "コンテキストウィンドウは、生成AIモデルが一度に処理できる入力と出力の合計トークン数の上限です。モデルによって異なり、例えばClaude 3は200Kトークン、GPT-4は128Kトークンのコンテキストウィンドウを持ちます。",
+    category: "Generative AI",
+    explanation: "The context window is the maximum total number of input and output tokens that a generative AI model can process at one time. It varies by model — for example, Claude 3 has a 200K-token context window and GPT-4 has a 128K-token context window.",
     optionExplanations: [
-      "✓ 正解: コンテキストウィンドウは、モデルが一度に「記憶」できる情報量を決定し、長い文書の処理能力に影響します。",
-      "学習時間は、モデルのトレーニングにかかる時間で、コンテキストウィンドウとは異なります。",
-      "メモリサイズは、モデルのパラメータ数に関連しますが、コンテキストウィンドウとは別の概念です。",
-      "精度は、モデルの性能指標で、コンテキストウィンドウとは異なります。"
+      "✓ Correct: The context window determines how much information a model can \"remember\" at once and affects its ability to process long documents.",
+      "Training time is the time required to train the model and is different from the context window.",
+      "Memory size relates to the number of model parameters but is a separate concept from the context window.",
+      "Accuracy is a model performance metric and is different from the context window."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/model-parameters.html", title: "モデルパラメータ" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters.html", title: "Model Parameters" }
     ]
   },
   {
     id: 30,
-    question: "Amazon CodeWhispererの主な機能は何ですか。",
+    question: "What is the primary feature of Amazon CodeWhisperer?",
     options: [
-      "コードレビューの自動化",
-      "コードのデプロイ",
-      "AIによるコード補完と生成",
-      "コードのバージョン管理"
+      "Automated code review",
+      "Code deployment",
+      "AI-powered code completion and generation",
+      "Code version control"
     ],
     correctAnswer: 2,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon CodeWhispererは、AIを活用したコーディング支援ツールで、コメントや既存のコードに基づいてコードの提案と生成を行います。セキュリティスキャン機能も提供し、安全なコーディングを支援します。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon CodeWhisperer is an AI-powered coding assistant that suggests and generates code based on comments and existing code. It also provides security scanning to help developers write safer code.",
     optionExplanations: [
-      "コードレビューはCodeGuruの機能です。",
-      "コードのデプロイはCodeDeployの機能です。",
-      "✓ 正解: CodeWhispererは、開発者の生産性を向上させるため、リアルタイムでコードの提案と補完を提供します。",
-      "バージョン管理はCodeCommitやGitの機能です。"
+      "Code review is a feature of CodeGuru.",
+      "Code deployment is a feature of CodeDeploy.",
+      "✓ Correct: CodeWhisperer provides real-time code suggestions and completions to improve developer productivity.",
+      "Version control is a feature of CodeCommit and Git."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/codewhisperer/latest/userguide/what-is-cwspr.html", title: "Amazon CodeWhisperer とは" }
+      { url: "https://docs.aws.amazon.com/codewhisperer/latest/userguide/what-is-cwspr.html", title: "What is Amazon CodeWhisperer?" }
     ]
   },
   {
     id: 31,
-    question: "Amazon SageMaker Model Monitorの主な目的は何ですか。",
+    question: "What is the primary purpose of Amazon SageMaker Model Monitor?",
     options: [
-      "モデルのトレーニング",
-      "本番環境でのモデルのパフォーマンスとデータ品質の監視",
-      "モデルのデプロイ",
-      "データの収集"
+      "Model training",
+      "Monitoring model performance and data quality in production",
+      "Model deployment",
+      "Data collection"
     ],
     correctAnswer: 1,
-    category: "AWSのAI/MLサービス",
-    explanation: "SageMaker Model Monitorは、本番環境にデプロイされたモデルを継続的に監視し、データ品質の問題やモデルドリフト（性能劣化）を検出します。問題が検出されると、自動的にアラートを送信します。",
+    category: "AWS AI/ML Services",
+    explanation: "SageMaker Model Monitor continuously monitors deployed models in production and detects data quality issues and model drift (performance degradation). When an issue is detected, it automatically sends an alert.",
     optionExplanations: [
-      "モデルのトレーニングはSageMaker Training Jobの機能です。",
-      "✓ 正解: Model Monitorは、データドリフト、モデルドリフト、バイアスドリフト、特徴量の異常を検出し、モデルの品質を維持します。",
-      "モデルのデプロイはSageMaker Endpointsの機能です。",
-      "データの収集は、データパイプラインやETLツールの役割です。"
+      "Model training is a feature of SageMaker Training Jobs.",
+      "✓ Correct: Model Monitor detects data drift, model drift, bias drift, and feature anomalies to maintain model quality.",
+      "Model deployment is a feature of SageMaker Endpoints.",
+      "Data collection is the role of data pipelines and ETL tools."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-monitor.html", title: "Amazon SageMaker Model Monitor" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor.html", title: "Amazon SageMaker Model Monitor" }
     ]
   },
   {
     id: 32,
-    question: "Chain-of-Thought（CoT）プロンプティングとは何ですか。",
+    question: "What is Chain-of-Thought (CoT) prompting?",
     options: [
-      "複数のモデルを連鎖させる手法",
-      "モデルを圧縮する手法",
-      "モデルを高速化する手法",
-      "モデルに段階的な推論プロセスを示させる手法"
+      "A technique for chaining multiple models together",
+      "A technique for compressing a model",
+      "A technique for accelerating a model",
+      "A technique for having a model produce step-by-step reasoning"
     ],
     correctAnswer: 3,
-    category: "生成AI",
-    explanation: "Chain-of-Thought（思考の連鎖）プロンプティングは、モデルに中間的な推論ステップを生成させることで、複雑な問題解決能力を向上させる手法です。「ステップバイステップで考えてください」などの指示を含めます。",
+    category: "Generative AI",
+    explanation: "Chain-of-Thought prompting is a technique that improves a model's ability to solve complex problems by having it generate intermediate reasoning steps. It involves instructions such as \"Think step by step.\"",
     optionExplanations: [
-      "複数のモデルを連鎖させるのは、モデルチェーニングやアンサンブル学習です。",
-      "モデルの圧縮は、蒸留やプルーニングなどの技術です。",
-      "モデルの高速化は、量子化やプルーニングなどの最適化技術です。",
-      "✓ 正解: CoTプロンプティングは、モデルに推論の過程を明示的に示させることで、数学的問題や論理的推論の精度を向上させます。"
+      "Chaining multiple models together is model chaining or ensemble learning.",
+      "Model compression involves techniques such as distillation and pruning.",
+      "Model acceleration involves optimization techniques such as quantization and pruning.",
+      "✓ Correct: CoT prompting improves accuracy on mathematical problems and logical reasoning by having the model explicitly show its reasoning process."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/prompt-engineering-guidelines.html", title: "プロンプトエンジニアリングのガイドライン" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html", title: "Prompt Engineering Guidelines" }
     ]
   },
   {
     id: 33,
-    question: "Amazon Augmented AI (A2I)の主な用途は何ですか。",
+    question: "What is the primary use case for Amazon Augmented AI (A2I)?",
     options: [
-      "モデルの自動学習",
-      "モデルの自動デプロイ",
-      "データの自動収集",
-      "機械学習予測に人間のレビューを組み込む"
+      "Automated model training",
+      "Automated model deployment",
+      "Automated data collection",
+      "Incorporating human review into machine learning predictions"
     ],
     correctAnswer: 3,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon A2Iは、機械学習の予測に人間のレビューを簡単に組み込むことができるサービスです。低信頼度の予測や重要な判断に対して、人間の確認を要求するワークフローを構築できます。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon A2I is a service that makes it easy to incorporate human review into machine learning predictions. It allows you to build workflows that require human confirmation for low-confidence predictions or critical decisions.",
     optionExplanations: [
-      "モデルの自動学習はSageMaker Autopilotの機能です。",
-      "モデルの自動デプロイはSageMaker Pipelinesの機能です。",
-      "データの自動収集は、データパイプラインの役割です。",
-      "✓ 正解: A2Iは、Human-in-the-Loop（HITL）機械学習を実現し、重要な判断に人間の専門知識を活用します。"
+      "Automated model training is a feature of SageMaker Autopilot.",
+      "Automated model deployment is a feature of SageMaker Pipelines.",
+      "Automated data collection is the role of data pipelines.",
+      "✓ Correct: A2I enables Human-in-the-Loop (HITL) machine learning, leveraging human expertise for important decisions."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/a2i-use-augmented-ai-a2i-human-review-loops.html", title: "Amazon Augmented AI" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/a2i-use-augmented-ai-a2i-human-review-loops.html", title: "Amazon Augmented AI" }
     ]
   },
   {
     id: 34,
-    question: "ベクトルデータベースの主な用途は何ですか。",
+    question: "What is the primary use case for a vector database?",
     options: [
-      "リレーショナルデータの保存",
-      "ログの保存",
-      "トランザクション処理",
-      "エンベディングの保存と類似性検索"
+      "Storing relational data",
+      "Storing logs",
+      "Transaction processing",
+      "Storing embeddings and performing similarity search"
     ],
     correctAnswer: 3,
-    category: "AI/ML基礎",
-    explanation: "ベクトルデータベースは、エンベディング（ベクトル表現）を効率的に保存し、類似性検索を高速に実行するために最適化されたデータベースです。RAG、推薦システム、セマンティック検索などで使用されます。",
+    category: "AI/ML Fundamentals",
+    explanation: "A vector database is a database optimized for efficiently storing embeddings (vector representations) and executing similarity searches at high speed. It is used in RAG, recommendation systems, and semantic search.",
     optionExplanations: [
-      "リレーショナルデータの保存はRDSやAuroraの用途です。",
-      "ログの保存は、CloudWatch LogsやS3の用途です。",
-      "トランザクション処理は、RDBMSの主要機能です。",
-      "✓ 正解: ベクトルデータベースは、高次元ベクトルの類似性検索を高速に実行し、意味的に関連するコンテンツを見つけます。"
+      "Storing relational data is a use case for RDS and Aurora.",
+      "Storing logs is a use case for CloudWatch Logs and S3.",
+      "Transaction processing is a primary function of relational database management systems (RDBMS).",
+      "✓ Correct: A vector database performs fast similarity searches over high-dimensional vectors to find semantically related content."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/knowledge-base.html", title: "Amazon Bedrock のナレッジベース" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html", title: "Knowledge Bases for Amazon Bedrock" }
     ]
   },
   {
     id: 35,
-    question: "Amazon DevOps Guruの主な機能は何ですか。",
+    question: "What is the primary feature of Amazon DevOps Guru?",
     options: [
-      "機械学習を使用した運用上の異常検出",
-      "データベースの管理",
-      "コードの自動生成",
-      "ネットワークの設定"
+      "ML-powered operational anomaly detection",
+      "Database management",
+      "Automated code generation",
+      "Network configuration"
     ],
     correctAnswer: 0,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon DevOps Guruは、機械学習を使用してアプリケーションの運用上の問題を自動的に検出し、推奨される修正アクションを提供するサービスです。異常なメトリクスやログパターンを識別します。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon DevOps Guru is a service that uses machine learning to automatically detect operational issues in applications and provide recommended remediation actions. It identifies anomalous metrics and log patterns.",
     optionExplanations: [
-      "✓ 正解: DevOps Guruは、CloudWatchメトリクス、AWS X-Ray、CloudFormationスタックを分析し、運用上の問題を予測的に検出します。",
-      "データベースの管理はRDSやDynamoDBの領域です。",
-      "コードの自動生成はCodeWhispererの機能です。",
-      "ネットワークの設定はVPCやネットワーキングサービスの領域です。"
+      "✓ Correct: DevOps Guru analyzes CloudWatch metrics, AWS X-Ray, and CloudFormation stacks to proactively detect operational issues.",
+      "Database management is in the domain of RDS and DynamoDB.",
+      "Automated code generation is a feature of CodeWhisperer.",
+      "Network configuration is in the domain of VPC and networking services."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/devops-guru/latest/userguide/welcome.html", title: "Amazon DevOps Guru とは" }
+      { url: "https://docs.aws.amazon.com/devops-guru/latest/userguide/welcome.html", title: "What is Amazon DevOps Guru?" }
     ]
   },
   {
     id: 36,
-    question: "モデルの「推論（Inference）」とは何を指しますか。",
+    question: "What does \"inference\" refer to in the context of machine learning models?",
     options: [
-      "モデルのトレーニングプロセス",
-      "学習済みモデルを使用して予測を行うこと",
-      "モデルの評価",
-      "データの前処理"
+      "The model training process",
+      "Using a trained model to make predictions",
+      "Evaluating a model",
+      "Preprocessing data"
     ],
     correctAnswer: 1,
-    category: "AI/ML基礎",
-    explanation: "推論は、学習済みの機械学習モデルを使用して、新しいデータに対して予測や分類を行うプロセスです。トレーニングとは異なり、モデルのパラメータは更新されません。",
+    category: "AI/ML Fundamentals",
+    explanation: "Inference is the process of using a trained machine learning model to make predictions or classifications on new data. Unlike training, model parameters are not updated during inference.",
     optionExplanations: [
-      "モデルのトレーニングは、データからパターンを学習するプロセスです。",
-      "✓ 正解: 推論は、学習済みモデルを本番環境で使用し、リアルタイムまたはバッチで予測を生成するプロセスです。",
-      "モデルの評価は、テストデータでモデルの性能を測定するプロセスです。",
-      "データの前処理は、モデルに入力する前にデータを準備するステップです。"
+      "Model training is the process of learning patterns from data.",
+      "✓ Correct: Inference is the process of using a trained model in production to generate predictions in real time or in batch.",
+      "Model evaluation is the process of measuring model performance on test data.",
+      "Data preprocessing is the step of preparing data before it is fed into a model."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/deploy-model.html", title: "モデルをデプロイして推論を実行" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/deploy-model.html", title: "Deploy a Model and Perform Inference" }
     ]
   },
   {
     id: 37,
-    question: "Amazon Lookout for Metricsの主な用途は何ですか。",
+    question: "What is the primary use case for Amazon Lookout for Metrics?",
     options: [
-      "画像認識",
-      "時系列データの異常検出",
-      "テキスト分析",
-      "音声認識"
+      "Image recognition",
+      "Anomaly detection in time-series data",
+      "Text analysis",
+      "Speech recognition"
     ],
     correctAnswer: 1,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Lookout for Metricsは、機械学習を使用してビジネスメトリクスの異常を自動的に検出し、根本原因を特定するサービスです。売上、ウェブトラフィック、KPIなどの監視に使用されます。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Lookout for Metrics is a service that uses machine learning to automatically detect anomalies in business metrics and identify root causes. It is used to monitor sales, web traffic, KPIs, and more.",
     optionExplanations: [
-      "画像認識はAmazon Rekognitionの機能です。",
-      "✓ 正解: Lookout for Metricsは、ビジネスメトリクスの異常パターンを検出し、影響を受けた次元を特定します。",
-      "テキスト分析はAmazon Comprehendの機能です。",
-      "音声認識はAmazon Transcribeの機能です。"
+      "Image recognition is a feature of Amazon Rekognition.",
+      "✓ Correct: Lookout for Metrics detects anomalous patterns in business metrics and identifies the affected dimensions.",
+      "Text analysis is a feature of Amazon Comprehend.",
+      "Speech recognition is a feature of Amazon Transcribe."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/lookoutmetrics/latest/dev/what-is-lookout-for-metrics.html", title: "Amazon Lookout for Metrics とは" }
+      { url: "https://docs.aws.amazon.com/lookoutmetrics/latest/dev/what-is-lookout-for-metrics.html", title: "What is Amazon Lookout for Metrics?" }
     ]
   },
   {
     id: 38,
-    question: "プロンプトインジェクション攻撃とは何ですか。",
+    question: "What is a prompt injection attack?",
     options: [
-      "悪意のある指示をプロンプトに挿入してモデルの動作を操作する攻撃",
-      "モデルのトレーニングデータを改ざんする攻撃",
-      "モデルのパラメータを盗む攻撃",
-      "ネットワークトラフィックを傍受する攻撃"
+      "An attack that inserts malicious instructions into a prompt to manipulate model behavior",
+      "An attack that tampers with model training data",
+      "An attack that steals model parameters",
+      "An attack that intercepts network traffic"
     ],
     correctAnswer: 0,
-    category: "責任あるAI",
-    explanation: "プロンプトインジェクションは、生成AIモデルに対する攻撃手法で、悪意のある指示をプロンプトに挿入することで、モデルに意図しない動作をさせます。ガードレールやコンテンツフィルタリングで対策できます。",
+    category: "Responsible AI",
+    explanation: "Prompt injection is an attack technique against generative AI models in which malicious instructions are inserted into a prompt to cause the model to behave in unintended ways. It can be mitigated using guardrails and content filtering.",
     optionExplanations: [
-      "✓ 正解: プロンプトインジェクションは、ユーザー入力を通じてモデルの動作を不正に操作する攻撃で、セキュリティ上の重要な懸念事項です。",
-      "トレーニングデータの改ざんは、データポイズニング攻撃です。",
-      "モデルのパラメータを盗むのは、モデル抽出攻撃です。",
-      "ネットワークトラフィックの傍受は、中間者攻撃です。"
+      "✓ Correct: Prompt injection illegitimately manipulates model behavior through user input and is an important security concern.",
+      "Tampering with training data is a data poisoning attack.",
+      "Stealing model parameters is a model extraction attack.",
+      "Intercepting network traffic is a man-in-the-middle attack."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/guardrails.html", title: "Amazon Bedrock のガードレール" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html", title: "Guardrails for Amazon Bedrock" }
     ]
   },
   {
     id: 39,
-    question: "Amazon SageMaker Pipelinesの主な目的は何ですか。",
+    question: "What is the primary purpose of Amazon SageMaker Pipelines?",
     options: [
-      "データの可視化",
-      "機械学習ワークフローの自動化とオーケストレーション",
-      "モデルの監視",
-      "コスト分析"
+      "Data visualization",
+      "Automating and orchestrating machine learning workflows",
+      "Model monitoring",
+      "Cost analysis"
     ],
     correctAnswer: 1,
-    category: "AWSのAI/MLサービス",
-    explanation: "SageMaker Pipelinesは、機械学習ワークフロー（データ準備、トレーニング、評価、デプロイ）を自動化し、再現可能なMLパイプラインを構築するためのCI/CDサービスです。",
+    category: "AWS AI/ML Services",
+    explanation: "SageMaker Pipelines is a CI/CD service for automating machine learning workflows (data preparation, training, evaluation, and deployment) and building reproducible ML pipelines.",
     optionExplanations: [
-      "データの可視化はQuickSightやSageMaker Studioの機能です。",
-      "✓ 正解: Pipelinesは、MLワークフローの各ステップを定義し、自動実行することで、モデル開発のスピードと品質を向上させます。",
-      "モデルの監視はSageMaker Model Monitorの機能です。",
-      "コスト分析はCost Explorerの機能です。"
+      "Data visualization is a feature of QuickSight and SageMaker Studio.",
+      "✓ Correct: Pipelines defines and automates each step of the ML workflow, improving the speed and quality of model development.",
+      "Model monitoring is a feature of SageMaker Model Monitor.",
+      "Cost analysis is a feature of Cost Explorer."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/pipelines.html", title: "SageMaker Pipelines" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/pipelines.html", title: "SageMaker Pipelines" }
     ]
   },
   {
     id: 40,
-    question: "ゼロショット学習（Zero-shot Learning）とは何ですか。",
+    question: "What is zero-shot learning?",
     options: [
-      "データを使用しない学習手法",
-      "モデルを完全に再学習させる手法",
-      "モデルに例を全く与えずにタスクを実行させる手法",
-      "モデルのパラメータをゼロにする手法"
+      "A learning method that uses no data",
+      "A technique for completely retraining a model",
+      "A technique for having a model perform a task with no examples provided",
+      "A technique for setting all model parameters to zero"
     ],
     correctAnswer: 2,
-    category: "生成AI",
-    explanation: "ゼロショット学習は、タスクの具体的な例を提供せずに、指示のみでモデルにタスクを実行させる手法です。大規模言語モデルは、事前学習により多様なタスクをゼロショットで実行できます。",
+    category: "Generative AI",
+    explanation: "Zero-shot learning is a technique in which a model performs a task based on instructions alone, without any task-specific examples. Large language models can perform a wide variety of tasks zero-shot thanks to pre-training.",
     optionExplanations: [
-      "ゼロショットでも、モデルは事前学習データを使用しています。",
-      "完全な再学習はFine-tuningです。ゼロショットは再学習を必要としません。",
-      "✓ 正解: ゼロショット学習は、例を提供せずに指示だけでタスクを実行させる手法で、Few-shot（少数例）やFine-tuning（再学習）よりも迅速です。",
-      "パラメータをゼロにするのは、モデルの初期化やプルーニングの概念です。"
+      "Even in zero-shot settings, the model uses knowledge from pre-training data.",
+      "Complete retraining is fine-tuning. Zero-shot requires no retraining.",
+      "✓ Correct: Zero-shot learning has the model perform tasks from instructions alone, making it faster than few-shot (a few examples) or fine-tuning (retraining).",
+      "Setting parameters to zero refers to model initialization or pruning concepts."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/prompt-engineering-guidelines.html", title: "プロンプトエンジニアリングのガイドライン" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/prompt-engineering-guidelines.html", title: "Prompt Engineering Guidelines" }
     ]
   },
   {
     id: 41,
-    question: "Amazon Translateの主な機能は何ですか。",
+    question: "What is the primary feature of Amazon Translate?",
     options: [
-      "画像認識",
-      "音声合成",
-      "テキスト分析",
-      "ニューラル機械翻訳"
+      "Image recognition",
+      "Speech synthesis",
+      "Text analysis",
+      "Neural machine translation"
     ],
     correctAnswer: 3,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Translateは、ニューラル機械翻訳を使用して、高品質で自然な翻訳を提供するサービスです。75以上の言語をサポートし、リアルタイム翻訳とバッチ翻訳の両方が可能です。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Translate is a service that uses neural machine translation to deliver high-quality, natural translations. It supports more than 75 languages and enables both real-time and batch translation.",
     optionExplanations: [
-      "画像認識はAmazon Rekognitionの機能です。",
-      "音声合成はAmazon Pollyの機能です。",
-      "テキスト分析はAmazon Comprehendの機能です。",
-      "✓ 正解: Translateは、ニューラルネットワークベースの機械翻訳により、文脈を理解した自然な翻訳を提供します。"
+      "Image recognition is a feature of Amazon Rekognition.",
+      "Speech synthesis is a feature of Amazon Polly.",
+      "Text analysis is a feature of Amazon Comprehend.",
+      "✓ Correct: Translate uses neural network-based machine translation to produce natural, context-aware translations."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/translate/latest/dg/what-is.html", title: "Amazon Translate とは" }
+      { url: "https://docs.aws.amazon.com/translate/latest/dg/what-is.html", title: "What is Amazon Translate?" }
     ]
   },
   {
     id: 42,
-    question: "モデルの「量子化（Quantization）」の主な目的は何ですか。",
+    question: "What is the primary purpose of model quantization?",
     options: [
-      "モデルの精度を向上させる",
-      "モデルの学習速度を向上させる",
-      "モデルのサイズと推論速度を最適化する",
-      "モデルのバイアスを削減する"
+      "Improving model accuracy",
+      "Improving model training speed",
+      "Optimizing model size and inference speed",
+      "Reducing model bias"
     ],
     correctAnswer: 2,
-    category: "AI/ML基礎",
-    explanation: "量子化は、モデルのパラメータを低精度の数値表現（例：32ビットから8ビット）に変換することで、モデルサイズを削減し、推論速度を向上させる技術です。精度の低下は最小限に抑えられます。",
+    category: "AI/ML Fundamentals",
+    explanation: "Quantization is a technique that converts model parameters to lower-precision numeric representations (e.g., from 32-bit to 8-bit), reducing model size and improving inference speed. The loss in accuracy is kept to a minimum.",
     optionExplanations: [
-      "量子化は通常、精度をわずかに犠牲にしますが、効率を大幅に向上させます。",
-      "量子化は推論の最適化であり、学習速度には直接影響しません。",
-      "✓ 正解: 量子化により、モデルのメモリ使用量が削減され、推論速度が向上し、エッジデバイスでの実行が可能になります。",
-      "バイアス削減は、データやアルゴリズムの改善によって達成されます。"
+      "Quantization typically sacrifices a small amount of accuracy in exchange for significant efficiency gains.",
+      "Quantization is an inference optimization and does not directly affect training speed.",
+      "✓ Correct: Quantization reduces model memory usage, improves inference speed, and makes it possible to run models on edge devices.",
+      "Bias reduction is achieved through improvements to data and algorithms."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/neo.html", title: "SageMaker Neo でモデルを最適化" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/neo.html", title: "Optimize Models with SageMaker Neo" }
     ]
   },
   {
     id: 43,
-    question: "Amazon Pollyの主な機能は何ですか。",
+    question: "What is the primary feature of Amazon Polly?",
     options: [
-      "テキストから音声への変換",
-      "画像認識",
-      "音声認識",
-      "言語翻訳"
+      "Text-to-speech conversion",
+      "Image recognition",
+      "Speech recognition",
+      "Language translation"
     ],
     correctAnswer: 0,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Pollyは、テキストを自然な音声に変換するテキスト読み上げ（TTS）サービスです。ニューラルTTS技術により、人間のような自然な音声を生成し、60以上の言語と音声をサポートします。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Polly is a text-to-speech (TTS) service that converts text into natural-sounding speech. Using neural TTS technology, it generates human-like natural speech and supports more than 60 languages and voices.",
     optionExplanations: [
-      "✓ 正解: Pollyは、テキストを自然で表現力豊かな音声に変換し、アプリケーションに音声機能を追加できます。",
-      "画像認識はAmazon Rekognitionの機能です。",
-      "音声認識はAmazon Transcribeの機能です。",
-      "言語翻訳はAmazon Translateの機能です。"
+      "✓ Correct: Polly converts text into natural, expressive speech, allowing you to add voice capabilities to your applications.",
+      "Image recognition is a feature of Amazon Rekognition.",
+      "Speech recognition is a feature of Amazon Transcribe.",
+      "Language translation is a feature of Amazon Translate."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/polly/latest/dg/what-is.html", title: "Amazon Polly とは" }
+      { url: "https://docs.aws.amazon.com/polly/latest/dg/what-is.html", title: "What is Amazon Polly?" }
     ]
   },
   {
     id: 44,
-    question: "機械学習における「データ拡張（Data Augmentation）」の主な目的は何ですか。",
+    question: "What is the primary purpose of data augmentation in machine learning?",
     options: [
-      "既存データから新しいトレーニングサンプルを生成して過学習を防ぐ",
-      "データを削除する",
-      "データのサイズを物理的に増やす",
-      "データを暗号化する"
+      "Generating new training samples from existing data to prevent overfitting",
+      "Deleting data",
+      "Physically increasing the amount of data",
+      "Encrypting data"
     ],
     correctAnswer: 0,
-    category: "AI/ML基礎",
-    explanation: "データ拡張は、既存のトレーニングデータに変換（回転、反転、ノイズ追加など）を適用して、新しいサンプルを生成する技術です。これにより、モデルの汎化性能が向上し、過学習を防ぎます。",
+    category: "AI/ML Fundamentals",
+    explanation: "Data augmentation is a technique that applies transformations (rotation, flipping, adding noise, etc.) to existing training data to generate new samples. This improves the model's generalization ability and helps prevent overfitting.",
     optionExplanations: [
-      "✓ 正解: データ拡張により、限られたデータから多様なトレーニングサンプルを生成し、モデルのロバスト性を向上させます。",
-      "データの削除は、データクリーニングの一部ですが、拡張ではありません。",
-      "データ拡張は、物理的なデータ量ではなく、トレーニングサンプルの多様性を増やします。",
-      "データの暗号化は、セキュリティ対策であり、拡張ではありません。"
+      "✓ Correct: Data augmentation generates diverse training samples from limited data, improving model robustness.",
+      "Deleting data is part of data cleaning, but it is not augmentation.",
+      "Data augmentation increases the diversity of training samples, not the physical amount of data.",
+      "Data encryption is a security measure, not augmentation."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/data-wrangler-data-insights.html", title: "データインサイト" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/data-wrangler-data-insights.html", title: "Data Insights" }
     ]
   },
   {
     id: 45,
-    question: "Amazon SageMaker Ground Truthの主な用途は何ですか。",
+    question: "What is the primary use case for Amazon SageMaker Ground Truth?",
     options: [
-      "高品質なトレーニングデータのラベリング",
-      "データの可視化",
-      "モデルのデプロイ",
-      "モデルのトレーニング"
+      "Labeling high-quality training data",
+      "Data visualization",
+      "Model deployment",
+      "Model training"
     ],
     correctAnswer: 0,
-    category: "AWSのAI/MLサービス",
-    explanation: "SageMaker Ground Truthは、機械学習のための高品質なトレーニングデータセットを構築するためのデータラベリングサービスです。人間のラベラーと機械学習を組み合わせて、効率的にデータをラベリングします。",
+    category: "AWS AI/ML Services",
+    explanation: "SageMaker Ground Truth is a data labeling service for building high-quality training datasets for machine learning. It combines human labelers with machine learning to label data efficiently.",
     optionExplanations: [
-      "✓ 正解: Ground Truthは、画像分類、物体検出、セマンティックセグメンテーション、テキスト分類などのラベリングタスクをサポートします。",
-      "データの可視化はQuickSightやSageMaker Studioの機能です。",
-      "モデルのデプロイはSageMaker Endpointsの機能です。",
-      "モデルのトレーニングはSageMaker Training Jobの機能です。"
+      "✓ Correct: Ground Truth supports labeling tasks such as image classification, object detection, semantic segmentation, and text classification.",
+      "Data visualization is a feature of QuickSight and SageMaker Studio.",
+      "Model deployment is a feature of SageMaker Endpoints.",
+      "Model training is a feature of SageMaker Training Jobs."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/sms.html", title: "SageMaker Ground Truth" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/sms.html", title: "SageMaker Ground Truth" }
     ]
   },
   {
     id: 46,
-    question: "「トランスファー学習（Transfer Learning）」の主な利点は何ですか。",
+    question: "What is the main advantage of transfer learning?",
     options: [
-      "推論速度の向上",
-      "データ転送速度の向上",
-      "モデルのサイズを削減",
-      "事前学習済みモデルを活用して学習時間とデータ量を削減"
+      "Improving inference speed",
+      "Improving data transfer speed",
+      "Reducing model size",
+      "Reducing training time and data requirements by leveraging pre-trained models"
     ],
     correctAnswer: 3,
-    category: "AI/ML基礎",
-    explanation: "トランスファー学習は、大規模データセットで事前学習されたモデルを、新しいタスクに適用する手法です。少量のデータと短い学習時間で高精度なモデルを構築できます。",
+    category: "AI/ML Fundamentals",
+    explanation: "Transfer learning is a technique that applies a model pre-trained on a large dataset to a new task. It enables building high-accuracy models with less data and shorter training time.",
     optionExplanations: [
-      "推論速度の向上は、最適化技術の目的です。",
-      "データ転送速度は、ネットワークやストレージの問題です。",
-      "モデルサイズの削減は、量子化やプルーニングの目的です。",
-      "✓ 正解: トランスファー学習により、ImageNetなどで学習済みのモデルを活用し、少量のデータで高精度なモデルを構築できます。"
+      "Improving inference speed is the goal of optimization techniques.",
+      "Data transfer speed is a network and storage concern.",
+      "Reducing model size is the goal of quantization and pruning.",
+      "✓ Correct: Transfer learning leverages models already trained on datasets such as ImageNet to build high-accuracy models with minimal data."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/transfer-learning.html", title: "転移学習" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/transfer-learning.html", title: "Transfer Learning" }
     ]
   },
   {
     id: 47,
-    question: "Amazon Transcribeの主な機能は何ですか。",
+    question: "What is the primary feature of Amazon Transcribe?",
     options: [
-      "テキストから音声への変換",
-      "画像認識",
-      "音声からテキストへの自動変換",
-      "言語翻訳"
+      "Text-to-speech conversion",
+      "Image recognition",
+      "Automatic speech-to-text conversion",
+      "Language translation"
     ],
     correctAnswer: 2,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Transcribeは、音声をテキストに自動変換する音声認識サービスです。リアルタイム変換とバッチ変換をサポートし、話者識別、カスタム語彙、自動句読点などの機能を提供します。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Transcribe is a speech recognition service that automatically converts audio to text. It supports real-time and batch transcription, and provides features such as speaker identification, custom vocabularies, and automatic punctuation.",
     optionExplanations: [
-      "テキストから音声への変換はAmazon Pollyの機能です。",
-      "画像認識はAmazon Rekognitionの機能です。",
-      "✓ 正解: Transcribeは、会議の文字起こし、字幕生成、コールセンターの分析などに使用されます。",
-      "言語翻訳はAmazon Translateの機能です。"
+      "Text-to-speech conversion is a feature of Amazon Polly.",
+      "Image recognition is a feature of Amazon Rekognition.",
+      "✓ Correct: Transcribe is used for meeting transcription, subtitle generation, call center analytics, and more.",
+      "Language translation is a feature of Amazon Translate."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/transcribe/latest/dg/what-is.html", title: "Amazon Transcribe とは" }
+      { url: "https://docs.aws.amazon.com/transcribe/latest/dg/what-is.html", title: "What is Amazon Transcribe?" }
     ]
   },
   {
     id: 48,
-    question: "「アンサンブル学習（Ensemble Learning）」とは何ですか。",
+    question: "What is ensemble learning?",
     options: [
-      "データを圧縮する手法",
-      "モデルを高速化する手法",
-      "複数のモデルを組み合わせて予測精度を向上させる手法",
-      "モデルを暗号化する手法"
+      "A technique for compressing data",
+      "A technique for accelerating a model",
+      "A technique for combining multiple models to improve prediction accuracy",
+      "A technique for encrypting a model"
     ],
     correctAnswer: 2,
-    category: "AI/ML基礎",
-    explanation: "アンサンブル学習は、複数の機械学習モデルの予測を組み合わせることで、単一モデルよりも高い精度と安定性を実現する手法です。バギング、ブースティング、スタッキングなどの手法があります。",
+    category: "AI/ML Fundamentals",
+    explanation: "Ensemble learning is a technique that combines predictions from multiple machine learning models to achieve higher accuracy and stability than any single model. Common approaches include bagging, boosting, and stacking.",
     optionExplanations: [
-      "データの圧縮は、ストレージやネットワークの最適化です。",
-      "モデルの高速化は、量子化や最適化の目的です。",
-      "✓ 正解: アンサンブル学習は、ランダムフォレスト、XGBoost、投票分類器などで使用され、個々のモデルの弱点を補完します。",
-      "モデルの暗号化は、セキュリティ対策です。"
+      "Data compression is an optimization for storage and networks.",
+      "Model acceleration is the goal of quantization and optimization.",
+      "✓ Correct: Ensemble learning is used in random forests, XGBoost, voting classifiers, and more to compensate for the weaknesses of individual models.",
+      "Model encryption is a security measure."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/autopilot-model-support.html", title: "Autopilot のモデルサポート" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-model-support.html", title: "Autopilot Model Support" }
     ]
   },
   {
     id: 49,
-    question: "Amazon SageMaker JumpStartの主な機能は何ですか。",
+    question: "What is the primary feature of Amazon SageMaker JumpStart?",
     options: [
-      "事前学習済みモデルとソリューションテンプレートへのアクセス",
-      "データベース管理",
-      "ネットワーク設定",
-      "コスト分析"
+      "Access to pre-trained models and solution templates",
+      "Database management",
+      "Network configuration",
+      "Cost analysis"
     ],
     correctAnswer: 0,
-    category: "AWSのAI/MLサービス",
-    explanation: "SageMaker JumpStartは、事前学習済みの機械学習モデル、ソリューションテンプレート、サンプルノートブックを提供するハブです。数クリックでモデルをデプロイし、カスタマイズできます。",
+    category: "AWS AI/ML Services",
+    explanation: "SageMaker JumpStart is a hub that provides pre-trained machine learning models, solution templates, and sample notebooks. Models can be deployed and customized in just a few clicks.",
     optionExplanations: [
-      "✓ 正解: JumpStartは、画像分類、物体検出、テキスト生成などの一般的なユースケース向けに、すぐに使えるモデルとソリューションを提供します。",
-      "データベース管理はRDSやDynamoDBの領域です。",
-      "ネットワーク設定はVPCやネットワーキングサービスの領域です。",
-      "コスト分析はCost Explorerの機能です。"
+      "✓ Correct: JumpStart provides ready-to-use models and solutions for common use cases such as image classification, object detection, and text generation.",
+      "Database management is in the domain of RDS and DynamoDB.",
+      "Network configuration is in the domain of VPC and networking services.",
+      "Cost analysis is a feature of Cost Explorer."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio-jumpstart.html", title: "SageMaker JumpStart" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/studio-jumpstart.html", title: "SageMaker JumpStart" }
     ]
   },
   {
     id: 50,
-    question: "「モデルドリフト（Model Drift）」とは何を指しますか。",
+    question: "What does \"model drift\" refer to?",
     options: [
-      "モデルのサイズが増加すること",
-      "時間経過とともにモデルの予測精度が低下する現象",
-      "モデルの学習速度が低下すること",
-      "モデルのコストが増加すること"
+      "An increase in model size",
+      "A phenomenon where model prediction accuracy degrades over time",
+      "A decrease in model training speed",
+      "An increase in model cost"
     ],
     correctAnswer: 1,
-    category: "AI/ML基礎",
-    explanation: "モデルドリフトは、本番環境のデータ分布が学習時のデータと異なってくることで、モデルの予測精度が時間とともに低下する現象です。SageMaker Model Monitorで検出・対処できます。",
+    category: "AI/ML Fundamentals",
+    explanation: "Model drift is a phenomenon where a model's prediction accuracy degrades over time because the data distribution in production diverges from the data used during training. It can be detected and addressed using SageMaker Model Monitor.",
     optionExplanations: [
-      "モデルサイズの増加は、ドリフトとは異なる問題です。",
-      "✓ 正解: モデルドリフトは、データドリフト（入力データの変化）やコンセプトドリフト（ターゲット変数の関係性の変化）によって発生します。",
-      "学習速度の低下は、ドリフトとは異なる技術的な問題です。",
-      "コストの増加は、ドリフトの直接的な結果ではありません。"
+      "An increase in model size is a separate issue from drift.",
+      "✓ Correct: Model drift is caused by data drift (changes in input data) or concept drift (changes in the relationship between input and target variables).",
+      "A decrease in training speed is a separate technical issue from drift.",
+      "An increase in cost is not a direct consequence of drift."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-monitor-model-quality.html", title: "モデル品質の監視" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/model-monitor-model-quality.html", title: "Monitor Model Quality" }
     ]
   },
   {
     id: 51,
-    question: "Amazon Bedrockで利用できる基盤モデル（Foundation Model）に含まれないものはどれですか。",
+    question: "Which of the following is NOT a foundation model available in Amazon Bedrock?",
     options: [
       "Anthropic Claude",
       "Amazon Titan",
@@ -1110,1094 +1110,1094 @@ const awsAIFQuestions = [
       "Meta Llama"
     ],
     correctAnswer: 2,
-    category: "生成AI",
-    explanation: "Amazon Bedrockは、Anthropic Claude、Amazon Titan、Meta Llama、Cohere、AI21 Labsなどの基盤モデルへのアクセスを提供します。Amazon RDSはデータベースサービスで、基盤モデルではありません。",
+    category: "Generative AI",
+    explanation: "Amazon Bedrock provides access to foundation models including Anthropic Claude, Amazon Titan, Meta Llama, Cohere, and AI21 Labs. Amazon RDS is a database service, not a foundation model.",
     optionExplanations: [
-      "Anthropic Claudeは、Bedrockで利用できる高性能な会話型AIモデルです。",
-      "Amazon Titanは、AWSが開発した基盤モデルで、テキスト生成とエンベディングをサポートします。",
-      "✓ 正解: Amazon RDSはリレーショナルデータベースサービスで、生成AIの基盤モデルではありません。",
-      "Meta Llamaは、Metaが開発したオープンソースの大規模言語モデルで、Bedrockで利用できます。"
+      "Anthropic Claude is a high-performance conversational AI model available in Bedrock.",
+      "Amazon Titan is a foundation model developed by AWS that supports text generation and embeddings.",
+      "✓ Correct: Amazon RDS is a relational database service and is not a generative AI foundation model.",
+      "Meta Llama is an open-source large language model developed by Meta and is available in Bedrock."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/models-supported.html", title: "サポートされている基盤モデル" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html", title: "Supported Foundation Models" }
     ]
   },
   {
     id: 52,
-    question: "機械学習における「バッチ推論」と「リアルタイム推論」の主な違いは何ですか。",
+    question: "What is the main difference between batch inference and real-time inference in machine learning?",
     options: [
-      "バッチ推論は安価、リアルタイム推論は高価（常に）",
-      "バッチ推論は高速、リアルタイム推論は低速",
-      "バッチ推論は大量データを一度に処理、リアルタイム推論は個別リクエストに即座に応答",
-      "違いはない"
+      "Batch inference is always cheaper; real-time inference is always more expensive",
+      "Batch inference is faster; real-time inference is slower",
+      "Batch inference processes large amounts of data at once; real-time inference responds instantly to individual requests",
+      "There is no difference"
     ],
     correctAnswer: 2,
-    category: "AI/ML基礎",
-    explanation: "バッチ推論は、大量のデータを一括処理し、結果を後で取得します。リアルタイム推論は、個別のリクエストに対して即座に予測を返します。ユースケースに応じて使い分けます。",
+    category: "AI/ML Fundamentals",
+    explanation: "Batch inference processes a large volume of data all at once and retrieves results later. Real-time inference returns predictions instantly in response to individual requests. The choice depends on the use case.",
     optionExplanations: [
-      "コストはデータ量や頻度によって異なり、一概には言えません。",
-      "速度は処理方法の違いであり、バッチが常に高速とは限りません。",
-      "✓ 正解: バッチ推論は夜間処理や定期レポートに適し、リアルタイム推論はWebアプリケーションやチャットボットに適しています。",
-      "明確な違いがあり、ユースケースに応じて選択します。"
+      "Cost varies by data volume and frequency and cannot be generalized.",
+      "Speed differs by processing method; batch is not always faster.",
+      "✓ Correct: Batch inference is suited for overnight processing and periodic reports; real-time inference is suited for web applications and chatbots.",
+      "There are clear differences; the choice depends on the use case."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/how-it-works-deployment.html", title: "モデルのデプロイ" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works-deployment.html", title: "Deploy a Model" }
     ]
   },
   {
     id: 53,
-    question: "Amazon SageMaker Neoの主な目的は何ですか。",
+    question: "What is the primary purpose of Amazon SageMaker Neo?",
     options: [
-      "データの収集",
-      "機械学習モデルの最適化とコンパイル",
-      "モデルのトレーニング",
-      "データの可視化"
+      "Data collection",
+      "Optimizing and compiling machine learning models",
+      "Model training",
+      "Data visualization"
     ],
     correctAnswer: 1,
-    category: "AWSのAI/MLサービス",
-    explanation: "SageMaker Neoは、機械学習モデルを特定のハードウェアプラットフォーム向けに最適化し、推論パフォーマンスを最大2倍向上させるコンパイラです。エッジデバイスやクラウドでの効率的な推論を実現します。",
+    category: "AWS AI/ML Services",
+    explanation: "SageMaker Neo is a compiler that optimizes machine learning models for specific hardware platforms, improving inference performance by up to 2x. It enables efficient inference on edge devices and in the cloud.",
     optionExplanations: [
-      "データの収集は、データパイプラインやETLツールの役割です。",
-      "✓ 正解: Neoは、TensorFlow、PyTorch、MXNetなどのフレームワークで学習したモデルを、ARM、Intel、NVIDIAなどのプロセッサ向けに最適化します。",
-      "モデルのトレーニングはSageMaker Training Jobの機能です。",
-      "データの可視化はQuickSightやSageMaker Studioの機能です。"
+      "Data collection is the role of data pipelines and ETL tools.",
+      "✓ Correct: Neo optimizes models trained with TensorFlow, PyTorch, MXNet, and other frameworks for processors such as ARM, Intel, and NVIDIA.",
+      "Model training is a feature of SageMaker Training Jobs.",
+      "Data visualization is a feature of QuickSight and SageMaker Studio."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/neo.html", title: "SageMaker Neo" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/neo.html", title: "SageMaker Neo" }
     ]
   },
   {
     id: 54,
-    question: "「プルーニング（Pruning）」とは、機械学習モデルの最適化において何を指しますか。",
+    question: "What does \"pruning\" refer to in machine learning model optimization?",
     options: [
-      "データの暗号化",
-      "データのクリーニング",
-      "モデルの学習速度を向上",
-      "重要度の低いパラメータを削除してモデルを軽量化"
+      "Encrypting data",
+      "Cleaning data",
+      "Improving model training speed",
+      "Removing low-importance parameters to reduce model size"
     ],
     correctAnswer: 3,
-    category: "AI/ML基礎",
-    explanation: "プルーニングは、モデルの重要度の低いパラメータ（重みやニューロン）を削除することで、モデルサイズを削減し、推論速度を向上させる技術です。精度の低下を最小限に抑えながら効率化を実現します。",
+    category: "AI/ML Fundamentals",
+    explanation: "Pruning is a technique that removes low-importance parameters (weights or neurons) from a model, reducing model size and improving inference speed while keeping the loss in accuracy to a minimum.",
     optionExplanations: [
-      "データの暗号化は、セキュリティ対策で、プルーニングとは無関係です。",
-      "データのクリーニングは、前処理の一部で、プルーニングとは異なります。",
-      "学習速度の向上は、プルーニングの直接的な目的ではありません。",
-      "✓ 正解: プルーニングにより、モデルのメモリ使用量が削減され、エッジデバイスでの実行が可能になります。"
+      "Data encryption is a security measure and is unrelated to pruning.",
+      "Data cleaning is part of preprocessing and is different from pruning.",
+      "Improving training speed is not the direct goal of pruning.",
+      "✓ Correct: Pruning reduces model memory usage and makes it possible to run models on edge devices."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/neo.html", title: "モデルの最適化" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/neo.html", title: "Model Optimization" }
     ]
   },
   {
     id: 55,
-    question: "Amazon Lookout for Visionの主な用途は何ですか。",
+    question: "What is the primary use case for Amazon Lookout for Vision?",
     options: [
-      "テキスト分析",
-      "コンピュータビジョンを使用した製造上の欠陥検出",
-      "音声認識",
-      "言語翻訳"
+      "Text analysis",
+      "Detecting manufacturing defects using computer vision",
+      "Speech recognition",
+      "Language translation"
     ],
     correctAnswer: 1,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Lookout for Visionは、コンピュータビジョンを使用して、製造ラインの製品や部品の欠陥や異常を自動的に検出するサービスです。わずか30枚の画像から高精度なモデルを構築できます。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Lookout for Vision is a service that uses computer vision to automatically detect defects and anomalies in products and components on manufacturing lines. High-accuracy models can be built from as few as 30 images.",
     optionExplanations: [
-      "テキスト分析はAmazon Comprehendの機能です。",
-      "✓ 正解: Lookout for Visionは、製造業の品質管理を自動化し、欠陥品の検出精度を向上させます。",
-      "音声認識はAmazon Transcribeの機能です。",
-      "言語翻訳はAmazon Translateの機能です。"
+      "Text analysis is a feature of Amazon Comprehend.",
+      "✓ Correct: Lookout for Vision automates quality control in manufacturing and improves the accuracy of defect detection.",
+      "Speech recognition is a feature of Amazon Transcribe.",
+      "Language translation is a feature of Amazon Translate."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/lookout-for-vision/latest/developer-guide/what-is.html", title: "Amazon Lookout for Vision とは" }
+      { url: "https://docs.aws.amazon.com/lookout-for-vision/latest/developer-guide/what-is.html", title: "What is Amazon Lookout for Vision?" }
     ]
   },
   {
     id: 56,
-    question: "「知識蒸留（Knowledge Distillation）」とは何ですか。",
+    question: "What is knowledge distillation?",
     options: [
-      "大きなモデルの知識を小さなモデルに転移させる技術",
-      "データベースからデータを抽出すること",
-      "データを圧縮すること",
-      "モデルを暗号化すること"
+      "A technique for transferring knowledge from a large model to a smaller model",
+      "Extracting data from a database",
+      "Compressing data",
+      "Encrypting a model"
     ],
     correctAnswer: 0,
-    category: "AI/ML基礎",
-    explanation: "知識蒸留は、大規模で高精度な「教師モデル」の知識を、小型で高速な「生徒モデル」に転移させる技術です。生徒モデルは、教師モデルの出力を学習することで、少ないパラメータで高い性能を実現します。",
+    category: "AI/ML Fundamentals",
+    explanation: "Knowledge distillation is a technique that transfers the knowledge of a large, high-accuracy \"teacher model\" to a small, fast \"student model\". The student model learns from the teacher model's outputs, achieving high performance with fewer parameters.",
     optionExplanations: [
-      "✓ 正解: 知識蒸留により、大規模モデルの性能を維持しながら、エッジデバイスで実行可能な小型モデルを作成できます。",
-      "データベースからのデータ抽出は、ETLプロセスです。",
-      "データの圧縮は、ストレージ最適化の技術です。",
-      "モデルの暗号化は、セキュリティ対策です。"
+      "✓ Correct: Knowledge distillation creates a compact model deployable on edge devices while preserving the performance of the large model.",
+      "Extracting data from a database is an ETL process.",
+      "Data compression is a storage optimization technique.",
+      "Model encryption is a security measure."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-compression.html", title: "モデル圧縮" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/model-compression.html", title: "Model Compression" }
     ]
   },
   {
     id: 57,
-    question: "Amazon SageMaker Canvasの主な特徴は何ですか。",
+    question: "What is the primary characteristic of Amazon SageMaker Canvas?",
     options: [
-      "高度なプログラミングが必要なツール",
-      "コードを書かずに機械学習モデルを構築できるノーコードツール",
-      "データベース管理ツール",
-      "ネットワーク設定ツール"
+      "A tool that requires advanced programming skills",
+      "A no-code tool for building machine learning models without writing code",
+      "A database management tool",
+      "A network configuration tool"
     ],
     correctAnswer: 1,
-    category: "AWSのAI/MLサービス",
-    explanation: "SageMaker Canvasは、ビジネスアナリストやデータサイエンティスト以外のユーザーが、コードを書かずに機械学習モデルを構築、トレーニング、デプロイできるノーコードツールです。",
+    category: "AWS AI/ML Services",
+    explanation: "SageMaker Canvas is a no-code tool that enables business analysts and non-data-scientists to build, train, and deploy machine learning models without writing any code.",
     optionExplanations: [
-      "Canvasの目的は、プログラミング不要でMLを利用できるようにすることです。",
-      "✓ 正解: Canvasは、ビジュアルインターフェースを使用して、データのインポート、モデルの構築、予測の生成を簡単に実行できます。",
-      "データベース管理はRDSやDynamoDBの領域です。",
-      "ネットワーク設定はVPCやネットワーキングサービスの領域です。"
+      "Canvas is designed to make ML accessible without programming.",
+      "✓ Correct: Canvas uses a visual interface to easily import data, build models, and generate predictions.",
+      "Database management is in the domain of RDS and DynamoDB.",
+      "Network configuration is in the domain of VPC and networking services."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/canvas.html", title: "SageMaker Canvas" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/canvas.html", title: "SageMaker Canvas" }
     ]
   },
   {
     id: 58,
-    question: "「マルチモーダルAI」とは何を指しますか。",
+    question: "What does \"multimodal AI\" refer to?",
     options: [
-      "複数のモデルを同時に実行すること",
-      "複数の言語をサポートするAI",
-      "テキスト、画像、音声など複数の種類のデータを処理できるAI",
-      "複数のデータセンターで実行されるAI"
+      "Running multiple models simultaneously",
+      "AI that supports multiple languages",
+      "AI that can process multiple types of data such as text, images, and audio",
+      "AI that runs across multiple data centers"
     ],
     correctAnswer: 2,
-    category: "AI/ML基礎",
-    explanation: "マルチモーダルAIは、テキスト、画像、音声、動画など、異なる種類（モダリティ）のデータを統合的に理解・生成できるAIシステムです。例えば、画像を見て説明文を生成したり、テキストから画像を生成したりできます。",
+    category: "AI/ML Fundamentals",
+    explanation: "Multimodal AI is an AI system that can integratively understand and generate different types (modalities) of data — text, images, audio, video, and more. Examples include generating a caption from an image, or generating an image from text.",
     optionExplanations: [
-      "複数のモデルの同時実行は、アンサンブル学習やモデルチェーニングです。",
-      "多言語サポートは、マルチリンガルAIです。",
-      "✓ 正解: マルチモーダルAIは、異なる種類のデータ間の関係を学習し、より豊かな理解と生成を実現します。",
-      "複数のデータセンターでの実行は、分散コンピューティングです。"
+      "Running multiple models simultaneously is ensemble learning or model chaining.",
+      "Supporting multiple languages is multilingual AI.",
+      "✓ Correct: Multimodal AI learns relationships across different types of data to achieve richer understanding and generation.",
+      "Running across multiple data centers is distributed computing."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/models-supported.html", title: "マルチモーダルモデル" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html", title: "Multimodal Models" }
     ]
   },
   {
     id: 59,
-    question: "Amazon HealthLakeの主な用途は何ですか。",
+    question: "What is the primary use case for Amazon HealthLake?",
     options: [
-      "音声合成",
-      "一般的なデータ分析",
-      "画像認識",
-      "医療データの保存、変換、分析"
+      "Speech synthesis",
+      "General data analysis",
+      "Image recognition",
+      "Storing, transforming, and analyzing health data"
     ],
     correctAnswer: 3,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon HealthLakeは、医療データをFHIR（Fast Healthcare Interoperability Resources）形式で保存、変換、クエリ、分析するためのHIPAA準拠のサービスです。機械学習を使用して医療データから洞察を抽出します。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon HealthLake is a HIPAA-eligible service for storing, transforming, querying, and analyzing health data in FHIR (Fast Healthcare Interoperability Resources) format. It uses machine learning to extract insights from medical data.",
     optionExplanations: [
-      "音声合成はAmazon Pollyの機能です。",
-      "一般的なデータ分析は、AthenaやQuickSightの用途です。",
-      "画像認識はAmazon Rekognitionの機能です。",
-      "✓ 正解: HealthLakeは、電子医療記録、臨床メモ、医療画像などの非構造化データを構造化し、分析可能にします。"
+      "Speech synthesis is a feature of Amazon Polly.",
+      "General data analysis is a use case for Athena and QuickSight.",
+      "Image recognition is a feature of Amazon Rekognition.",
+      "✓ Correct: HealthLake structures and makes analyzable unstructured data such as electronic health records, clinical notes, and medical images."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/healthlake/latest/devguide/what-is-amazon-health-lake.html", title: "Amazon HealthLake とは" }
+      { url: "https://docs.aws.amazon.com/healthlake/latest/devguide/what-is-amazon-health-lake.html", title: "What is Amazon HealthLake?" }
     ]
   },
   {
     id: 60,
-    question: "「エッジAI」とは何を指しますか。",
+    question: "What does \"edge AI\" refer to?",
     options: [
-      "デバイス上でローカルに実行される機械学習",
-      "高速なAI",
-      "クラウドでのみ実行されるAI",
-      "安価なAI"
+      "Machine learning inference executed locally on a device",
+      "Fast AI",
+      "AI that runs only in the cloud",
+      "Inexpensive AI"
     ],
     correctAnswer: 0,
-    category: "AI/ML基礎",
-    explanation: "エッジAIは、スマートフォン、IoTデバイス、産業機器などのエッジデバイス上で、クラウドに接続せずにローカルで機械学習の推論を実行することを指します。低レイテンシー、プライバシー保護、オフライン動作が可能です。",
+    category: "AI/ML Fundamentals",
+    explanation: "Edge AI refers to running machine learning inference locally on edge devices — such as smartphones, IoT devices, and industrial equipment — without connecting to the cloud. It enables low latency, privacy protection, and offline operation.",
     optionExplanations: [
-      "✓ 正解: エッジAIは、SageMaker NeoやEdge Managerを使用して、最適化されたモデルをエッジデバイスにデプロイし、リアルタイム推論を実現します。",
-      "速度は利点の1つですが、エッジAIの定義ではありません。",
-      "クラウドでのみ実行されるのは、従来のクラウドAIです。",
-      "コストは状況によって異なり、エッジAIの定義ではありません。"
+      "✓ Correct: Edge AI uses SageMaker Neo and Edge Manager to deploy optimized models to edge devices for real-time inference.",
+      "Speed is one benefit, but it is not the definition of edge AI.",
+      "Running only in the cloud describes traditional cloud AI.",
+      "Cost varies by situation and is not the definition of edge AI."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/edge.html", title: "SageMaker Edge Manager" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/edge.html", title: "SageMaker Edge Manager" }
     ]
   },
   {
     id: 61,
-    question: "Amazon SageMaker Debuggerの主な機能は何ですか。",
+    question: "What is the primary feature of Amazon SageMaker Debugger?",
     options: [
-      "データベースのデバッグ",
-      "コードのデバッグ",
-      "ネットワークのデバッグ",
-      "モデルトレーニング中の問題を自動検出・診断"
+      "Database debugging",
+      "Code debugging",
+      "Network debugging",
+      "Automatically detecting and diagnosing issues during model training"
     ],
     correctAnswer: 3,
-    category: "AWSのAI/MLサービス",
-    explanation: "SageMaker Debuggerは、機械学習モデルのトレーニング中に、勾配消失、過学習、収束の問題などを自動的に検出し、診断するツールです。トレーニングメトリクスとテンソルをリアルタイムで監視します。",
+    category: "AWS AI/ML Services",
+    explanation: "SageMaker Debugger is a tool that automatically detects and diagnoses issues such as vanishing gradients, overfitting, and convergence problems during machine learning model training. It monitors training metrics and tensors in real time.",
     optionExplanations: [
-      "データベースのデバッグは、RDS Performance InsightsやCloudWatchの領域です。",
-      "コードのデバッグは、IDEやデバッガーの機能です。",
-      "ネットワークのデバッグは、VPC Flow LogsやCloudWatchの領域です。",
-      "✓ 正解: Debuggerは、トレーニングジョブの問題を早期に発見し、時間とコストを節約します。"
+      "Database debugging is in the domain of RDS Performance Insights and CloudWatch.",
+      "Code debugging is a feature of IDEs and debuggers.",
+      "Network debugging is in the domain of VPC Flow Logs and CloudWatch.",
+      "✓ Correct: Debugger identifies training job issues early, saving time and cost."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/train-debugger.html", title: "SageMaker Debugger" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/train-debugger.html", title: "SageMaker Debugger" }
     ]
   },
   {
     id: 62,
-    question: "「強化学習（Reinforcement Learning）」の主な特徴は何ですか。",
+    question: "What is the main characteristic of reinforcement learning?",
     options: [
-      "ラベル付きデータから学習する",
-      "データの次元削減を行う",
-      "データのクラスタリングを行う",
-      "エージェントが環境と相互作用し、報酬を最大化するように学習する"
+      "Learning from labeled data",
+      "Performing dimensionality reduction on data",
+      "Clustering data",
+      "An agent interacts with an environment and learns to maximize rewards"
     ],
     correctAnswer: 3,
-    category: "AI/ML基礎",
-    explanation: "強化学習は、エージェントが環境内で行動し、その結果得られる報酬（または罰）に基づいて、最適な行動戦略を学習する機械学習の手法です。ゲームAI、ロボット制御、自動運転などに使用されます。",
+    category: "AI/ML Fundamentals",
+    explanation: "Reinforcement learning is a machine learning approach in which an agent takes actions in an environment and learns the optimal action strategy based on the rewards (or penalties) it receives. It is used in game AI, robot control, autonomous driving, and more.",
     optionExplanations: [
-      "ラベル付きデータから学習するのは、教師あり学習です。",
-      "データの次元削減は、PCAなどの手法で行われます。",
-      "データのクラスタリングは、教師なし学習の一種です。",
-      "✓ 正解: 強化学習は、試行錯誤を通じて最適な行動を学習し、AlphaGoなどの成功例があります。"
+      "Learning from labeled data is supervised learning.",
+      "Dimensionality reduction is performed using methods such as PCA.",
+      "Data clustering is a type of unsupervised learning.",
+      "✓ Correct: Reinforcement learning learns optimal actions through trial and error, with notable successes such as AlphaGo."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/reinforcement-learning.html", title: "強化学習" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/reinforcement-learning.html", title: "Reinforcement Learning" }
     ]
   },
   {
     id: 63,
-    question: "Amazon CodeGuruの主な機能は何ですか。",
+    question: "What is the primary feature of Amazon CodeGuru?",
     options: [
-      "機械学習を使用したコードレビューとパフォーマンス推奨",
-      "コードの自動生成",
-      "コードのデプロイ",
-      "コードのバージョン管理"
+      "ML-powered code reviews and performance recommendations",
+      "Automated code generation",
+      "Code deployment",
+      "Code version control"
     ],
     correctAnswer: 0,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon CodeGuruは、機械学習を使用してコードの品質問題、セキュリティ脆弱性、パフォーマンスのボトルネックを自動的に検出し、改善の推奨事項を提供するサービスです。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon CodeGuru is a service that uses machine learning to automatically detect code quality issues, security vulnerabilities, and performance bottlenecks, and provides improvement recommendations.",
     optionExplanations: [
-      "✓ 正解: CodeGuruは、Reviewer（コードレビュー）とProfiler（パフォーマンス分析）の2つのコンポーネントを提供します。",
-      "コードの自動生成はCodeWhispererの機能です。",
-      "コードのデプロイはCodeDeployの機能です。",
-      "バージョン管理はCodeCommitやGitの機能です。"
+      "✓ Correct: CodeGuru provides two components: Reviewer (code review) and Profiler (performance analysis).",
+      "Automated code generation is a feature of CodeWhisperer.",
+      "Code deployment is a feature of CodeDeploy.",
+      "Version control is a feature of CodeCommit and Git."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/codeguru/latest/reviewer-ug/welcome.html", title: "Amazon CodeGuru Reviewer" }
+      { url: "https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/welcome.html", title: "Amazon CodeGuru Reviewer" }
     ]
   },
   {
     id: 64,
-    question: "「ハイパーパラメータチューニング」の主な目的は何ですか。",
+    question: "What is the primary purpose of hyperparameter tuning?",
     options: [
-      "データを増やすこと",
-      "モデルの最適なハイパーパラメータを見つけてパフォーマンスを向上させること",
-      "モデルのサイズを削減すること",
-      "データを暗号化すること"
+      "Adding more data",
+      "Finding the optimal hyperparameters for a model to improve performance",
+      "Reducing model size",
+      "Encrypting data"
     ],
     correctAnswer: 1,
-    category: "AI/ML基礎",
-    explanation: "ハイパーパラメータチューニングは、学習率、バッチサイズ、層の数などのハイパーパラメータの最適な組み合わせを探索し、モデルの性能を最大化するプロセスです。SageMaker Automatic Model Tuningで自動化できます。",
+    category: "AI/ML Fundamentals",
+    explanation: "Hyperparameter tuning is the process of searching for the optimal combination of hyperparameters — such as learning rate, batch size, and number of layers — to maximize model performance. It can be automated with SageMaker Automatic Model Tuning.",
     optionExplanations: [
-      "データを増やすのは、データ拡張やデータ収集の目的です。",
-      "✓ 正解: ハイパーパラメータチューニングは、グリッドサーチ、ランダムサーチ、ベイズ最適化などの手法で実行されます。",
-      "モデルサイズの削減は、量子化やプルーニングの目的です。",
-      "データの暗号化は、セキュリティ対策です。"
+      "Adding more data is the goal of data augmentation and data collection.",
+      "✓ Correct: Hyperparameter tuning is performed using methods such as grid search, random search, and Bayesian optimization.",
+      "Reducing model size is the goal of quantization and pruning.",
+      "Data encryption is a security measure."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/automatic-model-tuning.html", title: "自動モデルチューニング" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning.html", title: "Automatic Model Tuning" }
     ]
   },
   {
     id: 65,
-    question: "Amazon Monitronの主な用途は何ですか。",
+    question: "What is the primary use case for Amazon Monitron?",
     options: [
-      "ネットワーク監視",
-      "データベース監視",
-      "産業機器の予知保全",
-      "アプリケーション監視"
+      "Network monitoring",
+      "Database monitoring",
+      "Predictive maintenance for industrial equipment",
+      "Application monitoring"
     ],
     correctAnswer: 2,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Monitronは、産業機器の振動や温度を監視し、機械学習を使用して異常を検出し、故障を予測する予知保全サービスです。センサー、ゲートウェイ、クラウド分析を統合したエンドツーエンドソリューションです。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Monitron is a predictive maintenance service that monitors the vibration and temperature of industrial equipment, uses machine learning to detect anomalies, and predicts failures. It is an end-to-end solution integrating sensors, gateways, and cloud analytics.",
     optionExplanations: [
-      "ネットワーク監視はCloudWatchやVPC Flow Logsの領域です。",
-      "データベース監視はRDS Performance InsightsやCloudWatchの領域です。",
-      "✓ 正解: Monitronは、製造業の設備保全を最適化し、予期しないダウンタイムを削減します。",
-      "アプリケーション監視はCloudWatchやX-Rayの領域です。"
+      "Network monitoring is in the domain of CloudWatch and VPC Flow Logs.",
+      "Database monitoring is in the domain of RDS Performance Insights and CloudWatch.",
+      "✓ Correct: Monitron optimizes equipment maintenance in manufacturing and reduces unexpected downtime.",
+      "Application monitoring is in the domain of CloudWatch and X-Ray."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/Monitron/latest/admin-guide/what-is-monitron.html", title: "Amazon Monitron とは" }
+      { url: "https://docs.aws.amazon.com/Monitron/latest/admin-guide/what-is-monitron.html", title: "What is Amazon Monitron?" }
     ]
   },
   {
     id: 66,
-    question: "「クロスバリデーション（Cross-Validation）」の主な目的は何ですか。",
+    question: "What is the primary purpose of cross-validation?",
     options: [
-      "データを暗号化すること",
-      "データを増やすこと",
-      "モデルを高速化すること",
-      "モデルの汎化性能を評価し、過学習を検出すること"
+      "Encrypting data",
+      "Increasing the amount of data",
+      "Accelerating a model",
+      "Evaluating a model's generalization performance and detecting overfitting"
     ],
     correctAnswer: 3,
-    category: "AI/ML基礎",
-    explanation: "クロスバリデーションは、データを複数の分割（フォールド）に分け、各分割を順番にテストセットとして使用することで、モデルの汎化性能を信頼性高く評価する手法です。k分割交差検証が一般的です。",
+    category: "AI/ML Fundamentals",
+    explanation: "Cross-validation is a technique that divides data into multiple splits (folds) and uses each split in turn as the test set, allowing reliable evaluation of a model's generalization performance. k-fold cross-validation is the most common approach.",
     optionExplanations: [
-      "データの暗号化は、セキュリティ対策です。",
-      "データを増やすのは、データ拡張の目的です。",
-      "モデルの高速化は、最適化技術の目的です。",
-      "✓ 正解: クロスバリデーションにより、限られたデータでもモデルの性能を正確に評価でき、過学習を防ぎます。"
+      "Data encryption is a security measure.",
+      "Increasing data is the goal of data augmentation.",
+      "Model acceleration is the goal of optimization techniques.",
+      "✓ Correct: Cross-validation enables accurate evaluation of model performance even with limited data and helps prevent overfitting."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/machine-learning/latest/dg/cross-validation.html", title: "交差検証" }
+      { url: "https://docs.aws.amazon.com/machine-learning/latest/dg/cross-validation.html", title: "Cross-Validation" }
     ]
   },
   {
     id: 67,
-    question: "Amazon Panoramaの主な用途は何ですか。",
+    question: "What is the primary use case for Amazon Panorama?",
     options: [
-      "音声認識",
-      "テキスト分析",
-      "エッジでのコンピュータビジョンアプリケーション",
-      "データベース管理"
+      "Speech recognition",
+      "Text analysis",
+      "Computer vision applications at the edge",
+      "Database management"
     ],
     correctAnswer: 2,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Panoramaは、既存のIPカメラにコンピュータビジョン機能を追加し、エッジでリアルタイムに画像分析を実行するサービスです。製造、小売、建設などの業界で使用されます。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Panorama is a service that adds computer vision capabilities to existing IP cameras and runs real-time image analysis at the edge. It is used in industries such as manufacturing, retail, and construction.",
     optionExplanations: [
-      "音声認識はAmazon Transcribeの機能です。",
-      "テキスト分析はAmazon Comprehendの機能です。",
-      "✓ 正解: Panoramaは、物体検出、人数カウント、安全装備の検証などのコンピュータビジョンタスクをエッジで実行します。",
-      "データベース管理はRDSやDynamoDBの領域です。"
+      "Speech recognition is a feature of Amazon Transcribe.",
+      "Text analysis is a feature of Amazon Comprehend.",
+      "✓ Correct: Panorama runs computer vision tasks such as object detection, people counting, and safety equipment verification at the edge.",
+      "Database management is in the domain of RDS and DynamoDB."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/panorama/latest/dev/panorama-welcome.html", title: "AWS Panorama とは" }
+      { url: "https://docs.aws.amazon.com/panorama/latest/dev/panorama-welcome.html", title: "What is AWS Panorama?" }
     ]
   },
   {
     id: 68,
-    question: "「特徴量エンジニアリング（Feature Engineering）」とは何ですか。",
+    question: "What is feature engineering?",
     options: [
-      "モデルの監視",
-      "モデルのデプロイ",
-      "生データから機械学習に有用な特徴量を作成・選択するプロセス",
-      "データの暗号化"
+      "Model monitoring",
+      "Model deployment",
+      "The process of creating and selecting useful features from raw data for machine learning",
+      "Data encryption"
     ],
     correctAnswer: 2,
-    category: "AI/ML基礎",
-    explanation: "特徴量エンジニアリングは、生データを変換、結合、選択して、機械学習モデルの性能を向上させる特徴量を作成するプロセスです。モデルの精度に大きな影響を与える重要なステップです。",
+    category: "AI/ML Fundamentals",
+    explanation: "Feature engineering is the process of transforming, combining, and selecting raw data to create features that improve machine learning model performance. It is an important step that has a large impact on model accuracy.",
     optionExplanations: [
-      "モデルの監視は、本番環境でのモデルのパフォーマンス追跡です。",
-      "モデルのデプロイは、学習済みモデルを本番環境に配置するプロセスです。",
-      "✓ 正解: 特徴量エンジニアリングには、正規化、エンコーディング、特徴量の組み合わせ、次元削減などが含まれます。",
-      "データの暗号化は、セキュリティ対策です。"
+      "Model monitoring is the tracking of model performance in production.",
+      "Model deployment is the process of placing a trained model in a production environment.",
+      "✓ Correct: Feature engineering includes normalization, encoding, feature combination, dimensionality reduction, and more.",
+      "Data encryption is a security measure."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/data-wrangler.html", title: "特徴量エンジニアリング" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/data-wrangler.html", title: "Feature Engineering" }
     ]
   },
   {
     id: 69,
-    question: "Amazon Neptuneで機械学習を使用する場合の主なユースケースは何ですか。",
+    question: "What is the primary use case when using machine learning with Amazon Neptune?",
     options: [
-      "画像分類",
-      "音声認識",
-      "グラフデータに対する予測（リンク予測、ノード分類など）",
-      "テキスト生成"
+      "Image classification",
+      "Speech recognition",
+      "Predictions on graph data (link prediction, node classification, etc.)",
+      "Text generation"
     ],
     correctAnswer: 2,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Neptune MLは、グラフデータベース上で機械学習を実行し、リンク予測、ノード分類、グラフ分類などのタスクを実行します。ソーシャルネットワーク分析、推薦システム、不正検出などに使用されます。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Neptune ML runs machine learning on a graph database to perform tasks such as link prediction, node classification, and graph classification. It is used in social network analysis, recommendation systems, and fraud detection.",
     optionExplanations: [
-      "画像分類はRekognitionやSageMakerの用途です。",
-      "音声認識はAmazon Transcribeの機能です。",
-      "✓ 正解: Neptune MLは、グラフニューラルネットワーク（GNN）を使用して、グラフ構造データから洞察を抽出します。",
-      "テキスト生成は生成AIモデルの機能です。"
+      "Image classification is a use case for Rekognition and SageMaker.",
+      "Speech recognition is a feature of Amazon Transcribe.",
+      "✓ Correct: Neptune ML uses graph neural networks (GNNs) to extract insights from graph-structured data.",
+      "Text generation is a feature of generative AI models."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/neptune/latest/userguide/machine-learning.html", title: "Neptune ML" }
+      { url: "https://docs.aws.amazon.com/neptune/latest/userguide/machine-learning.html", title: "Neptune ML" }
     ]
   },
   {
     id: 70,
-    question: "「混同行列（Confusion Matrix）」は、機械学習モデルの何を評価するために使用されますか。",
+    question: "What is a confusion matrix used to evaluate in machine learning models?",
     options: [
-      "分類モデルの予測精度（真陽性、偽陽性、真陰性、偽陰性）",
-      "モデルのサイズ",
-      "モデルの学習速度",
-      "モデルのコスト"
+      "The prediction accuracy of a classification model (true positives, false positives, true negatives, false negatives)",
+      "Model size",
+      "Model training speed",
+      "Model cost"
     ],
     correctAnswer: 0,
-    category: "AI/ML基礎",
-    explanation: "混同行列は、分類モデルの性能を評価するためのツールで、真陽性（TP）、偽陽性（FP）、真陰性（TN）、偽陰性（FN）の4つのカテゴリで予測結果を表示します。精度、再現率、F1スコアなどの指標を計算できます。",
+    category: "AI/ML Fundamentals",
+    explanation: "A confusion matrix is a tool for evaluating the performance of a classification model. It displays prediction results across four categories: true positives (TP), false positives (FP), true negatives (TN), and false negatives (FN). It can be used to calculate metrics such as accuracy, recall, and F1 score.",
     optionExplanations: [
-      "✓ 正解: 混同行列は、モデルがどのクラスをどのように予測したかを詳細に示し、バイアスや弱点を特定するのに役立ちます。",
-      "モデルのサイズは、パラメータ数やメモリ使用量で測定されます。",
-      "学習速度は、エポックあたりの時間やイテレーション数で測定されます。",
-      "モデルのコストは、トレーニングや推論にかかる費用です。"
+      "✓ Correct: A confusion matrix shows in detail how a model predicted each class, helping to identify biases and weaknesses.",
+      "Model size is measured by the number of parameters or memory usage.",
+      "Training speed is measured by time per epoch or number of iterations.",
+      "Model cost refers to the expense of training and inference."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/machine-learning/latest/dg/evaluating-model-accuracy.html", title: "モデルの精度の評価" }
+      { url: "https://docs.aws.amazon.com/machine-learning/latest/dg/evaluating-model-accuracy.html", title: "Evaluating Model Accuracy" }
     ]
   },
   {
     id: 71,
-    question: "「精度（Accuracy）」と「再現率（Recall）」の違いは何ですか。",
+    question: "What is the difference between accuracy and recall?",
     options: [
-      "精度は全予測のうち正解の割合、再現率は実際の陽性のうち正しく検出した割合",
-      "精度と再現率は同じ意味",
-      "精度は学習速度、再現率はモデルサイズ",
-      "精度はコスト、再現率は速度"
+      "Accuracy is the proportion of correct predictions out of all predictions; recall is the proportion of actual positives correctly identified",
+      "Accuracy and recall mean the same thing",
+      "Accuracy is training speed; recall is model size",
+      "Accuracy is cost; recall is speed"
     ],
     correctAnswer: 0,
-    category: "AI/ML基礎",
-    explanation: "精度（Accuracy）は全予測のうち正解の割合を示し、再現率（Recall）は実際の陽性サンプルのうち、モデルが正しく陽性と予測した割合を示します。不均衡データでは精度だけでは不十分で、再現率やF1スコアも重要です。",
+    category: "AI/ML Fundamentals",
+    explanation: "Accuracy is the proportion of correct predictions out of all predictions. Recall is the proportion of actual positive samples that the model correctly predicted as positive. With imbalanced data, accuracy alone is insufficient; recall and F1 score are also important.",
     optionExplanations: [
-      "✓ 正解: 精度は(TP+TN)/(TP+TN+FP+FN)、再現率はTP/(TP+FN)で計算されます。医療診断など、見逃しが重大な場合は再現率が重要です。",
-      "精度と再現率は異なる指標で、それぞれ異なる側面を評価します。",
-      "これらは性能指標であり、学習速度やモデルサイズとは無関係です。",
-      "これらは予測性能の指標であり、コストや速度とは異なります。"
+      "✓ Correct: Accuracy = (TP+TN)/(TP+TN+FP+FN); Recall = TP/(TP+FN). Recall is critical in scenarios where missed detections are serious, such as medical diagnosis.",
+      "Accuracy and recall are different metrics that evaluate different aspects of performance.",
+      "These are performance metrics and are unrelated to training speed or model size.",
+      "These are prediction performance metrics and are different from cost or speed."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/machine-learning/latest/dg/evaluating-model-accuracy.html", title: "モデルの精度の評価" }
+      { url: "https://docs.aws.amazon.com/machine-learning/latest/dg/evaluating-model-accuracy.html", title: "Evaluating Model Accuracy" }
     ]
   },
   {
     id: 72,
-    question: "Amazon Omicsの主な用途は何ですか。",
+    question: "What is the primary use case for Amazon Omics?",
     options: [
-      "画像認識",
-      "テキスト生成",
-      "音声認識",
-      "ゲノミクスデータの保存、分析、共有"
+      "Image recognition",
+      "Text generation",
+      "Speech recognition",
+      "Storing, analyzing, and sharing genomics data"
     ],
     correctAnswer: 3,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Omicsは、ゲノミクス、トランスクリプトミクス、その他のオミクスデータを大規模に保存、クエリ、分析するためのフルマネージドサービスです。研究機関や医療機関での精密医療に使用されます。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Omics is a fully managed service for storing, querying, and analyzing genomics, transcriptomics, and other omics data at scale. It is used by research institutions and healthcare organizations for precision medicine.",
     optionExplanations: [
-      "画像認識はAmazon Rekognitionの機能です。",
-      "テキスト生成は生成AIモデルの機能です。",
-      "音声認識はAmazon Transcribeの機能です。",
-      "✓ 正解: Omicsは、ペタバイト規模のゲノムデータを効率的に処理し、バイオインフォマティクスワークフローを実行します。"
+      "Image recognition is a feature of Amazon Rekognition.",
+      "Text generation is a feature of generative AI models.",
+      "Speech recognition is a feature of Amazon Transcribe.",
+      "✓ Correct: Omics efficiently processes petabyte-scale genomic data and runs bioinformatics workflows."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/omics/latest/dev/what-is-service.html", title: "Amazon Omics とは" }
+      { url: "https://docs.aws.amazon.com/omics/latest/dev/what-is-service.html", title: "What is Amazon Omics?" }
     ]
   },
   {
     id: 73,
-    question: "「勾配降下法（Gradient Descent）」とは何ですか。",
+    question: "What is gradient descent?",
     options: [
-      "データを削除する手法",
-      "データを暗号化する手法",
-      "モデルを圧縮する手法",
-      "損失関数を最小化するためにモデルのパラメータを更新する最適化アルゴリズム"
+      "A technique for deleting data",
+      "A technique for encrypting data",
+      "A technique for compressing a model",
+      "An optimization algorithm that updates model parameters to minimize the loss function"
     ],
     correctAnswer: 3,
-    category: "AI/ML基礎",
-    explanation: "勾配降下法は、損失関数の勾配（微分）を計算し、その勾配の逆方向にパラメータを更新することで、損失を最小化する最適化アルゴリズムです。機械学習モデルの学習の基本的な手法です。",
+    category: "AI/ML Fundamentals",
+    explanation: "Gradient descent is an optimization algorithm that computes the gradient (derivative) of the loss function and updates parameters in the opposite direction of the gradient to minimize the loss. It is the fundamental technique for training machine learning models.",
     optionExplanations: [
-      "データの削除は、データクリーニングの一部です。",
-      "データの暗号化は、セキュリティ対策です。",
-      "モデルの圧縮は、量子化やプルーニングの技術です。",
-      "✓ 正解: 勾配降下法には、バッチ勾配降下法、確率的勾配降下法（SGD）、ミニバッチ勾配降下法などのバリエーションがあります。"
+      "Deleting data is part of data cleaning.",
+      "Data encryption is a security measure.",
+      "Model compression involves techniques such as quantization and pruning.",
+      "✓ Correct: Variants of gradient descent include batch gradient descent, stochastic gradient descent (SGD), and mini-batch gradient descent."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/how-it-works-training.html", title: "モデルのトレーニング" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works-training.html", title: "Train a Model" }
     ]
   },
   {
     id: 74,
-    question: "Amazon Bedrockのナレッジベース機能の主な目的は何ですか。",
+    question: "What is the primary purpose of the Knowledge Bases feature in Amazon Bedrock?",
     options: [
-      "データベース管理",
-      "コスト分析",
-      "ネットワーク設定",
-      "RAGアーキテクチャを簡単に実装し、独自データで基盤モデルを拡張"
+      "Database management",
+      "Cost analysis",
+      "Network configuration",
+      "Easily implementing RAG architecture and extending foundation models with proprietary data"
     ],
     correctAnswer: 3,
-    category: "生成AI",
-    explanation: "Bedrockのナレッジベースは、独自のデータソース（S3、SharePointなど）を基盤モデルに接続し、RAG（Retrieval-Augmented Generation）を簡単に実装できる機能です。ベクトルデータベースとの統合も自動化されます。",
+    category: "Generative AI",
+    explanation: "Knowledge Bases in Bedrock is a feature that connects proprietary data sources (S3, SharePoint, etc.) to foundation models, enabling easy implementation of RAG (Retrieval-Augmented Generation). Integration with vector databases is also automated.",
     optionExplanations: [
-      "データベース管理はRDSやDynamoDBの領域です。",
-      "コスト分析はCost Explorerの機能です。",
-      "ネットワーク設定はVPCやネットワーキングサービスの領域です。",
-      "✓ 正解: ナレッジベースにより、企業の内部文書や専門知識を基盤モデルに統合し、より正確で関連性の高い回答を生成できます。"
+      "Database management is in the domain of RDS and DynamoDB.",
+      "Cost analysis is a feature of Cost Explorer.",
+      "Network configuration is in the domain of VPC and networking services.",
+      "✓ Correct: Knowledge Bases integrates enterprise internal documents and domain expertise into foundation models to generate more accurate and relevant answers."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/knowledge-base.html", title: "Amazon Bedrock のナレッジベース" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html", title: "Knowledge Bases for Amazon Bedrock" }
     ]
   },
   {
     id: 75,
-    question: "「バッチ正規化（Batch Normalization）」の主な目的は何ですか。",
+    question: "What is the primary purpose of batch normalization?",
     options: [
-      "モデルを圧縮すること",
-      "データを削除すること",
-      "学習を安定化させ、収束を高速化すること",
-      "データを暗号化すること"
+      "Compressing a model",
+      "Deleting data",
+      "Stabilizing training and accelerating convergence",
+      "Encrypting data"
     ],
     correctAnswer: 2,
-    category: "AI/ML基礎",
-    explanation: "バッチ正規化は、各層の入力を正規化することで、学習を安定化させ、収束を高速化する技術です。内部共変量シフトを軽減し、より高い学習率を使用できるようになります。",
+    category: "AI/ML Fundamentals",
+    explanation: "Batch normalization is a technique that normalizes the inputs of each layer to stabilize training and accelerate convergence. It reduces internal covariate shift and allows the use of higher learning rates.",
     optionExplanations: [
-      "モデルの圧縮は、量子化やプルーニングの技術です。",
-      "データの削除は、データクリーニングの一部です。",
-      "✓ 正解: バッチ正規化により、深いニューラルネットワークの学習が容易になり、過学習も軽減されます。",
-      "データの暗号化は、セキュリティ対策です。"
+      "Model compression involves techniques such as quantization and pruning.",
+      "Deleting data is part of data cleaning.",
+      "✓ Correct: Batch normalization makes it easier to train deep neural networks and also reduces overfitting.",
+      "Data encryption is a security measure."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/deep-learning.html", title: "ディープラーニング" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/deep-learning.html", title: "Deep Learning" }
     ]
   },
   {
     id: 76,
-    question: "Amazon Q Developerの主な機能は何ですか。",
+    question: "What is the primary feature of Amazon Q Developer?",
     options: [
-      "AIアシスタントによるコーディング支援とトラブルシューティング",
-      "データベース管理",
-      "ネットワーク監視",
-      "コスト最適化"
+      "AI assistant-powered coding support and troubleshooting",
+      "Database management",
+      "Network monitoring",
+      "Cost optimization"
     ],
     correctAnswer: 0,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Q Developerは、生成AIを活用した開発者向けアシスタントで、コード生成、コードの説明、バグ修正、テストケース作成、AWSサービスに関する質問への回答などを提供します。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Q Developer is a generative AI-powered assistant for developers that provides code generation, code explanation, bug fixes, test case creation, and answers to questions about AWS services.",
     optionExplanations: [
-      "✓ 正解: Q Developerは、IDE内で直接動作し、開発者の生産性を向上させます。CodeWhispererの後継サービスです。",
-      "データベース管理はRDSやDynamoDBの領域です。",
-      "ネットワーク監視はCloudWatchやVPC Flow Logsの領域です。",
-      "コスト最適化はCost ExplorerやTrusted Advisorの機能です。"
+      "✓ Correct: Q Developer works directly inside IDEs and improves developer productivity. It is the successor to CodeWhisperer.",
+      "Database management is in the domain of RDS and DynamoDB.",
+      "Network monitoring is in the domain of CloudWatch and VPC Flow Logs.",
+      "Cost optimization is a feature of Cost Explorer and Trusted Advisor."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/amazonq/latest/qdeveloper-ug/what-is.html", title: "Amazon Q Developer とは" }
+      { url: "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/what-is.html", title: "What is Amazon Q Developer?" }
     ]
   },
   {
     id: 77,
-    question: "「ドロップアウト（Dropout）」とは、ニューラルネットワークにおいて何を指しますか。",
+    question: "What does \"dropout\" refer to in a neural network?",
     options: [
-      "モデルを圧縮すること",
-      "データを削除すること",
-      "過学習を防ぐために、学習中にランダムにニューロンを無効化する正則化技術",
-      "学習を中断すること"
+      "Compressing a model",
+      "Deleting data",
+      "A regularization technique that randomly deactivates neurons during training to prevent overfitting",
+      "Stopping training"
     ],
     correctAnswer: 2,
-    category: "AI/ML基礎",
-    explanation: "ドロップアウトは、学習中にランダムに選択されたニューロンを一時的に無効化することで、ニューロン間の共適応を防ぎ、過学習を軽減する正則化技術です。推論時にはすべてのニューロンを使用します。",
+    category: "AI/ML Fundamentals",
+    explanation: "Dropout is a regularization technique that temporarily deactivates randomly selected neurons during training, preventing co-adaptation between neurons and reducing overfitting. All neurons are used during inference.",
     optionExplanations: [
-      "モデルの圧縮は、量子化やプルーニングの技術です。",
-      "データの削除は、データクリーニングの一部です。",
-      "✓ 正解: ドロップアウトにより、モデルはより汎化性能の高い特徴を学習し、テストデータでの性能が向上します。",
-      "学習の中断は、早期停止（Early Stopping）などの別の技術です。"
+      "Model compression involves techniques such as quantization and pruning.",
+      "Deleting data is part of data cleaning.",
+      "✓ Correct: Dropout causes the model to learn more generalizable features, improving performance on test data.",
+      "Stopping training is a separate technique such as early stopping."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/deep-learning.html", title: "ディープラーニング" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/deep-learning.html", title: "Deep Learning" }
     ]
   },
   {
     id: 78,
-    question: "Amazon Bedrockのエージェント機能の主な目的は何ですか。",
+    question: "What is the primary purpose of the Agents feature in Amazon Bedrock?",
     options: [
-      "複数のステップを実行し、APIを呼び出して複雑なタスクを自動化",
-      "データベースのバックアップ",
-      "ネットワークの設定",
-      "コストの削減"
+      "Automating complex tasks by executing multiple steps and calling APIs",
+      "Database backup",
+      "Network configuration",
+      "Cost reduction"
     ],
     correctAnswer: 0,
-    category: "生成AI",
-    explanation: "Bedrockのエージェントは、基盤モデルを使用して、ユーザーの要求を理解し、タスクを分解し、APIを呼び出し、複数のステップを実行して複雑なタスクを自動的に完了します。",
+    category: "Generative AI",
+    explanation: "Bedrock Agents use foundation models to understand user requests, decompose tasks, call APIs, and execute multiple steps to automatically complete complex tasks.",
     optionExplanations: [
-      "✓ 正解: エージェントは、予約システム、在庫管理、カスタマーサポートなど、複数のステップを必要とするタスクを自動化できます。",
-      "データベースのバックアップはAWS BackupやRDSの機能です。",
-      "ネットワークの設定はVPCやネットワーキングサービスの領域です。",
-      "コストの削減は、Cost ExplorerやTrusted Advisorの機能です。"
+      "✓ Correct: Agents can automate multi-step tasks such as reservation systems, inventory management, and customer support.",
+      "Database backup is a feature of AWS Backup and RDS.",
+      "Network configuration is in the domain of VPC and networking services.",
+      "Cost reduction is a feature of Cost Explorer and Trusted Advisor."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/agents.html", title: "Amazon Bedrock のエージェント" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html", title: "Agents for Amazon Bedrock" }
     ]
   },
   {
     id: 79,
-    question: "「活性化関数（Activation Function）」の主な役割は何ですか。",
+    question: "What is the primary role of an activation function?",
     options: [
-      "モデルを圧縮すること",
-      "データを削除すること",
-      "ニューラルネットワークに非線形性を導入し、複雑なパターンを学習可能にすること",
-      "データを暗号化すること"
+      "Compressing a model",
+      "Deleting data",
+      "Introducing non-linearity into a neural network to enable learning of complex patterns",
+      "Encrypting data"
     ],
     correctAnswer: 2,
-    category: "AI/ML基礎",
-    explanation: "活性化関数は、ニューラルネットワークの各ニューロンの出力に非線形変換を適用し、ネットワークが複雑な非線形パターンを学習できるようにします。ReLU、Sigmoid、Tanhなどが一般的です。",
+    category: "AI/ML Fundamentals",
+    explanation: "An activation function applies a non-linear transformation to the output of each neuron in a neural network, enabling the network to learn complex non-linear patterns. Common examples include ReLU, Sigmoid, and Tanh.",
     optionExplanations: [
-      "モデルの圧縮は、量子化やプルーニングの技術です。",
-      "データの削除は、データクリーニングの一部です。",
-      "✓ 正解: 活性化関数がなければ、ニューラルネットワークは単なる線形変換の組み合わせとなり、複雑なパターンを学習できません。",
-      "データの暗号化は、セキュリティ対策です。"
+      "Model compression involves techniques such as quantization and pruning.",
+      "Deleting data is part of data cleaning.",
+      "✓ Correct: Without activation functions, a neural network would be just a combination of linear transformations and could not learn complex patterns.",
+      "Data encryption is a security measure."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/deep-learning.html", title: "ディープラーニング" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/deep-learning.html", title: "Deep Learning" }
     ]
   },
   {
     id: 80,
-    question: "Amazon Bedrockのモデル評価機能の主な目的は何ですか。",
+    question: "What is the primary purpose of the model evaluation feature in Amazon Bedrock?",
     options: [
-      "コストの計算",
-      "異なる基盤モデルのパフォーマンスを比較し、最適なモデルを選択",
-      "ネットワークの監視",
-      "データベースの管理"
+      "Calculating costs",
+      "Comparing the performance of different foundation models and selecting the best one",
+      "Network monitoring",
+      "Database management"
     ],
     correctAnswer: 1,
-    category: "生成AI",
-    explanation: "Bedrockのモデル評価機能は、複数の基盤モデルを同じデータセットで評価し、精度、レイテンシー、コストなどの指標を比較して、ユースケースに最適なモデルを選択できます。",
+    category: "Generative AI",
+    explanation: "Bedrock's model evaluation feature allows you to evaluate multiple foundation models against the same dataset and compare metrics such as accuracy, latency, and cost to select the best model for your use case.",
     optionExplanations: [
-      "コストの計算はCost Explorerの機能です。",
-      "✓ 正解: モデル評価により、カスタムデータセットでモデルをテストし、品質、パフォーマンス、コストのバランスを考慮して最適なモデルを選択できます。",
-      "ネットワークの監視はCloudWatchやVPC Flow Logsの領域です。",
-      "データベースの管理はRDSやDynamoDBの領域です。"
+      "Calculating costs is a feature of Cost Explorer.",
+      "✓ Correct: Model evaluation lets you test models with a custom dataset and select the optimal model considering the balance of quality, performance, and cost.",
+      "Network monitoring is in the domain of CloudWatch and VPC Flow Logs.",
+      "Database management is in the domain of RDS and DynamoDB."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/model-evaluation.html", title: "モデル評価" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation.html", title: "Model Evaluation" }
     ]
   },
   {
     id: 81,
-    question: "「F1スコア」とは何を測定する指標ですか。",
+    question: "What does the F1 score measure?",
     options: [
-      "モデルの学習速度",
-      "精度と再現率の調和平均",
-      "モデルのサイズ",
-      "推論速度"
+      "Model training speed",
+      "The harmonic mean of precision and recall",
+      "Model size",
+      "Inference speed"
     ],
     correctAnswer: 1,
-    category: "AI/ML基礎",
-    explanation: "F1スコアは、精度（Precision）と再現率（Recall）の調和平均で、両方のバランスを考慮した評価指標です。不均衡データセットでモデルを評価する際に特に有用です。",
+    category: "AI/ML Fundamentals",
+    explanation: "The F1 score is the harmonic mean of precision and recall, providing an evaluation metric that balances both. It is especially useful when evaluating models on imbalanced datasets.",
     optionExplanations: [
-      "学習速度は、エポックあたりの時間で測定されます。",
-      "✓ 正解: F1スコアは2 * (Precision * Recall) / (Precision + Recall)で計算され、0から1の値を取ります。1に近いほど良好です。",
-      "モデルのサイズは、パラメータ数やメモリ使用量で測定されます。",
-      "推論速度は、予測にかかる時間で測定されます。"
+      "Training speed is measured by time per epoch.",
+      "✓ Correct: F1 score = 2 * (Precision * Recall) / (Precision + Recall), ranging from 0 to 1. Closer to 1 is better.",
+      "Model size is measured by the number of parameters or memory usage.",
+      "Inference speed is measured by the time required to make a prediction."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/machine-learning/latest/dg/evaluating-model-accuracy.html", title: "モデルの精度の評価" }
+      { url: "https://docs.aws.amazon.com/machine-learning/latest/dg/evaluating-model-accuracy.html", title: "Evaluating Model Accuracy" }
     ]
   },
   {
     id: 82,
-    question: "Amazon SageMaker Studioの主な機能は何ですか。",
+    question: "What is the primary feature of Amazon SageMaker Studio?",
     options: [
-      "機械学習のための統合開発環境（IDE）",
-      "ネットワーク設定",
-      "データベース管理",
-      "コスト分析"
+      "An integrated development environment (IDE) for machine learning",
+      "Network configuration",
+      "Database management",
+      "Cost analysis"
     ],
     correctAnswer: 0,
-    category: "AWSのAI/MLサービス",
-    explanation: "SageMaker Studioは、機械学習のライフサイクル全体（データ準備、モデル構築、トレーニング、デプロイ、監視）を1つのWebベースのIDEで管理できる統合開発環境です。",
+    category: "AWS AI/ML Services",
+    explanation: "SageMaker Studio is an integrated development environment that allows you to manage the entire machine learning lifecycle — data preparation, model building, training, deployment, and monitoring — in a single web-based IDE.",
     optionExplanations: [
-      "✓ 正解: SageMaker Studioは、Jupyter Notebook、実験管理、モデルレジストリ、パイプライン、デバッガーなどを統合したIDEです。",
-      "ネットワーク設定はVPCやネットワーキングサービスの領域です。",
-      "データベース管理はRDSやDynamoDBの領域です。",
-      "コスト分析はCost Explorerの機能です。"
+      "✓ Correct: SageMaker Studio integrates Jupyter Notebooks, experiment management, model registry, pipelines, and Debugger into a single IDE.",
+      "Network configuration is in the domain of VPC and networking services.",
+      "Database management is in the domain of RDS and DynamoDB.",
+      "Cost analysis is a feature of Cost Explorer."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/studio.html", title: "Amazon SageMaker Studio" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/studio.html", title: "Amazon SageMaker Studio" }
     ]
   },
   {
     id: 83,
-    question: "「学習率（Learning Rate）」とは、機械学習において何を制御するパラメータですか。",
+    question: "What does the learning rate control in machine learning?",
     options: [
-      "データの読み込み速度",
-      "パラメータ更新のステップサイズ",
-      "モデルのサイズ",
-      "バッチサイズ"
+      "Data loading speed",
+      "The step size for parameter updates",
+      "Model size",
+      "Batch size"
     ],
     correctAnswer: 1,
-    category: "AI/ML基礎",
-    explanation: "学習率は、勾配降下法でパラメータを更新する際のステップサイズを制御するハイパーパラメータです。大きすぎると収束しない、小さすぎると学習が遅くなります。",
+    category: "AI/ML Fundamentals",
+    explanation: "The learning rate is a hyperparameter that controls the step size when updating parameters in gradient descent. Too large a value prevents convergence; too small a value slows down training.",
     optionExplanations: [
-      "データの読み込み速度は、I/Oパフォーマンスに関連します。",
-      "✓ 正解: 学習率は、モデルの収束速度と最終的な性能に大きく影響する重要なハイパーパラメータです。適応的学習率（Adam、RMSpropなど）も広く使用されます。",
-      "モデルのサイズは、層の数やニューロン数で決まります。",
-      "バッチサイズは、一度に処理するサンプル数です。"
+      "Data loading speed is related to I/O performance.",
+      "✓ Correct: The learning rate is a critical hyperparameter that greatly affects the convergence speed and final performance of a model. Adaptive learning rate methods such as Adam and RMSprop are also widely used.",
+      "Model size is determined by the number of layers and neurons.",
+      "Batch size is the number of samples processed at one time."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/automatic-model-tuning.html", title: "ハイパーパラメータチューニング" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/automatic-model-tuning.html", title: "Hyperparameter Tuning" }
     ]
   },
   {
     id: 84,
-    question: "Amazon Bedrockのカスタムモデルインポート機能の主な目的は何ですか。",
+    question: "What is the primary purpose of the custom model import feature in Amazon Bedrock?",
     options: [
-      "独自にファインチューニングしたモデルをBedrockで使用",
-      "コスト設定のインポート",
-      "ネットワーク設定のインポート",
-      "データベースのインポート"
+      "Using a custom fine-tuned model in Bedrock",
+      "Importing cost settings",
+      "Importing network settings",
+      "Importing a database"
     ],
     correctAnswer: 0,
-    category: "生成AI",
-    explanation: "Bedrockのカスタムモデルインポート機能により、SageMakerなどで独自にファインチューニングしたモデルをBedrockにインポートし、Bedrockの推論APIやガードレールなどの機能を活用できます。",
+    category: "Generative AI",
+    explanation: "Bedrock's custom model import feature allows you to import models fine-tuned with SageMaker or other tools into Bedrock, enabling you to leverage Bedrock's inference API, guardrails, and other capabilities.",
     optionExplanations: [
-      "✓ 正解: カスタムモデルインポートにより、独自のデータでファインチューニングしたモデルを、Bedrockのマネージドインフラストラクチャで実行できます。",
-      "コスト設定のインポートは、Cost Explorerの機能です。",
-      "ネットワーク設定のインポートはVPCやネットワーキングサービスの領域です。",
-      "データベースのインポートはDMSやRDSの機能です。"
+      "✓ Correct: Custom model import lets you run models fine-tuned on your own data on Bedrock's managed infrastructure.",
+      "Importing cost settings is a feature of Cost Explorer.",
+      "Importing network settings is in the domain of VPC and networking services.",
+      "Importing a database is a feature of DMS and RDS."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/model-customization.html", title: "モデルのカスタマイズ" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/model-customization.html", title: "Model Customization" }
     ]
   },
   {
     id: 85,
-    question: "「エポック（Epoch）」とは、機械学習のトレーニングにおいて何を指しますか。",
+    question: "What does \"epoch\" refer to in machine learning training?",
     options: [
-      "モデルのバージョン",
-      "バッチの数",
-      "トレーニングデータ全体を1回通過すること",
-      "学習率の値"
+      "A model version",
+      "The number of batches",
+      "One complete pass through the entire training dataset",
+      "The value of the learning rate"
     ],
     correctAnswer: 2,
-    category: "AI/ML基礎",
-    explanation: "エポックは、トレーニングデータセット全体をモデルが1回学習することを指します。通常、複数のエポックを実行してモデルを学習させます。",
+    category: "AI/ML Fundamentals",
+    explanation: "An epoch refers to one complete pass of the entire training dataset through the model. Multiple epochs are typically run to train the model.",
     optionExplanations: [
-      "モデルのバージョンは、Model Registryで管理されます。",
-      "バッチの数は、データセットサイズとバッチサイズによって決まります。",
-      "✓ 正解: 例えば、10エポックのトレーニングは、データセット全体を10回繰り返し学習することを意味します。",
-      "学習率は、パラメータ更新のステップサイズを制御するハイパーパラメータです。"
+      "Model versions are managed in the Model Registry.",
+      "The number of batches is determined by the dataset size and batch size.",
+      "✓ Correct: For example, training for 10 epochs means the model learns from the entire dataset 10 times.",
+      "The learning rate is a hyperparameter that controls the step size for parameter updates."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/how-it-works-training.html", title: "モデルのトレーニング" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/how-it-works-training.html", title: "Train a Model" }
     ]
   },
   {
     id: 86,
-    question: "Amazon Lookout for Equipmentの主な用途は何ですか。",
+    question: "What is the primary use case for Amazon Lookout for Equipment?",
     options: [
-      "産業機器の異常検出と予知保全",
-      "データベース機器の管理",
-      "ネットワーク機器の監視",
-      "ストレージ機器の最適化"
+      "Anomaly detection and predictive maintenance for industrial equipment",
+      "Managing database equipment",
+      "Monitoring network equipment",
+      "Optimizing storage equipment"
     ],
     correctAnswer: 0,
-    category: "AWSのAI/MLサービス",
-    explanation: "Amazon Lookout for Equipmentは、センサーデータを分析して産業機器の異常を検出し、故障を予測する機械学習サービスです。製造業やエネルギー産業での予知保全に使用されます。",
+    category: "AWS AI/ML Services",
+    explanation: "Amazon Lookout for Equipment is a machine learning service that analyzes sensor data to detect anomalies in industrial equipment and predict failures. It is used for predictive maintenance in manufacturing and energy industries.",
     optionExplanations: [
-      "✓ 正解: Lookout for Equipmentは、温度、圧力、振動などのセンサーデータから異常パターンを学習し、故障を事前に予測します。",
-      "データベース機器の管理はRDS Performance Insightsの領域です。",
-      "ネットワーク機器の監視はCloudWatchやVPC Flow Logsの領域です。",
-      "ストレージ機器の最適化は、S3やEBSの機能です。"
+      "✓ Correct: Lookout for Equipment learns anomalous patterns from sensor data such as temperature, pressure, and vibration to predict failures in advance.",
+      "Managing database equipment is in the domain of RDS Performance Insights.",
+      "Monitoring network equipment is in the domain of CloudWatch and VPC Flow Logs.",
+      "Optimizing storage equipment is a feature of S3 and EBS."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/lookout-for-equipment/latest/ug/what-is.html", title: "Amazon Lookout for Equipment とは" }
+      { url: "https://docs.aws.amazon.com/lookout-for-equipment/latest/ug/what-is.html", title: "What is Amazon Lookout for Equipment?" }
     ]
   },
   {
     id: 87,
-    question: "「オーバーサンプリング」と「アンダーサンプリング」は、どのような問題に対処するための手法ですか。",
+    question: "What problem do oversampling and undersampling address?",
     options: [
-      "モデルのサイズが大きすぎる問題",
-      "クラス不均衡（Imbalanced Data）の問題",
-      "学習速度が遅い問題",
-      "推論速度が遅い問題"
+      "A model being too large",
+      "Class imbalance (imbalanced data)",
+      "Slow training speed",
+      "Slow inference speed"
     ],
     correctAnswer: 1,
-    category: "AI/ML基礎",
-    explanation: "オーバーサンプリングとアンダーサンプリングは、クラス不均衡データセット（少数クラスと多数クラスのサンプル数が大きく異なる）に対処する手法です。オーバーサンプリングは少数クラスを増やし、アンダーサンプリングは多数クラスを減らします。",
+    category: "AI/ML Fundamentals",
+    explanation: "Oversampling and undersampling are techniques for addressing class-imbalanced datasets, where the number of samples in the minority and majority classes differs greatly. Oversampling increases the minority class; undersampling reduces the majority class.",
     optionExplanations: [
-      "モデルサイズの問題は、量子化やプルーニングで対処します。",
-      "✓ 正解: クラス不均衡は、詐欺検出や医療診断など、陽性サンプルが少ないタスクでよく発生します。SMOTE（Synthetic Minority Over-sampling Technique）などの手法も使用されます。",
-      "学習速度の問題は、ハードウェアの最適化や分散学習で対処します。",
-      "推論速度の問題は、モデルの最適化やハードウェアの選択で対処します。"
+      "Model size issues are addressed with quantization and pruning.",
+      "✓ Correct: Class imbalance is common in tasks such as fraud detection and medical diagnosis where positive samples are rare. Techniques like SMOTE (Synthetic Minority Over-sampling Technique) are also used.",
+      "Training speed issues are addressed through hardware optimization and distributed training.",
+      "Inference speed issues are addressed through model optimization and hardware selection."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/data-wrangler-data-insights.html", title: "データインサイト" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/data-wrangler-data-insights.html", title: "Data Insights" }
     ]
   },
   {
     id: 88,
-    question: "Amazon Bedrockのプロビジョンドスループット（Provisioned Throughput）の主な利点は何ですか。",
+    question: "What is the main advantage of Provisioned Throughput in Amazon Bedrock?",
     options: [
-      "コストが常に安い",
-      "予測可能なパフォーマンスと専用キャパシティ",
-      "モデルの精度が向上する",
-      "データの暗号化が強化される"
+      "Cost is always lower",
+      "Predictable performance and dedicated capacity",
+      "Model accuracy improves",
+      "Data encryption is strengthened"
     ],
     correctAnswer: 1,
-    category: "生成AI",
-    explanation: "プロビジョンドスループットは、専用のモデルキャパシティを確保し、予測可能なパフォーマンスと一貫したレイテンシーを提供します。高トラフィックのアプリケーションに適しています。",
+    category: "Generative AI",
+    explanation: "Provisioned Throughput secures dedicated model capacity and delivers predictable performance with consistent latency. It is suitable for high-traffic applications.",
     optionExplanations: [
-      "コストは使用量によって異なり、オンデマンドより高い場合もあります。",
-      "✓ 正解: プロビジョンドスループットは、ピーク時のパフォーマンスを保証し、他のユーザーの影響を受けません。",
-      "モデルの精度は、プロビジョンドスループットでは変わりません。",
-      "データの暗号化は、プロビジョンドスループットとは無関係です。"
+      "Cost varies by usage and may be higher than on-demand.",
+      "✓ Correct: Provisioned Throughput guarantees performance at peak times and is not affected by other users.",
+      "Model accuracy does not change with Provisioned Throughput.",
+      "Data encryption is unrelated to Provisioned Throughput."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/prov-throughput.html", title: "プロビジョンドスループット" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html", title: "Provisioned Throughput" }
     ]
   },
   {
     id: 89,
-    question: "「バニシング勾配問題（Vanishing Gradient Problem）」とは何ですか。",
+    question: "What is the vanishing gradient problem?",
     options: [
-      "データが消失する問題",
-      "モデルのサイズが大きくなる問題",
-      "深いニューラルネットワークで勾配が極めて小さくなり学習が進まない問題",
-      "推論速度が遅くなる問題"
+      "A problem where data disappears",
+      "A problem where model size grows",
+      "A problem in deep neural networks where gradients become extremely small during backpropagation, preventing learning",
+      "A problem where inference speed decreases"
     ],
     correctAnswer: 2,
-    category: "AI/ML基礎",
-    explanation: "バニシング勾配問題は、深いニューラルネットワークで逆伝播時に勾配が層を遡るにつれて指数関数的に小さくなり、初期層のパラメータが更新されなくなる問題です。ReLU活性化関数やバッチ正規化で軽減できます。",
+    category: "AI/ML Fundamentals",
+    explanation: "The vanishing gradient problem occurs in deep neural networks when gradients become exponentially smaller as they propagate back through layers during backpropagation, causing early-layer parameters to stop updating. It can be mitigated with ReLU activation functions and batch normalization.",
     optionExplanations: [
-      "データの消失は、データ管理の問題です。",
-      "モデルサイズの増加は、別の問題です。",
-      "✓ 正解: バニシング勾配問題は、特にRNN（再帰型ニューラルネットワーク）で顕著で、LSTM（Long Short-Term Memory）やGRUで対処されます。",
-      "推論速度の低下は、別の問題です。"
+      "Data disappearance is a data management issue.",
+      "Model size growth is a separate issue.",
+      "✓ Correct: The vanishing gradient problem is particularly prominent in RNNs (recurrent neural networks) and is addressed by LSTM (Long Short-Term Memory) and GRU.",
+      "A decrease in inference speed is a separate issue."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/deep-learning.html", title: "ディープラーニング" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/deep-learning.html", title: "Deep Learning" }
     ]
   },
   {
     id: 90,
-    question: "Amazon SageMaker Experimentsの主な目的は何ですか。",
+    question: "What is the primary purpose of Amazon SageMaker Experiments?",
     options: [
-      "機械学習の実験を追跡、比較、管理",
-      "ネットワークの実験",
-      "データベースの実験",
-      "コストの実験"
+      "Tracking, comparing, and managing machine learning experiments",
+      "Network experiments",
+      "Database experiments",
+      "Cost experiments"
     ],
     correctAnswer: 0,
-    category: "AWSのAI/MLサービス",
-    explanation: "SageMaker Experimentsは、機械学習の実験（異なるハイパーパラメータ、アルゴリズム、データセットでのトレーニング）を自動的に追跡し、結果を比較して最適なモデルを見つけるためのツールです。",
+    category: "AWS AI/ML Services",
+    explanation: "SageMaker Experiments is a tool that automatically tracks machine learning experiments (training runs with different hyperparameters, algorithms, and datasets), compares results, and helps find the best model.",
     optionExplanations: [
-      "✓ 正解: Experimentsは、トレーニングジョブのパラメータ、メトリクス、アーティファクトを自動的に記録し、可視化して比較できます。",
-      "ネットワークの実験は、VPCやネットワーキングサービスの領域です。",
-      "データベースの実験は、RDSやDynamoDBの領域です。",
-      "コストの実験は、Cost Explorerの機能です。"
+      "✓ Correct: Experiments automatically records training job parameters, metrics, and artifacts, and lets you visualize and compare them.",
+      "Network experiments are in the domain of VPC and networking services.",
+      "Database experiments are in the domain of RDS and DynamoDB.",
+      "Cost experiments are a feature of Cost Explorer."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/experiments.html", title: "SageMaker Experiments" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/experiments.html", title: "SageMaker Experiments" }
     ]
   },
   {
     id: 91,
-    question: "「ROC曲線（Receiver Operating Characteristic Curve）」とAUC（Area Under the Curve）は、何を評価するために使用されますか。",
+    question: "What are the ROC curve (Receiver Operating Characteristic Curve) and AUC (Area Under the Curve) used to evaluate?",
     options: [
-      "モデルの学習速度",
-      "二値分類モデルの性能と閾値の関係",
-      "モデルのサイズ",
-      "推論速度"
+      "Model training speed",
+      "The performance of a binary classification model and its relationship to thresholds",
+      "Model size",
+      "Inference speed"
     ],
     correctAnswer: 1,
-    category: "AI/ML基礎",
-    explanation: "ROC曲線は、異なる閾値での真陽性率（TPR）と偽陽性率（FPR）の関係を示し、AUCはROC曲線の下の面積で、モデルの総合的な分類性能を表します。AUCが1に近いほど優れたモデルです。",
+    category: "AI/ML Fundamentals",
+    explanation: "The ROC curve plots the relationship between the true positive rate (TPR) and false positive rate (FPR) at different thresholds. The AUC is the area under the ROC curve and represents the model's overall classification performance. An AUC closer to 1 indicates a better model.",
     optionExplanations: [
-      "学習速度は、エポックあたりの時間で測定されます。",
-      "✓ 正解: ROC曲線とAUCは、特に不均衡データセットでの二値分類モデルの評価に有用で、閾値に依存しない性能指標を提供します。",
-      "モデルのサイズは、パラメータ数やメモリ使用量で測定されます。",
-      "推論速度は、予測にかかる時間で測定されます。"
+      "Training speed is measured by time per epoch.",
+      "✓ Correct: The ROC curve and AUC are especially useful for evaluating binary classification models on imbalanced datasets, providing a threshold-independent performance metric.",
+      "Model size is measured by the number of parameters or memory usage.",
+      "Inference speed is measured by the time required to make a prediction."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/machine-learning/latest/dg/evaluating-model-accuracy.html", title: "モデルの精度の評価" }
+      { url: "https://docs.aws.amazon.com/machine-learning/latest/dg/evaluating-model-accuracy.html", title: "Evaluating Model Accuracy" }
     ]
   },
   {
     id: 92,
-    question: "Amazon SageMaker Model Registryの主な目的は何ですか。",
+    question: "What is the primary purpose of Amazon SageMaker Model Registry?",
     options: [
-      "データベースの登録",
-      "機械学習モデルのバージョン管理とデプロイメント管理",
-      "ネットワークの登録",
-      "ユーザーの登録"
+      "Database registration",
+      "Version control and deployment management for machine learning models",
+      "Network registration",
+      "User registration"
     ],
     correctAnswer: 1,
-    category: "AWSのAI/MLサービス",
-    explanation: "SageMaker Model Registryは、機械学習モデルのバージョンを管理し、承認ワークフローを通じてモデルのデプロイメントを制御するサービスです。モデルのメタデータ、メトリクス、承認ステータスを追跡します。",
+    category: "AWS AI/ML Services",
+    explanation: "SageMaker Model Registry is a service that manages machine learning model versions and controls model deployments through an approval workflow. It tracks model metadata, metrics, and approval status.",
     optionExplanations: [
-      "データベースの登録は、RDSやDynamoDBの領域です。",
-      "✓ 正解: Model Registryは、モデルのライフサイクル管理を簡素化し、本番環境へのデプロイ前の承認プロセスを自動化します。",
-      "ネットワークの登録は、VPCやネットワーキングサービスの領域です。",
-      "ユーザーの登録は、IAMやCognitoの機能です。"
+      "Database registration is in the domain of RDS and DynamoDB.",
+      "✓ Correct: Model Registry simplifies model lifecycle management and automates the approval process before deployment to production.",
+      "Network registration is in the domain of VPC and networking services.",
+      "User registration is a feature of IAM and Cognito."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/model-registry.html", title: "SageMaker Model Registry" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/model-registry.html", title: "SageMaker Model Registry" }
     ]
   },
   {
     id: 93,
-    question: "「逆伝播（Backpropagation）」とは、ニューラルネットワークにおいて何を行うアルゴリズムですか。",
+    question: "What does backpropagation do in a neural network?",
     options: [
-      "データを逆順に処理する",
-      "損失関数の勾配を計算し、パラメータを更新する",
-      "モデルを圧縮する",
-      "データを暗号化する"
+      "Processes data in reverse order",
+      "Computes the gradient of the loss function and updates parameters",
+      "Compresses a model",
+      "Encrypts data"
     ],
     correctAnswer: 1,
-    category: "AI/ML基礎",
-    explanation: "逆伝播は、ニューラルネットワークの出力層から入力層に向かって損失関数の勾配を計算し、各層のパラメータを更新するアルゴリズムです。ディープラーニングの学習の基礎となる技術です。",
+    category: "AI/ML Fundamentals",
+    explanation: "Backpropagation is an algorithm that computes the gradient of the loss function from the output layer back to the input layer of a neural network and updates each layer's parameters. It is the foundational technique for training deep learning models.",
     optionExplanations: [
-      "データの逆順処理は、逆伝播とは異なります。",
-      "✓ 正解: 逆伝播は、連鎖律を使用して効率的に勾配を計算し、勾配降下法と組み合わせてパラメータを最適化します。",
-      "モデルの圧縮は、量子化やプルーニングの技術です。",
-      "データの暗号化は、セキュリティ対策です。"
+      "Processing data in reverse order is different from backpropagation.",
+      "✓ Correct: Backpropagation uses the chain rule to efficiently compute gradients and, combined with gradient descent, optimizes parameters.",
+      "Model compression involves techniques such as quantization and pruning.",
+      "Data encryption is a security measure."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/deep-learning.html", title: "ディープラーニング" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/deep-learning.html", title: "Deep Learning" }
     ]
   },
   {
     id: 94,
-    question: "Amazon Bedrockのファインチューニング機能の主な利点は何ですか。",
+    question: "What is the main advantage of the fine-tuning feature in Amazon Bedrock?",
     options: [
-      "コストが常に安い",
-      "推論速度が常に速い",
-      "独自のデータでモデルをカスタマイズし、特定タスクの性能を向上",
-      "モデルのサイズが小さくなる"
+      "Cost is always lower",
+      "Inference speed is always faster",
+      "Customizing a model with proprietary data to improve performance on specific tasks",
+      "Model size becomes smaller"
     ],
     correctAnswer: 2,
-    category: "生成AI",
-    explanation: "Bedrockのファインチューニングにより、基盤モデルを独自のデータで追加学習させ、特定のドメインやタスクに特化した性能を実現できます。プロンプトエンジニアリングよりも高精度な結果が得られます。",
+    category: "Generative AI",
+    explanation: "Bedrock's fine-tuning allows you to further train a foundation model on your own data to achieve specialized performance for a specific domain or task. It produces more accurate results than prompt engineering alone.",
     optionExplanations: [
-      "ファインチューニングには追加コストがかかります。",
-      "推論速度は、ファインチューニングでは変わりません。",
-      "✓ 正解: ファインチューニングは、企業固有の用語、スタイル、知識をモデルに組み込み、より正確で関連性の高い出力を生成します。",
-      "モデルのサイズは、ファインチューニングでは変わりません。"
+      "Fine-tuning incurs additional costs.",
+      "Inference speed does not change with fine-tuning.",
+      "✓ Correct: Fine-tuning incorporates company-specific terminology, style, and knowledge into the model to generate more accurate and relevant outputs.",
+      "Model size does not change with fine-tuning."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/custom-models.html", title: "カスタムモデル" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/custom-models.html", title: "Custom Models" }
     ]
   },
   {
     id: 95,
-    question: "「正則化（Regularization）」の主な目的は何ですか。",
+    question: "What is the primary purpose of regularization?",
     options: [
-      "学習速度を向上させる",
-      "過学習を防ぎ、モデルの汎化性能を向上させる",
-      "モデルのサイズを増やす",
-      "データを増やす"
+      "Improving training speed",
+      "Preventing overfitting and improving model generalization",
+      "Increasing model size",
+      "Increasing data"
     ],
     correctAnswer: 1,
-    category: "AI/ML基礎",
-    explanation: "正則化は、モデルの複雑さにペナルティを課すことで過学習を防ぎ、未知のデータに対する汎化性能を向上させる技術です。L1正則化、L2正則化、ドロップアウトなどがあります。",
+    category: "AI/ML Fundamentals",
+    explanation: "Regularization is a technique that penalizes model complexity to prevent overfitting and improve generalization to unseen data. Examples include L1 regularization, L2 regularization, and dropout.",
     optionExplanations: [
-      "学習速度の向上は、正則化の主な目的ではありません。",
-      "✓ 正解: 正則化により、モデルは学習データに過度に適合せず、テストデータでも良好な性能を発揮します。",
-      "モデルのサイズを増やすのは、正則化の目的ではありません。",
-      "データを増やすのは、データ拡張の目的です。"
+      "Improving training speed is not the primary purpose of regularization.",
+      "✓ Correct: Regularization prevents a model from overfitting to training data and enables good performance on test data as well.",
+      "Increasing model size is not the purpose of regularization.",
+      "Increasing data is the purpose of data augmentation."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html", title: "過学習と過小適合" }
+      { url: "https://docs.aws.amazon.com/machine-learning/latest/dg/model-fit-underfitting-vs-overfitting.html", title: "Overfitting vs. Underfitting" }
     ]
   },
   {
     id: 96,
-    question: "Amazon SageMaker Processing Jobsの主な用途は何ですか。",
+    question: "What is the primary use of Amazon SageMaker Processing Jobs?",
     options: [
-      "データの前処理と後処理",
-      "コスト分析",
-      "モデルのデプロイ",
-      "モデルのトレーニング"
+      "Data pre-processing and post-processing",
+      "Cost analysis",
+      "Model deployment",
+      "Model training"
     ],
     correctAnswer: 0,
-    category: "AWSのAI/MLサービス",
-    explanation: "SageMaker Processing Jobsは、機械学習ワークフローのデータ前処理（特徴量エンジニアリング、データクリーニング）や後処理（モデル評価、バッチ変換）を実行するためのフルマネージドサービスです。",
+    category: "AWS AI/ML Services",
+    explanation: "SageMaker Processing Jobs is a fully managed service for executing data pre-processing (feature engineering, data cleaning) and post-processing (model evaluation, batch transformation) tasks in machine learning workflows.",
     optionExplanations: [
-      "✓ 正解: Processing Jobsは、Spark、scikit-learn、カスタムコンテナを使用して、大規模なデータ処理タスクを実行できます。",
-      "コスト分析はCost Explorerの機能です。",
-      "モデルのデプロイはSageMaker Endpointsの機能です。",
-      "モデルのトレーニングはSageMaker Training Jobの機能です。"
+      "✓ Correct: Processing Jobs can run large-scale data processing tasks using Spark, scikit-learn, or custom containers.",
+      "Cost analysis is a function of Cost Explorer.",
+      "Model deployment is a function of SageMaker Endpoints.",
+      "Model training is a function of SageMaker Training Jobs."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/processing-job.html", title: "Processing Jobs" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/processing-job.html", title: "Processing Jobs" }
     ]
   },
   {
     id: 97,
-    question: "「畳み込みニューラルネットワーク（CNN）」が特に得意とするタスクはどれですか。",
+    question: "Which task is a Convolutional Neural Network (CNN) particularly good at?",
     options: [
-      "時系列予測",
-      "画像認識と処理",
-      "テキスト生成",
-      "音声合成"
+      "Time-series forecasting",
+      "Image recognition and processing",
+      "Text generation",
+      "Speech synthesis"
     ],
     correctAnswer: 1,
-    category: "AI/ML基礎",
-    explanation: "CNNは、画像の空間的な特徴を効率的に抽出する畳み込み層を持ち、画像分類、物体検出、セマンティックセグメンテーションなどの画像処理タスクに特に優れています。",
+    category: "AI/ML Fundamentals",
+    explanation: "CNNs have convolutional layers that efficiently extract spatial features from images, making them especially well-suited for image processing tasks such as image classification, object detection, and semantic segmentation.",
     optionExplanations: [
-      "時系列予測は、RNNやLSTMが得意とするタスクです。",
-      "✓ 正解: CNNは、画像の局所的なパターンを階層的に学習し、位置不変性を持つため、画像認識に最適です。",
-      "テキスト生成は、Transformerや大規模言語モデルが得意とするタスクです。",
-      "音声合成は、WaveNetなどの専用モデルが使用されます。"
+      "Time-series forecasting is a task at which RNNs and LSTMs excel.",
+      "✓ Correct: CNNs learn local patterns hierarchically and possess translational invariance, making them optimal for image recognition.",
+      "Text generation is a task at which Transformers and large language models excel.",
+      "Speech synthesis typically uses dedicated models such as WaveNet."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/image-classification.html", title: "画像分類" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/image-classification.html", title: "Image Classification" }
     ]
   },
   {
     id: 98,
-    question: "Amazon Bedrockのストリーミングレスポンス機能の主な利点は何ですか。",
+    question: "What is the primary benefit of Amazon Bedrock's streaming response feature?",
     options: [
-      "モデルの精度が向上する",
-      "コストが削減される",
-      "生成されたテキストをリアルタイムで段階的に受信できる",
-      "データが暗号化される"
+      "Model accuracy is improved",
+      "Costs are reduced",
+      "Generated text can be received incrementally in real time",
+      "Data is encrypted"
     ],
     correctAnswer: 2,
-    category: "生成AI",
-    explanation: "ストリーミングレスポンスにより、生成AIモデルの出力を完全に生成される前に段階的に受信できます。これにより、ユーザーエクスペリエンスが向上し、応答性の高いアプリケーションを構築できます。",
+    category: "Generative AI",
+    explanation: "Streaming responses allow you to receive the output of a generative AI model incrementally before it is fully generated. This improves the user experience and enables you to build highly responsive applications.",
     optionExplanations: [
-      "モデルの精度は、ストリーミングでは変わりません。",
-      "コストは、ストリーミングでも非ストリーミングでも同じです。",
-      "✓ 正解: ストリーミングレスポンスは、チャットボットや対話型アプリケーションで、ユーザーが待ち時間を感じにくくします。",
-      "データの暗号化は、ストリーミングとは無関係です。"
+      "Model accuracy does not change with streaming.",
+      "Cost is the same whether streaming or non-streaming.",
+      "✓ Correct: Streaming responses reduce perceived latency in chatbots and interactive applications, making users less aware of wait times.",
+      "Data encryption is unrelated to streaming."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/inference-invoke.html", title: "推論の呼び出し" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/inference-invoke.html", title: "Invoke a model" }
     ]
   },
   {
     id: 99,
-    question: "「再帰型ニューラルネットワーク（RNN）」が特に得意とするタスクはどれですか。",
+    question: "Which task is a Recurrent Neural Network (RNN) particularly good at?",
     options: [
-      "画像分類",
-      "データベース管理",
-      "時系列データや自然言語処理",
-      "ネットワーク設定"
+      "Image classification",
+      "Database management",
+      "Time-series data and natural language processing",
+      "Network configuration"
     ],
     correctAnswer: 2,
-    category: "AI/ML基礎",
-    explanation: "RNNは、前の時刻の情報を保持する再帰的な構造を持ち、時系列データ（株価予測、音声認識）や自然言語処理（機械翻訳、テキスト生成）などのシーケンシャルなデータの処理に優れています。",
+    category: "AI/ML Fundamentals",
+    explanation: "RNNs have a recursive structure that retains information from previous time steps, making them well-suited for processing sequential data such as time-series data (stock price forecasting, speech recognition) and natural language processing (machine translation, text generation).",
     optionExplanations: [
-      "画像分類は、CNNが得意とするタスクです。",
-      "データベース管理は、RDSやDynamoDBの領域です。",
-      "✓ 正解: RNNは、LSTM（Long Short-Term Memory）やGRU（Gated Recurrent Unit）などの改良版が広く使用され、長期依存関係を学習できます。",
-      "ネットワーク設定は、VPCやネットワーキングサービスの領域です。"
+      "Image classification is a task at which CNNs excel.",
+      "Database management is the domain of RDS and DynamoDB.",
+      "✓ Correct: Improved variants of RNNs such as LSTM (Long Short-Term Memory) and GRU (Gated Recurrent Unit) are widely used and can learn long-term dependencies.",
+      "Network configuration is the domain of VPC and networking services."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/sagemaker/latest/dg/seq-2-seq.html", title: "シーケンス to シーケンス" }
+      { url: "https://docs.aws.amazon.com/sagemaker/latest/dg/seq-2-seq.html", title: "Sequence to Sequence" }
     ]
   },
   {
     id: 100,
-    question: "Amazon Bedrockのガードレールで設定できるフィルタに含まれないものはどれですか。",
+    question: "Which of the following is NOT included among the filters that can be configured in Amazon Bedrock Guardrails?",
     options: [
-      "有害コンテンツフィルタ",
-      "データベースクエリフィルタ",
-      "個人情報（PII）フィルタ",
-      "トピックフィルタ"
+      "Harmful content filter",
+      "Database query filter",
+      "Personally Identifiable Information (PII) filter",
+      "Topic filter"
     ],
     correctAnswer: 1,
-    category: "責任あるAI",
-    explanation: "Bedrockのガードレールは、有害コンテンツ、個人情報、拒否トピック、機密情報、単語フィルタなどを設定できますが、データベースクエリのフィルタリングは含まれません。",
+    category: "Responsible AI",
+    explanation: "Bedrock Guardrails can be configured with filters for harmful content, personally identifiable information, denied topics, sensitive information, and words, but database query filtering is not included.",
     optionExplanations: [
-      "有害コンテンツフィルタは、ガードレールの主要機能の1つです。暴力、ヘイトスピーチ、性的コンテンツなどを検出します。",
-      "✓ 正解: データベースクエリのフィルタリングは、Bedrockのガードレールの機能ではありません。これはアプリケーションレベルで実装します。",
-      "個人情報（PII）フィルタは、ガードレールの主要機能の1つです。名前、住所、クレジットカード番号などを検出・マスクします。",
-      "トピックフィルタは、ガードレールの主要機能の1つです。特定のトピックに関する質問や応答を拒否できます。"
+      "The harmful content filter is one of the core features of Guardrails. It detects violence, hate speech, sexual content, and similar material.",
+      "✓ Correct: Database query filtering is not a feature of Bedrock Guardrails. It must be implemented at the application level.",
+      "The PII filter is one of the core features of Guardrails. It detects and masks names, addresses, credit card numbers, and similar information.",
+      "The topic filter is one of the core features of Guardrails. It can deny questions and responses related to specific topics."
     ],
     references: [
-      { url: "https://docs.aws.amazon.com/ja_jp/bedrock/latest/userguide/guardrails.html", title: "Amazon Bedrock のガードレール" }
+      { url: "https://docs.aws.amazon.com/bedrock/latest/userguide/guardrails.html", title: "Amazon Bedrock Guardrails" }
     ]
   }
 ];
