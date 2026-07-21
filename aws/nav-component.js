@@ -11,13 +11,11 @@ function toggleMenu() {
 
 // ページ読み込み時の初期化
 document.addEventListener('DOMContentLoaded', function() {
-    // 認証状態の確認（各ページ固有の checkLoginStatus があれば任せ、なければ簡易表示）
-    if (typeof checkLoginStatus === 'function') {
-        checkLoginStatus();
-    } else {
+    // checkLoginStatus を持たないページのみ簡易表示（clf/aif/saa 等は window.onload 側で処理）
+    if (typeof checkLoginStatus !== 'function') {
         checkAuthStatus();
     }
-    
+
     // メニュー外クリックで閉じる
     document.addEventListener('click', function(event) {
         const navMenu = document.getElementById('navMenu');
