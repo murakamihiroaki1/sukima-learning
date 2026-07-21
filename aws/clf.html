@@ -775,7 +775,7 @@
                 <!-- 出題方法選択 -->
                 <div style="margin-bottom: 30px;">
                     <div class="set-buttons">
-                        <button class="set-btn" onclick="selectMode('sequential', this)">Sequential</button>
+                        <button class="set-btn" id="sequential-mode-btn" onclick="selectMode('sequential', this)">Sequential</button>
                         <button class="set-btn" id="category-mode-btn" onclick="selectMode('category', this)">By Category</button>
                         <button class="set-btn" id="random-mode-btn" onclick="selectMode('random', this)">Random (10 Qs)</button>
                         <button class="set-btn" id="mock-exam-mode-btn" onclick="selectMode('mock-exam', this)">Mock Exam (65 Qs)</button>
@@ -1620,28 +1620,42 @@
             const randomBtn = document.getElementById('random-mode-btn');
             const mockExamBtn = document.getElementById('mock-exam-mode-btn');
             
+            const sequentialBtn = document.getElementById('sequential-mode-btn');
+
             if (isPremium) {
                 // Standard/Advanced会員: ボタンを有効化
+                if (sequentialBtn) {
+                    sequentialBtn.style.opacity = '1';
+                    sequentialBtn.style.cursor = 'pointer';
+                    sequentialBtn.onclick = function() { selectMode('sequential', this); };
+                    sequentialBtn.innerHTML = 'Sequential';
+                }
                 if (categoryBtn) {
                     categoryBtn.style.opacity = '1';
                     categoryBtn.style.cursor = 'pointer';
-                    categoryBtn.onclick = function() { selectMode('category'); };
+                    categoryBtn.onclick = function() { selectMode('category', this); };
                     categoryBtn.innerHTML = 'By Category';
                 }
                 if (randomBtn) {
                     randomBtn.style.setProperty('opacity', '1', 'important');
                     randomBtn.style.setProperty('cursor', 'pointer', 'important');
-                    randomBtn.onclick = function() { selectMode('random'); };
+                    randomBtn.onclick = function() { selectMode('random', this); };
                     randomBtn.innerHTML = 'Random (10 Qs)';
                 }
                 if (mockExamBtn) {
                     mockExamBtn.style.setProperty('opacity', '1', 'important');
                     mockExamBtn.style.setProperty('cursor', 'pointer', 'important');
-                    mockExamBtn.onclick = function() { selectMode('mock-exam'); };
+                    mockExamBtn.onclick = function() { selectMode('mock-exam', this); };
                     mockExamBtn.innerHTML = 'Mock Exam (65 Qs)';
                 }
             } else {
                 // Free会員: ボタンを無効化
+                if (sequentialBtn) {
+                    sequentialBtn.style.opacity = '1';
+                    sequentialBtn.style.cursor = 'pointer';
+                    sequentialBtn.onclick = function() { selectMode('sequential', this); };
+                    sequentialBtn.innerHTML = 'Sequential';
+                }
                 if (categoryBtn) {
                     categoryBtn.style.opacity = '0.4';
                     categoryBtn.style.cursor = 'not-allowed';
