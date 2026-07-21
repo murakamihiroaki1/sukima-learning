@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AWS 認定試験 対策 - CLF・AIF・SAA・DVA 問題集 | スキマラーニング</title>
-    <meta name="description" content="AWS認定試験（CLF・AIF・SAA・DVA）の対策問題集。スキマ時間に無料で練習問題に取り組み、効率よく合格を目指せます。">
+    <title>AWS Certification Practice - CLF, AIF, SAA, DVA | Sukima Learning</title>
+    <meta name="description" content="Practice questions for AWS certifications (CLF, AIF, SAA, DVA). Study in your spare time for free and pass efficiently.">
     <link rel="canonical" href="https://sukima-learning.com/aws/">
     <!-- OGP -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="AWS 認定試験 対策 - CLF・AIF・SAA・DVA 問題集 | スキマラーニング">
-    <meta property="og:description" content="AWS認定試験（CLF・AIF・SAA・DVA）の対策問題集。スキマ時間に無料で練習問題に取り組み、効率よく合格を目指せます。">
+    <meta property="og:title" content="AWS Certification Practice - CLF, AIF, SAA, DVA | Sukima Learning">
+    <meta property="og:description" content="Practice questions for AWS certifications (CLF, AIF, SAA, DVA). Study in your spare time for free and pass efficiently.">
     <meta property="og:url" content="https://sukima-learning.com/aws/">
-    <meta property="og:site_name" content="スキマラーニング">
-    <meta property="og:locale" content="ja_JP">
+    <meta property="og:site_name" content="Sukima Learning">
+    <meta property="og:locale" content="en_US">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="AWS 認定試験 対策 - CLF・AIF・SAA・DVA 問題集 | スキマラーニング">
-    <meta name="twitter:description" content="AWS認定試験（CLF・AIF・SAA・DVA）の対策問題集。スキマ時間に無料で練習問題に取り組み、効率よく合格を目指せます。">
+    <meta name="twitter:title" content="AWS Certification Practice - CLF, AIF, SAA, DVA | Sukima Learning">
+    <meta name="twitter:description" content="Practice questions for AWS certifications (CLF, AIF, SAA, DVA). Study in your spare time for free and pass efficiently.">
     <link rel="stylesheet" href="nav-styles.css">
     <style>
         html {
@@ -817,10 +817,9 @@
     </script>
 </head>
 <body>
-    <!-- ナビゲーションヘッダー -->
     <nav class="nav-header">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">AWS認定試験対策</a>
+            <a href="index.html" class="nav-logo">AWS Certification Practice</a>
             <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -828,7 +827,7 @@
             </div>
             <div class="nav-menu" id="navMenu">
                 <div class="nav-item dropdown">
-                    <div class="nav-link dropdown-toggle">認定資格</div>
+                    <div class="nav-link dropdown-toggle">Certifications</div>
                     <div class="dropdown-menu">
                         <a href="clf.html" class="dropdown-item">
                             <div class="dropdown-item-title">CLF - Cloud Practitioner</div>
@@ -842,21 +841,19 @@
                     </div>
                 </div>
                 <div class="nav-item">
-                    <a href="pricing.html" class="nav-link">料金</a>
+                    <a href="pricing.html" class="nav-link">Pricing</a>
                 </div>
                 <div class="nav-item">
-                    <a href="history.html" class="nav-link">学習履歴</a>
+                    <a href="history.html" class="nav-link">Study History</a>
                 </div>
                 <div class="nav-item">
                     <a href="faq.html" class="nav-link">FAQ</a>
-                </div>                <!-- 認証ボタン -->
+                </div>
                 <div class="nav-item auth-buttons">
-                    <!-- ログアウト時 -->
                     <div class="logged-out">
-                        <a href="login.html" class="auth-btn login">ログイン</a>
-                        <a href="signup.html" class="auth-btn signup">新規登録</a>
+                        <a href="login.html" class="auth-btn login">Log In</a>
+                        <a href="signup.html" class="auth-btn signup">Sign Up</a>
                     </div>
-                    <!-- ログイン時 -->
                     <div class="logged-in">
                         <div class="user-info">
                             <span class="user-icon">👤</span>
@@ -864,7 +861,7 @@
                             <span class="user-plan" id="userPlan" style="margin-left: 10px; padding: 3px 8px; background: #FF9900; color: white; border-radius: 10px; font-size: 0.75em; font-weight: bold;"></span>
                             <span class="user-expiry" id="userExpiry" style="margin-left: 10px; padding: 3px 8px; background: #f0f0f0; color: #666; border-radius: 10px; font-size: 0.7em;"></span>
                         </div>
-                        <button class="auth-btn logout" onclick="handleLogout()">ログアウト</button>
+                        <button class="auth-btn logout" onclick="handleLogout()">Log Out</button>
                     </div>
                 </div>
             </div>
@@ -876,120 +873,118 @@
     <div class="container">
 
         <div class="header">
-            <h1><span class="aws-logo">AWS</span> 認定試験 対策</h1>
+            <h1><span class="aws-logo">AWS</span> Certification Practice</h1>
         </div>
 
         <div class="description">
-            <h2>📚 このサイトについて</h2>
-            <p style="color: #555; font-size: 1.05em; margin-bottom: 15px; line-height: 1.6;">AWS認定試験の合格を目指すあなたの学習をサポート</p>
+            <h2>📚 About this site</h2>
+            <p style="color: #555; font-size: 1.05em; margin-bottom: 15px; line-height: 1.6;">Supporting your journey to AWS certification</p>
             <ul>
-                <li>実践的な問題演習で効率的に学習</li>
-                <li>詳細な解説とAWS公式リンクで理解を深化</li>
-                <li>ランダム出題で繰り返し学習をサポート</li>
-                <li>自分のペースで無理なく学習を進められる</li>
+                <li>Practice with real exam-style questions for efficient learning</li>
+                <li>Deepen understanding with detailed explanations and AWS official links</li>
+                <li>Randomized questions support repeated practice</li>
+                <li>Study at your own pace, stress-free</li>
             </ul>
         </div>
 
-        <!-- Foundational 認定 -->
         <div style="margin-top: 40px;">
-            <h2 style="color: #333; font-size: 1.5em; margin-bottom: 20px; text-align: center;">📚 Foundational 認定</h2>
+            <h2 style="color: #333; font-size: 1.5em; margin-bottom: 20px; text-align: center;">📚 Foundational</h2>
             <div class="exam-cards">
                 <a href="clf.html" class="exam-card">
                     <h2>Cloud Practitioner</h2>
                     <div class="exam-name">CLF</div>
                     <div class="description-text">
-                        AWSクラウドの基礎知識を証明する入門レベルの資格。クラウドの概念、セキュリティ、料金体系などの基本を学びたい方に最適です。
+                        The entry-level AWS certification. Learn cloud concepts, security, and pricing fundamentals.
                     </div>
-                    <div class="start-button">学習を始める →</div>
+                    <div class="start-button">Start practicing →</div>
                 </a>
 
                 <a href="aif.html" class="exam-card">
                     <h2>AI Practitioner</h2>
                     <div class="exam-name">AIF</div>
                     <div class="description-text">
-                        AWS上でのAI/ML活用に関する基礎知識を証明する資格。AIサービスの理解と実装の基本を学びたい方に最適です。
+                        Foundational knowledge of AI/ML on AWS. Ideal for learning AI services and basic implementation.
                     </div>
-                    <div class="start-button">学習を始める →</div>
+                    <div class="start-button">Start practicing →</div>
                 </a>
             </div>
         </div>
 
-        <!-- Associate 認定 -->
         <div style="margin-top: 40px;">
-            <h2 style="color: #333; font-size: 1.5em; margin-bottom: 20px; text-align: center;">🎓 Associate 認定</h2>
+            <h2 style="color: #333; font-size: 1.5em; margin-bottom: 20px; text-align: center;">🎓 Associate</h2>
             <div class="exam-cards">
                 <a href="saa.html" class="exam-card">
                     <h2>Solutions Architect Associate</h2>
                     <div class="exam-name">SAA</div>
                     <div class="description-text">
-                        AWSでのシステム設計・アーキテクチャに関する知識を証明する資格。クラウドアーキテクトやソリューションアーキテクトを目指す方に最適です。
+                        Validate your AWS system design skills. Ideal for cloud architects and solutions architects.
                     </div>
-                    <div class="start-button">学習を始める →</div>
+                    <div class="start-button">Start practicing →</div>
                 </a>
                 <a href="dva.html" class="exam-card" style="position: relative;">
                     <h2>Developer Associate</h2>
                     <div class="exam-name">DVA</div>
                     <div class="description-text">
-                        AWSでのアプリケーション開発・デプロイ・デバッグに関する知識を証明する資格。クラウドアプリケーション開発者を目指す方に最適です。
+                        Validate your AWS application development skills. Ideal for cloud application developers.
                     </div>
-                    <div class="start-button">学習を始める →</div>
+                    <div class="start-button">Start practicing →</div>
                 </a>
                 <a href="#" class="exam-card" style="opacity: 0.6; pointer-events: none; position: relative;">
-                    <div style="position: absolute; top: 10px; right: 10px; background: #ff9800; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.8em; font-weight: bold;">近日公開</div>
+                    <div style="position: absolute; top: 10px; right: 10px; background: #ff9800; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.8em; font-weight: bold;">Coming Soon</div>
                     <h2>SysOps Administrator Associate</h2>
                     <div class="exam-name">SOA</div>
                     <div class="description-text">
-                        AWSクラウド環境の運用・監視・最適化に関する知識を証明する資格。クラウド運用エンジニアやDevOpsエンジニアを目指す方に最適です。
+                        Validate your AWS cloud operations skills. Ideal for DevOps and cloud operations engineers.
                     </div>
-                    <div class="start-button">学習を始める →</div>
+                    <div class="start-button">Start practicing →</div>
                 </a>
                 <a href="#" class="exam-card" style="opacity: 0.6; pointer-events: none; position: relative;">
-                    <div style="position: absolute; top: 10px; right: 10px; background: #ff9800; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.8em; font-weight: bold;">近日公開</div>
+                    <div style="position: absolute; top: 10px; right: 10px; background: #ff9800; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.8em; font-weight: bold;">Coming Soon</div>
                     <h2>Data Engineer Associate</h2>
                     <div class="exam-name">DEA</div>
                     <div class="description-text">
-                        AWSでのデータパイプライン構築・データ処理・分析基盤の設計に関する知識を証明する資格。データエンジニアを目指す方に最適です。
+                        Validate your data pipeline and analytics platform design skills on AWS. Ideal for data engineers.
                     </div>
-                    <div class="start-button">学習を始める →</div>
+                    <div class="start-button">Start practicing →</div>
                 </a>
                 <a href="#" class="exam-card" style="opacity: 0.6; pointer-events: none; position: relative;">
-                    <div style="position: absolute; top: 10px; right: 10px; background: #ff9800; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.8em; font-weight: bold;">近日公開</div>
+                    <div style="position: absolute; top: 10px; right: 10px; background: #ff9800; color: white; padding: 5px 10px; border-radius: 5px; font-size: 0.8em; font-weight: bold;">Coming Soon</div>
                     <h2>Machine Learning Engineer Associate</h2>
                     <div class="exam-name">MLA</div>
                     <div class="description-text">
-                        AWS上での機械学習モデルの開発・デプロイ・運用に関する知識を証明する資格。MLエンジニアやデータサイエンティストを目指す方に最適です。
+                        Validate your ML model development and deployment skills on AWS. Ideal for ML engineers and data scientists.
                     </div>
-                    <div class="start-button">学習を始める →</div>
+                    <div class="start-button">Start practicing →</div>
                 </a>
             </div>
         </div>
 
         <div class="features">
-            <h3>✨ 主な特徴</h3>
+            <h3>✨ Key features</h3>
             <div class="features-grid">
                 <div class="feature-item">
                     <div class="feature-icon">🎯</div>
-                    <div class="feature-text">直感的に操作できるUI</div>
+                    <div class="feature-text">Intuitive UI</div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">💡</div>
-                    <div class="feature-text">初学者にも分かりやすい解説</div>
+                    <div class="feature-text">Beginner-friendly explanations</div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">📱</div>
-                    <div class="feature-text">レスポンシブ対応</div>
+                    <div class="feature-text">Responsive design</div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">🔀</div>
-                    <div class="feature-text">ランダム出題</div>
+                    <div class="feature-text">Random questions</div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">📝</div>
-                    <div class="feature-text">模擬試験モード</div>
+                    <div class="feature-text">Mock exam mode</div>
                 </div>
                 <div class="feature-item">
                     <div class="feature-icon">💰</div>
-                    <div class="feature-text">継続しやすい価格設定</div>
+                    <div class="feature-text">Affordable pricing</div>
                 </div>
             </div>
         </div>
@@ -997,36 +992,34 @@
 
     </div>
 
-    <!-- 更新履歴（直近3件） -->
     <div class="changelog-section">
         <div style="max-width:1200px; margin:0 auto;">
-            <h3>更新履歴</h3>
+            <h3>Changelog</h3>
             <div class="changelog-list">
                 <div class="changelog-entry">
                     <span class="changelog-date">2026-07-12</span>
-                    <span class="changelog-title">DVA 問題集を100問に更新</span>
+                    <span class="changelog-title">DVA question set updated to 100 questions</span>
                 </div>
                 <div class="changelog-entry">
                     <span class="changelog-date">2026-07-10</span>
-                    <span class="changelog-title">CLF 問題集を公開（100問）、AIF 問題集を公開（100問）、SAA 問題集を公開（120問）</span>
+                    <span class="changelog-title">CLF question set released (100 questions), AIF question set released (100 questions), SAA question set released (120 questions)</span>
                 </div>
                 <div class="changelog-entry">
                     <span class="changelog-date">2026-07-08</span>
-                    <span class="changelog-title">スキマ・ラーニング 公開</span>
+                    <span class="changelog-title">Sukima Learning launched</span>
                 </div>
             </div>
             <div class="changelog-more">
-                <a href="../changelog.html">すべての更新履歴を見る →</a>
+                <a href="../changelog.html">View all changelogs →</a>
             </div>
         </div>
     </div>
 
-    <!-- フッター -->
     <footer>
         <div class="footer-container">
-            <a href="../index.html" class="footer-link">スキマ・ラーニング トップページ</a>
+            <a href="../index.html" class="footer-link">Sukima Learning Top Page</a>
             <div class="footer-copyright">
-                &copy; 2026 スキマ・ラーニング. All rights reserved.
+                &copy; 2026 Sukima Learning. All rights reserved.
             </div>
         </div>
     </footer>
@@ -1035,7 +1028,6 @@
     <script>
         const API_URL = 'https://sukima-learning.onrender.com/api/auth';
 
-        // ページ読み込み時にログイン状態をチェック
         async function checkLoginStatus() {
             const accessToken = localStorage.getItem('accessToken');
             
@@ -1055,7 +1047,6 @@
                     const data = await response.json();
                     showLoggedIn(data.user.username, data.user.membership_level, data.user.membership_expiry);
                 } else {
-                    // トークンが無効な場合、リフレッシュを試みる
                     const refreshed = await tryRefreshToken();
                     if (!refreshed) {
                         showLoggedOut();
@@ -1068,7 +1059,6 @@
             }
         }
 
-        // リフレッシュトークンで新しいアクセストークンを取得
         async function tryRefreshToken() {
             const refreshToken = localStorage.getItem('refreshToken');
             
@@ -1089,7 +1079,6 @@
                     const data = await response.json();
                     localStorage.setItem('accessToken', data.accessToken);
                     
-                    // ユーザー情報を再取得
                     const userResponse = await fetch(`${API_URL}/me`, {
                         headers: {
                             'Authorization': `Bearer ${data.accessToken}`
@@ -1110,21 +1099,17 @@
             }
         }
 
-        // ログイン状態を表示
         function showLoggedIn(username, membershipLevel = 'Free', membershipExpiry = null) {
             const _lo1 = document.querySelector('.logged-out'); if (_lo1) _lo1.style.display = 'none';
             const _li1 = document.querySelector('.logged-in'); if (_li1) _li1.style.display = 'flex';
             document.getElementById('username').textContent = username;
             
-            // プラン情報を表示
             const userPlanElement = document.getElementById('userPlan');
             
             if (userPlanElement) {
-                // 小文字を大文字に変換（standard → Standard）
                 const displayLevel = membershipLevel.charAt(0).toUpperCase() + membershipLevel.slice(1).toLowerCase();
                 userPlanElement.textContent = displayLevel;
                 
-                // プランに応じて色を変更
                 const lowerLevel = membershipLevel.toLowerCase();
                 if (lowerLevel === 'free') {
                     userPlanElement.style.background = '#9e9e9e';
@@ -1135,24 +1120,21 @@
                 }
             }
             
-            // 有効期限を表示
             const userExpiryElement = document.getElementById('userExpiry');
             if (userExpiryElement && membershipExpiry && membershipLevel !== 'Free') {
                 const expiryDate = new Date(membershipExpiry);
                 const now = new Date();
                 const daysLeft = Math.ceil((expiryDate - now) / (1000 * 60 * 60 * 24));
                 
-                // 日付をフォーマット（YYYY/MM/DD）
                 const year = expiryDate.getFullYear();
                 const month = String(expiryDate.getMonth() + 1).padStart(2, '0');
                 const day = String(expiryDate.getDate()).padStart(2, '0');
                 const formattedDate = `${year}/${month}/${day}`;
                 
                 if (daysLeft > 0) {
-                    userExpiryElement.textContent = `有効期限: ${formattedDate}`;
+                    userExpiryElement.textContent = `Expires: ${formattedDate}`;
                     userExpiryElement.style.display = 'inline-block';
                     
-                    // 残り日数に応じて色を変更
                     if (daysLeft <= 7) {
                         userExpiryElement.style.background = '#ffebee';
                         userExpiryElement.style.color = '#c62828';
@@ -1164,7 +1146,7 @@
                         userExpiryElement.style.color = '#666';
                     }
                 } else {
-                    userExpiryElement.textContent = '期限切れ';
+                    userExpiryElement.textContent = 'Expired';
                     userExpiryElement.style.background = '#ffebee';
                     userExpiryElement.style.color = '#c62828';
                     userExpiryElement.style.display = 'inline-block';
@@ -1174,19 +1156,16 @@
             }
         }
 
-        // ログアウト状態を表示
         function showLoggedOut() {
             const _lo2 = document.querySelector('.logged-out'); if (_lo2) _lo2.style.display = 'flex';
             const _li2 = document.querySelector('.logged-in'); if (_li2) _li2.style.display = 'none';
         }
 
-        // 認証データをクリア
         function clearAuthData() {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
         }
 
-        // ログアウト処理
         async function handleLogout() {
             const accessToken = localStorage.getItem('accessToken');
             const refreshToken = localStorage.getItem('refreshToken');
@@ -1210,29 +1189,24 @@
             showLoggedOut();
         }
 
-        // 自動ログアウトタイマー（30分 = 1800000ミリ秒）
         let inactivityTimer;
-        const INACTIVITY_TIMEOUT = 30 * 60 * 1000; // 30分
+        const INACTIVITY_TIMEOUT = 30 * 60 * 1000;
 
         function resetInactivityTimer() {
             clearTimeout(inactivityTimer);
             
-            // ログイン中の場合のみタイマーを設定
             const accessToken = localStorage.getItem('accessToken');
             if (accessToken) {
                 inactivityTimer = setTimeout(() => {
-                    console.log('30分間操作がなかったため自動ログアウトします');
                     handleLogout();
                 }, INACTIVITY_TIMEOUT);
             }
         }
 
-        // ユーザーの操作を検知してタイマーをリセット
         ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart', 'click'].forEach(event => {
             document.addEventListener(event, resetInactivityTimer, true);
         });
 
-        // 決済完了後の処理
         async function handlePaymentSuccess() {
             const urlParams = new URLSearchParams(window.location.search);
             const paymentStatus = urlParams.get('payment');
@@ -1242,13 +1216,11 @@
                 const accessToken = localStorage.getItem('accessToken');
                 
                 if (!accessToken) {
-                    // URLパラメータをクリア
                     window.history.replaceState({}, document.title, window.location.pathname);
                     return;
                 }
                 
                 try {
-                    // 会員レベルを更新
                     const plan = sessionStorage.getItem('selectedPlan') || 'standard';
                     
                     const response = await fetch('https://sukima-learning.onrender.com/api/membership/update-after-payment', {
@@ -1263,13 +1235,10 @@
                     if (response.ok) {
                         const data = await response.json();
                         
-                        // URLパラメータをクリア
                         window.history.replaceState({}, document.title, window.location.pathname);
                         
-                        // セッションストレージをクリア
                         sessionStorage.removeItem('selectedPlan');
                         
-                        // 会員情報を即座に更新（リロードせずに）
                         if (data.membership) {
                             showLoggedIn(
                                 data.membership.username,
@@ -1280,27 +1249,23 @@
                             console.error('❌ No membership data in response');
                         }
                         
-                        // URLパラメータをクリア（成功時のみ）
                         window.history.replaceState({}, document.title, window.location.pathname);
                         
                     } else {
                         const errorData = await response.json();
                         console.error('❌ API error:', errorData);
-                        alert('会員レベルの更新に失敗しました: ' + (errorData.error || '不明なエラー'));
+                        alert('Failed to update membership: ' + (errorData.error || 'Unknown error'));
                         
-                        // URLパラメータをクリア（エラー時も）
                         window.history.replaceState({}, document.title, window.location.pathname);
                     }
                 } catch (error) {
                     console.error('❌ Error updating membership:', error);
-                    alert('会員レベルの更新中にエラーが発生しました');
-                    // URLパラメータをクリア（エラー時も）
+                    alert('An error occurred while updating your membership.');
                     window.history.replaceState({}, document.title, window.location.pathname);
                 }
             }
         }
 
-        // ページ読み込み時に実行
         window.addEventListener('DOMContentLoaded', () => {
             handlePaymentSuccess();
             checkLoginStatus();
@@ -1311,19 +1276,19 @@
 {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": "AWS認定試験 対策問題集",
-  "description": "AWS認定試験（CLF・AIF・SAA・DVA）の対策問題集一覧。スキマ時間に無料で練習問題に取り組めます。",
+  "name": "AWS Certification Practice Questions",
+  "description": "Practice questions for AWS certifications (CLF, AIF, SAA, DVA). Study in your spare time for free.",
   "url": "https://sukima-learning.com/aws/",
   "publisher": {
     "@type": "Organization",
-    "name": "スキマラーニング",
+    "name": "Sukima Learning",
     "url": "https://sukima-learning.com"
   },
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "AWS Cloud Practitioner (CLF) 対策問題集", "url": "https://sukima-learning.com/aws/clf.html" },
-    { "@type": "ListItem", "position": 2, "name": "AWS AI Practitioner (AIF) 対策問題集", "url": "https://sukima-learning.com/aws/aif.html" },
-    { "@type": "ListItem", "position": 3, "name": "AWS Solutions Architect Associate (SAA) 対策問題集", "url": "https://sukima-learning.com/aws/saa.html" },
-    { "@type": "ListItem", "position": 4, "name": "AWS Developer Associate (DVA) 対策問題集", "url": "https://sukima-learning.com/aws/dva.html" }
+    { "@type": "ListItem", "position": 1, "name": "AWS Cloud Practitioner (CLF) Practice Questions", "url": "https://sukima-learning.com/aws/clf.html" },
+    { "@type": "ListItem", "position": 2, "name": "AWS AI Practitioner (AIF) Practice Questions", "url": "https://sukima-learning.com/aws/aif.html" },
+    { "@type": "ListItem", "position": 3, "name": "AWS Solutions Architect Associate (SAA) Practice Questions", "url": "https://sukima-learning.com/aws/saa.html" },
+    { "@type": "ListItem", "position": 4, "name": "AWS Developer Associate (DVA) Practice Questions", "url": "https://sukima-learning.com/aws/dva.html" }
   ]
 }
 </script>

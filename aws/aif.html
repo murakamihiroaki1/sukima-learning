@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AWS AIF 対策問題集 - AI Practitioner 無料練習問題 | スキマラーニング</title>
-    <meta name="description" content="AWS認定 AI Practitioner（AIF）の練習問題集。生成AIや機械学習の基礎知識を問う問題をスキマ時間に無料で学習。詳しい解説付き。">
+    <title>AWS AIF Practice Questions - AI Practitioner Free Practice Exam | Sukima Learning</title>
+    <meta name="description" content="Free practice questions for the AWS Certified AI Practitioner (AIF) exam. Study generative AI and machine learning fundamentals anytime with detailed explanations.">
     <link rel="canonical" href="https://sukima-learning.com/aws/aif.html">
     <!-- OGP -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="AWS AIF 対策問題集 - AI Practitioner 無料練習問題 | スキマラーニング">
-    <meta property="og:description" content="AWS認定 AI Practitioner（AIF）の練習問題集。生成AIや機械学習の基礎知識を問う問題をスキマ時間に無料で学習。詳しい解説付き。">
+    <meta property="og:title" content="AWS AIF Practice Questions - AI Practitioner Free Practice Exam | Sukima Learning">
+    <meta property="og:description" content="Free practice questions for the AWS Certified AI Practitioner (AIF) exam. Study generative AI and machine learning fundamentals anytime with detailed explanations.">
     <meta property="og:url" content="https://sukima-learning.com/aws/aif.html">
-    <meta property="og:site_name" content="スキマラーニング">
-    <meta property="og:locale" content="ja_JP">
+    <meta property="og:site_name" content="Sukima Learning">
+    <meta property="og:locale" content="en_US">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="AWS AIF 対策問題集 - AI Practitioner 無料練習問題 | スキマラーニング">
-    <meta name="twitter:description" content="AWS認定 AI Practitioner（AIF）の練習問題集。生成AIや機械学習の基礎知識を問う問題をスキマ時間に無料で学習。詳しい解説付き。">
+    <meta name="twitter:title" content="AWS AIF Practice Questions - AI Practitioner Free Practice Exam | Sukima Learning">
+    <meta name="twitter:description" content="Free practice questions for the AWS Certified AI Practitioner (AIF) exam. Study generative AI and machine learning fundamentals anytime with detailed explanations.">
     <link rel="stylesheet" href="nav-styles.css">
 
     <style>
@@ -711,7 +711,7 @@
     <!-- ナビゲーションヘッダー -->
     <nav class="nav-header">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">AWS認定試験対策</a>
+            <a href="index.html" class="nav-logo">AWS Certification Practice</a>
             <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -719,7 +719,7 @@
             </div>
 <div class="nav-menu" id="navMenu">
                 <div class="nav-item dropdown">
-                    <div class="nav-link dropdown-toggle">認定資格</div>
+                    <div class="nav-link dropdown-toggle">Certifications</div>
                     <div class="dropdown-menu">
                         <a href="clf.html" class="dropdown-item">
                             <div class="dropdown-item-title">CLF - Cloud Practitioner</div>
@@ -733,18 +733,18 @@
                     </div>
                 </div>
                 <div class="nav-item">
-                    <a href="pricing.html" class="nav-link">料金</a>
+                    <a href="pricing.html" class="nav-link">Pricing</a>
                 </div>
                 <div class="nav-item">
-                    <a href="history.html" class="nav-link">学習履歴</a>
+                    <a href="history.html" class="nav-link">Study History</a>
                 </div>
                 <div class="nav-item">
                     <a href="faq.html" class="nav-link">FAQ</a>
                 </div>
                 <div class="nav-item auth-buttons">
                     <div class="logged-out">
-                        <a href="login.html" class="auth-btn login">ログイン</a>
-                        <a href="signup.html" class="auth-btn signup">新規登録</a>
+                        <a href="login.html" class="auth-btn login">Log In</a>
+                        <a href="signup.html" class="auth-btn signup">Sign Up</a>
                     </div>
                     <div class="logged-in">
                         <div class="user-info">
@@ -753,7 +753,7 @@
                             <span class="user-plan" id="userPlan" style="margin-left: 10px; padding: 3px 8px; background: #FF9900; color: white; border-radius: 10px; font-size: 0.75em; font-weight: bold;"></span>
                             <span class="user-expiry" id="userExpiry" style="margin-left: 10px; padding: 3px 8px; background: #f0f0f0; color: #666; border-radius: 10px; font-size: 0.75em;"></span>
                         </div>
-                        <button class="auth-btn logout" onclick="handleLogout()">ログアウト</button>
+                        <button class="auth-btn logout" onclick="handleLogout()">Log Out</button>
                     </div>
                 </div>
             </div>
@@ -765,38 +765,38 @@
     <div class="container">
         
         <div class="header">
-            <h1><span class="aws-logo">AWS</span> AIF 問題集</h1>
-            <p>AI Practitioner 試験対策</p>
+            <h1><span class="aws-logo">AWS</span> AIF Practice Questions</h1>
+            <p>AI Practitioner Exam Prep</p>
         </div>
 
         <div id="set-selection-section">
             <div class="set-selection">
-                <h3>📚 出題方法を選択してください</h3>
+                <h3>📚 Select a Question Mode</h3>
                 
                 <!-- 出題方法選択 -->
                 <div style="margin-bottom: 30px;">
                     <div class="set-buttons">
-                        <button class="set-btn" onclick="selectMode('sequential', this)">番号順</button>
-                        <button class="set-btn" id="category-mode-btn" onclick="selectMode('category', this)">カテゴリ別</button>
-                        <button class="set-btn" id="random-mode-btn" onclick="selectMode('random', this)">ランダム (10問)</button>
-                        <button class="set-btn" id="mock-exam-mode-btn" onclick="selectMode('mock-exam', this)">模擬試験 (65問)</button>
+                        <button class="set-btn" onclick="selectMode('sequential', this)">Sequential</button>
+                        <button class="set-btn" id="category-mode-btn" onclick="selectMode('category', this)">By Category</button>
+                        <button class="set-btn" id="random-mode-btn" onclick="selectMode('random', this)">Random (10 Qs)</button>
+                        <button class="set-btn" id="mock-exam-mode-btn" onclick="selectMode('mock-exam', this)">Mock Exam (65 Qs)</button>
                     </div>
                 </div>
 
                 <!-- 番号順選択 (初期非表示) -->
                 <div id="sequential-selection" style="display: none; margin-bottom: 30px;">
-                    <h4 style="color: #667eea; margin-bottom: 15px;">問題範囲を選択 (10問単位)</h4>
+                    <h4 style="color: #667eea; margin-bottom: 15px;">Select Range (10 questions per set)</h4>
                     <div class="set-buttons" id="sequential-buttons"></div>
                 </div>
 
                 <!-- カテゴリ別選択 (初期非表示) -->
                 <div id="category-selection" style="display: none; margin-bottom: 30px;">
-                    <h4 style="color: #667eea; margin-bottom: 15px;">カテゴリを選択</h4>
+                    <h4 style="color: #667eea; margin-bottom: 15px;">Select a Category</h4>
                     <div class="set-buttons" id="category-buttons"></div>
                 </div>
 
                 <div class="set-info" id="set-info" style="display: none;"></div>
-                <button class="start-quiz-btn" id="start-quiz-btn" onclick="startQuiz()" disabled>クイズを開始</button>
+                <button class="start-quiz-btn" id="start-quiz-btn" onclick="startQuiz()" disabled>Start Quiz</button>
             </div>
         </div>
 
@@ -806,28 +806,28 @@
             </div>
 
             <div class="question-info">
-                <span id="question-number">問題 1 / 20</span>
-                <span id="timer-display" style="display: none; color: #FF9900; font-weight: bold;">⏱️ 残り時間: 90:00</span>
-                <span id="score-display" style="display: none;">正解数: 0</span>
+                <span id="question-number">Question 1 / 20</span>
+                <span id="timer-display" style="display: none; color: #FF9900; font-weight: bold;">⏱️ Time Remaining: 90:00</span>
+                <span id="score-display" style="display: none;">Correct: 0</span>
             </div>
 
             <div class="question-card">
                 <div class="question-text" id="question-text"></div>
                 <div class="options" id="options"></div>
                 <div class="explanation" id="explanation">
-                    <div class="explanation-title">📝 解説</div>
+                    <div class="explanation-title">📝 Explanation</div>
                     <div class="explanation-text" id="explanation-text"></div>
                 </div>
                 <div class="reference" id="reference">
-                    <div class="reference-title">📚 AWS公式ドキュメント</div>
+                    <div class="reference-title">📚 AWS Official Documentation</div>
                     <div class="reference-link-container" id="reference-links"></div>
                 </div>
             </div>
 
             <div class="buttons">
-                <button class="btn btn-secondary" id="prev-btn" onclick="previousQuestion()">前の問題</button>
-                <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()">次の問題</button>
-                <button class="btn btn-primary" id="back-to-select-btn" onclick="backToSelection()" style="display: none;">選択画面に戻る</button>
+                <button class="btn btn-secondary" id="prev-btn" onclick="previousQuestion()">Previous</button>
+                <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()">Next</button>
+                <button class="btn btn-primary" id="back-to-select-btn" onclick="backToSelection()" style="display: none;">Back to Selection</button>
             </div>
             
         </div>
@@ -868,7 +868,7 @@
                 // 時間切れ
                 if (remainingTime <= 0) {
                     clearInterval(examTimer);
-                    alert('制限時間が終了しました。\n結果を表示します。');
+                    alert('Time is up!\nShowing results.');
                     showMockExamResults();
                 }
             }, 1000);
@@ -878,7 +878,7 @@
             const minutes = Math.floor(remainingTime / 60);
             const seconds = remainingTime % 60;
             const display = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-            document.getElementById('timer-display').textContent = `⏱️ 残り時間: ${display}`;
+            document.getElementById('timer-display').textContent = `⏱️ Time Remaining: ${display}`;
         }
         
         function stopExamTimer() {
@@ -918,14 +918,14 @@
                     const end = Math.min(i + 10, totalQuestions);
                     const btn = document.createElement('button');
                     btn.className = 'set-btn';
-                    btn.textContent = `問題 ${i + 1}-${end}`;
+                    btn.textContent = `Q${i + 1}-${end}`;
                     btn.onclick = () => selectRange(i, end, btn);
                     sequentialButtons.appendChild(btn);
                 }
                 
                 document.getElementById('sequential-selection').style.display = 'block';
                 document.getElementById('set-info').style.display = 'block';
-                document.getElementById('set-info').textContent = '問題範囲を選択してください';
+                document.getElementById('set-info').textContent = 'Please select a question range';
                 if (window.innerWidth <= 768) {
                     setTimeout(() => { scrollToEl(document.getElementById('sequential-selection')); }, 150);
                 }
@@ -942,7 +942,7 @@
                             btn.style.setProperty('cursor', 'not-allowed', 'important');
                             btn.onclick = function(event) {
                                 event.preventDefault();
-                                alert('問題21以降はStandard/Advancedプラン限定です。\nプランをアップグレードしてください。');
+                                alert('Questions 21 and above are available for Standard/Advanced plan members.\nPlease upgrade your plan.');
                                 window.location.href = 'pricing.html';
                             };
                             btn.innerHTML = btn.textContent + ' 🔒';
@@ -957,7 +957,7 @@
                 
                 if (mode === 'category') {
                     if (!isPremium) {
-                        alert('この機能はStandard/Advancedプラン限定です。\nプランをアップグレードしてください。');
+                        alert('This feature is available for Standard/Advanced plan members.\nPlease upgrade your plan.');
                         window.location.href = 'pricing.html';
                         return;
                     }
@@ -968,37 +968,37 @@
                         const count = awsAIFQuestions.filter(q => q.category === cat).length;
                         const btn = document.createElement('button');
                         btn.className = 'set-btn';
-                        btn.textContent = `${cat} (${count}問)`;
+                        btn.textContent = `${cat} (${count} Qs)`;
                         btn.onclick = () => selectCategory(cat, btn);
                         catButtons.appendChild(btn);
                     });
                     document.getElementById('category-selection').style.display = 'block';
                     document.getElementById('set-info').style.display = 'block';
-                    document.getElementById('set-info').textContent = 'カテゴリを選択してください';
+                    document.getElementById('set-info').textContent = 'Please select a category';
                     if (window.innerWidth <= 768) {
                         setTimeout(() => { scrollToEl(document.getElementById('category-selection')); }, 150);
                     }
                 } else if (mode === 'random') {
                     if (!isPremium) {
-                        alert('この機能はStandard/Advancedプラン限定です。\nプランをアップグレードしてください。');
+                        alert('This feature is available for Standard/Advanced plan members.\nPlease upgrade your plan.');
                         window.location.href = 'pricing.html';
                         return;
                     }
                     document.getElementById('set-info').style.display = 'block';
-                    document.getElementById('set-info').textContent = 'ランダムに10問出題します';
+                    document.getElementById('set-info').textContent = '10 questions will be selected randomly';
                     document.getElementById('start-quiz-btn').disabled = false;
                     if (window.innerWidth <= 768) {
                         setTimeout(() => { scrollToEl(document.getElementById('start-quiz-btn')); }, 150);
                     }
                 } else if (mode === 'mock-exam') {
                     if (!isPremium) {
-                        alert('この機能はStandard/Advancedプラン限定です。\nプランをアップグレードしてください。');
+                        alert('This feature is available for Standard/Advanced plan members.\nPlease upgrade your plan.');
                         window.location.href = 'pricing.html';
                         return;
                     }
                     isMockExam = true;
                     document.getElementById('set-info').style.display = 'block';
-                    document.getElementById('set-info').textContent = '模擬試験モード: ランダムに65問出題します';
+                    document.getElementById('set-info').textContent = 'Mock Exam Mode: 65 questions will be selected randomly';
                     document.getElementById('start-quiz-btn').disabled = false;
                     if (window.innerWidth <= 768) {
                         setTimeout(() => { scrollToEl(document.getElementById('start-quiz-btn')); }, 150);
@@ -1018,7 +1018,7 @@
             if (clickedBtn) clickedBtn.classList.add('active');
             
             document.getElementById('set-info').textContent =
-                `問題 ${start + 1}-${end} を選択しました（${end - start}問）`;
+                `Selected Q${start + 1}-${end} (${end - start} questions)`;
             document.getElementById('start-quiz-btn').disabled = false;
             if (window.innerWidth <= 768) {
                 setTimeout(() => { scrollToEl(document.getElementById('set-info')); }, 150);
@@ -1032,7 +1032,7 @@
             document.querySelectorAll('#category-buttons .set-btn').forEach(b => b.classList.remove('active'));
             if (btnEl) btnEl.classList.add('active');
             const count = awsAIFQuestions.filter(q => q.category === category).length;
-            document.getElementById('set-info').textContent = `「${category}」を選択しました（${count}問）`;
+            document.getElementById('set-info').textContent = `"${category}" selected (${count} questions)`;
             document.getElementById('start-quiz-btn').disabled = false;
         }
 
@@ -1081,9 +1081,9 @@
         function displayQuestion() {
             const question = questions[currentQuestionIndex];
             document.getElementById('question-text').textContent = question.question;
-            document.getElementById('question-number').textContent = 
-                `問題 ${currentQuestionIndex + 1} / ${questions.length}`;
-            document.getElementById('score-display').textContent = `正解数: ${score}`;
+            document.getElementById('question-number').textContent =
+                `Question ${currentQuestionIndex + 1} / ${questions.length}`;
+            document.getElementById('score-display').textContent = `Correct: ${score}`;
 
             // 進捗バーを更新
             const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
@@ -1124,7 +1124,7 @@
             if (userAnswers[currentQuestionIndex] !== null) {
                 // 各選択肢の解説がある場合は表示
                 if (question.optionExplanations && question.optionExplanations.length > 0) {
-                    let explanationHTML = '<div style="margin-bottom: 15px;"><strong>各選択肢の解説:</strong></div>';
+                    let explanationHTML = '<div style="margin-bottom: 15px;"><strong>Explanation for each option:</strong></div>';
                     question.optionExplanations.forEach((exp, index) => {
                         const label = ['A', 'B', 'C', 'D'][index];
                         const isCorrect = index === question.correctAnswer;
@@ -1193,10 +1193,10 @@
             if (currentQuestionIndex === questions.length - 1) {
                 document.getElementById('next-btn').style.display = 'none';
                 if (isMockExam) {
-                    document.getElementById('back-to-select-btn').textContent = '試験を終了する';
+                    document.getElementById('back-to-select-btn').textContent = 'End Exam';
                     document.getElementById('back-to-select-btn').onclick = showMockExamResults;
                 } else {
-                    document.getElementById('back-to-select-btn').textContent = '選択画面に戻る';
+                    document.getElementById('back-to-select-btn').textContent = 'Back to Selection';
                     document.getElementById('back-to-select-btn').onclick = backToSelection;
                 }
                 document.getElementById('back-to-select-btn').style.display = 'inline-block';
@@ -1235,7 +1235,7 @@
 
             // 解説を表示
             if (question.optionExplanations && question.optionExplanations.length > 0) {
-                let explanationHTML = '<div style="margin-bottom: 15px;"><strong>各選択肢の解説:</strong></div>';
+                let explanationHTML = '<div style="margin-bottom: 15px;"><strong>Explanation for each option:</strong></div>';
                 question.optionExplanations.forEach((exp, index) => {
                     const label = ['A', 'B', 'C', 'D'][index];
                     const isCorrect = index === question.correctAnswer;
@@ -1300,7 +1300,7 @@
                 document.getElementById('reference').classList.add('show');
             }
             
-            document.getElementById('score-display').textContent = `正解数: ${score}`;
+            document.getElementById('score-display').textContent = `Correct: ${score}`;
         }
 
         // 次の問題へ
@@ -1359,7 +1359,7 @@
             // AIFの合格ライン: 70%
             const passingScore = 70;
             const isPassed = parseFloat(accuracyRate) >= passingScore;
-            const resultMessage = isPassed ? '✅ 合格' : '❌ 不合格';
+            const resultMessage = isPassed ? '✅ Pass' : '❌ Fail';
             const resultColor = isPassed ? '#4CAF50' : '#f44336';
 
             // 各問題の正誤テーブル行を生成
@@ -1368,7 +1368,7 @@
                 const userAnswer = userAnswers[i];
                 const isCorrect = userAnswer === q.correctAnswer;
                 const correctLabel = labels[q.correctAnswer] || '-';
-                const userLabel = userAnswer !== null ? (labels[userAnswer] || '-') : '未回答';
+                const userLabel = userAnswer !== null ? (labels[userAnswer] || '-') : 'N/A';
                 const rowBg = isCorrect ? '#f1f8f4' : (userAnswer === null ? '#fafafa' : '#fff5f5');
                 const icon = isCorrect ? '⭕' : (userAnswer === null ? '－' : '❌');
                 const questionText = q.question.length > 40 ? q.question.slice(0, 40) + '…' : q.question;
@@ -1395,46 +1395,46 @@
 
                     <!-- ヘッダー -->
                     <div style="padding: 30px 40px 20px; text-align: center; border-bottom: 1px solid #e0e0e0;">
-                        <h2 style="margin: 0 0 20px; color: #333; font-size: 1.8em;">📊 模擬試験結果</h2>
+                        <h2 style="margin: 0 0 20px; color: #333; font-size: 1.8em;">📊 Mock Exam Results</h2>
 
                         <!-- サマリー数値 -->
                         <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px;">
                             <div style="padding: 16px 10px; background: #f5f5f5; border-radius: 8px;">
                                 <div style="font-size: 1.8em; font-weight: bold; color: #333;">${totalQuestions}</div>
-                                <div style="color: #666; font-size: 0.85em; margin-top: 4px;">総問題数</div>
+                                <div style="color: #666; font-size: 0.85em; margin-top: 4px;">Total Questions</div>
                             </div>
                             <div style="padding: 16px 10px; background: #e8f5e9; border-radius: 8px;">
                                 <div style="font-size: 1.8em; font-weight: bold; color: #4CAF50;">${correctAnswers}</div>
-                                <div style="color: #666; font-size: 0.85em; margin-top: 4px;">正解</div>
+                                <div style="color: #666; font-size: 0.85em; margin-top: 4px;">Correct</div>
                             </div>
                             <div style="padding: 16px 10px; background: #ffebee; border-radius: 8px;">
                                 <div style="font-size: 1.8em; font-weight: bold; color: #f44336;">${incorrectAnswers}</div>
-                                <div style="color: #666; font-size: 0.85em; margin-top: 4px;">不正解</div>
+                                <div style="color: #666; font-size: 0.85em; margin-top: 4px;">Incorrect</div>
                             </div>
                             <div style="padding: 16px 10px; background: ${isPassed ? '#e8f5e9' : '#ffebee'}; border-radius: 8px;">
                                 <div style="font-size: 1.8em; font-weight: bold; color: ${resultColor};">${accuracyRate}%</div>
-                                <div style="color: #666; font-size: 0.85em; margin-top: 4px;">正答率</div>
+                                <div style="color: #666; font-size: 0.85em; margin-top: 4px;">Accuracy</div>
                             </div>
                         </div>
 
                         <!-- 合否 -->
                         <div style="background: ${resultColor}; color: white; padding: 14px; border-radius: 8px; font-size: 1.1em; font-weight: bold;">
-                            ${resultMessage}（合格ライン ${passingScore}%）
+                            ${resultMessage} (Passing score: ${passingScore}%)
                         </div>
                     </div>
 
                     <!-- 問題別正誤表 -->
                     <div style="padding: 20px 40px 30px;">
-                        <h3 style="color: #333; margin: 0 0 12px; font-size: 1em;">問題別 正誤一覧</h3>
+                        <h3 style="color: #333; margin: 0 0 12px; font-size: 1em;">Question-by-Question Results</h3>
                         <div style="overflow-x: auto;">
                             <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
                                 <thead>
                                     <tr style="background: #f5f5f5; border-bottom: 2px solid #e0e0e0;">
                                         <th style="padding: 10px; text-align: center; color: #555; width: 44px;">No.</th>
-                                        <th style="padding: 10px; text-align: left; color: #555;">問題</th>
-                                        <th style="padding: 10px; text-align: center; color: #555; width: 44px;">結果</th>
-                                        <th style="padding: 10px; text-align: center; color: #555; width: 60px;">正解</th>
-                                        <th style="padding: 10px; text-align: center; color: #555; width: 60px;">回答</th>
+                                        <th style="padding: 10px; text-align: left; color: #555;">Question</th>
+                                        <th style="padding: 10px; text-align: center; color: #555; width: 44px;">Result</th>
+                                        <th style="padding: 10px; text-align: center; color: #555; width: 60px;">Answer</th>
+                                        <th style="padding: 10px; text-align: center; color: #555; width: 60px;">Your Answer</th>
                                     </tr>
                                 </thead>
                                 <tbody>${tableRows}</tbody>
@@ -1447,11 +1447,11 @@
                         <button onclick="this.closest('div').parentElement.parentElement.remove(); backToSelection();" style="
                             background: #667eea; color: white; padding: 13px 32px;
                             border-radius: 8px; border: none; cursor: pointer;
-                            font-weight: bold; font-size: 1em;">選択画面に戻る</button>
+                            font-weight: bold; font-size: 1em;">Back to Selection</button>
                         <button onclick="this.closest('div').parentElement.parentElement.remove(); location.reload();" style="
                             background: #28a745; color: white; padding: 13px 32px;
                             border-radius: 8px; border: none; cursor: pointer;
-                            font-weight: bold; font-size: 1em;">もう一度挑戦</button>
+                            font-weight: bold; font-size: 1em;">Try Again</button>
                     </div>
                 </div>
             `;
@@ -1585,7 +1585,7 @@
             if (userExpiryElement && membershipExpiry && membershipLevel.toLowerCase() !== 'free') {
                 const expiryDate = new Date(membershipExpiry);
                 const formattedDate = `${expiryDate.getFullYear()}/${String(expiryDate.getMonth() + 1).padStart(2, '0')}/${String(expiryDate.getDate()).padStart(2, '0')}`;
-                userExpiryElement.textContent = `有効期限: ${formattedDate}`;
+                userExpiryElement.textContent = `Expires: ${formattedDate}`;
                 userExpiryElement.style.display = 'inline-block';
             } else if (userExpiryElement) {
                 userExpiryElement.style.display = 'none';
@@ -1612,19 +1612,19 @@
                     categoryBtn.style.opacity = '1';
                     categoryBtn.style.cursor = 'pointer';
                     categoryBtn.onclick = function() { selectMode('category', this); };
-                    categoryBtn.innerHTML = 'カテゴリ別';
+                    categoryBtn.innerHTML = 'By Category';
                 }
                 if (randomBtn) {
                     randomBtn.style.setProperty('opacity', '1', 'important');
                     randomBtn.style.setProperty('cursor', 'pointer', 'important');
                     randomBtn.onclick = function() { selectMode('random', this); };
-                    randomBtn.innerHTML = 'ランダム (10問)';
+                    randomBtn.innerHTML = 'Random (10 Qs)';
                 }
                 if (mockExamBtn) {
                     mockExamBtn.style.setProperty('opacity', '1', 'important');
                     mockExamBtn.style.setProperty('cursor', 'pointer', 'important');
                     mockExamBtn.onclick = function() { selectMode('mock-exam', this); };
-                    mockExamBtn.innerHTML = '模擬試験 (65問)';
+                    mockExamBtn.innerHTML = 'Mock Exam (65 Qs)';
                 }
             } else {
                 // Free会員: ボタンを無効化
@@ -1632,19 +1632,19 @@
                     categoryBtn.style.opacity = '0.4';
                     categoryBtn.style.cursor = 'not-allowed';
                     categoryBtn.onclick = function(event) { event.preventDefault(); window.location.href='pricing.html'; };
-                    categoryBtn.innerHTML = 'カテゴリ別 🔒';
+                    categoryBtn.innerHTML = 'By Category 🔒';
                 }
                 if (randomBtn) {
                     randomBtn.style.setProperty('opacity', '0.4', 'important');
                     randomBtn.style.setProperty('cursor', 'not-allowed', 'important');
                     randomBtn.onclick = function(event) { event.preventDefault(); window.location.href='pricing.html'; };
-                    randomBtn.innerHTML = 'ランダム (10問) 🔒';
+                    randomBtn.innerHTML = 'Random (10 Qs) 🔒';
                 }
                 if (mockExamBtn) {
                     mockExamBtn.style.setProperty('opacity', '0.4', 'important');
                     mockExamBtn.style.setProperty('cursor', 'not-allowed', 'important');
                     mockExamBtn.onclick = function(event) { event.preventDefault(); window.location.href='pricing.html'; };
-                    mockExamBtn.innerHTML = '模擬試験 (65問) 🔒';
+                    mockExamBtn.innerHTML = 'Mock Exam (65 Qs) 🔒';
                 }
             }
         }
@@ -1687,7 +1687,7 @@
             const accessToken = localStorage.getItem('accessToken');
             if (accessToken) {
                 inactivityTimer = setTimeout(() => {
-                    console.log('30分間操作がなかったため自動ログアウトします');
+                    console.log('Auto-logout after 30 minutes of inactivity.');
                     handleLogout();
                 }, INACTIVITY_TIMEOUT);
             }
@@ -1748,7 +1748,7 @@
             
             // フィルタリング後に問題がない場合
             if (questions.length === 0) {
-                alert('アクセス可能な問題がありません。\n\nFree会員は問題1-20のみアクセス可能です。\nすべての問題にアクセスするには、Standardプランにアップグレードしてください。');
+                alert('No accessible questions available.\n\nFree plan members can access questions 1–20 only.\nPlease upgrade to the Standard plan to access all questions.');
                 window.location.href = 'pricing.html';
                 return;
             }
@@ -1781,16 +1781,16 @@
 {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "name": "AWS AI Practitioner (AIF) 対策問題集",
-  "description": "AWS認定 AI Practitioner（AIF）の練習問題集。生成AIや機械学習の基礎知識を問う問題をスキマ時間に無料で学習。詳しい解説付き。",
+  "name": "AWS AI Practitioner (AIF) Practice Questions",
+  "description": "Free practice questions for the AWS Certified AI Practitioner (AIF) exam. Study generative AI and machine learning fundamentals anytime with detailed explanations.",
   "url": "https://sukima-learning.com/aws/aif.html",
   "provider": {
     "@type": "Organization",
-    "name": "スキマラーニング",
+    "name": "Sukima Learning",
     "url": "https://sukima-learning.com"
   },
   "educationalLevel": "beginner",
-  "inLanguage": "ja",
+  "inLanguage": "en",
   "isAccessibleForFree": true
 }
 </script>
@@ -1799,9 +1799,9 @@
     <!-- フッター -->
     <footer>
         <div class="footer-container">
-            <a href="../index.html" class="footer-link">スキマ・ラーニング トップページ</a>
+            <a href="../index.html" class="footer-link">Sukima Learning Top Page</a>
             <div class="footer-copyright">
-                &copy; 2026 スキマ・ラーニング. All rights reserved.
+                &copy; 2026 Sukima Learning. All rights reserved.
             </div>
         </div>
     </footer>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新規登録 - AWS 認定試験 対策</title>
+    <title>Sign Up - AWS Certification Practice</title>
     <link rel="stylesheet" href="nav-styles.css">
 
     <style>
@@ -492,8 +492,7 @@
     </style>
     <!-- ========================================================
          Google Analytics 4
-         TODO: 下記の G-XXXXXXXXXX を実際の測定IDに置き換えてください
-         取得方法: https://analytics.google.com/ → 管理 → データストリーム → 測定ID
+         TODO: Replace G-XXXXXXXXXX with your actual Measurement ID
     ========================================================= -->
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -505,10 +504,9 @@
     </script>
 </head>
 <body>
-    <!-- ナビゲーションヘッダー -->
     <nav class="nav-header">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">AWS認定試験対策</a>
+            <a href="index.html" class="nav-logo">AWS Certification Practice</a>
             <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -516,7 +514,7 @@
             </div>
 <div class="nav-menu" id="navMenu">
                 <div class="nav-item dropdown">
-                    <div class="nav-link dropdown-toggle">認定資格</div>
+                    <div class="nav-link dropdown-toggle">Certifications</div>
                     <div class="dropdown-menu">
                         <a href="clf.html" class="dropdown-item">
                             <div class="dropdown-item-title">CLF - Cloud Practitioner</div>
@@ -529,13 +527,13 @@
                     </div>
                 </div>
                 <div class="nav-item">
-                    <a href="pricing.html" class="nav-link">料金</a>
+                    <a href="pricing.html" class="nav-link">Pricing</a>
                 </div>
                 <div class="nav-item">
                     <a href="faq.html" class="nav-link">FAQ</a>
                 </div>                <div class="nav-item auth-buttons">
-                    <a href="login.html" class="auth-btn login">ログイン</a>
-                    <a href="signup.html" class="auth-btn signup">新規登録</a>
+                    <a href="login.html" class="auth-btn login">Log In</a>
+                    <a href="signup.html" class="auth-btn signup">Sign Up</a>
                 </div>
             </div>
         </div>
@@ -544,65 +542,65 @@
     <div class="main-content"><div class="container">
         
         <div class="header">
-            <h1><span class="aws-logo">AWS</span> 認定試験 対策</h1>
-            <p>新規登録</p>
+            <h1><span class="aws-logo">AWS</span> Certification Practice</h1>
+            <p>Sign Up</p>
         </div>
 
         <div class="success-message" id="success-message">
-            登録が完了しました！ログインページに移動します...
+            Registration complete! Redirecting to login...
         </div>
 
         <form id="signup-form" onsubmit="handleSignup(event)">
             <div class="form-group">
                 <label for="username">
-                    ユーザー名<span class="required">*</span>
+                    Username<span class="required">*</span>
                 </label>
-                <input 
-                    type="text" 
-                    id="username" 
-                    name="username" 
-                    placeholder="ユーザー名を入力（3文字以上）"
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter username (at least 3 characters)"
                     required
                     minlength="3"
                 >
                 <div class="error-text" id="username-error">
-                    ユーザー名は3文字以上で入力してください
+                    Username must be at least 3 characters.
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="email">
-                    メールアドレス<span class="required">*</span>
+                    Email<span class="required">*</span>
                 </label>
-                <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
                     placeholder="example@email.com"
                     required
                 >
                 <div class="error-text" id="email-error">
-                    有効なメールアドレスを入力してください
+                    Please enter a valid email address.
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="password">
-                    パスワード<span class="required">*</span>
+                    Password<span class="required">*</span>
                 </label>
                 <div class="password-toggle">
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        placeholder="パスワードを入力（8文字以上）"
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter password (at least 8 characters)"
                         required
                         minlength="8"
                         oninput="checkPasswordStrength()"
                     >
-                    <button 
-                        type="button" 
-                        class="password-toggle-btn" 
+                    <button
+                        type="button"
+                        class="password-toggle-btn"
                         onclick="togglePassword('password')"
                     >
                         👁️
@@ -615,76 +613,74 @@
                     <span id="strength-text" style="color: #999; font-size: 0.85em;"></span>
                 </div>
                 <div class="error-text" id="password-error">
-                    パスワードは8文字以上で入力してください
+                    Password must be at least 8 characters.
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="password-confirm">
-                    パスワード（再入力）<span class="required">*</span>
+                    Confirm Password<span class="required">*</span>
                 </label>
                 <div class="password-toggle">
-                    <input 
-                        type="password" 
-                        id="password-confirm" 
-                        name="password-confirm" 
-                        placeholder="パスワードを再入力"
+                    <input
+                        type="password"
+                        id="password-confirm"
+                        name="password-confirm"
+                        placeholder="Re-enter your password"
                         required
                         oninput="checkPasswordMatch()"
                     >
-                    <button 
-                        type="button" 
-                        class="password-toggle-btn" 
+                    <button
+                        type="button"
+                        class="password-toggle-btn"
                         onclick="togglePassword('password-confirm')"
                     >
                         👁️
                     </button>
                 </div>
                 <div class="error-text" id="password-confirm-error">
-                    パスワードが一致しません
+                    Passwords do not match.
                 </div>
             </div>
 
             <div class="terms-group">
                 <div class="terms-checkbox">
-                    <input 
-                        type="checkbox" 
-                        id="terms" 
-                        name="terms" 
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        name="terms"
                         required
                     >
                     <label for="terms">
-                        <a href="terms.html" target="_blank">利用規約</a>に同意します<span class="required">*</span>
+                        I agree to the <a href="terms.html" target="_blank">Terms of Service</a><span class="required">*</span>
                     </label>
                 </div>
             </div>
 
             <button type="submit" class="submit-btn" id="submit-btn">
-                新規登録
+                Sign Up
             </button>
         </form>
 
         <div class="divider">
-            <span>または</span>
+            <span>or</span>
         </div>
 
         <div class="login-link">
-            すでにアカウントをお持ちの方は <a href="login.html">ログイン</a>
+            Already have an account? <a href="login.html">Log In</a>
         </div>
     </div></div>
 
-    <!-- フッター -->
     <footer>
         <div class="footer-container">
-            <a href="../index.html" class="footer-link">スキマ・ラーニング トップページ</a>
+            <a href="../index.html" class="footer-link">Sukima Learning Top Page</a>
             <div class="footer-copyright">
-                &copy; 2026 スキマ・ラーニング. All rights reserved.
+                &copy; 2026 Sukima Learning. All rights reserved.
             </div>
         </div>
     </footer>
 
     <script>
-        // パスワード表示/非表示の切り替え
         function togglePassword(fieldId) {
             const passwordInput = document.getElementById(fieldId);
             const toggleBtn = passwordInput.nextElementSibling;
@@ -698,7 +694,6 @@
             }
         }
 
-        // パスワード強度チェック
         function checkPasswordStrength() {
             const password = document.getElementById('password').value;
             const strengthFill = document.getElementById('strength-fill');
@@ -715,20 +710,19 @@
             
             if (strength <= 1) {
                 strengthFill.classList.add('weak');
-                strengthText.textContent = '弱い';
+                strengthText.textContent = 'Weak';
                 strengthText.style.color = '#f44336';
             } else if (strength <= 2) {
                 strengthFill.classList.add('medium');
-                strengthText.textContent = '普通';
+                strengthText.textContent = 'Fair';
                 strengthText.style.color = '#ff9800';
             } else {
                 strengthFill.classList.add('strong');
-                strengthText.textContent = '強い';
+                strengthText.textContent = 'Strong';
                 strengthText.style.color = '#4caf50';
             }
         }
 
-        // パスワード一致チェック
         function checkPasswordMatch() {
             const password = document.getElementById('password').value;
             const passwordConfirm = document.getElementById('password-confirm').value;
@@ -746,7 +740,6 @@
 
         const API_URL = 'https://sukima-learning.onrender.com/api/auth';
 
-        // 新規登録処理
         async function handleSignup(event) {
             event.preventDefault();
             
@@ -758,10 +751,8 @@
             const submitBtn = document.getElementById('submit-btn');
             const successMessage = document.getElementById('success-message');
             
-            // バリデーション
             let isValid = true;
             
-            // ユーザー名チェック
             if (username.length < 3) {
                 document.getElementById('username').classList.add('error');
                 document.getElementById('username-error').classList.add('show');
@@ -771,7 +762,6 @@
                 document.getElementById('username-error').classList.remove('show');
             }
             
-            // メールアドレスチェック
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
                 document.getElementById('email').classList.add('error');
@@ -782,7 +772,6 @@
                 document.getElementById('email-error').classList.remove('show');
             }
             
-            // パスワードチェック
             if (password.length < 8) {
                 document.getElementById('password').classList.add('error');
                 document.getElementById('password-error').classList.add('show');
@@ -792,7 +781,6 @@
                 document.getElementById('password-error').classList.remove('show');
             }
             
-            // パスワード一致チェック
             if (password !== passwordConfirm) {
                 document.getElementById('password-confirm').classList.add('error');
                 document.getElementById('password-confirm-error').classList.add('show');
@@ -802,9 +790,8 @@
                 document.getElementById('password-confirm-error').classList.remove('show');
             }
             
-            // 利用規約チェック
             if (!termsAccepted) {
-                alert('利用規約に同意してください');
+                alert('Please agree to the Terms of Service.');
                 isValid = false;
             }
             
@@ -812,9 +799,8 @@
                 return;
             }
 
-            // ボタンを無効化
             submitBtn.disabled = true;
-            submitBtn.textContent = '登録中...';
+            submitBtn.textContent = 'Signing up...';
 
             try {
                 const response = await fetch(`${API_URL}/register`, {
@@ -828,32 +814,27 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    // 登録成功
-                    successMessage.textContent = '登録が完了しました！ログインページに移動します...';
+                    successMessage.textContent = 'Registration complete! Redirecting to login...';
                     successMessage.classList.add('show');
                     
-                    // トークンを保存
                     localStorage.setItem('accessToken', data.token);
                     
-                    // 2秒後にログインページへ
                     setTimeout(() => {
                         window.location.href = 'login.html';
                     }, 2000);
                 } else {
-                    // 登録失敗
-                    alert(data.error || '登録に失敗しました');
+                    alert(data.error || 'Registration failed.');
                     submitBtn.disabled = false;
-                    submitBtn.textContent = '新規登録';
+                    submitBtn.textContent = 'Sign Up';
                 }
             } catch (error) {
                 console.error('Registration error:', error);
-                alert('サーバーとの通信に失敗しました。サーバーが起動しているか確認してください。');
+                alert('Failed to connect to the server. Please check that the server is running.');
                 submitBtn.disabled = false;
-                submitBtn.textContent = '新規登録';
+                submitBtn.textContent = 'Sign Up';
             }
         }
 
-        // リアルタイムバリデーション
         document.getElementById('username').addEventListener('blur', function() {
             if (this.value.length > 0 && this.value.length < 3) {
                 this.classList.add('error');

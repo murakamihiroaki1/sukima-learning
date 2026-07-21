@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログイン - AWS 認定試験 対策</title>
+    <title>Login - AWS Certification Practice</title>
     <link rel="stylesheet" href="nav-styles.css">
 
     <style>
@@ -438,8 +438,7 @@
     </style>
     <!-- ========================================================
          Google Analytics 4
-         TODO: 下記の G-XXXXXXXXXX を実際の測定IDに置き換えてください
-         取得方法: https://analytics.google.com/ → 管理 → データストリーム → 測定ID
+         TODO: Replace G-XXXXXXXXXX with your actual Measurement ID
     ========================================================= -->
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -451,10 +450,9 @@
     </script>
 </head>
 <body>
-    <!-- ナビゲーションヘッダー -->
     <nav class="nav-header">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">AWS認定試験対策</a>
+            <a href="index.html" class="nav-logo">AWS Certification Practice</a>
             <div class="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -462,7 +460,7 @@
             </div>
 <div class="nav-menu" id="navMenu">
                 <div class="nav-item dropdown">
-                    <div class="nav-link dropdown-toggle">認定資格</div>
+                    <div class="nav-link dropdown-toggle">Certifications</div>
                     <div class="dropdown-menu">
                         <a href="clf.html" class="dropdown-item">
                             <div class="dropdown-item-title">CLF - Cloud Practitioner</div>
@@ -475,13 +473,13 @@
                     </div>
                 </div>
                 <div class="nav-item">
-                    <a href="pricing.html" class="nav-link">料金</a>
+                    <a href="pricing.html" class="nav-link">Pricing</a>
                 </div>
                 <div class="nav-item">
                     <a href="faq.html" class="nav-link">FAQ</a>
                 </div>                <div class="nav-item auth-buttons">
-                    <a href="login.html" class="auth-btn login">ログイン</a>
-                    <a href="signup.html" class="auth-btn signup">新規登録</a>
+                    <a href="login.html" class="auth-btn login">Log In</a>
+                    <a href="signup.html" class="auth-btn signup">Sign Up</a>
                 </div>
             </div>
         </div>
@@ -490,34 +488,34 @@
     <div class="main-content"><div class="container">
         
         <div class="header">
-            <h1><span class="aws-logo">AWS</span> 認定試験 対策</h1>
-            <p>ログイン</p>
+            <h1><span class="aws-logo">AWS</span> Certification Practice</h1>
+            <p>Log In</p>
         </div>
 
         <div class="error-message" id="error-message">
-            ユーザー名またはパスワードが正しくありません
+            Incorrect username or password.
         </div>
 
         <form id="login-form" onsubmit="handleLogin(event)">
             <div class="form-group">
-                <label for="username">ユーザー名</label>
-                <input 
-                    type="text" 
-                    id="username" 
-                    name="username" 
-                    placeholder="ユーザー名を入力"
+                <label for="username">Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="Enter your username"
                     required
                 >
             </div>
 
             <div class="form-group">
-                <label for="password">パスワード</label>
+                <label for="password">Password</label>
                 <div class="password-toggle">
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        placeholder="パスワードを入力"
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
                         required
                     >
                     <button 
@@ -533,35 +531,33 @@
             <div class="form-options">
                 <div class="remember-me">
                     <input type="checkbox" id="remember" name="remember">
-                    <label for="remember">ログイン状態を保持</label>
+                    <label for="remember">Keep me logged in</label>
                 </div>
-                <a href="forgot-password.html" class="forgot-password">パスワードを忘れた方</a>
+                <a href="forgot-password.html" class="forgot-password">Forgot password?</a>
             </div>
 
-            <button type="submit" class="submit-btn">ログイン</button>
+            <button type="submit" class="submit-btn">Log In</button>
         </form>
 
         <div class="divider">
-            <span>または</span>
+            <span>or</span>
         </div>
 
         <div class="signup-link">
-            アカウントをお持ちでない方は <a href="signup.html">新規登録</a>
+            Don't have an account? <a href="signup.html">Sign Up</a>
         </div>
     </div></div>
 
-    <!-- フッター -->
     <footer>
         <div class="footer-container">
-            <a href="../index.html" class="footer-link">スキマ・ラーニング トップページ</a>
+            <a href="../index.html" class="footer-link">Sukima Learning Top Page</a>
             <div class="footer-copyright">
-                &copy; 2026 スキマ・ラーニング. All rights reserved.
+                &copy; 2026 Sukima Learning. All rights reserved.
             </div>
         </div>
     </footer>
 
     <script>
-        // パスワード表示/非表示の切り替え
         function togglePassword() {
             const passwordInput = document.getElementById('password');
             const toggleBtn = document.querySelector('.password-toggle-btn');
@@ -577,7 +573,6 @@
 
         const API_URL = 'https://sukima-learning.onrender.com/api/auth';
 
-        // ログイン処理
         async function handleLogin(event) {
             event.preventDefault();
             
@@ -586,9 +581,8 @@
             const errorMessage = document.getElementById('error-message');
             const submitBtn = document.querySelector('.submit-btn');
 
-            // ボタンを無効化
             submitBtn.disabled = true;
-            submitBtn.textContent = 'ログイン中...';
+            submitBtn.textContent = 'Logging in...';
 
             try {
                 const response = await fetch(`${API_URL}/login`, {
@@ -602,11 +596,9 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    // トークンを保存
                     localStorage.setItem('accessToken', data.accessToken);
                     localStorage.setItem('refreshToken', data.refreshToken);
                     
-                    // ユーザー情報も保存（オフライン時のフォールバック用）
                     if (data.user) {
                         localStorage.setItem('username', data.user.username);
                         localStorage.setItem('membershipLevel', data.user.membership_level || 'Free');
@@ -615,33 +607,30 @@
                         }
                     }
                     
-                    // トップページにリダイレクト
                     window.location.href = 'index.html';
                 } else {
-                    // ログイン失敗
-                    errorMessage.textContent = data.error || 'ログインに失敗しました';
+                    errorMessage.textContent = data.error || 'Login failed.';
                     errorMessage.classList.add('show');
                     setTimeout(() => {
                         errorMessage.classList.remove('show');
                     }, 3000);
                     
                     submitBtn.disabled = false;
-                    submitBtn.textContent = 'ログイン';
+                    submitBtn.textContent = 'Log In';
                 }
             } catch (error) {
                 console.error('Login error:', error);
-                errorMessage.textContent = 'サーバーとの通信に失敗しました';
+                errorMessage.textContent = 'Failed to connect to the server.';
                 errorMessage.classList.add('show');
                 setTimeout(() => {
                     errorMessage.classList.remove('show');
                 }, 3000);
                 
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'ログイン';
+                submitBtn.textContent = 'Log In';
             }
         }
 
-        // Enterキーでログイン
         document.getElementById('password').addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
                 handleLogin(event);

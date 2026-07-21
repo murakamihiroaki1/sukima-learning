@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学習履歴 - AWS認定試験対策 | スキマラーニング</title>
-    <meta name="description" content="あなたのAWS認定試験学習履歴を確認できます。正解率や苦手問題を把握して効率よく学習を進めましょう。">
+    <title>Study History - AWS Certification Practice | Sukima Learning</title>
+    <meta name="description" content="Review your AWS certification study history. Track your accuracy and weak areas to study more efficiently.">
     <link rel="stylesheet" href="nav-styles.css">
     <style>
         html { height: 100%; }
@@ -178,16 +178,15 @@
     </style>
 </head>
 <body>
-    <!-- ナビゲーション -->
     <nav class="nav-header">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">AWS認定試験対策</a>
+            <a href="index.html" class="nav-logo">AWS Certification Practice</a>
             <div class="hamburger" onclick="document.getElementById('navMenu').classList.toggle('open')">
                 <span></span><span></span><span></span>
             </div>
             <div class="nav-menu" id="navMenu">
                 <div class="nav-item dropdown">
-                    <div class="nav-link dropdown-toggle">認定資格</div>
+                    <div class="nav-link dropdown-toggle">Certifications</div>
                     <div class="dropdown-menu">
                         <a href="clf.html" class="dropdown-item"><div class="dropdown-item-title">CLF - Cloud Practitioner</div></a>
                         <a href="aif.html" class="dropdown-item"><div class="dropdown-item-title">AIF - AI Practitioner</div></a>
@@ -196,18 +195,18 @@
                     </div>
                 </div>
                 <div class="nav-item">
-                    <a href="history.html" class="nav-link active">学習履歴</a>
+                    <a href="history.html" class="nav-link active">Study History</a>
                 </div>
                 <div class="nav-item">
-                    <a href="pricing.html" class="nav-link">料金</a>
+                    <a href="pricing.html" class="nav-link">Pricing</a>
                 </div>
                 <div class="nav-item">
                     <a href="faq.html" class="nav-link">FAQ</a>
                 </div>
                 <div class="nav-item auth-buttons">
                     <div class="logged-out">
-                        <a href="login.html" class="auth-btn login">ログイン</a>
-                        <a href="signup.html" class="auth-btn signup">新規登録</a>
+                        <a href="login.html" class="auth-btn login">Log In</a>
+                        <a href="signup.html" class="auth-btn signup">Sign Up</a>
                     </div>
                     <div class="logged-in">
                         <div class="user-info">
@@ -215,7 +214,7 @@
                             <span class="username" id="username"></span>
                             <span id="userPlan" style="padding:3px 8px; background:#FF9900; color:white; border-radius:10px; font-size:0.75em; font-weight:bold;"></span>
                         </div>
-                        <button class="auth-btn logout" onclick="handleLogout()">ログアウト</button>
+                        <button class="auth-btn logout" onclick="handleLogout()">Log Out</button>
                     </div>
                 </div>
             </div>
@@ -223,57 +222,50 @@
     </nav>
 
     <div class="page-content">
-        <h1>📊 学習履歴</h1>
-        <p class="page-subtitle">あなたの学習記録を確認しましょう</p>
+        <h1>📊 Study History</h1>
+        <p class="page-subtitle">Review your learning records</p>
 
-        <!-- 未ログイン時の表示 -->
         <div id="not-logged-in" style="display:none;">
             <div class="empty-state">
                 <div class="emoji">🔐</div>
-                <p>学習履歴を確認するにはログインが必要です</p>
-                <a href="login.html" style="display:inline-block; background:#FF9900; color:white; padding:12px 30px; border-radius:8px; text-decoration:none; font-weight:bold; margin-right:10px;">ログイン</a>
-                <a href="signup.html" style="display:inline-block; background:white; color:#FF9900; padding:12px 30px; border-radius:8px; text-decoration:none; font-weight:bold; border:2px solid #FF9900;">新規登録</a>
+                <p>Please log in to view your study history.</p>
+                <a href="login.html" style="display:inline-block; background:#FF9900; color:white; padding:12px 30px; border-radius:8px; text-decoration:none; font-weight:bold; margin-right:10px;">Log In</a>
+                <a href="signup.html" style="display:inline-block; background:white; color:#FF9900; padding:12px 30px; border-radius:8px; text-decoration:none; font-weight:bold; border:2px solid #FF9900;">Sign Up</a>
             </div>
         </div>
 
-        <!-- ログイン済みの表示 -->
         <div id="history-content" style="display:none;">
-            <!-- タブ -->
             <div class="tabs">
-                <button class="tab-btn active" onclick="switchTab('sessions', this)">学習セッション</button>
-                <button class="tab-btn" onclick="switchTab('stats', this)">統計・グラフ</button>
-                <button class="tab-btn" id="weak-tab-btn" onclick="switchTab('weak', this)">苦手問題</button>
+                <button class="tab-btn active" onclick="switchTab('sessions', this)">Study Sessions</button>
+                <button class="tab-btn" onclick="switchTab('stats', this)">Stats & Graphs</button>
+                <button class="tab-btn" id="weak-tab-btn" onclick="switchTab('weak', this)">Weak Questions</button>
             </div>
 
-            <!-- 試験フィルター -->
             <div class="exam-filter">
-                <button class="filter-btn active" onclick="setExamFilter('', this)">すべて</button>
+                <button class="filter-btn active" onclick="setExamFilter('', this)">All</button>
                 <button class="filter-btn" onclick="setExamFilter('clf', this)">CLF</button>
                 <button class="filter-btn" onclick="setExamFilter('aif', this)">AIF</button>
                 <button class="filter-btn" onclick="setExamFilter('saa', this)">SAA</button>
                 <button class="filter-btn" onclick="setExamFilter('dva', this)">DVA</button>
             </div>
 
-            <!-- タブ: セッション一覧 -->
             <div id="tab-sessions" class="tab-panel active">
-                <div id="sessions-container" class="loading">読み込み中…</div>
+                <div id="sessions-container" class="loading">Loading…</div>
             </div>
 
-            <!-- タブ: 統計 -->
             <div id="tab-stats" class="tab-panel">
-                <div id="stats-container" class="loading">読み込み中…</div>
+                <div id="stats-container" class="loading">Loading…</div>
             </div>
 
-            <!-- タブ: 苦手問題 -->
             <div id="tab-weak" class="tab-panel">
-                <div id="weak-container" class="loading">読み込み中…</div>
+                <div id="weak-container" class="loading">Loading…</div>
             </div>
         </div>
     </div>
 
     <footer>
         <div class="footer-container">
-            <p class="footer-copyright">© 2026 スキマラーニング. All rights reserved.</p>
+            <p class="footer-copyright">© 2026 Sukima Learning. All rights reserved.</p>
         </div>
     </footer>
 
@@ -312,7 +304,7 @@
         // ===== セッション一覧 =====
         async function loadSessions() {
             const container = document.getElementById('sessions-container');
-            container.innerHTML = '<div class="loading">読み込み中…</div>';
+            container.innerHTML = '<div class="loading">Loading…</div>';
 
             const sessions = await fetchStudySessions({ examType: currentExamFilter || undefined, limit: 50 });
 
@@ -320,8 +312,8 @@
                 container.innerHTML = `
                     <div class="empty-state">
                         <div class="emoji">📚</div>
-                        <p>まだ学習履歴がありません</p>
-                        <a href="clf.html">問題を解いてみよう</a>
+                        <p>No study history yet.</p>
+                        <a href="clf.html">Try some questions</a>
                     </div>`;
                 return;
             }
@@ -334,12 +326,12 @@
                 const accuracy = s.total_q > 0 ? Math.round((s.correct_q / s.total_q) * 100) : 0;
                 const color = accuracy >= 70 ? '#4CAF50' : accuracy >= 50 ? '#FF9900' : '#f44336';
                 const modeLabels = {
-                    'sequential': '番号順', 'random': 'ランダム',
-                    'category': 'カテゴリ別', 'mock-exam': '模擬試験'
+                    'sequential': 'Sequential', 'random': 'Random',
+                    'category': 'By Category', 'mock-exam': 'Mock Exam'
                 };
                 const modeLabel = modeLabels[s.mode] || s.mode;
                 const examLabel = (s.exam_type || '').toUpperCase();
-                const dateStr = new Date(s.created_at).toLocaleDateString('ja-JP', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+                const dateStr = new Date(s.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 
                 const card = document.createElement('div');
                 card.className = 'session-card';
@@ -351,11 +343,11 @@
                     </div>
                     <div class="session-score">
                         <div class="score-bar-wrap">
-                            <div class="score-text">${s.correct_q} / ${s.total_q} 問</div>
+                            <div class="score-text">${s.correct_q} / ${s.total_q}</div>
                             <div class="score-bar"><div class="score-fill" style="width:${accuracy}%; background:${color};"></div></div>
                         </div>
                         <div class="accuracy-label" style="color:${color}; font-weight:700;">${accuracy}%</div>
-                        ${s.elapsed_sec ? `<div class="elapsed">所要時間: ${formatElapsed(s.elapsed_sec)}</div>` : ''}
+                        ${s.elapsed_sec ? `<div class="elapsed">Time: ${formatElapsed(s.elapsed_sec)}</div>` : ''}
                     </div>`;
                 list.appendChild(card);
             });
@@ -366,7 +358,7 @@
         // ===== 統計 =====
         async function loadStats() {
             const container = document.getElementById('stats-container');
-            container.innerHTML = '<div class="loading">読み込み中…</div>';
+            container.innerHTML = '<div class="loading">Loading…</div>';
 
             const stats = await fetchStudyStats(currentExamFilter || undefined);
 
@@ -374,15 +366,14 @@
                 container.innerHTML = `
                     <div class="empty-state">
                         <div class="emoji">📈</div>
-                        <p>統計データがありません</p>
-                        <a href="clf.html">問題を解いてみよう</a>
+                        <p>No stats data yet.</p>
+                        <a href="clf.html">Try some questions</a>
                     </div>`;
                 return;
             }
 
             container.innerHTML = '';
 
-            // 統計カード
             const grid = document.createElement('div');
             grid.className = 'stats-grid';
             stats.forEach(st => {
@@ -391,22 +382,21 @@
                     <div class="stat-card">
                         <div class="stat-exam">${st.exam_type.toUpperCase()}</div>
                         <div class="stat-value" style="color:${color};">${st.overall_accuracy}%</div>
-                        <div class="stat-label">総合正解率</div>
+                        <div class="stat-label">Overall Accuracy</div>
                         <div class="stat-row">
-                            <div class="stat-item"><div class="v">${st.session_count}</div><div class="l">セッション数</div></div>
-                            <div class="stat-item"><div class="v">${st.total_questions}</div><div class="l">総問題数</div></div>
-                            <div class="stat-item"><div class="v">${st.total_correct}</div><div class="l">正解数</div></div>
+                            <div class="stat-item"><div class="v">${st.session_count}</div><div class="l">Sessions</div></div>
+                            <div class="stat-item"><div class="v">${st.total_questions}</div><div class="l">Questions</div></div>
+                            <div class="stat-item"><div class="v">${st.total_correct}</div><div class="l">Correct</div></div>
                         </div>
                     </div>`;
             });
             container.appendChild(grid);
 
-            // 直近スコアグラフ（試験別）
             stats.forEach(st => {
                 if (!st.recent_sessions || st.recent_sessions.length < 2) return;
                 const section = document.createElement('div');
                 section.className = 'chart-section';
-                section.innerHTML = `<div class="chart-title">${st.exam_type.toUpperCase()} — 直近の正解率推移</div>
+                section.innerHTML = `<div class="chart-title">${st.exam_type.toUpperCase()} — Recent Accuracy Trend</div>
                     <div class="chart-container">${buildSparklineSVG(st.recent_sessions.reverse())}</div>`;
                 container.appendChild(section);
             });
@@ -420,20 +410,20 @@
             if (level === 'free') {
                 container.innerHTML = `
                     <div class="lock-banner">
-                        <p>🔒 苦手問題リストは <strong>Standard プラン以上</strong> で利用できます。<br>
-                        <a href="pricing.html">プランをアップグレード</a> して、弱点を効率よく克服しましょう。</p>
+                        <p>🔒 The weak questions list is available with a <strong>Standard plan or higher</strong>.<br>
+                        <a href="pricing.html">Upgrade your plan</a> to efficiently overcome your weak areas.</p>
                     </div>`;
                 return;
             }
 
-            container.innerHTML = '<div class="loading">読み込み中…</div>';
+            container.innerHTML = '<div class="loading">Loading…</div>';
             const weakQuestions = await fetchWeakQuestions(currentExamFilter || undefined);
 
             if (!weakQuestions.length) {
                 container.innerHTML = `
                     <div class="empty-state">
                         <div class="emoji">🎉</div>
-                        <p>苦手問題データがまだありません。<br>同じ問題を2回以上解くとここに表示されます。</p>
+                        <p>No weak question data yet.<br>Answer the same question at least twice for it to appear here.</p>
                     </div>`;
                 return;
             }
@@ -450,11 +440,11 @@
                         <div class="weak-rank">${i + 1}</div>
                         <div class="weak-info">
                             <div class="weak-exam">${q.exam_type.toUpperCase()}</div>
-                            <div class="weak-qid"><a href="${link}" style="color:#333; text-decoration:none;">問題 #${q.question_id}</a></div>
+                            <div class="weak-qid"><a href="${link}" style="color:#333; text-decoration:none;">Q #${q.question_id}</a></div>
                         </div>
                         <div>
                             <div class="weak-accuracy ${accuracyClass}">${q.accuracy}%</div>
-                            <div class="weak-total">${q.correct}/${q.total} 正解</div>
+                            <div class="weak-total">${q.correct}/${q.total} correct</div>
                         </div>
                     </div>`;
             });
@@ -465,7 +455,7 @@
         // ===== ユーティリティ =====
         function formatElapsed(sec) {
             const m = Math.floor(sec / 60), s = sec % 60;
-            return `${m}分${s.toString().padStart(2, '0')}秒`;
+            return `${m}m ${s.toString().padStart(2, '0')}s`;
         }
 
         function examPageLink(examType) {
@@ -522,7 +512,7 @@
                 }
             } catch (e) {
                 // ネットワークエラー時も localStorageを信頼してログイン済みとして表示
-                const username = localStorage.getItem('username') || 'ユーザー';
+                const username = localStorage.getItem('username') || 'User';
                 const level = localStorage.getItem('membershipLevel') || 'Free';
                 showLoggedIn(username, level);
                 document.getElementById('history-content').style.display = 'block';
