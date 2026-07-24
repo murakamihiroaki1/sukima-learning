@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -1330,7 +1330,7 @@
             // DVA縺ｮ蜷域ｼ繝ｩ繧､繝ｳ: 72%
             const passingScore = 72;
             const isPassed = parseFloat(accuracyRate) >= passingScore;
-            const resultMessage = isPassed ? '笨・Pass' : '笶・Fail';
+            const resultMessage = isPassed ? '✅ Pass' : '❌ Fail';
             const resultColor = isPassed ? '#4CAF50' : '#f44336';
 
             // 蜷・撫鬘後・豁｣隱､繝・・繝悶Ν陦後ｒ逕滓・
@@ -1341,7 +1341,7 @@
                 const correctLabel = labels[q.correctAnswer] || '-';
                 const userLabel = userAnswer !== null ? (labels[userAnswer] || '-') : 'N/A';
                 const rowBg = isCorrect ? '#f1f8f4' : (userAnswer === null ? '#fafafa' : '#fff5f5');
-                const icon = isCorrect ? '箝・ : (userAnswer === null ? '・・ : '笶・);
+                const icon = isCorrect ? '⭕' : (userAnswer === null ? '－' : '❌');
                 const questionText = q.question.length > 40 ? q.question.slice(0, 40) + '窶ｦ' : q.question;
                 return `<tr style="background:${rowBg}; border-bottom: 1px solid #e0e0e0;">
                     <td style="padding:8px 10px; text-align:center; font-weight:bold; color:#666;">${i + 1}</td>
