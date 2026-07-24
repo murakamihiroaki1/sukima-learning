@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,7 @@
             flex-direction: column;
         }
 
-        /* 繝翫ン繧ｲ繝ｼ繧ｷ繝ｧ繝ｳ繝倥ャ繝繝ｼ */
+        /* ナビゲーションヘッダー */
         .nav-header {
             position: fixed;
             top: 0;
@@ -708,7 +708,7 @@
     </script>
 </head>
 <body>
-    <!-- 繝翫ン繧ｲ繝ｼ繧ｷ繝ｧ繝ｳ繝倥ャ繝繝ｼ -->
+    <!-- ナビゲーションヘッダー -->
     <nav class="nav-header">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">AWS Certification Practice</a>
@@ -741,6 +741,12 @@
                         </a>
                         <a href="mla.html" class="dropdown-item">
                             <div class="dropdown-item-title">MLA - Machine Learning Engineer Associate</div>
+                        </a>
+                        <a href="sap.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SAP - Solutions Architect Professional</div>
+                        </a>
+                        <a href="scs.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SCS - Security Specialty</div>
                         </a>
                     </div>
                 </div>
@@ -857,7 +863,7 @@
         let selectedRange = null;
         let isMockExam = false; // 讓｡謫ｬ隧ｦ鬨薙Δ繝ｼ繝峨ヵ繝ｩ繧ｰ
         
-        // 蜃ｺ鬘梧婿豕輔ｒ驕ｸ謚・
+        // Select question mode
         async function selectMode(mode, clickedBtn) {
             selectedMode = mode;
             selectedCategory = null;
@@ -1024,11 +1030,11 @@
                     questions = filteredQuestions;
                 }
             } else if (selectedMode === 'random') {
-                // 繝ｩ繝ｳ繝繝10蝠・
+                // ランダム10問
                 const shuffled = [...awsMLAQuestions].sort(() => Math.random() - 0.5);
                 questions = shuffled.slice(0, 10);
             } else if (selectedMode === 'mock-exam') {
-                // 讓｡謫ｬ隧ｦ鬨薙Δ繝ｼ繝・ 繝ｩ繝ｳ繝繝65蝠・
+                // 模擬試験モード: ランダム65問
                 const shuffled = [...awsMLAQuestions].sort(() => Math.random() - 0.5);
                 questions = shuffled.slice(0, Math.min(65, awsMLAQuestions.length));
             }
@@ -1116,7 +1122,7 @@
                 }
                 explanationDiv.classList.add('show');
                 
-                // 蜿り・Μ繝ｳ繧ｯ繧定｡ｨ遉ｺ
+                // 参考リンクを表示
                 const referenceLinksContainer = document.getElementById('reference-links');
                 referenceLinksContainer.innerHTML = '';
                 
@@ -1138,7 +1144,7 @@
                     });
                     referenceDiv.classList.add('show');
                 } else if (question.reference) {
-                    // 蠕梧婿莠呈鋤諤ｧ: 蜊倅ｸ縺ｮreference繝輔ぅ繝ｼ繝ｫ繝峨ｂ繧ｵ繝昴・繝・
+                    // 後方互換性: 単一のreferenceフィールドもサポート
                     const linkDiv = document.createElement('div');
                     const link = document.createElement('a');
                     link.href = question.reference;
@@ -1233,7 +1239,7 @@
                 }, 150);
             }
             
-            // 蜿り・Μ繝ｳ繧ｯ繧定｡ｨ遉ｺ
+            // 参考リンクを表示
             const referenceLinksContainer = document.getElementById('reference-links');
             referenceLinksContainer.innerHTML = '';
             
@@ -1255,7 +1261,7 @@
                 });
                 document.getElementById('reference').classList.add('show');
             } else if (question.reference) {
-                // 蠕梧婿莠呈鋤諤ｧ: 蜊倅ｸ縺ｮreference繝輔ぅ繝ｼ繝ｫ繝峨ｂ繧ｵ繝昴・繝・
+                // 後方互換性: 単一のreferenceフィールドもサポート
                 const linkDiv = document.createElement('div');
                 const link = document.createElement('a');
                 link.href = question.reference;
@@ -1346,7 +1352,7 @@
                 </tr>`;
             }).join('');
 
-            // 邨先棡繝｢繝ｼ繝繝ｫ繧剃ｽ懈・
+            // 結果モーダルを作成
             const modal = document.createElement('div');
             modal.style.cssText = `
                 position: fixed; top: 0; left: 0; right: 0; bottom: 0;
@@ -1358,7 +1364,7 @@
             modal.innerHTML = `
                 <div style="background: white; border-radius: 15px; max-width: 800px; width: 100%; box-shadow: 0 10px 40px rgba(0,0,0,0.3); overflow: hidden;">
 
-                    <!-- 繝倥ャ繝繝ｼ -->
+                    <!-- ヘッダー -->
                     <div style="padding: 30px 40px 20px; text-align: center; border-bottom: 1px solid #e0e0e0;">
                         <h2 style="margin: 0 0 20px; color: #333; font-size: 1.8em;">投 Mock Exam Results</h2>
 
@@ -1435,7 +1441,7 @@
         }
         }
 
-        // 蟄ｦ鄙貞ｱ･豁ｴ繧剃ｿ晏ｭ假ｼ育分蜿ｷ鬆・・繝ｩ繝ｳ繝繝繝ｻ繧ｫ繝・ざ繝ｪ邨ゆｺ・凾・・
+        // 学習履歴を保存（番号順・ランダム・カテゴリ終了時）
         async function _saveSessionOnBack() {
             if (!questions || questions.length === 0) return;
             if (!userAnswers.some(a => a !== null)) return;
@@ -1699,12 +1705,12 @@
                 const shuffled = [...awsMLAQuestions].sort(() => Math.random() - 0.5);
                 baseQuestions = shuffled.slice(0, 10);
             } else if (selectedMode === 'mock-exam') {
-                // 讓｡謫ｬ隧ｦ鬨薙Δ繝ｼ繝・ 繝ｩ繝ｳ繝繝縺ｫ65蝠・
+                // 模擬試験モード: ランダムに65問
                 const shuffled = [...awsMLAQuestions].sort(() => Math.random() - 0.5);
                 baseQuestions = shuffled.slice(0, 65);
             }
             
-            // Advanced繝励Λ繝ｳ縺ｮ蝣ｴ蜷医．VA隧ｦ鬨薙・蜈ｨ蝠上い繧ｯ繧ｻ繧ｹ蜿ｯ閭ｽ縺ｪ縺ｮ縺ｧ繝輔ぅ繝ｫ繧ｿ繝ｪ繝ｳ繧ｰ繧偵せ繧ｭ繝・・
+            // Advancedプランの場合、DVA試験は全問アクセス可能なのでフィルタリングをスキップ
             if (isAdvanced || selectedMode === 'mock-exam') {
                 questions = baseQuestions;
             } else {
@@ -1770,4 +1776,5 @@
 
 </body>
 </html>
+
 

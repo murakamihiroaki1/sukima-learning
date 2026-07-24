@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS DOP Practice Questions - DevOps Engineer Professional Free Practice Exam | Sukima Learning</title>
+    <meta name="description" content="Free practice questions for the AWS Certified DevOps Engineer - Professional (DOP) exam. Build advanced AWS DevOps, automation, monitoring, and security skills with detailed explanations.">
+    <link rel="canonical" href="https://sukima-learning.com/aws/dop.html">
+    <!-- OGP -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AWS DOP Practice Questions - DevOps Engineer Professional Free Practice Exam | Sukima Learning">
+    <meta property="og:description" content="Free practice questions for the AWS Certified DevOps Engineer - Professional (DOP) exam. Build advanced AWS DevOps, automation, monitoring, and security skills with detailed explanations.">
+    <meta property="og:url" content="https://sukima-learning.com/aws/dop.html">
+    <meta property="og:site_name" content="Sukima Learning">
+    <meta property="og:locale" content="en_US">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="AWS DOP Practice Questions - DevOps Engineer Professional Free Practice Exam | Sukima Learning">
+    <meta name="twitter:description" content="Free practice questions for the AWS Certified DevOps Engineer - Professional (DOP) exam. Build advanced AWS DevOps, automation, monitoring, and security skills with detailed explanations.">
+    <link rel="stylesheet" href="nav-styles.css">
+
+    <style>
+        html {
+            height: 100%;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-bottom: 1px solid #e0e0e0;
+            z-index: 1000;
+            padding: 15px 30px;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333333;
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 5px 10px;
+        }
+
+        .nav-link:hover {
+            color: #FF9900;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dropdown-toggle::after {
+            content: "▼";
+            font-size: 0.7em;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+            min-width: 250px;
+            padding: 10px 0;
+            display: none;
+            margin-top: 5px;
+        }
+
+        .dropdown:hover .dropdown-menu,
+        .dropdown-menu:hover {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background: #f5f5f5;
+            color: #FF9900;
+        }
+
+        .dropdown-item-title {
+            font-weight: bold;
+            font-size: 1.05em;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .auth-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .auth-btn.login {
+            background: white;
+            color: #333333;
+            border: 1px solid #e0e0e0;
+        }
+
+        .auth-btn.login:hover {
+            background: #f5f5f5;
+            border-color: #333333;
+        }
+
+        .auth-btn.signup {
+            background: #FF9900;
+            color: white;
+            border: 1px solid #FF9900;
+        }
+
+        .auth-btn.signup:hover {
+            background: #e68a00;
+            border-color: #e68a00;
+        }
+
+        .logged-out {
+            display: flex;
+            gap: 10px;
+        }
+
+        .logged-in {
+            display: none;
+            gap: 10px;
+        }
+
+        .page-content {
+            flex: 1;
+            padding: 60px 20px 40px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            margin-top: 40px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .exam-info {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .exam-info h2 {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .exam-info p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #FF9900;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #e68a00;
+        }
+
+        .btn-secondary {
+            background: #f1f3f5;
+            color: #333;
+            border: 1px solid #dee2e6;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+        .question-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+            background: #fff;
+        }
+
+        .question-number {
+            color: #FF9900;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .question-text {
+            font-size: 1.1em;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 20px;
+            white-space: pre-line;
+        }
+
+        .options {
+            display: grid;
+            gap: 12px;
+        }
+
+        .option {
+            border: 1px solid #dcdcdc;
+            border-radius: 6px;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: #fff;
+        }
+
+        .option:hover {
+            border-color: #FF9900;
+            background: #fff8f0;
+        }
+
+        .option.selected {
+            border-color: #FF9900;
+            background: #fff8f0;
+        }
+
+        .option.correct {
+            border-color: #2e7d32;
+            background: #edf7ed;
+        }
+
+        .option.incorrect {
+            border-color: #c62828;
+            background: #fdeeee;
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            background: #f8f9fa;
+            display: none;
+        }
+
+        .result-box h3 {
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .result-box p,
+        .result-box li {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .references {
+            margin-top: 12px;
+        }
+
+        .references a {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+
+        .references a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-nav {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .footer-nav a {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+
+        .footer-nav a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .nav-header {
+                padding: 12px 16px;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .container {
+                padding: 24px;
+            }
+
+            .header h1 {
+                font-size: 1.7em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="nav-header">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">Sukima Learning</a>
+            <div class="nav-menu" id="navMenu">
+                <div class="nav-item dropdown">
+                    <div class="nav-link dropdown-toggle">Certifications</div>
+                    <div class="dropdown-menu">
+                        <a href="clf.html" class="dropdown-item"><div class="dropdown-item-title">CLF - Cloud Practitioner</div></a>
+                        <a href="aif.html" class="dropdown-item"><div class="dropdown-item-title">AIF - AI Practitioner</div></a>
+                        <a href="saa.html" class="dropdown-item"><div class="dropdown-item-title">SAA - Solutions Architect Associate</div></a>
+                        <a href="dva.html" class="dropdown-item"><div class="dropdown-item-title">DVA - Developer Associate</div></a>
+                        <a href="soa.html" class="dropdown-item"><div class="dropdown-item-title">SOA - SysOps Administrator Associate</div></a>
+                        <a href="dea.html" class="dropdown-item"><div class="dropdown-item-title">DEA - Data Engineer Associate</div></a>
+                        <a href="mla.html" class="dropdown-item"><div class="dropdown-item-title">MLA - Machine Learning Engineer Associate</div></a>
+                        <a href="sap.html" class="dropdown-item"><div class="dropdown-item-title">SAP - Solutions Architect Professional</div></a>
+                        <a href="scs.html" class="dropdown-item"><div class="dropdown-item-title">SCS - Security Specialty</div></a>
+                        <a href="dop.html" class="dropdown-item"><div class="dropdown-item-title">DOP - DevOps Engineer Professional</div></a>
+                    </div>
+                </div>
+                <div class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></div>
+                <div class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></div>
+            </div>
+            <div class="auth-buttons">
+                <div class="logged-out" id="loggedOutButtons">
+                    <a href="login.html" class="auth-btn login">Login</a>
+                    <a href="signup.html" class="auth-btn signup">Sign Up</a>
+                </div>
+                <div class="logged-in" id="loggedInButtons">
+                    <a href="history.html" class="auth-btn login">History</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <div class="container">
+            <div class="header">
+                <h1>AWS DOP Practice Questions</h1>
+                <p>AWS Certified DevOps Engineer - Professional (DOP-C02)</p>
+            </div>
+
+            <div class="exam-info">
+                <h2>About this set</h2>
+                <p>Practice 10 English questions focused on DevOps automation, infrastructure as code, monitoring, resilience, incident response, and security topics aligned to the AWS Certified DevOps Engineer - Professional exam guide.</p>
+            </div>
+
+            <div class="controls">
+                <button id="shuffleBtn" class="btn btn-secondary" type="button">Shuffle questions</button>
+                <button id="resetBtn" class="btn btn-secondary" type="button">Reset answers</button>
+            </div>
+
+            <div id="questionsContainer"></div>
+
+            <div class="footer-nav">
+                <a href="index.html">← Back to AWS exams</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="membership-access.js"></script>
+    <script src="questions-dop.js"></script>
+    <script>
+        const questions = [...awsDOPQuestions];
+        const userAnswers = new Map();
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function isCorrect(question, selectedIndex) {
+            if (Array.isArray(question.correctAnswer)) {
+                return question.correctAnswer.includes(selectedIndex);
+            }
+            return question.correctAnswer === selectedIndex;
+        }
+
+        function isQuestionFullyCorrect(question, selectedAnswers) {
+            if (!Array.isArray(question.correctAnswer)) {
+                return selectedAnswers.length === 1 && selectedAnswers[0] === question.correctAnswer;
+            }
+            const correct = [...question.correctAnswer].sort((a, b) => a - b);
+            const selected = [...selectedAnswers].sort((a, b) => a - b);
+            return correct.length === selected.length && correct.every((value, index) => value === selected[index]);
+        }
+
+        function toggleAnswer(questionId, optionIndex, isMultiSelect) {
+            const current = userAnswers.get(questionId) || [];
+            let next;
+
+            if (isMultiSelect) {
+                if (current.includes(optionIndex)) {
+                    next = current.filter((index) => index !== optionIndex);
+                } else {
+                    next = [...current, optionIndex];
+                }
+            } else {
+                next = [optionIndex];
+            }
+
+            userAnswers.set(questionId, next);
+            renderQuestions();
+        }
+
+        function getOptionLabel(index) {
+            return String.fromCharCode(65 + index);
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
+
+            questions.forEach((question, questionIndex) => {
+                const selectedAnswers = userAnswers.get(question.id) || [];
+                const multiSelect = Array.isArray(question.correctAnswer);
+                const showResult = selectedAnswers.length > 0;
+
+                const card = document.createElement('div');
+                card.className = 'question-card';
+
+                const optionsHtml = question.options.map((option, optionIndex) => {
+                    let className = 'option';
+
+                    if (selectedAnswers.includes(optionIndex)) {
+                        className += ' selected';
+                    }
+
+                    if (showResult) {
+                        const correct = isCorrect(question, optionIndex);
+                        if (correct) {
+                            className += ' correct';
+                        } else if (selectedAnswers.includes(optionIndex)) {
+                            className += ' incorrect';
+                        }
+                    }
+
+                    return `
+                        <div class="${className}" data-question-id="${question.id}" data-option-index="${optionIndex}">
+                            <strong>${getOptionLabel(optionIndex)})</strong> ${option}
+                        </div>
+                    `;
+                }).join('');
+
+                const optionExplanationItems = question.optionExplanations
+                    .map((text, idx) => `<li><strong>${getOptionLabel(idx)}:</strong> ${text}</li>`)
+                    .join('');
+
+                const referencesHtml = question.references
+                    .map((ref) => `<li><a href="${ref.url}" target="_blank" rel="noopener noreferrer">${ref.title}</a></li>`)
+                    .join('');
+
+                const resultTitle = showResult
+                    ? (isQuestionFullyCorrect(question, selectedAnswers) ? 'Correct' : 'Review')
+                    : '';
+
+                card.innerHTML = `
+                    <div class="question-number">Question ${questionIndex + 1} · ${question.category}</div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">${optionsHtml}</div>
+                    <div class="result-box" style="display:${showResult ? 'block' : 'none'};">
+                        <h3>${resultTitle}</h3>
+                        <p>${question.explanation}</p>
+                        <ul>${optionExplanationItems}</ul>
+                        <div class="references">
+                            <strong>References</strong>
+                            <ul>${referencesHtml}</ul>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+
+            container.querySelectorAll('.option').forEach((element) => {
+                element.addEventListener('click', () => {
+                    const questionId = Number(element.dataset.questionId);
+                    const optionIndex = Number(element.dataset.optionIndex);
+                    const question = questions.find((item) => item.id === questionId);
+                    toggleAnswer(questionId, optionIndex, Array.isArray(question.correctAnswer));
+                });
+            });
+        }
+
+        document.getElementById('shuffleBtn').addEventListener('click', () => {
+            shuffleArray(questions);
+            userAnswers.clear();
+            renderQuestions();
+        });
+
+        document.getElementById('resetBtn').addEventListener('click', () => {
+            userAnswers.clear();
+            renderQuestions();
+        });
+
+        renderQuestions();
+    </script>
+</body>
+</html>

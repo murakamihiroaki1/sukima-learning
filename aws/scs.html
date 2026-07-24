@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AWS SOA Practice Questions - SysOps Administrator Associate Free Practice Exam | Sukima Learning</title>
-    <meta name="description" content="Free practice questions for the AWS Certified SysOps Administrator Associate (SOA) exam. Build AWS cloud operations skills with question sets you can study anytime with detailed explanations.">
-    <link rel="canonical" href="https://sukima-learning.com/aws/soa.html">
+    <title>AWS SCS Practice Questions - Security Specialty Free Practice Exam | Sukima Learning</title>
+    <meta name="description" content="Free practice questions for the AWS Certified Security - Specialty (SCS) exam. Master AWS security services and best practices with question sets you can study anytime with detailed explanations.">
+    <link rel="canonical" href="https://sukima-learning.com/aws/sap.html">
     <!-- OGP -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="AWS SOA Practice Questions - SysOps Administrator Associate Free Practice Exam | Sukima Learning">
-    <meta property="og:description" content="Free practice questions for the AWS Certified SysOps Administrator Associate (SOA) exam. Build AWS cloud operations skills with question sets you can study anytime with detailed explanations.">
-    <meta property="og:url" content="https://sukima-learning.com/aws/soa.html">
+    <meta property="og:title" content="AWS SCS Practice Questions - Security Specialty Free Practice Exam | Sukima Learning">
+    <meta property="og:description" content="Free practice questions for the AWS Certified Security - Specialty (SCS) exam. Master AWS security services and best practices with question sets you can study anytime with detailed explanations.">
+    <meta property="og:url" content="https://sukima-learning.com/aws/sap.html">
     <meta property="og:site_name" content="Sukima Learning">
     <meta property="og:locale" content="en_US">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="AWS SOA Practice Questions - SysOps Administrator Associate Free Practice Exam | Sukima Learning">
-    <meta name="twitter:description" content="Free practice questions for the AWS Certified SysOps Administrator Associate (SOA) exam. Build AWS cloud operations skills with question sets you can study anytime with detailed explanations.">
+    <meta name="twitter:title" content="AWS SCS Practice Questions - Security Specialty Free Practice Exam | Sukima Learning">
+    <meta name="twitter:description" content="Free practice questions for the AWS Certified Security - Specialty (SCS) exam. Master AWS security services and best practices with question sets you can study anytime with detailed explanations.">
     <link rel="stylesheet" href="nav-styles.css">
 
     <style>
@@ -782,8 +782,8 @@
     <div class="container">
         
         <div class="header">
-            <h1><span class="aws-logo">AWS</span> SOA Practice Questions</h1>
-            <p>SysOps Administrator Associate Exam Prep</p>
+            <h1><span class="aws-logo">AWS</span> SCS Practice Questions</h1>
+            <p>Security - Specialty Exam Prep</p>
         </div>
 
         <div id="set-selection-section">
@@ -849,7 +849,7 @@
         </div>
     </div>
 
-    <script src="questions-soa.js"></script>
+    <script src="questions-scs.js"></script>
     <script src="membership-access.js"></script>
     <script src="study-history.js"></script>
     <script>
@@ -884,7 +884,7 @@
             
             if (mode === 'sequential') {
                 // 逡ｪ蜿ｷ鬆・ 蜈医↓UI繧定｡ｨ遉ｺ縺励※縺九ｉ繧｢繧ｯ繧ｻ繧ｹ蛻ｶ蠕｡繧帝←逕ｨ
-                const totalQuestions = awsSOAQuestions.length;
+                const totalQuestions = awsSCSQuestions.length;
                 const sequentialButtons = document.getElementById('sequential-buttons');
                 sequentialButtons.innerHTML = '';
                 
@@ -936,11 +936,11 @@
                         window.location.href = 'pricing.html';
                         return;
                     }
-                    const categories = [...new Set(awsSOAQuestions.map(q => q.category).filter(Boolean))].sort();
+                    const categories = [...new Set(awsSCSQuestions.map(q => q.category).filter(Boolean))].sort();
                     const catButtons = document.getElementById('category-buttons');
                     catButtons.innerHTML = '';
                     categories.forEach(cat => {
-                        const count = awsSOAQuestions.filter(q => q.category === cat).length;
+                        const count = awsSCSQuestions.filter(q => q.category === cat).length;
                         const btn = document.createElement('button');
                         btn.className = 'set-btn';
                         btn.textContent = `${cat} (${count} Qs)`;
@@ -1006,7 +1006,7 @@
             selectedRange = null;
             document.querySelectorAll('#category-buttons .set-btn').forEach(b => b.classList.remove('active'));
             if (btnEl) btnEl.classList.add('active');
-            const count = awsSOAQuestions.filter(q => q.category === category).length;
+            const count = awsSCSQuestions.filter(q => q.category === category).length;
             document.getElementById('set-info').textContent = `"${category}" selected (${count} questions)`;
             document.getElementById('start-quiz-btn').disabled = false;
         }
@@ -1019,11 +1019,11 @@
             if (selectedMode === 'sequential') {
                 // 逡ｪ蜿ｷ鬆・
                 if (!selectedRange) return;
-                questions = awsSOAQuestions.slice(selectedRange.start, selectedRange.end);
+                questions = awsSCSQuestions.slice(selectedRange.start, selectedRange.end);
             } else if (selectedMode === 'category') {
                 // 繧ｫ繝・ざ繝ｪ蛻･
                 if (!selectedCategory) return;
-                const filteredQuestions = awsSOAQuestions.filter(q => q.category === selectedCategory);
+                const filteredQuestions = awsSCSQuestions.filter(q => q.category === selectedCategory);
                 if (selectedRange) {
                     questions = filteredQuestions.slice(selectedRange.start, selectedRange.end);
                 } else {
@@ -1031,12 +1031,12 @@
                 }
             } else if (selectedMode === 'random') {
                 // ランダム10問
-                const shuffled = [...awsSOAQuestions].sort(() => Math.random() - 0.5);
+                const shuffled = [...awsSCSQuestions].sort(() => Math.random() - 0.5);
                 questions = shuffled.slice(0, 10);
             } else if (selectedMode === 'mock-exam') {
                 // 模擬試験モード: ランダム65問
-                const shuffled = [...awsSOAQuestions].sort(() => Math.random() - 0.5);
-                questions = shuffled.slice(0, Math.min(65, awsSOAQuestions.length));
+                const shuffled = [...awsSCSQuestions].sort(() => Math.random() - 0.5);
+                questions = shuffled.slice(0, Math.min(65, awsSCSQuestions.length));
             }
             
             currentQuestionIndex = 0;
@@ -1432,7 +1432,7 @@
             // 蟄ｦ鄙貞ｱ･豁ｴ繧剃ｿ晏ｭ・
             const _membership = await getMembershipInfo();
             await saveStudyHistory({
-                examType: 'soa', mode: selectedMode,
+                examType: 'scs', mode: selectedMode,
                 category: selectedCategory, totalQ: questions.length, correctQ: score,
                 elapsedSec: null,
                 questions, userAnswers,
@@ -1447,7 +1447,7 @@
             if (!userAnswers.some(a => a !== null)) return;
             const _membership = await getMembershipInfo();
             await saveStudyHistory({
-                examType: 'soa', mode: selectedMode,
+                examType: 'scs', mode: selectedMode,
                 category: selectedCategory, totalQ: questions.length, correctQ: score,
                 elapsedSec: null,
                 questions, userAnswers,
@@ -1692,21 +1692,21 @@
             
             if (selectedMode === 'sequential') {
                 if (!selectedRange) return;
-                baseQuestions = awsSOAQuestions.slice(selectedRange.start, selectedRange.end);
+                baseQuestions = awsSCSQuestions.slice(selectedRange.start, selectedRange.end);
             } else if (selectedMode === 'category') {
                 if (!selectedCategory) return;
-                const filteredQuestions = awsSOAQuestions.filter(q => q.category === selectedCategory);
+                const filteredQuestions = awsSCSQuestions.filter(q => q.category === selectedCategory);
                 if (selectedRange) {
                     baseQuestions = filteredQuestions.slice(selectedRange.start, selectedRange.end);
                 } else {
                     baseQuestions = filteredQuestions;
                 }
             } else if (selectedMode === 'random') {
-                const shuffled = [...awsSOAQuestions].sort(() => Math.random() - 0.5);
+                const shuffled = [...awsSCSQuestions].sort(() => Math.random() - 0.5);
                 baseQuestions = shuffled.slice(0, 10);
             } else if (selectedMode === 'mock-exam') {
                 // 模擬試験モード: ランダムに65問
-                const shuffled = [...awsSOAQuestions].sort(() => Math.random() - 0.5);
+                const shuffled = [...awsSCSQuestions].sort(() => Math.random() - 0.5);
                 baseQuestions = shuffled.slice(0, 65);
             }
             
@@ -1715,7 +1715,7 @@
                 questions = baseQuestions;
             } else {
                 // Free/Standard莨壼藤縺ｯ繧｢繧ｯ繧ｻ繧ｹ蜿ｯ閭ｽ縺ｪ蝠城｡後↓繝輔ぅ繝ｫ繧ｿ繝ｪ繝ｳ繧ｰ
-                questions = filterQuestionsByAccess(baseQuestions, membership, 'soa');
+                questions = filterQuestionsByAccess(baseQuestions, membership, 'scs');
             }
             
             // 繝輔ぅ繝ｫ繧ｿ繝ｪ繝ｳ繧ｰ蠕後↓蝠城｡後′縺ｪ縺・ｴ蜷・
@@ -1747,9 +1747,9 @@
 {
   "@context": "https://schema.org",
   "@type": "LearningResource",
-  "name": "AWS SysOps Administrator Associate (SOA) Practice Questions",
-  "description": "Free practice questions for the AWS Certified SysOps Administrator Associate (SOA) exam. Build AWS cloud operations skills with question sets you can study anytime with detailed explanations.",
-  "url": "https://sukima-learning.com/aws/soa.html",
+  "name": "AWS Security - Specialty (SCS) Practice Questions",
+  "description": "Free practice questions for the AWS Certified Security - Specialty (SCS) exam. Master AWS security services and best practices with question sets you can study anytime with detailed explanations.",
+  "url": "https://sukima-learning.com/aws/sap.html",
   "provider": {
     "@type": "Organization",
     "name": "Sukima Learning",
@@ -1776,5 +1776,7 @@
 
 </body>
 </html>
+
+
 
 
