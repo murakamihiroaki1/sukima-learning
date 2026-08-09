@@ -695,5 +695,237 @@ const awsSCSQuestions = [
       { url: "https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars-encryption.html", title: "Encrypting Lambda environment variables" },
       { url: "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html", title: "Working with CloudWatch Logs log groups" }
     ]
+  },
+  {
+    id: 31,
+    question: "A company uses AWS Certificate Manager (ACM) to provision TLS certificates for its public-facing Application Load Balancers. A security engineer needs to ensure that all certificates are renewed before expiration and that any certificate expiring within 30 days generates an alert to the security team.\n\nWhich solution requires the LEAST operational overhead?",
+    options: [
+      "Write a daily Lambda function that calls ACM ListCertificates and checks expiration dates. Send an SNS notification for certificates expiring within 30 days.",
+      "Create an Amazon EventBridge rule that matches ACM certificate expiration events (ACM Certificate Approaching Expiration) and routes them to an SNS topic. ACM automatically renews managed certificates before expiration.",
+      "Enable AWS Config with the acm-certificate-expiration-check rule set to a 30-day threshold and configure an SNS notification for non-compliant resources.",
+      "Use AWS Health to monitor ACM certificate expiration events and configure Health event notifications via Amazon CloudWatch Events."
+    ],
+    correctAnswer: 1,
+    category: "Infrastructure Security",
+    explanation: "ACM automatically renews public certificates that are associated with AWS services like ALB before expiration (typically 60 days before). EventBridge natively receives ACM certificate expiration approach events and can route them to SNS with no custom code. This combination provides automated renewal and alerting with zero operational overhead.",
+    optionExplanations: [
+      "A custom Lambda function duplicates functionality already provided natively by ACM and EventBridge. It requires ongoing maintenance and incurs Lambda execution costs.",
+      "✓ Correct: ACM automatically attempts to renew certificates used with ALBs. EventBridge receives the ACM 'Certificate Approaching Expiration' event and routes it to SNS, providing automated alerting. No custom code or infrastructure management is required.",
+      "AWS Config's acm-certificate-expiration-check rule evaluates certificate expiration compliance but introduces a polling delay. EventBridge provides near-real-time event-driven alerting for the same use case.",
+      "AWS Health does publish ACM expiration events, but EventBridge directly integrating with ACM's native events is the more straightforward and standard approach for this use case."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/acm/latest/userguide/managed-renewal.html", title: "Managed renewal for ACM certificates" },
+      { url: "https://docs.aws.amazon.com/acm/latest/userguide/acm-eventbridge.html", title: "Using EventBridge with ACM" }
+    ]
+  },
+  {
+    id: 32,
+    question: "A financial services company stores customer transaction data in Amazon DynamoDB. A compliance requirement mandates that any modification to the data must be logged with the before and after values, and these logs must be retained for 5 years. The solution must not impact DynamoDB write performance.\n\nWhich solution meets ALL requirements?",
+    options: [
+      "Enable AWS CloudTrail data events for DynamoDB to capture all API calls. Store CloudTrail logs in S3 with a 5-year retention lifecycle policy.",
+      "Enable DynamoDB Streams on the table. Create an AWS Lambda function triggered by the stream to capture before and after images of changed items and write them to an S3 bucket with a 5-year lifecycle policy.",
+      "Enable DynamoDB point-in-time recovery (PITR). Use PITR snapshots as the audit log for compliance purposes.",
+      "Create an application-layer audit log that records every write operation before and after values. Store logs in Amazon RDS with a 5-year retention policy."
+    ],
+    correctAnswer: 1,
+    category: "Security Logging and Monitoring",
+    explanation: "DynamoDB Streams captures a time-ordered sequence of item-level modifications with both the before (OLD_IMAGE) and after (NEW_IMAGE) values. Lambda triggered by the stream asynchronously processes records without impacting DynamoDB write latency. Writing to S3 with a lifecycle policy satisfies the 5-year retention requirement. This is the standard AWS pattern for DynamoDB change data capture.",
+    optionExplanations: [
+      "CloudTrail data events for DynamoDB capture API calls (PutItem, UpdateItem, DeleteItem) but do not include the actual before and after data values of the items. CloudTrail records the API call metadata, not the item content.",
+      "✓ Correct: DynamoDB Streams with BOTH_OLD_AND_NEW_IMAGES stream view type captures the complete before and after state of each modified item. Lambda processes records asynchronously, causing no additional latency on DynamoDB write operations. S3 with lifecycle policy satisfies 5-year retention.",
+      "PITR allows restoration of the table to any point in time but is not an audit log. It does not provide a queryable record of individual changes with before/after values and cannot be retained independently for 5 years.",
+      "An application-layer audit log requires modifying all write paths in the application, creating a maintenance burden. It is also subject to bypass if direct DynamoDB access occurs outside the application."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html", title: "Change data capture for DynamoDB Streams" },
+      { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.Lambda.html", title: "Using AWS Lambda with DynamoDB Streams" }
+    ]
+  },
+  {
+    id: 33,
+    question: "A company is using AWS IAM Identity Center (formerly AWS SSO) to manage access to multiple AWS accounts. A security engineer needs to ensure that any user who has not logged in for 90 days has their account automatically disabled, and an alert is sent to the security team.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Manually review IAM Identity Center user activity reports monthly and disable inactive accounts.",
+      "Create an Amazon EventBridge scheduled rule that triggers a Lambda function daily. The function queries IAM Identity Center using the IdentityStore API to find users whose last login exceeds 90 days, disables them, and sends an SNS notification.",
+      "Enable AWS Config with the iam-user-unused-credentials-check rule set to 90 days to detect inactive IAM Identity Center users.",
+      "Set an IAM password policy requiring password changes every 90 days. Users who do not log in will have expired passwords and be unable to sign in."
+    ],
+    correctAnswer: 1,
+    category: "Identity and Access Management",
+    explanation: "IAM Identity Center does not have a native built-in inactive user detection and auto-disable feature. A scheduled EventBridge rule triggering a Lambda function that queries the IdentityStore API for user last login timestamps, disables inactive users, and sends SNS notifications is the recommended automated approach.",
+    optionExplanations: [
+      "Manual monthly reviews cannot guarantee 90-day enforcement and rely on human processes that are error-prone. This does not meet an automated enforcement requirement.",
+      "✓ Correct: EventBridge scheduling with Lambda provides automated, daily enforcement. The Lambda function uses the IdentityStore API (ListUsers, DescribeUser) and IAM Identity Center APIs to check last authentication times and disable users exceeding the 90-day threshold, then notifies via SNS.",
+      "The iam-user-unused-credentials-check Config rule evaluates standard IAM users, not IAM Identity Center identities. These are separate identity stores and the Config rule does not apply to Identity Center users.",
+      "Password expiration policies apply to IAM user console passwords, not IAM Identity Center users. Identity Center users authenticate through the Identity Center portal, not standard IAM password policies."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html", title: "What is IAM Identity Center?" },
+      { url: "https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/welcome.html", title: "IAM Identity Store API Reference" }
+    ]
+  },
+  {
+    id: 34,
+    question: "A company's application stores sensitive data in Amazon S3. A security engineer discovers that one of the S3 buckets has a bucket policy that allows public read access (Principal: \"*\"). The engineer needs to immediately prevent public access to ALL S3 buckets in the account, including future buckets, and ensure this setting cannot be overridden by bucket-level policies.\n\nWhich action should the security engineer take?",
+    options: [
+      "Update each bucket policy to remove the public access statement and add a Deny for s3:GetObject from Principal: \"*\".",
+      "Enable S3 Block Public Access at the account level with all four settings enabled (BlockPublicAcls, IgnorePublicAcls, BlockPublicPolicy, RestrictPublicBuckets).",
+      "Create an SCP that denies s3:PutBucketPolicy when the policy contains Principal: \"*\" and attach it to the account.",
+      "Enable Amazon Macie to detect publicly accessible buckets and trigger automatic remediation."
+    ],
+    correctAnswer: 1,
+    category: "Data Protection",
+    explanation: "S3 Block Public Access at the account level applies to all existing and future buckets. When all four settings are enabled, AWS ignores any bucket or object ACLs that grant public access and blocks any bucket policies that allow public access. This is the single, account-wide control that overrides individual bucket configurations and cannot be bypassed by bucket policies.",
+    optionExplanations: [
+      "Updating each bucket policy individually is operationally intensive and does not cover future buckets. New buckets with permissive policies would require manual remediation each time.",
+      "✓ Correct: S3 Block Public Access at the account level is the definitive control for preventing public S3 access. All four settings together ensure existing ACLs and policies granting public access are ignored and new ones are blocked, regardless of individual bucket configurations.",
+      "An SCP preventing public bucket policies is a useful preventive control but does not address existing public bucket policies or ACLs. It also requires careful crafting to avoid blocking legitimate policy updates.",
+      "Amazon Macie detects publicly accessible buckets as findings but does not provide automated remediation. It is a detective control, not a preventive one, and cannot block public access directly."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-block-public-access.html", title: "Blocking public access to your Amazon S3 storage" },
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/configuring-block-public-access-account.html", title: "Configuring block public access settings for your account" }
+    ]
+  },
+  {
+    id: 35,
+    question: "A security engineer is conducting a forensic investigation of a potentially compromised Amazon EC2 instance. The engineer needs to preserve the instance's current state for forensic analysis while ensuring the investigation does not interfere with the running production environment.\n\nWhich steps should the engineer take? (Choose THREE.)",
+    options: [
+      "Terminate the EC2 instance immediately to stop further damage.",
+      "Create an EBS snapshot of all volumes attached to the instance while it is still running.",
+      "Isolate the instance by modifying its security group to deny all inbound and outbound traffic except from the forensic workstation.",
+      "Enable VPC Flow Logs on the VPC if not already enabled to capture network activity.",
+      "Detach the IAM role from the instance to prevent further AWS API calls from the potentially compromised instance."
+    ],
+    correctAnswer: [1, 2, 4],
+    category: "Threat Detection and Incident Response",
+    explanation: "Forensic best practice requires preserving evidence, isolating the threat, and limiting further damage without destroying data. Taking EBS snapshots preserves disk state, isolating the instance stops network-based attack propagation, and detaching the IAM role prevents the instance from making further AWS API calls. Termination destroys volatile memory and disk evidence.",
+    optionExplanations: [
+      "Terminating the instance destroys all volatile memory, running processes, and temporary files that may contain critical forensic evidence such as malware artifacts, attacker tools, or lateral movement traces.",
+      "✓ Correct: EBS snapshots capture the disk state at the time of snapshot creation, preserving filesystem artifacts, malware, configuration changes, and log files for offline forensic analysis without affecting the running instance.",
+      "✓ Correct: Isolating the instance by restricting its security group to allow only forensic workstation access stops the attacker from continuing operations (C2 communication, data exfiltration) while keeping the instance running for memory analysis.",
+      "VPC Flow Logs capture network traffic metadata but enabling them after the incident only captures future traffic. They do not preserve already-occurred network activity unless they were pre-enabled.",
+      "✓ Correct: Detaching the IAM role prevents the potentially compromised instance from making further AWS API calls (creating resources, accessing other services, exfiltrating data via AWS APIs) while preserving the instance for forensic analysis."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/whitepapers/latest/aws-security-incident-response-guide/containment.html", title: "AWS Security Incident Response Guide - Containment" },
+      { url: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-snapshot.html", title: "Create Amazon EBS snapshots" }
+    ]
+  },
+  {
+    id: 36,
+    question: "A company wants to enforce that all Amazon RDS instances in its AWS accounts are not publicly accessible and are always encrypted at rest. These requirements must be enforced preventively so that non-compliant RDS instances can never be launched.\n\nWhich solution enforces BOTH requirements preventively across all member accounts in AWS Organizations?",
+    options: [
+      "Enable AWS Config with the rds-instance-public-access-check and rds-storage-encrypted rules in all accounts.",
+      "Create an SCP with two deny statements: one denying rds:CreateDBInstance when the PubliclyAccessible attribute is true, and another denying rds:CreateDBInstance when StorageEncrypted is false. Attach the SCP to the organization root.",
+      "Enable Amazon GuardDuty RDS Protection across all accounts to detect publicly accessible or unencrypted RDS instances.",
+      "Create an AWS Lambda function triggered by CloudTrail events for rds:CreateDBInstance. If the instance is public or unencrypted, the function immediately deletes it."
+    ],
+    correctAnswer: 1,
+    category: "Management and Security Governance",
+    explanation: "SCPs at the organization root level apply to all member accounts and provide preventive enforcement at the API level. Denying rds:CreateDBInstance when PubliclyAccessible=true or StorageEncrypted=false prevents non-compliant instances from ever being created, regardless of account-level IAM permissions.",
+    optionExplanations: [
+      "AWS Config rules are detective controls that identify non-compliant resources after they are created. They do not prevent the creation of publicly accessible or unencrypted RDS instances.",
+      "✓ Correct: SCPs with conditions on the rds:CreateDBInstance API call parameters enforce preventive controls at the API level. The management account and other excluded principals can still create instances as needed. This applies organization-wide with no per-account configuration.",
+      "GuardDuty RDS Protection detects anomalous login activity and threats to RDS databases. It does not enforce configuration requirements like public accessibility or encryption settings.",
+      "Lambda-based deletion creates a window where a non-compliant instance exists before being deleted. CloudTrail event processing latency can allow the instance to be briefly active. This is a reactive control, not preventive."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html", title: "Service control policies (SCPs)" },
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.html", title: "Security in Amazon RDS" }
+    ]
+  },
+  {
+    id: 37,
+    question: "A company uses Amazon Route 53 for DNS management. A security engineer is concerned about DNS hijacking attacks where an attacker could modify DNS records to redirect traffic to malicious infrastructure. The engineer wants to implement a solution to detect unauthorized DNS changes in real time.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Enable DNSSEC signing on the Route 53 hosted zone to prevent DNS record tampering.",
+      "Create an Amazon EventBridge rule that matches Route 53 ChangeResourceRecordSets API calls recorded by CloudTrail and routes them to an SNS topic for real-time alerting.",
+      "Enable Amazon GuardDuty DNS logs analysis to detect DNS hijacking attempts.",
+      "Configure Route 53 health checks on all DNS records and set up CloudWatch alarms for health check failures."
+    ],
+    correctAnswer: 1,
+    category: "Security Logging and Monitoring",
+    explanation: "CloudTrail records all Route 53 ChangeResourceRecordSets API calls. An EventBridge rule that matches these events provides real-time notification whenever a DNS record is modified. This allows the security team to immediately investigate whether a change was authorized. This is the standard pattern for real-time DNS change detection.",
+    optionExplanations: [
+      "DNSSEC prevents resolvers from accepting forged DNS responses (cache poisoning) but does not prevent an authenticated AWS user or compromised credentials from modifying Route 53 records via the API. It does not detect unauthorized API-level changes.",
+      "✓ Correct: CloudTrail captures every Route 53 DNS change via ChangeResourceRecordSets. EventBridge provides near-real-time event routing to SNS, alerting the security team immediately when any DNS record change occurs regardless of whether it is authorized or not.",
+      "GuardDuty DNS logs analysis detects anomalous DNS query patterns (e.g., DNS tunneling, communication with known malicious domains) but does not monitor or detect changes to Route 53 hosted zone records.",
+      "Route 53 health checks monitor endpoint availability but do not detect DNS record changes. A health check failure indicates an endpoint is unreachable but may not reveal that a DNS record was modified to point to malicious infrastructure."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/logging-using-cloudtrail.html", title: "Logging Amazon Route 53 API calls with AWS CloudTrail" },
+      { url: "https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/dns-configuring-dnssec.html", title: "Configuring DNSSEC signing in Amazon Route 53" }
+    ]
+  },
+  {
+    id: 38,
+    question: "A company runs a microservices application on Amazon ECS with tasks using the awsvpc network mode. Each microservice needs to call specific AWS APIs (e.g., DynamoDB, S3). A security engineer must ensure each microservice has only the minimum required permissions and that credentials are not shared between services.\n\nWhich approach should the security engineer implement?",
+    options: [
+      "Create a single IAM role with all required permissions for all microservices and attach it to the ECS cluster.",
+      "Create a separate IAM task role for each microservice with only the permissions that service requires. Assign each task definition its own task role.",
+      "Create an IAM user for each microservice, generate access keys, and inject them as environment variables in the task definition.",
+      "Use the EC2 instance profile of the underlying EC2 instances to grant permissions to all ECS tasks running on those instances."
+    ],
+    correctAnswer: 1,
+    category: "Identity and Access Management",
+    explanation: "ECS task roles allow granular IAM permissions per task definition. Each microservice gets a dedicated IAM role with only the permissions it needs, following least privilege. The credentials are provided via the ECS task metadata endpoint (not stored as environment variables) and are automatically rotated. This ensures complete credential isolation between services.",
+    optionExplanations: [
+      "A single shared IAM role for all microservices violates least privilege. If one service is compromised, the attacker gains the permissions of all other services. There is no isolation between service permissions.",
+      "✓ Correct: ECS task roles are the purpose-built mechanism for per-task IAM permissions. Each task receives temporary credentials via the task metadata service, scoped only to the task's assigned role. This provides least privilege and complete credential isolation between microservices.",
+      "IAM user access keys are long-term credentials that require manual rotation, secure storage, and distribution. Injecting them as environment variables exposes them in task definitions and CloudWatch Logs. This is explicitly an anti-pattern for ECS.",
+      "EC2 instance profile credentials are shared by all tasks running on the instance, regardless of which microservice is running. This provides no isolation and is not recommended when task-level isolation is required."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html", title: "IAM roles for tasks in Amazon ECS" },
+      { url: "https://docs.aws.amazon.com/AmazonECS/latest/bestpracticesguide/security-iam-roles.html", title: "IAM roles for ECS best practices" }
+    ]
+  },
+  {
+    id: 39,
+    question: "A company must comply with a regulation requiring all network traffic between its on-premises data center and AWS to be encrypted in transit using AES-256. The connection must provide consistent throughput of at least 1 Gbps. The company already has an AWS Direct Connect connection.\n\nWhich solution meets BOTH the encryption and throughput requirements?",
+    options: [
+      "Use AWS Direct Connect with a public VIF. Configure IPsec VPN over the Direct Connect connection using AWS Site-to-Site VPN.",
+      "Use AWS Direct Connect with a private VIF. Enable MACsec encryption on the Direct Connect connection.",
+      "Use an AWS Site-to-Site VPN over the public internet with AES-256 encryption. Increase bandwidth by adding multiple VPN tunnels.",
+      "Use AWS Direct Connect with a transit VIF and enable TLS 1.3 for all application-level communication."
+    ],
+    correctAnswer: 1,
+    category: "Infrastructure Security",
+    explanation: "MACsec (IEEE 802.1AE) is a Layer 2 encryption standard supported on AWS Direct Connect dedicated connections (10 Gbps and 100 Gbps). It provides wire-speed AES-256 encryption on the Direct Connect link without introducing VPN overhead or latency. This maintains the full bandwidth of the Direct Connect connection while satisfying the AES-256 encryption requirement.",
+    optionExplanations: [
+      "IPsec VPN over Direct Connect (a.k.a. Direct Connect + VPN) provides AES-256 encryption and uses the Direct Connect bandwidth, but VPN processing overhead reduces effective throughput and adds latency. For 1 Gbps+ consistent throughput, MACsec is preferred.",
+      "✓ Correct: MACsec on Direct Connect provides hardware-accelerated AES-256 GCM encryption at Layer 2, operating at line rate (1 Gbps, 10 Gbps, or 100 Gbps depending on connection speed) with negligible overhead. It requires a dedicated Direct Connect connection (not hosted connections) and a MACsec-capable router.",
+      "Site-to-Site VPN over the public internet cannot guarantee consistent 1 Gbps throughput due to internet routing variability and VPN bandwidth limits (each tunnel is capped at 1.25 Gbps aggregate). The company already has Direct Connect, making VPN over the internet suboptimal.",
+      "TLS provides application-layer encryption for specific protocols but does not encrypt all network traffic at the transport layer. Network-level traffic such as ICMP, routing protocols, or non-TLS applications would remain unencrypted."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/directconnect/latest/UserGuide/MACsec.html", title: "MACsec encryption in AWS Direct Connect" },
+      { url: "https://docs.aws.amazon.com/directconnect/latest/UserGuide/encryption-in-transit.html", title: "Encryption in AWS Direct Connect" }
+    ]
+  },
+  {
+    id: 40,
+    question: "A security engineer is reviewing the AWS Organizations structure. The management account currently has all production workloads deployed directly in it. The security team wants to implement a security baseline that prevents any IAM user or role in the management account from being denied actions by SCPs, ensuring the management account cannot be accidentally locked out.\n\nWhat should the security engineer understand about this situation?",
+    options: [
+      "SCPs apply to the management account just like all other member accounts. The engineer must carefully craft SCPs to include an exception for the management account's root user.",
+      "SCPs never apply to the management account regardless of where they are attached. Moving workloads to member accounts and using SCPs for governance is the recommended approach.",
+      "SCPs apply to all accounts except when the root user is performing actions. The engineer should use the root user for all sensitive management account operations.",
+      "The engineer can attach a special 'management account exclusion' SCP at the root level to exempt the management account from all other SCPs."
+    ],
+    correctAnswer: 1,
+    category: "Management and Security Governance",
+    explanation: "This is a fundamental AWS Organizations design principle: SCPs do NOT apply to the management account, even if attached at the root OU level. This is by design to prevent accidental lockout of the account that manages the organization. However, this means that the management account cannot be governed by SCPs, which is why AWS strongly recommends NOT running production workloads in the management account.",
+    optionExplanations: [
+      "This is incorrect. SCPs do not apply to the management account at all, so there is no need to craft exceptions. The management account is inherently exempt from all SCPs, which is a fixed AWS behavior.",
+      "✓ Correct: SCPs never apply to the management account, regardless of SCP configuration. This is an AWS Organizations fundamental design constraint. AWS best practice is to keep the management account free of workloads and use dedicated member accounts governed by SCPs for all production environments.",
+      "While root user actions have some special behaviors, the key point is that SCPs as a whole do not apply to the management account — not just root user actions. All IAM principals in the management account are exempt from SCPs.",
+      "There is no 'management account exclusion' SCP mechanism. The exemption is hardcoded AWS behavior, not a configurable SCP. Creating such an SCP is neither possible nor necessary."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html#scp-effects-on-permissions", title: "SCP effects on permissions" },
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_best-practices_mgmt-acct.html", title: "Best practices for the management account" }
+    ]
   }
 ];
