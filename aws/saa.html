@@ -1342,7 +1342,7 @@
         // 選択画面に戻る
         function backToSelection() {
             // 模擬試験以外で回答があれば履歴保存
-            if (!isMockExam) { _saveSessionOnBack(); }
+            if (!isMockExam) { _saveSessionOnBack(selectedMode, selectedCategory); }
             // タイマーを停止
             stopExamTimer();
             
@@ -1479,8 +1479,8 @@
             // 学習履歴を保存
             const _membership = await getMembershipInfo();
             await saveStudyHistory({
-                examType: 'saa', mode: selectedMode,
-                category: selectedCategory, totalQ: questions.length, correctQ: score,
+                examType: 'saa', mode: snapshotMode,
+                category: snapshotCategory, totalQ: questions.length, correctQ: score,
                 elapsedSec: examTimer ? (EXAM_TIME_LIMIT - remainingTime) : null,
                 questions, userAnswers,
                 membershipLevel: _membership ? _membership.level : 'free'
@@ -1488,13 +1488,13 @@
         }
 
         // 学習履歴を保存（番号順・ランダム・カテゴリ終了時）
-        async function _saveSessionOnBack() {
+        async function _saveSessionOnBack(snapshotMode, snapshotCategory) {
             if (!questions || questions.length === 0) return;
             if (!userAnswers.some(a => a !== null)) return;
             const _membership = await getMembershipInfo();
             await saveStudyHistory({
-                examType: 'saa', mode: selectedMode,
-                category: selectedCategory, totalQ: questions.length, correctQ: score,
+                examType: 'saa', mode: snapshotMode,
+                category: snapshotCategory, totalQ: questions.length, correctQ: score,
                 elapsedSec: null,
                 questions, userAnswers,
                 membershipLevel: _membership ? _membership.level : 'free'
