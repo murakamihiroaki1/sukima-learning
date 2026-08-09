@@ -927,5 +927,1392 @@ const awsSCSQuestions = [
       { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html#scp-effects-on-permissions", title: "SCP effects on permissions" },
       { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_best-practices_mgmt-acct.html", title: "Best practices for the management account" }
     ]
+  },
+  {
+    id: 41,
+    question: "A company uses Amazon S3 to store confidential documents. A security requirement states that uploads to a specific bucket must be encrypted with a particular customer managed AWS KMS key, and uploads that use SSE-S3 or a different KMS key must be rejected.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Configure default bucket encryption with SSE-S3 and rely on application teams to choose the correct KMS key when needed.",
+      "Add an S3 bucket policy that denies s3:PutObject unless the request includes s3:x-amz-server-side-encryption = aws:kms and s3:x-amz-server-side-encryption-aws-kms-key-id equal to the required KMS key ARN.",
+      "Create an SCP that denies s3:PutObject for all buckets unless the aws:SecureTransport condition is true.",
+      "Enable S3 Block Public Access for the account and configure the bucket with versioning enabled."
+    ],
+    correctAnswer: 1,
+    category: "Data Protection",
+    explanation: "An S3 bucket policy can enforce both the encryption type and the exact KMS key used for uploads. By denying PutObject unless the request specifies aws:kms and the required KMS key ARN, the bucket rejects uploads using SSE-S3, SSE-C, or any other KMS key. This is the most direct way to enforce the requirement at the bucket boundary.",
+    optionExplanations: [
+      "Default bucket encryption helps when clients omit encryption headers, but it does not reliably reject uploads that explicitly request SSE-S3 or a different KMS key. The requirement is to reject non-compliant uploads, not just apply a default.",
+      "✓ Correct: A bucket policy using condition keys for s3:x-amz-server-side-encryption and s3:x-amz-server-side-encryption-aws-kms-key-id enforces both SSE-KMS and the exact customer managed key required for every object upload.",
+      "An SCP with aws:SecureTransport enforces TLS in transit, not the server-side encryption settings or the specific KMS key used for S3 object uploads.",
+      "Block Public Access and versioning are useful controls, but they do not enforce server-side encryption with a specific KMS key for uploaded objects."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html", title: "Protecting data using server-side encryption with AWS KMS" },
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html", title: "Amazon S3 bucket policy examples" }
+    ]
+  },
+  {
+    id: 42,
+    question: "A company uses Amazon ECR to store container images for production workloads running on Amazon ECS. The security team needs to ensure that images are scanned for vulnerabilities automatically when they are pushed, and any image with critical findings must not be deployed.\n\nWhich solution provides the MOST secure implementation with the LEAST custom code?",
+    options: [
+      "Enable basic or enhanced image scanning on the ECR repository, and add a CI/CD pipeline step that checks the scan findings and blocks deployment when critical vulnerabilities are present.",
+      "Run Amazon Inspector agents on ECS tasks so the containers are scanned after deployment. Terminate tasks with critical vulnerabilities.",
+      "Export ECR images to Amazon S3 and run a custom Lambda function to inspect each image layer for known CVEs.",
+      "Use AWS Config to detect whether the ECR repository has image scanning enabled, and manually review the findings before each deployment."
+    ],
+    correctAnswer: 0,
+    category: "Infrastructure Security",
+    explanation: "Amazon ECR natively supports automatic image vulnerability scanning on push. The cleanest implementation is to enable scanning and enforce a deployment gate in the CI/CD pipeline that queries the scan results and blocks promotion when critical findings exist. This uses native AWS capabilities with only minimal pipeline logic and avoids post-deployment exposure.",
+    optionExplanations: [
+      "✓ Correct: ECR native image scanning automatically scans pushed images, and a CI/CD gate can stop vulnerable images from reaching production. This prevents deployment rather than detecting issues only after runtime.",
+      "Amazon Inspector for runtime environments is valuable, but scanning only after deployment does not meet the requirement to prevent vulnerable images from being deployed in the first place.",
+      "Exporting images to S3 and building a custom vulnerability scanner duplicates functionality already provided by ECR and Inspector, adding unnecessary complexity and maintenance.",
+      "AWS Config can detect whether scanning is enabled, but it does not evaluate the actual vulnerability findings or prevent deployment of images with critical CVEs."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html", title: "Amazon ECR image scanning" },
+      { url: "https://docs.aws.amazon.com/inspector/latest/user/scanning-ecr.html", title: "Scanning Amazon ECR container images with Amazon Inspector" }
+    ]
+  },
+  {
+    id: 43,
+    question: "A company has an AWS Site-to-Site VPN connection to its on-premises network. A security engineer must ensure that only the on-premises network 10.50.0.0/16 can access an application subnet in AWS, and all other inbound traffic from the VPN must be blocked before it reaches the EC2 instances.\n\nWhich control should the engineer use?",
+    options: [
+      "Add inbound rules to the EC2 instances' security group allowing the required ports only from 10.50.0.0/16.",
+      "Create a Network ACL for the application subnet that allows required inbound traffic from 10.50.0.0/16 and denies all other inbound traffic.",
+      "Attach an IAM policy to the VPN connection restricting packets from other CIDR ranges.",
+      "Create an AWS WAF Web ACL and associate it with the application subnet."
+    ],
+    correctAnswer: 1,
+    category: "Infrastructure Security",
+    explanation: "The requirement is to block unauthorized inbound VPN traffic before it reaches the EC2 instances. Network ACLs operate at the subnet boundary, so they evaluate traffic before it is delivered to instances. A subnet NACL that allows the approved on-premises CIDR and denies other inbound traffic best satisfies this requirement.",
+    optionExplanations: [
+      "Security groups are stateful instance-level firewalls and are an important control, but traffic still reaches the instance's ENI for security group evaluation. The question specifically asks to block traffic before it reaches the EC2 instances.",
+      "✓ Correct: Network ACLs are stateless subnet-level filters that can explicitly allow traffic from 10.50.0.0/16 and deny other inbound sources, stopping unauthorized VPN traffic at the subnet boundary.",
+      "IAM policies control AWS API permissions and do not filter network packets traversing a Site-to-Site VPN connection.",
+      "AWS WAF protects HTTP/HTTPS applications at supported Layer 7 integrations such as CloudFront, ALB, and API Gateway. It cannot be attached to a subnet to filter VPN network traffic."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/vpc/latest/userguide/vpc-network-acls.html", title: "Control traffic to subnets using network ACLs" },
+      { url: "https://docs.aws.amazon.com/vpc/latest/userguide/working-with-aws-managed-prefix-lists.html", title: "Managed prefix lists" }
+    ]
+  },
+  {
+    id: 44,
+    question: "A company wants to centralize AWS Config findings from all accounts and Regions into a single security account. The solution must automatically include new AWS accounts added to AWS Organizations and allow the security team to review compliance posture centrally.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "In each member account, export AWS Config findings daily to Amazon S3 in the security account and build a custom dashboard.",
+      "Create an AWS Config aggregator in the security account and authorize organization-wide data aggregation using AWS Organizations.",
+      "Enable AWS Security Hub in all accounts and rely only on Security Hub findings instead of AWS Config.",
+      "Create cross-account IAM roles in every member account and have administrators manually query Config in each Region."
+    ],
+    correctAnswer: 1,
+    category: "Management and Security Governance",
+    explanation: "AWS Config aggregators are purpose-built to collect configuration and compliance data from multiple accounts and Regions into one place. When configured with AWS Organizations integration, new accounts are included automatically, which meets the requirement for centralized, low-overhead compliance visibility.",
+    optionExplanations: [
+      "Daily S3 exports require custom code or processes, do not provide near-real-time centralized visibility, and add unnecessary operational overhead compared to native Config aggregation.",
+      "✓ Correct: An organization-wide AWS Config aggregator centralizes compliance results across accounts and Regions in a designated account and automatically includes newly added organization accounts.",
+      "Security Hub is valuable for aggregating security findings, but the question specifically asks for centralizing AWS Config findings and compliance posture. Config aggregator is the native answer.",
+      "Manual cross-account querying is operationally heavy and does not automatically include new accounts or provide a consolidated compliance view."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/config/latest/developerguide/aggregate-data.html", title: "Aggregating AWS Config data" },
+      { url: "https://docs.aws.amazon.com/config/latest/developerguide/aggregated-view.html", title: "Multi-account multi-Region data aggregation" }
+    ]
+  },
+  {
+    id: 45,
+    question: "A security engineer needs to ensure that Amazon CloudWatch Logs log groups containing audit logs are encrypted at rest with a customer managed AWS KMS key and that the same key cannot be scheduled for deletion by application administrators.\n\nWhich combination of controls should the engineer implement? (Choose TWO.)",
+    options: [
+      "Associate the CloudWatch Logs log groups with a customer managed KMS key.",
+      "Use an AWS managed key for CloudWatch Logs and rely on CloudTrail for auditing key deletion attempts.",
+      "Add a key policy or IAM policy that denies kms:ScheduleKeyDeletion except for a dedicated security administrator role.",
+      "Enable CloudWatch Logs data protection to mask sensitive fields in log events.",
+      "Store audit logs in an unencrypted log group and export them daily to an encrypted S3 bucket."
+    ],
+    correctAnswer: [0, 2],
+    category: "Data Protection",
+    explanation: "To meet the requirement, the log groups must use a customer managed KMS key for encryption, and permissions around that key must prevent application administrators from scheduling deletion. Restricting kms:ScheduleKeyDeletion to a dedicated security role ensures key lifecycle control remains separated from application administration.",
+    optionExplanations: [
+      "✓ Correct: CloudWatch Logs supports encryption at rest using a customer managed KMS key, which satisfies the customer-control requirement for log group encryption.",
+      "AWS managed keys cannot be administered with custom deletion restrictions by the customer. This does not satisfy the requirement to prevent application administrators from scheduling deletion of the key.",
+      "✓ Correct: Denying kms:ScheduleKeyDeletion except for a dedicated security administrator role prevents application administrators from deleting the key, preserving access to the audit logs.",
+      "CloudWatch Logs data protection helps identify and mask sensitive data patterns in logs, but it does not enforce encryption with a customer managed key or protect the KMS key from deletion.",
+      "Leaving the log group unencrypted does not meet the stated requirement, and daily export adds delay and operational overhead."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html", title: "Encrypt log data in CloudWatch Logs using AWS KMS" },
+      { url: "https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys-scheduling-key-deletion.html", title: "Scheduling key deletion" }
+    ]
+  },
+  {
+    id: 46,
+    question: "A company wants to ensure that all IAM users in an AWS account rotate their console passwords every 90 days and that any user whose password is older than 90 days is prevented from signing in until the password is changed.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Create an EventBridge scheduled rule and Lambda function that deletes IAM users whose passwords are older than 90 days.",
+      "Configure the account IAM password policy with a maximum password age of 90 days.",
+      "Enable AWS Config with the iam-user-unused-credentials-check rule set to 90 days.",
+      "Require all IAM users to use access keys only and disable console access."
+    ],
+    correctAnswer: 1,
+    category: "Identity and Access Management",
+    explanation: "IAM account password policies natively support maximum password age. Setting the maximum password age to 90 days forces IAM users to change expired console passwords before they can complete sign-in. This is the direct built-in control for the requirement and has minimal operational overhead.",
+    optionExplanations: [
+      "Deleting users is overly destructive and unnecessary. The requirement is to force password rotation and block sign-in until the password is changed, not remove user identities entirely.",
+      "✓ Correct: The IAM account password policy supports a maximum password age setting. When set to 90 days, IAM users with expired passwords must reset them before they can continue signing in.",
+      "The iam-user-unused-credentials-check rule identifies unused credentials for IAM users, but it does not enforce console password rotation or block sign-in based on password age.",
+      "Disabling console access changes the authentication model entirely and does not satisfy the requirement to rotate console passwords every 90 days."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords_account-policy.html", title: "Setting an account password policy for IAM users" },
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords_admin-change-user.html", title: "Managing passwords for IAM users" }
+    ]
+  },
+  {
+    id: 47,
+    question: "A company uses Amazon EventBridge to route security events to a central account. The security team wants to ensure that member accounts can send events to the central event bus, but they must not be able to put events onto any other event bus in the organization.\n\nWhich approach should the security engineer implement?",
+    options: [
+      "In each member account, attach AdministratorAccess to the role that sends EventBridge events.",
+      "On the central event bus, add a resource policy that allows events:PutEvents only from specific member account IDs or the AWS Organizations ID. In member accounts, grant the sender role permission only for events:PutEvents to the central event bus ARN.",
+      "Create an SCP that denies all EventBridge actions in member accounts, including events:PutEvents.",
+      "Use Amazon SNS topics instead of EventBridge because SNS automatically restricts cross-account publishing."
+    ],
+    correctAnswer: 1,
+    category: "Security Logging and Monitoring",
+    explanation: "Cross-account EventBridge delivery requires both a receiving bus resource policy and sender-side IAM permissions. Restricting the sender role to the central bus ARN enforces least privilege, while the central event bus resource policy explicitly limits which accounts or organization members can publish. Together these controls prevent publishing to unauthorized buses.",
+    optionExplanations: [
+      "AdministratorAccess grants far more permissions than necessary and does not restrict publishing to a single approved event bus. This violates least privilege.",
+      "✓ Correct: A resource policy on the central event bus controls who may publish, and a narrowly scoped sender IAM policy in member accounts restricts events:PutEvents to only the approved central event bus ARN.",
+      "Denying all EventBridge actions would also block the required delivery of security events to the central account, so it does not satisfy the business requirement.",
+      "SNS can support cross-account publishing, but it does not inherently solve the EventBridge-specific requirement and would require redesigning the event routing architecture."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus-perms.html", title: "Permissions for event buses in Amazon EventBridge" },
+      { url: "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cross-account.html", title: "Sending and receiving events between AWS accounts" }
+    ]
+  },
+  {
+    id: 48,
+    question: "A security engineer needs to investigate whether any Amazon EC2 instances in an AWS account were launched without the required tag Owner during the last 7 days. The company already stores CloudTrail management events in Amazon S3. The engineer wants a serverless solution that can query historical events quickly.\n\nWhich solution should the engineer use?",
+    options: [
+      "Use Amazon Athena to query the CloudTrail logs in S3 for RunInstances events where the request parameters do not include the Owner tag.",
+      "Use AWS Config advanced queries because they show all historical API request parameters for the last 7 days.",
+      "Create a Lambda function that replays all CloudTrail logs into DynamoDB and then query the table.",
+      "Use Amazon Inspector to scan the EC2 instances and identify which ones were created without tags."
+    ],
+    correctAnswer: 0,
+    category: "Security Logging and Monitoring",
+    explanation: "CloudTrail management events stored in S3 can be queried serverlessly with Amazon Athena. By filtering RunInstances events and examining tag specifications in the request parameters, the engineer can quickly identify instance launches missing the required Owner tag over a historical window. This avoids building any custom ingestion pipeline.",
+    optionExplanations: [
+      "✓ Correct: Athena is the standard serverless query engine for CloudTrail logs in S3 and is well suited for quickly searching historical RunInstances events and their request parameters.",
+      "AWS Config advanced queries operate on current and recorded resource configuration state, not the full historical CloudTrail API request payloads needed to determine whether the Owner tag was present at launch time.",
+      "Replaying logs into DynamoDB adds unnecessary custom infrastructure and maintenance when Athena can query the existing CloudTrail data directly.",
+      "Amazon Inspector evaluates vulnerabilities and exposure of running workloads, not historical EC2 launch event metadata or missing tags at creation time."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html", title: "Query AWS CloudTrail logs" },
+      { url: "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html", title: "What is AWS CloudTrail?" }
+    ]
+  },
+  {
+    id: 49,
+    question: "A company runs applications on Amazon EC2 instances in private subnets and wants to allow outbound access only to Amazon S3 without using the internet. The security team also wants to ensure that traffic to S3 stays on the AWS network and that instances cannot reach other public AWS service endpoints.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Deploy a NAT Gateway in a public subnet and add an IAM policy denying access to unwanted AWS services.",
+      "Create an S3 gateway VPC endpoint and update the private subnet route tables to send S3 traffic through the endpoint. Remove the default route to the NAT Gateway for those subnets.",
+      "Create an interface VPC endpoint for Amazon S3 and allow outbound HTTPS to all 0.0.0.0/0 destinations.",
+      "Assign Elastic IP addresses to the EC2 instances and restrict S3 access with bucket policies only."
+    ],
+    correctAnswer: 1,
+    category: "Infrastructure Security",
+    explanation: "An S3 gateway endpoint lets instances in private subnets reach Amazon S3 privately over the AWS network without requiring internet access. Removing the NAT route ensures the subnets cannot access arbitrary public endpoints, so outbound access is effectively limited to S3 (subject to additional route and policy controls). This is the native pattern for private S3 access from VPC subnets.",
+    optionExplanations: [
+      "A NAT Gateway still provides general internet egress and does not keep traffic to S3 fully private. IAM policies also do not restrict raw network reachability to public endpoints.",
+      "✓ Correct: A gateway VPC endpoint for S3 provides private connectivity over the AWS backbone, and removing the NAT route from those private subnets prevents internet egress to other public service endpoints.",
+      "S3 primarily uses a gateway endpoint pattern in VPCs. Allowing outbound HTTPS to 0.0.0.0/0 would still permit access to other public destinations and would not meet the requirement.",
+      "Elastic IPs expose the instances to internet routing and do not keep S3 traffic private. Bucket policies alone do not restrict the instances' general outbound network access."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html", title: "Gateway endpoints for Amazon S3" },
+      { url: "https://docs.aws.amazon.com/vpc/latest/userguide/route-table-options.html", title: "Routing to a gateway endpoint" }
+    ]
+  },
+  {
+    id: 50,
+    question: "A company wants to ensure that no IAM policies granting wildcard actions on wildcard resources can be attached to roles in member accounts, except for a small break-glass administrator role managed by the security team. The control must be preventive and applied across AWS Organizations.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Enable IAM Access Analyzer in every account to detect policies with Action: * and Resource: * after they are attached.",
+      "Create an SCP that denies iam:AttachRolePolicy and iam:PutRolePolicy when the target role is not the approved break-glass role and the policy document contains Action: * and Resource: *.",
+      "Use AWS Config managed rules to evaluate IAM policies daily and send findings to SNS.",
+      "Require developers to submit all IAM changes through a manual change approval board."
+    ],
+    correctAnswer: 1,
+    category: "Management and Security Governance",
+    explanation: "The requirement is explicitly preventive and organization-wide. An SCP is the correct control layer for preventing attachment or creation of overly permissive role policies in member accounts. By carving out only the approved break-glass role as an exception, the organization can enforce the restriction consistently across accounts.",
+    optionExplanations: [
+      "IAM Access Analyzer is a detective control. It identifies overly broad access after the policy exists, but it does not stop the policy from being attached.",
+      "✓ Correct: An SCP can prevent the attachment or inline creation of wildcard-on-wildcard policies on roles across member accounts, while allowing an explicit exception for the designated break-glass role.",
+      "AWS Config provides continuous evaluation, but it is still detective and potentially delayed. It does not prevent the attachment of the non-compliant policy.",
+      "Manual approval is a process control and cannot guarantee prevention at the AWS API level across all member accounts."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html", title: "Service control policies (SCPs)" },
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-reference-policy-checks.html", title: "IAM Access Analyzer policy checks" }
+    ]
+  },
+  {
+    id: 51,
+    question: "A company stores highly sensitive backups in Amazon S3 and must ensure that no object version can be deleted or overwritten by any user, including the root user, until a 3-year retention period expires.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Enable S3 Versioning and add a bucket policy that denies s3:DeleteObject for all principals.",
+      "Enable S3 Object Lock in Governance mode with a 3-year retention period.",
+      "Enable S3 Object Lock in Compliance mode with a 3-year retention period.",
+      "Store the objects in S3 Glacier Deep Archive and deny s3:DeleteBucket in the bucket policy."
+    ],
+    correctAnswer: 2,
+    category: "Data Protection",
+    explanation: "S3 Object Lock in Compliance mode prevents object versions from being overwritten or deleted until the retention period expires, and this protection applies even to the root user. This directly satisfies the requirement for immutable backups with a fixed 3-year retention period.",
+    optionExplanations: [
+      "Versioning preserves prior versions, but an authorized principal can still delete object versions unless additional immutable retention controls are used. This does not satisfy the requirement against deletion by any user, including root.",
+      "Governance mode provides strong protection, but users with the s3:BypassGovernanceRetention permission can still override retention settings. That does not meet the requirement for absolute protection.",
+      "✓ Correct: Compliance mode is the strongest S3 immutability control. No user, including the root user, can overwrite or delete protected object versions before the retention period ends.",
+      "S3 Glacier Deep Archive is a storage class, not an immutability control by itself. Without Object Lock, objects can still be deleted by authorized users."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html", title: "Using S3 Object Lock" },
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/batch-ops-retention-date.html", title: "Setting retention periods with S3 Object Lock" }
+    ]
+  },
+  {
+    id: 52,
+    question: "A company wants to ensure that Amazon EC2 instances launched in a specific account can only use approved Amazon Machine Images (AMIs) that are tagged with Approved=true. The control must prevent the launch of instances from any unapproved AMI.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Create an AWS Config rule that checks whether running instances were launched from approved AMIs and automatically terminates non-compliant instances.",
+      "Create an SCP that denies ec2:RunInstances unless the AMI used in the request has the required Approved=true tag.",
+      "Create an EventBridge rule for RunInstances and invoke a Lambda function to stop instances launched from unapproved AMIs.",
+      "Use IAM Access Analyzer to detect when unapproved AMIs are used to launch instances."
+    ],
+    correctAnswer: 1,
+    category: "Management and Security Governance",
+    explanation: "An SCP is the preventive control layer for AWS Organizations. By denying ec2:RunInstances unless the AMI in the request has the Approved=true tag, the organization prevents non-compliant launches before the instances are created.",
+    optionExplanations: [
+      "AWS Config plus termination is reactive and allows the non-compliant instance to exist temporarily. The requirement is explicitly preventive.",
+      "✓ Correct: An SCP can enforce an organization-wide preventive rule on ec2:RunInstances based on conditions tied to the AMI used in the launch request, blocking unapproved AMIs before launch.",
+      "EventBridge and Lambda are reactive controls. Even if the instance is stopped quickly, the launch has already occurred.",
+      "IAM Access Analyzer is a detective analysis service and does not enforce runtime prevention of unapproved AMI launches."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html", title: "Service control policies (SCPs)" },
+      { url: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ExamplePolicies_EC2.html", title: "Example policies for Amazon EC2" }
+    ]
+  },
+  {
+    id: 53,
+    question: "A security engineer needs to ensure that all secrets stored in AWS Secrets Manager are rotated automatically every 30 days. The databases already support native credential rotation through Secrets Manager. The team wants the simplest scalable solution.\n\nWhich solution should the engineer implement?",
+    options: [
+      "Create a scheduled Lambda function that lists all secrets and updates them every 30 days.",
+      "Enable automatic rotation for each secret in Secrets Manager using the appropriate AWS-provided rotation template and set the rotation schedule to 30 days.",
+      "Store the secrets in AWS Systems Manager Parameter Store SecureString parameters instead and rotate them with an EventBridge rule.",
+      "Use AWS Config to detect secrets older than 30 days and notify administrators to rotate them manually."
+    ],
+    correctAnswer: 1,
+    category: "Data Protection",
+    explanation: "AWS Secrets Manager natively supports automatic rotation on a schedule using integrated Lambda rotation functions and AWS-provided templates for supported databases. Setting the rotation interval to 30 days gives the simplest scalable implementation with minimal custom code.",
+    optionExplanations: [
+      "A custom scheduled Lambda duplicates built-in Secrets Manager rotation capabilities and adds unnecessary maintenance overhead.",
+      "✓ Correct: Secrets Manager automatic rotation is the native, scalable solution. It supports a 30-day schedule and integrates directly with supported database engines using standard rotation workflows.",
+      "Parameter Store SecureString is not the native managed secret rotation solution for databases. It would require more custom orchestration than Secrets Manager.",
+      "AWS Config notification is only detective and manual. It does not perform the required automatic 30-day rotation."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/secretsmanager/latest/userguide/rotating-secrets.html", title: "Rotate AWS Secrets Manager secrets" },
+      { url: "https://docs.aws.amazon.com/secretsmanager/latest/userguide/reference_available-rotation-templates.html", title: "Available rotation function templates" }
+    ]
+  },
+  {
+    id: 54,
+    question: "A company uses Amazon CloudFront to distribute a public website backed by an Application Load Balancer. The security team wants to block requests from a list of known malicious IP addresses globally before the traffic reaches the application.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Create AWS WAF IP set containing the malicious IP addresses and reference it in a rule in a Web ACL associated with the CloudFront distribution.",
+      "Add inbound deny rules for the malicious IP addresses to the ALB security group.",
+      "Create an Amazon Route 53 Resolver DNS Firewall rule group that blocks the malicious client IP addresses.",
+      "Enable AWS Shield Standard and upload the malicious IP list to Shield."
+    ],
+    correctAnswer: 0,
+    category: "Infrastructure Security",
+    explanation: "AWS WAF associated with CloudFront evaluates requests at the edge before they reach the origin. An IP set-based rule is the standard way to block known malicious client IP addresses globally with minimal latency and operational overhead.",
+    optionExplanations: [
+      "✓ Correct: A WAF IP set allows centralized management of malicious source IP addresses, and associating the Web ACL with CloudFront blocks those requests at the edge before they hit the ALB or backend application.",
+      "Security groups on an ALB are not the ideal control for globally distributed edge filtering. The request would already traverse CloudFront and reach the origin layer before being evaluated.",
+      "Route 53 Resolver DNS Firewall controls outbound DNS queries from VPC resources. It does not filter inbound client HTTP requests to CloudFront.",
+      "AWS Shield Standard provides automatic DDoS protections but does not offer a customer-managed malicious IP block list feature like AWS WAF IP sets."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/waf/latest/developerguide/waf-rule-statement-type-ipset-match.html", title: "IP set match rule statement" },
+      { url: "https://docs.aws.amazon.com/waf/latest/developerguide/classic-web-acl-associating-cloudfront-distribution.html", title: "Associating a web ACL with a CloudFront distribution" }
+    ]
+  },
+  {
+    id: 55,
+    question: "A company wants to identify all security groups in an AWS account that allow inbound access from 0.0.0.0/0 to TCP port 22. The security engineer needs a solution that can query the current configuration across the account without building a custom inventory system.\n\nWhich solution should the engineer use?",
+    options: [
+      "Use AWS Config advanced queries to search configuration items for security groups that have ingress rules allowing 0.0.0.0/0 on port 22.",
+      "Use Amazon Athena to query CloudTrail logs for AuthorizeSecurityGroupIngress events involving port 22.",
+      "Use Amazon Inspector to list all security groups with SSH access open to the internet.",
+      "Enable VPC Flow Logs and search for accepted connections on port 22 from public IP addresses."
+    ],
+    correctAnswer: 0,
+    category: "Security Logging and Monitoring",
+    explanation: "AWS Config advanced queries are designed for querying current resource configuration state across an account or aggregator. This is ideal for finding all security groups currently configured with SSH access from 0.0.0.0/0 without building custom inventory tooling.",
+    optionExplanations: [
+      "✓ Correct: Config advanced queries provide SQL-like access to current recorded configurations, making them a direct fit for identifying security groups with internet-open SSH ingress rules.",
+      "Athena on CloudTrail shows historical API activity, not necessarily the current effective configuration state. Rules may have been modified after the logged event.",
+      "Amazon Inspector focuses on vulnerabilities and some exposure findings, but Config advanced queries are the native configuration search tool for this exact requirement.",
+      "VPC Flow Logs only show actual traffic metadata, not all current security group rules. A rule could exist even if no traffic has yet used it."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/config/latest/developerguide/query-components.html", title: "AWS Config advanced query components" },
+      { url: "https://docs.aws.amazon.com/config/latest/developerguide/querying-AWS-resources.html", title: "Querying resource configuration data" }
+    ]
+  },
+  {
+    id: 56,
+    question: "A company needs to ensure that all API calls made within its AWS accounts can be attributed to individual users from the corporate identity provider, rather than shared IAM users. The company already uses an external SAML 2.0 identity provider.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Create a shared IAM user for each team and require team members to sign in with that user's credentials.",
+      "Federate users from the external SAML identity provider into AWS and require them to assume roles with their individual federated identities.",
+      "Create long-term IAM access keys for each employee and store them in the corporate password vault.",
+      "Use the AWS account root user for all administrative actions because CloudTrail records root activity separately."
+    ],
+    correctAnswer: 1,
+    category: "Identity and Access Management",
+    explanation: "Federation from a SAML 2.0 identity provider into AWS allows each user to authenticate with their own corporate identity and assume AWS roles individually. CloudTrail records the federated user context, enabling accountability without shared IAM users or long-term AWS credentials.",
+    optionExplanations: [
+      "Shared IAM users break individual accountability and make attribution impossible because multiple people use the same identity.",
+      "✓ Correct: SAML federation maps each corporate identity to an AWS role session, preserving individual attribution in CloudTrail while avoiding shared users and long-term AWS credentials.",
+      "Long-term IAM access keys create operational and security risk and do not leverage the existing enterprise identity provider.",
+      "The root user must not be used for routine operations. It also does not provide per-individual accountability across administrators."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_saml.html", title: "About SAML 2.0-based federation" },
+      { url: "https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html", title: "What is IAM Identity Center?" }
+    ]
+  },
+  {
+    id: 57,
+    question: "A security engineer wants to detect when an AWS KMS key's policy is modified in any account in the organization and immediately alert the security team. The company already uses an organization trail.\n\nWhich solution should the engineer implement?",
+    options: [
+      "Create an EventBridge rule in the central account that matches CloudTrail events for kms:PutKeyPolicy and route matching events to an SNS topic.",
+      "Enable AWS Config with a rule that checks whether KMS keys have the correct policy and wait for the next evaluation cycle.",
+      "Enable Amazon GuardDuty KMS Protection and review findings daily.",
+      "Create an AWS Lambda function that polls the KMS API every hour and compares policies against a baseline."
+    ],
+    correctAnswer: 0,
+    category: "Security Logging and Monitoring",
+    explanation: "CloudTrail records KMS policy modification API calls such as PutKeyPolicy. EventBridge can match these events in near real time and route them to SNS for immediate alerting, which is the most direct solution when an organization trail is already in place.",
+    optionExplanations: [
+      "✓ Correct: EventBridge on top of CloudTrail management events provides near-real-time alerting for KMS key policy changes across the organization with minimal overhead.",
+      "AWS Config is useful for compliance state checks, but it is not the best mechanism for immediate alerting on every policy modification event.",
+      "GuardDuty does not provide a dedicated KMS policy change alerting capability for every PutKeyPolicy event.",
+      "Polling hourly introduces delay and unnecessary custom code when the event is already available from CloudTrail and EventBridge."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/kms/latest/developerguide/ct-policies.html", title: "Logging AWS KMS API calls with CloudTrail" },
+      { url: "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event-cloudtrail.html", title: "CloudTrail events in EventBridge" }
+    ]
+  },
+  {
+    id: 58,
+    question: "A company wants to ensure that Amazon RDS database snapshots shared outside the AWS Organization are detected and blocked from being created in member accounts. The solution should be preventive wherever possible.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Use AWS Config to detect publicly shared or externally shared RDS snapshots and send an SNS notification.",
+      "Create an SCP that denies the API actions used to modify RDS snapshot attributes for sharing outside the organization, and use AWS Config as a detective control for existing snapshots.",
+      "Enable Amazon GuardDuty RDS Protection to block snapshot sharing outside the organization.",
+      "Create a scheduled Lambda function that removes unauthorized shared snapshot permissions every night."
+    ],
+    correctAnswer: 1,
+    category: "Management and Security Governance",
+    explanation: "The preventive requirement is best met with an SCP that denies the relevant RDS snapshot sharing actions in member accounts. AWS Config can complement this with detective visibility for any existing non-compliant snapshots or edge cases, providing defense in depth.",
+    optionExplanations: [
+      "AWS Config alone is detective and cannot prevent the external sharing action from occurring.",
+      "✓ Correct: SCPs are the right preventive organization-wide control, and Config adds detective coverage for existing resources or compliance reporting.",
+      "GuardDuty RDS Protection focuses on database threat detections, not governance over snapshot sharing permissions.",
+      "A nightly Lambda remediation job is reactive and leaves a window where the snapshot may be shared externally."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html", title: "Service control policies (SCPs)" },
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/share-encrypted-snapshot.html", title: "Sharing a DB snapshot" }
+    ]
+  },
+  {
+    id: 59,
+    question: "A company uses Amazon EKS and wants to restrict Kubernetes service accounts so that pods can access only the specific AWS resources they need, without exposing the worker node IAM role credentials to every pod on the node.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Attach all required permissions to the worker node IAM role so every pod can use them through the node metadata service.",
+      "Create an IAM role for service accounts (IRSA) for each Kubernetes service account and attach least-privilege IAM policies to those roles.",
+      "Create IAM users for each application and store their access keys as Kubernetes Secrets.",
+      "Use Amazon Cognito user pools to authenticate pods to AWS services."
+    ],
+    correctAnswer: 1,
+    category: "Identity and Access Management",
+    explanation: "IAM roles for service accounts (IRSA) let individual Kubernetes service accounts assume distinct IAM roles, so pods receive only the permissions they need. This avoids broad permissions on the worker node role and prevents sharing node-level credentials across all pods.",
+    optionExplanations: [
+      "Using the worker node IAM role exposes those broad permissions to all pods on the node and violates least privilege.",
+      "✓ Correct: IRSA is the AWS-recommended mechanism for assigning fine-grained AWS permissions to pods in EKS using service-account-to-IAM-role mapping.",
+      "IAM user access keys are long-term credentials and are not the recommended way to authorize EKS workloads to AWS services.",
+      "Amazon Cognito is for end-user authentication and does not replace IAM-based workload access to AWS services from pods."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html", title: "IAM roles for service accounts" },
+      { url: "https://docs.aws.amazon.com/eks/latest/best-practices/identity-and-access-management.html", title: "EKS IAM best practices" }
+    ]
+  },
+  {
+    id: 60,
+    question: "A company wants to analyze VPC Flow Logs centrally from multiple AWS accounts and Regions with minimal operational overhead. The security team needs to run ad hoc SQL queries against the logs and keep the raw data in low-cost object storage.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Configure VPC Flow Logs to publish to CloudWatch Logs in each account and search them manually with CloudWatch Logs Insights.",
+      "Configure VPC Flow Logs to deliver to a centralized Amazon S3 bucket and use Amazon Athena with the appropriate table definitions to query the logs.",
+      "Stream all VPC Flow Logs into Amazon OpenSearch Service domains in every Region for querying.",
+      "Create a custom fleet of EC2 instances that download and index the flow logs into a relational database."
+    ],
+    correctAnswer: 1,
+    category: "Security Logging and Monitoring",
+    explanation: "Publishing VPC Flow Logs to a centralized S3 bucket keeps the raw data in low-cost object storage and avoids managing log indexing infrastructure. Amazon Athena can query the logs directly with SQL, making this the standard low-overhead architecture for centralized ad hoc analysis.",
+    optionExplanations: [
+      "CloudWatch Logs Insights works, but centralizing and retaining large volumes of multi-account, multi-Region flow logs in CloudWatch Logs is generally more expensive and less aligned with the low-cost object storage requirement.",
+      "✓ Correct: S3 plus Athena is the native serverless pattern for centralized, low-cost retention and SQL-based ad hoc analysis of VPC Flow Logs.",
+      "OpenSearch can support search and analytics, but it introduces significantly more operational and cost overhead than S3 plus Athena for this requirement.",
+      "A custom EC2-based indexing fleet is unnecessary and adds substantial infrastructure management overhead."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/athena/latest/ug/vpc-flow-logs.html", title: "Querying Amazon VPC flow logs in Athena" },
+      { url: "https://docs.aws.amazon.com/vpc/latest/userguide/flow-logs-s3.html", title: "Publish flow logs to Amazon S3" }
+    ]
+  },
+  {
+    id: 61,
+    question: "A company uses AWS Organizations and wants to ensure that member accounts cannot disable Amazon GuardDuty in their accounts. The security team manages GuardDuty centrally from a delegated administrator account.\n\nWhich control should the security engineer implement?",
+    options: [
+      "Create an SCP that denies guardduty:DeleteDetector and guardduty:UpdateDetector in member accounts, with an exception only for the delegated security administrator workflow if needed.",
+      "Enable AWS Config and use a managed rule to detect when GuardDuty is disabled, then notify the security team.",
+      "Create an EventBridge rule to re-enable GuardDuty after it is disabled in a member account.",
+      "Use IAM Access Analyzer to prevent changes to GuardDuty configuration."
+    ],
+    correctAnswer: 0,
+    category: "Management and Security Governance",
+    explanation: "The requirement is preventive. An SCP is the right organization-wide control to deny member accounts from disabling GuardDuty by blocking the relevant GuardDuty API actions. Detective controls like Config or EventBridge re-enablement act only after the service has already been changed.",
+    optionExplanations: [
+      "✓ Correct: SCPs provide preventive governance across member accounts. Denying GuardDuty disablement APIs prevents local administrators from turning off or weakening GuardDuty in their accounts.",
+      "AWS Config is a detective control and would only identify the issue after GuardDuty had already been disabled.",
+      "Automatically re-enabling GuardDuty is reactive and leaves a window of reduced visibility. It does not prevent the disable action itself.",
+      "IAM Access Analyzer analyzes access policies and external access exposure. It does not enforce GuardDuty service configuration changes."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html", title: "Service control policies (SCPs)" },
+      { url: "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html", title: "Managing GuardDuty accounts with AWS Organizations" }
+    ]
+  },
+  {
+    id: 62,
+    question: "A company runs an application on Amazon EC2 instances and wants to ensure that only approved outbound destinations are reachable from a sensitive subnet. The team needs a managed network firewall service with centrally managed rule groups and domain-based filtering capabilities.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Use security groups with outbound rules listing approved domain names.",
+      "Deploy AWS Network Firewall with stateful rule groups and domain list rule groups, and route subnet traffic through the firewall endpoints.",
+      "Create an S3 bucket policy listing approved domains and attach it to the VPC.",
+      "Use Amazon GuardDuty to block traffic to unapproved destinations."
+    ],
+    correctAnswer: 1,
+    category: "Infrastructure Security",
+    explanation: "AWS Network Firewall is the managed network firewall service for VPCs and supports centralized rule management, stateful inspection, and domain list filtering. Routing subnet traffic through firewall endpoints lets the organization enforce egress controls for sensitive subnets using managed rule groups.",
+    optionExplanations: [
+      "Security groups do not support outbound filtering by domain name. They work with IPs, CIDRs, ports, and referenced security groups.",
+      "✓ Correct: AWS Network Firewall provides the required managed firewall capabilities, including centralized rule groups and domain-based filtering, when traffic is routed through its endpoints.",
+      "An S3 bucket policy applies to S3 resources and cannot control general outbound network access from EC2 instances or VPC subnets.",
+      "GuardDuty is a threat detection service, not a preventive network firewall that blocks arbitrary outbound destinations."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/network-firewall/latest/developerguide/what-is-aws-network-firewall.html", title: "What is AWS Network Firewall?" },
+      { url: "https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html", title: "Matching traffic against domain names" }
+    ]
+  },
+  {
+    id: 63,
+    question: "A security engineer needs to ensure that Amazon EBS snapshots copied to another Region remain encrypted with a customer managed KMS key in the destination Region.\n\nWhich approach should the engineer use?",
+    options: [
+      "Copy the snapshot to the destination Region and specify the destination Region customer managed KMS key during the copy operation.",
+      "Disable encryption before copying the snapshot, then re-encrypt it after the copy completes.",
+      "Use the same KMS key ARN from the source Region because KMS keys are global.",
+      "Store the snapshot in Amazon S3 first, then import it into EBS with SSE-S3."
+    ],
+    correctAnswer: 0,
+    category: "Data Protection",
+    explanation: "KMS keys are Regional. When copying an encrypted EBS snapshot to another Region, the destination copy must use a KMS key in the destination Region. Specifying the destination Region CMK during the copy operation keeps the snapshot encrypted and under customer control in that Region.",
+    optionExplanations: [
+      "✓ Correct: Cross-Region snapshot copy supports specifying a destination Region KMS key so the copied snapshot remains encrypted under a customer managed key in that Region.",
+      "Disabling encryption is neither required nor desirable. It weakens security and is not the standard AWS workflow for encrypted snapshot copies.",
+      "KMS keys are not global resources. A key ARN from one Region cannot be used directly in another Region for snapshot encryption.",
+      "EBS snapshot copy is natively supported by EBS and KMS. Exporting to S3 with SSE-S3 does not meet the requirement for a destination Region customer managed KMS key."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/ebs/latest/userguide/ebs-copy-snapshot.html", title: "Copy an Amazon EBS snapshot" },
+      { url: "https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#regionality", title: "AWS KMS keys are Regional resources" }
+    ]
+  },
+  {
+    id: 64,
+    question: "A company wants real-time alerts whenever an Amazon S3 bucket policy is changed in any account in the organization. The company already has an organization trail that logs management events.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Create an EventBridge rule in the central account that matches CloudTrail events for PutBucketPolicy and DeleteBucketPolicy, then route matches to Amazon SNS.",
+      "Use AWS Config to periodically evaluate S3 bucket policies and email a report every week.",
+      "Enable Amazon Macie and review findings for bucket policy changes.",
+      "Use S3 server access logging to detect bucket policy changes."
+    ],
+    correctAnswer: 0,
+    category: "Security Logging and Monitoring",
+    explanation: "CloudTrail records S3 bucket policy management API calls. EventBridge can match these management events in near real time and forward them to SNS, giving the security team immediate notification whenever a bucket policy is changed or removed in any organization account covered by the organization trail.",
+    optionExplanations: [
+      "✓ Correct: EventBridge on CloudTrail management events is the native low-overhead way to alert in real time on S3 bucket policy changes across the organization.",
+      "AWS Config is useful for compliance evaluation, but a weekly report does not satisfy the real-time alerting requirement.",
+      "Amazon Macie focuses on sensitive data discovery and some S3 security posture findings, not immediate alerts for every bucket policy management API call.",
+      "S3 server access logging records requests to objects and bucket operations, but CloudTrail is the authoritative service for management API event alerting."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/cloudtrail-logging-s3-info.html", title: "Logging Amazon S3 API calls using AWS CloudTrail" },
+      { url: "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event-cloudtrail.html", title: "CloudTrail events in EventBridge" }
+    ]
+  },
+  {
+    id: 65,
+    question: "A company uses AWS IAM Identity Center to grant workforce access to AWS accounts. The security team must ensure that users can access accounts only from devices enrolled in the company's device management system.\n\nWhich feature should the security engineer use?",
+    options: [
+      "IAM Identity Center trusted identity propagation.",
+      "IAM Identity Center attribute-based access control (ABAC) with session tags only.",
+      "IAM Identity Center device trust policies integrated with the supported identity source and device posture signals.",
+      "Amazon Cognito adaptive authentication."
+    ],
+    correctAnswer: 2,
+    category: "Identity and Access Management",
+    explanation: "The requirement is to restrict workforce access based on device enrollment or trust status. IAM Identity Center device trust capabilities are designed for this use case by integrating user authentication with device posture or enrollment information from supported providers, allowing access only from managed devices.",
+    optionExplanations: [
+      "Trusted identity propagation is used for propagating workforce identity context to applications and services, not specifically for restricting access to managed devices.",
+      "ABAC with session tags can authorize based on user or session attributes, but by itself it does not provide the device enrollment enforcement capability requested.",
+      "✓ Correct: Device trust in IAM Identity Center addresses conditional access based on managed or trusted device state, which directly matches the requirement.",
+      "Amazon Cognito is aimed at application user authentication and does not control workforce sign-in to AWS accounts through IAM Identity Center."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html", title: "What is IAM Identity Center?" },
+      { url: "https://docs.aws.amazon.com/singlesignon/latest/userguide/manage-your-identity-source-considerations.html", title: "Identity source considerations" }
+    ]
+  },
+  {
+    id: 66,
+    question: "A company wants to ensure that all new Amazon SQS queues are encrypted at rest with a customer managed AWS KMS key. If a developer creates an unencrypted queue, it must be prevented immediately.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Create an SCP that denies sqs:CreateQueue unless the request includes server-side encryption using the required customer managed KMS key.",
+      "Use AWS Config to detect unencrypted SQS queues and delete them automatically.",
+      "Enable Amazon Inspector for SQS encryption findings.",
+      "Create an EventBridge rule that updates any new queue to use SSE after creation."
+    ],
+    correctAnswer: 0,
+    category: "Management and Security Governance",
+    explanation: "The requirement is preventive. An SCP can deny the CreateQueue API call unless the queue is created with server-side encryption using the required customer managed KMS key, ensuring non-compliant queues are never created in member accounts.",
+    optionExplanations: [
+      "✓ Correct: SCPs provide API-level prevention and can enforce the required encryption settings at queue creation time across accounts.",
+      "AWS Config is detective and remediation after creation is too late for a requirement that the queue creation be blocked immediately.",
+      "Amazon Inspector does not govern SQS queue encryption settings as a preventive control.",
+      "Updating the queue after creation is reactive and leaves a window where the queue is unencrypted."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html", title: "Service control policies (SCPs)" },
+      { url: "https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html", title: "Encryption at rest in Amazon SQS" }
+    ]
+  },
+  {
+    id: 67,
+    question: "A security engineer needs to provide a third-party SaaS vendor limited access to read objects from a single Amazon S3 bucket in the company's account. The vendor has its own AWS account and should use temporary credentials rather than long-term access keys.\n\nWhich approach should the engineer implement?",
+    options: [
+      "Create an IAM user in the company account, generate access keys, and send them to the vendor.",
+      "Create a cross-account IAM role with a policy scoped to the S3 bucket and allow the vendor's AWS account to assume the role.",
+      "Generate a single long-lived pre-signed URL for the entire bucket.",
+      "Attach AmazonS3ReadOnlyAccess to the company account root user and share the root credentials with the vendor."
+    ],
+    correctAnswer: 1,
+    category: "Identity and Access Management",
+    explanation: "A cross-account IAM role is the AWS-recommended way to grant third parties limited access using temporary credentials. The vendor uses its own AWS identity to assume the role, and the role policy can be tightly scoped to the single bucket or specific prefixes as needed.",
+    optionExplanations: [
+      "IAM user access keys are long-term credentials and are not the preferred secure pattern for third-party AWS-to-AWS access.",
+      "✓ Correct: A cross-account role provides temporary credentials, least-privilege access, and avoids sharing long-term credentials with the vendor.",
+      "Pre-signed URLs are object-specific and temporary; they are not an account-to-account access model for controlled read access to a bucket over time.",
+      "Sharing root credentials is never acceptable and violates core AWS security best practices."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html", title: "Providing access to AWS accounts owned by third parties" },
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html", title: "Delegate access across AWS accounts using IAM roles" }
+    ]
+  },
+  {
+    id: 68,
+    question: "A company wants to collect and centralize AWS CloudTrail logs from all accounts into an S3 bucket in a log archive account. The security team must ensure that member accounts cannot read the centralized logs stored in that bucket.\n\nWhich control should the security engineer use?",
+    options: [
+      "Add a bucket policy to the centralized S3 bucket that allows only the CloudTrail service principal to write and only designated security principals in the log archive account to read the logs.",
+      "Enable S3 Transfer Acceleration on the centralized bucket and block public access.",
+      "Allow each member account to manage its own CloudTrail bucket policy and replicate logs to the archive account later.",
+      "Store CloudTrail logs in Amazon EFS in the archive account and mount it across accounts."
+    ],
+    correctAnswer: 0,
+    category: "Security Logging and Monitoring",
+    explanation: "A restrictive S3 bucket policy in the log archive account is the key control. It can permit CloudTrail to write logs while allowing read access only to specific security principals in the archive account, thereby preventing member accounts from reading the centralized logs.",
+    optionExplanations: [
+      "✓ Correct: The bucket policy is the authoritative access control for the centralized log bucket and can explicitly restrict reads to only the designated security team principals.",
+      "Transfer Acceleration has nothing to do with cross-account read restrictions for CloudTrail logs.",
+      "Letting member accounts manage their own bucket policies weakens central control and does not ensure the archive bucket remains unreadable to member accounts.",
+      "Amazon EFS is not the standard service for centralized CloudTrail log storage and is not appropriate for this requirement."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/create-s3-bucket-policy-for-cloudtrail.html", title: "Amazon S3 bucket policy for CloudTrail" },
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html", title: "Bucket policy examples" }
+    ]
+  },
+  {
+    id: 69,
+    question: "A company wants to enforce MFA for all users who sign in to the AWS Management Console through IAM users. In addition, API calls made by IAM users without MFA should be denied except for the actions required to set up a virtual MFA device.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Attach an IAM policy that denies all actions when aws:MultiFactorAuthPresent is false, except the minimum IAM actions needed to create and enable an MFA device.",
+      "Enable AWS Config with the mfa-enabled-for-iam-console-access rule and notify users who are non-compliant.",
+      "Rotate IAM user access keys every 30 days.",
+      "Use AWS Shield Advanced to require MFA before API calls are accepted."
+    ],
+    correctAnswer: 0,
+    category: "Identity and Access Management",
+    explanation: "An IAM policy using the aws:MultiFactorAuthPresent condition can deny access when MFA is not used, while explicitly allowing the small set of IAM actions required for users to enroll an MFA device. This is the standard pattern for enforcing MFA for IAM users at the API authorization layer.",
+    optionExplanations: [
+      "✓ Correct: This condition-based deny policy is the native AWS mechanism for requiring MFA while still permitting self-service MFA enrollment actions.",
+      "AWS Config is only a detective control and does not deny non-MFA API calls in real time.",
+      "Access key rotation does not enforce MFA for console sign-in or API authorization.",
+      "AWS Shield Advanced is unrelated to IAM MFA enforcement."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_aws_my-sec-creds-self-manage.html", title: "AWS: Allows MFA-authenticated IAM users to manage their own credentials" },
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-mfa-present", title: "aws:MultiFactorAuthPresent" }
+    ]
+  },
+  {
+    id: 70,
+    question: "A company stores regulated data in Amazon Aurora and needs evidence of database login attempts and SQL activity for audits. The security team wants a managed AWS capability that integrates with CloudWatch Logs with minimal custom development.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Enable the relevant Aurora database logs, such as audit or general logs depending on the engine, and publish them to Amazon CloudWatch Logs.",
+      "Install a custom host agent on the Aurora underlying instances to tail log files and upload them to Amazon S3.",
+      "Use Amazon GuardDuty to capture every SQL statement executed against Aurora.",
+      "Rely only on AWS CloudTrail management events for all SQL activity visibility."
+    ],
+    correctAnswer: 0,
+    category: "Security Logging and Monitoring",
+    explanation: "Aurora supports publishing database engine logs, such as audit, general, or slow query logs depending on the engine, to CloudWatch Logs. This provides a managed, low-overhead way to capture login attempts and SQL-related audit information for compliance and security reviews.",
+    optionExplanations: [
+      "✓ Correct: Native Aurora log exports to CloudWatch Logs are the managed AWS approach and require minimal custom development while providing centralized retention and analysis options.",
+      "Customers do not manage the underlying Aurora hosts, so installing custom agents is not the correct model.",
+      "GuardDuty does not capture every SQL statement executed on Aurora databases.",
+      "CloudTrail management events record control plane API activity, not detailed in-database login attempts or SQL statements."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html", title: "Monitoring Amazon Aurora log files" },
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.Procedural.UploadtoCloudWatch.html", title: "Publishing Aurora logs to CloudWatch Logs" }
+    ]
+  },
+  {
+    id: 71,
+    question: "A company wants to ensure that Amazon EFS file systems used for regulated workloads are encrypted at rest with a customer managed AWS KMS key at the time they are created. Unencrypted file systems must be prevented from being created in member accounts.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Use AWS Config to detect unencrypted EFS file systems and trigger a remediation workflow.",
+      "Create an SCP that denies elasticfilesystem:CreateFileSystem unless encryption is enabled and the required customer managed KMS key is specified.",
+      "Create an EventBridge rule that deletes any unencrypted EFS file system immediately after creation.",
+      "Enable EFS lifecycle management to transition data to lower-cost storage classes."
+    ],
+    correctAnswer: 1,
+    category: "Management and Security Governance",
+    explanation: "The requirement is preventive and must apply at creation time. An SCP can deny the CreateFileSystem API call unless the request includes encryption and the expected customer managed KMS key, ensuring non-compliant EFS file systems are never created in member accounts.",
+    optionExplanations: [
+      "AWS Config is detective and would find the issue only after the file system already exists.",
+      "✓ Correct: An SCP provides organization-wide preventive control and can enforce encryption requirements during EFS file system creation.",
+      "EventBridge deletion is reactive and leaves a window where an unencrypted file system exists.",
+      "EFS lifecycle management controls storage tiering, not encryption enforcement."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/efs/latest/ug/encryption-at-rest.html", title: "Data encryption at rest in Amazon EFS" },
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html", title: "Service control policies (SCPs)" }
+    ]
+  },
+  {
+    id: 72,
+    question: "A security engineer needs to investigate which IAM principals changed security group rules during the last 14 days across multiple AWS accounts. The company already stores organization CloudTrail logs in Amazon S3. The team wants a serverless query solution.\n\nWhich solution should the engineer use?",
+    options: [
+      "Use Amazon Athena to query the CloudTrail logs in S3 for AuthorizeSecurityGroupIngress, AuthorizeSecurityGroupEgress, RevokeSecurityGroupIngress, and RevokeSecurityGroupEgress events.",
+      "Use AWS Config advanced queries to search for current security group rules and infer which user changed them.",
+      "Use Amazon Inspector to list exposed security groups and then contact account administrators for change history.",
+      "Export VPC Flow Logs to Amazon OpenSearch Service and search for rule change events."
+    ],
+    correctAnswer: 0,
+    category: "Security Logging and Monitoring",
+    explanation: "CloudTrail contains the historical management API activity, including which IAM principal made each security group rule change. Amazon Athena is the standard serverless way to query those CloudTrail logs in S3 across accounts and time ranges without building custom ingestion pipelines.",
+    optionExplanations: [
+      "✓ Correct: Athena can directly query CloudTrail management events in S3 and return the principals, event names, timestamps, and request details for security group rule changes over the last 14 days.",
+      "AWS Config advanced queries show current recorded configuration state, not authoritative historical actor-level API event details for the full time window.",
+      "Amazon Inspector can help identify exposure, but it does not provide a historical audit trail of who changed security group rules.",
+      "VPC Flow Logs contain network traffic metadata, not CloudTrail management events about security group configuration changes."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html", title: "Query AWS CloudTrail logs" },
+      { url: "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html", title: "CloudTrail record contents" }
+    ]
+  },
+  {
+    id: 73,
+    question: "A company wants to require that all Amazon SNS topics used by application teams are encrypted at rest with a customer managed AWS KMS key. The control must block creation of unencrypted topics in member accounts.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Create an SCP that denies sns:CreateTopic unless the request specifies the required customer managed KMS key for topic encryption.",
+      "Use AWS Config to find unencrypted SNS topics and notify administrators.",
+      "Create an EventBridge rule that enables encryption on every new SNS topic after creation.",
+      "Enable CloudTrail log file validation for all Regions."
+    ],
+    correctAnswer: 0,
+    category: "Management and Security Governance",
+    explanation: "The requirement is preventive and organization-wide. An SCP can deny SNS topic creation unless the request includes the required KMS key for server-side encryption, preventing non-compliant topics from being created in member accounts.",
+    optionExplanations: [
+      "✓ Correct: SCPs are the right preventive control for blocking creation of SNS topics that do not use the required customer managed KMS key.",
+      "AWS Config is detective and does not stop the creation of unencrypted topics.",
+      "Post-creation encryption is reactive and leaves a window where the topic is not compliant.",
+      "CloudTrail validation helps detect tampering of logs, not enforce SNS topic encryption settings."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/sns/latest/dg/sns-key-management.html", title: "Amazon SNS key management" },
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html", title: "Service control policies (SCPs)" }
+    ]
+  },
+  {
+    id: 74,
+    question: "A company has public APIs on Amazon API Gateway and wants to protect them from common web exploits such as SQL injection and cross-site scripting, while also centrally reusing the same rules across multiple APIs and accounts.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Associate AWS WAF Web ACLs containing managed rule groups with the API Gateway stages, and use AWS Firewall Manager to centrally manage the WAF policies across accounts.",
+      "Enable AWS Shield Standard and rely on it to block all application-layer attacks.",
+      "Deploy AWS Network Firewall in each VPC and route API Gateway traffic through it.",
+      "Use IAM permission boundaries to restrict API requests that contain malicious payloads."
+    ],
+    correctAnswer: 0,
+    category: "Infrastructure Security",
+    explanation: "AWS WAF is the native service for protecting API Gateway from common web exploits such as SQL injection and XSS. AWS Firewall Manager can centrally manage and enforce WAF policies across multiple accounts, which matches the requirement for centralized reuse and governance.",
+    optionExplanations: [
+      "✓ Correct: AWS WAF with managed rule groups protects API Gateway at Layer 7, and Firewall Manager adds the required centralized multi-account policy management.",
+      "Shield Standard is valuable for DDoS protection but does not provide the detailed application-layer filtering capabilities of AWS WAF for SQL injection and XSS.",
+      "API Gateway traffic does not traverse a customer VPC in a way that makes Network Firewall the right control for this use case.",
+      "IAM permission boundaries govern AWS API permissions for identities, not inspection of web request payloads to API Gateway."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-aws-waf.html", title: "Use AWS WAF to protect your API Gateway API" },
+      { url: "https://docs.aws.amazon.com/waf/latest/developerguide/fms-chapter.html", title: "Using AWS Firewall Manager with AWS WAF" }
+    ]
+  },
+  {
+    id: 75,
+    question: "A security engineer wants to ensure that developers cannot create internet-facing Application Load Balancers in member accounts unless the load balancer is explicitly tagged with an approved exception tag. The control must be preventive across AWS Organizations.\n\nWhich solution should the engineer implement?",
+    options: [
+      "Create an SCP that denies elasticloadbalancing:CreateLoadBalancer when the scheme is internet-facing and the required exception tag is absent or incorrect.",
+      "Use AWS Config to detect internet-facing load balancers and send findings to Security Hub.",
+      "Create an EventBridge rule that deletes any internet-facing load balancer without the exception tag.",
+      "Use Amazon Inspector to scan load balancers for public exposure."
+    ],
+    correctAnswer: 0,
+    category: "Management and Security Governance",
+    explanation: "Because the requirement is preventive and organization-wide, an SCP is the correct guardrail. It can deny CreateLoadBalancer requests based on the scheme and required request tag values, allowing only explicitly approved exceptions.",
+    optionExplanations: [
+      "✓ Correct: An SCP can prevent creation of internet-facing load balancers unless the approved exception tag is included, enforcing the control before deployment.",
+      "AWS Config is detective and would identify the issue only after the load balancer exists.",
+      "Deleting the load balancer afterward is reactive and leaves a window of exposure.",
+      "Amazon Inspector is not the preventive governance control for ALB creation requests."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_CreateLoadBalancer.html", title: "CreateLoadBalancer API" },
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html", title: "Service control policies (SCPs)" }
+    ]
+  },
+  {
+    id: 76,
+    question: "A company wants to automatically detect when an AWS KMS key is scheduled for deletion in any account and immediately alert the security team. The company already has an organization trail.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Create an EventBridge rule in the central account that matches CloudTrail events for kms:ScheduleKeyDeletion and routes them to Amazon SNS.",
+      "Use AWS Config to evaluate KMS keys weekly and send a compliance report.",
+      "Enable Amazon Macie to detect key deletion risk.",
+      "Create a nightly Lambda job that lists pending-deletion keys and writes a CSV report."
+    ],
+    correctAnswer: 0,
+    category: "Security Logging and Monitoring",
+    explanation: "CloudTrail records ScheduleKeyDeletion API calls, and EventBridge can match those events in near real time. Routing matching events to SNS provides immediate notification with minimal custom code or operational overhead.",
+    optionExplanations: [
+      "✓ Correct: EventBridge on top of organization CloudTrail events is the most direct and timely way to alert on KMS key deletion scheduling across accounts.",
+      "Weekly Config evaluations do not satisfy the immediate alerting requirement.",
+      "Macie is for data discovery and S3-related security analysis, not KMS key deletion event alerting.",
+      "A nightly Lambda report introduces unnecessary delay and custom polling logic."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/kms/latest/developerguide/deleting-keys-adding-permission.html", title: "Allowing users to schedule key deletion" },
+      { url: "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event-cloudtrail.html", title: "CloudTrail events in EventBridge" }
+    ]
+  },
+  {
+    id: 77,
+    question: "A company runs containerized workloads on Amazon ECS with tasks in private subnets. The workloads must pull images from Amazon ECR and write application logs to CloudWatch Logs without internet access.\n\nWhich combination of VPC endpoints should the security engineer configure? (Choose THREE.)",
+    options: [
+      "An interface VPC endpoint for com.amazonaws.region.ecr.api.",
+      "An interface VPC endpoint for com.amazonaws.region.ecr.dkr.",
+      "A gateway VPC endpoint for Amazon S3.",
+      "An interface VPC endpoint for com.amazonaws.region.logs.",
+      "A gateway VPC endpoint for Amazon DynamoDB."
+    ],
+    correctAnswer: [0, 1, 3],
+    category: "Infrastructure Security",
+    explanation: "ECS tasks pulling from ECR without internet access require the ECR API endpoint and the ECR Docker registry endpoint. Sending logs to CloudWatch Logs privately requires the CloudWatch Logs interface endpoint. These endpoints allow the workloads to interact with the required services over the AWS network without using a NAT gateway or internet gateway.",
+    optionExplanations: [
+      "✓ Correct: The ECR API interface endpoint is required for Amazon ECR API operations such as authorization and image metadata retrieval.",
+      "✓ Correct: The ECR Docker registry interface endpoint is required for pulling container image layers from ECR.",
+      "An S3 gateway endpoint can be useful in some architectures, but for the requirement stated here, the direct required services are ECR API, ECR DKR, and CloudWatch Logs. The core answer focuses on the explicitly requested functions.",
+      "✓ Correct: The CloudWatch Logs interface endpoint allows application logs to be sent privately to CloudWatch Logs.",
+      "A DynamoDB gateway endpoint is unrelated to pulling ECR images or writing logs to CloudWatch Logs."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/AmazonECR/latest/userguide/vpc-endpoints.html", title: "Amazon ECR interface VPC endpoints" },
+      { url: "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/cloudwatch-logs-and-interface-VPC.html", title: "Using CloudWatch Logs with interface VPC endpoints" }
+    ]
+  },
+  {
+    id: 78,
+    question: "A company wants to find all IAM roles in an account that trust principals from outside the AWS Organization. The security team needs a native AWS service that continuously analyzes resource-based policies and trust relationships.\n\nWhich service should the security engineer use?",
+    options: [
+      "AWS IAM Access Analyzer.",
+      "Amazon GuardDuty.",
+      "AWS Trusted Advisor.",
+      "Amazon Detective."
+    ],
+    correctAnswer: 0,
+    category: "Identity and Access Management",
+    explanation: "IAM Access Analyzer is designed to analyze resource policies and trust policies to identify resources and roles that grant access outside the account or organization. This directly matches the requirement to continuously find IAM roles trusted by external principals.",
+    optionExplanations: [
+      "✓ Correct: IAM Access Analyzer continuously evaluates external access from resource-based and trust policies and is the native service for this requirement.",
+      "GuardDuty detects threats and suspicious behavior, not broad static external trust analysis for IAM roles.",
+      "Trusted Advisor offers best practice checks, but IAM Access Analyzer is the purpose-built service for external access analysis.",
+      "Detective helps investigate security findings and behavior relationships, not perform continuous trust policy analysis."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html", title: "What is IAM Access Analyzer?" },
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-findings-view.html", title: "Viewing IAM Access Analyzer findings" }
+    ]
+  },
+  {
+    id: 79,
+    question: "A company wants to ensure that all Amazon Redshift clusters are encrypted at rest and that audit logs are centrally stored in Amazon S3. The security team prefers native service features with minimal custom code.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Enable Redshift encryption with AWS KMS during cluster creation and configure Redshift audit logging to a centralized S3 bucket.",
+      "Install a custom encryption agent on each Redshift node and stream audit logs to Amazon EC2 instances for aggregation.",
+      "Use Amazon GuardDuty to encrypt Redshift data and collect query audit logs.",
+      "Export Redshift data nightly to encrypted EBS volumes and manually copy audit files to S3."
+    ],
+    correctAnswer: 0,
+    category: "Data Protection",
+    explanation: "Amazon Redshift natively supports encryption at rest using AWS KMS and can export audit logs to Amazon S3. Using these built-in capabilities satisfies the encryption and centralized audit logging requirements with minimal custom development and operational overhead.",
+    optionExplanations: [
+      "✓ Correct: Redshift native encryption and audit logging are the intended low-overhead AWS features for this requirement.",
+      "Customers do not install host agents on managed Redshift nodes for this purpose, and this adds unnecessary complexity.",
+      "GuardDuty does not provide Redshift at-rest encryption or collect all Redshift audit logs as a replacement for native logging.",
+      "Manual export and copy workflows add unnecessary operational burden and do not use the managed native features."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html", title: "Amazon Redshift database encryption" },
+      { url: "https://docs.aws.amazon.com/redshift/latest/mgmt/db-auditing.html", title: "Database audit logging in Amazon Redshift" }
+    ]
+  },
+  {
+    id: 80,
+    question: "A company wants a central security account to receive findings from AWS Security Hub across all organization accounts and Regions, and it wants new accounts to be included automatically.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Designate the security account as the Security Hub delegated administrator and enable organization configuration with auto-enable for new accounts and Regions as required.",
+      "Create custom Lambda functions in each account to export Security Hub findings to Amazon S3 every day.",
+      "Use AWS Config aggregators instead of Security Hub because they automatically include all new findings.",
+      "Create cross-account IAM roles and require administrators to log in to each account to review Security Hub findings manually."
+    ],
+    correctAnswer: 0,
+    category: "Management and Security Governance",
+    explanation: "Security Hub natively supports delegated administration through AWS Organizations. By designating a delegated administrator and enabling organization-wide configuration and auto-enable behavior, the security account can centrally receive findings from member accounts and automatically include new accounts with minimal operational effort.",
+    optionExplanations: [
+      "✓ Correct: Security Hub delegated administration with organization auto-enable is the native and scalable approach for centralized multi-account findings aggregation.",
+      "Custom daily export functions add unnecessary complexity and do not provide the same near-real-time centralized operating model.",
+      "AWS Config aggregators centralize Config data, not Security Hub findings. They are complementary, not a replacement.",
+      "Manual cross-account review does not scale and does not automatically include new accounts."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-accounts-orgs.html", title: "Managing Security Hub accounts with AWS Organizations" },
+      { url: "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-auto-enabled-standards.html", title: "Automatically enabling accounts and standards" }
+    ]
+  },
+  {
+    id: 81,
+    question: "A company wants to ensure that all AWS Lambda function URLs are protected so that no function URL can be created with public unauthenticated access in member accounts unless an approved exception tag is present. The control must be preventive across AWS Organizations.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Create an SCP that denies lambda:CreateFunctionUrlConfig when AuthType is NONE unless the request includes the approved exception tag.",
+      "Use AWS Config to detect Lambda function URLs with AuthType set to NONE and notify the security team.",
+      "Create an EventBridge rule that deletes any public function URL after it is created.",
+      "Enable Amazon Inspector to scan Lambda function URLs for public exposure."
+    ],
+    correctAnswer: 0,
+    category: "Management and Security Governance",
+    explanation: "The requirement is preventive and organization-wide. An SCP can deny CreateFunctionUrlConfig requests when the function URL is configured for unauthenticated public access unless an approved exception tag is present, preventing non-compliant public Lambda function URLs from being created in member accounts.",
+    optionExplanations: [
+      "✓ Correct: An SCP is the right preventive guardrail for AWS Organizations and can block unauthenticated public Lambda function URLs unless an approved exception is explicitly tagged.",
+      "AWS Config is detective and would identify the issue only after the public function URL already exists.",
+      "Deleting the public function URL afterward is reactive and leaves a window of exposure.",
+      "Amazon Inspector is not the service used to prevent creation of public Lambda function URLs."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/lambda/latest/dg/urls-auth.html", title: "Control access to Lambda function URLs" },
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html", title: "Service control policies (SCPs)" }
+    ]
+  },
+  {
+    id: 82,
+    question: "A security engineer needs to identify all Amazon S3 buckets across multiple AWS accounts that currently allow public access through a bucket policy or ACL. The company already records configuration history centrally.\n\nWhich solution should the engineer use?",
+    options: [
+      "Use AWS Config advanced queries against the aggregated configuration data to find S3 buckets with public access settings or policies.",
+      "Use Amazon Athena to query VPC Flow Logs for public S3 traffic.",
+      "Use Amazon GuardDuty to list all public S3 buckets.",
+      "Use AWS Trusted Advisor in each account and manually combine the results."
+    ],
+    correctAnswer: 0,
+    category: "Security Logging and Monitoring",
+    explanation: "Because the company already records configuration history centrally, AWS Config advanced queries are the most direct native way to search current aggregated S3 bucket configurations and identify buckets with public ACLs, public policies, or related public access posture issues.",
+    optionExplanations: [
+      "✓ Correct: Config advanced queries over aggregated configuration data are designed for centralized searches of current resource posture such as public S3 exposure.",
+      "VPC Flow Logs do not describe S3 bucket policies or ACLs and cannot authoritatively identify which buckets are publicly accessible.",
+      "GuardDuty can produce certain S3-related findings, but it is not the native inventory query tool for enumerating all currently public buckets.",
+      "Trusted Advisor can help identify issues, but manually aggregating results from multiple accounts is less scalable and less direct than Config aggregation and advanced queries."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/config/latest/developerguide/querying-AWS-resources.html", title: "Querying AWS resource configurations" },
+      { url: "https://docs.aws.amazon.com/config/latest/developerguide/aggregate-data.html", title: "Aggregating AWS Config data" }
+    ]
+  },
+  {
+    id: 83,
+    question: "A company wants to ensure that Amazon EC2 instances in private subnets can access AWS Systems Manager Session Manager without requiring outbound internet access. The instances must also be manageable with Systems Manager Run Command.\n\nWhich VPC endpoints should the security engineer configure? (Choose THREE.)",
+    options: [
+      "An interface VPC endpoint for com.amazonaws.region.ssm.",
+      "An interface VPC endpoint for com.amazonaws.region.ssmmessages.",
+      "An interface VPC endpoint for com.amazonaws.region.ec2messages.",
+      "A gateway VPC endpoint for Amazon S3.",
+      "An interface VPC endpoint for com.amazonaws.region.sts."
+    ],
+    correctAnswer: [0, 1, 2],
+    category: "Infrastructure Security",
+    explanation: "Systems Manager access from private subnets without internet requires the SSM, SSMMessages, and EC2Messages endpoints. Together these interface endpoints allow Session Manager and Run Command traffic to stay on the AWS network without a NAT gateway or internet gateway.",
+    optionExplanations: [
+      "✓ Correct: The SSM endpoint is required for core Systems Manager API communication from managed instances.",
+      "✓ Correct: The SSMMessages endpoint is required for Session Manager and other bidirectional message channels.",
+      "✓ Correct: The EC2Messages endpoint is required for Systems Manager agent message delivery and command processing.",
+      "An S3 gateway endpoint can be useful for some Systems Manager features, but it is not one of the three core endpoints required for Session Manager and Run Command connectivity.",
+      "STS can be useful in some architectures, but it is not the core required endpoint set for Session Manager and Run Command connectivity from private subnets."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-create-vpc.html", title: "Create VPC endpoints for Systems Manager" },
+      { url: "https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started-privatelink.html", title: "Use Session Manager with AWS PrivateLink" }
+    ]
+  },
+  {
+    id: 84,
+    question: "A company needs to ensure that all new Amazon DynamoDB tables are encrypted using a customer managed AWS KMS key rather than the default AWS owned encryption. Creation of tables without the required key must be blocked in member accounts.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Create an SCP that denies dynamodb:CreateTable unless the request specifies server-side encryption with the required customer managed KMS key.",
+      "Use AWS Config to detect tables not encrypted with the approved key and delete them.",
+      "Enable Amazon Inspector DynamoDB encryption findings.",
+      "Create an EventBridge rule that updates encryption settings after the table is created."
+    ],
+    correctAnswer: 0,
+    category: "Management and Security Governance",
+    explanation: "The requirement is preventive. An SCP can deny DynamoDB table creation unless the request uses server-side encryption with the approved customer managed KMS key, ensuring non-compliant tables cannot be created in member accounts.",
+    optionExplanations: [
+      "✓ Correct: SCPs provide preventive API-level governance and can enforce customer managed KMS key usage during DynamoDB table creation.",
+      "AWS Config is detective and would identify the issue only after the table exists.",
+      "Amazon Inspector is not the service used to enforce DynamoDB encryption settings at creation time.",
+      "Changing settings after creation is reactive and does not satisfy the requirement to block non-compliant table creation."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/encryption.usagenotes.html", title: "Encryption at rest in DynamoDB" },
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html", title: "Service control policies (SCPs)" }
+    ]
+  },
+  {
+    id: 85,
+    question: "A company wants to receive a near-real-time alert whenever an AWS CloudTrail trail is stopped or deleted in any member account. The organization already uses an organization trail and Amazon SNS for security notifications.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Create an EventBridge rule in the central account that matches CloudTrail management events for StopLogging and DeleteTrail, and route matches to Amazon SNS.",
+      "Use AWS Config to evaluate CloudTrail once per day and email a compliance summary.",
+      "Enable Amazon Macie to detect CloudTrail tampering.",
+      "Use VPC Flow Logs to identify when CloudTrail is disabled."
+    ],
+    correctAnswer: 0,
+    category: "Security Logging and Monitoring",
+    explanation: "CloudTrail management API calls such as StopLogging and DeleteTrail are themselves recorded and can be matched by EventBridge. Routing those events to SNS provides near-real-time alerting whenever someone attempts to stop or delete a trail in a member account.",
+    optionExplanations: [
+      "✓ Correct: EventBridge is the native event-driven way to alert quickly on trail stop or deletion API activity captured by CloudTrail.",
+      "Daily Config checks do not satisfy the near-real-time requirement.",
+      "Macie is not used to alert on CloudTrail trail lifecycle API events.",
+      "VPC Flow Logs record network traffic metadata, not CloudTrail service configuration changes."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-management-events-with-cloudtrail.html", title: "Logging management events with CloudTrail" },
+      { url: "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event-cloudtrail.html", title: "CloudTrail events in EventBridge" }
+    ]
+  },
+  {
+    id: 86,
+    question: "A company hosts a static website in Amazon S3 behind Amazon CloudFront. The security team wants to ensure that users can access the content only through CloudFront and not directly from the S3 bucket endpoint.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Configure CloudFront to use Origin Access Control (OAC) or Origin Access Identity (OAI) and update the S3 bucket policy to allow reads only from CloudFront.",
+      "Enable S3 Transfer Acceleration and block public access at the account level.",
+      "Use Amazon GuardDuty to detect direct bucket access and block the source IPs.",
+      "Make the bucket public and rely on CloudFront caching to reduce direct S3 access."
+    ],
+    correctAnswer: 0,
+    category: "Infrastructure Security",
+    explanation: "The standard way to restrict access to an S3-backed CloudFront origin is to configure CloudFront with OAC or OAI and then scope the S3 bucket policy so only CloudFront can read the objects. This prevents direct access from the public S3 endpoint while still allowing CloudFront delivery.",
+    optionExplanations: [
+      "✓ Correct: OAC or OAI with a restrictive bucket policy is the native AWS design for ensuring content is served only through CloudFront.",
+      "Transfer Acceleration is unrelated to restricting origin access through CloudFront.",
+      "GuardDuty can detect threats, but it is not the primary enforcement mechanism for restricting S3 origin access to CloudFront only.",
+      "Making the bucket public directly contradicts the requirement to prevent direct S3 endpoint access."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html", title: "Restrict access to an Amazon S3 origin" },
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html", title: "Bucket policy examples" }
+    ]
+  },
+  {
+    id: 87,
+    question: "A company wants to ensure that no Amazon EC2 instance in member accounts can be launched with an instance profile that grants AdministratorAccess, except for a designated break-glass role. The control must be preventive across AWS Organizations.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Create an SCP that denies ec2:RunInstances when the requested IAM instance profile or associated role matches the disallowed administrative profile, except for the approved break-glass case.",
+      "Use AWS Config to detect instances launched with administrative profiles and terminate them.",
+      "Create an EventBridge rule that detaches the instance profile after launch.",
+      "Use Amazon Inspector to identify instances with powerful IAM roles."
+    ],
+    correctAnswer: 0,
+    category: "Management and Security Governance",
+    explanation: "The requirement is preventive. An SCP can deny RunInstances requests when a disallowed instance profile or role is requested, thereby preventing EC2 instances from launching with overly permissive administrative access except in the approved break-glass scenario.",
+    optionExplanations: [
+      "✓ Correct: SCPs are the correct preventive organization-wide guardrail and can block EC2 launches using prohibited instance profiles or roles.",
+      "AWS Config plus termination is reactive and allows the non-compliant instance to exist temporarily.",
+      "Detaching the profile after launch is reactive and leaves a window during which the instance has elevated permissions.",
+      "Amazon Inspector is not the preventive API-layer control for blocking EC2 launches with disallowed instance profiles."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html", title: "IAM roles for Amazon EC2" },
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html", title: "Service control policies (SCPs)" }
+    ]
+  },
+  {
+    id: 88,
+    question: "A company wants to store custom application secrets in AWS Secrets Manager and allow only one specific Amazon ECS task role to retrieve a given secret. The security team wants least privilege and minimal credential exposure.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Attach a resource-based policy to the secret and an IAM policy to the specific ECS task role so that only that role can call secretsmanager:GetSecretValue for the secret.",
+      "Store the secret in a plaintext environment variable in the ECS task definition.",
+      "Create an IAM user with access keys for the application and embed those keys in the container image.",
+      "Allow the ECS container instance role to access all secrets in the account."
+    ],
+    correctAnswer: 0,
+    category: "Identity and Access Management",
+    explanation: "Least privilege is achieved by scoping access to the specific ECS task role and specific secret. Using the ECS task role avoids long-term credentials and credential sharing, while a resource-based policy and IAM policy together tightly limit which principal can retrieve the secret.",
+    optionExplanations: [
+      "✓ Correct: The combination of a scoped ECS task role and secret access policy is the least-privilege, temporary-credential approach for controlled Secrets Manager access.",
+      "Plaintext environment variables expose the secret broadly and do not provide secure retrieval controls.",
+      "Embedding IAM user access keys in a container image is a long-term credential anti-pattern.",
+      "Granting the container instance role access to all secrets is overly broad and violates least privilege."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html", title: "Authentication and access control in AWS Secrets Manager" },
+      { url: "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-iam-roles.html", title: "IAM roles for tasks in Amazon ECS" }
+    ]
+  },
+  {
+    id: 89,
+    question: "A company needs to retain AWS WAF logs for long-term analysis in low-cost storage and run occasional SQL queries on them without managing servers.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Configure AWS WAF logging to Amazon S3 through Kinesis Data Firehose and query the stored logs using Amazon Athena.",
+      "Stream AWS WAF logs directly to Amazon EC2 instances running a custom parser.",
+      "Send WAF logs only to CloudWatch Logs and keep them there indefinitely regardless of cost.",
+      "Use Amazon GuardDuty to store WAF request logs for later SQL analysis."
+    ],
+    correctAnswer: 0,
+    category: "Security Logging and Monitoring",
+    explanation: "Publishing AWS WAF logs to Amazon S3 through Kinesis Data Firehose keeps the data in low-cost object storage, and Athena provides the required serverless SQL query capability. This is the native low-overhead pattern for long-term log retention and ad hoc analysis.",
+    optionExplanations: [
+      "✓ Correct: Firehose to S3 plus Athena is the standard serverless analytics pattern for long-term WAF log retention and occasional SQL queries.",
+      "A custom EC2-based parser introduces unnecessary infrastructure and maintenance overhead.",
+      "CloudWatch Logs can work for analysis, but indefinite long-term retention there is generally less cost-efficient than storing large log volumes in S3.",
+      "GuardDuty is not a long-term log store for raw AWS WAF request logs."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/waf/latest/developerguide/logging-kinesis.html", title: "Logging AWS WAF traffic information" },
+      { url: "https://docs.aws.amazon.com/athena/latest/ug/what-is.html", title: "What is Amazon Athena?" }
+    ]
+  },
+  {
+    id: 90,
+    question: "A company wants to ensure that all findings from Amazon GuardDuty, AWS Security Hub, and Amazon Inspector are centrally visible in one account for investigation and triage. New organization accounts should be enrolled automatically whenever possible.\n\nWhich high-level approach should the security engineer implement?",
+    options: [
+      "Use AWS Organizations delegated administrator features for GuardDuty, Security Hub, and Inspector where supported, and configure organization auto-enable settings so the central security account aggregates findings from member accounts.",
+      "Require each account owner to email CSV exports of findings to the security team every week.",
+      "Use only AWS Config aggregators because they replace all finding aggregation services.",
+      "Create a separate SIEM in every account and avoid centralization."
+    ],
+    correctAnswer: 0,
+    category: "Management and Security Governance",
+    explanation: "GuardDuty, Security Hub, and Inspector support organization-aware centralized administration and findings aggregation patterns. Using the central security account as delegated administrator with auto-enable where available provides the most native, scalable multi-account visibility model with minimal ongoing operational overhead.",
+    optionExplanations: [
+      "✓ Correct: Delegated administration and auto-enable settings provide the native AWS multi-account model for centrally aggregating findings from these security services.",
+      "Manual CSV export is operationally heavy, delayed, and not scalable.",
+      "AWS Config aggregators centralize configuration and compliance data, but they do not replace native findings aggregation for GuardDuty, Security Hub, and Inspector.",
+      "Running separate siloed tooling in every account defeats the central visibility and operational efficiency requirements."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_organizations.html", title: "Managing GuardDuty accounts with AWS Organizations" },
+      { url: "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-accounts-orgs.html", title: "Managing Security Hub accounts with AWS Organizations" },
+      { url: "https://docs.aws.amazon.com/inspector/latest/user/managing-multiple-accounts.html", title: "Managing multiple accounts in Amazon Inspector" }
+    ]
+  },
+  {
+    id: 91,
+    question: "A company uses AWS Organizations and wants to ensure that member accounts cannot disable AWS Security Hub standards that the central security team has mandated. The control must be preventive.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Create an SCP that denies the relevant Security Hub disable or update actions in member accounts, except where explicitly required for the delegated administrator workflow.",
+      "Use AWS Config to detect when a Security Hub standard is disabled and send an SNS notification.",
+      "Create an EventBridge rule that re-enables disabled standards after they are turned off.",
+      "Use Amazon Inspector to verify that Security Hub standards remain enabled."
+    ],
+    correctAnswer: 0,
+    category: "Management and Security Governance",
+    explanation: "Because the requirement is preventive, an SCP is the correct organization-wide control. It can deny member account administrators from disabling or weakening centrally mandated Security Hub standards, rather than only detecting or remediating the change after it occurs.",
+    optionExplanations: [
+      "✓ Correct: SCPs provide API-level preventive control across AWS Organizations and are the right mechanism to stop member accounts from disabling required Security Hub standards.",
+      "AWS Config is detective and would identify the issue only after the standard had already been disabled.",
+      "Automatically re-enabling a standard is reactive and leaves a window where required controls are not enforced.",
+      "Amazon Inspector is unrelated to governing Security Hub standards configuration."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-accounts-orgs.html", title: "Managing Security Hub accounts with AWS Organizations" },
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html", title: "Service control policies (SCPs)" }
+    ]
+  },
+  {
+    id: 92,
+    question: "A security engineer needs to find which IAM user or role changed an Amazon S3 bucket policy 3 days ago. The company stores CloudTrail logs in Amazon S3 and wants a serverless way to query the historical event details.\n\nWhich solution should the engineer use?",
+    options: [
+      "Use Amazon Athena to query the CloudTrail logs in S3 for PutBucketPolicy and DeleteBucketPolicy events for the bucket.",
+      "Use AWS Config advanced queries to determine which user changed the bucket policy.",
+      "Use Amazon Macie to inspect S3 bucket policy history.",
+      "Use VPC Flow Logs to identify the principal that modified the bucket policy."
+    ],
+    correctAnswer: 0,
+    category: "Security Logging and Monitoring",
+    explanation: "CloudTrail records the API activity for S3 bucket policy changes, including the actor identity, timestamp, and request parameters. Amazon Athena is the standard serverless tool for querying historical CloudTrail logs stored in S3 without building custom infrastructure.",
+    optionExplanations: [
+      "✓ Correct: Athena can query CloudTrail logs for PutBucketPolicy and DeleteBucketPolicy events and reveal the IAM principal, event time, and request details for the change.",
+      "AWS Config advanced queries focus on recorded configuration state, not authoritative historical API event actor details for specific management actions.",
+      "Amazon Macie is a data security and classification service, not the primary source for S3 bucket policy change history.",
+      "VPC Flow Logs record network traffic metadata and do not contain S3 management API event actor information."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html", title: "Query AWS CloudTrail logs" },
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/cloudtrail-logging-s3-info.html", title: "Logging Amazon S3 API calls using AWS CloudTrail" }
+    ]
+  },
+  {
+    id: 93,
+    question: "A company wants to ensure that new Amazon RDS DB instances in member accounts cannot be created from public snapshots. The control must be preventive across AWS Organizations.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Create an SCP that denies rds:RestoreDBInstanceFromDBSnapshot when the source snapshot is public or not approved.",
+      "Use AWS Config to detect DB instances restored from public snapshots and delete them.",
+      "Create an EventBridge rule to stop DB instances after they are restored from public snapshots.",
+      "Use Amazon GuardDuty to block restores from public RDS snapshots."
+    ],
+    correctAnswer: 0,
+    category: "Management and Security Governance",
+    explanation: "The requirement is explicitly preventive. An SCP can deny the restore API call when the snapshot source does not meet the organization's conditions, preventing DB instances from being created from public or otherwise unapproved snapshots.",
+    optionExplanations: [
+      "✓ Correct: An SCP is the preventive organization-wide guardrail that can stop restores from public or unapproved DB snapshots before the DB instance is created.",
+      "AWS Config is detective and would identify the issue only after the DB instance already exists.",
+      "Stopping the DB instance after restore is reactive and leaves a window where the non-compliant resource exists.",
+      "GuardDuty is a threat detection service and is not the preventive control for blocking RDS restore actions."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html", title: "Restoring from a DB snapshot" },
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html", title: "Service control policies (SCPs)" }
+    ]
+  },
+  {
+    id: 94,
+    question: "A company wants to inspect all HTTPS traffic leaving a sensitive subnet for malicious domains and known bad patterns, while preserving centralized rule management and minimizing undifferentiated heavy lifting.\n\nWhich service should the security engineer choose as the primary control?",
+    options: [
+      "AWS Network Firewall with TLS inspection and centrally managed rule groups.",
+      "Security groups with outbound domain allow lists.",
+      "Amazon GuardDuty with malware protection for EBS volumes.",
+      "AWS Trusted Advisor with weekly network exposure reports."
+    ],
+    correctAnswer: 0,
+    category: "Infrastructure Security",
+    explanation: "AWS Network Firewall is the managed network security service designed for VPC traffic inspection and centralized policy management. It can inspect egress traffic using managed rule groups and features such as domain filtering and, where designed, TLS inspection, making it the appropriate primary control for this use case.",
+    optionExplanations: [
+      "✓ Correct: AWS Network Firewall is purpose-built for managed VPC traffic inspection with centralized rule administration and advanced filtering capabilities.",
+      "Security groups cannot filter outbound traffic by domain name or inspect HTTPS payloads for malicious patterns.",
+      "GuardDuty is a detection service and does not act as the primary inline inspection and blocking control for outbound subnet traffic.",
+      "Trusted Advisor provides advisory checks, not inline traffic inspection or enforcement."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/network-firewall/latest/developerguide/what-is-aws-network-firewall.html", title: "What is AWS Network Firewall?" },
+      { url: "https://docs.aws.amazon.com/network-firewall/latest/developerguide/tls-inspection.html", title: "TLS inspection in AWS Network Firewall" }
+    ]
+  },
+  {
+    id: 95,
+    question: "A security engineer needs to ensure that Amazon EC2 instances in private subnets can retrieve parameters stored as SecureString in AWS Systems Manager Parameter Store without traversing the public internet.\n\nWhich solution should the engineer implement?",
+    options: [
+      "Create interface VPC endpoints for Systems Manager and, if required by the workload path, the related Systems Manager messaging services used by the instance, then allow the instance role to call ssm:GetParameter.",
+      "Create a NAT Gateway so the instances can reach the public Systems Manager endpoint.",
+      "Assign Elastic IP addresses to the private instances and restrict access with security groups.",
+      "Store the parameters in a public Amazon S3 bucket instead."
+    ],
+    correctAnswer: 0,
+    category: "Infrastructure Security",
+    explanation: "Accessing Parameter Store privately from EC2 instances should use Systems Manager interface VPC endpoints so traffic remains on the AWS network. The instance role can then call GetParameter or GetParameters without requiring a NAT gateway or public internet path.",
+    optionExplanations: [
+      "✓ Correct: PrivateLink-based Systems Manager endpoints allow EC2 instances in private subnets to access Parameter Store APIs without internet access, which is the intended secure design.",
+      "A NAT Gateway would provide internet-based egress and does not satisfy the requirement to avoid traversing the public internet.",
+      "Assigning Elastic IPs exposes instances to public routing and contradicts the private subnet design goal.",
+      "A public S3 bucket would weaken security and is not an appropriate substitute for SecureString parameter storage."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-create-vpc.html", title: "Create VPC endpoints for Systems Manager" },
+      { url: "https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html", title: "AWS Systems Manager Parameter Store" }
+    ]
+  },
+  {
+    id: 96,
+    question: "A company wants to enforce that all new AWS KMS keys created in member accounts have automatic key rotation enabled whenever supported. The security team wants a preventive guardrail if possible and a detective control otherwise.\n\nWhich approach BEST meets the requirement?",
+    options: [
+      "Use AWS Config to evaluate KMS keys for rotation status and combine it with an SCP or permission strategy that restricts creation workflows to approved automation that enables rotation immediately.",
+      "Use Amazon GuardDuty to detect keys without rotation and disable them.",
+      "Use VPC Flow Logs to identify KMS keys without rotation.",
+      "Enable CloudTrail log file validation for all Regions."
+    ],
+    correctAnswer: 0,
+    category: "Management and Security Governance",
+    explanation: "KMS key rotation settings are best monitored with AWS Config detective controls. Where direct SCP enforcement of the exact post-create property is not practical, the best organization-level pattern is to funnel creation through approved automation or tightly controlled permissions that immediately enables rotation, while Config continuously validates compliance.",
+    optionExplanations: [
+      "✓ Correct: This combines governance and compliance monitoring appropriately: controlled creation workflows for prevention where possible, plus Config for continuous detective assurance.",
+      "GuardDuty does not evaluate KMS key rotation compliance or disable non-rotating keys as a governance feature.",
+      "VPC Flow Logs contain network metadata and are unrelated to KMS key rotation settings.",
+      "CloudTrail log validation protects log integrity, not KMS rotation compliance."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/kms/latest/developerguide/rotate-keys.html", title: "Rotating AWS KMS keys" },
+      { url: "https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html", title: "List of AWS Config Managed Rules" }
+    ]
+  },
+  {
+    id: 97,
+    question: "A company wants to ensure that only approved AWS accounts inside the organization can publish events to a centralized Amazon EventBridge event bus in the security account. The security team also wants to avoid granting publisher roles permission to send events to any other event bus.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Configure a resource policy on the central event bus to allow PutEvents only from the approved accounts or organization, and scope the sender IAM policies to only that event bus ARN.",
+      "Grant AdministratorAccess to the publisher roles and rely on the event bus name to limit access.",
+      "Use Amazon SNS instead of EventBridge because it does not need resource policies.",
+      "Create an S3 bucket policy that lists the approved event publishers."
+    ],
+    correctAnswer: 0,
+    category: "Security Logging and Monitoring",
+    explanation: "Cross-account EventBridge publishing requires both a receiving event bus resource policy and sender-side IAM permissions. Restricting the event bus resource policy to approved accounts or the organization and scoping sender roles to a single bus ARN enforces least privilege and prevents use of other event buses.",
+    optionExplanations: [
+      "✓ Correct: This combination is the native least-privilege pattern for controlled cross-account EventBridge publishing.",
+      "AdministratorAccess is overly broad and does not prevent publishers from sending events to other destinations.",
+      "SNS is a different service and does not answer the EventBridge-specific centralized bus requirement.",
+      "S3 bucket policies do not control EventBridge publishing permissions."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-bus-perms.html", title: "Permissions for event buses in Amazon EventBridge" },
+      { url: "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-cross-account.html", title: "Sending and receiving events between AWS accounts" }
+    ]
+  },
+  {
+    id: 98,
+    question: "A company needs to ensure that Amazon S3 objects uploaded to a specific bucket are always encrypted with a particular customer managed AWS KMS key, and uploads that use any other encryption setting must be rejected.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Add an S3 bucket policy that denies PutObject unless the request specifies aws:kms and the required KMS key ID in the encryption headers.",
+      "Enable default bucket encryption and assume all clients will comply.",
+      "Enable S3 Versioning and MFA Delete on the bucket.",
+      "Use Amazon Macie to detect incorrectly encrypted objects after upload."
+    ],
+    correctAnswer: 0,
+    category: "Data Protection",
+    explanation: "A bucket policy can enforce both the required encryption mode and the exact KMS key ID at upload time. By denying non-compliant PutObject requests, the bucket rejects uploads that use the wrong KMS key, SSE-S3, or no encryption header at all.",
+    optionExplanations: [
+      "✓ Correct: Bucket policy conditions on the S3 encryption headers are the direct preventive mechanism for enforcing a specific customer managed KMS key on uploads.",
+      "Default encryption is useful, but by itself it does not guarantee rejection of all explicitly non-compliant client-side encryption choices.",
+      "Versioning and MFA Delete do not enforce the required KMS key for new object uploads.",
+      "Macie is detective and would identify issues only after objects were already uploaded incorrectly."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html", title: "Protecting data using server-side encryption with AWS KMS" },
+      { url: "https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-bucket-policies.html", title: "Amazon S3 bucket policy examples" }
+    ]
+  },
+  {
+    id: 99,
+    question: "A company wants to centrally query 30 days of AWS CloudTrail management events across all organization accounts without building custom ETL pipelines. The logs are already stored in Amazon S3.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Use Amazon Athena with the appropriate table definitions to query the CloudTrail logs directly in S3.",
+      "Load all logs into an on-premises database every night for analysis.",
+      "Use VPC Flow Logs because they contain CloudTrail management events.",
+      "Use Amazon Inspector to search historical control plane logs."
+    ],
+    correctAnswer: 0,
+    category: "Security Logging and Monitoring",
+    explanation: "Athena is the standard serverless query engine for analyzing CloudTrail logs stored in Amazon S3. It allows SQL-based queries over historical management events across accounts without the need to build and operate ETL infrastructure.",
+    optionExplanations: [
+      "✓ Correct: Athena provides direct serverless SQL querying of CloudTrail logs in S3 and is the native low-overhead approach.",
+      "Exporting logs nightly to an on-premises database adds unnecessary complexity, infrastructure, and data movement.",
+      "VPC Flow Logs contain network traffic metadata, not CloudTrail management events.",
+      "Amazon Inspector does not function as a query engine for historical CloudTrail logs."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/athena/latest/ug/cloudtrail-logs.html", title: "Query AWS CloudTrail logs" },
+      { url: "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/view-cloudtrail-events-console.html", title: "Viewing CloudTrail events" }
+    ]
+  },
+  {
+    id: 100,
+    question: "A company wants to ensure that all Amazon ECR repositories used by development teams have image scanning enabled and that critical findings can be centrally reviewed by the security team across accounts. The organization wants the most native AWS approach with minimal custom code.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "Enable Amazon Inspector enhanced scanning for Amazon ECR repositories and centralize the resulting findings in the delegated administrator security account.",
+      "Export all container images to Amazon S3 and run custom vulnerability scanning scripts nightly.",
+      "Use AWS Config only to detect whether scanning is enabled and ignore the actual findings.",
+      "Require developers to manually scan images on their laptops before every push."
+    ],
+    correctAnswer: 0,
+    category: "Threat Detection and Incident Response",
+    explanation: "Amazon Inspector enhanced scanning for ECR is the native AWS service for continuous container vulnerability assessment, and its findings can be centrally managed through delegated administration patterns. This gives the security team centralized visibility into critical image vulnerabilities with minimal custom code.",
+    optionExplanations: [
+      "✓ Correct: Inspector enhanced scanning is the native continuous image vulnerability assessment solution for ECR and supports centralized operational visibility through multi-account administration.",
+      "Custom nightly scripts duplicate managed AWS scanning capabilities and increase operational burden.",
+      "Config can help detect whether scanning is enabled, but it does not provide vulnerability findings analysis.",
+      "Manual laptop scanning is inconsistent, not scalable, and not a centralized native AWS approach."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/inspector/latest/user/scanning-ecr.html", title: "Scanning Amazon ECR container images with Amazon Inspector" },
+      { url: "https://docs.aws.amazon.com/inspector/latest/user/managing-multiple-accounts.html", title: "Managing multiple accounts in Amazon Inspector" }
+    ]
   }
 ];
