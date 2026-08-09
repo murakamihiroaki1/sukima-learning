@@ -463,5 +463,237 @@ const awsSCSQuestions = [
       { url: "https://docs.aws.amazon.com/securityhub/latest/userguide/cis-aws-foundations-benchmark.html", title: "CIS AWS Foundations Benchmark standard" },
       { url: "https://docs.aws.amazon.com/audit-manager/latest/userguide/what-is.html", title: "What is AWS Audit Manager?" }
     ]
+  },
+  {
+    id: 21,
+    question: "A security engineer is responding to an incident where an attacker has obtained valid AWS credentials from a compromised CI/CD pipeline and has been making API calls for several hours. The engineer has identified the IAM role used by the pipeline and needs to immediately stop all ongoing unauthorized API activity using those credentials without permanently disrupting the pipeline.\n\nWhat is the MOST effective immediate action?",
+    options: [
+      "Delete the IAM role to immediately invalidate all credentials associated with it.",
+      "Navigate to the IAM role, choose 'Revoke active sessions', and add a policy that denies all actions with a condition based on the token issue time before the revocation timestamp.",
+      "Change the trust policy of the IAM role to deny AssumeRole from all principals.",
+      "Detach all permission policies from the IAM role to remove its privileges."
+    ],
+    correctAnswer: 1,
+    category: "Threat Detection and Incident Response",
+    explanation: "The 'Revoke active sessions' feature in IAM adds an inline deny policy (AWSRevokeOlderSessions) to the role with a condition that denies all actions if the token was issued before the revocation time. This immediately invalidates all existing STS tokens without deleting the role or permanently breaking the pipeline. The pipeline can re-assume the role to obtain new valid credentials after the incident is contained.",
+    optionExplanations: [
+      "Deleting the IAM role permanently removes it, breaking the CI/CD pipeline and requiring manual reconstruction of the role and its permission policies. This causes unnecessary service disruption.",
+      "✓ Correct: 'Revoke active sessions' adds a time-conditioned deny policy that invalidates all STS tokens issued before the revocation time. New tokens obtained after revocation are not affected, allowing the pipeline to resume once the compromise is remediated.",
+      "Modifying the trust policy stops new AssumeRole calls but does not invalidate existing STS temporary credentials already in the attacker's possession. The attacker can continue using current tokens until they expire.",
+      "Detaching permission policies removes privileges but can take time and may miss permissions granted through other mechanisms. It also disrupts legitimate pipeline operations and does not invalidate already-issued STS tokens."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_revoke-sessions.html", title: "Revoking IAM role temporary security credentials" },
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_aws_deny-ip.html", title: "AWS: Denies access based on the source IP" }
+    ]
+  },
+  {
+    id: 22,
+    question: "A company must ensure that all Amazon EBS volumes attached to EC2 instances in a specific AWS account are encrypted. The company wants to prevent any new unencrypted EBS volumes or snapshots from being created in the account, including volumes created from unencrypted AMIs.\n\nWhich solution enforces this requirement with the LEAST operational overhead?",
+    options: [
+      "Create an AWS Config rule that checks for unencrypted EBS volumes and triggers an AWS Systems Manager Automation document to encrypt non-compliant volumes.",
+      "Enable EBS encryption by default at the account level in each AWS Region. This automatically encrypts all new EBS volumes, snapshots, and copied snapshots.",
+      "Attach an SCP to the account that denies ec2:CreateVolume when the Encrypted condition is false.",
+      "Create an AWS Lambda function triggered by an EventBridge rule that detects CreateVolume events and immediately deletes unencrypted volumes."
+    ],
+    correctAnswer: 1,
+    category: "Data Protection",
+    explanation: "Enabling EBS encryption by default at the account level is a single setting per Region that automatically encrypts all new EBS volumes, snapshots, and volumes created from unencrypted snapshots or AMIs using the specified KMS key. This requires no additional automation, Lambda functions, or SCPs and has zero operational overhead after initial configuration.",
+    optionExplanations: [
+      "An AWS Config rule with an SSM Automation remediation detects and remediates non-compliant volumes after creation, but there is a window of time where unencrypted volumes exist. Encrypting an existing EBS volume requires creating a new encrypted snapshot and restoring, which is complex.",
+      "✓ Correct: The EBS encryption by default setting is the simplest and most effective solution. Once enabled per Region, every new EBS volume, snapshot, and copy is automatically encrypted with the default KMS key. No existing volumes are affected, and no additional automation is required.",
+      "An SCP can deny unencrypted volume creation, but SCPs apply at the Organizations level and require careful policy crafting to avoid blocking other legitimate operations. The account-level EBS default encryption setting is simpler and purpose-built for this requirement.",
+      "Detecting and deleting unencrypted volumes via Lambda adds operational complexity, incurs cost, and can cause data loss if a volume is deleted before data is migrated. It does not prevent the volume from being created in the first place."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/ebs/latest/userguide/encryption-by-default.html", title: "Enable Amazon EBS encryption by default" },
+      { url: "https://docs.aws.amazon.com/ebs/latest/userguide/EBSEncryption.html", title: "Amazon EBS encryption" }
+    ]
+  },
+  {
+    id: 23,
+    question: "A company's security policy requires that all API calls to AWS services must be logged and that any calls made without MFA by IAM users must generate an alert. The solution must work across all accounts in the organization with minimal per-account configuration.\n\nWhich solution should the security engineer implement?",
+    options: [
+      "In each account, create a CloudWatch metric filter for CloudTrail logs that detects API calls where MultiFactorAuthentication is absent. Create a CloudWatch alarm for each account.",
+      "Create an organization-level CloudTrail trail. In the central security account, create an Amazon EventBridge rule that matches CloudTrail API events where userIdentity.sessionContext.attributes.mfaAuthenticated is false and routes to Amazon SNS.",
+      "Enable AWS Config in all accounts with the mfa-enabled-for-iam-console-access rule and configure SNS notifications.",
+      "Use Amazon GuardDuty to detect IAM users operating without MFA and generate a finding for each occurrence."
+    ],
+    correctAnswer: 1,
+    category: "Security Logging and Monitoring",
+    explanation: "An organization-level CloudTrail trail captures all API events from all member accounts. An EventBridge rule in the central account that matches events where mfaAuthenticated is false provides real-time, cross-account alerting with no per-account setup required. New accounts joining the organization are automatically covered by the organization trail.",
+    optionExplanations: [
+      "Per-account CloudWatch metric filters and alarms require manual setup in each account and do not automatically cover new accounts. This approach has high operational overhead at scale.",
+      "✓ Correct: The organization trail ensures all API events are captured centrally. The EventBridge rule with the mfaAuthenticated condition filter provides real-time detection of non-MFA API calls across all accounts from a single configuration point.",
+      "The mfa-enabled-for-iam-console-access Config rule checks whether IAM users have MFA enabled for console access — it does not alert on individual API calls made without MFA. This is a compliance check, not a real-time event alert.",
+      "GuardDuty does not generate findings specifically for every API call made without MFA. Its threat detection is behavior-based and would not reliably alert on all non-MFA API calls."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-user-identity.html", title: "CloudTrail userIdentity element" },
+      { url: "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event-cloudtrail.html", title: "CloudTrail events in EventBridge" }
+    ]
+  },
+  {
+    id: 24,
+    question: "A company runs a multi-tier web application on AWS. The front-end tier is hosted on EC2 instances in a public subnet, and the database tier runs Amazon RDS in a private subnet. A security audit found that the RDS security group allows inbound traffic on port 3306 from 0.0.0.0/0.\n\nWhat is the MOST secure remediation that maintains application functionality?",
+    options: [
+      "Modify the RDS security group to allow inbound port 3306 from the VPC CIDR block only.",
+      "Modify the RDS security group to allow inbound port 3306 only from the security group ID of the front-end EC2 instances.",
+      "Deploy an AWS Network Firewall between the public and private subnets and create rules allowing port 3306 from the front-end instances.",
+      "Enable RDS encryption and set up SSL/TLS for database connections to protect data in transit."
+    ],
+    correctAnswer: 1,
+    category: "Infrastructure Security",
+    explanation: "Referencing the front-end EC2 instance security group ID (rather than CIDR ranges) in the RDS security group is the most precise access control. Only instances belonging to the referenced security group can connect on port 3306, regardless of IP address changes or scaling events. This is the AWS best practice for service-to-service access control within a VPC.",
+    optionExplanations: [
+      "Allowing traffic from the entire VPC CIDR permits any resource in the VPC (including unrelated resources) to connect to the database. This is broader than necessary and violates least privilege.",
+      "✓ Correct: Security group referencing creates a precise, dynamic allow list. Only instances associated with the front-end security group can reach the database port, regardless of IP address or auto-scaling changes. This is the most secure and operationally simple approach.",
+      "AWS Network Firewall adds significant cost and operational complexity for a use case that security groups already handle natively. It is better suited for VPC perimeter protection than intra-VPC service-to-service filtering.",
+      "Encryption in transit protects data confidentiality but does not restrict which sources can attempt to connect to the database. It does not address the over-permissive security group rule."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/vpc/latest/userguide/security-group-rules.html", title: "Security group rules" },
+      { url: "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.RDSSecurityGroups.html", title: "Controlling access with security groups" }
+    ]
+  },
+  {
+    id: 25,
+    question: "A company wants to grant a third-party auditing firm read-only access to specific AWS resources in their account. The auditors should not need to manage AWS credentials. The access should expire automatically after 90 days and must be limited to CloudTrail logs in S3 and CloudWatch Logs.\n\nWhich approach should the security engineer implement?",
+    options: [
+      "Create an IAM user for each auditor. Attach a read-only policy scoped to the required resources. Share the access keys via a secure channel. Manually delete the users after 90 days.",
+      "Create an IAM role with a read-only policy scoped to the CloudTrail S3 bucket and CloudWatch Logs. Set the trust policy to allow the auditing firm's AWS account to assume the role. Configure a permissions boundary with a validity condition using aws:CurrentTime.",
+      "Create an IAM role with the required read-only policy. Set the trust policy to allow the auditing firm's AWS account to assume the role. Communicate the role ARN to the auditing firm and schedule a reminder to delete the role after 90 days.",
+      "Generate pre-signed S3 URLs for the CloudTrail log files with a 90-day expiration. Share the URLs with the auditing firm."
+    ],
+    correctAnswer: 2,
+    category: "Identity and Access Management",
+    explanation: "Cross-account IAM role assumption is the AWS-recommended approach for granting third-party access. The auditing firm uses their own AWS credentials to assume the role in the company's account, eliminating the need to manage credentials for external users. The role ARN is shared, and the company retains full control by deleting the role after 90 days. IAM condition keys for time-based expiry are not natively available in role trust policies in this way.",
+    optionExplanations: [
+      "Creating IAM users with long-term access keys requires credential management and secure distribution. Manual deletion after 90 days relies on human processes and carries risk of oversight. Long-term credentials are not preferred.",
+      "Permissions boundaries limit the maximum permissions of an identity but cannot enforce time-based expiry natively with aws:CurrentTime in a way that automatically invalidates the role. The cross-account role assumption approach in option C is simpler and more standard.",
+      "✓ Correct: A cross-account IAM role with a trust policy for the auditor's AWS account is the cleanest solution. No credentials are shared — auditors use their own AWS identity. The role can be deleted after 90 days, revoking access completely. The policy is scoped to only the required resources.",
+      "Pre-signed S3 URLs provide temporary access to specific S3 objects but have a maximum expiration of 7 days (12 hours for IAM role-signed URLs in practice). They cannot cover CloudWatch Logs and are not suitable for structured audit access."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_third-party.html", title: "Providing access to third parties" },
+      { url: "https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_cross-account-with-roles.html", title: "IAM tutorial: Delegate access across AWS accounts" }
+    ]
+  },
+  {
+    id: 26,
+    question: "A company's AWS environment is monitored by Amazon GuardDuty, which has generated a finding of type UnauthorizedAccess:EC2/SSHBruteForce targeting multiple EC2 instances. The security team wants to automatically block the source IP addresses identified in GuardDuty findings and prevent future attacks without manual intervention.\n\nWhich automated solution should the security engineer implement?",
+    options: [
+      "Configure GuardDuty to export findings to Amazon S3. Create a daily batch job that parses the findings and updates security group rules.",
+      "Create an Amazon EventBridge rule that triggers when GuardDuty generates a finding. Invoke an AWS Lambda function that reads the source IP from the finding and adds a DENY rule to the relevant VPC Network ACL.",
+      "Enable AWS Shield Advanced and configure automatic DDoS response to block brute-force source IPs.",
+      "In the GuardDuty console, manually add each attacking IP to the GuardDuty threat list to suppress future findings."
+    ],
+    correctAnswer: 1,
+    category: "Threat Detection and Incident Response",
+    explanation: "EventBridge + Lambda provides real-time automated response to GuardDuty findings. When a brute-force finding is generated, the Lambda function extracts the source IP and adds a DENY rule to the Network ACL covering the targeted subnet. Network ACLs are stateless and apply to the entire subnet, making them effective for blocking malicious IPs at the VPC level. This is the standard AWS security automation pattern.",
+    optionExplanations: [
+      "Daily batch processing introduces up to 24 hours of delay before blocking an attacking IP. During this window, the brute-force attack continues unimpeded. Security group updates are instance-specific and don't scale well for multi-instance protection.",
+      "✓ Correct: EventBridge provides near-real-time triggering on GuardDuty findings. The Lambda function can extract the attacker's IP from the finding detail and insert a DENY rule at the lowest available rule number in the Network ACL, blocking the IP across the entire subnet immediately.",
+      "AWS Shield Advanced protects against volumetric DDoS attacks, not SSH brute-force attacks, which are application-layer credential stuffing attacks. Shield Advanced cannot add granular IP block rules based on GuardDuty findings.",
+      "Adding IPs to a GuardDuty threat list causes GuardDuty to generate findings for traffic involving those IPs but does not block the traffic. It is not a blocking mechanism."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/guardduty/latest/ug/guardduty_remediate.html", title: "Remediating security issues discovered by GuardDuty" },
+      { url: "https://aws.amazon.com/blogs/security/how-to-use-amazon-guardduty-and-aws-web-application-firewall-to-automatically-block-suspicious-hosts/", title: "Automatically block suspicious hosts using GuardDuty and WAF" }
+    ]
+  },
+  {
+    id: 27,
+    question: "A company must implement a solution to detect and alert on any changes made to AWS IAM policies, roles, and users across all accounts in AWS Organizations. The solution must retain all change events for 1 year for forensic purposes and generate real-time alerts to the security team.\n\nWhich combination of services should the security engineer use? (Choose TWO.)",
+    options: [
+      "Enable AWS Config across all accounts with the iam-policy-no-statements-with-admin-access rule.",
+      "Create an organization-level CloudTrail trail delivering logs to a centralized S3 bucket. Enable log file integrity validation.",
+      "Create an Amazon EventBridge rule in the central account matching IAM write events (CreatePolicy, AttachRolePolicy, CreateUser, etc.) from all accounts and route to Amazon SNS.",
+      "Enable Amazon Detective to analyze IAM activity patterns and generate behavioral anomaly alerts.",
+      "Enable AWS Security Hub and activate the AWS Foundational Security Best Practices standard."
+    ],
+    correctAnswer: [1, 2],
+    category: "Security Logging and Monitoring",
+    explanation: "An organization-level CloudTrail trail with log file integrity validation provides a tamper-evident, 1-year-retention record of all IAM change events across all accounts. An EventBridge rule matching IAM management events (CreatePolicy, AttachRolePolicy, etc.) in the central account provides real-time SNS alerts without per-account configuration. Together they satisfy both retention and real-time alerting requirements.",
+    optionExplanations: [
+      "AWS Config rules evaluate the state of IAM policies but are not optimized for real-time change event alerting. The iam-policy-no-statements-with-admin-access rule detects specific policy content violations, not all IAM changes.",
+      "✓ Correct: An organization trail captures all IAM API events from all accounts centrally. Log file integrity validation ensures events cannot be tampered with, satisfying the 1-year forensic retention requirement.",
+      "✓ Correct: EventBridge rules matching IAM write event names provide real-time, actionable alerts. Routing to SNS notifies the security team immediately when IAM changes occur across any account in the organization.",
+      "Amazon Detective analyzes behavior patterns over time but is not designed for real-time alerting on individual IAM change events. It provides investigation capabilities, not proactive change monitoring.",
+      "Security Hub aggregates findings but does not generate real-time alerts for every IAM change event. It focuses on compliance standards and security findings, not operational change notifications."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/awscloudtrail/latest/userguide/creating-trail-organization.html", title: "Creating a trail for an organization" },
+      { url: "https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-service-event-cloudtrail.html", title: "CloudTrail events in EventBridge" }
+    ]
+  },
+  {
+    id: 28,
+    question: "A company has enabled AWS Config and receives a finding that an S3 bucket has server access logging disabled. The security team wants to automatically remediate all current and future non-compliant buckets without manual intervention.\n\nWhich approach should the security engineer implement?",
+    options: [
+      "Create an Amazon EventBridge rule that triggers when Config generates a non-compliant finding and invokes a Lambda function to enable access logging on the bucket.",
+      "Configure an AWS Config remediation action on the s3-bucket-logging-enabled rule using the AWS-EnableS3BucketLogging SSM Automation document with auto-remediation enabled.",
+      "Create an SCP that denies s3:PutBucketLogging when the value is set to disabled.",
+      "Enable AWS Security Hub and activate the S3 logging control. Configure Security Hub to auto-remediate findings."
+    ],
+    correctAnswer: 1,
+    category: "Management and Security Governance",
+    explanation: "AWS Config supports native remediation actions that can be triggered automatically when a rule finds non-compliant resources. The AWS-EnableS3BucketLogging Systems Manager Automation document is a pre-built remediation that enables server access logging on an S3 bucket. Enabling auto-remediation on the Config rule ensures both existing and future non-compliant buckets are remediated without manual intervention.",
+    optionExplanations: [
+      "EventBridge + Lambda can accomplish the remediation but introduces custom code that must be maintained. AWS Config's native remediation using SSM Automation documents is purpose-built for this use case and requires no custom Lambda code.",
+      "✓ Correct: Config's built-in remediation with the AWS-EnableS3BucketLogging SSM Automation document and auto-remediation enabled provides fully automated, codeless remediation. Every time a bucket is found non-compliant (at creation or during re-evaluation), it is automatically remediated.",
+      "SCPs cannot enforce a specific configuration value on existing or new resources — they only allow or deny API actions. This approach would prevent legitimate logging configuration changes.",
+      "Security Hub aggregates Config findings but does not natively auto-remediate them. Remediation in Security Hub requires custom response and remediation playbooks."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/config/latest/developerguide/remediation.html", title: "Remediating Noncompliant AWS Resources with AWS Config Rules" },
+      { url: "https://docs.aws.amazon.com/systems-manager/latest/userguide/automation-documents-reference-details.html", title: "AWS Systems Manager Automation runbook reference" }
+    ]
+  },
+  {
+    id: 29,
+    question: "A company has a production VPC and a development VPC connected via VPC peering. A security engineer discovers that a developer accidentally opened a security group rule in the development VPC that allows all inbound traffic from the production VPC CIDR. The engineer needs to detect and prevent similar overly permissive security group rules from being created in the future across all accounts.\n\nWhich solution provides continuous PREVENTIVE and DETECTIVE controls?",
+    options: [
+      "Train developers on security group best practices and require code reviews for all infrastructure changes.",
+      "Enable AWS Config with the restricted-common-ports and vpc-sg-open-only-to-authorized-ports rules for detective control. Create an SCP denying ec2:AuthorizeSecurityGroupIngress when the source is a broad CIDR range (0.0.0.0/0 or the production CIDR).",
+      "Enable Amazon Inspector on all EC2 instances to detect network exposure from overly permissive security groups.",
+      "Create a Lambda function triggered by EC2 security group change events that reverts unauthorized changes within 5 minutes."
+      ],
+    correctAnswer: 1,
+    category: "Infrastructure Security",
+    explanation: "A combination of AWS Config rules (detective) and SCPs (preventive) provides defense in depth. Config rules continuously evaluate security group rules and flag violations. SCPs at the organization level prevent the creation of overly broad ingress rules before they take effect, enforcing least privilege across all accounts proactively.",
+    optionExplanations: [
+      "Training and code reviews are important but are process controls, not technical controls. They cannot reliably prevent all misconfigurations at scale and provide no automated detection or enforcement.",
+      "✓ Correct: AWS Config rules provide continuous detective monitoring of security group configurations. SCPs provide preventive enforcement at the API level, blocking overly permissive rules before they are created. This combination addresses both current violations (Config) and future attempts (SCP).",
+      "Amazon Inspector detects network reachability issues but is focused on EC2 vulnerability assessment. It does not provide preventive controls or enforce security group rule policies.",
+      "Lambda-based reversion adds a remediation delay (up to minutes) during which the overly permissive rule is active. It is a reactive control, not a preventive one, and introduces operational complexity."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/config/latest/developerguide/managed-rules-by-aws-config.html", title: "List of AWS Config Managed Rules" },
+      { url: "https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps_examples_vpc.html", title: "SCP examples for VPC" }
+    ]
+  },
+  {
+    id: 30,
+    question: "A company is building a serverless application using AWS Lambda and Amazon API Gateway. The application processes sensitive healthcare data subject to HIPAA compliance. A security review requires that the Lambda function's environment variables containing database connection strings must be encrypted, and all function logs must be retained for 6 years.\n\nWhich configuration satisfies BOTH requirements with the LEAST operational overhead?",
+    options: [
+      "Encrypt environment variables manually using the AWS CLI before setting them. Store the encrypted values as environment variables. Write Lambda code to decrypt using KMS at runtime. Create a CloudWatch Logs log group with a 6-year retention policy.",
+      "In the Lambda function configuration, enable encryption helpers for environment variables using a KMS customer managed key. Create a CloudWatch Logs log group for the function with a retention period of 2192 days (6 years). Attach a resource policy to the log group denying log deletion.",
+      "Store connection strings in AWS Secrets Manager. Retrieve them in the Lambda function code at runtime. Enable CloudWatch Logs export to S3 with a 6-year S3 lifecycle policy.",
+      "Store connection strings in AWS Systems Manager Parameter Store as SecureString parameters. Set CloudWatch Logs retention to 6 years."
+    ],
+    correctAnswer: 1,
+    category: "Data Protection",
+    explanation: "Lambda's built-in encryption helpers allow environment variables to be encrypted at rest using a KMS CMK with minimal configuration — no custom encryption code is needed. CloudWatch Logs supports retention periods up to 10 years (3653 days), and 2192 days equals 6 years. Adding a resource policy denying log deletion provides tamper protection for HIPAA audit trails. This approach minimizes operational overhead while satisfying both requirements.",
+    optionExplanations: [
+      "Manually encrypting environment variables via CLI requires custom decryption code in the Lambda function and additional KMS API calls at each invocation. Lambda's built-in encryption helpers provide the same security with less operational overhead.",
+      "✓ Correct: Lambda encryption helpers natively encrypt environment variables with a KMS CMK without code changes. Setting CloudWatch Logs retention to 2192 days (6 years) and adding a deletion-deny resource policy satisfies the HIPAA 6-year retention requirement with minimal overhead.",
+      "Secrets Manager is a valid alternative for connection string storage with automatic rotation support, but the requirement specifically asks about environment variables. CloudWatch Logs export to S3 adds complexity compared to native log retention settings.",
+      "Parameter Store SecureString is a valid secrets storage approach but also sidesteps the environment variable encryption requirement. Both options C and D solve the secrets storage problem but not the environment variable encryption requirement stated in the question."
+    ],
+    references: [
+      { url: "https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars-encryption.html", title: "Encrypting Lambda environment variables" },
+      { url: "https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html", title: "Working with CloudWatch Logs log groups" }
+    ]
   }
 ];
