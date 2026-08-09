@@ -1296,9 +1296,9 @@
         }
 
         // 驕ｸ謚樒判髱｢縺ｫ謌ｻ繧・
-        function backToSelection() {
+        async function backToSelection() {
             // 讓｡謫ｬ隧ｦ鬨謎ｻ･螟悶〒蝗樒ｭ斐′縺ゅｌ縺ｰ螻･豁ｴ菫晏ｭ・
-            if (!isMockExam) { _saveSessionOnBack(selectedMode, selectedCategory); }
+            if (!isMockExam) { await _saveSessionOnBack(selectedMode, selectedCategory); }
             document.getElementById('quiz-section').style.display = 'none';
             document.getElementById('set-selection-section').style.display = 'block';
             
@@ -1316,9 +1316,10 @@
             document.getElementById('set-info').style.display = 'none';
             document.getElementById('set-info').textContent = '';
             document.getElementById('start-quiz-btn').disabled = true;
+        }
 
         // 讓｡謫ｬ隧ｦ鬨薙・邨先棡繧定｡ｨ遉ｺ
-        function showMockExamResults() {
+        async function showMockExamResults() {
             // 繧ｿ繧､繝槭・繧貞●豁｢
             stopExamTimer();
 
@@ -1432,13 +1433,12 @@
             // 蟄ｦ鄙貞ｱ･豁ｴ繧剃ｿ晏ｭ・
             const _membership = await getMembershipInfo();
             await saveStudyHistory({
-                examType: 'dea', mode: snapshotMode,
-                category: snapshotCategory, totalQ: questions.length, correctQ: score,
+                examType: 'dea', mode: selectedMode,
+                category: selectedCategory, totalQ: questions.length, correctQ: score,
                 elapsedSec: null,
                 questions, userAnswers,
                 membershipLevel: _membership ? _membership.level : 'free'
             });
-        }
         }
 
         // 学習履歴を保存（番号順・ランダム・カテゴリ終了時）
