@@ -1347,7 +1347,11 @@
         // 選択画面に戻る
         function backToSelection() {
             // 模擬試験以外で回答があれば履歴保存
-            if (!isMockExam) { _saveSessionOnBack(selectedMode, selectedCategory); }
+            if (!isMockExam) {
+                const _rangeLabel = (selectedMode === 'sequential' && selectedRange)
+                    ? `Q${selectedRange.start + 1}-${selectedRange.end}` : null;
+                _saveSessionOnBack(selectedMode, selectedMode === 'sequential' ? _rangeLabel : selectedCategory);
+            }
             // タイマーを停止
             stopExamTimer();
             

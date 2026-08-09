@@ -1299,7 +1299,11 @@
         // 選択画面に戻る
         async function backToSelection() {
             // 模擬試験以外で回答があれば学習保存
-            if (!isMockExam) { await _saveSessionOnBack(selectedMode, selectedCategory); }
+            if (!isMockExam) {
+                const _rangeLabel = (selectedMode === 'sequential' && selectedRange)
+                    ? `Q${selectedRange.start + 1}-${selectedRange.end}` : null;
+                await _saveSessionOnBack(selectedMode, selectedMode === 'sequential' ? _rangeLabel : selectedCategory);
+            }
             document.getElementById('quiz-section').style.display = 'none';
             document.getElementById('set-selection-section').style.display = 'block';
             

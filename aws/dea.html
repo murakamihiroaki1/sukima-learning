@@ -1299,7 +1299,11 @@
         // 驕ｸ謚樒判髱｢縺ｫ謌ｻ繧・
         async function backToSelection() {
             // 讓｡謫ｬ隧ｦ鬨謎ｻ･螟悶〒蝗樒ｭ斐′縺ゅｌ縺ｰ螻･豁ｴ菫晏ｭ・
-            if (!isMockExam) { await _saveSessionOnBack(selectedMode, selectedCategory); }
+            if (!isMockExam) {
+                const _rangeLabel = (selectedMode === 'sequential' && selectedRange)
+                    ? `Q${selectedRange.start + 1}-${selectedRange.end}` : null;
+                await _saveSessionOnBack(selectedMode, selectedMode === 'sequential' ? _rangeLabel : selectedCategory);
+            }
             document.getElementById('quiz-section').style.display = 'none';
             document.getElementById('set-selection-section').style.display = 'block';
             
