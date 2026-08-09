@@ -471,9 +471,13 @@
             return `${m}m ${s.toString().padStart(2, '0')}s`;
         }
 
-        function examPageLink(examType) {
-            const map = { clf: 'clf.html', aif: 'aif.html', saa: 'saa.html', dva: 'dva.html' };
-            return map[examType] || 'index.html';
+        function examPageLink(examType, questionId) {
+            const map = {
+                clf: 'clf.html', aif: 'aif.html', saa: 'saa.html', dva: 'dva.html',
+                soa: 'soa.html', dea: 'dea.html', mla: 'mla.html', sap: 'sap.html', scs: 'scs.html'
+            };
+            const page = map[examType] || 'index.html';
+            return questionId ? `${page}?q=${questionId}` : page;
         }
 
         function buildSparklineSVG(sessions) {

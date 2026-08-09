@@ -1716,6 +1716,24 @@
         });
 
         // ページ読み込み時
+        // ===== URLパラメータ ?q=N で指定問題から直接開始 =====
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const qParam = parseInt(params.get('q'));
+            if (!qParam || qParam < 1) return;
+            const allQ = typeof awsSAAQuestions !== 'undefined' ? awsSAAQuestions : [];
+            const targetIndex = allQ.findIndex(function(q) { return (q.id || 0) === qParam; });
+            if (targetIndex < 0) return;
+            selectedMode = 'sequential';
+            questions = [allQ[targetIndex]];
+            currentQuestionIndex = 0;
+            userAnswers = [null];
+            score = 0;
+            document.getElementById('set-selection-section').style.display = 'none';
+            document.getElementById('quiz-section').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            displayQuestion();
+        })();
         window.onload = async function() {
             await checkLoginStatus();
             resetInactivityTimer();
