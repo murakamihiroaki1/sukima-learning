@@ -64,7 +64,7 @@ async function saveStudyHistory(opts) {
     }
 
     try {
-        await fetch(`${HISTORY_API_BASE}/sessions`, {
+        const res = await fetch(`${HISTORY_API_BASE}/sessions`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -72,6 +72,12 @@ async function saveStudyHistory(opts) {
             },
             body: JSON.stringify(body)
         });
+        if (!res.ok) {
+            const errText = await res.text().catch(() => res.status);
+            console.warn('saveStudyHistory: server error', res.status, errText);
+        } else {
+            console.log('saveStudyHistory: saved OK', examType, mode);
+        }
     } catch (e) {
         // 学習体験を妨げないようにエラーはサイレントに処理
         console.warn('saveStudyHistory: failed to save', e);
