@@ -446,7 +446,7 @@
             list.className = 'weak-list';
 
             weakQuestions.forEach((q, i) => {
-                const link = examPageLink(q.exam_type);
+                const link = examPageLink(q.exam_type, q.question_id);
                 const accuracyClass = q.accuracy >= 70 ? 'good' : '';
                 list.innerHTML += `
                     <div class="weak-item">
