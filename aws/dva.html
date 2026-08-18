@@ -1740,11 +1740,12 @@
                 baseQuestions = shuffled.slice(0, 65);
             }
             
-            // Advancedプランの場合、DVA試験は全問アクセス可能なのでフィルタリングをスキップ
-            if (isAdvanced || selectedMode === 'mock-exam') {
+            // sequentialモードはボタン側（index>=2をロック）で既にアクセス制御済みのため
+            // フィルタリングをスキップ。Advancedプランと模擬試験も全問アクセス可能。
+            if (selectedMode === 'sequential' || isAdvanced || selectedMode === 'mock-exam') {
                 questions = baseQuestions;
             } else {
-                // Free/Standard会員はアクセス可能な問題にフィルタリング
+                // category/randomモード（Premiumのみ利用可能）: Standard会員は全問アクセス可能
                 questions = filterQuestionsByAccess(baseQuestions, membership, 'dva');
             }
             
