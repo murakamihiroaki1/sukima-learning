@@ -77,7 +77,7 @@
             cursor: pointer;
             display: block;
         }
-        .nav-link:hover { background: #f0f0f0; }
+        .nav-link:hover { color: #FF9900; }
         .dropdown { position: relative; }
         .dropdown-toggle::after {
             content: ' ▾';
@@ -105,7 +105,7 @@
             color: #333;
             font-size: 0.9em;
         }
-        .dropdown-item:hover { background: #f8f9fa; }
+        .dropdown-item:hover { background: #f8f9fa; color: #FF9900; }
         .dropdown-item-title { font-weight: 600; }
         .auth-buttons { display: flex; align-items: center; gap: 8px; }
         .auth-btn {
@@ -136,7 +136,7 @@
 
         /* ===== ヒーローヘッダー ===== */
         .stories-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #FF9900 0%, #e65c00 100%);
             color: white;
             padding: 60px 20px 50px;
             text-align: center;
@@ -204,10 +204,10 @@
             cursor: pointer;
             transition: all 0.15s;
         }
-        .chip:hover { border-color: #667eea; color: #667eea; }
+        .chip:hover { border-color: #FF9900; color: #FF9900; }
         .chip.active {
-            background: #667eea;
-            border-color: #667eea;
+            background: #FF9900;
+            border-color: #FF9900;
             color: white;
         }
         .filter-divider {
@@ -250,7 +250,7 @@
             width: 42px;
             height: 42px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #FF9900, #e65c00);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -284,7 +284,7 @@
             font-size: 0.78em;
             font-weight: 600;
         }
-        .badge-exam   { background: #e8f0fe; color: #3b5bdb; }
+        .badge-exam   { background: #fff3e0; color: #e65c00; }
         .badge-score  { background: #e6f4ea; color: #1a7f37; }
         .card-stats {
             font-size: 0.85em;
@@ -295,14 +295,14 @@
             font-size: 0.9em;
             color: #444;
             line-height: 1.55;
-            border-left: 3px solid #667eea;
+            border-left: 3px solid #FF9900;
             padding-left: 10px;
         }
         .card-more {
             text-align: right;
             margin-top: 12px;
             font-size: 0.83em;
-            color: #667eea;
+            color: #FF9900;
         }
 
         /* ===== モーダル ===== */
@@ -354,7 +354,7 @@
         .modal-section h3 {
             font-size: 0.85em;
             font-weight: 700;
-            color: #667eea;
+            color: #FF9900;
             text-transform: uppercase;
             letter-spacing: 0.06em;
             margin-bottom: 6px;
@@ -372,7 +372,7 @@
 
         /* ===== 投稿フォーム ===== */
         .submit-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #FF9900 0%, #e65c00 100%);
             color: white;
             border-radius: 16px;
             padding: 40px 36px;
@@ -434,7 +434,7 @@
             display: inline-block;
             margin-top: 20px;
             background: white;
-            color: #667eea;
+            color: #FF9900;
             border: none;
             border-radius: 24px;
             padding: 12px 36px;
@@ -512,7 +512,7 @@
                 </div>
                 <div class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></div>
                 <div class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></div>
-                <div class="nav-item"><a href="success-stories.html" class="nav-link" style="color:#667eea;font-weight:600">Success Stories</a></div>
+                <div class="nav-item"><a href="success-stories.html" class="nav-link" style="color:#FF9900;font-weight:600">Success Stories</a></div>
                 <div class="nav-item auth-buttons">
                     <div class="logged-out">
                         <a href="login.html" class="auth-btn login">Log In</a>
@@ -798,7 +798,7 @@
                     <span class="badge badge-exam">${s.examLabel}</span>
                     <span class="badge badge-score">Passed · ${s.score}</span>
                     <span class="badge" style="background:#fff3e0;color:#e65100">${s.studyMonths} month${s.studyMonths > 1 ? 's' : ''}</span>
-                    <span class="badge" style="background:#f3e5f5;color:#6a1b9a">${s.dailyMinutes} min/day</span>
+                    <span class="badge" style="background:#fff8f0;color:#cc6600">${s.dailyMinutes} min/day</span>
                 </div>
                 <hr class="modal-divider">
                 <div class="modal-section">
