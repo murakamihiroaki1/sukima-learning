@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -99,7 +99,7 @@
         }
 
         .dropdown-toggle::after {
-            content: "▼";
+            content: "笆ｼ";
             font-size: 0.7em;
         }
 
@@ -410,39 +410,80 @@
     </style>
 </head>
 <body>
-    <header class="nav-header">
+    <nav class="nav-header">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">Sukima Learning</a>
+            <a href="index.html" class="nav-logo">AWS Certification Practice</a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <div class="nav-menu" id="navMenu">
                 <div class="nav-item dropdown">
                     <div class="nav-link dropdown-toggle">Certifications</div>
                     <div class="dropdown-menu">
-                        <a href="clf.html" class="dropdown-item"><div class="dropdown-item-title">CLF - Cloud Practitioner</div></a>
-                        <a href="aif.html" class="dropdown-item"><div class="dropdown-item-title">AIF - AI Practitioner</div></a>
-                        <a href="saa.html" class="dropdown-item"><div class="dropdown-item-title">SAA - Solutions Architect Associate</div></a>
-                        <a href="dva.html" class="dropdown-item"><div class="dropdown-item-title">DVA - Developer Associate</div></a>
-                        <a href="soa.html" class="dropdown-item"><div class="dropdown-item-title">SOA - SysOps Administrator Associate</div></a>
-                        <a href="dea.html" class="dropdown-item"><div class="dropdown-item-title">DEA - Data Engineer Associate</div></a>
-                        <a href="mla.html" class="dropdown-item"><div class="dropdown-item-title">MLA - Machine Learning Engineer Associate</div></a>
-                        <a href="sap.html" class="dropdown-item"><div class="dropdown-item-title">SAP - Solutions Architect Professional</div></a>
-                        <a href="scs.html" class="dropdown-item"><div class="dropdown-item-title">SCS - Security Specialty</div></a>
-                        <a href="dop.html" class="dropdown-item"><div class="dropdown-item-title">DOP - DevOps Engineer Professional</div></a>
+                        <a href="clf.html" class="dropdown-item">
+                            <div class="dropdown-item-title">CLF - Cloud Practitioner</div>
+                        </a>
+                        <a href="aif.html" class="dropdown-item">
+                            <div class="dropdown-item-title">AIF - AI Practitioner</div>
+                        </a>
+                        <a href="saa.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SAA - Solutions Architect Associate</div>
+                        </a>
+                        <a href="dva.html" class="dropdown-item">
+                            <div class="dropdown-item-title">DVA - Developer Associate</div>
+                        </a>
+                        <a href="soa.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SOA - SysOps Administrator Associate</div>
+                        </a>
+                        <a href="dea.html" class="dropdown-item">
+                            <div class="dropdown-item-title">DEA - Data Engineer Associate</div>
+                        </a>
+                        <a href="mla.html" class="dropdown-item">
+                            <div class="dropdown-item-title">MLA - Machine Learning Engineer Associate</div>
+                        </a>
+                        <a href="sap.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SAP - Solutions Architect Professional</div>
+                        </a>
+                        <a href="scs.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SCS - Security Specialty</div>
+                        </a>
+                        <a href="dop.html" class="dropdown-item">
+                            <div class="dropdown-item-title">DOP - DevOps Engineer Professional</div>
+                        </a>
                     </div>
                 </div>
-                <div class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></div>
-                <div class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></div>
-            </div>
-            <div class="auth-buttons">
-                <div class="logged-out" id="loggedOutButtons">
-                    <a href="login.html" class="auth-btn login">Login</a>
-                    <a href="signup.html" class="auth-btn signup">Sign Up</a>
+                <div class="nav-item">
+                    <a href="pricing.html" class="nav-link">Pricing</a>
                 </div>
-                <div class="logged-in" id="loggedInButtons">
-                    <a href="history.html" class="auth-btn login">History</a>
+                <div class="nav-item">
+                    <a href="history.html" class="nav-link">Study History</a>
+                </div>
+                <div class="nav-item">
+                    <a href="faq.html" class="nav-link">FAQ</a>
+                </div>
+                <div class="nav-item">
+                    <a href="success-stories.html" class="nav-link">Success Stories</a>
+                </div>
+                <div class="nav-item auth-buttons">
+                    <div class="logged-out">
+                        <a href="login.html" class="auth-btn login">Log In</a>
+                        <a href="signup.html" class="auth-btn signup">Sign Up</a>
+                    </div>
+                    <div class="logged-in">
+                        <div class="user-info">
+                            <span class="user-icon">&#128100;</span>
+                            <span class="username" id="username"></span>
+                            <span class="user-plan" id="userPlan" style="margin-left: 10px; padding: 3px 8px; background: #FF9900; color: white; border-radius: 10px; font-size: 0.75em; font-weight: bold;"></span>
+                            <span class="user-expiry" id="userExpiry" style="margin-left: 10px; padding: 3px 8px; background: #f0f0f0; color: #666; border-radius: 10px; font-size: 0.75em;"></span>
+                        </div>
+                        <button class="auth-btn logout" onclick="handleLogout()">Log Out</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </header>
+    </nav>
 
     <main class="page-content">
         <div class="container">
@@ -464,7 +505,7 @@
             <div id="questionsContainer"></div>
 
             <div class="footer-nav">
-                <a href="index.html">← Back to AWS exams</a>
+                <a href="index.html">竊・Back to AWS exams</a>
             </div>
         </div>
     </main>
@@ -568,7 +609,7 @@
                     : '';
 
                 card.innerHTML = `
-                    <div class="question-number">Question ${questionIndex + 1} · ${question.category}</div>
+                    <div class="question-number">Question ${questionIndex + 1} ﾂｷ ${question.category}</div>
                     <div class="question-text">${question.question}</div>
                     <div class="options">${optionsHtml}</div>
                     <div class="result-box" style="display:${showResult ? 'block' : 'none'};">

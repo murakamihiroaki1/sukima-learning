@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@
             flex-direction: column;
         }
 
-        /* ===== ナビゲーション（他ページと共通） ===== */
+        /* ===== 繝翫ン繧ｲ繝ｼ繧ｷ繝ｧ繝ｳ・井ｻ悶・繝ｼ繧ｸ縺ｨ蜈ｱ騾夲ｼ・===== */
         .nav-header {
             position: fixed; top: 0; left: 0; right: 0;
             background: #ffffff; border-bottom: 1px solid #e0e0e0;
@@ -36,7 +36,7 @@
         .nav-link.active { color: #FF9900; }
         .dropdown { position: relative; }
         .dropdown-toggle { cursor: pointer; display: flex; align-items: center; gap: 5px; }
-        .dropdown-toggle::after { content: "▼"; font-size: 0.7em; }
+        .dropdown-toggle::after { content: "笆ｼ"; font-size: 0.7em; }
         .dropdown-menu {
             position: absolute; top: 100%; left: 0;
             background: white; border-radius: 10px;
@@ -65,7 +65,7 @@
         .username { color: #333; font-weight: 600; font-size: 0.9em; }
         .logged-out { display: flex; gap: 10px; }
         .logged-in { display: none; gap: 10px; }
-        /* ハンバーガー */
+        /* 繝上Φ繝舌・繧ｬ繝ｼ */
         .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
         .hamburger span { display: block; width: 25px; height: 3px; background: #333; border-radius: 3px; transition: all 0.3s; }
         @media (max-width: 768px) {
@@ -75,13 +75,13 @@
             .dropdown-menu { position: static; box-shadow: none; padding: 0 0 0 15px; }
         }
 
-        /* ===== ページコンテンツ ===== */
+        /* ===== 繝壹・繧ｸ繧ｳ繝ｳ繝・Φ繝・===== */
         .page-content { flex: 1; padding: 90px 20px 60px; max-width: 1000px; margin: 0 auto; width: 100%; }
 
         h1 { font-size: 1.8em; color: #333; margin-bottom: 8px; }
         .page-subtitle { color: #666; margin-bottom: 30px; }
 
-        /* ===== タブ ===== */
+        /* ===== 繧ｿ繝・===== */
         .tabs { display: flex; gap: 0; border-bottom: 2px solid #e0e0e0; margin-bottom: 28px; flex-wrap: wrap; }
         .tab-btn {
             padding: 10px 22px; background: none; border: none;
@@ -93,7 +93,7 @@
         .tab-panel { display: none; }
         .tab-panel.active { display: block; }
 
-        /* ===== 試験フィルター ===== */
+        /* ===== 隧ｦ鬨薙ヵ繧｣繝ｫ繧ｿ繝ｼ ===== */
         .exam-filter { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
         .filter-btn {
             padding: 7px 18px; border: 2px solid #e0e0e0; background: white;
@@ -103,7 +103,7 @@
         .filter-btn.active { background: #FF9900; border-color: #FF9900; color: white; }
         .filter-btn:hover:not(.active) { border-color: #FF9900; color: #FF9900; }
 
-        /* ===== セッション一覧 ===== */
+        /* ===== 繧ｻ繝・す繝ｧ繝ｳ荳隕ｧ ===== */
         .sessions-list { display: flex; flex-direction: column; gap: 12px; }
         .session-card {
             background: white; border: 1px solid #e0e0e0; border-radius: 10px;
@@ -122,7 +122,7 @@
         .accuracy-label { font-size: 0.82em; color: #888; text-align: right; margin-top: 4px; }
         .elapsed { font-size: 0.8em; color: #aaa; margin-top: 4px; text-align: right; }
 
-        /* ===== 統計カード ===== */
+        /* ===== 邨ｱ險医き繝ｼ繝・===== */
         .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 28px; }
         .stat-card { background: white; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; }
         .stat-exam { font-size: 0.78em; font-weight: 700; color: #FF9900; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
@@ -133,12 +133,12 @@
         .stat-item .v { font-size: 1.15em; font-weight: 700; color: #555; }
         .stat-item .l { font-size: 0.78em; color: #aaa; }
 
-        /* ===== 正解率グラフ (SVG) ===== */
+        /* ===== 豁｣隗｣邇・げ繝ｩ繝・(SVG) ===== */
         .chart-section { background: white; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 24px; }
         .chart-title { font-size: 0.95em; font-weight: 700; color: #333; margin-bottom: 16px; }
         .chart-container { overflow-x: auto; }
 
-        /* ===== 苦手問題 ===== */
+        /* ===== 闍ｦ謇句撫鬘・===== */
         .weak-list { display: flex; flex-direction: column; gap: 10px; }
         .weak-item { background: white; border: 1px solid #e0e0e0; border-radius: 8px; padding: 14px 18px; display: flex; align-items: center; gap: 14px; }
         .weak-rank { width: 28px; height: 28px; border-radius: 50%; background: #ffebee; color: #f44336; font-size: 0.8em; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
@@ -149,7 +149,7 @@
         .weak-accuracy.good { color: #4CAF50; }
         .weak-total { font-size: 0.8em; color: #aaa; }
 
-        /* ===== 空状態 / ロック状態 ===== */
+        /* ===== 遨ｺ迥ｶ諷・/ 繝ｭ繝・け迥ｶ諷・===== */
         .empty-state { text-align: center; padding: 60px 20px; color: #999; }
         .empty-state .emoji { font-size: 3em; margin-bottom: 12px; }
         .empty-state p { font-size: 1.05em; margin-bottom: 16px; }
@@ -161,10 +161,10 @@
         .lock-banner p { color: #555; font-size: 0.95em; line-height: 1.7; }
         .lock-banner a { color: #FF9900; font-weight: 700; text-decoration: none; }
 
-        /* ===== ローディング ===== */
+        /* ===== 繝ｭ繝ｼ繝・ぅ繝ｳ繧ｰ ===== */
         .loading { text-align: center; padding: 40px; color: #aaa; }
 
-        /* ===== フッター ===== */
+        /* ===== 繝輔ャ繧ｿ繝ｼ ===== */
         footer { background: #2c3e50; color: white; padding: 30px 20px; margin-top: auto; }
         .footer-container { max-width: 1200px; margin: 0 auto; text-align: center; }
         .footer-copyright { color: rgba(255,255,255,0.7); font-size: 0.9em; }
@@ -181,17 +181,24 @@
     <nav class="nav-header">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">AWS Certification Practice</a>
-            <div class="hamburger" onclick="document.getElementById('navMenu').classList.toggle('open')">
-                <span></span><span></span><span></span>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
             <div class="nav-menu" id="navMenu">
                 <div class="nav-item dropdown">
                     <div class="nav-link dropdown-toggle">Certifications</div>
                     <div class="dropdown-menu">
-                        <a href="clf.html" class="dropdown-item"><div class="dropdown-item-title">CLF - Cloud Practitioner</div></a>
-                        <a href="aif.html" class="dropdown-item"><div class="dropdown-item-title">AIF - AI Practitioner</div></a>
-                        <a href="saa.html" class="dropdown-item"><div class="dropdown-item-title">SAA - Solutions Architect Associate</div></a>
-                        <a href="dva.html" class="dropdown-item"><div class="dropdown-item-title">DVA - Developer Associate</div>
+                        <a href="clf.html" class="dropdown-item">
+                            <div class="dropdown-item-title">CLF - Cloud Practitioner</div>
+                        </a>
+                        <a href="aif.html" class="dropdown-item">
+                            <div class="dropdown-item-title">AIF - AI Practitioner</div>
+                        </a>
+                        <a href="saa.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SAA - Solutions Architect Associate</div>
+                        </a>
                         <a href="dva.html" class="dropdown-item">
                             <div class="dropdown-item-title">DVA - Developer Associate</div>
                         </a>
@@ -204,17 +211,28 @@
                         <a href="mla.html" class="dropdown-item">
                             <div class="dropdown-item-title">MLA - Machine Learning Engineer Associate</div>
                         </a>
-                    </div></a>
+                        <a href="sap.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SAP - Solutions Architect Professional</div>
+                        </a>
+                        <a href="scs.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SCS - Security Specialty</div>
+                        </a>
+                        <a href="dop.html" class="dropdown-item">
+                            <div class="dropdown-item-title">DOP - DevOps Engineer Professional</div>
+                        </a>
                     </div>
-                </div>
-                <div class="nav-item">
-                    <a href="history.html" class="nav-link active">Study History</a>
                 </div>
                 <div class="nav-item">
                     <a href="pricing.html" class="nav-link">Pricing</a>
                 </div>
                 <div class="nav-item">
+                    <a href="history.html" class="nav-link">Study History</a>
+                </div>
+                <div class="nav-item">
                     <a href="faq.html" class="nav-link">FAQ</a>
+                </div>
+                <div class="nav-item">
+                    <a href="success-stories.html" class="nav-link">Success Stories</a>
                 </div>
                 <div class="nav-item auth-buttons">
                     <div class="logged-out">
@@ -223,9 +241,10 @@
                     </div>
                     <div class="logged-in">
                         <div class="user-info">
-                            <span class="user-icon">👤</span>
+                            <span class="user-icon">&#128100;</span>
                             <span class="username" id="username"></span>
-                            <span id="userPlan" style="padding:3px 8px; background:#FF9900; color:white; border-radius:10px; font-size:0.75em; font-weight:bold;"></span>
+                            <span class="user-plan" id="userPlan" style="margin-left: 10px; padding: 3px 8px; background: #FF9900; color: white; border-radius: 10px; font-size: 0.75em; font-weight: bold;"></span>
+                            <span class="user-expiry" id="userExpiry" style="margin-left: 10px; padding: 3px 8px; background: #f0f0f0; color: #666; border-radius: 10px; font-size: 0.75em;"></span>
                         </div>
                         <button class="auth-btn logout" onclick="handleLogout()">Log Out</button>
                     </div>
@@ -235,12 +254,12 @@
     </nav>
 
     <div class="page-content">
-        <h1>📊 Study History</h1>
+        <h1>投 Study History</h1>
         <p class="page-subtitle">Review your learning records</p>
 
         <div id="not-logged-in" style="display:none;">
             <div class="empty-state">
-                <div class="emoji">🔐</div>
+                <div class="emoji">柏</div>
                 <p>Please log in to view your study history.</p>
                 <a href="login.html" style="display:inline-block; background:#FF9900; color:white; padding:12px 30px; border-radius:8px; text-decoration:none; font-weight:bold; margin-right:10px;">Log In</a>
                 <a href="signup.html" style="display:inline-block; background:white; color:#FF9900; padding:12px 30px; border-radius:8px; text-decoration:none; font-weight:bold; border:2px solid #FF9900;">Sign Up</a>
@@ -263,22 +282,22 @@
             </div>
 
             <div id="tab-sessions" class="tab-panel active">
-                <div id="sessions-container" class="loading">Loading…</div>
+                <div id="sessions-container" class="loading">Loading窶ｦ</div>
             </div>
 
             <div id="tab-stats" class="tab-panel">
-                <div id="stats-container" class="loading">Loading…</div>
+                <div id="stats-container" class="loading">Loading窶ｦ</div>
             </div>
 
             <div id="tab-weak" class="tab-panel">
-                <div id="weak-container" class="loading">Loading…</div>
+                <div id="weak-container" class="loading">Loading窶ｦ</div>
             </div>
         </div>
     </div>
 
     <footer>
         <div class="footer-container">
-            <p class="footer-copyright">© 2026 Sukima Learning. All rights reserved.</p>
+            <p class="footer-copyright">ﾂｩ 2026 Sukima Learning. All rights reserved.</p>
         </div>
     </footer>
 
@@ -289,7 +308,7 @@
         let currentExamFilter = '';
         let activeTab = 'sessions';
 
-        // ===== タブ切り替え =====
+        // ===== 繧ｿ繝門・繧頑崛縺・=====
         function switchTab(tab, btn) {
             activeTab = tab;
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -299,7 +318,7 @@
             loadTabContent(tab);
         }
 
-        // ===== 試験フィルター =====
+        // ===== 隧ｦ鬨薙ヵ繧｣繝ｫ繧ｿ繝ｼ =====
         function setExamFilter(exam, btn) {
             currentExamFilter = exam;
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -307,24 +326,24 @@
             loadTabContent(activeTab);
         }
 
-        // ===== タブコンテンツ読み込み =====
+        // ===== 繧ｿ繝悶さ繝ｳ繝・Φ繝・ｪｭ縺ｿ霎ｼ縺ｿ =====
         async function loadTabContent(tab) {
             if (tab === 'sessions') await loadSessions();
             else if (tab === 'stats') await loadStats();
             else if (tab === 'weak') await loadWeakQuestions();
         }
 
-        // ===== セッション一覧 =====
+        // ===== 繧ｻ繝・す繝ｧ繝ｳ荳隕ｧ =====
         async function loadSessions() {
             const container = document.getElementById('sessions-container');
-            container.innerHTML = '<div class="loading">Loading…</div>';
+            container.innerHTML = '<div class="loading">Loading窶ｦ</div>';
 
             const sessions = await fetchStudySessions({ examType: currentExamFilter || undefined, limit: 50 });
 
             if (!sessions.length) {
                 container.innerHTML = `
                     <div class="empty-state">
-                        <div class="emoji">📚</div>
+                        <div class="emoji">答</div>
                         <p>No study history yet.</p>
                         <a href="clf.html">Try some questions</a>
                     </div>`;
@@ -351,7 +370,7 @@
                 card.innerHTML = `
                     <div class="session-info">
                         <div class="session-exam">${examLabel}</div>
-                        <div class="session-mode">${modeLabel}${s.category ? ` — ${s.category}` : ''}</div>
+                        <div class="session-mode">${modeLabel}${s.category ? ` 窶・${s.category}` : ''}</div>
                         <div class="session-date">${dateStr}</div>
                     </div>
                     <div class="session-score">
@@ -368,17 +387,17 @@
             container.appendChild(list);
         }
 
-        // ===== 統計 =====
+        // ===== 邨ｱ險・=====
         async function loadStats() {
             const container = document.getElementById('stats-container');
-            container.innerHTML = '<div class="loading">Loading…</div>';
+            container.innerHTML = '<div class="loading">Loading窶ｦ</div>';
 
             const stats = await fetchStudyStats(currentExamFilter || undefined);
 
             if (!stats.length) {
                 container.innerHTML = `
                     <div class="empty-state">
-                        <div class="emoji">📈</div>
+                        <div class="emoji">嶋</div>
                         <p>No stats data yet.</p>
                         <a href="clf.html">Try some questions</a>
                     </div>`;
@@ -409,13 +428,13 @@
                 if (!st.recent_sessions || st.recent_sessions.length < 2) return;
                 const section = document.createElement('div');
                 section.className = 'chart-section';
-                section.innerHTML = `<div class="chart-title">${st.exam_type.toUpperCase()} — Recent Accuracy Trend</div>
+                section.innerHTML = `<div class="chart-title">${st.exam_type.toUpperCase()} 窶・Recent Accuracy Trend</div>
                     <div class="chart-container">${buildSparklineSVG(st.recent_sessions.reverse())}</div>`;
                 container.appendChild(section);
             });
         }
 
-        // ===== 苦手問題 =====
+        // ===== 闍ｦ謇句撫鬘・=====
         async function loadWeakQuestions() {
             const container = document.getElementById('weak-container');
             const level = (currentMembershipLevel || 'free').toLowerCase();
@@ -423,19 +442,19 @@
             if (level === 'free') {
                 container.innerHTML = `
                     <div class="lock-banner">
-                        <p>🔒 The weak questions list is available with a <strong>Standard plan or higher</strong>.<br>
+                        <p>白 The weak questions list is available with a <strong>Standard plan or higher</strong>.<br>
                         <a href="pricing.html">Upgrade your plan</a> to efficiently overcome your weak areas.</p>
                     </div>`;
                 return;
             }
 
-            container.innerHTML = '<div class="loading">Loading…</div>';
+            container.innerHTML = '<div class="loading">Loading窶ｦ</div>';
             const weakQuestions = await fetchWeakQuestions(currentExamFilter || undefined);
 
             if (!weakQuestions.length) {
                 container.innerHTML = `
                     <div class="empty-state">
-                        <div class="emoji">🎉</div>
+                        <div class="emoji">脂</div>
                         <p>No weak question data yet.<br>Answer the same question at least twice for it to appear here.</p>
                     </div>`;
                 return;
@@ -465,7 +484,7 @@
             container.appendChild(list);
         }
 
-        // ===== ユーティリティ =====
+        // ===== 繝ｦ繝ｼ繝・ぅ繝ｪ繝・ぅ =====
         function formatElapsed(sec) {
             const m = Math.floor(sec / 60), s = sec % 60;
             return `${m}m ${s.toString().padStart(2, '0')}s`;
@@ -507,7 +526,7 @@
             </svg>`;
         }
 
-        // ===== ログイン状態チェック =====
+        // ===== 繝ｭ繧ｰ繧､繝ｳ迥ｶ諷九メ繧ｧ繝・け =====
         async function checkLoginStatus() {
             const accessToken = localStorage.getItem('accessToken');
             if (!accessToken) {
@@ -528,7 +547,7 @@
                     document.getElementById('not-logged-in').style.display = 'block';
                 }
             } catch (e) {
-                // ネットワークエラー時も localStorageを信頼してログイン済みとして表示
+                // 繝阪ャ繝医Ρ繝ｼ繧ｯ繧ｨ繝ｩ繝ｼ譎ゅｂ localStorage繧剃ｿ｡鬆ｼ縺励※繝ｭ繧ｰ繧､繝ｳ貂医∩縺ｨ縺励※陦ｨ遉ｺ
                 const username = localStorage.getItem('username') || 'User';
                 const level = localStorage.getItem('membershipLevel') || 'Free';
                 showLoggedIn(username, level);

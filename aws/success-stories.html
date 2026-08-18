@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,7 @@
             color: #333;
         }
 
-        /* ===== ナビ（faq.html と同一構造） ===== */
+        /* ===== 繝翫ン・・aq.html 縺ｨ蜷御ｸ讒矩・・===== */
         .nav-header {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -80,7 +80,7 @@
         .nav-link:hover { color: #FF9900; }
         .dropdown { position: relative; }
         .dropdown-toggle::after {
-            content: ' ▾';
+            content: ' 笆ｾ';
             font-size: 0.75em;
         }
         .dropdown-menu {
@@ -128,13 +128,13 @@
         .logged-out { display: flex; }
         .logged-in  { display: none; }
 
-        /* ===== ページコンテンツ ===== */
+        /* ===== 繝壹・繧ｸ繧ｳ繝ｳ繝・Φ繝・===== */
         .page-content {
             padding-top: 70px;
             flex: 1;
         }
 
-        /* ===== ヒーローヘッダー ===== */
+        /* ===== 繝偵・繝ｭ繝ｼ繝倥ャ繝繝ｼ ===== */
         .stories-header {
             background: linear-gradient(135deg, #FF9900 0%, #e65c00 100%);
             color: white;
@@ -168,14 +168,14 @@
             opacity: 0.85;
         }
 
-        /* ===== メインコンテナ ===== */
+        /* ===== 繝｡繧､繝ｳ繧ｳ繝ｳ繝・リ ===== */
         .container {
             max-width: 1000px;
             margin: 0 auto;
             padding: 40px 20px;
         }
 
-        /* ===== フィルター ===== */
+        /* ===== 繝輔ぅ繝ｫ繧ｿ繝ｼ ===== */
         .filter-section {
             background: white;
             border-radius: 12px;
@@ -216,7 +216,7 @@
             margin: 16px 0;
         }
 
-        /* ===== カード一覧 ===== */
+        /* ===== 繧ｫ繝ｼ繝我ｸ隕ｧ ===== */
         .stories-count {
             font-size: 0.9em;
             color: #666;
@@ -305,7 +305,7 @@
             color: #FF9900;
         }
 
-        /* ===== モーダル ===== */
+        /* ===== 繝｢繝ｼ繝繝ｫ ===== */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -370,7 +370,7 @@
             margin: 20px 0;
         }
 
-        /* ===== 投稿フォーム ===== */
+        /* ===== 謚慕ｨｿ繝輔か繝ｼ繝 ===== */
         .submit-section {
             background: linear-gradient(135deg, #FF9900 0%, #e65c00 100%);
             color: white;
@@ -454,7 +454,7 @@
             font-weight: 600;
         }
 
-        /* ===== フッター ===== */
+        /* ===== 繝輔ャ繧ｿ繝ｼ ===== */
         footer {
             background: #2c3e50;
             color: white;
@@ -478,7 +478,7 @@
         .footer-link:hover { color: white; }
         .footer-copyright { font-size: 0.82em; color: rgba(255,255,255,0.55); }
 
-        /* ===== レスポンシブ ===== */
+        /* ===== 繝ｬ繧ｹ繝昴Φ繧ｷ繝・===== */
         @media (max-width: 768px) {
             .stories-header h1 { font-size: 1.6em; }
             .stats-row { gap: 24px; }
@@ -490,29 +490,63 @@
     </style>
 </head>
 <body>
-    <!-- ナビゲーション -->
+    <!-- 繝翫ン繧ｲ繝ｼ繧ｷ繝ｧ繝ｳ -->
     <nav class="nav-header">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">AWS Certification Practice</a>
             <div class="hamburger" onclick="toggleMenu()">
-                <span></span><span></span><span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
             <div class="nav-menu" id="navMenu">
                 <div class="nav-item dropdown">
                     <div class="nav-link dropdown-toggle">Certifications</div>
                     <div class="dropdown-menu">
-                        <a href="clf.html" class="dropdown-item"><div class="dropdown-item-title">CLF - Cloud Practitioner</div></a>
-                        <a href="aif.html" class="dropdown-item"><div class="dropdown-item-title">AIF - AI Practitioner</div></a>
-                        <a href="saa.html" class="dropdown-item"><div class="dropdown-item-title">SAA - Solutions Architect Associate</div></a>
-                        <a href="dva.html" class="dropdown-item"><div class="dropdown-item-title">DVA - Developer Associate</div></a>
-                        <a href="soa.html" class="dropdown-item"><div class="dropdown-item-title">SOA - SysOps Administrator Associate</div></a>
-                        <a href="dea.html" class="dropdown-item"><div class="dropdown-item-title">DEA - Data Engineer Associate</div></a>
-                        <a href="mla.html" class="dropdown-item"><div class="dropdown-item-title">MLA - Machine Learning Engineer Associate</div></a>
+                        <a href="clf.html" class="dropdown-item">
+                            <div class="dropdown-item-title">CLF - Cloud Practitioner</div>
+                        </a>
+                        <a href="aif.html" class="dropdown-item">
+                            <div class="dropdown-item-title">AIF - AI Practitioner</div>
+                        </a>
+                        <a href="saa.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SAA - Solutions Architect Associate</div>
+                        </a>
+                        <a href="dva.html" class="dropdown-item">
+                            <div class="dropdown-item-title">DVA - Developer Associate</div>
+                        </a>
+                        <a href="soa.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SOA - SysOps Administrator Associate</div>
+                        </a>
+                        <a href="dea.html" class="dropdown-item">
+                            <div class="dropdown-item-title">DEA - Data Engineer Associate</div>
+                        </a>
+                        <a href="mla.html" class="dropdown-item">
+                            <div class="dropdown-item-title">MLA - Machine Learning Engineer Associate</div>
+                        </a>
+                        <a href="sap.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SAP - Solutions Architect Professional</div>
+                        </a>
+                        <a href="scs.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SCS - Security Specialty</div>
+                        </a>
+                        <a href="dop.html" class="dropdown-item">
+                            <div class="dropdown-item-title">DOP - DevOps Engineer Professional</div>
+                        </a>
                     </div>
                 </div>
-                <div class="nav-item"><a href="pricing.html" class="nav-link">Pricing</a></div>
-                <div class="nav-item"><a href="faq.html" class="nav-link">FAQ</a></div>
-                <div class="nav-item"><a href="success-stories.html" class="nav-link" style="color:#FF9900;font-weight:600">Success Stories</a></div>
+                <div class="nav-item">
+                    <a href="pricing.html" class="nav-link">Pricing</a>
+                </div>
+                <div class="nav-item">
+                    <a href="history.html" class="nav-link">Study History</a>
+                </div>
+                <div class="nav-item">
+                    <a href="faq.html" class="nav-link">FAQ</a>
+                </div>
+                <div class="nav-item">
+                    <a href="success-stories.html" class="nav-link">Success Stories</a>
+                </div>
                 <div class="nav-item auth-buttons">
                     <div class="logged-out">
                         <a href="login.html" class="auth-btn login">Log In</a>
@@ -520,10 +554,10 @@
                     </div>
                     <div class="logged-in">
                         <div class="user-info">
-                            <span class="user-icon">👤</span>
+                            <span class="user-icon">&#128100;</span>
                             <span class="username" id="username"></span>
-                            <span class="user-plan" id="userPlan" style="margin-left:8px;padding:3px 8px;background:#FF9900;color:white;border-radius:10px;font-size:0.75em;font-weight:bold;"></span>
-                            <span class="user-expiry" id="userExpiry" style="margin-left:6px;padding:3px 8px;background:#f0f0f0;color:#666;border-radius:10px;font-size:0.75em;"></span>
+                            <span class="user-plan" id="userPlan" style="margin-left: 10px; padding: 3px 8px; background: #FF9900; color: white; border-radius: 10px; font-size: 0.75em; font-weight: bold;"></span>
+                            <span class="user-expiry" id="userExpiry" style="margin-left: 10px; padding: 3px 8px; background: #f0f0f0; color: #666; border-radius: 10px; font-size: 0.75em;"></span>
                         </div>
                         <button class="auth-btn logout" onclick="handleLogout()">Log Out</button>
                     </div>
@@ -533,7 +567,7 @@
     </nav>
 
     <div class="page-content">
-        <!-- ヒーロー -->
+        <!-- 繝偵・繝ｭ繝ｼ -->
         <div class="stories-header">
             <h1>Success Stories</h1>
             <p>Real experiences from people who passed AWS certifications with Sukima Learning</p>
@@ -554,7 +588,7 @@
         </div>
 
         <div class="container">
-            <!-- フィルター -->
+            <!-- 繝輔ぅ繝ｫ繧ｿ繝ｼ -->
             <div class="filter-section">
                 <h2>Filter by Certification</h2>
                 <div class="filter-chips" id="examFilter">
@@ -571,17 +605,17 @@
                 <div class="filter-chips" id="periodFilter">
                     <button class="chip active" data-value="all">All</button>
                     <button class="chip" data-value="1">Under 1 month</button>
-                    <button class="chip" data-value="1-3">1–3 months</button>
-                    <button class="chip" data-value="3-6">3–6 months</button>
+                    <button class="chip" data-value="1-3">1窶・ months</button>
+                    <button class="chip" data-value="3-6">3窶・ months</button>
                     <button class="chip" data-value="6+">6+ months</button>
                 </div>
             </div>
 
-            <!-- カード一覧 -->
+            <!-- 繧ｫ繝ｼ繝我ｸ隕ｧ -->
             <p class="stories-count" id="storiesCount"></p>
             <div class="stories-grid" id="storiesGrid"></div>
 
-            <!-- 投稿フォーム -->
+            <!-- 謚慕ｨｿ繝輔か繝ｼ繝 -->
             <div class="submit-section">
                 <h2>Share Your Success Story</h2>
                 <p class="lead">Inspire others who are preparing for their exam by sharing your experience.<br>
@@ -639,20 +673,20 @@
                         </div>
                     </div>
                     <p class="form-note">* Submissions are reviewed before publishing. Any personally identifiable details will be anonymised.</p>
-                    <button type="submit" class="submit-btn">Submit Your Story →</button>
+                    <button type="submit" class="submit-btn">Submit Your Story 竊・/button>
                 </form>
                 <div class="submit-success" id="submitSuccess">
-                    ✅ Thanks for sharing your story!<br>
+                    笨・Thanks for sharing your story!<br>
                     We'll review it and publish it shortly.
                 </div>
             </div>
         </div><!-- /container -->
     </div><!-- /page-content -->
 
-    <!-- 詳細モーダル -->
+    <!-- 隧ｳ邏ｰ繝｢繝ｼ繝繝ｫ -->
     <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
         <div class="modal" id="modalContent">
-            <button class="modal-close" onclick="closeModalDirect()">✕</button>
+            <button class="modal-close" onclick="closeModalDirect()">笨・/button>
             <div id="modalBody"></div>
         </div>
     </div>
@@ -670,7 +704,7 @@
     <script src="stories.js"></script>
     <script src="nav-component.js"></script>
     <script>
-        // ===== 認証状態 =====
+        // ===== 隱崎ｨｼ迥ｶ諷・=====
         const API_URL = 'https://sukima-learning.onrender.com/api/auth';
 
         async function checkLoginStatus() {
@@ -724,7 +758,7 @@
             window.location.reload();
         }
 
-        // ===== フィルター状態 =====
+        // ===== 繝輔ぅ繝ｫ繧ｿ繝ｼ迥ｶ諷・=====
         let activeExam   = 'all';
         let activePeriod = 'all';
 
@@ -760,17 +794,16 @@
                         </div>
                         <div class="badge-row">
                             <span class="badge badge-exam">${s.exam}</span>
-                            <span class="badge badge-score">Passed · ${s.score}</span>
+                            <span class="badge badge-score">Passed ﾂｷ ${s.score}</span>
                         </div>
-                        <div class="card-stats">Study period: ${s.studyMonths} month${s.studyMonths > 1 ? 's' : ''} · ${s.dailyMinutes} min/day</div>
+                        <div class="card-stats">Study period: ${s.studyMonths} month${s.studyMonths > 1 ? 's' : ''} ﾂｷ ${s.dailyMinutes} min/day</div>
                         <div class="card-comment">${s.shortComment}</div>
-                        <div class="card-more">Read more →</div>
+                        <div class="card-more">Read more 竊・/div>
                     </div>
                 `).join('');
         }
 
-        // フィルターチップのイベント設定
-        document.getElementById('examFilter').querySelectorAll('.chip').forEach(btn => {
+        // 繝輔ぅ繝ｫ繧ｿ繝ｼ繝√ャ繝励・繧､繝吶Φ繝郁ｨｭ螳・        document.getElementById('examFilter').querySelectorAll('.chip').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.getElementById('examFilter').querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
                 btn.classList.add('active');
@@ -787,7 +820,7 @@
             });
         });
 
-        // ===== モーダル =====
+        // ===== 繝｢繝ｼ繝繝ｫ =====
         function openModal(id) {
             const s = STORIES.find(x => x.id === id);
             if (!s) return;
@@ -796,7 +829,7 @@
                 <div class="modal-sub">${s.occupation}</div>
                 <div class="modal-badges badge-row">
                     <span class="badge badge-exam">${s.examLabel}</span>
-                    <span class="badge badge-score">Passed · ${s.score}</span>
+                    <span class="badge badge-score">Passed ﾂｷ ${s.score}</span>
                     <span class="badge" style="background:#fff3e0;color:#e65100">${s.studyMonths} month${s.studyMonths > 1 ? 's' : ''}</span>
                     <span class="badge" style="background:#fff8f0;color:#cc6600">${s.dailyMinutes} min/day</span>
                 </div>
@@ -836,11 +869,10 @@
         }
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
 
-        // ===== 投稿フォーム =====
+        // ===== 謚慕ｨｿ繝輔か繝ｼ繝 =====
         document.getElementById('storyForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            // 実際の送信処理はここに追加（メール送信API等）
-            // 現状はローカルストレージに保存してサンキュー表示
+            // 螳滄圀縺ｮ騾∽ｿ｡蜃ｦ逅・・縺薙％縺ｫ霑ｽ蜉・医Γ繝ｼ繝ｫ騾∽ｿ｡API遲会ｼ・            // 迴ｾ迥ｶ縺ｯ繝ｭ繝ｼ繧ｫ繝ｫ繧ｹ繝医Ξ繝ｼ繧ｸ縺ｫ菫晏ｭ倥＠縺ｦ繧ｵ繝ｳ繧ｭ繝･繝ｼ陦ｨ遉ｺ
             const entry = {
                 name:       document.getElementById('f-name').value,
                 occupation: document.getElementById('f-occupation').value,
@@ -862,7 +894,7 @@
             document.getElementById('submitSuccess').style.display = 'block';
         });
 
-        // ===== 初期化 =====
+        // ===== 蛻晄悄蛹・=====
         window.addEventListener('load', () => {
             checkLoginStatus();
             renderStories();

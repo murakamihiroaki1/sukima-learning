@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,7 +22,7 @@
             padding: 0;
         }
 
-        /* ナビゲーションヘッダー */
+        /* 繝翫ン繧ｲ繝ｼ繧ｷ繝ｧ繝ｳ繝倥ャ繝繝ｼ */
         .nav-header {
             position: fixed;
             top: 0;
@@ -83,7 +83,7 @@
         }
 
         .dropdown-toggle::after {
-            content: "▼";
+            content: "笆ｼ";
             font-size: 0.7em;
         }
 
@@ -452,7 +452,7 @@
             }
         }
 
-        /* フッター */
+        /* 繝輔ャ繧ｿ繝ｼ */
         footer {
             background: #2c3e50;
             color: white;
@@ -512,7 +512,7 @@
                 <span></span>
                 <span></span>
             </div>
-<div class="nav-menu" id="navMenu">
+            <div class="nav-menu" id="navMenu">
                 <div class="nav-item dropdown">
                     <div class="nav-link dropdown-toggle">Certifications</div>
                     <div class="dropdown-menu">
@@ -537,16 +537,43 @@
                         <a href="mla.html" class="dropdown-item">
                             <div class="dropdown-item-title">MLA - Machine Learning Engineer Associate</div>
                         </a>
+                        <a href="sap.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SAP - Solutions Architect Professional</div>
+                        </a>
+                        <a href="scs.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SCS - Security Specialty</div>
+                        </a>
+                        <a href="dop.html" class="dropdown-item">
+                            <div class="dropdown-item-title">DOP - DevOps Engineer Professional</div>
+                        </a>
                     </div>
                 </div>
                 <div class="nav-item">
                     <a href="pricing.html" class="nav-link">Pricing</a>
                 </div>
                 <div class="nav-item">
+                    <a href="history.html" class="nav-link">Study History</a>
+                </div>
+                <div class="nav-item">
                     <a href="faq.html" class="nav-link">FAQ</a>
-                </div>                <div class="nav-item auth-buttons">
-                    <a href="login.html" class="auth-btn login">Log In</a>
-                    <a href="signup.html" class="auth-btn signup">Sign Up</a>
+                </div>
+                <div class="nav-item">
+                    <a href="success-stories.html" class="nav-link">Success Stories</a>
+                </div>
+                <div class="nav-item auth-buttons">
+                    <div class="logged-out">
+                        <a href="login.html" class="auth-btn login">Log In</a>
+                        <a href="signup.html" class="auth-btn signup">Sign Up</a>
+                    </div>
+                    <div class="logged-in">
+                        <div class="user-info">
+                            <span class="user-icon">&#128100;</span>
+                            <span class="username" id="username"></span>
+                            <span class="user-plan" id="userPlan" style="margin-left: 10px; padding: 3px 8px; background: #FF9900; color: white; border-radius: 10px; font-size: 0.75em; font-weight: bold;"></span>
+                            <span class="user-expiry" id="userExpiry" style="margin-left: 10px; padding: 3px 8px; background: #f0f0f0; color: #666; border-radius: 10px; font-size: 0.75em;"></span>
+                        </div>
+                        <button class="auth-btn logout" onclick="handleLogout()">Log Out</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -616,7 +643,7 @@
                         class="password-toggle-btn"
                         onclick="togglePassword('password')"
                     >
-                        👁️
+                        早・・
                     </button>
                 </div>
                 <div class="password-strength">
@@ -648,7 +675,7 @@
                         class="password-toggle-btn"
                         onclick="togglePassword('password-confirm')"
                     >
-                        👁️
+                        早・・
                     </button>
                 </div>
                 <div class="error-text" id="password-confirm-error">
@@ -700,10 +727,10 @@
             
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                toggleBtn.textContent = '🙈';
+                toggleBtn.textContent = '刪';
             } else {
                 passwordInput.type = 'password';
-                toggleBtn.textContent = '👁️';
+                toggleBtn.textContent = '早・・;
             }
         }
 

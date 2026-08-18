@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,7 @@
             flex-direction: column;
         }
 
-        /* ナビゲーションヘッダー */
+        /* 繝翫ン繧ｲ繝ｼ繧ｷ繝ｧ繝ｳ繝倥ャ繝繝ｼ */
         .nav-header {
             position: fixed;
             top: 0;
@@ -100,7 +100,7 @@
         }
 
         .dropdown-toggle::after {
-            content: "▼";
+            content: "笆ｼ";
             font-size: 0.7em;
         }
 
@@ -156,7 +156,7 @@
             margin: 0 auto;
         }
 
-        /* 認証ボタン */
+        /* 隱崎ｨｼ繝懊ち繝ｳ */
         .auth-buttons {
             display: flex;
             gap: 10px;
@@ -364,7 +364,7 @@
         }
 
         .features-list li::before {
-            content: "✓";
+            content: "笨・;
             color: #4caf50;
             font-weight: bold;
             margin-right: 10px;
@@ -376,7 +376,7 @@
         }
 
         .features-list li.unavailable::before {
-            content: "✗";
+            content: "笨・;
             color: #ccc;
         }
 
@@ -434,7 +434,7 @@
             }
         }
 
-        /* フッター */
+        /* 繝輔ャ繧ｿ繝ｼ */
         footer {
             background: #2c3e50;
             color: white;
@@ -474,8 +474,8 @@
     </style>
     <!-- ========================================================
          Google Analytics 4
-         TODO: 下記の G-XXXXXXXXXX を実際の測定IDに置き換えてください
-         取得方法: https://analytics.google.com/ → 管理 → データストリーム → 測定ID
+         TODO: 荳玖ｨ倥・ G-XXXXXXXXXX 繧貞ｮ滄圀縺ｮ貂ｬ螳唔D縺ｫ鄂ｮ縺肴鋤縺医※縺上□縺輔＞
+         蜿門ｾ玲婿豕・ https://analytics.google.com/ 竊・邂｡逅・竊・繝・・繧ｿ繧ｹ繝医Μ繝ｼ繝 竊・貂ｬ螳唔D
     ========================================================= -->
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -495,7 +495,7 @@
                 <span></span>
                 <span></span>
             </div>
-<div class="nav-menu" id="navMenu">
+            <div class="nav-menu" id="navMenu">
                 <div class="nav-item dropdown">
                     <div class="nav-link dropdown-toggle">Certifications</div>
                     <div class="dropdown-menu">
@@ -520,21 +520,37 @@
                         <a href="mla.html" class="dropdown-item">
                             <div class="dropdown-item-title">MLA - Machine Learning Engineer Associate</div>
                         </a>
+                        <a href="sap.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SAP - Solutions Architect Professional</div>
+                        </a>
+                        <a href="scs.html" class="dropdown-item">
+                            <div class="dropdown-item-title">SCS - Security Specialty</div>
+                        </a>
+                        <a href="dop.html" class="dropdown-item">
+                            <div class="dropdown-item-title">DOP - DevOps Engineer Professional</div>
+                        </a>
                     </div>
                 </div>
                 <div class="nav-item">
                     <a href="pricing.html" class="nav-link">Pricing</a>
                 </div>
                 <div class="nav-item">
+                    <a href="history.html" class="nav-link">Study History</a>
+                </div>
+                <div class="nav-item">
                     <a href="faq.html" class="nav-link">FAQ</a>
-                </div>                <div class="nav-item auth-buttons">
+                </div>
+                <div class="nav-item">
+                    <a href="success-stories.html" class="nav-link">Success Stories</a>
+                </div>
+                <div class="nav-item auth-buttons">
                     <div class="logged-out">
                         <a href="login.html" class="auth-btn login">Log In</a>
                         <a href="signup.html" class="auth-btn signup">Sign Up</a>
                     </div>
                     <div class="logged-in">
                         <div class="user-info">
-                            <span class="user-icon">👤</span>
+                            <span class="user-icon">&#128100;</span>
                             <span class="username" id="username"></span>
                             <span class="user-plan" id="userPlan" style="margin-left: 10px; padding: 3px 8px; background: #FF9900; color: white; border-radius: 10px; font-size: 0.75em; font-weight: bold;"></span>
                             <span class="user-expiry" id="userExpiry" style="margin-left: 10px; padding: 3px 8px; background: #f0f0f0; color: #666; border-radius: 10px; font-size: 0.75em;"></span>
@@ -557,7 +573,7 @@
         <div class="pricing-container">
             <div class="pricing-card">
                 <div class="plan-name">Free</div>
-                <div class="plan-price">¥0<span>/mo</span></div>
+                <div class="plan-price">ﾂ･0<span>/mo</span></div>
                 <div class="plan-description">Try it for free</div>
                 <ul class="features-list">
                     <li>Sample questions (20 only)</li>
@@ -613,7 +629,7 @@
         </div>
 
         <div style="text-align: center;">
-            <a href="index.html" class="back-link">← Back to top</a>
+            <a href="index.html" class="back-link">竊・Back to top</a>
         </div>
     </div>
 
@@ -736,7 +752,7 @@
             }
         }
 
-        // StripeボタンのURLにログイン中のメールを自動付与
+        // Stripe繝懊ち繝ｳ縺ｮURL縺ｫ繝ｭ繧ｰ繧､繝ｳ荳ｭ縺ｮ繝｡繝ｼ繝ｫ繧定・蜍穂ｻ倅ｸ・
         function setStripeEmail(email) {
             if (!email) return;
             ['standardButton', 'advancedButton'].forEach(id => {
@@ -786,7 +802,7 @@
 
             if (lowerLevel === 'standard') {
                 if (standardButton) {
-                    standardButton.textContent = '✓ Already subscribed';
+                    standardButton.textContent = '笨・Already subscribed';
                     standardButton.disabled = true;
                     standardButton.style.background = '#9e9e9e';
                     standardButton.style.cursor = 'not-allowed';
@@ -795,14 +811,14 @@
             }
             if (lowerLevel === 'advanced') {
                 if (standardButton) {
-                    standardButton.textContent = '✓ Included in your plan';
+                    standardButton.textContent = '笨・Included in your plan';
                     standardButton.disabled = true;
                     standardButton.style.background = '#9e9e9e';
                     standardButton.style.cursor = 'not-allowed';
                     standardButton.onclick = null;
                 }
                 if (advancedButton) {
-                    advancedButton.textContent = '✓ Already subscribed';
+                    advancedButton.textContent = '笨・Already subscribed';
                     advancedButton.disabled = true;
                     advancedButton.style.background = '#9e9e9e';
                     advancedButton.style.cursor = 'not-allowed';
@@ -916,7 +932,7 @@
         <div class="footer-container">
             <a href="../index.html" class="footer-link">Sukima Learning Top Page</a>
             <div class="footer-copyright">
-                &copy; 2026 スキマ・ラーニング. All rights reserved.
+                &copy; 2026 繧ｹ繧ｭ繝槭・繝ｩ繝ｼ繝九Φ繧ｰ. All rights reserved.
             </div>
         </div>
     </footer>
