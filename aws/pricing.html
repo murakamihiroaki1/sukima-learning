@@ -589,13 +589,13 @@
                     <li class="unavailable">Professional certifications</li>
                     <li class="unavailable">Specialty certifications</li>
                 </ul>
-                <a href="https://buy.stripe.com/bJebIT9sH80V1qVgHy2kw01" class="cta-button" id="standardButton">Subscribe now</a>
+                <a href="https://buy.stripe.com/cNifZ9cETbd70mR62U2kw02" class="cta-button" id="standardButton">Subscribe now</a>
             </div>
 
-            <div class="pricing-card disabled">
+            <div class="pricing-card featured" id="advancedPlan">
                 <div class="plan-name">Advanced</div>
                 <div class="plan-price">$9.99<span>/mo</span></div>
-                <div class="plan-description">For professionals (coming soon)</div>
+                <div class="plan-description">For professionals</div>
                 <ul class="features-list">
                     <li>Access to all questions</li>
                     <li>Unlimited practice</li>
@@ -608,7 +608,7 @@
                     <li>Professional certifications (SAP, DOP)</li>
                     <li>Specialty certifications (SCS)</li>
                 </ul>
-                <a href="signup.html" class="cta-button">Get started</a>
+                <a href="https://buy.stripe.com/6oU4gr5crchb8Tn62U2kw03" class="cta-button" id="advancedButton">Subscribe now</a>
             </div>
         </div>
 
@@ -739,11 +739,13 @@
         // StripeボタンのURLにログイン中のメールを自動付与
         function setStripeEmail(email) {
             if (!email) return;
-            const btn = document.getElementById('standardButton');
-            if (btn) {
-                const base = btn.href.split('?')[0];
-                btn.href = `${base}?prefilled_email=${encodeURIComponent(email)}`;
-            }
+            ['standardButton', 'advancedButton'].forEach(id => {
+                const btn = document.getElementById(id);
+                if (btn) {
+                    const base = btn.href.split('?')[0];
+                    btn.href = `${base}?prefilled_email=${encodeURIComponent(email)}`;
+                }
+            });
         }
 
         function showLoggedIn(username, membershipLevel = 'Free', membershipExpiry = null) {
@@ -780,15 +782,31 @@
         function updatePricingButtons(membershipLevel) {
             const lowerLevel = membershipLevel.toLowerCase();
             const standardButton = document.getElementById('standardButton');
-            const standardPlan = document.getElementById('standardPlan');
-            
-            if (lowerLevel === 'standard' || lowerLevel === 'advanced') {
+            const advancedButton = document.getElementById('advancedButton');
+
+            if (lowerLevel === 'standard') {
                 if (standardButton) {
                     standardButton.textContent = '✓ Already subscribed';
                     standardButton.disabled = true;
                     standardButton.style.background = '#9e9e9e';
                     standardButton.style.cursor = 'not-allowed';
                     standardButton.onclick = null;
+                }
+            }
+            if (lowerLevel === 'advanced') {
+                if (standardButton) {
+                    standardButton.textContent = '✓ Included in your plan';
+                    standardButton.disabled = true;
+                    standardButton.style.background = '#9e9e9e';
+                    standardButton.style.cursor = 'not-allowed';
+                    standardButton.onclick = null;
+                }
+                if (advancedButton) {
+                    advancedButton.textContent = '✓ Already subscribed';
+                    advancedButton.disabled = true;
+                    advancedButton.style.background = '#9e9e9e';
+                    advancedButton.style.cursor = 'not-allowed';
+                    advancedButton.onclick = null;
                 }
             }
         }
