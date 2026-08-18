@@ -38,14 +38,14 @@ router.post('/create-checkout-session', authenticateToken, async (req, res, next
             payment_method_types: ['card'],
             line_items: [{
                 price_data: {
-                    currency: 'jpy',
+                    currency: 'usd',
                     product_data: {
-                        name: plan === MEMBERSHIP_LEVELS.STANDARD ? 'Standard プラン' : 'Advanced プラン',
+                        name: plan === MEMBERSHIP_LEVELS.STANDARD ? 'Standard Plan' : 'Advanced Plan',
                         description: plan === MEMBERSHIP_LEVELS.STANDARD
-                            ? '月額980円 - すべての問題へのアクセス、見直し機能'
-                            : '月額1,980円 - Professional認定を含むすべての機能',
+                            ? '$4.99/month - Access to all questions, review features'
+                            : '$9.99/month - All features including Professional certifications',
                     },
-                    unit_amount: plan === MEMBERSHIP_LEVELS.STANDARD ? 98000 : 198000, // 円単位（980円 = 98000）
+                    unit_amount: plan === MEMBERSHIP_LEVELS.STANDARD ? 499 : 999, // セント単位（$4.99 = 499）
                     recurring: {
                         interval: 'month',
                     },

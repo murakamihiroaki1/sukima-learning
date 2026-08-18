@@ -37,6 +37,8 @@ services:
         sync: false
       - key: STRIPE_WEBHOOK_SECRET
         sync: false
+      - key: STRIPE_STANDARD_PRICE_ID
+        value: price_1U5byy1eW4BJyV4DwwOLCOoJ
       - key: CORS_ORIGIN
         value: https://sukima-learning.com
       - key: FRONTEND_URL
