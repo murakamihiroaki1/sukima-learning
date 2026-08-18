@@ -56,13 +56,13 @@ function checkQuestionAccess(membership, questionId, examType) {
         return questionId >= 1 && questionId <= 20;
     }
 
-    // Standardプラン: Foundational/Associateの全問題
+    // Standardプラン: Foundational認定 + Associate認定
     if (level === MEMBERSHIP_LEVELS.STANDARD) {
-        const allowedExams = ['clf', 'aif', 'saa'];
+        const allowedExams = ['clf', 'aif', 'saa', 'dva', 'soa', 'dea', 'mla'];
         return allowedExams.includes(examType.toLowerCase());
     }
 
-    // Advancedプラン: すべて
+    // Advancedプラン: Professional認定 + Specialty認定（Standardも含む）
     if (level === MEMBERSHIP_LEVELS.ADVANCED) {
         return true;
     }
@@ -81,9 +81,9 @@ function getAccessibleQuestionRange(membership, examType) {
         return { min: 1, max: 20 };
     }
 
-    // Standardプラン
+    // Standardプラン: Foundational認定 + Associate認定
     if (level === MEMBERSHIP_LEVELS.STANDARD) {
-        const allowedExams = ['clf', 'aif', 'saa'];
+        const allowedExams = ['clf', 'aif', 'saa', 'dva', 'soa', 'dea', 'mla'];
         if (allowedExams.includes(examType.toLowerCase())) {
             return { min: 1, max: Infinity };
         }
@@ -139,8 +139,8 @@ function showAccessLimitMessage(membership, container) {
             upgradeLink = '<a href="pricing.html" style="color: #FF9900; font-weight: bold;">Standardプランにアップグレード</a>してすべての問題にアクセス';
         }
     } else if (level === MEMBERSHIP_LEVELS.STANDARD) {
-        message = 'ℹ️ StandardプランではFoundational認定とAssociate認定の全問題にアクセス可能です';
-        upgradeLink = '<a href="pricing.html" style="color: #FF9900; font-weight: bold;">Advancedプランにアップグレード</a>してProfessional認定にもアクセス';
+        message = 'ℹ️ StandardプランではFoundational認定（CLF/AIF）とAssociate認定（SAA/DVA/SOA/DEA/MLA）の全問題にアクセス可能です';
+        upgradeLink = '<a href="pricing.html" style="color: #FF9900; font-weight: bold;">Advancedプランにアップグレード</a>してProfessional認定（SAP/DOP）とSpecialty認定（SCS）にもアクセス';
     } else {
         return; // Advancedプランはメッセージ不要
     }
